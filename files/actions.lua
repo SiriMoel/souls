@@ -55,5 +55,6 @@ local a = {
 for i,v in ipairs(a) do
 	v.id = "MNM_" .. v.id
     table.insert(actions, v)
-	print(#a .. " actions successfully added!")
 end
+
+--print(#a .. " actions successfully added!")

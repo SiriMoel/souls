@@ -36,9 +36,36 @@ function SetFileContent(toset, content)
     ModTextFileSetContent(toset, ModTextFileGetContent("mods/moles_n_more/files/set/" .. content))
 end
 
-function IsInRadiusOf(xa, ya, xb, yb, radius)
+function IsInRadiusOf(xa, ya, xb, yb, radius) -- i dont think this works, isnt needed anyway.
     if xa - xb < radius and ya - yb < radius then
         return true
     end
     return false
+end
+
+function GetAmountOfMaterialInInventory(entity_id, material_name) -- "stolen" from https://github.com/Priskip/purgatory
+    --[[
+    Description: Returns the amount of material in the material inventory component of the specified entity
+    Usage:
+    count = GetAmountOfMaterialInInventory(entity_id, material_name)
+    Input Types:
+    entity_id = [num] id of the entity that has the material inventory component that you wish to add material to
+    material_name = [string] material id string of the material you wish to add. See function CellFactory_GetName( material_id:int ) in "lua_api_documentation.txt" for more info
+        
+    Return Types:
+    amount = [num]
+    ]]
+    local amount = 0
+    local mat_inv_comp = EntityGetFirstComponentIncludingDisabled(entity_id, "MaterialInventoryComponent") or 0
+    local count_per_material_type = ComponentGetValue2(mat_inv_comp, "count_per_material_type")
+
+    for i,v in ipairs(count_per_material_type) do
+        if v ~= 0 then
+            if CellFactory_GetName(i - 1) == material_name then
+                amount = v
+            end
+        end
+    end
+
+    return amount
 end

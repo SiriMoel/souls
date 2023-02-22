@@ -1,4 +1,4 @@
-dofile_once("data/scripts/lib/utilities.lua")
+dofile_once("mods/moles_n_more/files/scripts/utils.lua")
 
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform( entity_id )
@@ -9,23 +9,48 @@ local t_f = EntityGetInRadiusWithTag( x, y, radius, "brimstone" )
 local t_a = EntityGetInRadiusWithTag( x, y, radius, "thunderstone" )
 local t_e = EntityGetInRadiusWithTag( x, y, radius, "stonestone" )
 local t_p = EntityGetInRadiusWithTag( x, y, radius, "poopstone" )
-local t_g = EntityGetInRadiusWithTag( x, y, radius, "gourd" )
-local t_eye = EntityGetInRadiusWithTag( x, y, radius, "evil_eye")
+
+local begreen = false
+local bered = false
+local beblue = false
 
 local w = (#t_w > 0)
 local f = (#t_f > 0)
 local a = (#t_a > 0)
 local e = (#t_e > 0)
 local p = (#t_p > 0)
-local g = (#t_g > 0)
-local eye = (#t_eye > 0)
 
 local essences_list = ""
-local comp = EntityGetFirstComponent( entity_id, "VariableStorageComponent", "sunbaby_essences_list" )
-local comp2 = EntityGetFirstComponent( entity_id, "SpriteComponent", "sunbaby_sprite" )
+local comp = EntityGetFirstComponent( entity_id, "VariableStorageComponent", "sunbaby_essences_list" ) or 0
+local comp2 = EntityGetFirstComponent( entity_id, "SpriteComponent", "sunbaby_sprite" ) or 0
 
 local found = 0
 
+-- begreen
+local mat1 = GetAmountOfMaterialInInventory(entity_id, "magic_liquid_hp_regeneration")
+local mat2 = GetAmountOfMaterialInInventory(entity_id, "magic_liquid_hp_regeneration_unstable")
+if mat1 ~= nil and mat2 ~= nil then
+	if mat1 + mat2 >= 100 then
+		ComponentSetValue2( comp2, "image_file", "mods/moles_n_more/files/entities/sun/sun_small_green.png" )
+		EntityLoad("data/entities/projectiles/deck/explosion_giga.xml", x, y)
+		begreen = true
+		print("begreen")
+	end
+end
+
+-- bered
+local comp_sunkills = EntityGetFirstComponentIncludingDisabled(entity_id, "VariableStorageComponent", "sunbaby_kills") or 0
+local sunkills = ComponentGetValue2(comp_sunkills, "value_int")
+if sunkills >= 300 then
+	ComponentSetValue2( comp2, "image_file", "mods/moles_n_more/files/entities/sun/sun_small_red.png" )
+	EntityLoad("data/entities/projectiles/deck/explosion_giga.xml", x, y)
+	bered = true
+	print("bered")
+end
+
+-- beblue
+
+-- essences
 if ( comp ~= nil ) and ( comp2 ~= nil ) then
 	essences_list = ComponentGetValue2( comp, "value_string" )
 
@@ -103,38 +128,8 @@ if ( comp ~= nil ) and ( comp2 ~= nil ) then
 			EntityKill( v )
 		end
 	end
-
-    if g then
-        if ( string.find( essences_list, "gourd" ) == nil ) then
-            EntitySetComponentsWithTagEnabled( entity_id, "gourd", true )
-			ComponentSetValue2( comp2, "image_file", "mods/moles_n_more/files/entities/sun/sun_small_gourd.png" )
-			essences_list = essences_list .. "gourd,"
-			EntityLoad("data/entities/projectiles/deck/explosion_giga.xml", x, y)
-			GameScreenshake( 30, x, y )
-        end
-
-        for i,v in ipairs( t_g ) do
-			EntityKill( v )
-		end
-    end
-
-	if eye then 
-		if ( string.find( essences_list, "eye" ) == nil ) then
-            EntitySetComponentsWithTagEnabled( entity_id, "eye", true )
-			ComponentSetValue2( comp2, "image_file", "mods/moles_n_more/files/entities/sun/sun_small_digging.png" )
-			essences_list = essences_list .. "eye,"
-			EntityLoad("data/entities/projectiles/deck/explosion_giga.xml", x, y)
-			GameScreenshake( 30, x, y )
-        end
-
-        for i,v in ipairs( t_eye ) do
-			EntityKill( v )
-		end
-	end
 	
 	local ohno = false
-    local ohg = false
-	local eyefound = false
 	if ( string.find( essences_list, "water" ) ~= nil ) then
 		found = found + 1
 	end
@@ -154,14 +149,6 @@ if ( comp ~= nil ) and ( comp2 ~= nil ) then
 	if ( string.find( essences_list, "poop" ) ~= nil ) then
 		ohno = true
 	end
-
-    if ( string.find( essences_list, "gourd" ) ~= nil ) then
-		ohg = true
-	end
-
-	if ( string.find( essences_list, "eye" ) ~= nil ) then
-		eyefound = true
-	end
 	
 	if ( found > 0 ) then
 		EntitySetComponentsWithTagEnabled( entity_id, "sunbaby_stage_1", false )
@@ -177,14 +164,16 @@ if ( comp ~= nil ) and ( comp2 ~= nil ) then
             EntityAddTag(sun, "sun")
 			GamePrintImportant( "The Dark Sun rises...", "" )
 			AddFlagPersistent( "progress_darksun" )
-        elseif ohg == true then
-            local sun = EntityLoad("mods/moles_n_more/files/entities/sun/newsun_gourd.xml", x, y)
+        elseif begreen == true then
+            local sun = EntityLoad("mods/moles_n_more/files/entities/sun/newsun_green.xml", x, y)
             EntityAddTag(sun, "sun")
-			GamePrintImportant( "The Green Sun rises...", "" )
-		elseif eyefound == true then
-			local sun = EntityLoad("mods/moles_n_more/files/entities/sun/newsun_digging.xml", x, y)
+			GamePrintImportant( "The Vigorous Sun rises...", "" )
+		elseif bered == true then
+			local sun = EntityLoad("mods/moles_n_more/files/entities/sun/newsun_red.xml", x, y)
             EntityAddTag(sun, "sun")
 			GamePrintImportant( "The Hungering Sun rises...", "" )
+		elseif beblue == true then
+			GamePrintImportant( "The Alchemic Sun rises...", "" )
 		else
             local sun = EntityLoad("data/entities/items/pickup/sun/newsun.xml", x, y)
             EntityAddTag(sun, "sun")

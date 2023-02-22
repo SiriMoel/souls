@@ -40,7 +40,7 @@
 		offset_y="105"
 		emissive="1"
 		additive="1"
-		image_file="mods/thesunmod/files/sprites/diggingsun.png"
+		image_file="mods/moles_n_more/files/entities/sun/redsun.png"
 		smooth_filtering="1"
 	></SpriteComponent>
 

@@ -26,11 +26,30 @@ local comp2 = EntityGetFirstComponent( entity_id, "SpriteComponent", "sunbaby_sp
 
 local found = 0
 
+function suninit(sun, bcount, bmax)
+	EntityAddTag(sun, "sun")
+	EntityAddComponent2(sun, "VariableStorageComponent", {
+		_tags="sun_brilliance",
+		name="sun_brilliance",
+		value_int=bcount,
+	})
+	EntityAddComponent2(sun, "VariableStorageComponent", {
+		_tags="sun_brilliance_max",
+		name="sun_brilliance_max",
+		value_int=bmax,
+	})
+	EntityAddComponent2(sun, "LuaComponent", {
+		script_source_file="mods/moles_n_more/files/entities/sun/eaten.lua",
+		execute_every_n_frame="2",
+	})
+end
+
 -- begreen
 local mat1 = GetAmountOfMaterialInInventory(entity_id, "magic_liquid_hp_regeneration")
 local mat2 = GetAmountOfMaterialInInventory(entity_id, "magic_liquid_hp_regeneration_unstable")
+local mattotal = mat1 + mat2
 if mat1 ~= nil and mat2 ~= nil then
-	if mat1 + mat2 >= 100 then
+	if mattotal >= 100 then
 		ComponentSetValue2( comp2, "image_file", "mods/moles_n_more/files/entities/sun/sun_small_green.png" )
 		EntityLoad("data/entities/projectiles/deck/explosion_giga.xml", x, y)
 		begreen = true
@@ -161,26 +180,25 @@ if ( comp ~= nil ) and ( comp2 ~= nil ) then
 	if ( found == 4 ) then
 		if ohno == true then
             local sun = EntityLoad("data/entities/items/pickup/sun/newsun_dark.xml", x, y)
-            EntityAddTag(sun, "sun")
+			suninit(sun, 200, 250)
 			GamePrintImportant( "The Dark Sun rises...", "" )
 			AddFlagPersistent( "progress_darksun" )
         elseif begreen == true then
             local sun = EntityLoad("mods/moles_n_more/files/entities/sun/newsun_green.xml", x, y)
-            EntityAddTag(sun, "sun")
+			suninit(sun, 100, 300)
 			GamePrintImportant( "The Vigorous Sun rises...", "" )
 		elseif bered == true then
 			local sun = EntityLoad("mods/moles_n_more/files/entities/sun/newsun_red.xml", x, y)
-            EntityAddTag(sun, "sun")
+            suninit(sun, 100, 300)
 			GamePrintImportant( "The Hungering Sun rises...", "" )
 		elseif beblue == true then
 			GamePrintImportant( "The Alchemic Sun rises...", "" )
 		else
             local sun = EntityLoad("data/entities/items/pickup/sun/newsun.xml", x, y)
-            EntityAddTag(sun, "sun")
+            suninit(sun, 250, 500)
 			GamePrintImportant( "The New Sun rises...", "" )
 			AddFlagPersistent( "progress_sun" )
         end
-		
 		GameTriggerMusicFadeOutAndDequeueAll( 3.0 )
 		GameTriggerMusicEvent( "music/oneshot/dark_01", true, x, y )
 		GameScreenshake( 80, x, y )

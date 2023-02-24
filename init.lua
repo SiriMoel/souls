@@ -13,6 +13,16 @@ SetFileContent("data/entities/items/pickup/sun/sunbaby.xml", "sunbaby.xml")
 function OnPlayerSpawned( player ) 
     if GameHasFlagRun("moles_n_more_init") then return end
     SoulsInit()
+    EntityAddComponent2(player, "VariableStorageComponent", {
+        _tags="brilliance_stored",
+        name="brilliance_stored",
+        value_int="0",
+    })
+    EntityAddComponent2(player, "VariableStorageComponent", {
+        _tags="brilliance_max",
+        name="brilliance_max",
+        value_int="500",
+    })
     GameAddFlagRun("moles_n_more_init")
 end
 

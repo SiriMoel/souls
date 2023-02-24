@@ -1,3 +1,5 @@
+dofile_once("mods/moles_n_more/files/scripts/utils.lua")
+
 local a = {
 	{
 		id          = "REAPING_SHOT",
@@ -23,8 +25,8 @@ local a = {
 		sprite 		= "mods/moles_n_more/files/spell_icons/reaping_field.png",
 		related_projectiles	= {"mods/moles_n_more/files/entities/projectiles/reaping_field/reaping_field.xml"},
 		type 		= ACTION_TYPE_STATIC_PROJECTILE,
-		spawn_level                       = "2,3,4,5", 
-		spawn_probability                 = "1,1,1,1", 
+		spawn_level                       = "2,3,4,5",
+		spawn_probability                 = "1,1,1,1",
 		price = 200,
 		mana = 70,
 		max_uses = 5,
@@ -41,13 +43,30 @@ local a = {
 		related_extra_entities = { "mods/moles_n_more/files/entities/projectiles/souls_to_power/souls_to_power.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
 		spawn_level                       = "1,2,3,4,5",
-		spawn_probability                 = "1,1,1,1,1", 
+		spawn_probability                 = "1,1,1,1,1",
 		price = 120,
 		mana = 50,
 		action 		= function()
 			c.extra_entities = c.extra_entities .. "mods/moles_n_more/files/entities/projectiles/souls_to_power/souls_to_power.xml,"
 			c.fire_rate_wait    = c.fire_rate_wait + 20
 			draw_actions( 1, true )
+		end,
+	},
+	{
+		id          = "SOLAR_GLUTTONY",
+		name 		= "Solar Gluttony",
+		description = "Eat the Sun.",
+		sprite 		= "mods/moles_n_more/files/spell_icons/solar_gluttony.png",
+		related_projectiles	= {"mods/moles_n_more/files/entities/projectiles/solar_gluttony/solar_gluttony.xml"},
+		type 		= ACTION_TYPE_STATIC_PROJECTILE,
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 0,
+		mana = 275,
+		max_uses = 30,
+		action 		= function()
+			add_projectile("mods/moles_n_more/files/entities/projectiles/solar_gluttony/solar_gluttony.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 50
 		end,
 	},
 }

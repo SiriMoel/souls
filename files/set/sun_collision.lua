@@ -32,8 +32,14 @@ if target ~= nil and entity_id ~= target then
 	end
 	
 	local material = "fire"
-	if EntityHasTag( target, "seed_g" ) then
+	if EntityHasTag( target, "sun_green" ) then
 		material = "magic_gas_hp_regeneration"
+	end
+	if EntityHasTag( target, "sun_red" ) then
+		material = "blood"
+	end
+	if EntityHasTag( target, "sun_blue" ) then
+		material = "midas_precursor"
 	end
 
 	ConvertMaterialEverywhere( CellFactory_GetType( "rock_static" ), CellFactory_GetType( material ) )

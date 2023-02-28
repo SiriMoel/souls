@@ -1,0 +1,108 @@
+<Entity tags="mortal,hittable,homing_target,mole" name="Mole" >
+  
+	<Base file="data/entities/base_helpless_animal.xml" >
+
+        <AnimalAIComponent 
+        	preferred_job="Escaping"
+			attack_melee_enabled="0"
+			attack_ranged_entity_file=""
+			attack_ranged_predict="1"
+			attack_ranged_enabled="0"
+			attack_melee_enabled="0"
+			attack_melee_damage_min="0"
+			attack_melee_damage_max="0"
+			can_fly="0"
+			food_material=""
+			needs_food="0"
+            >
+        </AnimalAIComponent >
+		
+		<DamageModelComponent
+			blood_material="blood_mole"
+			blood_spray_material="blood_mole"
+			blood_multiplier="2"
+			ragdoll_offset_y="0"
+			ragdoll_filenames_file=""
+			hp="0.3"
+			materials_create_messages="1"
+			materials_that_create_messages=""
+			>
+		</DamageModelComponent>
+
+		<SpriteComponent 
+			image_file="mods/moles_n_more/files/entities/moles/mole/sprite.xml" 
+			offset_x="10"
+			offset_y="12" >
+		</SpriteComponent>
+
+		<SpriteAnimatorComponent
+			rotate_to_surface_normal="0" >
+		</SpriteAnimatorComponent>
+
+		<PathFindingGridMarkerComponent
+			marker_work_flag="24" 
+			>
+		</PathFindingGridMarkerComponent>
+		
+		<GenomeDataComponent 
+			herd_id="helpless"
+			food_chain_rank="20"
+			is_predator="0" 
+			>
+		</GenomeDataComponent>
+		
+		<CharacterDataComponent
+			collision_aabb_min_x="-3.0" 
+			collision_aabb_max_x="3.0" 
+			collision_aabb_min_y="-6" 
+			collision_aabb_max_y="3" 
+			buoyancy_check_offset_y="-3"
+			mass="1.4"
+		>
+		</CharacterDataComponent>
+		
+		<PathFindingComponent
+			can_jump="1" 
+			distance_to_reach_node_x="20"
+		    distance_to_reach_node_y="20"
+			frames_to_get_stuck="20"
+			>
+		</PathFindingComponent>
+
+        <CharacterPlatformingComponent 
+			jump_velocity_y="-30" 
+			run_velocity="40"  >
+		</CharacterPlatformingComponent>
+
+        <HitboxComponent 
+			_enabled="1" 
+			aabb_min_x="-5.5" 
+			aabb_max_x="5.5" 
+			aabb_min_y="-1.4" 
+			aabb_max_y="3.5" >
+		</HitboxComponent>
+		
+		<CharacterDataComponent
+			collision_aabb_min_x="-3.5" 
+			collision_aabb_max_x="3.5" 
+			collision_aabb_min_y="-3" 
+			collision_aabb_max_y="3" 
+			buoyancy_check_offset_y="-1"
+			mass="0.4"
+			>
+		</CharacterDataComponent>
+
+	</Base>
+
+	<AudioComponent
+		file="data/audio/Desktop/animals.bank"
+		event_root="animals/sheep" >
+	</AudioComponent>
+
+	<LuaComponent
+        script_source_file="mods/moles_n_more/files/entities/moles/mole/spawn.lua"
+        execute_on_added="1"
+    ></LuaComponent>
+
+</Entity>
+

@@ -43,7 +43,7 @@ function IsInRadiusOf(xa, ya, xb, yb, radius) -- i dont think this works, isnt n
     return false
 end
 
-function GetAmountOfMaterialInInventory(entity_id, material_name) -- "stolen" from https://github.com/Priskip/purgatory
+function GetAmountOfMaterialInInventory(entity_id, material_name) -- stolen from https://github.com/Priskip/purgatory
     --[[
     Description: Returns the amount of material in the material inventory component of the specified entity
     Usage:
@@ -79,6 +79,7 @@ function TransferBrilliance(from_comp, to_comp, to_comp_max, amount)
     from_comp_amount = from_comp_amount - amount
     if to_comp_amount > to_comp_max then
         to_comp_amount = to_max
+        --EntityInflictDamage(PLAYER, 10, "DAMAGE_PHYSICS_BODY_DAMAGED", "THE UNMATCHED POWER OF THE SUN", "DISINTERGRATED", 0, 0)
     end
     ComponentSetValue2(to_comp, "value_int", to_comp_amount)
     ComponentSetValue2(from_comp, "value_int", from_comp_amount)

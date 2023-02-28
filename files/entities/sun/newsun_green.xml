@@ -1,4 +1,4 @@
-<Entity tags="hittable,teleportable_NOT,seed_g" >
+<Entity tags="hittable,teleportable_NOT,seed_g,sun_green" >
 	<StreamingKeepAliveComponent />
 	
 	<Base file="data/entities/base_item_projectile.xml" />

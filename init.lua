@@ -1,18 +1,37 @@
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/moles_n_more/files/actions.lua" )
+ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/moles_n_more/files/perks.lua" )
+--ModMagicNumbersFileAdd( "mods/moles_n_more/files/magic_numbers.xml" ) 
 ModMaterialsFileAdd("mods/moles_n_more/files/materials.xml")
 dofile_once("mods/moles_n_more/files/scripts/utils.lua")
 dofile_once("mods/moles_n_more/files/scripts/souls.lua")
 dofile_once("mods/moles_n_more/files/scripts/molebiomes.lua")
+dofile_once("mods/moles_n_more/lib/gusgui/gusgui.lua").init("mods/moles_n_more/lib/gusgui")
+
+local nxml = dofile_once("mods/moles_n_more/lib/nxml.lua")
+
+dofile_once("mods/moles_n_more/files/gui.lua")
 
 -- set
 SetFileContent("data/scripts/buildings/sun/spot_4.lua", "spot_4.lua")
 SetFileContent("data/scripts/buildings/sun/sun_collision.lua", "sun_collision.lua")
 SetFileContent("data/entities/items/pickup/sun/sunbaby.xml", "sunbaby.xml")
 
+-- biomes
+local content = ModTextFileGetContent("data/biome/_biomes_all.xml")
+local xml = nxml.parse(content)
+xml:add_children(nxml.parse_many[[
+    <Biome height_index="0" color="ff9dceb9" biome_filename="mods/moles_n_more/files/biome/sunlab/sunlab.xml" />
+]])
+ModTextFileSetContent("data/biome/_biomes_all.xml", tostring(xml))
+
 -- player
 function OnPlayerSpawned( player ) 
     if GameHasFlagRun("moles_n_more_init") then return end
     SoulsInit()
+    --[[EntityAddComponent2(player, "LuaComponent", {
+        script_source_file="mods/moles_n_more/files/scripts/player.lua",
+        execute_every_n_frame="2",
+    })]]--
     EntityAddComponent2(player, "VariableStorageComponent", {
         _tags="brilliance_stored",
         name="brilliance_stored",
@@ -23,6 +42,15 @@ function OnPlayerSpawned( player )
         name="brilliance_max",
         value_int="500",
     })
+    --AddFlagPersistent("progress_greensun")
+    --AddFlagPersistent("progress_redsun")
+    --AddFlagPersistent("progress_bluesun")
+    --[[
+    if HasFlagPersistent("progress_greensun") and HasFlagPersistent("progress_redsun") and HasFlagPersistent("progress_bluesun") then
+        EntitySetComponentsWithTagEnabled( entity_id, "player_hat2", false )
+        EntitySetComponentsWithTagEnabled( entity_id, "player_hat", true )
+    end
+    ]]--
     GameAddFlagRun("moles_n_more_init")
 end
 

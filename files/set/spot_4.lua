@@ -187,12 +187,15 @@ if ( comp ~= nil ) and ( comp2 ~= nil ) then
             local sun = EntityLoad("mods/moles_n_more/files/entities/sun/newsun_green.xml", x, y)
 			suninit(sun, 100, 300)
 			GamePrintImportant( "The Vigorous Sun rises...", "" )
+			AddFlagPersistent( "progress_greensun" )
 		elseif bered == true then
 			local sun = EntityLoad("mods/moles_n_more/files/entities/sun/newsun_red.xml", x, y)
             suninit(sun, 100, 300)
 			GamePrintImportant( "The Hungering Sun rises...", "" )
+			AddFlagPersistent( "progress_redsun" )
 		elseif beblue == true then
 			GamePrintImportant( "The Alchemic Sun rises...", "" )
+			AddFlagPersistent( "progress_bluesun" )
 		else
             local sun = EntityLoad("data/entities/items/pickup/sun/newsun.xml", x, y)
             suninit(sun, 250, 500)

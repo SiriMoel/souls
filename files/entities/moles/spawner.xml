@@ -5,4 +5,8 @@
         execute_every_n_frame="5"
     ></LuaComponent>
 
+    <SpriteParticleEmitterComponent
+			sprite_file="mods/moles_n_more/files/particles/mole_spawner.xml" >
+	</SpriteParticleEmitterComponent>
+
 </Entity>

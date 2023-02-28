@@ -1,0 +1,62 @@
+<Sprite
+    filename="data/enemies_gfx/rat.png" 
+    offset_x="20" 
+    offset_y="12"
+    default_animation="stand" >
+
+    <RectAnimation 
+        frame_count="1"
+        frame_height="16" 
+        frame_wait="0.1" 
+        frame_width="11" 
+        frames_per_row="5" 
+        name="stand" 
+        pos_x="0" 
+        pos_y="0" 
+    ></RectAnimation>
+
+    <RectAnimation 
+        frame_count="5"
+        frame_height="16" 
+        frame_wait="0.2" 
+        frame_width="11" 
+        frames_per_row="5" 
+        name="walk" 
+        pos_x="0" 
+        pos_y="0" 
+    ></RectAnimation>
+
+    <RectAnimation 
+        frame_count="5"
+        frame_height="16" 
+        frame_wait="0.2" 
+        frame_width="11" 
+        frames_per_row="5" 
+        name="digup" 
+        pos_x="0" 
+        pos_y="0" 
+    ></RectAnimation>
+
+    <RectAnimation 
+        frame_count="6"
+        frame_height="16" 
+        frame_wait="0.2" 
+        frame_width="11" 
+        frames_per_row="6" 
+        name="digdown" 
+        pos_x="0" 
+        pos_y="0" 
+    ></RectAnimation>
+
+    <RectAnimation 
+        frame_count="5"
+        frame_height="16" 
+        frame_wait="0.2" 
+        frame_width="11" 
+        frames_per_row="5" 
+        name="jump" 
+        pos_x="0" 
+        pos_y="0" 
+    ></RectAnimation>
+
+</Sprite>

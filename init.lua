@@ -68,7 +68,6 @@ if not GameHasFlagRun("moles_n_more_moles_init") then -- thanks conga
 end
 
 -- nxml
-local nxml = dofile_once("mods/moles_n_more/lib/nxml.lua")
 local content = ModTextFileGetContent("data/materials.xml")
 local xml = nxml.parse(content)
 for element in xml:each_child() do

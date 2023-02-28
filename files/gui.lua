@@ -1,7 +1,7 @@
 dofile_once("mods/moles_n_more/files/scripts/utils.lua")
 
 local gusgui = dofile_once("mods/moles_n_more/lib/gusgui/Gui.lua")
-local Gui = gusgui.Create()
+local Gui = gusgui.Create({ enableLogging = true, })
 
 local comp_brilliance = 0
 local comp_brilliance_max = 0
@@ -12,8 +12,8 @@ function OnWorldPreUpdate()
     if PLAYER ~= nil then 
         comp_brilliance = EntityGetFirstComponentIncludingDisabled(PLAYER, "VariableStorageComponent", "brilliance_stored") or 0
         comp_brilliance_max = EntityGetFirstComponentIncludingDisabled(PLAYER, "VariableStorageComponent", "brilliance_max") or 0
-        p_brilliance = ComponentGetValue2(comp_brilliance, "value_string")
-        p_brilliance_max = ComponentGetValue2(comp_brilliance_max, "value_string")
+        p_brilliance = ComponentGetValue2(comp_brilliance, "value_int")
+        p_brilliance_max = ComponentGetValue2(comp_brilliance_max, "value_int")
         Gui.state.bbar = (p_brilliance / p_brilliance_max) * 100
         Gui.state.brilliance = p_brilliance
     end
@@ -27,7 +27,7 @@ end
 
 Gui:AddElement(gusgui.Elements.HLayout({
     id = "gui",
-    margin = { top = 5, left = 200, },
+    margin = { top = 5, left = 50, },
     overrideZ = 10, 
     children = {
         gusgui.Elements.ProgressBar({
@@ -48,4 +48,15 @@ Gui:AddElement(gusgui.Elements.HLayout({
             drawBackground = false,
         }),
     }
+}))
+
+Gui:AddElement(gusgui.Elements.VLayout({
+    id = "sunbook",
+    margin = { top = 50, left = 50, },
+    overrideZ  = 100000000,
+    hidden = true,
+    onBeforeRender = function(element)
+
+    end,
+    children = {},
 }))

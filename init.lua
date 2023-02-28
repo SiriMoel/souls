@@ -35,12 +35,12 @@ function OnPlayerSpawned( player )
     EntityAddComponent2(player, "VariableStorageComponent", {
         _tags="brilliance_stored",
         name="brilliance_stored",
-        value_int="0",
+        value_int=0,
     })
     EntityAddComponent2(player, "VariableStorageComponent", {
         _tags="brilliance_max",
         name="brilliance_max",
-        value_int="500",
+        value_int=500,
     })
     --AddFlagPersistent("progress_greensun")
     --AddFlagPersistent("progress_redsun")

@@ -1,7 +1,7 @@
 dofile_once("mods/moles_n_more/files/scripts/utils.lua")
 
 local gusgui = dofile_once("mods/moles_n_more/lib/gusgui/Gui.lua")
-local Gui = gusgui.Create({ enableLogging = true, })
+local Gui = gusgui.Create()
 
 local comp_brilliance = 0
 local comp_brilliance_max = 0
@@ -56,7 +56,14 @@ Gui:AddElement(gusgui.Elements.VLayout({
     overrideZ  = 100000000,
     hidden = true,
     onBeforeRender = function(element)
-
+        if GameHasFlagRun("mnm_sunbook_unlocked") then
+            element.config.hidden = false
+        end
     end,
-    children = {},
+    children = {
+        -- button to show and hide book
+        -- page
+        -- next page button
+        -- prev page button
+    },
 }))

@@ -46,10 +46,10 @@ end
 
 -- begreen
 local mat1 = GetAmountOfMaterialInInventory(entity_id, "magic_liquid_hp_regeneration")
-local mat2 = GetAmountOfMaterialInInventory(entity_id, "magic_liquid_hp_regeneration_unstable")
+local mat2 = GetAmountOfMaterialInInventory(entity_id, "magic_liquid_hp_regeneration_unstable") * 2
 local mattotal = mat1 + mat2
 if mat1 ~= nil and mat2 ~= nil then
-	if mattotal >= 100 then
+	if mattotal >= 1 then -- for testing purposes, will be changed to 100 or more
 		ComponentSetValue2( comp2, "image_file", "mods/moles_n_more/files/entities/sun/sun_small_green.png" )
 		EntityLoad("data/entities/projectiles/deck/explosion_giga.xml", x, y)
 		begreen = true
@@ -60,7 +60,7 @@ end
 -- bered
 local comp_sunkills = EntityGetFirstComponentIncludingDisabled(entity_id, "VariableStorageComponent", "sunbaby_kills") or 0
 local sunkills = ComponentGetValue2(comp_sunkills, "value_int")
-if sunkills >= 300 then
+if sunkills >= 1 then -- for testing purposes, will be changed to 200
 	ComponentSetValue2( comp2, "image_file", "mods/moles_n_more/files/entities/sun/sun_small_red.png" )
 	EntityLoad("data/entities/projectiles/deck/explosion_giga.xml", x, y)
 	bered = true

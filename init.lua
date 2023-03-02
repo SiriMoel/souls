@@ -1,5 +1,6 @@
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/moles_n_more/files/actions.lua" )
 ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/moles_n_more/files/perks.lua" )
+ModLuaFileAppend( "data/scripts/perks/items/orb_pickup.lua", "mods/moles_n_more/files/scripts/orb_pickup_append.lua" )
 --ModMagicNumbersFileAdd( "mods/moles_n_more/files/magic_numbers.xml" ) 
 ModMaterialsFileAdd("mods/moles_n_more/files/materials.xml")
 dofile_once("mods/moles_n_more/files/scripts/utils.lua")
@@ -72,7 +73,7 @@ local content = ModTextFileGetContent("data/materials.xml")
 local xml = nxml.parse(content)
 for element in xml:each_child() do
     if element.attr.name == "magic_liquid_hp_regeneration" or element.attr.name == "magic_liquid_hp_regeneration_unstable" then
-        element.attr.tags = "[liquid],[water],[magic_liquid],[regenerative],[greensun_fuel]"
+        element.attr.tags = "[liquid],[water],[magic_liquid],[regenerative],[greensun_fuel],[sunbaby_ignore_list]"
     end
 end
 ModTextFileSetContent("data/materials.xml", tostring(xml))

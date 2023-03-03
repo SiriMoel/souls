@@ -1,4 +1,5 @@
 dofile_once("mods/moles_n_more/files/scripts/utils.lua")
+dofile_once("mods/moles_n_more/files/scripts/sunbook_pages.lua")
 
 local gusgui = dofile_once("mods/moles_n_more/lib/gusgui/Gui.lua")
 local Gui = gusgui.Create()
@@ -7,6 +8,11 @@ local comp_brilliance = 0
 local comp_brilliance_max = 0
 local p_brilliance = 0
 local p_brilliance_max = 0
+
+local sunbook_page = 1
+local sunbook_open = false
+local sunbook_prevbutton_shown = false
+local sunbook_nextbutton_shown = false
 
 function OnWorldPreUpdate()
     if PLAYER ~= nil then 
@@ -61,9 +67,66 @@ Gui:AddElement(gusgui.Elements.VLayout({
         end
     end,
     children = {
-        -- button to show and hide book
-        -- page
-        -- next page button
-        -- prev page button
+        gusgui.Elements.ImageButton({ -- open and close button
+            id = "sunbook_button",
+            src = "mods/moles_n_more/files/sunbook_button.png",
+            scaleX = 2,
+            scaleY = 2,
+            onClick = function(element)
+                sunbook_open = flipbool(sunbook_open)
+            end,
+        }),
+        gusgui.Elements.VLayout({ -- actual book park
+            id = "sunbook_book",
+            margin = { top = 50, },
+            hidden = true,
+            onBeforeRender = function(element)
+                element.config.hidden = not sunbook_open
+            end,
+            children = {
+                gusgui.Elements.Image({ -- pages
+                    id = "sunbookpage",
+                    src = "",
+                    onBeforeRender = function(element)
+                        src = sunbookpages[sunbook_page].page
+                    end,
+                }), 
+                gusgui.Elements.HLayout({ -- prev and next buttons
+                    id = "sunbook_buttons",
+                    children = {
+                        gusgui.Elements.ImageButton({ -- prev button
+                            id = "sunbook_button_prev",
+                            src = "mods/moles_n_more/files/sunbook_button.png",
+                            scaleX = 1,
+                            scaleY = 1,
+                            hidden = true,
+                            onBeforeRender = function(element)
+                                if sunbookpages[sunbook_page - 1] ~= nil then
+                                    element.config.hidden = false
+                                end
+                            end,
+                            onClick = function(element)
+                                sunbook_page = sunbook_page - 1
+                            end,
+                        }),
+                        gusgui.Elements.ImageButton({ -- prev button
+                            id = "sunbook_button_next",
+                            src = "mods/moles_n_more/files/sunbook_button.png",
+                            scaleX = 1,
+                            scaleY = 1,
+                            hidden = true,
+                            onBeforeRender = function(element)
+                                if sunbookpages[sunbook_page + 1] ~= nil then
+                                    element.config.hidden = false
+                                end
+                            end,
+                            onClick = function(element)
+                                sunbook_page = sunbook_page + 1
+                            end,
+                        }),
+                    },
+                }),
+            },
+        })
     },
 }))

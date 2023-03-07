@@ -13,6 +13,7 @@ local sunbook_page = 1
 local sunbook_open = false
 local sunbook_prevbutton_shown = false
 local sunbook_nextbutton_shown = false
+local sunbook_page_scalemult = 2
 
 function OnWorldPreUpdate()
     if PLAYER ~= nil then 
@@ -87,8 +88,12 @@ Gui:AddElement(gusgui.Elements.VLayout({
                 gusgui.Elements.Image({ -- pages
                     id = "sunbookpage",
                     src = "",
+                    scaleX = 1,
+                    scaleY = 1,
                     onBeforeRender = function(element)
-                        src = sunbookpages[sunbook_page].page
+                        element.config.src = sunbookpages[sunbook_page].page
+                        element.config.scaleX = sunbookpages[sunbook_page].scaleX * sunbook_page_scalemult
+                        element.config.scaleY = sunbookpages[sunbook_page].scaleY * sunbook_page_scalemult
                     end,
                 }), 
                 gusgui.Elements.HLayout({ -- prev and next buttons

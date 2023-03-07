@@ -2,7 +2,7 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/moles_n_more/files/a
 ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/moles_n_more/files/perks.lua" )
 ModLuaFileAppend( "data/scripts/perks/items/orb_pickup.lua", "mods/moles_n_more/files/scripts/orb_pickup_append.lua" )
 ModLuaFileAppend( "data/scripts/biomes/orbrooms/orbroom_07.lua", "mods/moles_n_more/files/scripts/orbroom_07_append.lua" )
---ModMagicNumbersFileAdd( "mods/moles_n_more/files/magic_numbers.xml" ) 
+--ModMagicNumbersFileAdd( "mods/moles_n_more/files/magic_numbers.xml" )
 ModMaterialsFileAdd("mods/moles_n_more/files/materials.xml")
 dofile_once("mods/moles_n_more/files/scripts/utils.lua")
 dofile_once("mods/moles_n_more/files/scripts/souls.lua")
@@ -53,7 +53,7 @@ function OnPlayerSpawned( player )
         EntitySetComponentsWithTagEnabled( entity_id, "player_hat", true )
     end
     ]]--
-    GameAddFlagRun("mnm_sunbook_unlocked")
+    GameAddFlagRun("mnm_sunbook_unlocked") -- for testing purposes
     GameAddFlagRun("moles_n_more_init")
 end
 
@@ -65,7 +65,7 @@ if not GameHasFlagRun("moles_n_more_moles_init") then -- thanks conga
         if v.modded ~= nil and v.modded == true then
             biomepath = v.biome
         end
-        ModLuaFileAppend(biomepath, spawnerpath)      
+        ModLuaFileAppend(biomepath, spawnerpath)
     end
     GameAddFlagRun("moles_n_more_moles_init")
 end

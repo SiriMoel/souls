@@ -1,6 +1,6 @@
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/moles_n_more/files/actions.lua" )
 ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/moles_n_more/files/perks.lua" )
-ModLuaFileAppend( "data/scripts/perks/items/orb_pickup.lua", "mods/moles_n_more/files/scripts/orb_pickup_append.lua" )
+ModLuaFileAppend( "data/scripts/items/orb_pickup.lua", "mods/moles_n_more/files/scripts/orb_pickup_append.lua" )
 ModLuaFileAppend( "data/scripts/biomes/orbrooms/orbroom_07.lua", "mods/moles_n_more/files/scripts/orbroom_07_append.lua" )
 --ModMagicNumbersFileAdd( "mods/moles_n_more/files/magic_numbers.xml" )
 ModMaterialsFileAdd("mods/moles_n_more/files/materials.xml")
@@ -8,6 +8,7 @@ dofile_once("mods/moles_n_more/files/scripts/utils.lua")
 dofile_once("mods/moles_n_more/files/scripts/souls.lua")
 dofile_once("mods/moles_n_more/files/scripts/molebiomes.lua")
 dofile_once("mods/moles_n_more/lib/gusgui/gusgui.lua").init("mods/moles_n_more/lib/gusgui")
+dofile_once("Mods/moles_n_more/lib/Noitilities/NL_Init.lua").Init("mods/moles_n_more/files/lib/Noitilities")
 
 local nxml = dofile_once("mods/moles_n_more/lib/nxml.lua")
 

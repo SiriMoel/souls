@@ -21,7 +21,7 @@ function GetPlayer()
     return player
 end
 
-PLAYER = GetPlayer()
+PLAYER = GetPlayer() -- this seems bugged, just use GetPlayer()
 
 function table.contains(table, element)
     for _, value in pairs(table) do
@@ -79,7 +79,7 @@ function TransferBrilliance(from_comp, to_comp, to_comp_max, amount)
     from_comp_amount = from_comp_amount - amount
     if to_comp_amount > to_comp_max then
         to_comp_amount = to_max
-        --EntityInflictDamage(PLAYER, 10, "DAMAGE_PHYSICS_BODY_DAMAGED", "THE UNMATCHED POWER OF THE SUN", "DISINTERGRATED", 0, 0)
+        --EntityInflictDamage(GetPlayer(), 10, "DAMAGE_PHYSICS_BODY_DAMAGED", "THE UNMATCHED POWER OF THE SUN", "DISINTERGRATED", 0, 0)
     end
     ComponentSetValue2(to_comp, "value_int", to_comp_amount)
     ComponentSetValue2(from_comp, "value_int", from_comp_amount)

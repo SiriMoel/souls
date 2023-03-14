@@ -6,8 +6,9 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
     local herd_id_number = ComponentGetValue2( EntityGetFirstComponent( entity_id, "GenomeDataComponent" ) or 0, "herd_id")
     local herd_id = HerdIdToString(herd_id_number)
     
+    if not table.contains(soul_types, herd_id) then return end
+
     if ModSettingGet("moles_n_more.say_soul") == true then
-        if table.contains(soul_types, herd_id) == false then return end
         GamePrint("You have acquired a " .. herd_id .. " soul!")
     end
 

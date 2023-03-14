@@ -1,4 +1,4 @@
-<Entity tags="soul,soul_synthetic">
+<Entity tags="mnm_soul,soul_synthetic">
 	<HitboxComponent 
         _tags="enabled_in_world"
         aabb_min_x="-4" 

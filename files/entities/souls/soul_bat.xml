@@ -1,4 +1,4 @@
-<Entity tags="soul,soul_bat">
+<Entity tags="mnm_soul,soul_bat">
 	<HitboxComponent 
         _tags="enabled_in_world"
         aabb_min_x="-4" 

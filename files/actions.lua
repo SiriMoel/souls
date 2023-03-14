@@ -4,7 +4,7 @@ local a = {
 	{
 		id          = "REAPING_SHOT",
 		name 		= "Reaping Shot",
-		description = "Causes enemies to drop their souls on death.",
+		description = "Causes enemies to drop their souls on death. \nMana Cost x 1.1",
 		sprite 		= "mods/moles_n_more/files/spell_icons/reaping_shot.png",
 		related_extra_entities = { "mods/moles_n_more/files/entities/projectiles/reaping_shot/reaping_shot.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
@@ -14,7 +14,8 @@ local a = {
 		mana = 20,
 		action 		= function()
 			c.extra_entities = c.extra_entities .. "mods/moles_n_more/files/entities/projectiles/reaping_shot/reaping_shot.xml,"
-			c.fire_rate_wait    = c.fire_rate_wait + 5
+			c.fire_rate_wait = c.fire_rate_wait + 5
+			ce.mana_multiplier = ce.mana_multiplier * 1.1 -- wonderful testing
 			draw_actions( 1, true )
 		end,
 	},

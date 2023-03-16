@@ -1,5 +1,5 @@
 dofile_once("mods/moles_n_more/lib/gusgui/gusgui.lua").init("mods/moles_n_more/lib/gusgui")
-dofile_once("Mods/moles_n_more/lib/Noitilities/NL_Init.lua").Init("mods/moles_n_more/files/lib/Noitilities")
+dofile_once("mods/moles_n_more/lib/Noitilities/NL_Init.lua").Init("mods/moles_n_more/files/lib/Noitilities")
 --ModMagicNumbersFileAdd( "mods/moles_n_more/files/magic_numbers.xml" )
 ModMaterialsFileAdd("mods/moles_n_more/files/materials.xml")
 

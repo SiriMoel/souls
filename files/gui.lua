@@ -95,7 +95,7 @@ Gui:AddElement(gusgui.Elements.VLayout({
                         element.config.scaleX = sunbookpages[sunbook_page].scaleX * sunbook_page_scalemult
                         element.config.scaleY = sunbookpages[sunbook_page].scaleY * sunbook_page_scalemult
                     end,
-                }), 
+                }),
                 gusgui.Elements.HLayout({ -- prev and next buttons
                     id = "sunbook_buttons",
                     children = {
@@ -108,6 +108,8 @@ Gui:AddElement(gusgui.Elements.VLayout({
                             onBeforeRender = function(element)
                                 if sunbookpages[sunbook_page - 1] ~= nil then
                                     element.config.hidden = false
+                                else
+                                    element.config.hidden = true
                                 end
                             end,
                             onClick = function(element)
@@ -123,6 +125,8 @@ Gui:AddElement(gusgui.Elements.VLayout({
                             onBeforeRender = function(element)
                                 if sunbookpages[sunbook_page + 1] ~= nil then
                                     element.config.hidden = false
+                                else
+                                    element.config.hidden = true
                                 end
                             end,
                             onClick = function(element)

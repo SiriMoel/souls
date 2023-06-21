@@ -15,7 +15,7 @@ local a = {
 		action 		= function()
 			c.extra_entities = c.extra_entities .. "mods/moles_things/files/entities/projectiles/reaping_shot/reaping_shot.xml,"
 			c.fire_rate_wait = c.fire_rate_wait + 5
-			ce.mana_multiplier = ce.mana_multiplier * 1.1 -- wonderful testing
+			--ce.mana_multiplier = ce.mana_multiplier * 1.1 -- wonderful testing
 			draw_actions( 1, true )
 		end,
 	},
@@ -74,7 +74,7 @@ local a = {
 		id          = "REAPING_HALO", -- may need to be rebalanced
 		name 		= "Reaping Halo",
 		description = "Fires a halo of energy that homes and causes enemies to drop their souls.",
-		sprite 		= "mods/moles_things/files/spell_icons/soul_halo.png",
+		sprite 		= "mods/moles_things/files/spell_icons/reaping_halo.png",
 		related_projectiles	= {"mods/moles_things/files/entities/projectiles/reaping_halo/projectile.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
 		spawn_level                       = "2,3,4,5", 
@@ -87,7 +87,7 @@ local a = {
 		end,
 	},
 	{
-		id = "HIIS_SHOTGUN", -- MOULD N
+		id = "HIISI_SHOTGUN", -- MOULD N
 		name = "Hiisi Shotgun Shell",
 		description = "Fires 3 projectiles.",
         sprite = "mods/moles_things/files/spell_icons/hiisi_shotgun.png",

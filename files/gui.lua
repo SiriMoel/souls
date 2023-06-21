@@ -13,7 +13,7 @@ local sunbook_page = 1
 local sunbook_open = false
 local sunbook_prevbutton_shown = false
 local sunbook_nextbutton_shown = false
-local sunbook_page_scalemult = 2
+local sunbook_page_scalemult = 1
 
 function OnWorldPreUpdate()
     if GetPlayer() ~= nil then 
@@ -39,16 +39,17 @@ Gui:AddElement(gusgui.Elements.HLayout({
     children = {
         gusgui.Elements.ProgressBar({
             id = "BrillianceBar",
-            width = 25,
-            height = 5,
+            width = 100,
+            height = 10,
             overrideZ = 11,
-            barColour = "yellow",
+            barColour = "white",
+            --customBarColourPath = "mods/moles_things/files/sunbook/brilliancebarcolour.png",
             value = Gui:StateValue("bbar"),
         }),
         gusgui.Elements.Text({
             id = "BrillianceText",
             overrideZ = 12,
-            margin = { left = -25, },
+            margin = { left = 1, top = -1, },
             value = Gui:StateValue("brilliance"),
             padding = 1,
             drawBorder = false,
@@ -58,8 +59,8 @@ Gui:AddElement(gusgui.Elements.HLayout({
 }))
 
 Gui:AddElement(gusgui.Elements.VLayout({
-    id = "sunbook",
-    margin = { top = 50, left = 50, },
+    id = "sunbook_openandclosebutton",
+    margin = { right = 1, bottom = 1, },
     overrideZ  = 100000000,
     hidden = true,
     onBeforeRender = function(element)
@@ -70,16 +71,34 @@ Gui:AddElement(gusgui.Elements.VLayout({
     children = {
         gusgui.Elements.ImageButton({ -- open and close button
             id = "sunbook_button",
-            src = "mods/moles_things/files/sunbook_button.png",
-            scaleX = 2,
-            scaleY = 2,
+            src = "mods/moles_things/files/sunbook/button.png",
+            scaleX = 1,
+            scaleY = 1,
             onClick = function(element)
                 sunbook_open = flipbool(sunbook_open)
             end,
         }),
+    },
+}))
+
+Gui:AddElement(gusgui.Elements.VLayout({
+    id = "sunbook",
+    horizontalAlign = 0.5,
+    verticalAlign = 0.5,
+    overrideWidth = Gui:ScreenWidth(),
+    overrideHeight = Gui:ScreenHeight(),
+    overrideZ  = 100000000,
+    hidden = true,
+    onBeforeRender = function(element)
+        if GameHasFlagRun("molething_sunbook_unlocked") then
+            element.config.hidden = false
+        end
+    end,
+    children = {
         gusgui.Elements.VLayout({ -- actual book park
             id = "sunbook_book",
-            margin = { top = 50, },
+            horizontalAlign = 0.5,
+            verticalAlign = 0.5,
             hidden = true,
             onBeforeRender = function(element)
                 element.config.hidden = not sunbook_open
@@ -87,9 +106,7 @@ Gui:AddElement(gusgui.Elements.VLayout({
             children = {
                 gusgui.Elements.Image({ -- pages
                     id = "sunbookpage",
-                    src = "",
-                    scaleX = 1,
-                    scaleY = 1,
+                    src = sunbookpages[sunbook_page].page,
                     onBeforeRender = function(element)
                         element.config.src = sunbookpages[sunbook_page].page
                         element.config.scaleX = sunbookpages[sunbook_page].scaleX * sunbook_page_scalemult
@@ -101,7 +118,7 @@ Gui:AddElement(gusgui.Elements.VLayout({
                     children = {
                         gusgui.Elements.ImageButton({ -- prev button
                             id = "sunbook_button_prev",
-                            src = "mods/moles_things/files/sunbook_button.png",
+                            src = "mods/moles_things/files/sunbook/button.png",
                             scaleX = 1,
                             scaleY = 1,
                             hidden = true,
@@ -118,7 +135,8 @@ Gui:AddElement(gusgui.Elements.VLayout({
                         }),
                         gusgui.Elements.ImageButton({ -- prev button
                             id = "sunbook_button_next",
-                            src = "mods/moles_things/files/sunbook_button.png",
+                            src = "mods/moles_things/files/sunbook/button.png",
+                            margin = { left = 138, },
                             scaleX = 1,
                             scaleY = 1,
                             hidden = true,

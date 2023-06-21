@@ -27,7 +27,7 @@
 			spread_degrees="1" >
         </gun_config>
         <gunaction_config 
-            fire_rate_wait="70" >
+            fire_rate_wait="55" >
         </gunaction_config>
     </AbilityComponent>
 	
@@ -45,12 +45,6 @@
             collect_nondefault_actions="1" >
         </ItemComponent>
     </Base>
-
-    <VariableStorageComponent
-        _tags="sprite_file"
-        value_string="mods/moles_things/files/entities/items/hiisishotgun/sprite.png"        
-        >
-    </VariableStorageComponent>
 
    <LuaComponent 
         execute_on_added="1"

@@ -98,7 +98,7 @@ end
 function weapon_rngstats(weapon, statsm)
     local ac = EntityGetComponent( weapon, "AbilityComponent" )[1]
     if ac ~= nil then
-        local sm = (math.random( 100, (sm * 100) )) / 100
+        local sm = (math.random( 100, (statsm * 100) )) / 100
 
         local acs = EntityGetComponentIncludingDisabled( weapon, "AbilityComponent" )
 
@@ -112,10 +112,10 @@ function weapon_rngstats(weapon, statsm)
             --print("old rt " .. rt)
             --print("old frw " .. frw)
 
-            rt = math.floor( ( rt / (m * 0.8) + 0.5 ) )
+            rt = math.floor( ( rt / (sm * 0.8) + 0.5 ) )
             --sm = sm * (m * 0.3)
             --sd = sd * (m * 0.5)
-            frw = math.floor( ( frw / (m * 0.8) + 0.5 ) )
+            frw = math.floor( ( frw / (sm * 0.8) + 0.5 ) )
 
             --print("new rt " .. rt)
             --print("new frw " .. frw)

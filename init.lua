@@ -1,5 +1,5 @@
 dofile_once("mods/moles_things/lib/gusgui/gusgui.lua").init("mods/moles_things/lib/gusgui")
-dofile_once("mods/moles_things/lib/Noitilities/NL_Init.lua").Init("mods/moles_things/files/lib/Noitilities")
+--dofile_once("mods/moles_things/lib/Noitilities/NL_Init.lua").init("mods/moles_things/files/lib/Noitilities")
 --ModMagicNumbersFileAdd( "mods/moles_things/files/magic_numbers.xml" )
 ModMaterialsFileAdd("mods/moles_things/files/materials.xml")
 
@@ -7,8 +7,8 @@ dofile_once("mods/moles_things/files/scripts/utils.lua")
 dofile_once("mods/moles_things/files/scripts/souls.lua")
 dofile_once("mods/moles_things/files/scripts/molebiomes.lua")
 
-dofile_once("mods/moles_things/lib/Noitilities/NT_ModuleLoader.lua").DofileModules({"GunPatch"})
-PatchGunSystem()
+--dofile_once("mods/moles_things/lib/Noitilities/NT_ModuleLoader.lua").DofileModules({"GunPatch"})
+--PatchGunSystem()
 
 local nxml = dofile_once("mods/moles_things/lib/nxml.lua")
 

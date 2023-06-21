@@ -2,7 +2,7 @@
 In all my testing, this never needed to be modified. 
 -->
 
-<Sprite filename="mods/mould/files/entities/items/hermitshotgun/sprite.png" >
+<Sprite filename="mods/moles_things/files/entities/items/hiisishotgun/sprite.png" >
 	
   <RectAnimation 
 	name="default" 

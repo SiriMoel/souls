@@ -8,6 +8,6 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 
 	local r = math.random(1,3) 
 	if r == 2 then 
-		EntityLoad("mods/moles_things", x, y-20)
+		EntityLoad("mods/moles_things/files/entities/items/hiisishotgun/weapon.xml", x, y-20)
 	end
 end

@@ -1,7 +1,7 @@
-dofile_once("mods/moles_n_more/files/scripts/utils.lua")
-dofile_once("mods/moles_n_more/files/scripts/sunbook_pages.lua")
+dofile_once("mods/moles_things/files/scripts/utils.lua")
+dofile_once("mods/moles_things/files/scripts/sunbook_pages.lua")
 
-local gusgui = dofile_once("mods/moles_n_more/lib/gusgui/Gui.lua")
+local gusgui = dofile_once("mods/moles_things/lib/gusgui/Gui.lua")
 local Gui = gusgui.Create()
 
 local comp_brilliance = 0
@@ -70,7 +70,7 @@ Gui:AddElement(gusgui.Elements.VLayout({
     children = {
         gusgui.Elements.ImageButton({ -- open and close button
             id = "sunbook_button",
-            src = "mods/moles_n_more/files/sunbook_button.png",
+            src = "mods/moles_things/files/sunbook_button.png",
             scaleX = 2,
             scaleY = 2,
             onClick = function(element)
@@ -101,7 +101,7 @@ Gui:AddElement(gusgui.Elements.VLayout({
                     children = {
                         gusgui.Elements.ImageButton({ -- prev button
                             id = "sunbook_button_prev",
-                            src = "mods/moles_n_more/files/sunbook_button.png",
+                            src = "mods/moles_things/files/sunbook_button.png",
                             scaleX = 1,
                             scaleY = 1,
                             hidden = true,
@@ -118,7 +118,7 @@ Gui:AddElement(gusgui.Elements.VLayout({
                         }),
                         gusgui.Elements.ImageButton({ -- prev button
                             id = "sunbook_button_next",
-                            src = "mods/moles_n_more/files/sunbook_button.png",
+                            src = "mods/moles_things/files/sunbook_button.png",
                             scaleX = 1,
                             scaleY = 1,
                             hidden = true,

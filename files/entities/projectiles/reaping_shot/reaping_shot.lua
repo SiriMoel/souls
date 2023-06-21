@@ -1,4 +1,4 @@
-dofile_once("mods/moles_n_more/files/utils.lua")
+dofile_once("mods/moles_things/files/utils.lua")
 
 local entity_id = GetUpdatedEntityID()
 local root_id = EntityGetRootEntity( entity_id )
@@ -15,11 +15,11 @@ if ( #targets > 0 ) then
 
             EntityAddComponent( target_id, "LuaComponent", 
             {
-                script_death = "mods/moles_n_more/files/scripts/reap.lua",
+                script_death = "mods/moles_things/files/scripts/reap.lua",
                 execute_every_n_frame = "-1",
             } )
 
-            local effect_id = EntityLoad("mods/moles_n_more/files/entities/particles/marked_particles.xml", x, y)
+            local effect_id = EntityLoad("mods/moles_things/files/entities/particles/marked_particles.xml", x, y)
             EntityAddChild( target_id, effect_id )
 
             EntityAddTag( target_id, "reap_marked")

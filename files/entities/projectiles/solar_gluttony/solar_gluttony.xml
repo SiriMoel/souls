@@ -46,7 +46,7 @@
     <SpriteComponent 
 		_enabled="1" 
 		alpha="1" 
-		image_file="mods/moles_n_more/files/entities/projectiles/solar_gluttony/sprite_main.xml" 
+		image_file="mods/moles_things/files/entities/projectiles/solar_gluttony/sprite_main.xml" 
 		next_rect_animation="" 
 		offset_x="0" 
 		offset_y="0" 
@@ -69,12 +69,12 @@
   </AudioLoopComponent>
 
     <LuaComponent
-        script_source_file="mods/moles_n_more/files/entities/projectiles/solar_gluttony/main_launch.lua"
+        script_source_file="mods/moles_things/files/entities/projectiles/solar_gluttony/main_launch.lua"
         execute_every_n_frame="5"
     ></LuaComponent>
 
     <LuaComponent
-        script_source_file="mods/moles_n_more/files/entities/projectiles/solar_gluttony/main_die.lua"
+        script_source_file="mods/moles_things/files/entities/projectiles/solar_gluttony/main_die.lua"
         execute_every_n_frame="-1"
   		execute_on_removed="1"
     ></LuaComponent>
@@ -93,7 +93,7 @@
 
   <VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/moles_n_more/files/entities/projectiles/solar_gluttony/solar_gluttony.xml"
+		value_string="mods/moles_things/files/entities/projectiles/solar_gluttony/solar_gluttony.xml"
 		>
   </VariableStorageComponent>
 

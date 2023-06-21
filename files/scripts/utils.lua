@@ -33,7 +33,7 @@ end
 end
 
 function SetFileContent(toset, content)
-    ModTextFileSetContent(toset, ModTextFileGetContent("mods/moles_n_more/files/set/" .. content))
+    ModTextFileSetContent(toset, ModTextFileGetContent("mods/moles_things/files/set/" .. content))
 end
 
 function IsInRadiusOf(xa, ya, xb, yb, radius) -- i dont think this works, isnt needed anyway.
@@ -68,6 +68,16 @@ function GetAmountOfMaterialInInventory(entity_id, material_name) -- stolen from
     end
 
     return amount
+end
+
+function GiveBrilliance(comp, comp_max, amount)
+    local comp_amount = ComponentGetValue2(comp, "value_int")
+    local comp_max_amount = ComponentGetValue2(comp_max, "value_int")
+    comp_amount = comp_amount + amount
+    if comp_amount > comp_max_amount then
+        comp_amount = comp_max_amount
+    end
+    ComponentSetValue2(comp, "value_int", comp_amount)
 end
 
 function TransferBrilliance(from_comp, to_comp, to_comp_max, amount)

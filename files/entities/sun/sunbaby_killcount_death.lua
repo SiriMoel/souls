@@ -1,4 +1,4 @@
-dofile_once("mods/moles_n_more/files/scripts/utils.lua")
+dofile_once("mods/moles_things/files/scripts/utils.lua")
 
 function death( damage_type_bit_field, damage_message, entity_thats_responsible, drop_items )
 	local entity = GetUpdatedEntityID()

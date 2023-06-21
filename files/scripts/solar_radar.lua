@@ -28,10 +28,10 @@ for _,sun_id in pairs(EntityGetInRadiusWithTag( pos_x, pos_y, range, "sun")) do
 
 	-- display sprite based on proximity
 	if distance > range * 0.8 then
-		GameCreateSpriteForXFrames( "mods/moles_n_more/files/particles/radar_sun_faint.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+		GameCreateSpriteForXFrames( "mods/moles_things/files/particles/radar_sun_faint.png", indicator_x, indicator_y, true, 0, 0, 1, true )
 	elseif distance > range * 0.5 then
-		GameCreateSpriteForXFrames( "mods/moles_n_more/files/particles/radar_sun_medium.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+		GameCreateSpriteForXFrames( "mods/moles_things/files/particles/radar_sun_medium.png", indicator_x, indicator_y, true, 0, 0, 1, true )
 	else
-		GameCreateSpriteForXFrames( "mods/moles_n_more/files/particles/radar_sun_strong.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+		GameCreateSpriteForXFrames( "mods/moles_things/files/particles/radar_sun_strong.png", indicator_x, indicator_y, true, 0, 0, 1, true )
 	end
 end

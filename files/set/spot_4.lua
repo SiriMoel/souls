@@ -1,4 +1,4 @@
-dofile_once("mods/moles_n_more/files/scripts/utils.lua")
+dofile_once("mods/moles_things/files/scripts/utils.lua")
 
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform( entity_id )
@@ -39,7 +39,7 @@ function suninit(sun, bcount, bmax)
 		value_int=bmax,
 	})
 	EntityAddComponent2(sun, "LuaComponent", {
-		script_source_file="mods/moles_n_more/files/entities/sun/eaten.lua",
+		script_source_file="mods/moles_things/files/entities/sun/eaten.lua",
 		execute_every_n_frame="2",
 	})
 end
@@ -50,7 +50,7 @@ local mat2 = GetAmountOfMaterialInInventory(entity_id, "magic_liquid_hp_regenera
 local mattotal = mat1 + mat2
 if mat1 ~= nil and mat2 ~= nil then
 	if mattotal >= 1 then -- for testing purposes, will be changed to 100 or more
-		ComponentSetValue2( comp2, "image_file", "mods/moles_n_more/files/entities/sun/sun_small_green.png" )
+		ComponentSetValue2( comp2, "image_file", "mods/moles_things/files/entities/sun/sun_small_green.png" )
 		EntityLoad("data/entities/projectiles/deck/explosion_giga.xml", x, y)
 		begreen = true
 		print("begreen")
@@ -61,7 +61,7 @@ end
 local comp_sunkills = EntityGetFirstComponentIncludingDisabled(entity_id, "VariableStorageComponent", "sunbaby_kills") or 0
 local sunkills = ComponentGetValue2(comp_sunkills, "value_int")
 if sunkills >= 1 then -- for testing purposes, will be changed to 200
-	ComponentSetValue2( comp2, "image_file", "mods/moles_n_more/files/entities/sun/sun_small_red.png" )
+	ComponentSetValue2( comp2, "image_file", "mods/moles_things/files/entities/sun/sun_small_red.png" )
 	EntityLoad("data/entities/projectiles/deck/explosion_giga.xml", x, y)
 	bered = true
 	print("bered")
@@ -184,12 +184,12 @@ if ( comp ~= nil ) and ( comp2 ~= nil ) then
 			GamePrintImportant( "The Dark Sun rises...", "" )
 			AddFlagPersistent( "progress_darksun" )
         elseif begreen == true then
-            local sun = EntityLoad("mods/moles_n_more/files/entities/sun/newsun_green.xml", x, y)
+            local sun = EntityLoad("mods/moles_things/files/entities/sun/newsun_green.xml", x, y)
 			suninit(sun, 100, 300)
 			GamePrintImportant( "The Vigorous Sun rises...", "" )
 			AddFlagPersistent( "progress_greensun" )
 		elseif bered == true then
-			local sun = EntityLoad("mods/moles_n_more/files/entities/sun/newsun_red.xml", x, y)
+			local sun = EntityLoad("mods/moles_things/files/entities/sun/newsun_red.xml", x, y)
             suninit(sun, 100, 300)
 			GamePrintImportant( "The Hungering Sun rises...", "" )
 			AddFlagPersistent( "progress_redsun" )

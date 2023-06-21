@@ -1,1 +1,1 @@
-dofile_once("mods/moles_n_more/files/scripts/utils.lua")
+dofile_once("mods/moles_things/files/scripts/utils.lua")

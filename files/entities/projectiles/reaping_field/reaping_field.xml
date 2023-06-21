@@ -46,30 +46,30 @@
 
 	<Base file="data/entities/projectiles/deck/base_field.xml">
 		<SpriteComponent 
-			image_file="mods/moles_n_more/files/entities/projectiles/reaping_field/blast_soul.xml" >
+			image_file="mods/moles_things/files/entities/projectiles/reaping_field/blast_soul.xml" >
 		</SpriteComponent>
 
 		<SpriteParticleEmitterComponent
-			sprite_file="mods/moles_n_more/files/particles/soul.xml" >
+			sprite_file="mods/moles_things/files/particles/soul.xml" >
 		</SpriteParticleEmitterComponent>
 
 		<ProjectileComponent
 			lifetime="300" >
 			<config_explosion
-				explosion_sprite="mods/moles_n_more/files/entities/particles/blast_out_soul.xml" >
+				explosion_sprite="mods/moles_things/files/entities/particles/blast_out_soul.xml" >
 			</config_explosion>
 		</ProjectileComponent>
 	</Base>
 
 	<LuaComponent
-		script_source_file="mods/moles_n_more/files/entities/projectiles/reaping_field/reaping_field.lua"
+		script_source_file="mods/moles_things/files/entities/projectiles/reaping_field/reaping_field.lua"
 		execute_every_n_frame="1"
 		>
 	</LuaComponent>
 	
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/moles_n_more/files/entities/projectiles/reaping_field/reaping_field.xml"
+		value_string="mods/moles_things/files/entities/projectiles/reaping_field/reaping_field.xml"
 		>
 	</VariableStorageComponent>
 </Entity>

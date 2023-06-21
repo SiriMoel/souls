@@ -1,4 +1,4 @@
-dofile_once("mods/moles_n_more/files/utils.lua")
+dofile_once("mods/moles_things/files/utils.lua")
 
 local entity_id = GetUpdatedEntityID()
 local root_id = EntityGetRootEntity( entity_id )

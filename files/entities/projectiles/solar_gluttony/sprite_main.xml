@@ -1,5 +1,5 @@
 <Sprite
- filename="mods/moles_n_more/files/entities/projectiles/solar_gluttony/sprite_main.png"
+ filename="mods/moles_things/files/entities/projectiles/solar_gluttony/sprite_main.png"
  offset_x="12"
  offset_y="12"
  default_animation="fireball" >

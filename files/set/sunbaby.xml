@@ -452,7 +452,7 @@
     <!-- red sun -->
 
     <LuaComponent
-		script_source_file="mods/moles_n_more/files/entities/sun/sunbaby_killcount.lua"
+		script_source_file="mods/moles_things/files/entities/sun/sunbaby_killcount.lua"
 		execute_every_n_frame="20"
 		>
 	</LuaComponent>

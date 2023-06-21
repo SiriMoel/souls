@@ -1,4 +1,4 @@
-dofile_once("mods/moles_n_more/files/scripts/utils.lua")
+dofile_once("mods/moles_things/files/scripts/utils.lua")
 
 soul_types = {
     "bat",
@@ -32,9 +32,9 @@ function AddSoul(type)
     local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. type) or 0
     ComponentSetValue2(comp, "value_int", ComponentGetValue2(comp, "value_int") + 1)
 
-    if not ModSettingGet( "moles_n_more.show_souls" ) then return end
+    if not ModSettingGet( "moles_things.show_souls" ) then return end
     -- spawn soul entity
-    EntityLoad("mods/moles_n_more/files/entities/souls/soul_" .. type .. ".xml", x, y)
+    EntityLoad("mods/moles_things/files/entities/souls/soul_" .. type .. ".xml", x, y)
 end
 
 function RemoveSoul(type)
@@ -42,7 +42,7 @@ function RemoveSoul(type)
     local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. type) or 0
     ComponentSetValue2(comp, "value_int", ComponentGetValue2(comp, "value_int") - 1)
 
-    if not ModSettingGet( "moles_n_more.show_souls" ) then return end
+    if not ModSettingGet( "moles_things.show_souls" ) then return end
     -- kill soul entity
     EntityKill(EntityGetWithTag("soul_" .. type)[1])
 end
@@ -83,12 +83,12 @@ function RenderSouls()
     for i,v in ipairs(allsoulentities) do
         EntityKill(v)
     end
-    if ModSettingGet( "moles_n_more.show_souls" ) then 
+    if ModSettingGet( "moles_things.show_souls" ) then 
         for i,v in ipairs(soul_types) do
             local soulcomp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. v) or 0
             local scount = ComponentGetValue2(soulcomp, "value_int")
             for i=1,scount do
-                EntityLoad("mods/moles_n_more/files/entities/souls/soul_" .. v .. ".xml", x, y)
+                EntityLoad("mods/moles_things/files/entities/souls/soul_" .. v .. ".xml", x, y)
             end
         end
     else

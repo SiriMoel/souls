@@ -1,4 +1,4 @@
-<Entity tags="mortal,hittable,homing_target,mole" name="Mole" >
+<Entity tags="mortal,hittable,homing_target,mnm_mole" name="Mole" >
   
 	<Base file="data/entities/base_helpless_animal.xml" >
 
@@ -30,7 +30,7 @@
 		</DamageModelComponent>
 
 		<SpriteComponent 
-			image_file="mods/moles_n_more/files/entities/moles/mole/sprite.xml" 
+			image_file="mods/moles_things/files/entities/moles/mole/sprite.xml" 
 			offset_x="10"
 			offset_y="12" >
 		</SpriteComponent>
@@ -96,13 +96,17 @@
 
 	<AudioComponent
 		file="data/audio/Desktop/animals.bank"
-		event_root="animals/sheep" >
+		event_root="animals/rat" >
 	</AudioComponent>
 
 	<LuaComponent
-        script_source_file="mods/moles_n_more/files/entities/moles/mole/spawn.lua"
+        script_source_file="mods/moles_things/files/entities/moles/mole/spawn.lua"
         execute_on_added="1"
     ></LuaComponent>
+
+	<LuaComponent
+		script_death="mods/moles_things/files/entities/moles/mole/death.lua"
+	></LuaComponent>
 
 </Entity>
 

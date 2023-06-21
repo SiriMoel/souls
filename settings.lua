@@ -16,7 +16,7 @@ function mod_setting_change_callback( mod_id, gui, in_main_menu, setting, old_va
 	print( tostring(new_value) )
 end
 
-local mod_id = "moles_n_more"
+local mod_id = "moles_things"
 mod_settings_version = 1 
 mod_settings = {
 	{

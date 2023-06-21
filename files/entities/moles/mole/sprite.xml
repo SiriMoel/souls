@@ -1,5 +1,5 @@
 <Sprite
-    filename="data/enemies_gfx/rat.png" 
+    filename="mods/moles_things/files/entities/moles/mole/sprite.png" 
     offset_x="20" 
     offset_y="12"
     default_animation="stand" >

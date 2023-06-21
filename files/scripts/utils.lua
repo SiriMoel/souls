@@ -94,3 +94,36 @@ function TransferBrilliance(from_comp, to_comp, to_comp_max, amount)
     ComponentSetValue2(to_comp, "value_int", to_comp_amount)
     ComponentSetValue2(from_comp, "value_int", from_comp_amount)
 end
+
+function weapon_rngstats(weapon, statsm)
+    local ac = EntityGetComponent( weapon, "AbilityComponent" )[1]
+    if ac ~= nil then
+        local sm = (math.random( 100, (sm * 100) )) / 100
+
+        local acs = EntityGetComponentIncludingDisabled( weapon, "AbilityComponent" )
+
+        if acs == nil then return end
+        for i,ac in ipairs(acs) do
+            local rt = tonumber( ComponentObjectGetValue( ac, "gun_config", "reload_time" ) ) -- reload time
+            --local sm = tonumber( ComponentObjectGetValue( ac, "gun_config", "speed_multiplier" ) ) -- speed multiplier
+            --local sd = tonumber( ComponentObjectGetValue( ac, "gun_config", "spread_degrees" ) ) -- spread degrees
+            local frw = tonumber( ComponentObjectGetValue( ac, "gunaction_config", "fire_rate_wait" ) ) -- fire rate wait
+
+            --print("old rt " .. rt)
+            --print("old frw " .. frw)
+
+            rt = math.floor( ( rt / (m * 0.8) + 0.5 ) )
+            --sm = sm * (m * 0.3)
+            --sd = sd * (m * 0.5)
+            frw = math.floor( ( frw / (m * 0.8) + 0.5 ) )
+
+            --print("new rt " .. rt)
+            --print("new frw " .. frw)
+
+            ComponentObjectSetValue( ac, "gun_config", "reload_time", tostring(rt) )
+            --ComponentObjectSetValue( ac, "gun_config", "speed_multiplier", tostring(sm) )
+            --omponentObjectSetValue( ac, "gun_config", "spread_degrees", tostring(sd) )
+            ComponentObjectSetValue( ac, "gunaction_config", "fire_rate_wait", tostring(frw) )
+        end
+    end
+end

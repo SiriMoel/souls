@@ -2,7 +2,7 @@ dofile_once("mods/moles_things/files/scripts/utils.lua")
 
 local a = {
 	{
-		id          = "REAPING_SHOT", -- untested
+		id          = "REAPING_SHOT",
 		name 		= "Reaping Shot",
 		description = "Causes enemies to drop their souls on death. \nMana Cost x 1.1",
 		sprite 		= "mods/moles_things/files/spell_icons/reaping_shot.png",
@@ -20,7 +20,7 @@ local a = {
 		end,
 	},
 	{
-		id          = "REAPING_FIELD", -- untested
+		id          = "REAPING_FIELD", 
 		name 		= "Circle of Reaping",
 		description = "Causes enemies in a large field to drop their souls on death.",
 		sprite 		= "mods/moles_things/files/spell_icons/reaping_field.png",
@@ -37,7 +37,7 @@ local a = {
 		end,
 	},
 	{
-		id          = "SOULS_TO_POWER", -- untested
+		id          = "SOULS_TO_POWER", 
 		name 		= "Souls to Power",
 		description = "Consumes a portion of your souls to increase a projectile's damage.",
 		sprite 		= "mods/moles_things/files/spell_icons/souls_to_power.png",
@@ -54,7 +54,7 @@ local a = {
 		end,
 	},
 	{
-		id          = "SOLAR_GLUTTONY", -- untested
+		id          = "SOLAR_GLUTTONY", 
 		name 		= "Solar Gluttony",
 		description = "Eat the Sun.",
 		sprite 		= "mods/moles_things/files/spell_icons/solar_gluttony.png",
@@ -71,7 +71,7 @@ local a = {
 		end,
 	},
 	{
-		id          = "REAPING_HALO", -- untested, may need to be rebalanced
+		id          = "REAPING_HALO", -- may need to be rebalanced
 		name 		= "Reaping Halo",
 		description = "Fires a halo of energy that homes and causes enemies to drop their souls.",
 		sprite 		= "mods/moles_things/files/spell_icons/soul_halo.png",
@@ -86,10 +86,28 @@ local a = {
 			c.fire_rate_wait = c.fire_rate_wait + 40
 		end,
 	},
+	{
+		id = "HIIS_SHOTGUN", -- MOULD N
+		name = "Hiisi Shotgun Shell",
+		description = "Fires 3 projectiles.",
+        sprite = "mods/moles_things/files/spell_icons/hiisi_shotgun.png",
+		related_projectiles	= {"mods/moles_things/files/entities/items/hiisishotgun/projectile.xml", 3},
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "",
+		spawn_probability = "",
+		price = 70, -- does this even need to be set?
+		mana = 50, -- make this the same as buckshot + 25%
+		action = function()
+			add_projectile("mods/moles_things/files/entities/items/hiisishotgun/projectile.xml")
+			add_projectile("mods/moles_things/files/entities/items/hiisishotgun/projectile.xml")
+			add_projectile("mods/moles_things/files/entities/items/hiisishotgun/projectile.xml")
+			c.spread_degrees = c.spread_degrees + 13.0
+		end,
+	},
 }
 
 for i,v in ipairs(a) do
-	v.id = "MNM_" .. v.id
+	v.id = "MOLETHING_" .. v.id
     table.insert(actions, v)
 end
 

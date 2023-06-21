@@ -65,4 +65,9 @@
     </Graphics>
   </CellData>
 
+  <Reaction probability="90"
+   input_cell1="blood_mole" 	input_cell2="magic_liquid_hp_regeneration"
+   output_cell1="magic_liquid_hp_regeneration_unstable" 	output_cell2="" >
+  </Reaction>
+
 </Materials>

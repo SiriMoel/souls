@@ -23,6 +23,15 @@ ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/moles_things/files/p
 ModLuaFileAppend( "data/scripts/items/orb_pickup.lua", "mods/moles_things/files/scripts/orb_pickup_append.lua" )
 ModLuaFileAppend( "data/scripts/biomes/orbrooms/orbroom_07.lua", "mods/moles_things/files/scripts/orbroom_07_append.lua" )
 
+local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/shotgunner.xml"))
+xml:add_child(nxml.parse([[
+	<LuaComponent
+		script_death="mods/moles_things/files/scripts/death/hiisi_shotgunner.lua"
+		>
+	</LuaComponent>
+]]))
+ModTextFileSetContent("data/entities/animals/shotgunner.xml", tostring(xml))
+
 -- biomes
 local content = ModTextFileGetContent("data/biome/_biomes_all.xml")
 local xml = nxml.parse(content)
@@ -59,7 +68,7 @@ function OnPlayerSpawned( player )
         EntitySetComponentsWithTagEnabled( player, "player_hat", true ) -- placeholder hat
     end
     
-    GameAddFlagRun("mnm_sunbook_unlocked") -- for testing purposes
+    GameAddFlagRun("molething_sunbook_unlocked") -- for testing purposes
     GameAddFlagRun("moles_things_init")
 end
 

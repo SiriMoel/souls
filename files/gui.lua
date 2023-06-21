@@ -63,7 +63,7 @@ Gui:AddElement(gusgui.Elements.VLayout({
     overrideZ  = 100000000,
     hidden = true,
     onBeforeRender = function(element)
-        if GameHasFlagRun("mnm_sunbook_unlocked") then
+        if GameHasFlagRun("molething_sunbook_unlocked") then
             element.config.hidden = false
         end
     end,

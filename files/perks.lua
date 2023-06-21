@@ -19,6 +19,6 @@ local a = {
 }
 
 for i,v in ipairs(a) do
-    v.id = "MNM_" .. v.id
+    v.id = "molething_" .. v.id
     table.insert(perk_list, v)
 end

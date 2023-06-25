@@ -34,7 +34,8 @@ function AddSoul(type)
 
     if not ModSettingGet( "moles_things.show_souls" ) then return end
     -- spawn soul entity
-    EntityLoad("mods/moles_things/files/entities/souls/soul_" .. type .. ".xml", x, y)
+    local spawnedsoul = EntityLoad("mods/moles_things/files/entities/souls/soul_" .. type .. ".xml", x, y)
+    EntityAddChild(GetPlayer(), spawnedsoul)
 end
 
 function RemoveSoul(type)
@@ -56,7 +57,7 @@ function GetRandomSoul()
     return whichtype
 end
 
-function GetSoulsCount(type)
+function GetSoulsCount(type) -- get souls count
     local player = GetPlayer()
     local count = 0
     if type == "all" then

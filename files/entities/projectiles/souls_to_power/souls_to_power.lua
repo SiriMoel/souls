@@ -1,5 +1,5 @@
 dofile_once("mods/moles_things/files/scripts/utils.lua")
-dofile_once("mods/moles_souls/files/scripts/souls.lua")
+dofile_once("mods/moles_things/files/scripts/souls.lua")
 
 local entity_id = GetUpdatedEntityID()
 local root_id = EntityGetRootEntity( entity_id )

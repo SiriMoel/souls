@@ -32,9 +32,27 @@ xml:add_child(nxml.parse([[
 ]]))
 ModTextFileSetContent("data/entities/animals/shotgunner.xml", tostring(xml))
 
+local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/sniper.xml"))
+xml:add_child(nxml.parse([[
+	<LuaComponent
+		script_death="mods/moles_things/files/scripts/death/hiisi_sniper.lua"
+		>
+	</LuaComponent>
+]]))
+ModTextFileSetContent("data/entities/animals/sniper.xml", tostring(xml))
+
+local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/scavenger_smg.xml"))
+xml:add_child(nxml.parse([[
+	<LuaComponent
+		script_death="mods/moles_things/files/scripts/death/hiisi_pistol.lua"
+		>
+	</LuaComponent>
+]]))
+ModTextFileSetContent("data/entities/animals/scavenger_smg.xml", tostring(xml))
+
 -- biomes
 local content = ModTextFileGetContent("data/biome/_biomes_all.xml")
-local xml = nxml.parse(content)
+local xml = nxml.parse(content) -- sun lab biome is unused
 xml:add_children(nxml.parse_many[[
     <Biome height_index="0" color="ff9dceb9" biome_filename="mods/moles_things/files/biome/sunlab/sunlab.xml" />
 ]])
@@ -73,7 +91,7 @@ function OnPlayerSpawned( player )
 end
 
 -- moles spawning
-if not GameHasFlagRun("moles_things_moles_init") then -- thanks conga
+--[[if not GameHasFlagRun("moles_things_moles_init") then -- thanks conga
     for i=1,#molebiomes do v = molebiomes[i]
         local biomepath = table.concat({"data/scripts/biomes/", v.biome, ".lua"})
         local spawnerpath = "mods/moles_things/files/scripts/molespawner.lua"
@@ -83,7 +101,7 @@ if not GameHasFlagRun("moles_things_moles_init") then -- thanks conga
         ModLuaFileAppend(biomepath, spawnerpath)
     end
     GameAddFlagRun("moles_things_moles_init")
-end
+end]]
 
 -- nxml
 local content = ModTextFileGetContent("data/materials.xml")

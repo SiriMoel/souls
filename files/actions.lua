@@ -104,6 +104,36 @@ local a = {
 			c.spread_degrees = c.spread_degrees + 13.0
 		end,
 	},
+	{
+		id = "HIISI_SNIPER", -- MOULD N
+		name = "Hiisi Sniper Shot",
+		description = "Fires a single powerful projectile.",
+        sprite = "mods/moles_things/files/spell_icons/hiisi_sniper.png", -- wip
+		related_projectiles	= {"mods/moles_things/files/entities/items/hiisisniper/projectile.xml"},
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "",
+		spawn_probability = "",
+		price = 70,
+		mana = 70,
+		action = function()
+			add_projectile("mods/moles_things/files/entities/items/hiisisniper/projectile.xml")
+		end,
+	},
+	{
+		id = "HIISI_PISTOL", -- MOULD N
+		name = "Hiisi Pistol Shot",
+		description = "Fires a single projectile.",
+        sprite = "mods/moles_things/files/spell_icons/hiisi_pistol.png", -- wip
+		related_projectiles	= {"mods/moles_things/files/entities/items/hiisipistol/projectile.xml"},
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "",
+		spawn_probability = "",
+		price = 70,
+		mana = 50,
+		action = function()
+			add_projectile("mods/moles_things/files/entities/items/hiisipistol/projectile.xml")
+		end,
+	},
 }
 
 for i,v in ipairs(a) do

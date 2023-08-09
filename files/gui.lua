@@ -1,5 +1,6 @@
 dofile_once("mods/moles_things/files/scripts/utils.lua")
 dofile_once("mods/moles_things/files/scripts/sunbook_pages.lua")
+dofile_once("mods/moles_things/files/scripts/souls.lua")
 
 local gusgui = dofile_once("mods/moles_things/lib/gusgui/Gui.lua")
 local Gui = gusgui.Create()
@@ -8,6 +9,7 @@ local comp_brilliance = 0
 local comp_brilliance_max = 0
 local p_brilliance = 0
 local p_brilliance_max = 0
+local soulscount = 0
 
 local sunbook_page = 1
 local sunbook_open = false
@@ -23,6 +25,8 @@ function OnWorldPreUpdate()
         p_brilliance_max = ComponentGetValue2(comp_brilliance_max, "value_int")
         Gui.state.bbar = (p_brilliance / p_brilliance_max) * 100
         Gui.state.brilliance = p_brilliance
+        soulscount = GetSoulsCount("all")
+        Gui.state.soulscount = soulscount
     end
 end
 
@@ -51,6 +55,15 @@ Gui:AddElement(gusgui.Elements.HLayout({
             overrideZ = 12,
             margin = { left = 1, top = -1, },
             value = Gui:StateValue("brilliance"),
+            padding = 1,
+            drawBorder = false,
+            drawBackground = false,
+        }),
+        gusgui.Elements.Text({
+            id = "SoulsCountText",
+            overrideZ = 12,
+            margin = { left = 1, top = -1, },
+            value = "${soulscount} souls",
             padding = 1,
             drawBorder = false,
             drawBackground = false,

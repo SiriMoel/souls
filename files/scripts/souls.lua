@@ -56,6 +56,7 @@ function GetRandomSoul()
     return whichtype
 end
 
+---@return number
 function GetSoulsCount(type)
     local player = GetPlayer()
     local count = 0

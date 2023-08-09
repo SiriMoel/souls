@@ -1,15 +1,18 @@
 dofile_once("mods/moles_things/files/scripts/utils.lua")
-dofile_once("mods/moles_souls/files/scripts/souls.lua")
+dofile_once("mods/moles_things/files/scripts/souls.lua")
 
 local entity_id = GetUpdatedEntityID()
 local root_id = EntityGetRootEntity( entity_id )
 local x, y = EntityGetTransform( entity_id )
 
-local soul_count = GetSoulsCount("all")
+local soul_count = GetSoulsCount("all") or 0
 
-local count = math.ceil(soul_count * 0.3) + 1
+local count = math.ceil(soul_count * 0.3) 
 
-if soul_count == 0 then return end
+if soul_count == 0 or count == 0 or count == nil then
+	GamePrint("Not enough souls.")
+	return 
+end
 
 if count == 1 then
 	GamePrint(count .. " soul consumed!")
@@ -17,19 +20,17 @@ else
 	GamePrint(count .. " souls consumed!")
 end
 
---GamePrint(count)
-
 --increase damage
 local comp = EntityGetFirstComponent( entity_id, "ProjectileComponent" ) or 0
 
 local damage = ComponentGetValue2( comp, "damage" )
 
-damage = damage + count * 2.8
+damage = damage + (count * 0.3) -- should this be adjusted?
 
 ComponentSetValue2( comp, "damage", damage )
 
 --effects
-local effect_id = EntityLoad("mods/moles_souls/files/entities/particles/souls_to_power.xml", x, y)
+local effect_id = EntityLoad("mods/moles_things/files/entities/particles/souls_to_power.xml", x, y)
 EntityAddChild( root_id, effect_id )
 
 edit_component( effect_id, "ParticleEmitterComponent", function(comp3,vars)

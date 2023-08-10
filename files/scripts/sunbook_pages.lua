@@ -14,6 +14,18 @@ sunbookpages = {
         scaleY = 1,
     },
     {
+        name = "sun",
+        page = "mods/moles_things/files/sunbook/sun.png",
+        scaleX = 1,
+        scaleY = 1,
+    },
+    {
+        name = "greensun",
+        page = "mods/moles_things/files/sunbook/greensun.png",
+        scaleX = 1,
+        scaleY = 1,
+    },
+    {
         name = "end",
         page = "mods/moles_things/files/sunbook/end.png",
         scaleX = 1,

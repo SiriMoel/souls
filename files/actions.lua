@@ -87,6 +87,26 @@ local a = {
 		end,
 	},
 	{
+		id          = "SOUL_EXPLOSION",
+		name 		= "Soul Detonation",
+		description = "Detonates a soul to produce an explosion.",
+		sprite 		= "mods/moles_souls/files/spell_icons/soul_explosion.png",
+		related_projectiles	= {"mods/moles_things/files/entities/projectiles/soul_detonation.xml"},
+		type 		= ACTION_TYPE_STATIC_PROJECTILE,
+		spawn_level                       = "2,3,4,5",
+		spawn_probability                 = "2,3,4,5",
+		price = 120,
+		mana = 10,
+		--max_uses = 30,
+		custom_xml_file = "mods/moles_souls/files/entities/misc/soul_detonation.xml",
+		is_dangerous_blast = true,
+		action 		= function()
+			add_projectile("mods/moles_things/files/entities/projectiles/soul_detonation.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 10
+			c.screenshake = c.screenshake + 0.5
+		end,
+	},
+	{
 		id = "HIISI_SHOTGUN", -- MOULD N
 		name = "Hiisi Shotgun Shell",
 		description = "Fires 3 projectiles.",

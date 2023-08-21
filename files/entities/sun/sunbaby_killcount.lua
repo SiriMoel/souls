@@ -9,7 +9,7 @@ for i,target in ipairs(targets) do
     if EntityHasTag(target, "sunbaby_target") ~= true then
         EntityAddComponent2(target, "LuaComponent", {
             script_death = "mods/moles_things/files/entities/sun/sunbaby_killcount_death.lua",
-			execute_every_n_frame = "-1",
+			execute_every_n_frame = -1,
         })
     end
 end

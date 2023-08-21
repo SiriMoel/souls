@@ -10,14 +10,6 @@ local t_a = EntityGetInRadiusWithTag( x, y, radius, "thunderstone" )
 local t_e = EntityGetInRadiusWithTag( x, y, radius, "stonestone" )
 local t_p = EntityGetInRadiusWithTag( x, y, radius, "poopstone" )
 
-local begreen = false
-local bered = false
-local beblue = false
-
-local begreen_confirmed = false
-local bered_confirmed = false
-local beblue_confirmed = false
-
 local w = (#t_w > 0)
 local f = (#t_f > 0)
 local a = (#t_a > 0)

@@ -14,6 +14,10 @@ local begreen = false
 local bered = false
 local beblue = false
 
+local begreen_confirmed = false
+local bered_confirmed = false
+local beblue_confirmed = false
+
 local w = (#t_w > 0)
 local f = (#t_f > 0)
 local a = (#t_a > 0)
@@ -50,9 +54,11 @@ local mat2 = GetAmountOfMaterialInInventory(entity_id, "magic_liquid_hp_regenera
 local mattotal = mat1 + mat2
 if mat1 ~= nil and mat2 ~= nil then
 	if mattotal >= 1 then -- for testing purposes, will be changed to 100 or more
+		if begreen_confirmed == true then return end
 		ComponentSetValue2( comp2, "image_file", "mods/moles_things/files/entities/sun/sun_small_green.png" )
 		EntityLoad("data/entities/projectiles/deck/explosion_giga.xml", x, y)
 		begreen = true
+		begreen_confirmed = true
 		print("begreen")
 	end
 end
@@ -60,14 +66,17 @@ end
 -- bered
 local comp_sunkills = EntityGetFirstComponentIncludingDisabled(entity_id, "VariableStorageComponent", "sunbaby_kills") or 0
 local sunkills = ComponentGetValue2(comp_sunkills, "value_int")
-if sunkills >= 1 then -- for testing purposes, will be changed to 200
+if sunkills >= 1 then -- for testing purposes, will be changed to 100
+	if bered_confirmed == true then return end
 	ComponentSetValue2( comp2, "image_file", "mods/moles_things/files/entities/sun/sun_small_red.png" )
 	EntityLoad("data/entities/projectiles/deck/explosion_giga.xml", x, y)
 	bered = true
+	bered_confirmed = true
 	print("bered")
 end
 
 -- beblue
+-- Hello Mina.
 
 -- essences
 if ( comp ~= nil ) and ( comp2 ~= nil ) then
@@ -177,7 +186,7 @@ if ( comp ~= nil ) and ( comp2 ~= nil ) then
 		EntitySetComponentsWithTagEnabled( entity_id, "sunbaby_stage_2", false )
 	end
 	
-	if ( found == 4 ) then
+	if ( found == 4 ) then -- do i need to add return statements?
 		if ohno == true then
             local sun = EntityLoad("data/entities/items/pickup/sun/newsun_dark.xml", x, y)
 			suninit(sun, 200, 250)
@@ -191,7 +200,7 @@ if ( comp ~= nil ) and ( comp2 ~= nil ) then
 		elseif bered == true then
 			local sun = EntityLoad("mods/moles_things/files/entities/sun/newsun_red.xml", x, y)
             suninit(sun, 100, 300)
-			GamePrintImportant( "The Hungering Sun rises...", "" )
+			GamePrintImportant( "The Resurrecting Sun rises...", "" )
 			AddFlagPersistent( "progress_redsun" )
 		elseif beblue == true then
 			GamePrintImportant( "The Alchemic Sun rises...", "" )

@@ -53,7 +53,7 @@ local a = {
 			draw_actions( 1, true )
 		end,
 	},
-	{
+	--[[{
 		id          = "SOLAR_GLUTTONY", 
 		name 		= "Solar Gluttony",
 		description = "Eat the Sun.",
@@ -69,7 +69,7 @@ local a = {
 			add_projectile("mods/moles_things/files/entities/projectiles/solar_gluttony/solar_gluttony.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 50
 		end,
-	},
+	},]]--
 	{
 		id          = "REAPING_HALO", -- may need to be rebalanced
 		name 		= "Reaping Halo",

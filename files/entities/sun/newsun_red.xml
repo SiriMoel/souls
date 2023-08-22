@@ -89,13 +89,13 @@
 	</MagicConvertMaterialComponent>
 	
 	<CellEaterComponent
-		radius="285"
+		radius="100"
 		eat_probability="80"
 		ignored_material="gem_box2d_yellow_sun"
 		>
 	</CellEaterComponent>
 	
-	<AreaDamageComponent
+	<!--<AreaDamageComponent
 		aabb_min.x="-122" 
 		aabb_min.y="-122" 
 		aabb_max.x="122" 
@@ -132,7 +132,7 @@
 		death_cause="$damage_sun"
 		damage_type="DAMAGE_DRILL"
 		>
-	</AreaDamageComponent>
+	</AreaDamageComponent>-->
 	
 	<ParticleEmitterComponent 
 		_tags="enabled_in_world,enabled_in_hand"
@@ -244,4 +244,11 @@
 		execute_every_n_frame="10"
 		>
 	</LuaComponent>
+	
+	<LuaComponent
+		script_source_file="mods/moles_things/files/entities/sun/redsun_revive.lua"
+		execute_every_n_frame="10"
+		>
+	</LuaComponent>
+
 </Entity>

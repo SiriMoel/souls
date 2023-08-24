@@ -59,6 +59,25 @@ xml:add_child(nxml.parse([[
 ]]))
 ModTextFileSetContent("data/entities/animals/boss_dragon.xml", tostring(xml))
 
+local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/boss_alchemist/boss_alchemist.xml"))
+xml:add_child(nxml.parse([[
+	<LuaComponent
+		script_death="mods/moles_things/files/scripts/death/alchemist.lua"
+		>
+	</LuaComponent>
+]]))
+ModTextFileSetContent("data/entities/animals/boss_alchemist/boss_alchemist.xml", tostring(xml))
+
+local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/boss_wizard/boss_wizard.xml"))
+xml:add_child(nxml.parse([[
+	<LuaComponent
+		script_death="mods/moles_things/files/scripts/death/grandmaster.lua"
+		>
+	</LuaComponent>
+]]))
+ModTextFileSetContent("data/entities/animals/boss_wizard/boss_wizard.xml", tostring(xml))
+
+
 -- biomes
 local content = ModTextFileGetContent("data/biome/_biomes_all.xml")
 local xml = nxml.parse(content) -- sun lab biome is unused

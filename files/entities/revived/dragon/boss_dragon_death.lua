@@ -21,6 +21,11 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 		opts = { "ORBIT_DISCS", "ORBIT_FIREBALLS", "ORBIT_LASERS", "ORBIT_LARPA" }
 		count = 1
 	end
+
+	local spawntablet = math.random(1, 3)
+	if spawntablet == 1 then
+		EntityLoad( "mods/moles_things/files/entities/revived/_tablets/dragon.xml", x, y)
+	end
 	
 	for i=1,count do
 		local rnd = Random( 1, #opts )

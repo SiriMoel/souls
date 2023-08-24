@@ -85,7 +85,7 @@ function RenderSouls()
     for i,v in ipairs(allsoulentities) do
         EntityKill(v)
     end
-    if ModSettingGet( "moles_things.show_souls" ) then 
+    if ModSettingGet( "moles_things.show_souls" ) then
         for i,v in ipairs(soul_types) do
             local soulcomp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. v) or 0
             local scount = ComponentGetValue2(soulcomp, "value_int")

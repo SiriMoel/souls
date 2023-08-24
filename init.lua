@@ -87,9 +87,14 @@ xml:add_children(nxml.parse_many[[
 ModTextFileSetContent("data/biome/_biomes_all.xml", tostring(xml))
 
 -- player
-function OnPlayerSpawned( player ) 
+function OnPlayerSpawned( player )
+
+    local px, py = EntityGetTransform(player)
+
     if GameHasFlagRun("moles_things_init") then return end
+
     SoulsInit()
+
     --[[EntityAddComponent2(player, "LuaComponent", {
         script_source_file="mods/moles_things/files/scripts/player.lua",
         execute_every_n_frame="2",
@@ -113,7 +118,15 @@ function OnPlayerSpawned( player )
         EntitySetComponentsWithTagEnabled( player, "player_hat2", false )
         EntitySetComponentsWithTagEnabled( player, "player_hat", true ) -- placeholder hat
     end
-    
+
+    if ModSettingGet( "moles_things.mina_pearl" ) then
+        EntityLoad("mods/moles_things/files/entities/items/minapearl/mina_pearl.xml", px, py)
+    end
+
+    if ModSettingGet( "moles_things.sunbook_unlocked_on_start" ) then
+        GameAddFlagRun("molething_sunbook_unlocked")
+    end
+
     GameAddFlagRun("molething_sunbook_unlocked") -- for testing purposes
     GameAddFlagRun("moles_things_init")
 end

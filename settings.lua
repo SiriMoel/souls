@@ -27,6 +27,20 @@ mod_settings = {
         scope = MOD_SETTING_SCOPE_RUNTIME,
     },
 	{
+        id = "mina_pearl",
+        ui_name = "Mould N Pearl",
+        ui_description = "If you want to start with the pearl from Mould N.",
+        value_default = false,
+        scope = MOD_SETTING_SCOPE_RUNTIME,
+    },
+	{
+		id = "sunbook_unlocked_on_start",
+        ui_name = "Start with The Sun & You unlocked",
+        ui_description = "",
+        value_default = false,
+        scope = MOD_SETTING_SCOPE_RUNTIME,
+	},
+	{
 		id = "say_soul",
         ui_name = "Say acquired soul",
         ui_description = "If you want to be told what souls you acquire.",

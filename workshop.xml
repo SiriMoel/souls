@@ -1,9 +1,19 @@
 
 <Mod
-	name="Mole's Things"
+	name="Tales of Kupoli"
 	description=
 	"
-	Finally, mould n 2.
+	THINGS
+
+	[url=https://github.com/SiriMoel/tales_of_kupoli] Github [/url]
+
+	Document: https://docs.google.com/document/d/1rOp_SrXh8aKD4sg8DmxveWzNH3pZHmeGWyXZVKbQxWE/edit?usp=sharing
+	(the link may need to be copied into a browser)
+
+	[b]Special Thanks[/b]
+	Gustavo, Copi
+
+	9 shards.
 	"
 	tags="gameplay,items,tweaks"
 	dont_upload_folders=""

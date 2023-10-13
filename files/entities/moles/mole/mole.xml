@@ -30,7 +30,7 @@
 		</DamageModelComponent>
 
 		<SpriteComponent 
-			image_file="mods/moles_things/files/entities/moles/mole/sprite.xml" 
+			image_file="mods/tales_of_kupoli/files/entities/moles/mole/sprite.xml" 
 			offset_x="10"
 			offset_y="12" >
 		</SpriteComponent>
@@ -100,12 +100,12 @@
 	</AudioComponent>
 
 	<LuaComponent
-        script_source_file="mods/moles_things/files/entities/moles/mole/spawn.lua"
+        script_source_file="mods/tales_of_kupoli/files/entities/moles/mole/spawn.lua"
         execute_on_added="1"
     ></LuaComponent>
 
 	<LuaComponent
-		script_death="mods/moles_things/files/entities/moles/mole/death.lua"
+		script_death="mods/tales_of_kupoli/files/entities/moles/mole/death.lua"
 	></LuaComponent>
 
 </Entity>

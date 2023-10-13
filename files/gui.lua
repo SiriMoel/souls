@@ -1,8 +1,8 @@
-dofile_once("mods/moles_things/files/scripts/utils.lua")
-dofile_once("mods/moles_things/files/scripts/sunbook_pages.lua")
-dofile_once("mods/moles_things/files/scripts/souls.lua")
+dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/tales_of_kupoli/files/scripts/sunbook_pages.lua")
+dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
 
-local gusgui = dofile_once("mods/moles_things/lib/gusgui/Gui.lua")
+local gusgui = dofile_once("mods/tales_of_kupoli/lib/gusgui/Gui.lua")
 local Gui = gusgui.Create()
 
 local comp_brilliance = 0
@@ -47,7 +47,7 @@ Gui:AddElement(gusgui.Elements.HLayout({
             height = 10,
             overrideZ = 11,
             barColour = "white",
-            --customBarColourPath = "mods/moles_things/files/sunbook/brilliancebarcolour.png",
+            --customBarColourPath = "mods/tales_of_kupoli/files/sunbook/brilliancebarcolour.png",
             value = Gui:StateValue("bbar"),
         }),
         gusgui.Elements.Text({
@@ -84,7 +84,7 @@ Gui:AddElement(gusgui.Elements.VLayout({
     children = {
         gusgui.Elements.ImageButton({ -- open and close button
             id = "sunbook_button",
-            src = "mods/moles_things/files/sunbook/button.png",
+            src = "mods/tales_of_kupoli/files/sunbook/button.png",
             scaleX = 1,
             scaleY = 1,
             onClick = function(element)
@@ -131,7 +131,7 @@ Gui:AddElement(gusgui.Elements.VLayout({
                     children = {
                         gusgui.Elements.ImageButton({ -- prev button
                             id = "sunbook_button_prev",
-                            src = "mods/moles_things/files/sunbook/button.png",
+                            src = "mods/tales_of_kupoli/files/sunbook/button.png",
                             scaleX = 1,
                             scaleY = 1,
                             hidden = true,
@@ -148,7 +148,7 @@ Gui:AddElement(gusgui.Elements.VLayout({
                         }),
                         gusgui.Elements.ImageButton({ -- prev button
                             id = "sunbook_button_next",
-                            src = "mods/moles_things/files/sunbook/button.png",
+                            src = "mods/tales_of_kupoli/files/sunbook/button.png",
                             margin = { left = 138, },
                             scaleX = 1,
                             scaleY = 1,

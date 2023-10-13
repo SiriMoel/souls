@@ -281,7 +281,7 @@
 		</LuaComponent>
 
 		<LuaComponent
-			script_death="mods/moles_things/files/entities/revived/dragon/boss_dragon_death.lua"
+			script_death="mods/tales_of_kupoli/files/entities/revived/dragon/boss_dragon_death.lua"
 		></LuaComponent>
 		
 		<GenomeDataComponent 

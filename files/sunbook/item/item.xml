@@ -21,7 +21,7 @@
 	<PhysicsImageShapeComponent 
 		body_id="1"
 		centered="1"
-		image_file="mods/moles_things/files/sunbook/item/sprite/s_in_hand.png"
+		image_file="mods/tales_of_kupoli/files/sunbook/item/sprite/s_in_hand.png"
 		material="rock_box2d_hard"
 	></PhysicsImageShapeComponent>
 
@@ -46,7 +46,7 @@
 		max_child_items="0"
 		is_pickable="0"
 		is_equipable_forced="1"
-		ui_sprite="mods/moles_things/files/sunbook/item/sprite/s.png"
+		ui_sprite="mods/tales_of_kupoli/files/sunbook/item/sprite/s.png"
 		preferred_inventory="QUICK"
 		item_name="SUNBOOK"
 		ui_description="You shouldnt have this."
@@ -57,7 +57,7 @@
 		_enabled="0"
 		offset_x="4"
 		offset_y="4"
-		image_file="mods/moles_things/files/sunbook/item/sprite/s_in_hand.png"
+		image_file="mods/tales_of_kupoli/files/sunbook/item/sprite/s_in_hand.png"
 	></SpriteComponent>
 
 	<HitboxComponent 
@@ -120,7 +120,7 @@
 	</AbilityComponent>
 
 	<LuaComponent
-		script_source_file="mods/moles_things/files/sunbook/item/pickup.lua"
+		script_source_file="mods/tales_of_kupoli/files/sunbook/item/pickup.lua"
 		execute_every_n_frame="3"
 	></LuaComponent>
 

@@ -2,7 +2,7 @@
 In all my testing, this never needed to be modified. 
 -->
 
-<Sprite filename="mods/moles_things/files/entities/items/hiisisniper/sprite.png" >
+<Sprite filename="mods/tales_of_kupoli/files/entities/items/hiisisniper/sprite.png" >
 	
   <RectAnimation 
 	name="default" 

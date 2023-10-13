@@ -1,5 +1,5 @@
-dofile_once("mods/moles_things/files/scripts/utils.lua")
-dofile_once("mods/moles_things/files/scripts/souls.lua")
+dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
 
 function death(damage_type_bit_field, damage_message, entity_thats_responsible, drop_items)
     local entity = GetUpdatedEntityID()
@@ -8,7 +8,7 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
     
     if not table.contains(soul_types, herd_id) then return end
 
-    if ModSettingGet("moles_things.say_soul") == true then
+    if ModSettingGet("tales_of_kupoli.say_soul") == true then
         GamePrint("You have acquired a " .. herd_id .. " soul!")
     end
 

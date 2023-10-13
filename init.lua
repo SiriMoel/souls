@@ -1,32 +1,32 @@
-dofile_once("mods/moles_things/lib/gusgui/gusgui.lua").init("mods/moles_things/lib/gusgui")
---dofile_once("mods/moles_things/lib/Noitilities/NL_Init.lua").init("mods/moles_things/files/lib/Noitilities")
---ModMagicNumbersFileAdd( "mods/moles_things/files/magic_numbers.xml" )
-ModMaterialsFileAdd("mods/moles_things/files/materials.xml")
+dofile_once("mods/tales_of_kupoli/lib/gusgui/gusgui.lua").init("mods/tales_of_kupoli/lib/gusgui")
+--dofile_once("mods/tales_of_kupoli/lib/Noitilities/NL_Init.lua").init("mods/tales_of_kupoli/files/lib/Noitilities")
+--ModMagicNumbersFileAdd( "mods/tales_of_kupoli/files/magic_numbers.xml" )
+ModMaterialsFileAdd("mods/tales_of_kupoli/files/materials.xml")
 
-dofile_once("mods/moles_things/files/scripts/utils.lua")
-dofile_once("mods/moles_things/files/scripts/souls.lua")
-dofile_once("mods/moles_things/files/scripts/molebiomes.lua")
+dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+dofile_once("mods/tales_of_kupoli/files/scripts/molebiomes.lua")
 
---dofile_once("mods/moles_things/lib/Noitilities/NT_ModuleLoader.lua").DofileModules({"GunPatch"})
+--dofile_once("mods/tales_of_kupoli/lib/Noitilities/NT_ModuleLoader.lua").DofileModules({"GunPatch"})
 --PatchGunSystem()
 
-local nxml = dofile_once("mods/moles_things/lib/nxml.lua")
+local nxml = dofile_once("mods/tales_of_kupoli/lib/nxml.lua")
 
-dofile_once("mods/moles_things/files/gui.lua")
+dofile_once("mods/tales_of_kupoli/files/gui.lua")
 
 -- set & append
 SetFileContent("data/scripts/buildings/sun/spot_4.lua", "spot_4.lua")
 SetFileContent("data/scripts/buildings/sun/sun_collision.lua", "sun_collision.lua")
 SetFileContent("data/entities/items/pickup/sun/sunbaby.xml", "sunbaby.xml")
-ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/moles_things/files/actions.lua" )
-ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/moles_things/files/perks.lua" )
-ModLuaFileAppend( "data/scripts/items/orb_pickup.lua", "mods/moles_things/files/scripts/orb_pickup_append.lua" )
-ModLuaFileAppend( "data/scripts/biomes/orbrooms/orbroom_07.lua", "mods/moles_things/files/scripts/orbroom_07_append.lua" )
+ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/tales_of_kupoli/files/actions.lua" )
+ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/tales_of_kupoli/files/perks.lua" )
+ModLuaFileAppend( "data/scripts/items/orb_pickup.lua", "mods/tales_of_kupoli/files/scripts/orb_pickup_append.lua" )
+ModLuaFileAppend( "data/scripts/biomes/orbrooms/orbroom_07.lua", "mods/tales_of_kupoli/files/scripts/orbroom_07_append.lua" )
 
 local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/shotgunner.xml"))
 xml:add_child(nxml.parse([[
 	<LuaComponent
-		script_death="mods/moles_things/files/scripts/death/hiisi_shotgunner.lua"
+		script_death="mods/tales_of_kupoli/files/scripts/death/hiisi_shotgunner.lua"
 		>
 	</LuaComponent>
 ]]))
@@ -35,7 +35,7 @@ ModTextFileSetContent("data/entities/animals/shotgunner.xml", tostring(xml))
 local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/sniper.xml"))
 xml:add_child(nxml.parse([[
 	<LuaComponent
-		script_death="mods/moles_things/files/scripts/death/hiisi_sniper.lua"
+		script_death="mods/tales_of_kupoli/files/scripts/death/hiisi_sniper.lua"
 		>
 	</LuaComponent>
 ]]))
@@ -44,7 +44,7 @@ ModTextFileSetContent("data/entities/animals/sniper.xml", tostring(xml))
 local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/scavenger_smg.xml"))
 xml:add_child(nxml.parse([[
 	<LuaComponent
-		script_death="mods/moles_things/files/scripts/death/hiisi_pistol.lua"
+		script_death="mods/tales_of_kupoli/files/scripts/death/hiisi_pistol.lua"
 		>
 	</LuaComponent>
 ]]))
@@ -53,7 +53,7 @@ ModTextFileSetContent("data/entities/animals/scavenger_smg.xml", tostring(xml))
 local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/boss_dragon.xml"))
 xml:add_child(nxml.parse([[
 	<LuaComponent
-		script_death="mods/moles_things/files/scripts/death/dragon.lua"
+		script_death="mods/tales_of_kupoli/files/scripts/death/dragon.lua"
 		>
 	</LuaComponent>
 ]]))
@@ -62,7 +62,7 @@ ModTextFileSetContent("data/entities/animals/boss_dragon.xml", tostring(xml))
 local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/boss_alchemist/boss_alchemist.xml"))
 xml:add_child(nxml.parse([[
 	<LuaComponent
-		script_death="mods/moles_things/files/scripts/death/alchemist.lua"
+		script_death="mods/tales_of_kupoli/files/scripts/death/alchemist.lua"
 		>
 	</LuaComponent>
 ]]))
@@ -71,7 +71,7 @@ ModTextFileSetContent("data/entities/animals/boss_alchemist/boss_alchemist.xml",
 local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/boss_wizard/boss_wizard.xml"))
 xml:add_child(nxml.parse([[
 	<LuaComponent
-		script_death="mods/moles_things/files/scripts/death/grandmaster.lua"
+		script_death="mods/tales_of_kupoli/files/scripts/death/grandmaster.lua"
 		>
 	</LuaComponent>
 ]]))
@@ -82,7 +82,7 @@ ModTextFileSetContent("data/entities/animals/boss_wizard/boss_wizard.xml", tostr
 local content = ModTextFileGetContent("data/biome/_biomes_all.xml")
 local xml = nxml.parse(content) -- sun lab biome is unused
 xml:add_children(nxml.parse_many[[
-    <Biome height_index="0" color="ff9dceb9" biome_filename="mods/moles_things/files/biome/sunlab/sunlab.xml" />
+    <Biome height_index="0" color="ff9dceb9" biome_filename="mods/tales_of_kupoli/files/biome/sunlab/sunlab.xml" />
 ]])
 ModTextFileSetContent("data/biome/_biomes_all.xml", tostring(xml))
 
@@ -91,12 +91,12 @@ function OnPlayerSpawned( player )
 
     local px, py = EntityGetTransform(player)
 
-    if GameHasFlagRun("moles_things_init") then return end
+    if GameHasFlagRun("tales_of_kupoli_init") then return end
 
     SoulsInit()
 
     --[[EntityAddComponent2(player, "LuaComponent", {
-        script_source_file="mods/moles_things/files/scripts/player.lua",
+        script_source_file="mods/tales_of_kupoli/files/scripts/player.lua",
         execute_every_n_frame="2",
     })]]--
     EntityAddComponent2(player, "VariableStorageComponent", {
@@ -119,29 +119,29 @@ function OnPlayerSpawned( player )
         EntitySetComponentsWithTagEnabled( player, "player_hat", true ) -- placeholder hat
     end
 
-    if ModSettingGet( "moles_things.mina_pearl" ) then
-        EntityLoad("mods/moles_things/files/entities/items/minapearl/mina_pearl.xml", px, py)
+    if ModSettingGet( "tales_of_kupoli.mina_pearl" ) then
+        EntityLoad("mods/tales_of_kupoli/files/entities/items/minapearl/mina_pearl.xml", px, py)
     end
 
-    if ModSettingGet( "moles_things.sunbook_unlocked_on_start" ) then
+    if ModSettingGet( "tales_of_kupoli.sunbook_unlocked_on_start" ) then
         GameAddFlagRun("molething_sunbook_unlocked")
     end
 
     GameAddFlagRun("molething_sunbook_unlocked") -- for testing purposes
-    GameAddFlagRun("moles_things_init")
+    GameAddFlagRun("tales_of_kupoli_init")
 end
 
 -- moles spawning
---[[if not GameHasFlagRun("moles_things_moles_init") then -- thanks conga
+--[[if not GameHasFlagRun("tales_of_kupoli_moles_init") then -- thanks conga
     for i=1,#molebiomes do v = molebiomes[i]
         local biomepath = table.concat({"data/scripts/biomes/", v.biome, ".lua"})
-        local spawnerpath = "mods/moles_things/files/scripts/molespawner.lua"
+        local spawnerpath = "mods/tales_of_kupoli/files/scripts/molespawner.lua"
         if v.modded ~= nil and v.modded == true then
             biomepath = v.biome
         end
         ModLuaFileAppend(biomepath, spawnerpath)
     end
-    GameAddFlagRun("moles_things_moles_init")
+    GameAddFlagRun("tales_of_kupoli_moles_init")
 end]]
 
 -- nxml

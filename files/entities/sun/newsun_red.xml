@@ -40,7 +40,7 @@
 		offset_y="105"
 		emissive="1"
 		additive="1"
-		image_file="mods/moles_things/files/entities/sun/redsun.png"
+		image_file="mods/tales_of_kupoli/files/entities/sun/redsun.png"
 		smooth_filtering="1"
 	></SpriteComponent>
 
@@ -246,7 +246,7 @@
 	</LuaComponent>
 	
 	<LuaComponent
-		script_source_file="mods/moles_things/files/entities/sun/redsun_revive.lua"
+		script_source_file="mods/tales_of_kupoli/files/entities/sun/redsun_revive.lua"
 		execute_every_n_frame="10"
 		>
 	</LuaComponent>

@@ -1,6 +1,6 @@
-dofile("mods/moles_things/files/utils.lua")
+dofile("mods/tales_of_kupoli/files/utils.lua")
 
-local souls = dofile("mods/moles_things/files/scripts/souls.lua")
+local souls = dofile("mods/tales_of_kupoli/files/scripts/souls.lua")
 
 local entity_id = GetUpdatedEntityID()
 local root_id = EntityGetRootEntity( entity_id )

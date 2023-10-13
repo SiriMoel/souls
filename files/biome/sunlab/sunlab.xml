@@ -9,7 +9,7 @@
     background_edge_bottom="data/weather_gfx/edges/background_cave_04_alt_bottom.png"
     background_edge_priority="10"
     wang_template_file="" 
-    lua_script="mods/moles_things/files/biome/sunlab/sunlab.lua"
+    lua_script="mods/tales_of_kupoli/files/biome/sunlab/sunlab.lua"
     wang_map_width="256"
     wang_map_height="256"
     audio_music_2=""

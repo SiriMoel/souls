@@ -60,7 +60,7 @@
 		</Ingestion>
 	</StatusEffects>
     <Graphics 
-	texture_file="mods/moles_things/files/materials_gfx/moleblood.png" 
+	texture_file="mods/tales_of_kupoli/files/materials_gfx/moleblood.png" 
 	color="88386EC6" >
     </Graphics>
   </CellData>

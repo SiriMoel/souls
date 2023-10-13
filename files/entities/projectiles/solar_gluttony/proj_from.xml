@@ -63,13 +63,13 @@
 	</ProjectileComponent>
 
     <LuaComponent
-        script_source_file="mods/moles_things/files/entities/projectiles/solar_gluttony/proj_from.lua"
+        script_source_file="mods/tales_of_kupoli/files/entities/projectiles/solar_gluttony/proj_from.lua"
         execute_every_n_frame="5"
     ></LuaComponent>
 
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/moles_things/files/entities/projectiles/solar_gluttony/proj_from.xml"
+		value_string="mods/tales_of_kupoli/files/entities/projectiles/solar_gluttony/proj_from.xml"
 		>
 	</VariableStorageComponent>
 	

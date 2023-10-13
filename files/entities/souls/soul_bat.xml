@@ -18,11 +18,11 @@
 
 	<!-- ghost functionality and visuals -->		
 	<SpriteComponent 
-		image_file="mods/moles_things/files/entities/souls/sprites/soul_bat.xml" 
+		image_file="mods/tales_of_kupoli/files/entities/souls/sprites/soul_bat.xml" 
 		>
 	</SpriteComponent>
 	<LuaComponent 
-		script_source_file="mods/moles_things/files/scripts/souls_move.lua"
+		script_source_file="mods/tales_of_kupoli/files/scripts/souls_move.lua"
 		execute_every_n_frame="1"
 		>
 	</LuaComponent>

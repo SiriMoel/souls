@@ -40,7 +40,7 @@
 		offset_y="105"
 		emissive="1"
 		additive="1"
-		image_file="mods/moles_things/files/entities/sun/greensun.png"
+		image_file="mods/tales_of_kupoli/files/entities/sun/greensun.png"
 		smooth_filtering="1"
 	></SpriteComponent>
 

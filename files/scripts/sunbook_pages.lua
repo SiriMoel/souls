@@ -1,5 +1,3 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
-
 sunbookpages = {
     {
         name = "cover",
@@ -40,12 +38,6 @@ sunbookpages = {
     {
         name = "redsun_revive",
         page = "mods/tales_of_kupoli/files/sunbook/reviveboss.png",
-        scaleX = 1,
-        scaleY = 1,
-    },
-    {
-        name = "throngler",
-        page = "mods/tales_of_kupoli/files/sunbook/throngler.png",
         scaleX = 1,
         scaleY = 1,
     },

@@ -18,6 +18,7 @@ dofile_once("mods/tales_of_kupoli/files/gui.lua")
 SetFileContent("data/scripts/buildings/sun/spot_4.lua", "spot_4.lua")
 SetFileContent("data/scripts/buildings/sun/sun_collision.lua", "sun_collision.lua")
 SetFileContent("data/entities/items/pickup/sun/sunbaby.xml", "sunbaby.xml")
+SetFileContent("data/entities/items/orbs/orb_base.xml", "orb_base.xml")
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/tales_of_kupoli/files/actions.lua" )
 ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/tales_of_kupoli/files/perks.lua" )
 ModLuaFileAppend( "data/scripts/items/orb_pickup.lua", "mods/tales_of_kupoli/files/scripts/orb_pickup_append.lua" )
@@ -109,6 +110,12 @@ function OnPlayerSpawned( player )
         name="brilliance_max",
         value_int=500,
     })
+
+    --[[EntityAddComponent2(player, "LuaComponent", {
+        _tags="",
+        script_source_file="mods/tales_of_kupoli/files/sunbook/rosettas/init.lua",
+        execute_every_n_frame="10",
+    })]]--
 
     --AddFlagPersistent("progress_greensun")
     --AddFlagPersistent("progress_redsun")

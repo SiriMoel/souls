@@ -41,7 +41,7 @@ Gui:AddElement(gusgui.Elements.HLayout({
     margin = { top = 5, left = 50, },
     overrideZ = 10,
     children = {
-        gusgui.Elements.ProgressBar({
+        --[[gusgui.Elements.ProgressBar({
             id = "BrillianceBar",
             width = 100,
             height = 10,
@@ -58,7 +58,7 @@ Gui:AddElement(gusgui.Elements.HLayout({
             padding = 1,
             drawBorder = false,
             drawBackground = false,
-        }),
+        }),]]--
         gusgui.Elements.Text({
             id = "SoulsCountText",
             overrideZ = 12,

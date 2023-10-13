@@ -1,4 +1,6 @@
 dofile_once("data/scripts/lib/utilities.lua")
+dofile_once("mods/tales_of_kupoli/files/scripts/sunbook_pages.lua")
+dofile_once("mods/tales_of_kupoli/files/scripts/rosetta_pages.lua")
 
 function flipbool(boolean) -- the real function flipbool()
     return not boolean
@@ -126,4 +128,11 @@ function weapon_rngstats(weapon, statsm)
             ComponentObjectSetValue( ac, "gunaction_config", "fire_rate_wait", tostring(frw) )
         end
     end
+end
+
+function AddRosetta(id)
+    if rosettapages[id] ~= nil then
+        table.insert(rosettapages[id], sunbookpages)
+        return true
+    else return false end
 end

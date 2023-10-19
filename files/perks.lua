@@ -1,5 +1,5 @@
 dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
-
+local total_perks_picked = 0;
 local a = {
     --[[{
 		id = "SOLAR_RADAR",
@@ -16,9 +16,47 @@ local a = {
 			})
 		end,
 	},]]--
+	{
+		id = "KUPOLI_PERK_MOVEMENT",
+		ui_name = "Growing Movement",
+		ui_description = "Each perk you pick up increases your movement speed slightly.",
+		ui_icon = "MODLSO DO TGIS",
+		perk_icon = "MOLDOS DO THIS",
+		stackable = STACKABLE_NO,
+		func = function (entity_perk_item, entity_who_picked, item_name)
+			local comp = EntityGetFirstComponentIncludingDisabled(entity_who_picked, "CharacterPlatformingComponent")
+            if comp ~= nil then
+                local values = {
+                    "run_velocity",
+                    "velocity_min_x",
+                    "velocity_max_x",
+                    "velocity_min_y",
+                    "velocity_max_y"
+                }
+
+                for _, v in ipairs(values) do
+                    ComponentSetValue2(comp,v,ComponentGetValue2(comp,v)*1.2)
+                end
+            end
+		end
+	}
 }
 
 for i,v in ipairs(a) do
     v.id = "molething_" .. v.id
     table.insert(perk_list, v)
+end
+
+for i=1, #perk_list do local v = perk_list[i]
+	local oldfunc = v.func;
+	if oldfunc then
+		v.func = function(entity_perk_item, entity_who_picked, item_name)
+			total_perks_picked = total_perks_picked + 1;
+			oldfunc(entity_perk_item, entity_who_picked, item_name)
+		end
+	else 
+		v.func = function ()
+			total_perks_picked = total_perks_picked + 1;
+		end
+	end
 end

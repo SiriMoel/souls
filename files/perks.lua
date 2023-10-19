@@ -1,5 +1,6 @@
 dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
 local total_perks_picked = 0;
+local has_movement_perk = false;
 local a = {
     --[[{
 		id = "SOLAR_RADAR",
@@ -24,6 +25,7 @@ local a = {
 		perk_icon = "MOLDOS DO THIS",
 		stackable = STACKABLE_NO,
 		func = function (entity_perk_item, entity_who_picked, item_name)
+			has_movement_perk = true;
 			local comp = EntityGetFirstComponentIncludingDisabled(entity_who_picked, "CharacterPlatformingComponent")
             if comp ~= nil then
                 local values = {
@@ -35,7 +37,7 @@ local a = {
                 }
 
                 for _, v in ipairs(values) do
-                    ComponentSetValue2(comp,v,ComponentGetValue2(comp,v)*1.2)
+                    ComponentSetValue2(comp,v,ComponentGetValue2(comp,v)*1.2*total_perks_picked)
                 end
             end
 		end
@@ -52,11 +54,44 @@ for i=1, #perk_list do local v = perk_list[i]
 	if oldfunc then
 		v.func = function(entity_perk_item, entity_who_picked, item_name)
 			total_perks_picked = total_perks_picked + 1;
+			if has_movement_perk then 
+				local comp = EntityGetFirstComponentIncludingDisabled(entity_who_picked, "CharacterPlatformingComponent")
+				if comp ~= nil then
+					local values = {
+						"run_velocity",
+						"velocity_min_x",
+						"velocity_max_x",
+						"velocity_min_y",
+						"velocity_max_y"
+					}
+	
+					for _, v in ipairs(values) do
+						ComponentSetValue2(comp,v,ComponentGetValue2(comp,v)*1.2)
+					end
+				end
+	
+			end
 			oldfunc(entity_perk_item, entity_who_picked, item_name)
 		end
 	else 
 		v.func = function ()
 			total_perks_picked = total_perks_picked + 1;
+			if has_movement_perk then 
+				local comp = EntityGetFirstComponentIncludingDisabled(entity_who_picked, "CharacterPlatformingComponent")
+				if comp ~= nil then
+					local values = {
+						"run_velocity",
+						"velocity_min_x",
+						"velocity_max_x",
+						"velocity_min_y",
+						"velocity_max_y"
+					}
+	
+					for _, v in ipairs(values) do
+						ComponentSetValue2(comp,v,ComponentGetValue2(comp,v)*1.2)
+					end
+				end
+			end
 		end
 	end
 end

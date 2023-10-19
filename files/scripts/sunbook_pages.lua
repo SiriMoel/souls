@@ -41,10 +41,10 @@ sunbookpages = {
         scaleX = 1,
         scaleY = 1,
     },
-    {
+    --[[{
         name = "end",
         page = "mods/tales_of_kupoli/files/sunbook/end.png",
         scaleX = 1,
         scaleY = 1,
-    },
+    },]]--
 }

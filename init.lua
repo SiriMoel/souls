@@ -131,10 +131,10 @@ function OnPlayerSpawned( player )
     end
 
     if ModSettingGet( "tales_of_kupoli.sunbook_unlocked_on_start" ) then
-        GameAddFlagRun("molething_sunbook_unlocked")
+        GameAddFlagRun("talesofkupoli_sunbook_unlocked")
     end
 
-    GameAddFlagRun("molething_sunbook_unlocked") -- for testing purposes
+    GameAddFlagRun("talesofkupoli_sunbook_unlocked") -- for testing purposes
     GameAddFlagRun("tales_of_kupoli_init")
 end
 

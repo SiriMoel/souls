@@ -1,4 +1,4 @@
-<Entity tags="mortal,hittable,homing_target,molething_mole" name="Mole" >
+<Entity tags="mortal,hittable,homing_target,talesofkupoli_mole" name="Mole" >
   
 	<Base file="data/entities/base_helpless_animal.xml" >
 

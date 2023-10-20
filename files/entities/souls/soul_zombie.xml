@@ -1,4 +1,4 @@
-<Entity tags="molething_soul,soul_zombie">
+<Entity tags="talesofkupoli_soul,soul_zombie">
 	<HitboxComponent 
         _tags="enabled_in_world"
         aabb_min_x="-4" 

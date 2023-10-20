@@ -81,7 +81,7 @@ end
 function RenderSouls()
     local player = GetPlayer()
     local x, y = EntityGetTransform(player)
-    local allsoulentities = EntityGetWithTag("molething_soul")
+    local allsoulentities = EntityGetWithTag("talesofkupoli_soul")
     for i,v in ipairs(allsoulentities) do
         EntityKill(v)
     end

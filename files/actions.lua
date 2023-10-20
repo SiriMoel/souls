@@ -157,7 +157,7 @@ local a = {
 }
 
 for i,v in ipairs(a) do
-	v.id = "MOLETHING_" .. v.id
+	v.id = "talesofkupoli_" .. v.id
     table.insert(actions, v)
 end
 

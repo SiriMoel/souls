@@ -77,7 +77,7 @@ Gui:AddElement(gusgui.Elements.VLayout({
     overrideZ  = 100000000,
     hidden = true,
     onBeforeRender = function(element)
-        if GameHasFlagRun("molething_sunbook_unlocked") then
+        if GameHasFlagRun("talesofkupoli_sunbook_unlocked") then
             element.config.hidden = false
         end
     end,
@@ -103,7 +103,7 @@ Gui:AddElement(gusgui.Elements.VLayout({
     overrideZ  = 100000000,
     hidden = true,
     onBeforeRender = function(element)
-        if GameHasFlagRun("molething_sunbook_unlocked") then
+        if GameHasFlagRun("talesofkupoli_sunbook_unlocked") then
             element.config.hidden = false
         end
     end,

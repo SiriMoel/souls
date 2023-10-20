@@ -35,7 +35,7 @@ mod_settings = {
     },
 	{
 		id = "sunbook_unlocked_on_start",
-        ui_name = "Start with The Sun & You unlocked",
+        ui_name = "Start with the book below the altar unlocked",
         ui_description = "",
         value_default = false,
         scope = MOD_SETTING_SCOPE_RUNTIME,

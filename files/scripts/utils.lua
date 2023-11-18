@@ -131,8 +131,16 @@ function weapon_rngstats(weapon, statsm)
 end
 
 function AddRosetta(id)
-    if rosettapages[id] ~= nil then
-        table.insert(rosettapages[id], sunbookpages)
-        return true
-    else return false end
+    print("Attempting to add Rosetta...")
+    for i,v in ipairs(sunbookpages) do
+        if v.name == "rosetta" .. id then
+            v.unlocked = true
+        end
+    end
+    --[[if rosettapages1[id] ~= nil then
+        table.insert(sunbookpages, rosettapages1[id])
+        print("Rosetta addded!")
+    else
+        table.insert(sunbookpages, rosettapages1[id])
+    end]]--
 end

@@ -5,7 +5,7 @@ ModMaterialsFileAdd("mods/tales_of_kupoli/files/materials.xml")
 
 dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
 dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
-dofile_once("mods/tales_of_kupoli/files/scripts/molebiomes.lua")
+--dofile_once("mods/tales_of_kupoli/files/scripts/molebiomes.lua")
 
 --dofile_once("mods/tales_of_kupoli/lib/Noitilities/NT_ModuleLoader.lua").DofileModules({"GunPatch"})
 --PatchGunSystem()
@@ -15,14 +15,15 @@ local nxml = dofile_once("mods/tales_of_kupoli/lib/nxml.lua")
 dofile_once("mods/tales_of_kupoli/files/gui.lua")
 
 -- set & append
-SetFileContent("data/scripts/buildings/sun/spot_4.lua", "spot_4.lua")
-SetFileContent("data/scripts/buildings/sun/sun_collision.lua", "sun_collision.lua")
-SetFileContent("data/entities/items/pickup/sun/sunbaby.xml", "sunbaby.xml")
-SetFileContent("data/entities/items/orbs/orb_base.xml", "orb_base.xml")
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/tales_of_kupoli/files/actions.lua" )
 ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/tales_of_kupoli/files/perks.lua" )
 ModLuaFileAppend( "data/scripts/items/orb_pickup.lua", "mods/tales_of_kupoli/files/scripts/orb_pickup_append.lua" )
 ModLuaFileAppend( "data/scripts/biomes/orbrooms/orbroom_07.lua", "mods/tales_of_kupoli/files/scripts/orbroom_07_append.lua" )
+
+SetFileContent("data/scripts/buildings/sun/spot_4.lua", "spot_4.lua")
+SetFileContent("data/scripts/buildings/sun/sun_collision.lua", "sun_collision.lua")
+SetFileContent("data/entities/items/pickup/sun/sunbaby.xml", "sunbaby.xml")
+SetFileContent("data/entities/items/orbs/orb_base.xml", "orb_base.xml")
 
 local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/shotgunner.xml"))
 xml:add_child(nxml.parse([[
@@ -134,7 +135,6 @@ function OnPlayerSpawned( player )
         GameAddFlagRun("talesofkupoli_sunbook_unlocked")
     end
 
-    GameAddFlagRun("talesofkupoli_sunbook_unlocked") -- for testing purposes
     GameAddFlagRun("tales_of_kupoli_init")
 end
 

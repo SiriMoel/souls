@@ -155,7 +155,11 @@ Gui:AddElement(gusgui.Elements.VLayout({
                             hidden = true,
                             onBeforeRender = function(element)
                                 if sunbookpages[sunbook_page + 1] ~= nil then
-                                    element.config.hidden = false
+                                    if sunbookpages[sunbook_page + 1].unlocked == true then
+                                        element.config.hidden = false
+                                    else
+                                        element.config.hidden = true
+                                    end
                                 else
                                     element.config.hidden = true
                                 end

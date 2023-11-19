@@ -154,6 +154,47 @@ local a = {
 			add_projectile("mods/tales_of_kupoli/files/entities/items/hiisipistol/projectile.xml")
 		end,
 	},
+	{
+		id = "DIAHEART_LENSE", -- riven mod
+		name = "Diamond Lense",
+		sprite = "mods/tales_of_kupoli/files/spell_icons/rivenmod.png",
+		type = ACTION_TYPE_UTILITY,
+		spawn_level = "",
+		spawn_probability = "",
+		price = 0,
+		mana = 50,
+		action = function()
+			local targets = {}
+			for i,v in ipairs(actions) do
+				if v.type == ACTION_TYPE_PROJECTILE then
+					table.insert(targets, v)
+				end
+			end
+			local target = targets[math.random(1, #targets)]
+			name = target.name .. "Diamond Lense"
+
+			if (#deck > 0) then
+				if deck[1].id == target.id then
+					-- add stats
+					c.speed_multiplier = c.speed_multiplier * 10 -- testing
+				end
+			end
+			GamePrint("riven action function ran") -- testing
+
+			draw_actions( 1, true )
+
+			--[[
+				how can i get next spell in the deck?
+				how can i add random stats to the spell?
+				do i want riven dispo?
+				how should rerolling work?
+				do i make rivens drop from all bosses?
+				how do i make it only apply to specific spell?
+				how can i add vfx to the card? like the copi thing
+				do i want to add names based off the stats?
+			]]--
+		end,
+	},
 }
 
 for i,v in ipairs(a) do

@@ -83,8 +83,8 @@ function GiveBrilliance(comp, comp_max, amount)
 end
 
 function TransferBrilliance(from_comp, to_comp, to_comp_max, amount)
-    local from_comp_amount = ComponentGetValue2(from_comp_amount, "value_int")
-    local to_comp_amount = ComponentGetValue2(to_comp_amount, "value_int")
+    local from_comp_amount = ComponentGetValue2(from_comp, "value_int")
+    local to_comp_amount = ComponentGetValue2(to_comp, "value_int")
     local to_max = ComponentGetValue2(to_comp_max, "value_int")
 
     to_comp_amount = to_comp_amount + amount
@@ -131,8 +131,8 @@ function weapon_rngstats(weapon, statsm)
 end
 
 function AddRosetta(id)
-    if rosettapages[id] ~= nil then
-        table.insert(rosettapages[id], sunbookpages)
+    if ROSETTAPAGES[id] ~= nil then
+        table.insert(ROSETTAPAGES[id], SUNBOOKPAGES)
         return true
     else return false end
 end

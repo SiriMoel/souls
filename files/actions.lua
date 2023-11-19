@@ -20,7 +20,7 @@ local a = {
 		end,
 	},
 	{
-		id          = "REAPING_FIELD", 
+		id          = "REAPING_FIELD",
 		name 		= "Circle of Reaping",
 		description = "Causes enemies in a large field to drop their souls on death.",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/reaping_field.png",
@@ -157,8 +157,6 @@ local a = {
 }
 
 for i,v in ipairs(a) do
-	v.id = "talesofkupoli_" .. v.id
+	v.id = "KUPOLI_" .. v.id
     table.insert(actions, v)
 end
-
---print(#a .. " actions successfully added!")

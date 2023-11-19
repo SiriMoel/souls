@@ -11,16 +11,11 @@ function item_pickup(entity_item, entity_who_picked, item_name)
 
     GiveBrilliance(comp_b, comp_bmax, 25)
 
-    local orbcomp = EntityGetComponent( entity_item, "OrbComponent" ) or {}
-    local orb_id = -1
-
-    for key,comp_id in pairs(orbcomp) do
-		orb_id = ComponentGetValueInt( comp_id, "orb_id" )
-	end
-
-    if AddRosetta(orb_id) then
-       GamePrintImportant("Rosetta found!", "Check your sun tablet")
-    end
+    local orb_comp = EntityGetFirstComponent(entity_item, "OrbComponent") or 0
+    local orb_id = ComponentGetValue2(orb_comp, "orb_id") or 0
+    GamePrint(orb_id)
 
     item_pickup_old(entity_item, entity_who_picked, item_name)
+
+    AddRosetta(orb_id)
 end

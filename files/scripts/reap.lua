@@ -5,8 +5,11 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
     local entity = GetUpdatedEntityID()
     local herd_id_number = ComponentGetValue2( EntityGetFirstComponent( entity, "GenomeDataComponent" ) or 0, "herd_id")
     local herd_id = HerdIdToString(herd_id_number)
-    
+    local x, y = EntityGetTransform(entity)
+
     if not table.contains(soul_types, herd_id) then return end
+
+    SetRandomSeed(x, y)
 
     if math.random(1,20) == 10 then
         herd_id = "gilded"

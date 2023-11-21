@@ -146,7 +146,7 @@ Gui:AddElement(gusgui.Elements.VLayout({
                                 sunbook_page = sunbook_page - 1
                             end,
                         }),
-                        gusgui.Elements.ImageButton({ -- prev button
+                        gusgui.Elements.ImageButton({ -- next button
                             id = "sunbook_button_next",
                             src = "mods/tales_of_kupoli/files/sunbook/button.png",
                             margin = { left = 138, },
@@ -155,7 +155,7 @@ Gui:AddElement(gusgui.Elements.VLayout({
                             hidden = true,
                             onBeforeRender = function(element)
                                 if sunbookpages[sunbook_page + 1] ~= nil then
-                                    if sunbookpages[sunbook_page + 1].unlocked == true then
+                                    if GameHasFlagRun("kupoli_sbp_" .. tostring(sunbookpage + 1)) then
                                         element.config.hidden = false
                                     else
                                         element.config.hidden = true

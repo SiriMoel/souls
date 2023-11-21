@@ -134,7 +134,7 @@ function AddRosetta(id)
     print("Attempting to add Rosetta...")
     for i,v in ipairs(sunbookpages) do
         if v.name == "rosetta" .. id then
-            v.unlocked = true
+            GameAddFlagRun("kupoli_sbp_" .. i)
         end
     end
     --[[if rosettapages1[id] ~= nil then

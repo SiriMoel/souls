@@ -25,6 +25,7 @@ SetFileContent("data/scripts/buildings/sun/sun_collision.lua", "sun_collision.lu
 SetFileContent("data/entities/items/pickup/sun/sunbaby.xml", "sunbaby.xml")
 SetFileContent("data/entities/items/orbs/orb_base.xml", "orb_base.xml")
 
+--hiisi
 local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/shotgunner.xml"))
 xml:add_child(nxml.parse([[
 	<LuaComponent
@@ -52,6 +53,7 @@ xml:add_child(nxml.parse([[
 ]]))
 ModTextFileSetContent("data/entities/animals/scavenger_smg.xml", tostring(xml))
 
+--dragon
 local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/boss_dragon.xml"))
 xml:add_child(nxml.parse([[
 	<LuaComponent
@@ -61,6 +63,7 @@ xml:add_child(nxml.parse([[
 ]]))
 ModTextFileSetContent("data/entities/animals/boss_dragon.xml", tostring(xml))
 
+--alchemist
 local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/boss_alchemist/boss_alchemist.xml"))
 xml:add_child(nxml.parse([[
 	<LuaComponent
@@ -70,6 +73,7 @@ xml:add_child(nxml.parse([[
 ]]))
 ModTextFileSetContent("data/entities/animals/boss_alchemist/boss_alchemist.xml", tostring(xml))
 
+--grandmaster
 local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/boss_wizard/boss_wizard.xml"))
 xml:add_child(nxml.parse([[
 	<LuaComponent
@@ -79,6 +83,36 @@ xml:add_child(nxml.parse([[
 ]]))
 ModTextFileSetContent("data/entities/animals/boss_wizard/boss_wizard.xml", tostring(xml))
 
+--dhl
+local wizardpath = "data/entities/animals/wizard_"
+local wizardtypes = {
+    wizardpath .. "dark",
+    wizardpath .. "hearty",
+    wizardpath .. "homing",
+    wizardpath .. "neutral",
+    wizardpath .. "poly",
+    wizardpath .. "returner",
+    wizardpath .. "swapper",
+    wizardpath .. "tele",
+    wizardpath .. "twitchy",
+    wizardpath .. "weaken",
+}
+
+for i=1,#wizardtypes do
+    local xml = nxml.parse(ModTextFileGetContent(wizardtypes[i] .. ".xml"))
+    xml:add_child(nxml.parse([[
+	    <LuaComponent
+		    script_death="mods/tales_of_kupoli/files/scripts/death/dhl.lua"
+		    >
+	    </LuaComponent>
+    ]]))
+    ModTextFileSetContent(wizardtypes[i] .. ".xml", tostring(xml))
+end
+
+--sunbook
+for i=1,7 do
+    GameAddFlagRun("kupoli_sbp_" .. i)
+end
 
 -- biomes
 local content = ModTextFileGetContent("data/biome/_biomes_all.xml")

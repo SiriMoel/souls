@@ -40,7 +40,7 @@ local function apply_movement_changes(entity, reset)
 end
 
 local a = {
-    --[[{
+    {
 		id = "SOLAR_RADAR",
 		ui_name = "Solar Radar",
 		ui_description = "You can sense nearby suns.",
@@ -54,13 +54,13 @@ local a = {
 				execute_every_n_frame = "1",
 			})
 		end,
-	},]]--
+	},
 	{
-		id = "KUPOLI_PERK_MOVEMENT",
+		id = "PERK_MOVEMENT",
 		ui_name = "Growing Movement",
 		ui_description = "Each perk you pick up increases your movement speed slightly.",
-		ui_icon = "mods/tales_of_kupoli/files/perk_icons/radar_sun.png",
-		perk_icon = "mods/tales_of_kupoli/files/perk_icons/radar_sun_inworld.png",
+		ui_icon = "mods/tales_of_kupoli/files/perk_icons/perk_movement.png",
+		perk_icon = "mods/tales_of_kupoli/files/perk_icons/perk_movement_inworld.png",
 		stackable = STACKABLE_NO,
 		func = function (entity_perk_item, entity_who_picked, item_name)
 			apply_movement_changes(entity_who_picked, false)
@@ -72,7 +72,7 @@ local a = {
 }
 
 for i,v in ipairs(a) do
-    v.id = "talesofkupoli_" .. v.id
+    v.id = "KUPOLI_" .. v.id
     table.insert(perk_list, v)
 end
 

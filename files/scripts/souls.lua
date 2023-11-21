@@ -52,7 +52,7 @@ function GetRandomSoul()
     local player = GetPlayer()
     local whichtype = soul_types[math.random(1, #soul_types)]
     while ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. whichtype) or 0, "value_int") <= 0 do
-        whichtype = soul_types[math.random(1, #soul_types)] 
+        whichtype = soul_types[math.random(1, #soul_types)]
     end
     return whichtype
 end

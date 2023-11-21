@@ -171,7 +171,7 @@ local a = {
 				end
 			end
 			local target = targets[math.random(1, #targets)]
-			name = target.name .. "Diamond Lense"
+			name = "Diamond " .. target.name .. " Lense"
 
 			if (#deck > 0) then
 				if deck[1].id == target.id then
@@ -210,6 +210,45 @@ local a = {
 		action 		= function()
 			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/soul_blast/soul_blast.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 10
+		end,
+	},
+	{
+		id          = "SOUL_SPEED",
+		name 		= "Soul Speed",
+		description = "Increases the power and speed of your spells at the cost of a soul.",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_speed.png",
+		related_extra_entities = { "mods/tales_of_kupoli/files/entities/misc/soul_speed.xml" },
+		type 		= ACTION_TYPE_MODIFIER,
+		spawn_level                       = "2,3,4,5",
+		spawn_probability                 = "0.3,0.4,0.3,0.3",
+		price = 120,
+		mana = 15,
+		action 		= function()
+			c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/misc/soul_speed.xml,"
+			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+			
+			if GetSoulsCount("all") > 0 then
+				c.speed_multiplier = c.speed_multiplier * 3
+				c.damage_projectile_add = c.damage_projectile_add + 0.7
+				RemoveSouls(1)
+			elseif GetSoulsCount("all") <= 0 then
+				GamePrint("You have no souls!")
+			end
+			draw_actions( 1, true )
+		end,
+	},
+	{
+		id			= "REAPER_BLADE",
+		name		= "Reaper Blade",
+		description = "Enables your wand to cut the souls from your enemies.",
+		sprite     	= "mods/tales_of_kupoli/files/spell_icons/reaper_blade.png",
+		type        = ACTION_TYPE_PASSIVE,
+		spawn_level      	= "2,3",
+		spawn_probability	= "0.3,0.5",
+		price				= 80,
+		mana				= 0,
+		custom_xml_file = "mods/tales_of_kupoli/files/entities/misc/reaper_blade.xml",
+		action = function()
 		end,
 	},
 }

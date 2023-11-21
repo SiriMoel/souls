@@ -1,0 +1,43 @@
+<Entity name="$projectile_default" tags="projectile_player" >
+	<Base file="data/entities/base_custom_card.xml" > 
+		<SpriteComponent 
+			image_file="mods/tales_of_kupoli/files/spell_icons/reaper_blade.png" >
+		</SpriteComponent>
+		
+		<ItemActionComponent 
+			_tags="enabled_in_world"
+			action_id="KUPOLI_REAPER_BLADE" >
+		</ItemActionComponent>
+	</Base>
+	
+    <InheritTransformComponent
+		_tags="enabled_in_hand"
+		parent_hotspot_tag="shoot_pos" 
+		always_use_immediate_parent_rotation="1" >
+		<Transform 
+        position.x="6" 
+        position.y="0">
+		</Transform>
+	</InheritTransformComponent>
+
+    <LuaComponent
+		script_source_file="mods/tales_of_kupoli/files/entities/misc/reaper_blade.lua"
+		execute_every_n_frame="1"
+		>
+	</LuaComponent>
+
+
+    <AreaDamageComponent
+		_tags="enabled_in_hand"
+		aabb_min.x="-9" 
+		aabb_min.y="-9" 
+		aabb_max.x="9" 
+		aabb_max.y="9" 
+		damage_per_frame="0.03"
+		update_every_n_frame="1"
+		entities_with_tag="enemy"
+		damage_type="DAMAGE_SLICE"
+		>
+	</AreaDamageComponent>
+
+</Entity>

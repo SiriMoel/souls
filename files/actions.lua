@@ -163,23 +163,21 @@ local a = {
 		spawn_probability = "",
 		price = 0,
 		mana = 50,
+		custom_xml_file = "mods/tales_of_kupoli/files/entities/misc/dhl.xml",
 		action = function()
-			local targets = {}
-			for i,v in ipairs(actions) do
-				if v.type == ACTION_TYPE_PROJECTILE then
-					table.insert(targets, v)
-				end
-			end
-			local target = targets[math.random(1, #targets)]
-			name = "Diamond " .. target.name .. " Lense"
+
+			local target = "LIGHT_BULLET"
+			
 
 			if (#deck > 0) then
-				if deck[1].id == target.id then
+				if deck[1].id == target then
 					-- add stats
-					c.speed_multiplier = c.speed_multiplier * 10 -- testing
+					c.fire_rate_wait = 100
+					c.speed_multiplier = c.speed_multiplier * 10
+					GamePrint("hi")
 				end
 			end
-			GamePrint("riven action function ran") -- testing
+			GamePrint("riven action function ran")
 
 			draw_actions( 1, true )
 

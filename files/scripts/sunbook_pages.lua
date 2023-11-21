@@ -48,12 +48,9 @@ sunbookpages = {
         scaleY = 1,
         unlocked = true,
     },
-    --[[{
-        name = "end",
-        page = "mods/tales_of_kupoli/files/sunbook/end.png",
-        scaleX = 1,
-        scaleY = 1,
-    },]]--
+}
+
+rosettas = {
     {
         name = "rosetta1",
         page = "mods/tales_of_kupoli/files/sunbook/rosettas/1.png",
@@ -130,5 +127,57 @@ sunbookpages = {
         scaleX = 1,
         scaleY = 1,
         unlocked = false,
+    },
+}
+
+unlocked_sbp = {
+    {
+        name = "cover",
+        page = "mods/tales_of_kupoli/files/sunbook/cover.png",
+        scaleX = 1,
+        scaleY = 1,
+        unlocked = true,
+    },
+    {
+        name = "intro",
+        page = "mods/tales_of_kupoli/files/sunbook/intro.png",
+        scaleX = 1,
+        scaleY = 1,
+        unlocked = true,
+    },
+    {
+        name = "sun",
+        page = "mods/tales_of_kupoli/files/sunbook/sun.png",
+        scaleX = 1,
+        scaleY = 1,
+        unlocked = true,
+    },
+    {
+        name = "darksun",
+        page = "mods/tales_of_kupoli/files/sunbook/darksun.png",
+        scaleX = 1,
+        scaleY = 1,
+        unlocked = true,
+    },
+    {
+        name = "greensun",
+        page = "mods/tales_of_kupoli/files/sunbook/greensun.png",
+        scaleX = 1,
+        scaleY = 1,
+        unlocked = true,
+    },
+    {
+        name = "redsun",
+        page = "mods/tales_of_kupoli/files/sunbook/redsun.png",
+        scaleX = 1,
+        scaleY = 1,
+        unlocked = true,
+    },
+    {
+        name = "redsun_revive",
+        page = "mods/tales_of_kupoli/files/sunbook/reviveboss.png",
+        scaleX = 1,
+        scaleY = 1,
+        unlocked = true,
     },
 }

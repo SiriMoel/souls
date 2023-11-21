@@ -84,7 +84,7 @@ xml:add_child(nxml.parse([[
 ModTextFileSetContent("data/entities/animals/boss_wizard/boss_wizard.xml", tostring(xml))
 
 --dhl
-local dhlsources = {
+--[[local dhlsources = {
     "data/entities/animals/wizard_dark",
     "data/entities/animals/wizard_hearty",
     "data/entities/animals/wizard_homing",
@@ -102,21 +102,17 @@ local dhlsources = {
     "data/entities/animals/thundermage_big",
 }
 
-for i=1,#dhlsources do
-    local xml = nxml.parse(ModTextFileGetContent(dhlsources[i] .. ".xml"))
+for i,v in ipairs(dhlsources) do
+    local xml = nxml.parse(ModTextFileGetContent(dhlsources[v] .. ".xml"))
     xml:add_child(nxml.parse([[
 	    <LuaComponent
 		    script_death="mods/tales_of_kupoli/files/scripts/death/dhl.lua"
 		    >
 	    </LuaComponent>
-    ]]))
-    ModTextFileSetContent(dhlsources[i] .. ".xml", tostring(xml))
-end
-
---sunbook
-for i=1,7 do
-    GameAddFlagRun("kupoli_sbp_" .. i)
-end
+    ]]--))
+    --[[
+    ModTextFileSetContent(dhlsources[v] .. ".xml", tostring(xml))
+end]]--
 
 -- biomes
 local content = ModTextFileGetContent("data/biome/_biomes_all.xml")

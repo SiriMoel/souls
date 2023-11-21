@@ -18,15 +18,42 @@ local sunbook_nextbutton_shown = false
 local sunbook_page_scalemult = 1
 
 function OnWorldPreUpdate()
-    if GetPlayer() ~= nil then 
-        comp_brilliance = EntityGetFirstComponentIncludingDisabled(GetPlayer(), "VariableStorageComponent", "brilliance_stored") or 0
-        comp_brilliance_max = EntityGetFirstComponentIncludingDisabled(GetPlayer(), "VariableStorageComponent", "brilliance_max") or 0
-        p_brilliance = ComponentGetValue2(comp_brilliance, "value_int")
-        p_brilliance_max = ComponentGetValue2(comp_brilliance_max, "value_int")
-        Gui.state.bbar = (p_brilliance / p_brilliance_max) * 100
-        Gui.state.brilliance = p_brilliance
+    if GetPlayer() ~= nil then
+        --comp_brilliance = EntityGetFirstComponentIncludingDisabled(GetPlayer(), "VariableStorageComponent", "brilliance_stored") or 0
+        --comp_brilliance_max = EntityGetFirstComponentIncludingDisabled(GetPlayer(), "VariableStorageComponent", "brilliance_max") or 0
+        --p_brilliance = ComponentGetValue2(comp_brilliance, "value_int")
+        --p_brilliance_max = ComponentGetValue2(comp_brilliance_max, "value_int")
+        --Gui.state.bbar = (p_brilliance / p_brilliance_max) * 100
+        --Gui.state.brilliance = p_brilliance
         soulscount = GetSoulsCount("all")
         Gui.state.soulscount = soulscount
+
+        unlocked_sbp = sunbookpages
+        for i,v in ipairs(rosettas) do
+            if GameHasFlagRun(v.name) then
+                if table.contains(unlocked_sbp, v) == false then
+                    table.insert(unlocked_sbp, v)
+                end
+            end
+        end
+        --[[
+        unlocked_sbp = {}
+        for i,v in ipairs(sunbookpages) do
+            if v.unlocked == true then
+                GamePrint(v.name)
+                GamePrint(v.page)
+                table.insert(unlocked_sbp, {
+                    {
+                        name = v.name,
+                        page = v.page,
+                        scaleX = 1,
+                        scaleY = 1,
+                        unlocked = true,
+                    },
+                })
+            end
+        end
+        ]]--
     end
 end
 
@@ -101,7 +128,7 @@ Gui:AddElement(gusgui.Elements.VLayout({
     overrideWidth = Gui:ScreenWidth(),
     overrideHeight = Gui:ScreenHeight(),
     overrideZ  = 100000000,
-    hidden = true,
+    hidden = false,
     onBeforeRender = function(element)
         if GameHasFlagRun("talesofkupoli_sunbook_unlocked") then
             element.config.hidden = false
@@ -119,11 +146,11 @@ Gui:AddElement(gusgui.Elements.VLayout({
             children = {
                 gusgui.Elements.Image({ -- pages
                     id = "sunbookpage",
-                    src = sunbookpages[sunbook_page].page,
+                    src = unlocked_sbp[sunbook_page].page,
                     onBeforeRender = function(element)
-                        element.config.src = sunbookpages[sunbook_page].page
-                        element.config.scaleX = sunbookpages[sunbook_page].scaleX * sunbook_page_scalemult
-                        element.config.scaleY = sunbookpages[sunbook_page].scaleY * sunbook_page_scalemult
+                        element.config.src = unlocked_sbp[sunbook_page].page
+                        element.config.scaleX = unlocked_sbp[sunbook_page].scaleX * sunbook_page_scalemult
+                        element.config.scaleY = unlocked_sbp[sunbook_page].scaleY * sunbook_page_scalemult
                     end,
                 }),
                 gusgui.Elements.HLayout({ -- prev and next buttons
@@ -136,7 +163,7 @@ Gui:AddElement(gusgui.Elements.VLayout({
                             scaleY = 1,
                             hidden = true,
                             onBeforeRender = function(element)
-                                if sunbookpages[sunbook_page - 1] ~= nil then
+                                if unlocked_sbp[sunbook_page - 1] ~= nil then
                                     element.config.hidden = false
                                 else
                                     element.config.hidden = true
@@ -152,10 +179,11 @@ Gui:AddElement(gusgui.Elements.VLayout({
                             margin = { left = 138, },
                             scaleX = 1,
                             scaleY = 1,
-                            hidden = true,
+                            hidden = false,
                             onBeforeRender = function(element)
-                                if sunbookpages[sunbook_page + 1] ~= nil then
-                                    if GameHasFlagRun("kupoli_sbp_" .. tostring(sunbookpage + 1)) then
+                                if unlocked_sbp[sunbook_page + 1] ~= nil then
+                                    element.config.hidden = true
+                                    if unlocked_sbp[sunbook_page + 1] then --.unlocked
                                         element.config.hidden = false
                                     else
                                         element.config.hidden = true

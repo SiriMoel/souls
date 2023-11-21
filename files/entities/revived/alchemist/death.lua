@@ -26,7 +26,7 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 		EntityLoad( "data/entities/items/pickup/heart_fullhp.xml",  x, y )
 	end
 	
-	local optsdos = { "DIAHEART_LENSE", "DIAHEART_LENSE", "DIAHEART_LENSE", "DIAHEART_LENSE", "DIAHEART_LENSE" }
+	local optsdos = { "KUPOLI_DIAHEART_LENSE", "KUPOLI_DIAHEART_LENSE", "KUPOLI_DIAHEART_LENSE", "KUPOLI_DIAHEART_LENSE", "KUPOLI_DIAHEART_LENSE" }
 	
 	for i=1,2 do
 		CreateItemActionEntity( optsdos[i], x - 8 * 4 + (i-1) * 16, y )

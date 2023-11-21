@@ -48,27 +48,36 @@ function RemoveSoul(type)
     EntityKill(EntityGetWithTag("soul_" .. type)[1])
 end
 
-function GetRandomSoul()
-    local player = GetPlayer()
-    local whichtype = soul_types[math.random(1, #soul_types)]
-    while ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. whichtype) or 0, "value_int") <= 0 do
-        whichtype = soul_types[math.random(1, #soul_types)]
-    end
-    return whichtype
-end
-
 ---@return number
 function GetSoulsCount(type)
     local player = GetPlayer()
     local count = 0
     if type == "all" then
         for i,v in ipairs(soul_types) do
-            count = count + ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. v) or 0, "value_int")
+            count = count + (ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. v) or 0, "value_int") or 0)
         end
     else
         count = ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. type) or 0, "value_int")
     end
     return count
+end
+
+function GetRandomSoul()
+    local player = GetPlayer()
+    local whichtype = 0
+    local whichtypes = {}
+
+    for i,v in ipairs(soul_types) do
+        if GetSoulsCount(v) > 0 then
+            table.insert(whichtypes, v)
+        end
+    end
+
+    if #whichtypes > 0 then
+        whichtype = whichtypes[math.random(1, #whichtypes)]
+    end
+
+    return whichtype
 end
 
 function RemoveSouls(amount) 

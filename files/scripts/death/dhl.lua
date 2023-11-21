@@ -8,7 +8,7 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
     SetRandomSeed(x, y)
 
     if math.random(1, 20) == 10 then
-        CreateItemActionEntity( "DIAHEART_LENSE", x , y )
+        CreateItemActionEntity( "KUPOLI_DIAHEART_LENSE", x , y )
     end
 
 	EntityLoad("mods/tales_of_kupoli/files/entities/revived/_tablets/alchemist.xml", x, y)

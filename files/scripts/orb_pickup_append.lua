@@ -1,5 +1,6 @@
 dofile("data/scripts/game_helpers.lua")
 dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/tales_of_kupoli/files/scripts/sunbook_pages.lua")
 
 local item_pickup_old = item_pickup
 
@@ -17,5 +18,25 @@ function item_pickup(entity_item, entity_who_picked, item_name)
 
     item_pickup_old(entity_item, entity_who_picked, item_name)
 
-    AddRosetta(orb_id)
+    --AddRosetta(orb_id)
+
+    print("Attempting to add Rosetta...")
+
+    GameAddFlagRun("rosetta" .. orb_id)
+
+    --[[for i,v in ipairs(sunbookpages) do
+        if v.name == "rosetta" .. orb_id then
+            v.unlocked = true
+            table.insert(unlocked_sbp, v)
+            print("Rosetta added!")
+        end
+    end]]--
+
+    --[[local moldos = "moldos "
+    for i,v in ipairs(sunbookpages) do
+        if v.unlocked == true then
+            moldos = moldos .. " " .. v.name
+        end
+    end
+    GamePrint(moldos)]]--
 end

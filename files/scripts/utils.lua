@@ -1,6 +1,4 @@
 dofile_once("data/scripts/lib/utilities.lua")
-dofile_once("mods/tales_of_kupoli/files/scripts/sunbook_pages.lua")
-dofile_once("mods/tales_of_kupoli/files/scripts/rosetta_pages.lua")
 
 function flipbool(boolean) -- the real function flipbool()
     return not boolean
@@ -73,17 +71,17 @@ function GetAmountOfMaterialInInventory(entity_id, material_name) -- stolen from
 end
 
 function GiveBrilliance(comp, comp_max, amount)
-    local comp_amount = ComponentGetValue2(comp, "value_int")
+    --[[local comp_amount = ComponentGetValue2(comp, "value_int")
     local comp_max_amount = ComponentGetValue2(comp_max, "value_int")
     comp_amount = comp_amount + amount
     if comp_amount > comp_max_amount then
         comp_amount = comp_max_amount
     end
-    ComponentSetValue2(comp, "value_int", comp_amount)
+    ComponentSetValue2(comp, "value_int", comp_amount)]]--
 end
 
 function TransferBrilliance(from_comp, to_comp, to_comp_max, amount)
-    local from_comp_amount = ComponentGetValue2(from_comp, "value_int")
+    --[[local from_comp_amount = ComponentGetValue2(from_comp, "value_int")
     local to_comp_amount = ComponentGetValue2(to_comp, "value_int")
     local to_max = ComponentGetValue2(to_comp_max, "value_int")
 
@@ -94,7 +92,7 @@ function TransferBrilliance(from_comp, to_comp, to_comp_max, amount)
         --EntityInflictDamage(GetPlayer(), 10, "DAMAGE_PHYSICS_BODY_DAMAGED", "THE UNMATCHED POWER OF THE SUN", "DISINTERGRATED", 0, 0)
     end
     ComponentSetValue2(to_comp, "value_int", to_comp_amount)
-    ComponentSetValue2(from_comp, "value_int", from_comp_amount)
+    ComponentSetValue2(from_comp, "value_int", from_comp_amount)]]--
 end
 
 function weapon_rngstats(weapon, statsm)
@@ -128,19 +126,4 @@ function weapon_rngstats(weapon, statsm)
             ComponentObjectSetValue( ac, "gunaction_config", "fire_rate_wait", tostring(frw) )
         end
     end
-end
-
-function AddRosetta(id)
-    print("Attempting to add Rosetta...")
-    for i,v in ipairs(sunbookpages) do
-        if v.name == "rosetta" .. id then
-            GameAddFlagRun("kupoli_sbp_" .. i)
-        end
-    end
-    --[[if rosettapages1[id] ~= nil then
-        table.insert(sunbookpages, rosettapages1[id])
-        print("Rosetta addded!")
-    else
-        table.insert(sunbookpages, rosettapages1[id])
-    end]]--
 end

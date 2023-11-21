@@ -6,6 +6,8 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 
 	EntityLoad( "data/entities/items/pickup/heart.xml", pos_x - 16, pos_y )
 	EntityLoad( "data/entities/items/wand_unshuffle_06.xml", pos_x + 16, pos_y )
+
+	EntityLoad("mods/tales_of_kupoli/files/entities/items/revdragonwand/weapon.xml", x, y)
 	
 	AddFlagPersistent( "miniboss_dragon" )
 	AddFlagPersistent( "card_unlocked_dragon" )
@@ -32,5 +34,4 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 		CreateItemActionEntity( opts[rnd], pos_x - 8 * count + (i-0.5) * 16, pos_y )
 		table.remove( opts, rnd )
 	end
-	
 end

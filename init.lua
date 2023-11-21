@@ -84,29 +84,33 @@ xml:add_child(nxml.parse([[
 ModTextFileSetContent("data/entities/animals/boss_wizard/boss_wizard.xml", tostring(xml))
 
 --dhl
-local wizardpath = "data/entities/animals/wizard_"
-local wizardtypes = {
-    wizardpath .. "dark",
-    wizardpath .. "hearty",
-    wizardpath .. "homing",
-    wizardpath .. "neutral",
-    wizardpath .. "poly",
-    wizardpath .. "returner",
-    wizardpath .. "swapper",
-    wizardpath .. "tele",
-    wizardpath .. "twitchy",
-    wizardpath .. "weaken",
+local dhlsources = {
+    "data/entities/animals/wizard_dark",
+    "data/entities/animals/wizard_hearty",
+    "data/entities/animals/wizard_homing",
+    "data/entities/animals/wizard_neutral",
+    "data/entities/animals/wizard_poly",
+    "data/entities/animals/wizard_returner",
+    "data/entities/animals/wizard_swapper",
+    "data/entities/animals/wizard_tele",
+    "data/entities/animals/wizard_twitchy",
+    "data/entities/animals/wizard_weaken",
+    "data/entities/animals/monk", -- from monk city?
+    "data/entities/animals/firemage",
+    "data/entities/animals/firemage_weak",
+    "data/entities/animals/thundermage",
+    "data/entities/animals/thundermage_big",
 }
 
-for i=1,#wizardtypes do
-    local xml = nxml.parse(ModTextFileGetContent(wizardtypes[i] .. ".xml"))
+for i=1,#dhlsources do
+    local xml = nxml.parse(ModTextFileGetContent(dhlsources[i] .. ".xml"))
     xml:add_child(nxml.parse([[
 	    <LuaComponent
 		    script_death="mods/tales_of_kupoli/files/scripts/death/dhl.lua"
 		    >
 	    </LuaComponent>
     ]]))
-    ModTextFileSetContent(wizardtypes[i] .. ".xml", tostring(xml))
+    ModTextFileSetContent(dhlsources[i] .. ".xml", tostring(xml))
 end
 
 --sunbook

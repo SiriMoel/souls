@@ -14,7 +14,7 @@ function item_pickup(entity_item, entity_who_picked, item_name)
 
     local orb_comp = EntityGetFirstComponent(entity_item, "OrbComponent") or 0
     local orb_id = ComponentGetValue2(orb_comp, "orb_id") or 0
-    GamePrint(orb_id)
+    --GamePrint(orb_id)
 
     item_pickup_old(entity_item, entity_who_picked, item_name)
 

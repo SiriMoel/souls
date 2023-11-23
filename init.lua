@@ -24,6 +24,8 @@ SetFileContent("data/scripts/buildings/sun/spot_4.lua", "spot_4.lua")
 SetFileContent("data/scripts/buildings/sun/sun_collision.lua", "sun_collision.lua")
 SetFileContent("data/entities/items/pickup/sun/sunbaby.xml", "sunbaby.xml")
 SetFileContent("data/entities/items/orbs/orb_base.xml", "orb_base.xml")
+SetFileContent("data/entities/items/pickup/sun/newsun.xml", "newsun.xml")
+SetFileContent("data/entities/items/pickup/sun/newsun_dark.xml", "newsun_dark.xml")
 
 --hiisi
 local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/shotgunner.xml"))
@@ -128,6 +130,8 @@ function OnPlayerSpawned( player )
     local px, py = EntityGetTransform(player)
 
     if GameHasFlagRun("tales_of_kupoli_init") then return end
+
+    EntityLoad("mods/tales_of_kupoli/files/entities/sun/newsun_red.xml", px - 500, py)
 
     SoulsInit()
 

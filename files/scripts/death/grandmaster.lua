@@ -5,11 +5,11 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 	local entity = GetUpdatedEntityID()
 	local x, y = EntityGetTransform(entity)
 
-	local opts = { "KUPOLI_DIAHEART_LENSE", "KUPOLI_DIAHEART_LENSE", "KUPOLI_DIAHEART_LENSE", "KUPOLI_DIAHEART_LENSE", "KUPOLI_DIAHEART_LENSE" }
+	--[[local opts = { "KUPOLI_DIAHEART_LENSE", "KUPOLI_DIAHEART_LENSE", "KUPOLI_DIAHEART_LENSE", "KUPOLI_DIAHEART_LENSE", "KUPOLI_DIAHEART_LENSE" }
 	
 	for i=1,4 do
 		CreateItemActionEntity( opts[i], x - 8 * 4 + (i-1) * 16, y )
-	end
+	end]]--
 
 	EntityLoad("mods/tales_of_kupoli/files/entities/revived/_tablets/grandmaster.xml", x, y)
 end

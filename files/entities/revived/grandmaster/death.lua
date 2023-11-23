@@ -18,13 +18,13 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 	EntityLoad( "data/entities/items/books/book_mestari.xml",  x - 16, y )
 	EntityLoad( "data/entities/items/pickup/wandstone.xml",  x + 16, y )
 
-	local optsdos = { "KUPOLI_DIAHEART_LENSE", "KUPOLI_DIAHEART_LENSE", "KUPOLI_DIAHEART_LENSE", "KUPOLI_DIAHEART_LENSE", "KUPOLI_DIAHEART_LENSE" }
+	--[[local optsdos = { "KUPOLI_DIAHEART_LENSE", "KUPOLI_DIAHEART_LENSE", "KUPOLI_DIAHEART_LENSE", "KUPOLI_DIAHEART_LENSE", "KUPOLI_DIAHEART_LENSE" }
 	
 	for i=1,2 do
 		CreateItemActionEntity( optsdos[i], x - 8 * 4 + (i-1) * 16, y )
-	end
+	end]]--
 
-	local spawntablet = math.random(1, 3)
+	local spawntablet = math.random(1, 2)
 	if spawntablet == 1 then
 		EntityLoad( "mods/tales_of_kupoli/files/entities/revived/_tablets/grandmaster.xml", x, y)
 	end

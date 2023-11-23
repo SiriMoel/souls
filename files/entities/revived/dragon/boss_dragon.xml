@@ -9,6 +9,10 @@
 		scale.y="1" >
 	</_Transform>
 
+		<LuaComponent
+			script_death="mods/tales_of_kupoli/files/entities/revived/dragon/boss_dragon_death.lua"
+		></LuaComponent>
+
 	<BossDragonComponent
 		speed="4"
 		speed_hunt="5"
@@ -279,10 +283,6 @@
 			execute_times="-1"
 			>
 		</LuaComponent>
-
-		<LuaComponent
-			script_death="mods/tales_of_kupoli/files/entities/revived/dragon/boss_dragon_death.lua"
-		></LuaComponent>
 		
 		<GenomeDataComponent 
 			_enabled="1"

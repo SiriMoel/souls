@@ -1,4 +1,4 @@
-<Entity tags="hittable,teleportable_NOT,seed_d,sun,sun_red" >
+<Entity tags="hittable,teleportable_NOT,seed_f,sun" >
 	<StreamingKeepAliveComponent />
 	
 	<Base file="data/entities/base_item_projectile.xml" />
@@ -26,35 +26,25 @@
 	<SpriteComponent
 		_tags="enabled_in_hand,enabled_in_world"
 		_enabled="1"
-		offset_x="98"
-		offset_y="98"
-		image_file="data/particles/fog_of_war_hole_huge.png"
-		smooth_filtering="1"
-		fog_of_war_hole="1"
-	></SpriteComponent>
-	
-	<SpriteComponent
-		_tags="enabled_in_hand,enabled_in_world"
-		_enabled="1"
-		offset_x="105"
-		offset_y="105"
+		offset_x="160"
+		offset_y="160"
 		emissive="1"
-		additive="1"
-		image_file="mods/tales_of_kupoli/files/entities/sun/redsun.png"
+		z_index="-1"
+		image_file="data/props_gfx/sun_big_dark.png"
 		smooth_filtering="1"
 	></SpriteComponent>
 
 	<UIInfoComponent
 		_tags="enabled_in_world"
-		name="$item_seed_e">
+		name="$item_seed_f">
 	</UIInfoComponent>
 	
 	<MagicConvertMaterialComponent
 		_tags="enabled_in_world,enabled_in_hand"
 		kill_when_finished="0"
 		steps_per_frame="16"
-		to_material="spark_red"
-		convert_entities="0"
+		to_material="material_darkness"
+		convert_entities="1"
 		clean_stains="0"
 		is_circle="1"
 		radius="100" 
@@ -67,7 +57,7 @@
 		kill_when_finished="0"
 		from_material_tag="[alchemy]"
 		steps_per_frame="16"
-		to_material="spark_red"
+		to_material="material_darkness"
 		clean_stains="0"
 		is_circle="1"
 		radius="230" 
@@ -78,9 +68,8 @@
 	<MagicConvertMaterialComponent
 		_tags="enabled_in_world,enabled_in_hand"
 		kill_when_finished="0"
-		ignite_materials="1"
+		extinguish_fire="1"
 		steps_per_frame="16"
-		fan_the_flames="1"
 		clean_stains="0"
 		is_circle="1"
 		radius="270" 
@@ -89,22 +78,22 @@
 	</MagicConvertMaterialComponent>
 	
 	<CellEaterComponent
-		radius="100"
+		radius="130"
 		eat_probability="80"
 		ignored_material="gem_box2d_yellow_sun"
 		>
 	</CellEaterComponent>
 	
-	<!--<AreaDamageComponent
+	<AreaDamageComponent
 		aabb_min.x="-122" 
 		aabb_min.y="-122" 
 		aabb_max.x="122" 
 		aabb_max.y="122" 
-		damage_per_frame="0.5"
+		damage_per_frame="2.14"
 		update_every_n_frame="1"
 		entities_with_tag="mortal"
-		death_cause="$damage_sun"
-		damage_type="DAMAGE_DRILL"
+		death_cause="$damage_darksun"
+		damage_type="DAMAGE_CURSE"
 		>
 	</AreaDamageComponent>
 	
@@ -113,11 +102,11 @@
 		aabb_min.y="-190" 
 		aabb_max.x="190" 
 		aabb_max.y="190" 
-		damage_per_frame="0.3"
+		damage_per_frame="1.05"
 		update_every_n_frame="1"
 		entities_with_tag="mortal"
-		death_cause="$damage_sun"
-		damage_type="DAMAGE_DRILL"
+		death_cause="$damage_darksun"
+		damage_type="DAMAGE_ICE"
 		>
 	</AreaDamageComponent>
 	
@@ -126,17 +115,17 @@
 		aabb_min.y="-280" 
 		aabb_max.x="280" 
 		aabb_max.y="280" 
-		damage_per_frame="0.1"
+		damage_per_frame="0.61"
 		update_every_n_frame="1"
 		entities_with_tag="mortal"
-		death_cause="$damage_sun"
-		damage_type="DAMAGE_DRILL"
+		death_cause="$damage_darksun"
+		damage_type="DAMAGE_ELECTRICITY"
 		>
-	</AreaDamageComponent>-->
+	</AreaDamageComponent>
 	
 	<ParticleEmitterComponent 
 		_tags="enabled_in_world,enabled_in_hand"
-		emitted_material_name="spark_red"
+		emitted_material_name="spark_purple_bright"
 		fade_based_on_lifetime="1"
 		x_pos_offset_min="0"
 		x_pos_offset_max="0"
@@ -146,8 +135,8 @@
 		x_vel_max="80"
 		y_vel_min="-80"
 		y_vel_max="80"
-		area_circle_radius.min="32"
-		area_circle_radius.max="64"
+		area_circle_radius.min="64"
+		area_circle_radius.max="96"
 		velocity_always_away_from_center="500"
 		gravity.y="0"
 		friction="0.1"
@@ -171,7 +160,7 @@
 	
 	<ParticleEmitterComponent 
 		_tags="enabled_in_world,enabled_in_hand"
-		emitted_material_name="spark_red"
+		emitted_material_name="spark_blue_dark"
 		fade_based_on_lifetime="1"
 		x_pos_offset_min="0"
 		x_pos_offset_max="0"
@@ -181,8 +170,8 @@
 		x_vel_max="80"
 		y_vel_min="-80"
 		y_vel_max="80"
-		area_circle_radius.min="32"
-		area_circle_radius.max="64"
+		area_circle_radius.min="64"
+		area_circle_radius.max="96"
 		velocity_always_away_from_center="500"
 		gravity.y="0"
 		friction="0.1"
@@ -205,8 +194,8 @@
 	</ParticleEmitterComponent>
 	
 	<BlackHoleComponent
-		particle_attractor_force="3"
-		damage_probability="0"
+		particle_attractor_force="8"
+		damage_probability="0.25"
 		radius="280">
 	</BlackHoleComponent>
 	
@@ -222,7 +211,7 @@
   
 	<Entity>
 		<LooseGroundComponent
-			max_distance="240"
+			max_distance="260"
 			probability="0.2"
 			max_angle="3.1415926535"
 			chunk_max_angle="3.1415926535"
@@ -240,15 +229,8 @@
 	</LuaComponent>
 	
 	<LuaComponent
-		script_source_file="data/scripts/buildings/sun/sun_collision.lua"
-		execute_every_n_frame="10"
+		script_source_file="data/scripts/buildings/sun/sun_dark_effect.lua"
+		execute_every_n_frame="41"
 		>
 	</LuaComponent>
-	
-	<LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/sun/redsun_revive.lua"
-		execute_every_n_frame="10"
-		>
-	</LuaComponent>
-
 </Entity>

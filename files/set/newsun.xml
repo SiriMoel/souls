@@ -1,4 +1,4 @@
-<Entity tags="hittable,teleportable_NOT,seed_d,sun,sun_red" >
+<Entity tags="hittable,teleportable_NOT,seed_e,sun" >
 	<StreamingKeepAliveComponent />
 	
 	<Base file="data/entities/base_item_projectile.xml" />
@@ -40,7 +40,7 @@
 		offset_y="105"
 		emissive="1"
 		additive="1"
-		image_file="mods/tales_of_kupoli/files/entities/sun/redsun.png"
+		image_file="data/props_gfx/sun_big.png"
 		smooth_filtering="1"
 	></SpriteComponent>
 
@@ -53,8 +53,8 @@
 		_tags="enabled_in_world,enabled_in_hand"
 		kill_when_finished="0"
 		steps_per_frame="16"
-		to_material="spark_red"
-		convert_entities="0"
+		to_material="lava"
+		convert_entities="1"
 		clean_stains="0"
 		is_circle="1"
 		radius="100" 
@@ -67,7 +67,7 @@
 		kill_when_finished="0"
 		from_material_tag="[alchemy]"
 		steps_per_frame="16"
-		to_material="spark_red"
+		to_material="lava"
 		clean_stains="0"
 		is_circle="1"
 		radius="230" 
@@ -89,22 +89,22 @@
 	</MagicConvertMaterialComponent>
 	
 	<CellEaterComponent
-		radius="100"
+		radius="190"
 		eat_probability="80"
 		ignored_material="gem_box2d_yellow_sun"
 		>
 	</CellEaterComponent>
 	
-	<!--<AreaDamageComponent
+	<AreaDamageComponent
 		aabb_min.x="-122" 
 		aabb_min.y="-122" 
 		aabb_max.x="122" 
 		aabb_max.y="122" 
-		damage_per_frame="0.5"
+		damage_per_frame="2.14"
 		update_every_n_frame="1"
 		entities_with_tag="mortal"
 		death_cause="$damage_sun"
-		damage_type="DAMAGE_DRILL"
+		damage_type="DAMAGE_CURSE"
 		>
 	</AreaDamageComponent>
 	
@@ -113,11 +113,11 @@
 		aabb_min.y="-190" 
 		aabb_max.x="190" 
 		aabb_max.y="190" 
-		damage_per_frame="0.3"
+		damage_per_frame="1.05"
 		update_every_n_frame="1"
 		entities_with_tag="mortal"
 		death_cause="$damage_sun"
-		damage_type="DAMAGE_DRILL"
+		damage_type="DAMAGE_EXPLOSION"
 		>
 	</AreaDamageComponent>
 	
@@ -126,17 +126,17 @@
 		aabb_min.y="-280" 
 		aabb_max.x="280" 
 		aabb_max.y="280" 
-		damage_per_frame="0.1"
+		damage_per_frame="0.61"
 		update_every_n_frame="1"
 		entities_with_tag="mortal"
 		death_cause="$damage_sun"
-		damage_type="DAMAGE_DRILL"
+		damage_type="DAMAGE_FIRE"
 		>
-	</AreaDamageComponent>-->
+	</AreaDamageComponent>
 	
 	<ParticleEmitterComponent 
 		_tags="enabled_in_world,enabled_in_hand"
-		emitted_material_name="spark_red"
+		emitted_material_name="spark_yellow"
 		fade_based_on_lifetime="1"
 		x_pos_offset_min="0"
 		x_pos_offset_max="0"
@@ -171,7 +171,7 @@
 	
 	<ParticleEmitterComponent 
 		_tags="enabled_in_world,enabled_in_hand"
-		emitted_material_name="spark_red"
+		emitted_material_name="spark"
 		fade_based_on_lifetime="1"
 		x_pos_offset_min="0"
 		x_pos_offset_max="0"
@@ -205,8 +205,8 @@
 	</ParticleEmitterComponent>
 	
 	<BlackHoleComponent
-		particle_attractor_force="3"
-		damage_probability="0"
+		particle_attractor_force="6"
+		damage_probability="0.25"
 		radius="280">
 	</BlackHoleComponent>
 	
@@ -244,11 +244,4 @@
 		execute_every_n_frame="10"
 		>
 	</LuaComponent>
-	
-	<LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/sun/redsun_revive.lua"
-		execute_every_n_frame="10"
-		>
-	</LuaComponent>
-
 </Entity>

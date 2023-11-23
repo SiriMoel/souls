@@ -9,7 +9,7 @@ local a = {
 		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/reaping_shot/reaping_shot.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
 		spawn_level                       = "2,3,4,5",
-		spawn_probability                 = "0.5,0.5,0.5,0.5",
+		spawn_probability                 = "0.7,0.7,0.5,0.5",
 		price = 120,
 		mana = 20,
 		action 		= function()
@@ -43,8 +43,8 @@ local a = {
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/souls_to_power.png",
 		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/souls_to_power/souls_to_power.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
-		spawn_level                       = "5,6,10",
-		spawn_probability                 = "0.9,0.9,0.8",
+		spawn_level                       = "3,5,6,10",
+		spawn_probability                 = "0.3,0.9,0.9,0.8",
 		price = 120,
 		mana = 50,
 		action 		= function()
@@ -77,8 +77,8 @@ local a = {
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/reaping_halo.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/reaping_halo/projectile.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
-		spawn_level                       = "4,5,6,10", 
-		spawn_probability                 = "0.1,0.3,0.7,0.5", 
+		spawn_level                       = "4,5,6,10",
+		spawn_probability                 = "0.1,0.3,0.7,0.5",
 		price = 160,
 		mana = 120,
 		action 		= function()
@@ -86,11 +86,11 @@ local a = {
 			c.fire_rate_wait = c.fire_rate_wait + 40
 		end,
 	},
-	{
+	--[[{
 		id          = "SOUL_EXPLOSION",
 		name 		= "Soul Detonation",
 		description = "Detonates a soul to produce an explosion.",
-		sprite 		= "mods/moles_souls/files/spell_icons/soul_detonation.png",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_detonation.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/soul_detonation/soul_detonation.xml"},
 		type 		= ACTION_TYPE_STATIC_PROJECTILE,
 		spawn_level                       = "2,3,4,5",
@@ -98,14 +98,14 @@ local a = {
 		price = 120,
 		mana = 10,
 		--max_uses = 30,
-		custom_xml_file = "mods/moles_souls/files/entities/misc/soul_detonation.xml",
+		custom_xml_file = "mods/tales_of_kupoli/files/entities/misc/soul_detonation.xml",
 		is_dangerous_blast = true,
 		action 		= function()
 			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/soul_detonation.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 10
 			c.screenshake = c.screenshake + 0.5
 		end,
-	},
+	},]]--
 	{
 		id = "HIISI_SHOTGUN", -- MOULD N
 		name = "Hiisi Shotgun Shell",
@@ -154,7 +154,7 @@ local a = {
 			add_projectile("mods/tales_of_kupoli/files/entities/items/hiisipistol/projectile.xml")
 		end,
 	},
-	{
+	--[[{
 		id = "DIAHEART_LENSE", -- riven mod
 		name = "Diamond Lense",
 		sprite = "mods/tales_of_kupoli/files/spell_icons/rivenmod.png",
@@ -180,19 +180,8 @@ local a = {
 			GamePrint("riven action function ran")
 
 			draw_actions( 1, true )
-
-			--[[
-				how can i get next spell in the deck?
-				how can i add random stats to the spell?
-				do i want riven dispo?
-				how should rerolling work?
-				do i make rivens drop from all bosses?
-				how do i make it only apply to specific spell?
-				how can i add vfx to the card? like the copi thing
-				do i want to add names based off the stats?
-			]]--
 		end,
-	},
+	},]]--
 	{
 		id          = "SOUL_BLAST",
 		name 		= "Soul Blast",
@@ -200,8 +189,8 @@ local a = {
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_blast.png",
 		related_projectiles	= {"mods/moles_souls/files/entities/projectiles/soul_blast.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
-		spawn_level                       = "2,3,4,5",
-		spawn_probability                 = "0.1,0.2,0.5,0.5",
+		spawn_level                       = "2,3,4,5,6",
+		spawn_probability                 = "0.1,0.2,0.5,0.5,0.6",
 		price = 200,
 		mana = 60,
 		max_uses = 10,
@@ -227,7 +216,16 @@ local a = {
 			
 			if GetSoulsCount("all") > 0 then
 				c.speed_multiplier = c.speed_multiplier * 3
-				c.damage_projectile_add = c.damage_projectile_add + 0.7
+				c.damage_projectile_add = c.damage_projectile_add + 0.5
+
+				c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/misc/soul_speed_fx.xml,"
+
+				--[[
+				local entity_id = GetUpdatedEntityID()
+				local effect_id = EntityLoad("mods/tales_of_kupoli/files/entities/particles/souls_to_power.xml", x, y)
+				EntityAddChild( entity_id, effect_id )
+				]]--
+
 				RemoveSouls(1)
 			elseif GetSoulsCount("all") <= 0 then
 				GamePrint("You have no souls!")
@@ -242,7 +240,7 @@ local a = {
 		sprite     	= "mods/tales_of_kupoli/files/spell_icons/reaper_blade.png",
 		type        = ACTION_TYPE_PASSIVE,
 		spawn_level      	= "2,3",
-		spawn_probability	= "0.3,0.5",
+		spawn_probability	= "0.3,0.3",
 		price				= 80,
 		mana				= 0,
 		custom_xml_file = "mods/tales_of_kupoli/files/entities/misc/reaper_blade.xml",

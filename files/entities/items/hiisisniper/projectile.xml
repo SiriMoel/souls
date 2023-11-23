@@ -35,7 +35,7 @@
     hit_particle_force_multiplier="0.1"
     create_shell_casing="1"
     bounces_left="0"
-    damage="0.7"  
+    damage="0.75"  
   muzzle_flash_file="data/entities/particles/muzzle_flashes/muzzle_flash_large.xml"
   knockback_force="4.0"
 	>

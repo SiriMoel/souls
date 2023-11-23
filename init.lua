@@ -131,8 +131,6 @@ function OnPlayerSpawned( player )
 
     if GameHasFlagRun("tales_of_kupoli_init") then return end
 
-    EntityLoad("mods/tales_of_kupoli/files/entities/sun/newsun_red.xml", px - 500, py)
-
     SoulsInit()
 
     --[[EntityAddComponent2(player, "LuaComponent", {

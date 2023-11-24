@@ -116,6 +116,19 @@ for i,v in ipairs(dhlsources) do
     ModTextFileSetContent(dhlsources[v] .. ".xml", tostring(xml))
 end]]--
 
+--translations
+local translations = ModTextFileGetContent( "data/translations/common.csv" );
+if translations ~= nil then
+    while translations:find("\r\n\r\n") do
+        translations = translations:gsub("\r\n\r\n","\r\n");
+    end
+
+    local new_translations = ModTextFileGetContent( table.concat({"mods/tales_of_kupoli/files/translations.csv"}) );
+    translations = translations .. new_translations;
+
+    ModTextFileSetContent( "data/translations/common.csv", translations );
+end
+
 -- biomes
 local content = ModTextFileGetContent("data/biome/_biomes_all.xml")
 local xml = nxml.parse(content) -- sun lab biome is unused

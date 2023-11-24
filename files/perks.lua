@@ -42,8 +42,8 @@ end
 local a = {
     {
 		id = "SOLAR_RADAR",
-		ui_name = "Solar Radar",
-		ui_description = "You can sense nearby suns.",
+		ui_name = "$perk_name_kupoli_solar_radar",
+		ui_description = "$perk_desc_kupoli_solar_radar",
 		ui_icon = "mods/tales_of_kupoli/files/perk_icons/radar_sun.png",
 		perk_icon = "mods/tales_of_kupoli/files/perk_icons/radar_sun_inworld.png",
 		stackable = STACKABLE_NO,
@@ -57,8 +57,8 @@ local a = {
 	},
 	{
 		id = "PERK_MOVEMENT",
-		ui_name = "Growing Movement",
-		ui_description = "Each perk you pick up increases your movement speed slightly.",
+		ui_name = "$perk_name_kupoli_perk_movement",
+		ui_description = "$perk_desc_kupoli_perk_movement",
 		ui_icon = "mods/tales_of_kupoli/files/perk_icons/perk_movement.png",
 		perk_icon = "mods/tales_of_kupoli/files/perk_icons/perk_movement_inworld.png",
 		stackable = STACKABLE_NO,

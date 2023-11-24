@@ -3,40 +3,39 @@
 	name="Tales of Kupoli (Yet another things mod)"
 	description=
 	"
-	v0.1
-
-	Disclaimer: Many of the features in this mod and the world it describes were revealed to me in a dream. Expect some degree of insane ramblings.
-
-	Bunch of random things - a few features, a few not features. More to come.
-	Enjoy!
+	Hello Mina.
+	
+	Few things I threw together, more to come.
 
 	[b]Features[/b]
 	[list]
 		[*] Create 2 (two) new Suns
-		[*] Collect souls from enemies to use for your spells
+		[*] 10 new spells
+		[*] 2 new perks
+		[*] Harvest the souls from enemies to fuel your spells
 		[*] Some enemies drop their weapons
 		[*] Things!!!
+		[*] Tales (of Kupoli)
 	[/list]
 	
-
-	~ROSETTA 0~
 	[i]
+	~ROSETTA 0~
+
 	Dearest Ikkuna,
-	We found the *s$@8} you sent. Strangely enough in the desert caverns. 
+	We found the *s$@8} you sent. As expected it was around the desert altar. 
 	If it works, these Rosettas should reach you on the otherside. 
-	We hope you can find %{!#0a^3 under one of your altars. Its the one guarded by that squid I believe.
+	We hope you can find %{!#0a^3 under one of your shrines. Its the one guarded by the octopus I believe.
 	The Hermits have made great advancements in their shard-powered robotics program so I fear I don't have
-	much time left. Oh yeah, and we have managed to track that ruby thief to the Soul Tree.
+	much time left. Oh, and we have managed to track that ruby thief to the Soul Tree.
 	I've dispatched a party down to it so hopefully we should be able to make that 3/9 shards found.
 	Anyways I should get going now. Glass to find and all. I love you. Goodbye.
 	-V
 	[/i]
 
-	if you have questions please contact my thermodynamic lawyer at https://discord.gg/FKaRA9HMUq thankyou
+	if you have questions please contact my thermodynamic lawyer at https://discord.gg/FKaRA9HMUq thanks
 	"
 	tags="gameplay,items,tweaks"
 	dont_upload_folders=""
 	dont_upload_files=""
-> 
-</Mod>	
-	
+>
+</Mod>

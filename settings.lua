@@ -19,6 +19,13 @@ end
 local mod_id = "tales_of_kupoli"
 mod_settings_version = 1 
 mod_settings = {
+    {
+		id = "spawn_with_soul_spells",
+        ui_name = "Spawn with Soul Spells",
+        ui_description = "If you want to spawn with some Soul related spells.",
+        value_default = false,
+        scope = MOD_SETTING_SCOPE_RUNTIME,
+	},
 	{
         id = "show_souls",
         ui_name = "Show Souls",

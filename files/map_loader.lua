@@ -1,3 +1,6 @@
 dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
 
-BiomeMapSetPixel(43, 16, 0xff9dceb9)
+local w, h = 70, 48
+BiomeMapSetSize(w + 6, h)
+
+BiomeMapLoadImage( 0, 0, "mods/tales_of_kupoli/files/map.png" )

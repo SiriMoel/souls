@@ -94,7 +94,7 @@ local a = {
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/soul_detonation/soul_detonation.xml"},
 		type 		= ACTION_TYPE_STATIC_PROJECTILE,
 		spawn_level                       = "2,3,4,5",
-		spawn_probability                 = "2,3,4,5",
+		spawn_probability                 = "0.5,0.5,0.5,0.5",
 		price = 120,
 		mana = 10,
 		--max_uses = 30,
@@ -245,6 +245,21 @@ local a = {
 		mana				= 0,
 		custom_xml_file = "mods/tales_of_kupoli/files/entities/misc/reaper_blade.xml",
 		action = function()
+		end,
+	},
+	{
+		id = "ROCKET_ROLL", -- MOULD N
+		name = "Rocket Roll",
+		description = "Missile time.",
+        sprite = "mods/tales_of_kupoli/files/spell_icons/rocket_roll.png",
+		related_projectiles	= { "mods/tales_of_kupoli/files/entities/items/mechakolmiwand/rocket_roll.xml" },
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "",
+		spawn_probability = "",
+		price = 0, -- does this even need to be set?
+		mana = 100,
+		action = function()
+			add_projectile("mods/tales_of_kupoli/files/entities/items/mechakolmiwand/rocket_roll.xml")
 		end,
 	},
 }

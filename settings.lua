@@ -61,6 +61,13 @@ mod_settings = {
         value_default = true,
         scope = MOD_SETTING_SCOPE_RUNTIME,
 	},
+    {
+		id = "alt_map",
+        ui_name = "Alternate Map",
+        ui_description = "Must be set before run.",
+        value_default = false,
+        scope = MOD_SETTING_SCOPE_RUNTIME,
+	},
 }
 
 function ModSettingsUpdate( init_scope )

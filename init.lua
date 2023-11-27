@@ -14,6 +14,10 @@ local nxml = dofile_once("mods/tales_of_kupoli/lib/nxml.lua")
 
 dofile_once("mods/tales_of_kupoli/files/gui.lua")
 
+if ModSettingGet("tales_of_kupoli.alt_map") then
+    ModMagicNumbersFileAdd( "mods/mould_n/files/magic_numbers.xml" )
+end
+
 -- set & append
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/tales_of_kupoli/files/actions.lua" )
 ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/tales_of_kupoli/files/perks.lua" )
@@ -85,8 +89,8 @@ xml:add_child(nxml.parse([[
 ]]))
 ModTextFileSetContent("data/entities/animals/boss_wizard/boss_wizard.xml", tostring(xml))
 
---dhl
---[[local dhlsources = {
+--wizards
+local wizards = {
     "data/entities/animals/wizard_dark",
     "data/entities/animals/wizard_hearty",
     "data/entities/animals/wizard_homing",
@@ -98,23 +102,38 @@ ModTextFileSetContent("data/entities/animals/boss_wizard/boss_wizard.xml", tostr
     "data/entities/animals/wizard_twitchy",
     "data/entities/animals/wizard_weaken",
     "data/entities/animals/monk", -- from monk city?
-    "data/entities/animals/firemage",
-    "data/entities/animals/firemage_weak",
-    "data/entities/animals/thundermage",
-    "data/entities/animals/thundermage_big",
 }
-
-for i,v in ipairs(dhlsources) do
-    local xml = nxml.parse(ModTextFileGetContent(dhlsources[v] .. ".xml"))
+for i,v in ipairs(wizards) do
+    local xml = nxml.parse(ModTextFileGetContent(wizards[v] .. ".xml"))
     xml:add_child(nxml.parse([[
 	    <LuaComponent
-		    script_death="mods/tales_of_kupoli/files/scripts/death/dhl.lua"
+		    script_death="mods/tales_of_kupoli/files/scripts/death/wizards.lua"
 		    >
 	    </LuaComponent>
-    ]]--))
-    --[[
-    ModTextFileSetContent(dhlsources[v] .. ".xml", tostring(xml))
-end]]--
+    ]]))
+    
+    ModTextFileSetContent(wizards[v] .. ".xml", tostring(xml))
+end
+
+--pyramid boss
+local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/boss_limbs/boss_limbs.xml"))
+xml:add_child(nxml.parse([[
+	<LuaComponent
+    script_death="mods/tales_of_kupoli/files/scripts/death/boss_pyramid.lua"
+		>
+	</LuaComponent>
+]]))
+ModTextFileSetContent("data/entities/animals/boss_limbs/boss_limbs.xml", tostring(xml))
+
+--mecha kolmi
+local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/boss_robot/boss_robot.xml"))
+xml:add_child(nxml.parse([[
+	<LuaComponent
+    script_death="mods/tales_of_kupoli/files/scripts/death/boss_robot.lua"
+		>
+	</LuaComponent>
+]]))
+ModTextFileSetContent("data/entities/animals/boss_limbs/boss_robot.xml", tostring(xml))
 
 --translations
 local translations = ModTextFileGetContent( "data/translations/common.csv" );
@@ -146,11 +165,9 @@ function OnPlayerSpawned( player )
 
     SoulsInit()
 
-    --[[EntityAddComponent2(player, "LuaComponent", {
-        script_source_file="mods/tales_of_kupoli/files/scripts/player.lua",
-        execute_every_n_frame="2",
-    })]]--
-    EntityAddComponent2(player, "VariableStorageComponent", {
+    EntityLoad("mods/tales_of_kupoli/files/entities/items/mechakolmiwand/weapon.xml", px, py)
+
+    --[[EntityAddComponent2(player, "VariableStorageComponent", {
         _tags="brilliance_stored",
         name="brilliance_stored",
         value_int=0,
@@ -159,12 +176,6 @@ function OnPlayerSpawned( player )
         _tags="brilliance_max",
         name="brilliance_max",
         value_int=500,
-    })
-
-    --[[EntityAddComponent2(player, "LuaComponent", {
-        _tags="",
-        script_source_file="mods/tales_of_kupoli/files/sunbook/rosettas/init.lua",
-        execute_every_n_frame="10",
     })]]--
 
     --AddFlagPersistent("progress_greensun")

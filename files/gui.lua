@@ -43,6 +43,8 @@ function OnWorldPreUpdate()
                 end
             end
         end
+
+        Gui.state.soultypes = soul_types
     end
 end
 
@@ -105,6 +107,44 @@ Gui:AddElement(gusgui.Elements.VLayout({
             scaleY = 1,
             onClick = function(element)
                 sunbook_open = flipbool(sunbook_open)
+            end,
+        }),
+    },
+}))
+
+Gui:AddElement(gusgui.Elements.VLayout({
+    id = "moldosgui",
+    margin = { bottom = 1, },
+    overrideZ  = 100000000,
+    hidden = false,
+    children = {
+        gusgui.Elements.HLayoutForEach({
+            id = "soulsgui",
+            type = "foreach",
+            stateVal = "soultypes",
+            hidden = false,
+            scaleX = 1,
+            scaleY = 1,
+            calculateEveryNFrames = 30,
+            func = function(v)
+                return gusgui.Elements.VLayout({
+                    children = {
+                        gusgui.Elements.Image({
+                            src = "mods/tales_of_kupoli/files/entities/souls/sprites/" .. v .. ".png",
+                            scaleX = 0.5,
+                            scaleY = 0.5,
+                        }),
+                        gusgui.Elements.Text({
+                            value = "",
+                            margin = { left = 1, },
+                            scaleX = 1,
+                            scaleY = 1,
+                            onBeforeRender = function(element)
+                                element.config.value = GetSoulsCount(v)
+                            end,
+                        }),
+                    }
+                })
             end,
         }),
     },

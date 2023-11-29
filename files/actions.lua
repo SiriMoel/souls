@@ -248,17 +248,22 @@ local a = {
 		end,
 	},
 	{
-		id = "ROCKET_ROLL", -- MOULD N
+		id = "ROCKET_ROLL",
 		name = "Rocket Roll",
 		description = "Missile time.",
         sprite = "mods/tales_of_kupoli/files/spell_icons/rocket_roll.png",
-		related_projectiles	= { "mods/tales_of_kupoli/files/entities/items/mechakolmiwand/rocket_roll.xml" },
+		related_projectiles	= { "mods/tales_of_kupoli/files/entities/items/mechakolmiwand/rocket_roll.xml", 5},
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "",
 		spawn_probability = "",
-		price = 0, -- does this even need to be set?
-		mana = 100,
+		price = 100,
+		mana = 150,
+		max_uses = 10,
 		action = function()
+			add_projectile("mods/tales_of_kupoli/files/entities/items/mechakolmiwand/rocket_roll.xml")
+			add_projectile("mods/tales_of_kupoli/files/entities/items/mechakolmiwand/rocket_roll.xml")
+			add_projectile("mods/tales_of_kupoli/files/entities/items/mechakolmiwand/rocket_roll.xml")
+			add_projectile("mods/tales_of_kupoli/files/entities/items/mechakolmiwand/rocket_roll.xml")
 			add_projectile("mods/tales_of_kupoli/files/entities/items/mechakolmiwand/rocket_roll.xml")
 		end,
 	},

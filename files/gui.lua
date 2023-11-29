@@ -36,24 +36,13 @@ function OnWorldPreUpdate()
                 end
             end
         end
-        --[[
-        unlocked_sbp = {}
-        for i,v in ipairs(sunbookpages) do
-            if v.unlocked == true then
-                GamePrint(v.name)
-                GamePrint(v.page)
-                table.insert(unlocked_sbp, {
-                    {
-                        name = v.name,
-                        page = v.page,
-                        scaleX = 1,
-                        scaleY = 1,
-                        unlocked = true,
-                    },
-                })
+        for i,v in ipairs(traces) do
+            if GameHasFlagRun(v.name) then
+                if table.contains(unlocked_sbp, v) == false then
+                    table.insert(unlocked_sbp, v)
+                end
             end
         end
-        ]]--
     end
 end
 

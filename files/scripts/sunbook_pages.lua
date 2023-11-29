@@ -130,6 +130,23 @@ rosettas = {
     },
 }
 
+traces = {
+--[[
+alchemist
+dragon
+grandmaster
+mecha kolmi
+connoisseur
+]]--
+    {
+        name = "ikkuna_alchemist",
+        page = "mods/tales_of_kupoli/files/sunbook/traces/page.png",
+        scaleX = 1,
+        scaleY = 1,
+        unlocked = false,
+    },
+}
+
 unlocked_sbp = {
     {
         name = "cover",

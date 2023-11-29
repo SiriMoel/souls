@@ -7,13 +7,25 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 
     SetRandomSeed(x, y)
 
+    local target = ""
+
     local pool = { "MANA_REDUCE" }
 
     if ModIsEnabled("copis_things") then
-        table.insert(pool, { "COPIS_THINGS_MANA_RANDOM", "COPIS_THINGS_MANA_EFFICENCY", "COPIS_THINGS_MANA_ENGINE", "COPIS_THINGS_MANA_DELTA" })
+        local copispells = {
+            "COPIS_THINGS_MANA_RANDOM",
+            "COPIS_THINGS_MANA_EFFICENCY",
+            "COPIS_THINGS_MANA_ENGINE",
+            "COPIS_THINGS_MANA_DELTA",
+        }
+        for i,v in ipairs(copispells) do
+            table.insert(pool, v)
+        end
     end
 
+    target = pool[math.random(1, #pool)]
+
     if math.random(1, 7) == 3 then
-        CreateItemActionEntity( pool[math.random(1,#pool)], x , y )
+        CreateItemActionEntity( target, x , y )
     end
 end

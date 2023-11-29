@@ -15,7 +15,7 @@ local nxml = dofile_once("mods/tales_of_kupoli/lib/nxml.lua")
 dofile_once("mods/tales_of_kupoli/files/gui.lua")
 
 if ModSettingGet("tales_of_kupoli.alt_map") then
-    ModMagicNumbersFileAdd( "mods/mould_n/files/magic_numbers.xml" )
+    ModMagicNumbersFileAdd( "mods/tales_of_kupoli/files/magic_numbers.xml" )
 end
 
 -- set & append
@@ -91,28 +91,27 @@ ModTextFileSetContent("data/entities/animals/boss_wizard/boss_wizard.xml", tostr
 
 --wizards
 local wizards = {
-    "data/entities/animals/wizard_dark",
-    "data/entities/animals/wizard_hearty",
-    "data/entities/animals/wizard_homing",
-    "data/entities/animals/wizard_neutral",
-    "data/entities/animals/wizard_poly",
-    "data/entities/animals/wizard_returner",
-    "data/entities/animals/wizard_swapper",
-    "data/entities/animals/wizard_tele",
-    "data/entities/animals/wizard_twitchy",
-    "data/entities/animals/wizard_weaken",
-    "data/entities/animals/monk", -- from monk city?
+    "data/entities/animals/wizard_dark.xml",
+    "data/entities/animals/wizard_hearty.xml",
+    "data/entities/animals/wizard_homing.xml",
+    "data/entities/animals/wizard_neutral.xml",
+    "data/entities/animals/wizard_poly.xml",
+    "data/entities/animals/wizard_returner.xml",
+    "data/entities/animals/wizard_swapper.xml",
+    "data/entities/animals/wizard_tele.xml",
+    "data/entities/animals/wizard_twitchy.xml",
+    "data/entities/animals/wizard_weaken.xml",
+    "data/entities/animals/monk.xml", -- from monk city?
 }
 for i,v in ipairs(wizards) do
-    local xml = nxml.parse(ModTextFileGetContent(wizards[v] .. ".xml"))
+    local xml = nxml.parse(ModTextFileGetContent(v))
     xml:add_child(nxml.parse([[
 	    <LuaComponent
 		    script_death="mods/tales_of_kupoli/files/scripts/death/wizards.lua"
 		    >
 	    </LuaComponent>
     ]]))
-    
-    ModTextFileSetContent(wizards[v] .. ".xml", tostring(xml))
+    ModTextFileSetContent(v, tostring(xml))
 end
 
 --pyramid boss
@@ -133,7 +132,7 @@ xml:add_child(nxml.parse([[
 		>
 	</LuaComponent>
 ]]))
-ModTextFileSetContent("data/entities/animals/boss_limbs/boss_robot.xml", tostring(xml))
+ModTextFileSetContent("data/entities/animals/boss_robot/boss_robot.xml", tostring(xml))
 
 --translations
 local translations = ModTextFileGetContent( "data/translations/common.csv" );
@@ -164,8 +163,6 @@ function OnPlayerSpawned( player )
     if GameHasFlagRun("tales_of_kupoli_init") then return end
 
     SoulsInit()
-
-    EntityLoad("mods/tales_of_kupoli/files/entities/items/mechakolmiwand/weapon.xml", px, py)
 
     --[[EntityAddComponent2(player, "VariableStorageComponent", {
         _tags="brilliance_stored",

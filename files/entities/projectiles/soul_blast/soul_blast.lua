@@ -108,17 +108,19 @@ else
 			ComponentSetValue2( particlecomp, "emitted_material_name", "spark_blue" )
 		end)
 	
-		EntityAddComponent( entity, "LuaComponent", {
-			script_source_file="mods/moles_souls/files/scripts/projectiles/soul_blast_homing_area.lua",
-			execute_every_n_frame="1",
+		EntityAddComponent( entity, "HomingComponent", {
+			target_tag="homing_target",
+			homing_targeting_coeff="15",
+			detect_distance="300",
+			homing_velocity_multiplier="1.0",
 		} )
 	
-		cursedamage = cursedamage + 1
+		cursedamage = cursedamage + 0.4
 		cursedamage = cursedamage * 2
 	
 		ComponentObjectSetValue( comp, "damage_by_type", "curse", cursedamage )
 	end
-	
+
 	--slimes
 	if soul == "slimes" then
 		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)		
@@ -130,7 +132,7 @@ else
 			value_string="data/entities/misc/gravity_field_enemy.xml",
 		} )
 	
-		icedamage = icedamage + 2
+		icedamage = icedamage + 0.5
 		icedamage = icedamage * 2
 	
 		ComponentObjectSetValue( comp, "damage_by_type", "ice", icedamage )
@@ -152,7 +154,7 @@ else
 			homing_velocity_multiplier="0.86",
 		} )
 	
-		projdamage = projdamage + 1
+		projdamage = projdamage + 0.4
 		projdamage = projdamage * 1.4
 	
 		ComponentSetValue2( comp, "damage", projdamage )

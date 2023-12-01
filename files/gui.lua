@@ -67,15 +67,7 @@ Gui:AddElement(gusgui.Elements.HLayout({
     margin = { top = 5, left = 50, },
     overrideZ = 10,
     children = {
-        gusgui.Elements.Text({
-            id = "SoulsCountText",
-            overrideZ = 12,
-            margin = { left = 1, top = -1, },
-            value = "${soulscount} souls",
-            padding = 1,
-            drawBorder = false,
-            drawBackground = false,
-        }),
+        
     }
 }))
 
@@ -85,6 +77,14 @@ Gui:AddElement(gusgui.Elements.HLayout({
     overrideZ  = 100000000,
     hidden = false,
     children = {
+        gusgui.Elements.Text({
+            id = "SoulsCountText",
+            overrideZ = 12,
+            value = "${soulscount} souls",
+            padding = 1,
+            drawBorder = false,
+            drawBackground = false,
+        }),
         gusgui.Elements.HLayoutForEach({
             id = "soulsgui",
             type = "foreach",
@@ -109,7 +109,7 @@ Gui:AddElement(gusgui.Elements.HLayout({
         }),
         gusgui.Elements.ImageButton({ -- open and close button
             id = "sunbook_openandclosebutton",
-            src = "mods/tales_of_kupoli/files/sunbook/button.png",
+            src = "mods/tales_of_kupoli/files/sunbook/button_open.png",
             margin = { bottom = 1, },
             hidden = Gui:StateValue("sunbook_unlocked"),
             overrideZ  = 100000000,
@@ -146,15 +146,20 @@ Gui:AddElement(gusgui.Elements.VLayout({
                     children = {
                         gusgui.Elements.ImageButton({ -- prev button
                             id = "sunbook_button_prev",
-                            src = "mods/tales_of_kupoli/files/sunbook/button.png",
+                            src = "mods/tales_of_kupoli/files/sunbook/button_prev.png",
                             visible = Gui:StateValue("sunbook_prev_visible"),
                             onClick = function(element)
                                 sunbook_page = sunbook_page - 1
                             end,
                         }),
+                        gusgui.Elements.Image({
+                            id = "sunbook_button_spacing",
+                            src = "mods/tales_of_kupoli/files/sunbook/button_space1.png",
+                        }),
                         gusgui.Elements.ImageButton({ -- next button
                             id = "sunbook_button_next",
-                            src = "mods/tales_of_kupoli/files/sunbook/button.png",
+                            margin = { right = 1, },
+                            src = "mods/tales_of_kupoli/files/sunbook/button_next.png",
                             visible = Gui:StateValue("sunbook_next_visible"),
                             onClick = function(element)
                                 sunbook_page = sunbook_page + 1

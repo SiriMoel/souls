@@ -17,6 +17,7 @@ local sunbook_prevbutton_shown = false
 local sunbook_nextbutton_shown = false
 local sunbook_page_scalemult = 1
 
+Gui.state.souls = {}
 function OnWorldPreUpdate()
     if GetPlayer() ~= nil then
         --comp_brilliance = EntityGetFirstComponentIncludingDisabled(GetPlayer(), "VariableStorageComponent", "brilliance_stored") or 0
@@ -45,6 +46,11 @@ function OnWorldPreUpdate()
         end
 
         Gui.state.soultypes = soul_types
+    end
+
+
+    for _, value in ipairs(soul_types) do
+        Gui.state.souls[value] = GetSoulsCount(value)
     end
 end
 
@@ -93,11 +99,7 @@ Gui:AddElement(gusgui.Elements.VLayout({
     id = "sunbook_openandclosebutton",
     margin = { right = 1, bottom = 1, },
     overrideZ  = 100000000,
-    hidden = true,
     onBeforeRender = function(element)
-        if GameHasFlagRun("talesofkupoli_sunbook_unlocked") then
-            element.config.hidden = false
-        end
     end,
     children = {
         gusgui.Elements.ImageButton({ -- open and close button
@@ -123,25 +125,18 @@ Gui:AddElement(gusgui.Elements.VLayout({
             type = "foreach",
             stateVal = "soultypes",
             hidden = false,
-            scaleX = 1,
-            scaleY = 1,
-            calculateEveryNFrames = 30,
+            calculateEveryNFrames = -1,
             func = function(v)
                 return gusgui.Elements.VLayout({
                     children = {
                         gusgui.Elements.Image({
-                            src = "mods/tales_of_kupoli/files/entities/souls/sprites/" .. v .. ".png",
+                            src = "mods/tales_of_kupoli/files/entities/souls/sprites/soul_" .. v .. ".png",
                             scaleX = 0.5,
                             scaleY = 0.5,
                         }),
                         gusgui.Elements.Text({
-                            value = "",
+                            value = Gui:StateValue("souls/" .. v),
                             margin = { left = 1, },
-                            scaleX = 1,
-                            scaleY = 1,
-                            onBeforeRender = function(element)
-                                element.config.value = GetSoulsCount(v)
-                            end,
                         }),
                     }
                 })

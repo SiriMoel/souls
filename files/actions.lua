@@ -37,14 +37,14 @@ local a = {
 		end,
 	},
 	{
-		id          = "SOULS_TO_POWER", 
+		id          = "SOULS_TO_POWER",
 		name 		= "Souls to Power",
 		description = "Consumes a portion of your souls to increase a projectile's damage.",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/souls_to_power.png",
 		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/souls_to_power/souls_to_power.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
 		spawn_level                       = "2,3,4,5,6,10",
-		spawn_probability                 = "1,0.9,0.9,0.9,0.8",
+		spawn_probability                 = "1,0.9,0.9,0.9,0.8,0.8",
 		price = 120,
 		mana = 50,
 		action 		= function()

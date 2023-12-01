@@ -18,7 +18,7 @@
 
 	<!-- ghost functionality and visuals -->		
 	<SpriteComponent 
-		image_file="mods/tales_of_kupoli/files/entities/souls/sprites/soul_synthetic.xml" 
+		image_file="mods/tales_of_kupoli/files/entities/souls/sprites/soul_friendly.xml" 
 		>
 	</SpriteComponent>
 	<LuaComponent 

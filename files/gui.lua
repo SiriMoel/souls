@@ -12,20 +12,14 @@ local p_brilliance_max = 0
 local soulscount = 0
 
 local sunbook_page = 1
-local sunbook_open = false
 local sunbook_prevbutton_shown = false
 local sunbook_nextbutton_shown = false
 local sunbook_page_scalemult = 1
-
 Gui.state.souls = {}
+Gui.state.sunbook_open = true;
+Gui.state.sunbook_unlocked = false;
 function OnWorldPreUpdate()
     if GetPlayer() ~= nil then
-        --comp_brilliance = EntityGetFirstComponentIncludingDisabled(GetPlayer(), "VariableStorageComponent", "brilliance_stored") or 0
-        --comp_brilliance_max = EntityGetFirstComponentIncludingDisabled(GetPlayer(), "VariableStorageComponent", "brilliance_max") or 0
-        --p_brilliance = ComponentGetValue2(comp_brilliance, "value_int")
-        --p_brilliance_max = ComponentGetValue2(comp_brilliance_max, "value_int")
-        --Gui.state.bbar = (p_brilliance / p_brilliance_max) * 100
-        --Gui.state.brilliance = p_brilliance
         soulscount = GetSoulsCount("all")
         Gui.state.soulscount = soulscount
 
@@ -52,6 +46,14 @@ function OnWorldPreUpdate()
     for _, value in ipairs(soul_types) do
         Gui.state.souls[value] = GetSoulsCount(value)
     end
+
+
+    Gui.state.sunbook_prev_visible = (unlocked_sbp[sunbook_page - 1] ~= nil)
+    Gui.state.sunbook_next_visible = (unlocked_sbp[sunbook_page + 1] ~= nil)
+    Gui.state.sunbook_unlocked = not GameHasFlagRun("talesofkupoli_sunbook_unlocked")
+    Gui.state.sunbook_page_src = unlocked_sbp[sunbook_page].page
+    Gui.state.sunbook_page_scaleX = unlocked_sbp[sunbook_page].scaleX * sunbook_page_scalemult
+    Gui.state.sunbook_page_scaleY = unlocked_sbp[sunbook_page].scaleY * sunbook_page_scalemult
 end
 
 function OnWorldPostUpdate()
@@ -76,25 +78,6 @@ Gui:AddElement(gusgui.Elements.HLayout({
         }),
     }
 }))
-
---[[Gui:AddElement(gusgui.Elements.VLayout({
-    id = "sunbook_openandclosebutton",
-    margin = { right = 1, bottom = 1, },
-    overrideZ  = 100000000,
-    onBeforeRender = function(element)
-    end,
-    children = {
-        gusgui.Elements.ImageButton({ -- open and close button
-            id = "sunbook_button",
-            src = "mods/tales_of_kupoli/files/sunbook/button.png",
-            scaleX = 1,
-            scaleY = 1,
-            onClick = function(element)
-                sunbook_open = flipbool(sunbook_open)
-            end,
-        }),
-    },
-}))]]--
 
 Gui:AddElement(gusgui.Elements.HLayout({
     id = "moldosgui",
@@ -128,20 +111,10 @@ Gui:AddElement(gusgui.Elements.HLayout({
             id = "sunbook_openandclosebutton",
             src = "mods/tales_of_kupoli/files/sunbook/button.png",
             margin = { bottom = 1, },
-            scaleX = 1,
-            scaleY = 1,
-            hidden = false,
+            hidden = Gui:StateValue("sunbook_unlocked"),
             overrideZ  = 100000000,
-            onBeforeRender = function(element)
-                if GameHasFlagRun("talesofkupoli_sunbook_unlocked") then
-                    element.config.hidden = false
-                else
-                    element.config.hidden = true
-                end
-            end,
-            onClick = function(element)
-                sunbook_open = not sunbook_open -- gus made me remove flipbool() literally 1984
-                GamePrint(tostring(sunbook_open))
+            onClick = function()
+                Gui.state.sunbook_open = not Gui.state.sunbook_open
             end,
         }),
     },
@@ -154,32 +127,19 @@ Gui:AddElement(gusgui.Elements.VLayout({
     overrideWidth = Gui:ScreenWidth(),
     overrideHeight = Gui:ScreenHeight(),
     overrideZ  = 100000000,
-    hidden = false,
-    onBeforeRender = function(element)
-        if GameHasFlagRun("talesofkupoli_sunbook_unlocked") then
-            element.config.hidden = not sunbook_open
-        else
-            element.config.hidden = true
-        end
-    end,
+    hidden = Gui:StateValue("sunbook_open"),
     children = {
         gusgui.Elements.VLayout({ -- actual book park
             id = "sunbook_book",
             horizontalAlign = 0.5,
             verticalAlign = 0.5,
             hidden = false,
-            onBeforeRender = function(element)
-                --element.config.hidden = not sunbook_open
-            end,
             children = {
                 gusgui.Elements.Image({ -- pages
                     id = "sunbookpage",
-                    src = unlocked_sbp[sunbook_page].page,
-                    onBeforeRender = function(element)
-                        element.config.src = unlocked_sbp[sunbook_page].page
-                        element.config.scaleX = unlocked_sbp[sunbook_page].scaleX * sunbook_page_scalemult
-                        element.config.scaleY = unlocked_sbp[sunbook_page].scaleY * sunbook_page_scalemult
-                    end,
+                    src = Gui:StateValue("sunbook_page_src"),
+                    scaleX = Gui:StateValue("sunbook_page_scaleX"),
+                    scaleY = Gui:StateValue("sunbook_page_scaleY")
                 }),
                 gusgui.Elements.HLayout({ -- prev and next buttons
                     id = "sunbook_buttons",
@@ -187,22 +147,7 @@ Gui:AddElement(gusgui.Elements.VLayout({
                         gusgui.Elements.ImageButton({ -- prev button
                             id = "sunbook_button_prev",
                             src = "mods/tales_of_kupoli/files/sunbook/button.png",
-                            margin = { right = 138, },
-                            scaleX = 1,
-                            scaleY = 1,
-                            hidden = false,
-                            onBeforeRender = function(element)
-                                if unlocked_sbp[sunbook_page - 1] ~= nil then
-                                    element.config.hidden = true
-                                    if unlocked_sbp[sunbook_page - 1] then
-                                        element.config.hidden = false
-                                    else
-                                        element.config.hidden = true
-                                    end
-                                else
-                                    element.config.hidden = true
-                                end
-                            end,
+                            visible = Gui:StateValue("sunbook_prev_visible"),
                             onClick = function(element)
                                 sunbook_page = sunbook_page - 1
                             end,
@@ -210,22 +155,7 @@ Gui:AddElement(gusgui.Elements.VLayout({
                         gusgui.Elements.ImageButton({ -- next button
                             id = "sunbook_button_next",
                             src = "mods/tales_of_kupoli/files/sunbook/button.png",
-                            margin = { left = 138, },
-                            scaleX = 1,
-                            scaleY = 1,
-                            hidden = false,
-                            onBeforeRender = function(element)
-                                if unlocked_sbp[sunbook_page + 1] ~= nil then
-                                    element.config.hidden = true
-                                    if unlocked_sbp[sunbook_page + 1] then
-                                        element.config.hidden = false
-                                    else
-                                        element.config.hidden = true
-                                    end
-                                else
-                                    element.config.hidden = true
-                                end
-                            end,
+                            visible = Gui:StateValue("sunbook_next_visible"),
                             onClick = function(element)
                                 sunbook_page = sunbook_page + 1
                             end,

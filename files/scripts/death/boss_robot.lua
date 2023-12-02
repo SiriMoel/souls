@@ -9,4 +9,6 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 	EntityLoad("mods/tales_of_kupoli/files/entities/items/mechakolmiwand/weapon.xml", x, y)
 
 	EntityLoad("mods/tales_of_kupoli/files/entities/revived/_tablets/robot.xml", x, y)
+
+	GameAddFlagRun("ikkuna_robot")
 end

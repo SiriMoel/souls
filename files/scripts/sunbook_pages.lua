@@ -145,6 +145,27 @@ connoisseur
         scaleY = 1,
         unlocked = false,
     },
+    {
+        name = "ikkuna_dragon",
+        page = "mods/tales_of_kupoli/files/sunbook/traces/page.png",
+        scaleX = 1,
+        scaleY = 1,
+        unlocked = false,
+    },
+    {
+        name = "ikkuna_wizard",
+        page = "mods/tales_of_kupoli/files/sunbook/traces/page.png",
+        scaleX = 1,
+        scaleY = 1,
+        unlocked = false,
+    },
+    {
+        name = "ikkuna_robot",
+        page = "mods/tales_of_kupoli/files/sunbook/traces/page.png",
+        scaleX = 1,
+        scaleY = 1,
+        unlocked = false,
+    },
 }
 
 unlocked_sbp = {

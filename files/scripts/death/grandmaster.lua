@@ -12,4 +12,6 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 	end]]--
 
 	EntityLoad("mods/tales_of_kupoli/files/entities/revived/_tablets/grandmaster.xml", x, y)
+
+	GameAddFlagRun("ikkuna_wizard")
 end

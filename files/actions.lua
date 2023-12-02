@@ -4,7 +4,7 @@ local a = {
 	{
 		id          = "REAPING_SHOT",
 		name 		= "Reaping Shot",
-		description = "Causes enemies to drop their souls on death. \nMana Cost x 1.1",
+		description = "Causes enemies to drop their souls on death.",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/reaping_shot.png",
 		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/reaping_shot/reaping_shot.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
@@ -71,41 +71,21 @@ local a = {
 		end,
 	},]]--
 	{
-		id          = "REAPING_HALO", -- may need to be rebalanced
+		id          = "REAPING_HALO",
 		name 		= "Reaping Halo",
-		description = "Fires a halo of energy that homes and causes enemies to drop their souls.",
+		description = "No Ikkuna. This is not a portal.",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/reaping_halo.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/reaping_halo/projectile.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
-		spawn_level                       = "4,5,6,10",
-		spawn_probability                 = "0.1,0.3,0.7,0.5",
-		price = 160,
-		mana = 120,
+		spawn_level                       = "5,6,10",
+		spawn_probability                 = "0.3,0.5,0.5",
+		price = 200,
+		mana = 150,
 		action 		= function()
 			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/reaping_halo/projectile.xml")
-			c.fire_rate_wait = c.fire_rate_wait + 40
+			c.fire_rate_wait = c.fire_rate_wait + 80
 		end,
 	},
-	--[[{
-		id          = "SOUL_EXPLOSION",
-		name 		= "Soul Detonation",
-		description = "Detonates a soul to produce an explosion.",
-		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_detonation.png",
-		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/soul_detonation/soul_detonation.xml"},
-		type 		= ACTION_TYPE_STATIC_PROJECTILE,
-		spawn_level                       = "2,3,4,5",
-		spawn_probability                 = "0.5,0.5,0.5,0.5",
-		price = 120,
-		mana = 10,
-		--max_uses = 30,
-		custom_xml_file = "mods/tales_of_kupoli/files/entities/misc/soul_detonation.xml",
-		is_dangerous_blast = true,
-		action 		= function()
-			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/soul_detonation.xml")
-			c.fire_rate_wait = c.fire_rate_wait + 10
-			c.screenshake = c.screenshake + 0.5
-		end,
-	},]]--
 	{
 		id = "HIISI_SHOTGUN", -- MOULD N
 		name = "Hiisi Shotgun Shell",
@@ -185,7 +165,7 @@ local a = {
 	{
 		id          = "SOUL_BLAST",
 		name 		= "Soul Blast",
-		description = "Converts a single soul into a powerful projectile.",
+		description = "Expels a soul in the form of a magic missile. Adapts to whichever soul was consumed!",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_blast.png",
 		related_projectiles	= {"mods/moles_souls/files/entities/projectiles/soul_blast.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
@@ -265,6 +245,26 @@ local a = {
 			add_projectile("mods/tales_of_kupoli/files/entities/items/mechakolmiwand/rocket_roll.xml")
 			add_projectile("mods/tales_of_kupoli/files/entities/items/mechakolmiwand/rocket_roll.xml")
 			add_projectile("mods/tales_of_kupoli/files/entities/items/mechakolmiwand/rocket_roll.xml")
+		end,
+	},
+	{
+		id          = "SOUL_EXPLOSION",
+		name 		= "Soul Detonation",
+		description = "Detonates a soul to produce an explosion.",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_detonation.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/soul_detonation/soul_detonation.xml"},
+		type 		= ACTION_TYPE_STATIC_PROJECTILE,
+		spawn_level                       = "2,3,4,5",
+		spawn_probability                 = "0.5,0.5,0.5,0.5",
+		price = 120,
+		mana = 10,
+		max_uses = 30,
+		custom_xml_file = "mods/tales_of_kupoli/files/entities/misc/soul_detonation.xml",
+		is_dangerous_blast = true,
+		action 		= function()
+			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/soul_detonation/soul_detonation.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 30
+			c.screenshake = c.screenshake + 0.5
 		end,
 	},
 }

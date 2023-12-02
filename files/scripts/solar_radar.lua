@@ -7,7 +7,7 @@ pos_y = pos_y - 4 -- offset to middle of character
 local range = 1200
 local indicator_distance = 20
 
-for _,sun_id in pairs(EntityGetInRadiusWithTag( pos_x, pos_y, range, "sun")) do
+for _,sun_id in pairs(EntityGetInRadiusWithTag( pos_x, pos_y, range, "sun_new")) do
 	local sun_x, sun_y = EntityGetFirstHitboxCenter(sun_id)
 	local dir_x = sun_x - pos_x
 	local dir_y = sun_y - pos_y
@@ -28,10 +28,97 @@ for _,sun_id in pairs(EntityGetInRadiusWithTag( pos_x, pos_y, range, "sun")) do
 
 	-- display sprite based on proximity
 	if distance > range * 0.8 then
-		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/radar_sun_faint.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/sunradar/new/radar_sun_faint.png", indicator_x, indicator_y, true, 0, 0, 1, true )
 	elseif distance > range * 0.5 then
-		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/radar_sun_medium.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/sunradar/new/radar_sun_medium.png", indicator_x, indicator_y, true, 0, 0, 1, true )
 	else
-		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/radar_sun_strong.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/sunradar/new/radar_sun_strong.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+	end
+end
+
+for _,sun_id in pairs(EntityGetInRadiusWithTag( pos_x, pos_y, range, "sun_dark")) do
+	local sun_x, sun_y = EntityGetFirstHitboxCenter(sun_id)
+	local dir_x = sun_x - pos_x
+	local dir_y = sun_y - pos_y
+	local distance = get_magnitude(dir_x, dir_y)
+
+	local indicator_x = 0
+	local indicator_y = 0
+
+	if is_in_camera_bounds(sun_x, sun_y, -4) then
+		indicator_x = sun_x
+		indicator_y = sun_y - 3
+	else
+		-- position radar indicators around character
+		dir_x,dir_y = vec_normalize(dir_x,dir_y)
+		indicator_x = pos_x + dir_x * indicator_distance
+		indicator_y = pos_y + dir_y * indicator_distance
+	end
+
+	-- display sprite based on proximity
+	if distance > range * 0.8 then
+		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/sunradar/dark/radar_sun_faint.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+	elseif distance > range * 0.5 then
+		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/sunradar/dark/radar_sun_medium.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+	else
+		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/sunradar/dark/radar_sun_strong.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+	end
+end
+
+for _,sun_id in pairs(EntityGetInRadiusWithTag( pos_x, pos_y, range, "sun_green")) do
+	local sun_x, sun_y = EntityGetFirstHitboxCenter(sun_id)
+	local dir_x = sun_x - pos_x
+	local dir_y = sun_y - pos_y
+	local distance = get_magnitude(dir_x, dir_y)
+
+	local indicator_x = 0
+	local indicator_y = 0
+
+	if is_in_camera_bounds(sun_x, sun_y, -4) then
+		indicator_x = sun_x
+		indicator_y = sun_y - 3
+	else
+		-- position radar indicators around character
+		dir_x,dir_y = vec_normalize(dir_x,dir_y)
+		indicator_x = pos_x + dir_x * indicator_distance
+		indicator_y = pos_y + dir_y * indicator_distance
+	end
+
+	-- display sprite based on proximity
+	if distance > range * 0.8 then
+		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/sunradar/green/radar_sun_faint.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+	elseif distance > range * 0.5 then
+		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/sunradar/green/radar_sun_medium.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+	else
+		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/sunradar/green/radar_sun_strong.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+	end
+end
+
+for _,sun_id in pairs(EntityGetInRadiusWithTag( pos_x, pos_y, range, "sun_red")) do
+	local sun_x, sun_y = EntityGetFirstHitboxCenter(sun_id)
+	local dir_x = sun_x - pos_x
+	local dir_y = sun_y - pos_y
+	local distance = get_magnitude(dir_x, dir_y)
+
+	local indicator_x = 0
+	local indicator_y = 0
+
+	if is_in_camera_bounds(sun_x, sun_y, -4) then
+		indicator_x = sun_x
+		indicator_y = sun_y - 3
+	else
+		-- position radar indicators around character
+		dir_x,dir_y = vec_normalize(dir_x,dir_y)
+		indicator_x = pos_x + dir_x * indicator_distance
+		indicator_y = pos_y + dir_y * indicator_distance
+	end
+
+	-- display sprite based on proximity
+	if distance > range * 0.8 then
+		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/sunradar/red/radar_sun_faint.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+	elseif distance > range * 0.5 then
+		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/sunradar/red/radar_sun_medium.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+	else
+		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/sunradar/red/radar_sun_strong.png", indicator_x, indicator_y, true, 0, 0, 1, true )
 	end
 end

@@ -2,13 +2,13 @@
 	
 	<Base file="data/entities/base_custom_card.xml" > 
 		<SpriteComponent 
-			image_file="mods/tales_of_kupoli/files/spell_icons/soul_blast.png" 
+			image_file="mods/tales_of_kupoli/files/spell_icons/soul_detonation.png" 
 			>
 		</SpriteComponent>
 		
 		<ItemActionComponent 
 			_tags="enabled_in_world"
-			action_id="MOLES_SOULS_EXPLOSION" >
+			action_id="KUPOLI_SOUL_EXPLOSION" >
 		</ItemActionComponent>
 	</Base>
 

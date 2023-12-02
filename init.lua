@@ -73,7 +73,7 @@ ModTextFileSetContent("data/entities/animals/boss_dragon.xml", tostring(xml))
 local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/boss_alchemist/boss_alchemist.xml"))
 xml:add_child(nxml.parse([[
 	<LuaComponent
-		script_death="mods/tales_of_kupoli/files/scripts/death/alchemist.lua"
+		script_death="mods/tales_of_kupoli/files/scripts/death/boss_alchemist.lua"
 		>
 	</LuaComponent>
 ]]))
@@ -133,6 +133,16 @@ xml:add_child(nxml.parse([[
 	</LuaComponent>
 ]]))
 ModTextFileSetContent("data/entities/animals/boss_robot/boss_robot.xml", tostring(xml))
+
+--dark lukki
+local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/lukki/lukki_dark.xml"))
+xml:add_child(nxml.parse([[
+	<LuaComponent
+    script_death="mods/tales_of_kupoli/files/scripts/death/dark_lukki.lua"
+		>
+	</LuaComponent>
+]]))
+ModTextFileSetContent("data/entities/animals/lukki/lukki_dark.xml", tostring(xml))
 
 --translations
 local translations = ModTextFileGetContent( "data/translations/common.csv" );

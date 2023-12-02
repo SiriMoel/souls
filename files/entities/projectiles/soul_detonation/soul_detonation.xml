@@ -35,7 +35,7 @@
       create_cell_probability="100" 
       create_cell_material="soul_particles" 
       hole_destroy_liquid="0" 
-      damage="0.4"
+      damage="0.8"
       hole_enabled="1" 
       hole_image="data/temp/explosion_hole.png" 
       particle_effect="1" 
@@ -56,7 +56,7 @@
   </ProjectileComponent> <!--	  audio_event_name="explosions/fire" -->
 
   	<LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/scripts/projectiles/soul_detonation/soul_explosion.lua"
+		script_source_file="mods/tales_of_kupoli/files/entities/projectiles/soul_detonation/soul_explosion.lua"
 		execute_every_n_frame="1"
 		remove_after_executed="1"
 		>

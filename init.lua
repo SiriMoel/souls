@@ -144,6 +144,26 @@ xml:add_child(nxml.parse([[
 ]]))
 ModTextFileSetContent("data/entities/animals/lukki/lukki_dark.xml", tostring(xml))
 
+--boss pit
+local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/boss_pit/boss_pit.xml"))
+xml:add_child(nxml.parse([[
+	<LuaComponent
+    script_death="mods/tales_of_kupoli/files/scripts/death/boss_squid.lua"
+		>
+	</LuaComponent>
+]]))
+ModTextFileSetContent("data/entities/animals/boss_pit/boss_pit.xml", tostring(xml))
+
+--kolmi
+local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/boss_centipede/boss_centipede.xml"))
+xml:add_child(nxml.parse([[
+	<LuaComponent
+    script_death="mods/tales_of_kupoli/files/scripts/death/boss_kolmi.lua"
+		>
+	</LuaComponent>
+]]))
+ModTextFileSetContent("data/entities/animals/boss_pit/boss_centipede.xml", tostring(xml))
+
 --translations
 local translations = ModTextFileGetContent( "data/translations/common.csv" );
 if translations ~= nil then

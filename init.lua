@@ -31,65 +31,66 @@ SetFileContent("data/entities/items/orbs/orb_base.xml", "orb_base.xml")
 SetFileContent("data/entities/items/pickup/sun/newsun.xml", "newsun.xml")
 SetFileContent("data/entities/items/pickup/sun/newsun_dark.xml", "newsun_dark.xml")
 
---hiisi
-local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/shotgunner.xml"))
-xml:add_child(nxml.parse([[
-	<LuaComponent
-		script_death="mods/tales_of_kupoli/files/scripts/death/hiisi_shotgunner.lua"
-		>
-	</LuaComponent>
-]]))
-ModTextFileSetContent("data/entities/animals/shotgunner.xml", tostring(xml))
+--drops etc
+local dropdoers = {
+    --hiisi
+    {
+        path = "data/entities/animals/shotgunner.xml",
+        script = "mods/tales_of_kupoli/files/scripts/death/hiisi_shotgunner.lua",
+    },
+    {
+        path = "data/entities/animals/sniper.xml",
+        script = "mods/tales_of_kupoli/files/scripts/death/hiisi_sniper.lua",
+    },
+    {
+        path = "data/entities/animals/scavenger_smg.xml",
+        script = "mods/tales_of_kupoli/files/scripts/death/hiisi_pistol.lua",
+    },
 
-local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/sniper.xml"))
-xml:add_child(nxml.parse([[
-	<LuaComponent
-		script_death="mods/tales_of_kupoli/files/scripts/death/hiisi_sniper.lua"
-		>
-	</LuaComponent>
-]]))
-ModTextFileSetContent("data/entities/animals/sniper.xml", tostring(xml))
+    --bosses
+    {
+        path = "data/entities/animals/boss_dragon.xml",
+        script = "mods/tales_of_kupoli/files/scripts/death/dragon.lua",
+    },
+    {
+        path = "data/entities/animals/boss_alchemist/boss_alchemist.xml",
+        script = "mods/tales_of_kupoli/files/scripts/death/boss_alchemist.lua",
+    },
+    {
+        path = "data/entities/animals/boss_limbs/boss_limbs.xml",
+        script = "mods/tales_of_kupoli/files/scripts/death/boss_pyramid.lua",
+    },
+    {
+        path = "data/entities/animals/boss_robot/boss_robot.xml",
+        script = "mods/tales_of_kupoli/files/scripts/death/boss_robot.lua",
+    },
+    {
+        path = "data/entities/animals/boss_pit/boss_pit.xml",
+        script = "mods/tales_of_kupoli/files/scripts/death/boss_squid.lua",
+    },
+    {
+        path = "data/entities/animals/boss_centipede/boss_centipede.xml",
+        script = "mods/tales_of_kupoli/files/scripts/death/boss_kolmi.lua",
+    },
 
-local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/scavenger_smg.xml"))
-xml:add_child(nxml.parse([[
-	<LuaComponent
-		script_death="mods/tales_of_kupoli/files/scripts/death/hiisi_pistol.lua"
-		>
-	</LuaComponent>
-]]))
-ModTextFileSetContent("data/entities/animals/scavenger_smg.xml", tostring(xml))
+    --other
+    {
+        path = "data/entities/animals/lukki/lukki_dark.xml",
+        script = "mods/tales_of_kupoli/files/scripts/death/dark_lukki.lua",
+    },
+}
 
---dragon
-local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/boss_dragon.xml"))
-xml:add_child(nxml.parse([[
-	<LuaComponent
-		script_death="mods/tales_of_kupoli/files/scripts/death/dragon.lua"
-		>
-	</LuaComponent>
-]]))
-ModTextFileSetContent("data/entities/animals/boss_dragon.xml", tostring(xml))
+for i,v in ipairs(dropdoers) do
+    local xml = nxml.parse(ModTextFileGetContent(v.path))
+    xml:add_child(nxml.parse(([[
+        <LuaComponent
+              script_death="%s"
+              >
+        </LuaComponent>
+    ]]):format(v.script)))
+    ModTextFileSetContent(v.path, tostring(xml))
+end
 
---alchemist
-local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/boss_alchemist/boss_alchemist.xml"))
-xml:add_child(nxml.parse([[
-	<LuaComponent
-		script_death="mods/tales_of_kupoli/files/scripts/death/boss_alchemist.lua"
-		>
-	</LuaComponent>
-]]))
-ModTextFileSetContent("data/entities/animals/boss_alchemist/boss_alchemist.xml", tostring(xml))
-
---grandmaster
-local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/boss_wizard/boss_wizard.xml"))
-xml:add_child(nxml.parse([[
-	<LuaComponent
-		script_death="mods/tales_of_kupoli/files/scripts/death/grandmaster.lua"
-		>
-	</LuaComponent>
-]]))
-ModTextFileSetContent("data/entities/animals/boss_wizard/boss_wizard.xml", tostring(xml))
-
---wizards
 local wizards = {
     "data/entities/animals/wizard_dark.xml",
     "data/entities/animals/wizard_hearty.xml",
@@ -101,7 +102,7 @@ local wizards = {
     "data/entities/animals/wizard_tele.xml",
     "data/entities/animals/wizard_twitchy.xml",
     "data/entities/animals/wizard_weaken.xml",
-    "data/entities/animals/monk.xml", -- from monk city?
+    "data/entities/animals/monk.xml",
 }
 for i,v in ipairs(wizards) do
     local xml = nxml.parse(ModTextFileGetContent(v))
@@ -113,56 +114,6 @@ for i,v in ipairs(wizards) do
     ]]))
     ModTextFileSetContent(v, tostring(xml))
 end
-
---pyramid boss
-local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/boss_limbs/boss_limbs.xml"))
-xml:add_child(nxml.parse([[
-	<LuaComponent
-    script_death="mods/tales_of_kupoli/files/scripts/death/boss_pyramid.lua"
-		>
-	</LuaComponent>
-]]))
-ModTextFileSetContent("data/entities/animals/boss_limbs/boss_limbs.xml", tostring(xml))
-
---mecha kolmi
-local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/boss_robot/boss_robot.xml"))
-xml:add_child(nxml.parse([[
-	<LuaComponent
-    script_death="mods/tales_of_kupoli/files/scripts/death/boss_robot.lua"
-		>
-	</LuaComponent>
-]]))
-ModTextFileSetContent("data/entities/animals/boss_robot/boss_robot.xml", tostring(xml))
-
---dark lukki
-local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/lukki/lukki_dark.xml"))
-xml:add_child(nxml.parse([[
-	<LuaComponent
-    script_death="mods/tales_of_kupoli/files/scripts/death/dark_lukki.lua"
-		>
-	</LuaComponent>
-]]))
-ModTextFileSetContent("data/entities/animals/lukki/lukki_dark.xml", tostring(xml))
-
---boss pit
-local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/boss_pit/boss_pit.xml"))
-xml:add_child(nxml.parse([[
-	<LuaComponent
-    script_death="mods/tales_of_kupoli/files/scripts/death/boss_squid.lua"
-		>
-	</LuaComponent>
-]]))
-ModTextFileSetContent("data/entities/animals/boss_pit/boss_pit.xml", tostring(xml))
-
---kolmi
-local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/boss_centipede/boss_centipede.xml"))
-xml:add_child(nxml.parse([[
-	<LuaComponent
-    script_death="mods/tales_of_kupoli/files/scripts/death/boss_kolmi.lua"
-		>
-	</LuaComponent>
-]]))
-ModTextFileSetContent("data/entities/animals/boss_pit/boss_centipede.xml", tostring(xml))
 
 --translations
 local translations = ModTextFileGetContent( "data/translations/common.csv" );

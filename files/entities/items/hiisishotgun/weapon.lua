@@ -3,5 +3,7 @@ dofile_once("data/scripts/gun/procedural/gun_action_utils.lua")
 
 local weapon = GetUpdatedEntityID()
 
-weapon_rngstats(weapon, 2)
+local x, y = EntityGetTransform(weapon)
+
+weapon_rngstats(weapon, x, y, 2)
 AddGunAction( weapon, "KUPOLI_HIISI_SHOTGUN" )

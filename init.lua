@@ -46,6 +46,14 @@ local dropdoers = {
         path = "data/entities/animals/scavenger_smg.xml",
         script = "mods/tales_of_kupoli/files/scripts/death/hiisi_pistol.lua",
     },
+    {
+        path = "data/entities/animals/scavenger_glue.xml",
+        script = "mods/tales_of_kupoli/files/scripts/death/hiisi_glue.lua",
+    },
+    {
+        path = "data/entities/animals/scavenger_poison.xml",
+        script = "mods/tales_of_kupoli/files/scripts/death/hiisi_poison.lua",
+    },
 
     --bosses
     {
@@ -159,6 +167,10 @@ function OnPlayerSpawned( player )
     --AddFlagPersistent("progress_greensun")
     --AddFlagPersistent("progress_redsun")
     --AddFlagPersistent("progress_bluesun")
+
+    --[[for i=1,7 do
+        EntityLoad("data/entities/animals/shotgunner.xml", px, py)
+    end]]--
     
     if HasFlagPersistent("progress_greensun") and HasFlagPersistent("progress_redsun") and HasFlagPersistent("progress_bluesun") then
         EntitySetComponentsWithTagEnabled( player, "player_hat2", false )

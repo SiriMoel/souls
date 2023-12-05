@@ -6,4 +6,5 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 	local x, y = EntityGetTransform(entity)
 
 	GameAddFlagRun("ikkuna_kolmi")
+	GamePrint("Trace found!")
 end

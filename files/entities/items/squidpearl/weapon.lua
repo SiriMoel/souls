@@ -18,7 +18,7 @@ local pool = {
 
 if ModIsEnabled("copis_things") then
     local copispells = {
-
+        "COPIS_THINGS_VACUUM_CLAW",
     }
     for i,v in ipairs(copispells) do
         table.insert(pool, v)

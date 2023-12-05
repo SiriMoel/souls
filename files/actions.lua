@@ -87,7 +87,7 @@ local a = {
 		end,
 	},
 	{
-		id = "HIISI_SHOTGUN", -- MOULD N
+		id = "HIISI_SHOTGUN",
 		name = "Hiisi Shotgun Shell",
 		description = "Fires 3 projectiles.",
         sprite = "mods/tales_of_kupoli/files/spell_icons/hiisi_shotgun.png",
@@ -105,10 +105,10 @@ local a = {
 		end,
 	},
 	{
-		id = "HIISI_SNIPER", -- MOULD N
+		id = "HIISI_SNIPER",
 		name = "Hiisi Sniper Shot",
 		description = "Fires a single powerful projectile.",
-        sprite = "mods/tales_of_kupoli/files/spell_icons/hiisi_sniper.png", -- wip
+        sprite = "mods/tales_of_kupoli/files/spell_icons/hiisi_sniper.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/items/hiisisniper/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "",
@@ -120,10 +120,10 @@ local a = {
 		end,
 	},
 	{
-		id = "HIISI_PISTOL", -- MOULD N
+		id = "HIISI_PISTOL",
 		name = "Hiisi Pistol Shot",
 		description = "Fires a single projectile.",
-        sprite = "mods/tales_of_kupoli/files/spell_icons/hiisi_pistol.png", -- wip
+        sprite = "mods/tales_of_kupoli/files/spell_icons/hiisi_pistol.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/items/hiisipistol/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "",
@@ -265,6 +265,36 @@ local a = {
 			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/soul_detonation/soul_detonation.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 30
 			c.screenshake = c.screenshake + 0.5
+		end,
+	},
+	{
+		id = "HIISI_GLUE_SHOT",
+		name = "Hiisi Glue Shot",
+		description = "Fires a very sticky projectile.",
+        sprite = "mods/tales_of_kupoli/files/spell_icons/hiisi_glue_shot.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/items/hiisigluegun/projectile.xml"},
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "",
+		spawn_probability = "",
+		price = 70,
+		mana = 50,
+		action = function()
+			add_projectile("mods/tales_of_kupoli/files/entities/items/hiisigluegun/projectile.xml")
+		end,
+	},
+	{
+		id = "HIISI_POISON_SHOT",
+		name = "Hiisi Poison Shot",
+		description = "Rain down bombs and also poison.",
+        sprite = "mods/tales_of_kupoli/files/spell_icons/hiisi_poison_shot.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/items/hiisipoisongun/projectile.xml"},
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "",
+		spawn_probability = "",
+		price = 70,
+		mana = 60,
+		action = function()
+			add_projectile("mods/tales_of_kupoli/files/entities/items/hiisipoisongun/projectile.xml")
 		end,
 	},
 }

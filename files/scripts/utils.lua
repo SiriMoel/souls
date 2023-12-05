@@ -95,35 +95,35 @@ function TransferBrilliance(from_comp, to_comp, to_comp_max, amount)
     ComponentSetValue2(from_comp, "value_int", from_comp_amount)]]--
 end
 
-function weapon_rngstats(weapon, statsm)
+function weapon_rngstats(weapon, x, y, statsm)
     local ac = EntityGetComponent( weapon, "AbilityComponent" )[1]
+    SetRandomSeed(x, y)
     if ac ~= nil then
         local sm = (math.random( 100, (statsm * 100) )) / 100
+
+        local sm_rt = math.random(sm * 0.8, sm * 1.2)
+        local sm_frw = math.random(sm * 0.8, sm * 1.2)
+        local sm_mcs = math.random(sm * 0.8, sm * 1.2)
+        local sm_mm = math.random(sm * 0.8, sm * 1.2)
 
         local acs = EntityGetComponentIncludingDisabled( weapon, "AbilityComponent" )
 
         if acs == nil then return end
         for i,ac in ipairs(acs) do
             local rt = tonumber( ComponentObjectGetValue( ac, "gun_config", "reload_time" ) ) -- reload time
-            --local sm = tonumber( ComponentObjectGetValue( ac, "gun_config", "speed_multiplier" ) ) -- speed multiplier
-            --local sd = tonumber( ComponentObjectGetValue( ac, "gun_config", "spread_degrees" ) ) -- spread degrees
             local frw = tonumber( ComponentObjectGetValue( ac, "gunaction_config", "fire_rate_wait" ) ) -- fire rate wait
+            local mcs = tonumber( ComponentGetValue2( ac, "mana_charge_speed" ) ) -- mana charge speed
+            local mm = tonumber( ComponentGetValue2( ac, "mana_max" ) ) -- mana max
 
-            --print("old rt " .. rt)
-            --print("old frw " .. frw)
-
-            rt = math.floor( ( rt / (sm * 0.8) + 0.5 ) )
-            --sm = sm * (m * 0.3)
-            --sd = sd * (m * 0.5)
-            frw = math.floor( ( frw / (sm * 0.8) + 0.5 ) )
-
-            --print("new rt " .. rt)
-            --print("new frw " .. frw)
+            rt = math.floor( ( rt / (sm_rt * 0.8) + 0.5 ) )
+            frw = math.floor( ( frw / (sm_frw * 0.8) + 0.5 ) )
+            mcs = math.floor( ( mcs * (sm_mcs * 0.7) + 0.5 ) )
+            mm = math.floor( ( mm * (sm_mm * 0.7) + 0.5 ) )
 
             ComponentObjectSetValue( ac, "gun_config", "reload_time", tostring(rt) )
-            --ComponentObjectSetValue( ac, "gun_config", "speed_multiplier", tostring(sm) )
-            --omponentObjectSetValue( ac, "gun_config", "spread_degrees", tostring(sd) )
             ComponentObjectSetValue( ac, "gunaction_config", "fire_rate_wait", tostring(frw) )
+            ComponentSetValue2( ac, "mana_charge_speed", mcs )
+            ComponentSetValue2( ac, "mana_max", mm )
         end
     end
 end

@@ -4,7 +4,7 @@ dofile_once("data/scripts/gun/procedural/gun_action_utils.lua")
 local weapon = GetUpdatedEntityID()
 local x, y = EntityGetTransform(weapon)
 
-local to_add = {}
+SetRandomSeed(x, y)
 
 local pool = {
     "RUBBER_BALL",
@@ -26,13 +26,6 @@ if ModIsEnabled("copis_things") then
 end
 
 for i=1,5 do
-    local target = ""
-    while table.contains(to_add, target) == false do
-        target = pool[math.random(1, #pool)]
-    end
-    table.insert(to_add, target)
-end
-
-for i,v in ipairs(to_add) do
-    AddGunAction(weapon, v)
+    local target = pool[math.random(1,#pool)]
+    AddGunAction(weapon, target)
 end

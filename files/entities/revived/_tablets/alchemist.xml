@@ -49,7 +49,7 @@
 		ui_sprite="mods/tales_of_kupoli/files/entities/revived/_tablets/sprite/s.png"
 		preferred_inventory="QUICK"
 		item_name="Red Sun Tablet"
-		ui_description="Revives the dragon."
+		ui_description="Revives the alchemist."
 	></ItemComponent>
   
 	<SpriteComponent

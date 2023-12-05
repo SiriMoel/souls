@@ -14,7 +14,7 @@
         sprite_file="mods/tales_of_kupoli/files/entities/items/squidpearl/sprite.xml"
         swim_propel_amount="0"
         throw_as_item="0"
-        ui_name=""
+        ui_name="Pearl"
         use_gun_script="1"
 		add_these_child_actions=""
 		>
@@ -22,12 +22,12 @@
             shuffle_deck_when_empty="0"
             deck_capacity="5"
 			actions_per_round="5"
-            reload_time="30"
+            reload_time="1"
 			speed_multiplier="1"
 			spread_degrees="1" >
         </gun_config>
         <gunaction_config 
-            fire_rate_wait="30" >
+            fire_rate_wait="1" >
         </gunaction_config>
     </AbilityComponent>
 	
@@ -39,7 +39,7 @@
 	
     <Base file="data/entities/base_item.xml" >
         <ItemComponent
-            item_name=""
+            item_name="Pearl"
             always_use_item_name_in_ui="1"
             remove_on_death="1"
             collect_nondefault_actions="1" >

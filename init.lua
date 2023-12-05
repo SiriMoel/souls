@@ -80,6 +80,14 @@ local dropdoers = {
         path = "data/entities/animals/boss_centipede/boss_centipede.xml",
         script = "mods/tales_of_kupoli/files/scripts/death/boss_kolmi.lua",
     },
+    {
+        path = "data/entities/animals/maggot_tiny/maggot_tiny.xml",
+        script = "mods/tales_of_kupoli/files/scripts/death/boss_tiny.lua",
+    },
+    {
+        path = "data/entities/animals/boss_wizard/boss_wizard.xml",
+        script = "mods/tales_of_kupoli/files/scripts/death/grandmaster.lua",
+    },
 
     --other
     {
@@ -168,10 +176,6 @@ function OnPlayerSpawned( player )
     --AddFlagPersistent("progress_redsun")
     --AddFlagPersistent("progress_bluesun")
 
-    --[[for i=1,7 do
-        EntityLoad("data/entities/animals/shotgunner.xml", px, py)
-    end]]--
-    
     if HasFlagPersistent("progress_greensun") and HasFlagPersistent("progress_redsun") and HasFlagPersistent("progress_bluesun") then
         EntitySetComponentsWithTagEnabled( player, "player_hat2", false )
         EntitySetComponentsWithTagEnabled( player, "player_hat", true ) -- placeholder hat

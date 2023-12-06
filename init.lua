@@ -22,7 +22,7 @@ end
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/tales_of_kupoli/files/actions.lua" )
 ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/tales_of_kupoli/files/perks.lua" )
 ModLuaFileAppend( "data/scripts/items/orb_pickup.lua", "mods/tales_of_kupoli/files/scripts/orb_pickup_append.lua" )
-ModLuaFileAppend( "data/scripts/biomes/orbrooms/orbroom_07.lua", "mods/tales_of_kupoli/files/scripts/orbroom_07_append.lua" )
+--ModLuaFileAppend( "data/scripts/biomes/orbrooms/orbroom_07.lua", "mods/tales_of_kupoli/files/scripts/orbroom_07_append.lua" )
 
 SetFileContent("data/scripts/buildings/sun/spot_4.lua", "spot_4.lua")
 SetFileContent("data/scripts/buildings/sun/sun_collision.lua", "sun_collision.lua")
@@ -30,6 +30,7 @@ SetFileContent("data/entities/items/pickup/sun/sunbaby.xml", "sunbaby.xml")
 SetFileContent("data/entities/items/orbs/orb_base.xml", "orb_base.xml")
 SetFileContent("data/entities/items/pickup/sun/newsun.xml", "newsun.xml")
 SetFileContent("data/entities/items/pickup/sun/newsun_dark.xml", "newsun_dark.xml")
+SetFileContent("data/biome/orbrooms/orbroom_07.xml", "orbroom_07.xml")
 
 --drops etc
 local dropdoers = {

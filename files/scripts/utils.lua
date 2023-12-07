@@ -127,3 +127,53 @@ function weapon_rngstats(weapon, x, y, statsm)
         end
     end
 end
+
+function GetMoney()
+    local player = EntityGetWithTag("player_unit")[1]
+    local comp_wallet = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent") or 0
+    local money = ComponentGetValue2(comp_wallet, "money")
+    return money
+end
+
+function SetMoney(amount)
+    local player = EntityGetWithTag("player_unit")[1]
+    local comp_wallet = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent") or 0
+    ComponentSetValue2(comp_wallet, "money", amount)
+end
+
+function CanAfford(amount)
+    local player = EntityGetWithTag("player_unit")[1]
+    local comp_wallet = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent") or 0
+    local money = ComponentGetValue2(comp_wallet, "money")
+    if money >= amount then
+        return true
+    else
+        return false
+    end
+end
+
+---@param spent boolean if the player's money_spent should be increased.
+function ReduceMoney(amount, spent)
+    local player = EntityGetWithTag("player_unit")[1]
+    local comp_wallet = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent") or 0
+    local money = ComponentGetValue2(comp_wallet, "money")
+    local moneyspent = ComponentGetValue2(comp_wallet, "money_spent")
+    if CanAfford(amount) == false then
+        GamePrint("You cannot afford that.")
+        return
+    end
+    money = money - amount
+    ComponentSetValue2(comp_wallet, "money", money)
+    if spent == true then
+        moneyspent = moneyspent + amount
+        ComponentSetValue2(comp_wallet, "money_spent", moneyspent)
+    end
+end
+
+function AddMoney(amount)
+    local player = EntityGetWithTag("player_unit")[1]
+    local comp_wallet = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent") or 0
+    local money = ComponentGetValue2(comp_wallet, "money")
+    money = money + amount
+    ComponentSetValue2(comp_wallet, "money", money)
+end

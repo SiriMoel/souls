@@ -9,6 +9,7 @@ dofile( "data/scripts/biomes/orbrooms/orbroom_shared.lua" )
 
 RegisterSpawnFunction( 0xffffeedd, "init" )
 RegisterSpawnFunction( 0xffb82fdc, "spawn_sunbook" )
+RegisterSpawnFunction( 0xffb2009d, "ikkunaforge" )
 
 function spawn_small_enemies( x, y ) end
 function spawn_big_enemies( x, y ) end
@@ -40,7 +41,9 @@ function spawn_sunbook(x, y)
 	EntityLoad("mods/tales_of_kupoli/files/sunbook/item/item.xml", x, y)
 end
 
-
+function ikkunaforge(x, y)
+	EntityLoad("mods/tales_of_kupoli/files/entities/ikkunaforge/ikkunaforge.xml", x, y)
+end
 
 function spawn_orb(x, y)
 	EntityLoad( "data/entities/items/orbs/orb_07.xml", x, y )

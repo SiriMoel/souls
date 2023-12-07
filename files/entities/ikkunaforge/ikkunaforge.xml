@@ -1,0 +1,14 @@
+<Entity tags="ikkunaforge">
+
+    <LuaComponent
+        execute_every_n_frame="30"
+        script_source_file="mods/tales_of_kupoli/files/entities/ikkunaforge/forge.lua"
+    ></LuaComponent>
+
+    <VariableStorageComponent
+        _tags="stored_alterants"
+        name="stored_alterants"
+        value_string=""
+    ></VariableStorageComponent>
+
+</Entity>

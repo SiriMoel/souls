@@ -15,7 +15,6 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 	end
 	
 	local rr = math.random(1,3)
-	rr = 2
 	if rr == 2 then
 		SpawnAlterant("SNIPER_KIT", x, y)
 	end

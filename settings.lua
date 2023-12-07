@@ -30,7 +30,7 @@ mod_settings = {
         id = "show_souls",
         ui_name = "Show Souls",
         ui_description = "If you want to see souls around your player in game.",
-        value_default = true,
+        value_default = false,
         scope = MOD_SETTING_SCOPE_RUNTIME,
     },
 	{

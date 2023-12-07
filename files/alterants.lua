@@ -16,7 +16,7 @@ alterants = {
     {
         id = "SNIPER_KIT",
         name = "Sniper Kit",
-        desc = "Apply a laser sight and make your wand shoot faster projectiles.",
+        desc = "Apply a laser sight and make your wand shoot faster and more accurate projectiles.",
         actionid = "",
         sprite = "mods/tales_of_kupoli/files/entities/alterants/sniperkit/alterant.png",
         sprite_inhand = "mods/tales_of_kupoli/files/entities/alterants/sniperkit/alterant_inhand.png",
@@ -26,7 +26,18 @@ alterants = {
             local x, y = EntityGetTransform(weapon)
             local sniperbeam = EntityLoad("mods/tales_of_kupoli/files/entities/alterants/sniperkit/sniperbeam.xml", x, y)
             EntityAddChild(weapon, sniperbeam)
-            ComponentObjectSetValue2(EntityGetFirstComponentIncludingDisabled(weapon, "AbilityComponent") or 0, "gun_config", "speed_multiplier", 1.4)
+            local speed = ComponentObjectGetValue2(EntityGetFirstComponentIncludingDisabled(weapon, "AbilityComponent") or 0, "gun_config", "speed_multiplier") or 0
+            local spread = ComponentObjectGetValue2(EntityGetFirstComponentIncludingDisabled(weapon, "AbilityComponent") or 0, "gun_config", "spread_degrees") or 0
+            spread = spread - 3
+            if spread < 0 then
+                spread = 0
+            end
+            if speed == nil then
+                speed = 1
+            end
+            speed = speed + 0.4
+            omponentObjectSetValue2(EntityGetFirstComponentIncludingDisabled(weapon, "AbilityComponent") or 0, "gun_config", "speed_multiplier", speed)
+            omponentObjectSetValue2(EntityGetFirstComponentIncludingDisabled(weapon, "AbilityComponent") or 0, "gun_config", "spread_degrees", spread)
         end,
     },
 }

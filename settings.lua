@@ -68,6 +68,13 @@ mod_settings = {
         value_default = false,
         scope = MOD_SETTING_SCOPE_RUNTIME,
 	},
+    {
+		id = "testing",
+        ui_name = "TESTING",
+        ui_description = "TESTING",
+        value_default = false,
+        scope = MOD_SETTING_SCOPE_RUNTIME,
+	},
 }
 
 function ModSettingsUpdate( init_scope )

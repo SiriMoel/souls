@@ -1,5 +1,6 @@
 dofile_once("data/scripts/lib/utilities.lua")
 dofile_once("data/scripts/perks/perk.lua")
+dofile_once("mods/tales_of_kupoli/files/alterants.lua")
 
 function death( damage_type_bit_field, damage_message, entity_thats_responsible, drop_items )
 	local entity = GetUpdatedEntityID()
@@ -9,7 +10,11 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 
     local target = ""
 
-    local pool = { "MANA_REDUCE" }
+    local pool = { "MANA_REDUCE", }
+
+    local alterantspool = {
+        "HOMING_RAG",
+    }
 
     if ModIsEnabled("copis_things") then
         local copispells = {
@@ -25,7 +30,15 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 
     target = pool[math.random(1, #pool)]
 
-    if math.random(1, 7) == 3 then
+    if math.random(1, 5) == 3 then
         CreateItemActionEntity( target, x , y )
+    end
+
+    local doalterant = math.random(1, 6)
+    if ModSettingGet( "tales_of_kupoli.testing" ) then
+        doalterant = 3
+    end
+    if doalterant == 3 then
+        SpawnAlterant(alterantspool[math.random(1,#alterantspool)], x, y)
     end
 end

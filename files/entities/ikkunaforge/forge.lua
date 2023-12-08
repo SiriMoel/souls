@@ -1,5 +1,6 @@
 dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
 dofile_once("mods/tales_of_kupoli/files/alterants.lua")
+dofile_once("data/scripts/gun/procedural/gun_action_utils.lua")
 
 local forge = GetUpdatedEntityID()
 local x, y = EntityGetTransform(forge)
@@ -17,11 +18,25 @@ for i,v in ipairs(targets) do
     local alterant_id = ComponentGetValue2(comp_alterant, "value_string")
     stored_alterants_string = stored_alterants_string .. alterant_id .. ","
     ComponentSetValue2(comp_stored_alterants, "value_string", stored_alterants_string)
+    if ModSettingGet( "tales_of_kupoli.testing" ) then
+        GamePrint(stored_alterants_string)
+    end
     EntityKill(v)
     GamePrint("Alterant stored!")
 end
 
 if wand ~= nil then
+    local comp_applied_alterants = EntityGetFirstComponentIncludingDisabled(forge, "VariableStorageComponent", "applied_alterants") 
+    or EntityAddComponent2(wand, "VariableStorageComponent", {
+        _tags="applied_alterants",
+        name="applied_alterants",
+        value_string="",
+    })
+    local applied_alterants = {}
+    local applied_alterants_string = ComponentGetValue2(comp_stored_alterants, "value_string")
+    for i in string.gmatch(applied_alterants_string, '[^,]+') do
+        table.insert(applied_alterants, i)
+    end
     for i in string.gmatch(stored_alterants_string, '[^,]+') do
         table.insert(stored_alterants, i)
     end
@@ -33,20 +48,37 @@ if wand ~= nil then
                 alterant = vv
             end
         end
-        EntityAddComponent2(wand, "SpriteComponent", {
-            _enabled="1",
-            _tags="enabled_in_hand,enabled_in_world",
-            offset_x=4,
-		    offset_y=4,
-		    image_file=alterant.sprite_onwand,
-        })
-        alterant.func_apply(wand)
+        --if table.contains(applied_alterants, alterant.id) == false then
+            EntityAddComponent2(wand, "SpriteComponent", {
+                _enabled="1",
+                _tags="enabled_in_hand,enabled_in_world",
+                offset_x=4,
+                offset_y=4,
+                image_file=alterant.sprite_onwand,
+            })
+            if alterant.actionid ~= "" then
+                AddGunActionPermanent(wand, alterant.actionid)
+            end
+            alterant.func_apply(wand)
+            GamePrint( alterant.name .. " applied!")
+            table.insert(applied_alterants, alterant.id)
+        --else
+            --GamePrint(alterant.name .. " has already been applied to that wand. Silly!")
+        --end
     end
     stored_alterants = {}
     stored_alterants_string = ""
     for i,v in ipairs(stored_alterants) do
         stored_alterants_string = stored_alterants_string .. "," .. v
     end
-    GamePrint("Alterant applied!")
+    applied_alterants_string = ""
+    for i,v in ipairs(applied_alterants) do
+        applied_alterants_string = applied_alterants_string .. "," .. v
+    end
+    if ModSettingGet( "tales_of_kupoli.testing" ) then
+        GamePrint(applied_alterants_string)
+    end
+    GamePrint("Forge complete!")
     ComponentSetValue2(comp_stored_alterants, "value_string", stored_alterants_string)
+    ComponentSetValue2(comp_applied_alterants, "value_string", applied_alterants_string)
 end

@@ -297,6 +297,38 @@ local a = {
 			add_projectile("mods/tales_of_kupoli/files/entities/items/hiisipoisongun/projectile.xml")
 		end,
 	},
+	{ -- ALTERANT
+		id          = "ALTERANT_POISONER_KIT", 
+		name 		= "Alterant: Poisoner Kit",
+		description = "",
+		sprite 		= "mods/tales_of_kupoli/files/entities/alterants/alterant_ui_spell.png", --"mods/tales_of_kupoli/files/entities/alterants/poisonerkit/alterant_ui.png",
+		type 		= ACTION_TYPE_MODIFIER,
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 0,
+		mana = 0,
+		action 		= function()
+			c.game_effect_entities = c.game_effect_entities .. "data/entities/misc/effect_apply_poison.xml,"
+			c.trail_material = c.trail_material .. "poison,"
+			c.trail_material_amount = c.trail_material_amount + 12
+			draw_actions( 1, true )
+		end,
+	},
+	{ -- ALTERANT
+		id          = "ALTERANT_HOMING_RAG",
+		name 		= "Alterant: Rag of Homing",
+		description = "",
+		sprite 		= "mods/tales_of_kupoli/files/entities/alterants/alterant_ui_spell.png", --"mods/tales_of_kupoli/files/entities/alterants/homingrag/alterant_ui.png",
+		type 		= ACTION_TYPE_MODIFIER,
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 0,
+		mana = 0,
+		action 		= function()
+			c.extra_entities = c.extra_entities .. "data/entities/misc/homing_accelerating.xml,"
+			draw_actions( 1, true )
+		end,
+	},
 }
 
 for i,v in ipairs(a) do

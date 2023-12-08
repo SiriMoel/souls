@@ -36,8 +36,53 @@ alterants = {
                 speed = 1
             end
             speed = speed + 0.4
-            omponentObjectSetValue2(EntityGetFirstComponentIncludingDisabled(weapon, "AbilityComponent") or 0, "gun_config", "speed_multiplier", speed)
-            omponentObjectSetValue2(EntityGetFirstComponentIncludingDisabled(weapon, "AbilityComponent") or 0, "gun_config", "spread_degrees", spread)
+            ComponentObjectSetValue2(EntityGetFirstComponentIncludingDisabled(weapon, "AbilityComponent") or 0, "gun_config", "speed_multiplier", speed)
+            ComponentObjectSetValue2(EntityGetFirstComponentIncludingDisabled(weapon, "AbilityComponent") or 0, "gun_config", "spread_degrees", spread)
+        end,
+    },
+    {
+        id = "SHOTGUN_KIT",
+        name = "Shotgun Kit",
+        desc = "Apply an extra barrel to your wand.",
+        actionid = "",
+        sprite = "mods/tales_of_kupoli/files/entities/alterants/shotgunkit/alterant.png",
+        sprite_inhand = "mods/tales_of_kupoli/files/entities/alterants/shotgunkit/alterant_inhand.png",
+        sprite_ui = "mods/tales_of_kupoli/files/entities/alterants/shotgunkit/alterant_ui.png",
+        sprite_onwand = "mods/tales_of_kupoli/files/entities/alterants/shotgunkit/alterant_onwand.png",
+        func_apply = function(weapon)
+            local x, y = EntityGetTransform(weapon)
+            local spread = ComponentObjectGetValue2(EntityGetFirstComponentIncludingDisabled(weapon, "AbilityComponent") or 0, "gun_config", "spread_degrees") or 0
+            local spellspercast = ComponentObjectGetValue2(EntityGetFirstComponentIncludingDisabled(weapon, "AbilityComponent") or 0, "gun_config", "actions_per_round") or 0
+            spread = spread + 3
+            spellspercast = spellspercast + 1
+            ComponentObjectSetValue2(EntityGetFirstComponentIncludingDisabled(weapon, "AbilityComponent") or 0, "gun_config", "spread_degrees", spread)
+            ComponentObjectSetValue2(EntityGetFirstComponentIncludingDisabled(weapon, "AbilityComponent") or 0, "gun_config", "actions_per_round", spellspercast)
+        end,
+    },
+    {
+        id = "POISONER_KIT",
+        name = "Poisoner Kit",
+        desc = "Shoot a trail of poison.",
+        actionid = "KUPOLI_ALTERANT_POISONER_KIT",
+        sprite = "mods/tales_of_kupoli/files/entities/alterants/poisonerkit/alterant.png",
+        sprite_inhand = "mods/tales_of_kupoli/files/entities/alterants/poisonerkit/alterant_inhand.png",
+        sprite_ui = "mods/tales_of_kupoli/files/entities/alterants/poisonerkit/alterant_ui.png",
+        sprite_onwand = "mods/tales_of_kupoli/files/entities/alterants/poisonerkit/alterant_onwand.png",
+        func_apply = function(weapon)
+            local x, y = EntityGetTransform(weapon)
+        end,
+    },
+    {
+        id = "HOMING_RAG",
+        name = "Rag of Homing",
+        desc = "The mages may want this back.",
+        actionid = "KUPOLI_ALTERANT_HOMING_RAG",
+        sprite = "mods/tales_of_kupoli/files/entities/alterants/homingrag/alterant.png",
+        sprite_inhand = "mods/tales_of_kupoli/files/entities/alterants/homingrag/alterant_inhand.png",
+        sprite_ui = "mods/tales_of_kupoli/files/entities/alterants/homingrag/alterant_ui.png",
+        sprite_onwand = "mods/tales_of_kupoli/files/entities/alterants/homingrag/alterant_onwand.png",
+        func_apply = function(weapon)
+            local x, y = EntityGetTransform(weapon)
         end,
     },
 }

@@ -95,6 +95,18 @@ local dropdoers = {
         path = "data/entities/animals/lukki/lukki_dark.xml",
         script = "mods/tales_of_kupoli/files/scripts/death/dark_lukki.lua",
     },
+    {
+        path = "data/entities/animals/goblin_bomb.xml",
+        script = "mods/tales_of_kupoli/files/scripts/death/goblin_bomb.lua",
+    },
+    {
+        path = "data/entities/animals/fish.xml",
+        script = "mods/tales_of_kupoli/files/scripts/death/fish.lua",
+    },
+    {
+        path = "data/entities/animals/fish_large.xml",
+        script = "mods/tales_of_kupoli/files/scripts/death/fish_large.lua",
+    },
 }
 
 for i,v in ipairs(dropdoers) do

@@ -329,6 +329,71 @@ local a = {
 			draw_actions( 1, true )
 		end,
 	},
+	{ -- ALTERANT
+		id          = "ALTERANT_RANDOM_RAG",
+		name 		= "Alterant: Rag of Risk",
+		description = "",
+		sprite 		= "mods/tales_of_kupoli/files/entities/alterants/alterant_ui_spell.png",
+		type 		= ACTION_TYPE_MODIFIER,
+		recursive	= true,
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 0,
+		mana = 0,
+		action 		= function( recursion_level, iteration )
+			SetRandomSeed( GameGetFrameNum() + #deck, GameGetFrameNum() + 133 )
+			local rnd = Random( 1, #actions )
+			local data = actions[rnd]
+			
+			local safety = 0
+			local rec = check_recursion( data, recursion_level )
+			
+			while ( safety < 100 ) and ( ( data.type ~= 2 ) or ( rec == -1 ) ) do
+				rnd = Random( 1, #actions )
+				data = actions[rnd]
+				rec = check_recursion( data, recursion_level )
+				
+				safety = safety + 1
+			end
+			
+---@diagnostic disable-next-line: redundant-parameter
+			data.action( rec )
+			draw_actions( 1, true )
+		end,
+	},
+	{ -- ALTERANT
+		id          = "ALTERANT_MAGIC_GLUE",
+		name 		= "Alterant: Glue Kit",
+		description = "",
+		sprite 		= "mods/tales_of_kupoli/files/entities/alterants/alterant_ui_spell.png",
+		type 		= ACTION_TYPE_MODIFIER,
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 0,
+		mana = 0,
+		action 		= function()
+			c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/alterants/magicglue/magicglue.xml,"
+			c.bounces = c.bounces + 3
+			draw_actions( 1, true )
+		end,
+	},
+	{ -- ALTERANT
+		id          = "ALTERANT_FIRECRACKER",
+		name 		= "Alterant: Firecracker",
+		description = "",
+		sprite 		= "mods/tales_of_kupoli/files/entities/alterants/alterant_ui_spell.png",
+		related_projectiles	= {"data/entities/projectiles/deck/glitter_bomb.xml"},
+		type 		= ACTION_TYPE_MODIFIER,
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 0,
+		mana = 0,
+		custom_xml_file = "data/entities/misc/custom_cards/glitter_bomb.xml",
+		action 		= function()
+			add_projectile("data/entities/projectiles/deck/glitter_bomb.xml")
+			draw_actions( 1, true )
+		end,
+	},
 }
 
 for i,v in ipairs(a) do

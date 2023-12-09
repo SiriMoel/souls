@@ -85,6 +85,71 @@ alterants = {
             local x, y = EntityGetTransform(weapon)
         end,
     },
+    {
+        id = "RANDOM_RAG",
+        name = "Rag of Risk",
+        desc = "The mages may want this back.",
+        actionid = "KUPOLI_ALTERANT_RANDOM_RAG",
+        sprite = "mods/tales_of_kupoli/files/entities/alterants/randomrag/alterant.png",
+        sprite_inhand = "mods/tales_of_kupoli/files/entities/alterants/randomrag/alterant_inhand.png",
+        sprite_ui = "mods/tales_of_kupoli/files/entities/alterants/randomrag/alterant_ui.png",
+        sprite_onwand = "mods/tales_of_kupoli/files/entities/alterants/randomrag/alterant_onwand.png",
+        func_apply = function(weapon)
+            local x, y = EntityGetTransform(weapon)
+        end,
+    },
+    {
+        id = "MAGIC_GLUE",
+        name = "Glue Kit",
+        desc = "Sticky...",
+        actionid = "KUPOLI_ALTERANT_MAGIC_GLUE",
+        sprite = "mods/tales_of_kupoli/files/entities/alterants/magicglue/alterant.png",
+        sprite_inhand = "mods/tales_of_kupoli/files/entities/alterants/magicglue/alterant_inhand.png",
+        sprite_ui = "mods/tales_of_kupoli/files/entities/alterants/magicglue/alterant_ui.png",
+        sprite_onwand = "mods/tales_of_kupoli/files/entities/alterants/magicglue/alterant_onwand.png",
+        func_apply = function(weapon)
+            local x, y = EntityGetTransform(weapon)
+        end,
+    },
+    {
+        id = "FIRECRACKER",
+        name = "Firecracker",
+        desc = "Fun and festive!",
+        actionid = "KUPOLI_ALTERANT_FIRECRACKER",
+        sprite = "mods/tales_of_kupoli/files/entities/alterants/firecracker/alterant.png",
+        sprite_inhand = "mods/tales_of_kupoli/files/entities/alterants/firecracker/alterant_inhand.png",
+        sprite_ui = "mods/tales_of_kupoli/files/entities/alterants/firecracker/alterant_ui.png",
+        sprite_onwand = "mods/tales_of_kupoli/files/entities/alterants/firecracker/alterant_onwand.png",
+        func_apply = function(weapon)
+            local x, y = EntityGetTransform(weapon)
+        end,
+    },
+    {
+        id = "FISH",
+        name = "Fish",
+        desc = "",
+        actionid = "KUPOLI_ALTERANT_FIRECRACKER",
+        sprite = "mods/tales_of_kupoli/files/entities/alterants/fish/alterant.png",
+        sprite_inhand = "mods/tales_of_kupoli/files/entities/alterants/fish/alterant_inhand.png",
+        sprite_ui = "mods/tales_of_kupoli/files/entities/alterants/fish/alterant_ui.png",
+        sprite_onwand = "mods/tales_of_kupoli/files/entities/alterants/fish/alterant_onwand.png",
+        func_apply = function(weapon)
+            GameAddFlagRun("kupoli_alterant_fish_applied")
+        end,
+    },
+    {
+        id = "FISH_LARGE",
+        name = "Fish",
+        desc = "",
+        actionid = "KUPOLI_ALTERANT_FIRECRACKER",
+        sprite = "mods/tales_of_kupoli/files/entities/alterants/fishlarge/alterant.png",
+        sprite_inhand = "mods/tales_of_kupoli/files/entities/alterants/fishlarge/alterant_inhand.png",
+        sprite_ui = "mods/tales_of_kupoli/files/entities/alterants/fishlarge/alterant_ui.png",
+        sprite_onwand = "mods/tales_of_kupoli/files/entities/alterants/fishlarge/alterant_onwand.png",
+        func_apply = function(weapon)
+            GameAddFlagRun("kupoli_alterant_fish_large_applied")
+        end,
+    },
 }
 
 function SpawnAlterant(id, x, y)

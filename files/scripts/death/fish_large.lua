@@ -8,16 +8,11 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 
 	SetRandomSeed(x, y)
 
-	local r = math.random(1,3)
-	if r == 2 then
-		EntityLoad("mods/tales_of_kupoli/files/entities/items/hiisigluegun/weapon.xml", x, y-20)
-	end
-
-	local doalterant = math.random(1, 5)
+	local doalterant = math.random(1, 4)
     if ModSettingGet( "tales_of_kupoli.testing" ) then
         doalterant = 3
     end
     if doalterant == 3 then
-        SpawnAlterant("MAGIC_GLUE", x, y)
+        SpawnAlterant("FISH_LARGE", x, y)
     end
 end

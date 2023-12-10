@@ -150,6 +150,19 @@ alterants = {
             GameAddFlagRun("kupoli_alterant_fish_large_applied")
         end,
     },
+    {
+        id = "TELE_RAG",
+        name = "Rag of Relocation",
+        desc = "The mages may want this back.",
+        actionid = "KUPOLI_ALTERANT_TELE_RAG",
+        sprite = "mods/tales_of_kupoli/files/entities/alterants/telerag/alterant.png",
+        sprite_inhand = "mods/tales_of_kupoli/files/entities/alterants/telerag/alterant_inhand.png",
+        sprite_ui = "mods/tales_of_kupoli/files/entities/alterants/telerag/alterant_ui.png",
+        sprite_onwand = "mods/tales_of_kupoli/files/entities/alterants/telerag/alterant_onwand.png",
+        func_apply = function(weapon)
+            local x, y = EntityGetTransform(weapon)
+        end,
+    },
 }
 
 function SpawnAlterant(id, x, y)

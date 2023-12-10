@@ -394,6 +394,28 @@ local a = {
 			draw_actions( 1, true )
 		end,
 	},
+	{ -- ALTERANT
+		id          = "ALTERANT_TELE_RAG",
+		name 		= "Alterant: Rag of Relocation",
+		description = "",
+		sprite 		= "mods/tales_of_kupoli/files/entities/alterants/alterant_ui_spell.png", 
+		type 		= ACTION_TYPE_MODIFIER,
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 0,
+		mana = 0,
+		action 		= function()
+			c.extra_entities = c.extra_entities .. "data/entities/misc/homing_area.xml,"
+			
+			if ( c.speed_multiplier >= 20 ) then
+				c.speed_multiplier = math.min( c.speed_multiplier, 20 )
+			elseif ( c.speed_multiplier < 0 ) then
+				c.speed_multiplier = 0
+			end
+			
+			draw_actions( 1, true )
+		end,
+	},
 }
 
 for i,v in ipairs(a) do

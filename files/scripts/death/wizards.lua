@@ -15,6 +15,7 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
     local alterantspool = {
         "HOMING_RAG",
         "RANDOM_RAG",
+        "TELE_RAG",
     }
 
     if ModIsEnabled("copis_things") then

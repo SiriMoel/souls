@@ -43,11 +43,11 @@ function spawn_sunbook(x, y)
 end
 
 function ikkunaforge(x, y)
-	EntityLoad("mods/tales_of_kupoli/files/entities/ikkunaforge/ikkunaforge.xml", x, y)
+	--EntityLoad("mods/tales_of_kupoli/files/entities/ikkunaforge/ikkunaforge.xml", x, y)
 end
 
 function spawn_instructions(x, y)
-	EntityLoad("mods/tales_of_kupoli/files/entities/ikkunaforge/instructions.xml", x, y)
+	--EntityLoad("mods/tales_of_kupoli/files/entities/ikkunaforge/instructions.xml", x, y)
 end
 
 function spawn_orb(x, y)

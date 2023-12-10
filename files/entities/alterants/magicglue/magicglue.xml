@@ -49,4 +49,5 @@
 		trail_gap="6"
 		is_emitting="1" >
 	</ParticleEmitterComponent>
+
 </Entity>

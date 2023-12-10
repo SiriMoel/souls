@@ -166,6 +166,7 @@ alterants = {
 }
 
 function SpawnAlterant(id, x, y)
+    --[[
     local a = EntityLoad("mods/tales_of_kupoli/files/entities/alterants/alterant.xml", x, y)
     for i,v in ipairs(alterants) do
         if v.id == id then
@@ -185,4 +186,27 @@ function SpawnAlterant(id, x, y)
             })
         end
     end
+    ]]--
+end
+
+function AddAlterant(wand, a)
+    --[[local alterant = {}
+    for i,v in ipairs(alterants) do
+        if v.id == a then
+            alterant = v
+        end
+    end
+
+    EntityAddComponent2(wand, "SpriteComponent", {
+        _enabled="1",
+        _tags="enabled_in_hand,enabled_in_world",
+        offset_x=4,
+        offset_y=4,
+        image_file=alterant.sprite_onwand,
+    })
+    if alterant.actionid ~= "" then
+        AddGunActionPermanent(wand, alterant.actionid)
+    end
+    alterant.func_apply(wand)
+    table.insert(applied_alterants, alterant.id)]]--
 end

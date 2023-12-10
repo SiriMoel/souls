@@ -297,7 +297,7 @@ local a = {
 			add_projectile("mods/tales_of_kupoli/files/entities/items/hiisipoisongun/projectile.xml")
 		end,
 	},
-	{ -- ALTERANT
+	--[[{ -- ALTERANT
 		id          = "ALTERANT_POISONER_KIT", 
 		name 		= "Alterant: Poisoner Kit",
 		description = "",
@@ -355,8 +355,7 @@ local a = {
 				
 				safety = safety + 1
 			end
-			
----@diagnostic disable-next-line: redundant-parameter
+	
 			data.action( rec )
 			draw_actions( 1, true )
 		end,
@@ -413,6 +412,37 @@ local a = {
 				c.speed_multiplier = 0
 			end
 			
+			draw_actions( 1, true )
+		end,
+	},]]--
+	{
+		id = "SNIPER_BEAM",
+		name = "Sniper Laser Sight",
+		description = "",
+        sprite = "mods/tales_of_kupoli/files/spell_icons/sniper_beam.png",
+		type = ACTION_TYPE_PASSIVE,
+		spawn_level                       = "1,2,3",
+		spawn_probability                 = "0.7,0.7,0.7",
+		price = 0,
+		mana = 0,
+		custom_xml_file = "mods/tales_of_kupoli/files/entities/misc/sniper_sight.xml",
+		action = function()
+		end,
+	},
+	{
+		id          = "MAGIC_GLUE",
+		name 		= "Magic Glue",
+		description = "It is magic and it is glue",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/magic_glue.png",
+		type 		= ACTION_TYPE_MODIFIER,
+		spawn_level                       = "2,3,4,5",
+		spawn_probability                 = "0.6,0.2,0.2,0.6",
+		price = 170,
+		mana = 50,
+		action 		= function()
+			c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/alterants/magicglue/magicglue.xml,"
+			c.speed_multiplier = c.speed_multiplier * 0.75
+			c.bounces = c.bounces + 5
 			draw_actions( 1, true )
 		end,
 	},

@@ -32,6 +32,12 @@ SetFileContent("data/entities/items/pickup/sun/newsun.xml", "newsun.xml")
 SetFileContent("data/entities/items/pickup/sun/newsun_dark.xml", "newsun_dark.xml")
 SetFileContent("data/biome/orbrooms/orbroom_07.xml", "orbroom_07.xml")
 
+SetFileContent("data/entities/projectiles/deck/cloud_thunder.xml", "cloud_thunder.xml")
+SetFileContent("data/entities/projectiles/deck/cloud_blood.xml", "cloud_blood.xml")
+SetFileContent("data/entities/projectiles/deck/cloud_oil.xml", "cloud_oil.xml")
+SetFileContent("data/entities/projectiles/deck/cloud_water.xml", "cloud_water.xml")
+SetFileContent("data/entities/projectiles/deck/cloud_acid.xml", "cloud_acid.xml")
+
 --drops etc
 local dropdoers = {
     --hiisi
@@ -106,6 +112,10 @@ local dropdoers = {
     {
         path = "data/entities/animals/fish_large.xml",
         script = "mods/tales_of_kupoli/files/scripts/death/fish_large.lua",
+    },
+    {
+        path = "data/entities/animals/shaman.xml",
+        script = "mods/tales_of_kupoli/files/scripts/death/shaman.lua",
     },
 }
 
@@ -195,7 +205,8 @@ function OnPlayerSpawned( player )
     end
 
     if ModSettingGet( "tales_of_kupoli.mina_pearl" ) then
-        EntityLoad("mods/tales_of_kupoli/files/entities/items/minapearl/mina_pearl.xml", px, py)
+        EntityLoad("mods/tales_of_kupoli/files/entities/items/minapearl/mina_pearl.xml", px + 5, py)
+        --EntityLoad("mods/tales_of_kupoli/files/entities/items/forgewand/weapon.xml", px - 5, py)
     end
     
     if ModSettingGet( "tales_of_kupoli.spawn_with_soul_spells" ) then

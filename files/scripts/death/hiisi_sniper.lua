@@ -24,6 +24,6 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 
 	local rrr = math.random(1,6)
 	if rrr == 2 then
-		CreateItemActionEntity( "SNIPER_BEAM", x , y )
+		CreateItemActionEntity( "KUPOLI_SNIPER_BEAM", x , y )
 	end
 end

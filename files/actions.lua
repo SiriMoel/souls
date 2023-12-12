@@ -167,7 +167,7 @@ local a = {
 		name 		= "Soul Blast",
 		description = "Expels a soul in the form of a magic missile. Adapts to whichever soul was consumed!",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_blast.png",
-		related_projectiles	= {"mods/moles_souls/files/entities/projectiles/soul_blast.xml"},
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/soul_blast/soul_blast.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
 		spawn_level                       = "2,3,4,5,6",
 		spawn_probability                 = "0.8,1,1,1,1",
@@ -444,6 +444,43 @@ local a = {
 			c.speed_multiplier = c.speed_multiplier * 0.75
 			c.bounces = c.bounces + 5
 			draw_actions( 1, true )
+		end,
+	},
+	{
+		id          = "WORM_ENHANCER",
+		name 		= "???",
+		description = "Hello Jättimato",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/worm_enhancer.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/worm_enhancer/projectile.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		spawn_level                       = "", 
+		spawn_probability                 = "",
+		price = 0,
+		mana = 100,
+		action 		= function()
+			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/worm_enhancer/projectile.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 20
+			shot_effects.recoil_knockback = 40.0
+		end,
+	},
+	{
+		id          = "SUMMON_RAINWORM",
+		name 		= "Call forth the Glass Wyrm",
+		description = "there but for the grace of God go I",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/summon_rainworm.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/worm_enhancer/projectile.xml"},
+		never_unlimited		= true,
+		type 		= ACTION_TYPE_UTILITY,
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 0,
+		mana = 700,
+		max_uses    = 1,
+		custom_xml_file = "mods/tales_of_kupoli/files/entities/animals/boss_rainworm/spell/card.xml",
+		action 		= function()
+			add_projectile("mods/tales_of_kupoli/files/entities/animals/boss_rainworm/spell/spell.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 100
+			current_reload_time = current_reload_time + 60
 		end,
 	},
 }

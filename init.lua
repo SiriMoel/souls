@@ -171,9 +171,36 @@ end
 local content = ModTextFileGetContent("data/biome/_biomes_all.xml")
 local xml = nxml.parse(content) -- sun lab biome is unused
 xml:add_children(nxml.parse_many[[
-    <Biome height_index="0" color="ff9dceb9" biome_filename="mods/tales_of_kupoli/files/biome/sunlab/sunlab.xml" />
 ]])
 ModTextFileSetContent("data/biome/_biomes_all.xml", tostring(xml))
+--[[
+        <Biome height_index="0" color="ff9dceb9" biome_filename="mods/tales_of_kupoli/files/biome/sunlab/sunlab.xml" />
+]]
+
+-- pixel scenes, thanks graham! go play graham's things RIGHT NOW!!!
+local function add_scene(table)
+	local biome_path = ModIsEnabled("noitavania") and "mods/noitavania/data/biome/_pixel_scenes.xml" or "data/biome/_pixel_scenes.xml"
+	local content = ModTextFileGetContent(biome_path)
+	local string = "<mBufferedPixelScenes>"
+	local worldsize = ModTextFileGetContent("data/compatibilitydata/worldsize.txt") or 35840
+	for i = 1, #table do
+		string = string .. [[<PixelScene pos_x="]] .. table[i][1] .. [[" pos_y="]] .. table[i][2] .. [[" just_load_an_entity="]] .. table[i][3] .. [["/>]]
+		if table[i][4] then
+			-- make things show up in first 2 parallel worlds
+			-- hopefully this won't cause too much lag when starting a run
+			string = string .. [[<PixelScene pos_x="]] .. table[i][1] + worldsize .. [[" pos_y="]] .. table[i][2] .. [[" just_load_an_entity="]] .. table[i][3] .. [["/>]]
+			string = string .. [[<PixelScene pos_x="]] .. table[i][1] - worldsize .. [[" pos_y="]] .. table[i][2] .. [[" just_load_an_entity="]] .. table[i][3] .. [["/>]]
+			string = string .. [[<PixelScene pos_x="]] .. table[i][1] + worldsize * 2 .. [[" pos_y="]] .. table[i][2] .. [[" just_load_an_entity="]] .. table[i][3] .. [["/>]]
+			string = string .. [[<PixelScene pos_x="]] .. table[i][1] - worldsize * 2 .. [[" pos_y="]] .. table[i][2] .. [[" just_load_an_entity="]] .. table[i][3] .. [["/>]]
+		end
+	end
+	content = content:gsub("<mBufferedPixelScenes>", string)
+	ModTextFileSetContent(biome_path, content)
+end
+
+add_scene({
+	{0, -70, "mods/tales_of_kupoli/files/biome/rainaltar/rainaltar.xml", true},
+}) -- -4500, -7000
 
 -- player
 function OnPlayerSpawned( player )

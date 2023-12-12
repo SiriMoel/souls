@@ -1,0 +1,8 @@
+<entity>
+
+    <LuaComponent
+        script_source_file="mods/tales_of_kupoli/files/biome/rainaltar/rainaltar.lua"
+        execute_on_added="1"
+    ></LuaComponent>
+
+</entity>

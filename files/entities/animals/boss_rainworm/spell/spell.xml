@@ -1,0 +1,24 @@
+<Entity tags="">
+	<InheritTransformComponent />
+	
+	<LifetimeComponent
+		lifetime="300"
+		>
+	</LifetimeComponent>
+	
+	<LuaComponent 
+        _enabled="1" 
+        execute_every_n_frame="20"
+        script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_rainworm/spell/spawn.lua"
+        remove_after_executed="1"
+	>
+    </LuaComponent>
+
+    <LoadEntitiesComponent
+		entity_file="data/entities/projectiles/remove_ground.xml"
+		count.min="1"
+		count.max="1"
+		kill_entity="0"
+		timeout_frames="2">
+	</LoadEntitiesComponent>
+</Entity>

@@ -199,7 +199,7 @@ local function add_scene(table)
 end
 
 add_scene({
-	{0, -70, "mods/tales_of_kupoli/files/biome/rainaltar/rainaltar.xml", true},
+	{-4500, -7000, "mods/tales_of_kupoli/files/biome/rainaltar/rainaltar.xml", true},
 }) -- -4500, -7000
 
 -- player

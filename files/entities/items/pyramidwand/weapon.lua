@@ -3,6 +3,6 @@ dofile_once("data/scripts/gun/procedural/gun_action_utils.lua")
 
 local weapon = GetUpdatedEntityID()
 
-AddGunActionPermanent( weapon, "NOLLA" )
-AddGunActionPermanent( weapon, "TELEPORT_PROJECTILE_SHORT" )
+--AddGunActionPermanent( weapon, "NOLLA" )
+AddGunAction( weapon, "TELEPORT_PROJECTILE" )
 AddGunActionPermanent( weapon, "RECHARGE" )

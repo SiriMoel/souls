@@ -21,7 +21,6 @@ function GetPlayer()
     return player
 end
 
-PLAYER = GetPlayer() -- this seems bugged, just use GetPlayer()
 
 function table.contains(table, element)
     for _, value in pairs(table) do
@@ -43,18 +42,10 @@ function IsInRadiusOf(xa, ya, xb, yb, radius) -- i dont think this works, isnt n
     return false
 end
 
+---@param entity_id integer
+---@param material_name string
+---@return number
 function GetAmountOfMaterialInInventory(entity_id, material_name) -- stolen from https://github.com/Priskip/purgatory
-    --[[
-    Description: Returns the amount of material in the material inventory component of the specified entity
-    Usage:
-    count = GetAmountOfMaterialInInventory(entity_id, material_name)
-    Input Types:
-    entity_id = [num] id of the entity that has the material inventory component that you wish to add material to
-    material_name = [string] material id string of the material you wish to add. See function CellFactory_GetName( material_id:int ) in "lua_api_documentation.txt" for more info
-        
-    Return Types:
-    amount = [num]
-    ]]
     local amount = 0
     local mat_inv_comp = EntityGetFirstComponentIncludingDisabled(entity_id, "MaterialInventoryComponent") or 0
     local count_per_material_type = ComponentGetValue2(mat_inv_comp, "count_per_material_type")

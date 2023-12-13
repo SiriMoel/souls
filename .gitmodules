@@ -2,6 +2,3 @@
 	path = lib/gusgui
 	url = https://github.com/ofoxsmith/gusgui.git
 	
-[submodule "lib/Noitilities"]
-	path = lib/Noitilities
-	url = https://github.com/Copious-Modding-Industries/Noitilities.git

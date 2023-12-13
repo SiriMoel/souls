@@ -1,5 +1,4 @@
 dofile_once("mods/tales_of_kupoli/lib/gusgui/gusgui.lua").init("mods/tales_of_kupoli/lib/gusgui")
---dofile_once("mods/tales_of_kupoli/lib/Noitilities/NL_Init.lua").init("mods/tales_of_kupoli/files/lib/Noitilities")
 --ModMagicNumbersFileAdd( "mods/tales_of_kupoli/files/magic_numbers.xml" )
 ModMaterialsFileAdd("mods/tales_of_kupoli/files/materials.xml")
 
@@ -7,7 +6,6 @@ dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
 dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
 --dofile_once("mods/tales_of_kupoli/files/scripts/molebiomes.lua")
 
---dofile_once("mods/tales_of_kupoli/lib/Noitilities/NT_ModuleLoader.lua").DofileModules({"GunPatch"})
 --PatchGunSystem()
 
 local nxml = dofile_once("mods/tales_of_kupoli/lib/nxml.lua")

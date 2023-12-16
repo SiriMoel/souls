@@ -483,6 +483,55 @@ local a = {
 			current_reload_time = current_reload_time + 60
 		end,
 	},
+	{
+		id          = "RANDOM_HOMING",
+		name 		= "Random Homing",
+		description = "Makes a projectile move towards your foes in a varying manner",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/random_homing.png",
+		sprite_unidentified = "data/ui_gfx/gun_actions/spread_reduce_unidentified.png",
+		spawn_requires_flag = "card_unlocked_pyramid",
+		type 		= ACTION_TYPE_MODIFIER,
+		spawn_level                       = "4,5,6,10",
+		spawn_probability                 = "0.3,0.1,0.1,0.5",
+		price = 130,
+		mana = 45,
+		action 		= function( recursion_level, iteration )
+			SetRandomSeed( GameGetFrameNum() + #deck, GameGetFrameNum() + 133 )
+			
+			local homingspell = ""
+			local pool = {
+				"data/entities/misc/homing_rotate.xml,",
+				"data/entities/misc/homing_accelerating.xml,",
+				"data/entities/misc/homing_short.xml,",
+				"data/entities/misc/homing.xml,",
+			}
+
+			homingspell = pool[math.random(1, #pool)]
+
+			c.extra_entities = c.extra_entities .. homingspell
+			c.extra_entities = c.extra_entities .. "data/entities/particles/tinyspark_white.xml,"
+		end,
+	},
+	{
+		id          = "LIGHT_BULLET_TIER_2",
+		name 		= "Large Spark Bolt",
+		description = "A not so weak but enchanting sparkling projectile",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/large_sparkbolt.png",
+		sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_unidentified.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/large_sparkbolt/proj.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		spawn_level                       = "2,3,4,5",
+		spawn_probability                 = "1,1,1,0.5",
+		price = 180,
+		mana = 15,
+		action 		= function()
+			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/large_sparkbolt/proj.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 10
+			c.screenshake = c.screenshake + 2
+			c.spread_degrees = c.spread_degrees - 1.0
+			c.damage_critical_chance = c.damage_critical_chance + 5
+		end,
+	},
 }
 
 for i,v in ipairs(a) do

@@ -22,12 +22,12 @@
             shuffle_deck_when_empty="0"
             deck_capacity="2"
 			actions_per_round="1"
-            reload_time="13"
-			speed_multiplier="1"
-			spread_degrees="3" >
+            reload_time="25"
+			speed_multiplier="1.3"
+			spread_degrees="1" >
         </gun_config>
         <gunaction_config 
-            fire_rate_wait="13" >
+            fire_rate_wait="25" >
         </gunaction_config>
     </AbilityComponent>
 	
@@ -40,6 +40,7 @@
     <Base file="data/entities/base_item.xml" >
         <ItemComponent
             item_name="Pyramid Sceptre"
+            play_hover_animation="1"
             remove_on_death="1"
             collect_nondefault_actions="1" >
         </ItemComponent>

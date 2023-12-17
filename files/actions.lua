@@ -427,6 +427,7 @@ local a = {
 		mana = 0,
 		custom_xml_file = "mods/tales_of_kupoli/files/entities/misc/sniper_sight.xml",
 		action = function()
+			draw_actions( 1, true )
 		end,
 	},
 	--[[{ -- buggy, and is in another mod anyways

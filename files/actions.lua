@@ -549,6 +549,24 @@ local a = {
 			c.fire_rate_wait = c.fire_rate_wait + 60
 		end,
 	},
+	{
+		id          = "BLOOD_TO_STEAM",
+		name 		= "Blood to steam",
+		description = "Makes any blood within a projectile's range turns into steam",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/blood_to_steam.png",
+		sprite_unidentified = "data/ui_gfx/gun_actions/explosive_projectile_unidentified.png",
+		related_extra_entities = { "mods/tales_of_kupoli/files/entities/misc/blood_to_steam.xml", "data/entities/particles/tinyspark_red.xml" },
+		type 		= ACTION_TYPE_MODIFIER,
+		spawn_level                       = "2,3,4",
+		spawn_probability                 = "0.3,0.3,0.3",
+		price = 80,
+		mana = 30,
+		action 		= function()
+			c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/misc/blood_to_steam.xml,data/entities/particles/tinyspark_red.xml,"
+			c.fire_rate_wait = c.fire_rate_wait + 10
+			draw_actions( 1, true )
+		end,
+	},
 }
 
 for i,v in ipairs(a) do

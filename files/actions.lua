@@ -429,7 +429,7 @@ local a = {
 		action = function()
 		end,
 	},
-	{
+	--[[{ -- buggy, and is in another mod anyways
 		id          = "MAGIC_GLUE",
 		name 		= "Magic Glue",
 		description = "It is magic and it is glue",
@@ -445,7 +445,7 @@ local a = {
 			c.bounces = c.bounces + 5
 			draw_actions( 1, true )
 		end,
-	},
+	},]]--
 	{
 		id          = "WORM_ENHANCER",
 		name 		= "???",

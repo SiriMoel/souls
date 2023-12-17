@@ -486,7 +486,7 @@ local a = {
 	{
 		id          = "RANDOM_HOMING",
 		name 		= "Random Homing",
-		description = "Makes a projectile move towards your foes in a varying manner",
+		description = "Makes a projectile move towards your foes in a random manner",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/random_homing.png",
 		sprite_unidentified = "data/ui_gfx/gun_actions/spread_reduce_unidentified.png",
 		spawn_requires_flag = "card_unlocked_pyramid",
@@ -504,12 +504,12 @@ local a = {
 				"data/entities/misc/homing_accelerating.xml,",
 				"data/entities/misc/homing_short.xml,",
 				"data/entities/misc/homing.xml,",
+				"data/entities/misc/homing_area.xml,",
 			}
 
 			homingspell = pool[math.random(1, #pool)]
 
-			c.extra_entities = c.extra_entities .. homingspell
-			c.extra_entities = c.extra_entities .. "data/entities/particles/tinyspark_white.xml,"
+			c.extra_entities = c.extra_entities .. homingspell .. "data/entities/particles/tinyspark_white.xml,"
 		end,
 	},
 	{

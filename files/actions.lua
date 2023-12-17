@@ -532,6 +532,23 @@ local a = {
 			c.damage_critical_chance = c.damage_critical_chance + 5
 		end,
 	},
+	{
+		id          = "WATER_ESSENCE_PROJ",
+		name 		= "Water Essence Shot",
+		description = "Converts nearby materials to lava upon landing",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/water_essence_proj.png",
+		sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_unidentified.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/items/essencewand_water/proj.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 250,
+		mana = 20,
+		action 		= function()
+			add_projectile("mods/tales_of_kupoli/files/entities/items/essencewand_water/proj.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 60
+		end,
+	},
 }
 
 for i,v in ipairs(a) do

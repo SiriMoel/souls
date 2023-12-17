@@ -80,7 +80,7 @@
 
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/mould/files/entities/items/hermitpistol/projectile.xml"
+		value_string="mods/tales_of_kupoli/files/entities/items/hiisipistol/projectile.xml"
         >
 	</VariableStorageComponent>
 </Entity>

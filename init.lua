@@ -93,6 +93,10 @@ local dropdoers = {
         path = "data/entities/animals/boss_wizard/boss_wizard.xml",
         script = "mods/tales_of_kupoli/files/scripts/death/grandmaster.lua",
     },
+    {
+        path = "data/entities/animals/boss_ghost/boss_ghost.xml",
+        script = "mods/tales_of_kupoli/files/scripts/death/boss_ghost.lua",
+    },
 
     --other
     {

@@ -4,7 +4,7 @@ local entity_id = GetUpdatedEntityID()
 local pos_x, pos_y = EntityGetTransform( entity_id )
 pos_y = pos_y - 4 -- offset to middle of character
 
-local range = 1200
+local range = 2000
 local indicator_distance = 20
 
 for _,sun_id in pairs(EntityGetInRadiusWithTag( pos_x, pos_y, range, "sun_new")) do

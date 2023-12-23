@@ -28,7 +28,7 @@ if soul == nil or soul == 0 then
 
     EntityKill(entity)
 else
-	if ModSettingGet( "moles_souls.say_consumed_soul" ) then
+	if ModSettingGet( "tales_of_kupoli.say_consumed_soul" ) then
 		GamePrint( "You have consumed a " .. soul .. " soul." )
 	end
 	

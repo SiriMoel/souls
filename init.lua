@@ -196,13 +196,14 @@ local function add_scene(table)
 	ModTextFileSetContent(biome_path, content)
 end
 
-add_scene({
+add_scene({ 
 	{-4500, -7000, "mods/tales_of_kupoli/files/biome/rainaltar/rainaltar.xml", true}, -- -4500, -7000
     {16165, -1790, "mods/tales_of_kupoli/files/entities/items/essencewand_earth/weapon.xml", true},
     {-14090, 360, "mods/tales_of_kupoli/files/entities/items/essencewand_fire/weapon.xml", true},
     {-13020, -5380, "mods/tales_of_kupoli/files/entities/items/essencewand_air/weapon.xml", true},
     {-14040, 13570, "mods/tales_of_kupoli/files/entities/items/essencewand_spirits/weapon.xml", true},
     {-5340, 16640, "mods/tales_of_kupoli/files/entities/items/essencewand_water/weapon.xml", true},
+    {4518, 805, "mods/tales_of_kupoli/files/sunbook/item/item.xml", true},
 })
 
 -- player

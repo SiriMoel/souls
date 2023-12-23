@@ -30,8 +30,9 @@ function spawn_potions( x, y ) end
 function spawn_wands( x, y ) end
 
 function init( x, y, w, h )
-	LoadPixelScene( "mods/tales_of_kupoli/files/biome/sunlab/orbroom.png", "mods/tales_of_kupoli/files/biome/sunlab/orbroom_visual.png", x, y, "mods/tales_of_kupoli/files/biome/sunlab/orbroom_background.png", true )
-	
+	--LoadPixelScene( "mods/tales_of_kupoli/files/biome/sunlab/orbroom.png", "mods/tales_of_kupoli/files/biome/sunlab/orbroom_visual.png", x, y, "mods/tales_of_kupoli/files/biome/sunlab/orbroom_background.png", true )
+	LoadPixelScene( "data/biome_impl/orbroom.png", "data/biome_impl/orbroom_visual.png", x, y, "data/biome_impl/orbroom_background.png", true )
+
 	EntityLoad( "data/entities/misc/orb_07_pitcheck_b.xml", x - 64, y + 256 )
 
 	LoadPixelScene( "mods/tales_of_kupoli/files/biome/sunlab/sunlab.png", "mods/tales_of_kupoli/files/biome/sunlab/sunlab_visual.png", x, y + 512, "mods/tales_of_kupoli/files/biome/sunlab/sunlab_background.png", true )
@@ -39,7 +40,7 @@ function init( x, y, w, h )
 end
 
 function spawn_sunbook(x, y)
-	EntityLoad("mods/tales_of_kupoli/files/sunbook/item/item.xml", x, y)
+	--EntityLoad("mods/tales_of_kupoli/files/sunbook/item/item.xml", x, y)
 end
 
 function ikkunaforge(x, y)

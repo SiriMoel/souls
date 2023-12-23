@@ -184,14 +184,13 @@ local a = {
 		name 		= "Soul Speed",
 		description = "Increases the power and speed of your spells at the cost of a soul.",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_speed.png",
-		related_extra_entities = { "mods/tales_of_kupoli/files/entities/misc/soul_speed.xml" },
+		--related_extra_entities = { "mods/tales_of_kupoli/files/entities/misc/soul_speed.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
 		spawn_level                       = "1,2,3,4,5,6",
 		spawn_probability                 = "0.7,1,1,0.7,0.7,0.7",
 		price = 120,
 		mana = 15,
 		action 		= function()
-			c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/misc/soul_speed.xml,"
 			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
 			
 			if GetSoulsCount("all") > 0 then
@@ -466,10 +465,10 @@ local a = {
 	},
 	{
 		id          = "SUMMON_RAINWORM",
-		name 		= "Call forth the Glass Wyrm",
+		name 		= "sauvojen tuntevien ryhmä",
 		description = "there but for the grace of God go I",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/summon_rainworm.png",
-		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/worm_enhancer/projectile.xml"},
+		related_projectiles	= {"data/entities/animals/boss_pit/boss_pit.xml"},
 		never_unlimited		= true,
 		type 		= ACTION_TYPE_OTHER,
 		spawn_level                       = "",
@@ -477,9 +476,10 @@ local a = {
 		price = 0,
 		mana = 700,
 		max_uses    = 1,
-		custom_xml_file = "mods/tales_of_kupoli/files/entities/animals/boss_rainworm/spell/card.xml",
+		--custom_xml_file = "mods/tales_of_kupoli/files/entities/animals/boss_rainworm/spell/card.xml",
 		action 		= function()
-			add_projectile("mods/tales_of_kupoli/files/entities/animals/boss_rainworm/spell/spell.xml")
+			--add_projectile("mods/tales_of_kupoli/files/entities/animals/boss_rainworm/spell/spell.xml")
+			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tuntija_hoard/spell.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 100
 			current_reload_time = current_reload_time + 60
 		end,
@@ -565,6 +565,61 @@ local a = {
 		action 		= function()
 			c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/misc/blood_to_steam.xml,data/entities/particles/tinyspark_red.xml,"
 			c.fire_rate_wait = c.fire_rate_wait + 10
+			draw_actions( 1, true )
+		end,
+	},
+	{
+		id          = "SPELLERIOPHAGE",
+		name 		= "Spelleriophage",
+		description = "Makes enemies cast a copy of the spell on death",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/spelleriophage.png",
+		--sprite_unidentified = "data/ui_gfx/gun_actions/damage_unidentified.png",
+		--spawn_requires_flag = "card_unlocked_mestari",
+		type 		= ACTION_TYPE_OTHER,
+		spawn_level                       = "2,3,4,5,10",
+		spawn_probability                 = "0.7,0.7,0.8,0.9,0.2",
+		price = 100,
+		mana = 40,
+		action = function()
+			c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/projectiles/add_mortem_trigger/add.xml,"
+			draw_actions( 1, true )
+		end
+	},
+	{
+		id          = "SOUL_IS_MANA",
+		name 		= "Soul is Mana",
+		description = "The next spell is casted with a soul instead of using mana",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_is_mana.png",
+		type 		= ACTION_TYPE_MODIFIER,
+		spawn_level                       = "0,1,2,3,4,5,6,10",
+		spawn_probability                 = "0.7,0.7,1,1,0.7,0.7,0.7,0.2",
+		price = 140,
+		mana = 0,
+		action 		= function()
+			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+			
+			if GetSoulsCount("all") > 0 then
+				local data = {}
+
+				if #deck > 0 then
+					data = deck[1]
+				else
+					data = nil
+				end
+
+				if data ~= nil then
+					if GetSoulsCount("all") <= 0 then
+						GamePrint("You have no souls!")
+						return
+					end
+					data.mana = 0
+					RemoveSouls(1)
+				end
+
+				c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/misc/soul_speed_fx.xml,"
+			elseif GetSoulsCount("all") <= 0 then
+				GamePrint("You have no souls!")
+			end
 			draw_actions( 1, true )
 		end,
 	},

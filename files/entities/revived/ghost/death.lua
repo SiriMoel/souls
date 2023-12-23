@@ -7,10 +7,10 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 	EntityLoad( "data/entities/items/pickup/heart_fullhp.xml",  x, y )
 	EntityLoad( "data/entities/items/pickup/sun/sunseed.xml",  x + 16, y )
 
-	EntityLoad( "data/entities/items/wand_unshuffle_06.xml", pos_x + 8, pos_y )
-	EntityLoad( "data/entities/items/wand_unshuffle_06.xml", pos_x, pos_y )
-	EntityLoad( "data/entities/items/wand_unshuffle_06.xml", pos_x - 8, pos_y )
-	EntityLoad( "data/entities/items/wand_unshuffle_06.xml", pos_x - 16, pos_y )
+	EntityLoad( "data/entities/items/wand_unshuffle_06.xml", x + 8, y )
+	EntityLoad( "data/entities/items/wand_unshuffle_06.xml", x, y )
+	EntityLoad( "data/entities/items/wand_unshuffle_06.xml", x - 8, y )
+	EntityLoad( "data/entities/items/wand_unshuffle_06.xml", x - 16, y )
 	
 	AddFlagPersistent( "miniboss_ghost" )
 

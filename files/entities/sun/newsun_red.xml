@@ -91,7 +91,7 @@
 	<CellEaterComponent
 		radius="100"
 		eat_probability="80"
-		ignored_material="gem_box2d_yellow_sun"
+		ignored_material="rock_box2d_hard"
 		>
 	</CellEaterComponent>
 	

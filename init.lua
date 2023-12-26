@@ -171,13 +171,11 @@ end
 
 -- biomes
 local content = ModTextFileGetContent("data/biome/_biomes_all.xml")
-local xml = nxml.parse(content) -- sun lab biome is unused
+local xml = nxml.parse(content)
 xml:add_children(nxml.parse_many[[
 ]])
 ModTextFileSetContent("data/biome/_biomes_all.xml", tostring(xml))
---[[
-        <Biome height_index="0" color="ff9dceb9" biome_filename="mods/tales_of_kupoli/files/biome/sunlab/sunlab.xml" />
-]]
+--[[ <Biome height_index="0" color="ff9dceb9" biome_filename="mods/tales_of_kupoli/files/biome/sunlab/sunlab.xml" /> ]]
 
 -- pixel scenes, thanks graham! go play graham's things RIGHT NOW!!!
 local function add_scene(table)
@@ -200,14 +198,19 @@ local function add_scene(table)
 	ModTextFileSetContent(biome_path, content)
 end
 
-add_scene({ 
-	{-4500, -7000, "mods/tales_of_kupoli/files/biome/rainaltar/rainaltar.xml", true}, -- -4500, -7000
-    {16165, -1790, "mods/tales_of_kupoli/files/entities/items/essencewand_earth/weapon.xml", true},
-    {-14090, 360, "mods/tales_of_kupoli/files/entities/items/essencewand_fire/weapon.xml", true},
-    {-13020, -5380, "mods/tales_of_kupoli/files/entities/items/essencewand_air/weapon.xml", true},
-    {-14040, 13570, "mods/tales_of_kupoli/files/entities/items/essencewand_spirits/weapon.xml", true},
-    {-5340, 16640, "mods/tales_of_kupoli/files/entities/items/essencewand_water/weapon.xml", true},
-    {4518, 805, "mods/tales_of_kupoli/files/sunbook/item/item.xml", true},
+add_scene({
+	{ -4500, -7000, "mods/tales_of_kupoli/files/biome/rainaltar/rainaltar.xml", true }, -- -4500, -7000
+
+    { 16165, -1790, "mods/tales_of_kupoli/files/entities/items/essencewand_earth/weapon.xml", true },
+    { -14090, 360, "mods/tales_of_kupoli/files/entities/items/essencewand_fire/weapon.xml", true },
+    {-13020, -5380, "mods/tales_of_kupoli/files/entities/items/essencewand_air/weapon.xml", true },
+    { -14040, 13570, "mods/tales_of_kupoli/files/entities/items/essencewand_spirits/weapon.xml", true },
+    { -5340, 16640, "mods/tales_of_kupoli/files/entities/items/essencewand_water/weapon.xml", true },
+
+    { 4518, 805, "mods/tales_of_kupoli/files/sunbook/item/item.xml", true },
+
+    { 0, -200, "mods/tales_of_kupoli/files/biome/souldoor/souldoor.xml", true }, -- THIS IS TESTING
+    { 13080, 1650, "mods/tales_of_kupoli/files/biome/souldoor/souldoor.xml", true },
 })
 
 -- player

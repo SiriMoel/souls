@@ -465,7 +465,7 @@ local a = {
 	},
 	{
 		id          = "SUMMON_RAINWORM",
-		name 		= "sauvojen tuntevien ryhmä",
+		name 		= "Copi's Thing",
 		description = "there but for the grace of God go I",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/summon_rainworm.png",
 		related_projectiles	= {"data/entities/animals/boss_pit/boss_pit.xml"},

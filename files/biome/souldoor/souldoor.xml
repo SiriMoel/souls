@@ -7,11 +7,6 @@
     ></LuaComponent>
 
     <LuaComponent
-        script_source_file="mods/tales_of_kupoli/files/biome/souldoor/souldoor.lua"
-        execute_every_n_frame="5"
-    ></LuaComponent>
-
-    <LuaComponent
         script_source_file="mods/tales_of_kupoli/files/biome/souldoor/ambience.lua"
         execute_every_n_frame="45"
     ></LuaComponent>

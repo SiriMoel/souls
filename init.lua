@@ -209,7 +209,7 @@ add_scene({
 
     { 4518, 805, "mods/tales_of_kupoli/files/sunbook/item/item.xml", true },
 
-    { 0, -200, "mods/tales_of_kupoli/files/biome/souldoor/souldoor.xml", true }, -- THIS IS TESTING
+    --{ 0, -200, "mods/tales_of_kupoli/files/biome/souldoor/souldoor.xml", true }, -- THIS IS TESTING
     { 13080, 1650, "mods/tales_of_kupoli/files/biome/souldoor/souldoor.xml", true },
 })
 

@@ -12,12 +12,6 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 
     local pool = { "MANA_REDUCE", }
 
-    local alterantspool = {
-        "HOMING_RAG",
-        "RANDOM_RAG",
-        "TELE_RAG",
-    }
-
     if ModIsEnabled("copis_things") then
         local copispells = {
             "COPIS_THINGS_MANA_RANDOM",
@@ -36,11 +30,4 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
         CreateItemActionEntity( target, x , y )
     end
 
-    local doalterant = math.random(1, 6)
-    if ModSettingGet( "tales_of_kupoli.testing" ) then
-        doalterant = 3
-    end
-    if doalterant == 3 then
-        SpawnAlterant(alterantspool[math.random(1,#alterantspool)], x, y)
-    end
 end

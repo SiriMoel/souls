@@ -29,12 +29,12 @@ SetFileContent("data/entities/items/orbs/orb_base.xml", "orb_base.xml")
 SetFileContent("data/entities/items/pickup/sun/newsun.xml", "newsun.xml")
 SetFileContent("data/entities/items/pickup/sun/newsun_dark.xml", "newsun_dark.xml")
 SetFileContent("data/biome/orbrooms/orbroom_07.xml", "orbroom_07.xml")
-
 SetFileContent("data/entities/projectiles/deck/cloud_thunder.xml", "cloud_thunder.xml")
 SetFileContent("data/entities/projectiles/deck/cloud_blood.xml", "cloud_blood.xml")
 SetFileContent("data/entities/projectiles/deck/cloud_oil.xml", "cloud_oil.xml")
 SetFileContent("data/entities/projectiles/deck/cloud_water.xml", "cloud_water.xml")
 SetFileContent("data/entities/projectiles/deck/cloud_acid.xml", "cloud_acid.xml")
+SetFileContent("data/scripts/biomes/tower_end.lua", "tower_end.lua")
 
 --drops etc
 local dropdoers = {
@@ -217,6 +217,8 @@ add_scene({
 function OnPlayerSpawned( player )
 
     local px, py = EntityGetTransform(player)
+
+    EntityLoad("mods/tales_of_kupoli/files/entities/items/towerwand_glass/weapon.xml", px, py)
 
     if GameHasFlagRun("tales_of_kupoli_init") then return end
 

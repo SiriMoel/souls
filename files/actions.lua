@@ -9,7 +9,7 @@ local a = {
 		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/reaping_shot/reaping_shot.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
 		spawn_level                       = "0,1,2,3,4,5,6",
-		spawn_probability                 = "0.7,0.7,1,1,0.7,0.7,0.7",
+		spawn_probability                 = "0.7,1,1,1,0.7,0.7,0.7",
 		price = 120,
 		mana = 20,
 		action 		= function()
@@ -296,124 +296,6 @@ local a = {
 			add_projectile("mods/tales_of_kupoli/files/entities/items/hiisipoisongun/projectile.xml")
 		end,
 	},
-	--[[{ -- ALTERANT
-		id          = "ALTERANT_POISONER_KIT", 
-		name 		= "Alterant: Poisoner Kit",
-		description = "",
-		sprite 		= "mods/tales_of_kupoli/files/entities/alterants/alterant_ui_spell.png", --"mods/tales_of_kupoli/files/entities/alterants/poisonerkit/alterant_ui.png",
-		type 		= ACTION_TYPE_MODIFIER,
-		spawn_level                       = "",
-		spawn_probability                 = "",
-		price = 0,
-		mana = 0,
-		action 		= function()
-			c.game_effect_entities = c.game_effect_entities .. "data/entities/misc/effect_apply_poison.xml,"
-			c.trail_material = c.trail_material .. "poison,"
-			c.trail_material_amount = c.trail_material_amount + 12
-			draw_actions( 1, true )
-		end,
-	},
-	{ -- ALTERANT
-		id          = "ALTERANT_HOMING_RAG",
-		name 		= "Alterant: Rag of Homing",
-		description = "",
-		sprite 		= "mods/tales_of_kupoli/files/entities/alterants/alterant_ui_spell.png", --"mods/tales_of_kupoli/files/entities/alterants/homingrag/alterant_ui.png",
-		type 		= ACTION_TYPE_MODIFIER,
-		spawn_level                       = "",
-		spawn_probability                 = "",
-		price = 0,
-		mana = 0,
-		action 		= function()
-			c.extra_entities = c.extra_entities .. "data/entities/misc/homing_accelerating.xml,"
-			draw_actions( 1, true )
-		end,
-	},
-	{ -- ALTERANT
-		id          = "ALTERANT_RANDOM_RAG",
-		name 		= "Alterant: Rag of Risk",
-		description = "",
-		sprite 		= "mods/tales_of_kupoli/files/entities/alterants/alterant_ui_spell.png",
-		type 		= ACTION_TYPE_MODIFIER,
-		recursive	= true,
-		spawn_level                       = "",
-		spawn_probability                 = "",
-		price = 0,
-		mana = 0,
-		action 		= function( recursion_level, iteration )
-			SetRandomSeed( GameGetFrameNum() + #deck, GameGetFrameNum() + 133 )
-			local rnd = Random( 1, #actions )
-			local data = actions[rnd]
-			
-			local safety = 0
-			local rec = check_recursion( data, recursion_level )
-			
-			while ( safety < 100 ) and ( ( data.type ~= 2 ) or ( rec == -1 ) ) do
-				rnd = Random( 1, #actions )
-				data = actions[rnd]
-				rec = check_recursion( data, recursion_level )
-				
-				safety = safety + 1
-			end
-	
-			data.action( rec )
-			draw_actions( 1, true )
-		end,
-	},
-	{ -- ALTERANT
-		id          = "ALTERANT_MAGIC_GLUE",
-		name 		= "Alterant: Glue Kit",
-		description = "",
-		sprite 		= "mods/tales_of_kupoli/files/entities/alterants/alterant_ui_spell.png",
-		type 		= ACTION_TYPE_MODIFIER,
-		spawn_level                       = "",
-		spawn_probability                 = "",
-		price = 0,
-		mana = 0,
-		action 		= function()
-			c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/alterants/magicglue/magicglue.xml,"
-			c.bounces = c.bounces + 3
-			draw_actions( 1, true )
-		end,
-	},
-	{ -- ALTERANT
-		id          = "ALTERANT_FIRECRACKER",
-		name 		= "Alterant: Firecracker",
-		description = "",
-		sprite 		= "mods/tales_of_kupoli/files/entities/alterants/alterant_ui_spell.png",
-		related_projectiles	= {"data/entities/projectiles/deck/glitter_bomb.xml"},
-		type 		= ACTION_TYPE_MODIFIER,
-		spawn_level                       = "",
-		spawn_probability                 = "",
-		price = 0,
-		mana = 0,
-		custom_xml_file = "data/entities/misc/custom_cards/glitter_bomb.xml",
-		action 		= function()
-			add_projectile("data/entities/projectiles/deck/glitter_bomb.xml")
-			draw_actions( 1, true )
-		end,
-	},
-	{ -- ALTERANT
-		id          = "ALTERANT_TELE_RAG",
-		name 		= "Alterant: Rag of Relocation",
-		description = "",
-		sprite 		= "mods/tales_of_kupoli/files/entities/alterants/alterant_ui_spell.png", 
-		type 		= ACTION_TYPE_MODIFIER,
-		spawn_level                       = "",
-		spawn_probability                 = "",
-		price = 0,
-		mana = 0,
-		action 		= function()
-			c.extra_entities = c.extra_entities .. "data/entities/misc/homing_area.xml,"
-			
-			if ( c.speed_multiplier >= 20 ) then
-				c.speed_multiplier = math.min( c.speed_multiplier, 20 )
-			elseif ( c.speed_multiplier < 0 ) then
-				c.speed_multiplier = 0
-			end
-			
-			draw_actions( 1, true )
-		end,
-	},]]--
 	{
 		id = "SNIPER_BEAM",
 		name = "Sniper Laser Sight",
@@ -429,23 +311,6 @@ local a = {
 			draw_actions( 1, true )
 		end,
 	},
-	--[[{ -- buggy, and is in another mod anyways
-		id          = "MAGIC_GLUE",
-		name 		= "Magic Glue",
-		description = "It is magic and it is glue",
-		sprite 		= "mods/tales_of_kupoli/files/spell_icons/magic_glue.png",
-		type 		= ACTION_TYPE_MODIFIER,
-		spawn_level                       = "2,3,4,5",
-		spawn_probability                 = "0.6,0.2,0.2,0.6",
-		price = 170,
-		mana = 50,
-		action 		= function()
-			c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/alterants/magicglue/magicglue.xml,"
-			c.speed_multiplier = c.speed_multiplier * 0.75
-			c.bounces = c.bounces + 5
-			draw_actions( 1, true )
-		end,
-	},]]--
 	{
 		id          = "WORM_ENHANCER",
 		name 		= "???",
@@ -621,6 +486,73 @@ local a = {
 				GamePrint("You have no souls!")
 			end
 			draw_actions( 1, true )
+		end,
+	},
+	{
+		id          = "REAP_MANY",
+		name 		= "Reap Many",
+		description = "All enemies on screen are marked to drop their soul",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/reap_many.png",
+		related_extra_entities	= {"mods/tales_of_kupoli/files/entities/projectiles/reap_many/reap_many.xml"},
+		type 		= ACTION_TYPE_UTILITY,
+		spawn_level                       = "2,3,4,5,6,10",
+		spawn_probability                 = "0.1,0.1,0.2,0.5,0.4,0.1",
+		price = 250,
+		max_uses = 5,
+		mana = 130,
+		action 		= function()
+			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/reap_many/reap_many.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 30
+		end,
+	},
+	{
+		id          = "GILDED_SOULS_TO_GOLD", -- this just doesnt work and i dont know why
+		name 		= "Gilded Souls to Gold",
+		description = "Turns your Gilded souls into gold",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/gilded_souls_to_gold.png",
+		--related_extra_entities	= {"mods/tales_of_kupoli/files/entities/projectiles/reap_many/reap_many.xml"},
+		type 		= ACTION_TYPE_UTILITY,
+		spawn_level                       = "4,5,6",
+		spawn_probability                 = "0.7,0.7,0.7",
+		price = 200,
+		mana = 100,
+		action 		= function()
+			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+			
+			if GetSoulsCount("gilded") == nil then return end
+
+			if GetSoulsCount("gilded") > 0 then
+
+				local player = GetPlayer()
+
+				if player == nil then return end
+
+				local comp_wallet = EntityGetFirstComponentIncludingDisabled( player, "WalletComponent" )
+
+				local money_to_give = 0
+
+				if comp_wallet ~= nil and player ~= nil then
+					local money = ComponentGetValue2( comp_wallet, "money" )
+
+					money_to_give = 100 * GetSoulsCount("gilded") * math.ceil(money / 400)
+					-- if you have 1000 gold, each soul will give you 250
+
+					if money_to_give < 100 then
+						money_to_give = 100
+					end
+
+					for i=1,GetSoulsCount("gilded") do
+						RemoveSoul("gilded")
+					end
+
+					money = money + money_to_give
+
+					ComponentSetValue2(comp_wallet, "money", money)
+				end
+
+			elseif GetSoulsCount("gilded") <= 0 then
+				GamePrint("You have no gilded souls!")
+			end
 		end,
 	},
 }

@@ -52,11 +52,11 @@ if #targets > 0 and #targets2 > 0 then
         EntitySetComponentsWithTagEnabled( entity, "magic_eye", false )
         EntityRemoveComponent( entity, EntityGetFirstComponent( entity, "ParticleEmitterComponent" ) or 0)
     end
-    
-    -- load the spell exchanger
-    -- add trace
-    -- add sunbook page with recipes
-    -- tell the player about this!!!
 
-    SpawnExchanger(x, y-60)
+    if not EntityHasTag(entity, "activated") then
+        SpawnExchanger(x, y-60)
+        GameAddFlagRun("ikkuna_souldoor")
+        GamePrint("Trace found!")
+        EntityAddTag(entity, "activated")
+    end
 end

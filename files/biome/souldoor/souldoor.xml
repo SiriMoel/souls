@@ -61,6 +61,7 @@
 
     <ParticleEmitterComponent 
 		_tags="enabled_in_world,enabled_in_hand"
+		enabled="1"
 		emitted_material_name="soul_particles"
 		offset.x="0"
 		offset.y="-70"

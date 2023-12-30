@@ -48,6 +48,13 @@ sunbookpages = {
         scaleY = 1,
         unlocked = true,
     },
+    {
+        name = "souldoor",
+        page = "mods/tales_of_kupoli/files/sunbook/souldoor.png",
+        scaleX = 1,
+        scaleY = 1,
+        unlocked = true,
+    },
 }
 
 rosettas = {
@@ -131,13 +138,6 @@ rosettas = {
 }
 
 traces = {
---[[
-alchemist
-dragon
-grandmaster
-mecha kolmi
-connoisseur
-]]--
     {
         name = "ikkuna_alchemist",
         page = "mods/tales_of_kupoli/files/sunbook/traces/alchemist.png",
@@ -180,6 +180,13 @@ connoisseur
         scaleY = 1,
         unlocked = false,
     },
+    {
+        name = "ikkuna_souldoor",
+        page = "mods/tales_of_kupoli/files/sunbook/traces/souldoor.png",
+        scaleX = 1,
+        scaleY = 1,
+        unlocked = false,
+    },
 }
 
 unlocked_sbp = {
@@ -190,7 +197,7 @@ unlocked_sbp = {
         scaleY = 1,
         unlocked = true,
     },
-    {
+    --[[{
         name = "intro",
         page = "mods/tales_of_kupoli/files/sunbook/intro.png",
         scaleX = 1,
@@ -231,5 +238,5 @@ unlocked_sbp = {
         scaleX = 1,
         scaleY = 1,
         unlocked = true,
-    },
+    },]]
 }

@@ -57,7 +57,7 @@
 		_enabled="0"
 		offset_x="4"
 		offset_y="4"
-		image_file="mods/tales_of_kupoli/files/entities/revived/_tablets/sprite/s.png"
+		image_file="mods/tales_of_kupoli/files/entities/revived/_tablets/sprite/s_in_hand.png"
 	></SpriteComponent>
 
 	<HitboxComponent 

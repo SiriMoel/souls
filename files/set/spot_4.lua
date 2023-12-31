@@ -175,7 +175,11 @@ if ( comp ~= nil ) and ( comp2 ~= nil ) then
 	end
 	
 	if ( found == 4 ) then -- do i need to add return statements?
-		if ohno == true then
+		if ohno and begreen and bered then
+			EntityLoad("mods/tales_of_kupoli/files/entities/items/wotc/weapon.xml", x, y)
+			GamePrintImportant( "THE GLASSMAKER SEES YOU", "" )
+			AddFlagPersistent( "progress_macrocosm" )
+		elseif ohno == true then
             local sun = EntityLoad("data/entities/items/pickup/sun/newsun_dark.xml", x, y)
 			suninit(sun, 200, 250)
 			GamePrintImportant( "The Dark Sun rises...", "" )

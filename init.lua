@@ -198,6 +198,9 @@ local function add_scene(table)
 	ModTextFileSetContent(biome_path, content)
 end
 
+local wotc_x = 13
+local wotc_y = -26204 + math.random(-1000,-5000)
+
 add_scene({
 	{ -4500, -7000, "mods/tales_of_kupoli/files/biome/rainaltar/rainaltar.xml", true }, -- -4500, -7000
 

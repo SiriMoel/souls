@@ -617,6 +617,37 @@ local a = {
 			c.fire_rate_wait = c.fire_rate_wait + 40
 		end,
 	},
+	{
+		id          = "SUMMON_SUN",
+		name 		= "Summon Sun",
+		description = "I believe we did",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/summon_sun.png",
+		related_projectiles	= {"data/entities/items/pickup/sun/newsun.xml"},
+		type 		= ACTION_TYPE_STATIC_PROJECTILE,
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 1000,
+		mana = 1000,
+		max_uses = 1,
+		is_dangerous_blast = true,
+		never_unlimited = true,
+		action 		= function()
+			local suns = {
+				"mods/tales_of_kupoli/files/entities/sun/newsun_green.xml",
+				"mods/tales_of_kupoli/files/entities/sun/newsun_red.xml",
+				"data/entities/items/pickup/sun/newsun_dark.xml",
+				"data/entities/items/pickup/sun/newsun.xml",
+			}
+			local x, y = EntityGetTransform(GetUpdatedEntityID())
+			if x ~= nil then
+				SetRandomSeed(x, y+GameGetFrameNum())
+			end
+			add_projectile(suns[math.random(1,#suns)])
+			--EntityLoad(suns[math.random(1,#suns)], x, y)
+			c.fire_rate_wait = c.fire_rate_wait + 100
+			c.screenshake = c.screenshake + 10
+		end,
+	},
 }
 
 for i,v in ipairs(a) do

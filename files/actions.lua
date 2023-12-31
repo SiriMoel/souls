@@ -555,6 +555,52 @@ local a = {
 			end
 		end,
 	},
+	{
+		id          = "SOUL_BATTERY",
+		name 		= "Soul Battery",
+		description = "Casts the whole wand with souls instead of mana",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_battery.png",
+		type 		= ACTION_TYPE_OTHER,
+		spawn_level                       = "4,5,6,10",
+		spawn_probability                 = "0.3,0.7,0.7,0.5",
+		price = 160,
+		mana = 0,
+		action 		= function()
+			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+
+			local amount = 0
+			local souls_to_use = 0
+			
+			if GetSoulsCount("all") > 0 then
+				local this = {}
+
+				if #deck > 0 then
+					this = deck[1]
+				else
+					this = nil
+				end
+
+				for i,data in ipairs(deck) do
+					amount = amount + data.mana
+				end
+
+				souls_to_use = math.ceil(amount / 200)
+
+				if GetSoulsCount("all") > souls_to_use then
+					RemoveSouls(souls_to_use)
+					for i,data in ipairs(deck) do
+						data.mana = 0
+						c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/misc/soul_speed_fx.xml,"
+					end
+				else
+					GamePrint("You do not have enough souls!")
+				end
+			elseif GetSoulsCount("all") <= 0 then
+				GamePrint("You do not have enough souls!")
+			end
+			draw_actions( 1, true )
+		end,
+	},
 }
 
 for i,v in ipairs(a) do

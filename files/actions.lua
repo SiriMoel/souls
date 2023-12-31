@@ -4,7 +4,7 @@ local a = {
 	{
 		id          = "REAPING_SHOT",
 		name 		= "Reaping Shot",
-		description = "Causes enemies to drop their souls on death.",
+		description = "Causes enemies to drop their souls on death",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/reaping_shot.png",
 		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/reaping_shot/reaping_shot.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
@@ -22,7 +22,7 @@ local a = {
 	{
 		id          = "REAPING_FIELD",
 		name 		= "Circle of Reaping",
-		description = "Causes enemies in a large field to drop their souls on death.",
+		description = "Causes enemies in a large field to drop their souls on death",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/reaping_field.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/reaping_field/reaping_field.xml"},
 		type 		= ACTION_TYPE_STATIC_PROJECTILE,
@@ -39,7 +39,7 @@ local a = {
 	{
 		id          = "SOULS_TO_POWER",
 		name 		= "Souls to Power",
-		description = "Consumes a portion of your souls to increase a projectile's damage.",
+		description = "Consumes a portion of your souls to increase a projectile's damage",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/souls_to_power.png",
 		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/souls_to_power/souls_to_power.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
@@ -89,7 +89,7 @@ local a = {
 	{
 		id = "HIISI_SHOTGUN",
 		name = "Hiisi Shotgun Shell",
-		description = "Fires 3 projectiles.",
+		description = "Fires 3 projectiles",
         sprite = "mods/tales_of_kupoli/files/spell_icons/hiisi_shotgun.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/items/hiisishotgun/projectile.xml", 3},
 		type = ACTION_TYPE_PROJECTILE,
@@ -107,7 +107,7 @@ local a = {
 	{
 		id = "HIISI_SNIPER",
 		name = "Hiisi Sniper Shot",
-		description = "Fires a single powerful projectile.",
+		description = "Fires a single powerful projectile",
         sprite = "mods/tales_of_kupoli/files/spell_icons/hiisi_sniper.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/items/hiisisniper/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
@@ -122,7 +122,7 @@ local a = {
 	{
 		id = "HIISI_PISTOL",
 		name = "Hiisi Pistol Shot",
-		description = "Fires a single projectile.",
+		description = "Fires a single projectile",
         sprite = "mods/tales_of_kupoli/files/spell_icons/hiisi_pistol.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/items/hiisipistol/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
@@ -165,7 +165,7 @@ local a = {
 	{
 		id          = "SOUL_BLAST",
 		name 		= "Soul Blast",
-		description = "Expels a soul in the form of a magic missile. Adapts to whichever soul was consumed!",
+		description = "Expels a soul in the form of a magical projectile",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_blast.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/soul_blast/soul_blast.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
@@ -182,7 +182,7 @@ local a = {
 	{
 		id          = "SOUL_SPEED",
 		name 		= "Soul Speed",
-		description = "Increases the power and speed of your spells at the cost of a soul.",
+		description = "Increases the power and speed of your spells at the cost of a soul",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_speed.png",
 		--related_extra_entities = { "mods/tales_of_kupoli/files/entities/misc/soul_speed.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
@@ -215,7 +215,7 @@ local a = {
 	{
 		id			= "REAPER_BLADE",
 		name		= "Reaper Blade",
-		description = "Enables your wand to cut the souls from your enemies.",
+		description = "Enables your wand to cut the souls from your enemies",
 		sprite     	= "mods/tales_of_kupoli/files/spell_icons/reaper_blade.png",
 		type        = ACTION_TYPE_PASSIVE,
 		spawn_level      	= "2,3,4,5",
@@ -229,7 +229,7 @@ local a = {
 	{
 		id = "ROCKET_ROLL",
 		name = "Rocket Roll",
-		description = "Missile time.",
+		description = "Missile time",
         sprite = "mods/tales_of_kupoli/files/spell_icons/rocket_roll.png",
 		related_projectiles	= { "mods/tales_of_kupoli/files/entities/items/mechakolmiwand/rocket_roll.xml", 5},
 		type = ACTION_TYPE_PROJECTILE,
@@ -249,7 +249,7 @@ local a = {
 	{
 		id          = "SOUL_EXPLOSION",
 		name 		= "Soul Detonation",
-		description = "Detonates a soul to produce an explosion.",
+		description = "Detonates a soul to produce an explosion",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_detonation.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/soul_detonation/soul_detonation.xml"},
 		type 		= ACTION_TYPE_STATIC_PROJECTILE,
@@ -269,7 +269,7 @@ local a = {
 	{
 		id = "HIISI_GLUE_SHOT",
 		name = "Hiisi Glue Shot",
-		description = "Fires a very sticky projectile.",
+		description = "Fires a very sticky projectile",
         sprite = "mods/tales_of_kupoli/files/spell_icons/hiisi_glue_shot.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/items/hiisigluegun/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
@@ -284,7 +284,7 @@ local a = {
 	{
 		id = "HIISI_POISON_SHOT",
 		name = "Hiisi Poison Shot",
-		description = "Rain down bombs and also poison.",
+		description = "Rain down bombs and also poison",
         sprite = "mods/tales_of_kupoli/files/spell_icons/hiisi_poison_shot.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/items/hiisipoisongun/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
@@ -299,7 +299,7 @@ local a = {
 	{
 		id = "SNIPER_BEAM",
 		name = "Sniper Laser Sight",
-		description = "",
+		description = "Sniper Laser Sight",
         sprite = "mods/tales_of_kupoli/files/spell_icons/sniper_beam.png",
 		type = ACTION_TYPE_PASSIVE,
 		spawn_level                       = "1,2,3",
@@ -646,6 +646,38 @@ local a = {
 			--EntityLoad(suns[math.random(1,#suns)], x, y)
 			c.fire_rate_wait = c.fire_rate_wait + 100
 			c.screenshake = c.screenshake + 10
+		end,
+	},
+	{
+		id          = "TRIGGER_RETURN",
+		name 		= "Triggerable Return",
+		description = "Cast once to mark a point. Cast again to return to that point",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/triggerable_return.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/triggerable_return/projectile.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		spawn_level                       = "5,6",
+		spawn_probability                 = "0.6,0.6",
+		price = 110,
+		mana = 50,
+		action 		= function()
+			local state = 1
+			local shooter = GetUpdatedEntityID()
+
+			if #EntityGetWithTag("kupoli_trigger_return") > 0 then
+				local targets = EntityGetWithTag("kupoli_trigger_return")
+				for i=1,#targets do
+					local x, y = EntityGetTransform(targets[i])
+					EntityKill(targets[i])
+					EntitySetTransform(shooter, x, y)
+				end
+				state = 1
+			else
+				add_projectile("mods/tales_of_kupoli/files/entities/projectiles/triggerable_return/projectile.xml")
+				state = 2
+			end
+
+			c.fire_rate_wait = c.fire_rate_wait + 6
+			c.spread_degrees = c.spread_degrees - 2.0
 		end,
 	},
 }

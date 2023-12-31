@@ -172,11 +172,11 @@ local a = {
 		spawn_level                       = "2,3,4,5,6",
 		spawn_probability                 = "0.8,1,1,1,1",
 		price = 200,
-		mana = 60,
-		max_uses = 10,
+		mana = 50,
+		max_uses = 20,
 		action 		= function()
 			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/soul_blast/soul_blast.xml")
-			c.fire_rate_wait = c.fire_rate_wait + 10
+			c.fire_rate_wait = c.fire_rate_wait + 20
 		end,
 	},
 	{
@@ -599,6 +599,22 @@ local a = {
 				GamePrint("You do not have enough souls!")
 			end
 			draw_actions( 1, true )
+		end,
+	},
+	{
+		id          = "SOUL_GUARD",
+		name 		= "Soul Guard",
+		description = "Releases up to eight souls to guard you from harm",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_guard.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/soul_guard/start.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		spawn_level                       = "2,3,4,5,6",
+		spawn_probability                 = "0.8,1,1,1,1",
+		price = 130,
+		mana = 60,
+		action 		= function()
+			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/soul_guard/start.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 40
 		end,
 	},
 }

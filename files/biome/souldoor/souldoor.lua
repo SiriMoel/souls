@@ -17,6 +17,7 @@ local pool_projectiles = { -- wip: make weighted
     "KUPOLI_REAPING_FIELD",
     "KUPOLI_REAPER_BLADE",
     "KUPOLI_SOUL_EXPLOSION",
+    "KUPOLI_SOUL_GUARD",
 }
 
 local spell_modifiers = {}
@@ -25,6 +26,8 @@ local pool_modifiers = { -- wip: make weighted
     "KUPOLI_REAPING_SHOT",
     "KUPOLI_SOULS_TO_POWER",
     "KUPOLI_SOUL_IS_MANA",
+    "KUPOLI_SOUL_BATTERY",
+    "KUPOLI_GILDED_SOULS_TO_GOLD",
 }
 
 local string = ""

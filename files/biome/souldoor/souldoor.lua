@@ -11,8 +11,10 @@ SetRandomSeed(x, y+GameGetFrameNum())
 
 local targets = EntityGetInRadiusWithTag(x, y, radius, "card_action")
 
+--local keys = EntityGetInRadiusWithTag(x, y, radius, "kupoli_door_key")
+
 local spell_projectiles = {}
-local pool_projectiles = { -- wip: make weighted
+local pool_projectiles = {
     "KUPOLI_SOUL_BLAST",
     "KUPOLI_REAPING_FIELD",
     "KUPOLI_REAPER_BLADE",
@@ -21,7 +23,7 @@ local pool_projectiles = { -- wip: make weighted
 }
 
 local spell_modifiers = {}
-local pool_modifiers = { -- wip: make weighted
+local pool_modifiers = {
     "KUPOLI_SOUL_SPEED",
     "KUPOLI_REAPING_SHOT",
     "KUPOLI_SOULS_TO_POWER",
@@ -31,6 +33,13 @@ local pool_modifiers = { -- wip: make weighted
 }
 
 local string = ""
+
+--[[if #keys > 0 and #keys ~- nil then
+    if not GameHasFlagRun("kupoli_opened") then
+        GamePrint("The altar is unattended.")
+        GameAddFlagRun("kupoli_opened")
+    end
+end]]--
 
 if #targets > 0 and targets ~= nil then
     for i,v in ipairs(targets) do

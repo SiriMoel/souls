@@ -19,10 +19,13 @@ if ( #targets > 0 ) then
                 execute_every_n_frame = "-1",
             } )
 
-            local effect_id = EntityLoad("mods/tales_of_kupoli/files/entities/particles/marked_particles.xml", x, y)
-            EntityAddChild( target_id, effect_id )
-
             EntityAddTag( target_id, "reap_marked")
+        end
+
+        if EntityHasTag(target_id, "reap_marked_fx") == false then
+            local effect_id = EntityLoad("mods/tales_of_kupoli/files/entities/particles/marked_particles.xml", x, y)
+            EntityAddChild(target_id, effect_id)
+            EntityAddTag(target_id, "reap_marked_fx")
         end
     end
 end

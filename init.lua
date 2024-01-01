@@ -20,6 +20,7 @@ end
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/tales_of_kupoli/files/actions.lua" )
 ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/tales_of_kupoli/files/perks.lua" )
 ModLuaFileAppend( "data/scripts/items/orb_pickup.lua", "mods/tales_of_kupoli/files/scripts/orb_pickup_append.lua" )
+--ModLuaFileAppend( "data/scripts/items/drop_money.lua", "mods/tales_of_kupoli/files/scripts/drop_money_append.lua" )
 --ModLuaFileAppend( "data/scripts/biomes/orbrooms/orbroom_07.lua", "mods/tales_of_kupoli/files/scripts/orbroom_07_append.lua" )
 
 SetFileContent("data/scripts/buildings/sun/spot_4.lua", "spot_4.lua")
@@ -221,11 +222,16 @@ function OnPlayerSpawned( player )
 
     local px, py = EntityGetTransform(player)
 
-    --EntityLoad("mods/tales_of_kupoli/files/entities/items/towerwand_glass/weapon.xml", px, py)
+    EntityLoad("mods/tales_of_kupoli/files/entities/items/wotc/weapon.xml", px, py)
 
     if GameHasFlagRun("tales_of_kupoli_init") then return end
 
     SoulsInit()
+
+    EntityAddComponent2(player, "LuaComponent", {
+        script_source_file="mods/tales_of_kupoli/files/scripts/player.lua",
+        execute_every_n_frame=15,
+    })
 
     --[[EntityAddComponent2(player, "VariableStorageComponent", {
         _tags="brilliance_stored",

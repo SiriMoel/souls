@@ -174,10 +174,10 @@ if ( comp ~= nil ) and ( comp2 ~= nil ) then
 		EntitySetComponentsWithTagEnabled( entity_id, "sunbaby_stage_2", false )
 	end
 	
-	if ( found == 4 ) then -- do i need to add return statements?
+	if ( found == 4 ) then
 		if ohno and begreen and bered then
 			EntityLoad("mods/tales_of_kupoli/files/entities/items/wotc/weapon.xml", x, y)
-			GamePrintImportant( "THE GLASSMAKER SEES YOU", "" )
+			GamePrintImportant( "THE GLASSMAKER SEES YOU...", "" ) -- A key reveals itself!
 			AddFlagPersistent( "progress_macrocosm" )
 		elseif ohno == true then
             local sun = EntityLoad("data/entities/items/pickup/sun/newsun_dark.xml", x, y)
@@ -195,7 +195,7 @@ if ( comp ~= nil ) and ( comp2 ~= nil ) then
 			GamePrintImportant( "The Resurrecting Sun rises...", "" )
 			AddFlagPersistent( "progress_redsun" )
 		elseif beblue == true then
-			GamePrintImportant( "The Alchemic Sun rises...", "" )
+			GamePrintImportant( "hello mina", "" )
 			AddFlagPersistent( "progress_bluesun" )
 		else
             local sun = EntityLoad("data/entities/items/pickup/sun/newsun.xml", x, y)

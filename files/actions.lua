@@ -28,9 +28,9 @@ local a = {
 		type 		= ACTION_TYPE_STATIC_PROJECTILE,
 		spawn_level                       = "2,3,4,5,6",
 		spawn_probability                 = "0.3,0.1,0.2,0.5,0.4",
-		price = 200,
-		mana = 70,
-		max_uses = 5,
+		price = 140,
+		mana = 60,
+		max_uses = 15,
 		action 		= function()
 			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/reaping_field/reaping_field.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 50

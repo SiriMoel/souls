@@ -222,7 +222,7 @@ function OnPlayerSpawned( player )
 
     local px, py = EntityGetTransform(player)
 
-    EntityLoad("mods/tales_of_kupoli/files/entities/items/wotc/weapon.xml", px, py)
+    --EntityLoad("mods/tales_of_kupoli/files/entities/items/wotc/weapon.xml", px, py)
 
     if GameHasFlagRun("tales_of_kupoli_init") then return end
 

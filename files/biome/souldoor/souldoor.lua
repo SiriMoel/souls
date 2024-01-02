@@ -5,7 +5,7 @@ dofile_once("mods/tales_of_kupoli/files/biome/souldoor/recipes.lua")
 local altar = GetUpdatedEntityID()
 local x, y = EntityGetTransform(altar)
 
-local radius = 80
+local radius = 120
 
 SetRandomSeed(x, y+GameGetFrameNum())
 

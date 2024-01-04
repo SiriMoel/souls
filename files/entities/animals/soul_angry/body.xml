@@ -1,0 +1,20 @@
+<Sprite 
+	filename="mods/tales_of_kupoli/files/entities/animals/soul_angry/body.png"
+	offset_x="10" 
+	offset_y="10"
+	default_animation="stand"
+	>
+	
+  <RectAnimation 
+	name="stand"
+	pos_x="0" 
+	pos_y="0"
+	frame_count="9"
+	frame_width="20" 
+	frame_height="20" 
+	frame_wait="0.27" 
+	frames_per_row="9"
+	loop="1"  >
+  </RectAnimation>
+  
+</Sprite>

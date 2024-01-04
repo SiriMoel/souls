@@ -37,6 +37,27 @@ SetFileContent("data/entities/projectiles/deck/cloud_water.xml", "cloud_water.xm
 SetFileContent("data/entities/projectiles/deck/cloud_acid.xml", "cloud_acid.xml")
 SetFileContent("data/scripts/biomes/tower_end.lua", "tower_end.lua")
 
+-- enemies
+local biomes = {
+    {
+        path = "data/scripts/biomes/wizardcave.lua",
+        script = "mods/tales_of_kupoli/files/scripts/biome/wizardcave.lua",
+    },
+    {
+        path = "data/scripts/biomes/wandcave.lua",
+        script = "mods/tales_of_kupoli/files/scripts/biome/wizardcave.lua",
+    },
+    {
+        path = "data/scripts/biomes/crypt.lua",
+        script = "mods/tales_of_kupoli/files/scripts/biome/crypt.lua",
+    },
+}
+for i,v in ipairs(biomes) do
+    if ModTextFileGetContent(v) ~= nil then
+        ModLuaFileAppend(v.path, v.script)
+    end
+end
+
 --drops etc
 local dropdoers = {
     --hiisi
@@ -145,40 +166,22 @@ local wizards = {
     "data/entities/animals/wizard_twitchy.xml",
     "data/entities/animals/wizard_weaken.xml",
     "data/entities/animals/monk.xml",
+    "data/entities/animals/kupoli_soul_angry.xml"
 }
 for i,v in ipairs(wizards) do
-    local xml = nxml.parse(ModTextFileGetContent(v))
-    xml:add_child(nxml.parse([[
-	    <LuaComponent
-		    script_death="mods/tales_of_kupoli/files/scripts/death/wizards.lua"
-		    >
-	    </LuaComponent>
-    ]]))
-    ModTextFileSetContent(v, tostring(xml))
-end
-
---translations
-local translations = ModTextFileGetContent( "data/translations/common.csv" );
-if translations ~= nil then
-    while translations:find("\r\n\r\n") do
-        translations = translations:gsub("\r\n\r\n","\r\n");
+    if ModTextFileGetContent(v) ~= nil then
+        local xml = nxml.parse(ModTextFileGetContent(v))
+        xml:add_child(nxml.parse([[
+            <LuaComponent
+                script_death="mods/tales_of_kupoli/files/scripts/death/wizards.lua"
+                >
+            </LuaComponent>
+        ]]))
+        ModTextFileSetContent(v, tostring(xml))
     end
-
-    local new_translations = ModTextFileGetContent( table.concat({"mods/tales_of_kupoli/files/translations.csv"}) );
-    translations = translations .. new_translations;
-
-    ModTextFileSetContent( "data/translations/common.csv", translations );
 end
 
--- biomes
-local content = ModTextFileGetContent("data/biome/_biomes_all.xml")
-local xml = nxml.parse(content)
-xml:add_children(nxml.parse_many[[
-]])
-ModTextFileSetContent("data/biome/_biomes_all.xml", tostring(xml))
---[[ <Biome height_index="0" color="ff9dceb9" biome_filename="mods/tales_of_kupoli/files/biome/sunlab/sunlab.xml" /> ]]
-
--- pixel scenes, thanks graham! go play graham's things RIGHT NOW!!!
+-- pixel scenes (thanks graham)
 local function add_scene(table)
 	local biome_path = ModIsEnabled("noitavania") and "mods/noitavania/data/biome/_pixel_scenes.xml" or "data/biome/_pixel_scenes.xml"
 	local content = ModTextFileGetContent(biome_path)
@@ -292,6 +295,27 @@ end
     end
     GameAddFlagRun("tales_of_kupoli_moles_init")
 end]]
+
+--translations
+local translations = ModTextFileGetContent( "data/translations/common.csv" );
+if translations ~= nil then
+    while translations:find("\r\n\r\n") do
+        translations = translations:gsub("\r\n\r\n","\r\n");
+    end
+
+    local new_translations = ModTextFileGetContent( table.concat({"mods/tales_of_kupoli/files/translations.csv"}) );
+    translations = translations .. new_translations;
+
+    ModTextFileSetContent( "data/translations/common.csv", translations );
+end
+
+-- biomes
+--[[local content = ModTextFileGetContent("data/biome/_biomes_all.xml")
+local xml = nxml.parse(content)
+xml:add_children(nxml.parse_many[[
+)
+ModTextFileSetContent("data/biome/_biomes_all.xml", tostring(xml))]]
+--[[ <Biome height_index="0" color="ff9dceb9" biome_filename="mods/tales_of_kupoli/files/biome/sunlab/sunlab.xml" /> ]]
 
 -- nxml
 local content = ModTextFileGetContent("data/materials.xml")

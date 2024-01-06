@@ -166,7 +166,8 @@ local wizards = {
     "data/entities/animals/wizard_twitchy.xml",
     "data/entities/animals/wizard_weaken.xml",
     "data/entities/animals/monk.xml",
-    "data/entities/animals/kupoli_soul_angry.xml"
+    "data/entities/animals/kupoli_soul_angry.xml",
+    "data/entities/animals/kupoli_puppet_master.xml",
 }
 for i,v in ipairs(wizards) do
     if ModTextFileGetContent(v) ~= nil then
@@ -217,8 +218,6 @@ add_scene({
     { -5340, 16640, "mods/tales_of_kupoli/files/entities/items/essencewand_water/weapon.xml", true },
 
     { 4518, 805, "mods/tales_of_kupoli/files/sunbook/item/item.xml", true },
-
-
 })
 
 -- player

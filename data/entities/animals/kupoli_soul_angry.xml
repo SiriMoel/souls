@@ -1,4 +1,4 @@
-<Entity tags="enemy,mortal,hittable,homing_target,teleportable_NOT,glue_NOT" name="Malicious Soul">
+<Entity tags="enemy,mortal,hittable,homing_target,teleportable_NOT,glue_NOT" name="Ilkeä naama">
 
     <DamageModelComponent 
 		hp="13" 

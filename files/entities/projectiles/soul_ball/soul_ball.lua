@@ -10,6 +10,10 @@ local soul = GetRandomSoul()
 
 local comp = EntityGetFirstComponent( entity, "ProjectileComponent" ) or 0
 local projdamage = ComponentGetValue2( comp, "damage" )
+local on_collision_die = ComponentGetValue2( comp, "on_collision_die" )
+local speed_min = ComponentGetValue2( comp, "speed_min" )
+local speed_max = ComponentGetValue2( comp, "speed_max" )
+local bounces_left = ComponentGetValue2( comp, "bounces_left" )
 local expdamage = ComponentObjectGetValue( comp, "config_explosion", "damage" )
 local exprad = ComponentObjectGetValue( comp, "config_explosion", "explosion_radius" )
 local cursedamage = ComponentObjectGetValue( comp, "damage_by_type", "curse" )
@@ -34,11 +38,11 @@ else
 	end
 	
 	RemoveSoul(soul)
-	
-	local particlecomp = EntityGetFirstComponent(entity, "ParticleEmitterComponent") or 0
 
-	--bat
-	if soul == "bat" then
+    local particlecomp = EntityGetFirstComponent(entity, "ParticleEmitterComponent") or 0
+
+    --bat
+    if soul == "bat" then
 		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)		
 			ComponentSetValue2( particlecomp, "emitted_material_name", "spark_purple_bright" )
 		end)
@@ -49,12 +53,16 @@ else
 		} )
 	
 		projdamage = projdamage * 1.2
+        speed_min = speed_min * 1.4
+        speed_max = speed_max * 1.4
 	
 		ComponentSetValue2( comp, "damage", projdamage )
+        ComponentSetValue2( comp, "speed_min", speed_min )
+        ComponentSetValue2( comp, "speed_max", speed_max )
 	end
 
-	--fly
-	if soul == "fly" then
+    --fly
+    if soul == "fly" then
 		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)		
 			ComponentSetValue2( particlecomp, "emitted_material_name", "spark_red" )
 		end)
@@ -71,14 +79,20 @@ else
 	
 		projdamage = projdamage + 0.4
 		projdamage = projdamage * 1.4
+        speed_min = speed_min * 1.2
+        speed_max = speed_max * 1.2
+        on_collision_die = true
 	
 		ComponentSetValue2( comp, "damage", projdamage )
+        ComponentSetValue2( comp, "speed_min", speed_min )
+        ComponentSetValue2( comp, "speed_max", speed_max )
+        ComponentSetValue2( comp, "on_collision_die", on_collision_die)
 	end
 
-	--friendly
+    --friendly
 
-	--gilded
-	if soul == "gilded" then
+    --gilded
+    if soul == "gilded" then
 		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)
 			ComponentSetValue2( particlecomp, "emitted_material_name", "gold" )
 		end)
@@ -103,13 +117,13 @@ else
 			value_string="data/entities/misc/curse_wither_electricity.xml",
 		} )
 
-		projdamage = projdamage * 1.3
+        projdamage = projdamage * 1.3
 	
 		ComponentSetValue2( comp, "damage", projdamage )
 	end
 
-	--mage
-	if soul == "mage" then
+    --mage
+    if soul == "mage" then
 		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)		
 			ComponentSetValue2( particlecomp, "emitted_material_name", "spark_blue" )
 		end)
@@ -127,28 +141,24 @@ else
 		ComponentObjectSetValue( comp, "damage_by_type", "curse", cursedamage )
 	end
 
-	--orcs & zombie
-	if soul == "orcs" or soul == "zombie" then
-		EntityAddComponent( entity, "SineWaveComponent", {
-			_enabled="1",
-			sinewave_freq="1.0",
-			sinewave_m="0.6",
-			lifetime="-1",
-		} )
+    --orcs & zombie
+    if soul == "orcs" or soul == "zombie" then
 	
 		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)
 			ComponentSetValue2( particlecomp, "emitted_material_name", "spark_green" )
 		end)
 	
-		expdamage = expdamage * 1.2
+		expdamage = expdamage * 1.3
 		exprad = exprad * 2
+        on_collision_die = true
 		
 		ComponentObjectSetValue( comp, "config_explosion", "damage", expdamage )
 		ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )
+        ComponentSetValue2( comp, "on_collision_die", on_collision_die)
 	end
 
-	--slimes
-	if soul == "slimes" then
+    --slimes
+    if soul == "slimes" then
 		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)		
 			ComponentSetValue2( particlecomp, "emitted_material_name", "spark_green_bright" )
 		end)
@@ -160,12 +170,14 @@ else
 	
 		icedamage = icedamage + 0.5
 		icedamage = icedamage * 2
+        bounces_left = bounces_left + 5
 	
 		ComponentObjectSetValue( comp, "damage_by_type", "ice", icedamage )
+        ComponentSetValue2( comp, "bounces_left", bounces_left )
 	end
 
-	--spider
-	if soul == "spider" then
+    --spider
+    if soul == "spider" then
 		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)	
 			ComponentSetValue2( particlecomp, "emitted_material_name", "spark_purple" )
 		end)
@@ -175,16 +187,19 @@ else
 			value_string="data/entities/misc/curse_init.xml",
 		} )
 	
-		EntityAddComponent( entity, "CellEaterComponent", { 
-			eat_probability="90",
-			radius="16",
-			ignored_material="rock_static_cursed",
-			ignored_material_tag="[matter_eater_ignore_list]",
-		} )
+        expdamage = expdamage * 1.3
+		exprad = exprad * 1.2
+        projdamage = projdamage + 0.4
+		projdamage = projdamage * 1.5
+
+	
+		ComponentSetValue2( comp, "damage", projdamage )
+		ComponentObjectSetValue( comp, "config_explosion", "damage", expdamage )
+		ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )
 	end
 
-	--worm
-	if soul == "worm" then
+    --worm
+    if soul == "worm" then
 		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)	
 			ComponentSetValue2( particlecomp, "emitted_material_name", "spark_yellow" )
 		end)
@@ -196,20 +211,22 @@ else
 			ignored_material_tag="",
 		} )
 
-		meleedamage = meleedamage + 0.5
+		meleedamage = meleedamage + 0.3
 		meleedamage = meleedamage * 1.3
+        on_collision_die = true
 	
 		ComponentObjectSetValue( comp, "damage_by_type", "melee", meleedamage )
+        ComponentSetValue2( comp, "on_collision_die", on_collision_die)
 	end
 
-	--fungi
-	if soul == "fungi" then
+    --fungi
+    if soul == "fungi" then
 		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)
 			ComponentSetValue2( particlecomp, "emitted_material_name", "fungi" )
 		end)
 	
-		expdamage = expdamage * 1.1
-		exprad = exprad * 3
+		expdamage = expdamage * 1.5
+		exprad = exprad * 10
 		
 		ComponentObjectSetValue( comp, "config_explosion", "damage", expdamage )
 		ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )

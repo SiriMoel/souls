@@ -811,6 +811,23 @@ local a = {
 			draw_actions( 1, true )
 		end,
 	},
+	{
+		id          = "SOUL_BALL",
+		name 		= "Soul Ball",
+		description = "Expels a soul in the form of a bouncing projectile",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_ball.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/soul_ball/soul_ball.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		spawn_level                       = "2,3,4,5,6",
+		spawn_probability                 = "0.8,1,1,1,1",
+		price = 120,
+		mana = 40,
+		max_uses = 20,
+		action 		= function()
+			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/soul_ball/soul_ball.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 20
+		end,
+	},
 }
 
 for i,v in ipairs(a) do

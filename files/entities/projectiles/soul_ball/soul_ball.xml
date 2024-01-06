@@ -85,7 +85,7 @@
      >
   </SpriteComponent>
 
-    <ParticleEmitterComponent 
+  <ParticleEmitterComponent 
     emitted_material_name="soul_particles"
     offset.x="0"
     offset.y="0"

@@ -6,7 +6,7 @@ table.insert(g_small_enemies, {
 })
 
 table.insert(g_big_enemies, {
-    prob   		= 0.3,
+    prob   		= 0.03,
     min_count	= 1,
     max_count	= 1,
     entity 	= "data/entities/animals/kupoli_soul_angry.xml",

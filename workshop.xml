@@ -7,17 +7,28 @@
 	
 	A bunch of things, because you need all the things.
 
-	[b]Features[/b]
+	[h3]Features[/h3]
 	[list]
-		[*] 29 new spells
-		[*] 21 new wands and weapons
-		[*] 2 new perks
-		[*] Create 2 new Suns
+		[*] 36 spells
+		[*] 21 wands and weapons
+		[*] 2 perks
+		[*] 2 enemies
 		[*] Harvest the souls from enemies to fuel your spells
+		[*] Create new Suns (green and red, and possibly blue?)
 		[*] Special wands, spells, and other items drop from enemies
-		[*] Revive bosses
-		[*] Things!!!
-		[*] Tales (of Kupoli)
+		[*] Revive bosses for new rewards
+		[*] Uncover secrets and tales (of Kupoli)
+	[/list]
+
+	[b]New this update![/b]
+	[list]
+		[*] 13 new spells
+		[*] 2 new enemies
+		[*] 3 new wands
+		[*] 2 secrets
+		[*] Trade with the Gods for soul spells
+		[*] New tower rewards
+		[*] Performance improvements
 	[/list]
 	
 	[i]
@@ -34,9 +45,10 @@
 	-V
 	[/i]
 
-	if you have questions please contact my thermodynamic lawyer at https://discord.gg/FKaRA9HMUq thanks
+	[url=https://discord.gg/FKaRA9HMUq] Discord [/url]
+	[url=https://github.com/SiriMoel/tales_of_kupoli] Github [/url]
 	"
-	tags="gameplay,items,spells,perks"
+	tags="gameplay,items,spells,perks,creatures"
 	dont_upload_folders=""
 	dont_upload_files=""
 >

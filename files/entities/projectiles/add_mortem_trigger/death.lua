@@ -5,7 +5,8 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
 
     local x, y = EntityGetTransform(entity)
 
-    SetRandomSeed(x, y)
+    SetRandomSeed(x, y)    
+math.randomseed(x, y+GameGetFrameNum())
 
     local comp_tocast = EntityGetFirstComponentIncludingDisabled(entity, "VariableStorageComponent", "kupoli_mortem_trigger") or 0
 

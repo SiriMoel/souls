@@ -7,6 +7,7 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 	EntityLoad( "data/entities/items/pickup/heart.xml",  x , y )
 
     SetRandomSeed(x, y)
+    math.randomseed(x, y+GameGetFrameNum())
 
     local chestnum = math.random(1,5)
 

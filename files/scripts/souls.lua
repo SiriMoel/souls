@@ -9,7 +9,6 @@ soul_types = {
     "orcs",
     "slimes",
     "spider",
-    "synthetic",
     "zombie",
     "worm",
     "fungi",

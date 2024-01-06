@@ -5,7 +5,7 @@ local x, y = EntityGetTransform(player)
 
 local radius = 100
 
-SetRandomSeed(x,y+GameGetFrameNum())
+math.randomseed(x, y+GameGetFrameNum())
 
 local targets = EntityGetInRadiusWithTag( x, y, radius, "homing_target" )
 

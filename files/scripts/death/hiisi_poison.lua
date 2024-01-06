@@ -7,7 +7,8 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 	local pos_x, pos_y = EntityGetTransform( entity_id )
 	local x, y = EntityGetTransform( GetUpdatedEntityID() )
 
-	SetRandomSeed(x, y)
+	SetRandomSeed(x, y)    
+	math.randomseed(x, y+GameGetFrameNum())
 
 	local r = math.random(1,3)
 	if r == 2 then

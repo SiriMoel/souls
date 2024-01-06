@@ -53,7 +53,7 @@ local biomes = {
     },
 }
 for i,v in ipairs(biomes) do
-    if ModTextFileGetContent(v) ~= nil then
+    if ModTextFileGetContent(v.path) ~= nil then
         ModLuaFileAppend(v.path, v.script)
     end
 end
@@ -207,6 +207,8 @@ local wotc_y = -26204 + math.random(-1000,-5000)
 
 add_scene({
 	{ -4500, -7000, "mods/tales_of_kupoli/files/biome/rainaltar/rainaltar.xml", true }, -- -4500, -7000
+    { 13080, 1650, "mods/tales_of_kupoli/files/biome/souldoor/souldoor.xml", true },
+    { -1000, -10000, "mods/tales_of_kupoli/files/biome/sillychest/sillychest.xml", true },
 
     { 16165, -1790, "mods/tales_of_kupoli/files/entities/items/essencewand_earth/weapon.xml", true },
     { -14090, 360, "mods/tales_of_kupoli/files/entities/items/essencewand_fire/weapon.xml", true },
@@ -216,8 +218,7 @@ add_scene({
 
     { 4518, 805, "mods/tales_of_kupoli/files/sunbook/item/item.xml", true },
 
-    --{ 0, -200, "mods/tales_of_kupoli/files/biome/souldoor/souldoor.xml", true }, -- THIS IS TESTING
-    { 13080, 1650, "mods/tales_of_kupoli/files/biome/souldoor/souldoor.xml", true },
+
 })
 
 -- player

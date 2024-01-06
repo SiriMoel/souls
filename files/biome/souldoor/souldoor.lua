@@ -19,14 +19,15 @@ local targets = EntityGetInRadiusWithTag(x, y, radius, "card_action")
 local spell_projectiles = {}
 local pool_projectiles = {
     "KUPOLI_SOUL_BLAST",
-    "KUPOLI_REAPING_FIELD",
-    "KUPOLI_REAPER_BLADE",
-    "KUPOLI_SOUL_EXPLOSION",
-    "KUPOLI_SOUL_GUARD",
     "KUPOLI_SOUL_SPEED",
+    "KUPOLI_REAPING_FIELD",
     "KUPOLI_REAPING_SHOT",
+    "KUPOLI_REAPER_BLADE",
     "KUPOLI_SOULS_TO_POWER",
+    "KUPOLI_SOUL_EXPLOSION",
     "KUPOLI_SOUL_IS_MANA",
+    "KUPOLI_SOUL_GUARD",
+    "KUPOLI_RANDOM_REAP",
     "KUPOLI_SOUL_BATTERY",
     "KUPOLI_GILDED_SOULS_TO_GOLD",
 }

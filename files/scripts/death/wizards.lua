@@ -6,7 +6,8 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 	local entity = GetUpdatedEntityID()
 	local x, y = EntityGetTransform(entity)
 
-    SetRandomSeed(x, y)
+    SetRandomSeed(x, y)    
+    math.randomseed(x, y+GameGetFrameNum())
 
     local target = ""
 

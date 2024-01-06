@@ -5,7 +5,8 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 	local entity = GetUpdatedEntityID()
 	local x, y = EntityGetTransform(entity)
 
-    SetRandomSeed(x, y)
+    SetRandomSeed(x, y)    
+    math.randomseed(x, y+GameGetFrameNum())
 
     if math.random(1, 20) == 10 then
         CreateItemActionEntity( "KUPOLI_DIAHEART_LENSE", x , y )

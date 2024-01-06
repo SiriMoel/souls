@@ -5,8 +5,6 @@ dofile_once("data/scripts/gun/gun_actions.lua")
 local altar = GetUpdatedEntityID()
 local x, y = EntityGetTransform(altar)
 
-LoadPixelScene( "mods/tales_of_kupoli/files/biome/rainaltar/rainaltar.png", "mods/tales_of_kupoli/files/biome/rainaltar/rainaltar_visual.png", x-256, y-256, "mods/tales_of_kupoli/files/biome/rainaltar/rainaltar_background.png", true )
-
 local targets = EntityGetInRadiusWithTag(x, y, 50, "kupoli_cloud")
 
 function generate_shop_item( x, y ) -- stolen from generate_shop_item.lua

@@ -88,7 +88,8 @@ end
 
 function weapon_rngstats(weapon, x, y, statsm)
     local ac = EntityGetComponent( weapon, "AbilityComponent" )[1]
-    SetRandomSeed(x, y)
+    SetRandomSeed(x, y)    
+    math.randomseed(x, y+GameGetFrameNum())
     if ac ~= nil then
         local sm = (math.random( 100, (statsm * 100) )) / 100
 

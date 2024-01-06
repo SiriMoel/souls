@@ -4,7 +4,8 @@ dofile_once("data/scripts/gun/gun_actions.lua")
 local entity = GetUpdatedEntityID()
 local x, y = EntityGetTransform(entity)
 
-SetRandomSeed(x, y)
+SetRandomSeed(x, y)    
+math.randomseed(x, y+GameGetFrameNum())
 
 GamePrint("hi")
 

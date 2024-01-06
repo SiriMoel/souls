@@ -1,21 +1,21 @@
 dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
 
 local a = {
 	{
-		id          = "REAPING_SHOT",
+		id          = "REAPING_SHOT", -- the basis of the whole mod or something
 		name 		= "Reaping Shot",
-		description = "Causes enemies to drop their souls on death",
+		description = "Guarantees enemies drop their souls when they die",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/reaping_shot.png",
 		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/reaping_shot/reaping_shot.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
 		spawn_level                       = "0,1,2,3,4,5,6",
-		spawn_probability                 = "0.7,1,1,1,0.7,0.7,0.7",
+		spawn_probability                 = "1,1,1,1,1,1,1",
 		price = 120,
 		mana = 20,
 		action 		= function()
 			c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/projectiles/reaping_shot/reaping_shot.xml,"
 			c.fire_rate_wait = c.fire_rate_wait + 5
-			--ce.mana_multiplier = ce.mana_multiplier * 1.1 -- wonderful testing
 			draw_actions( 1, true )
 		end,
 	},
@@ -171,8 +171,8 @@ local a = {
 		type 		= ACTION_TYPE_PROJECTILE,
 		spawn_level                       = "2,3,4,5,6",
 		spawn_probability                 = "0.8,1,1,1,1",
-		price = 200,
-		mana = 50,
+		price = 120,
+		mana = 40,
 		max_uses = 20,
 		action 		= function()
 			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/soul_blast/soul_blast.xml")
@@ -678,6 +678,137 @@ local a = {
 
 			c.fire_rate_wait = c.fire_rate_wait + 6
 			c.spread_degrees = c.spread_degrees - 2.0
+		end,
+	},
+	--[[{
+		id          = "MOLDOS_INFERNO",
+		name 		= "Moldos Inferno",
+		description = "It is all fire",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_speed.png", -- did you know? icon
+		related_extra_entities	= {"mods/tales_of_kupoli/files/entities/misc/moldos_inferno.xml"},
+		type 		= ACTION_TYPE_MODIFIER,
+		spawn_level                       = "4,5,6",
+		spawn_probability                 = "0.7,0.7,0.7",
+		price = 180,
+		mana = 30,
+		action 		= function()
+			c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/misc/moldos_inferno.xml,"
+		end,
+	},]]
+	{
+		id          = "RANDOM_REAP",
+		name 		= "Random Reap",
+		description = "Enemies drop a random soul on death",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/random_reap.png",
+		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/random_reap/reaping_shot.xml" },
+		type 		= ACTION_TYPE_MODIFIER,
+		spawn_level                       = "3,4,5,6",
+		spawn_probability                 = "0.4,0.5,0.5,0.6",
+		price = 130,
+		mana = 25,
+		action 		= function()
+			c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/projectiles/random_reap/reaping_shot.xml,"
+			c.fire_rate_wait = c.fire_rate_wait + 7
+			draw_actions( 1, true )
+		end,
+	},
+
+	{
+		id          = "ALL_REAP_GILDED",
+		name 		= "All Reap Gilded",
+		description = "Guarantees enemies drop a gilded soul when they die",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_gilded.png",
+		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/all_reap_gilded/reaping_shot.xml" },
+		spawn_requires_flag = "card_unlocked_alchemy",
+		type 		= ACTION_TYPE_MODIFIER,
+		spawn_level                       = "6,10",
+		spawn_probability                 = "0.05,1",
+		never_unlimited = true,
+		max_uses = 5,
+		price = 200,
+		mana = 100,
+		action 		= function()
+			c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/projectiles/all_reap_gilded/reaping_shot.xml,"
+			c.fire_rate_wait = c.fire_rate_wait + 40
+			draw_actions( 1, true )
+		end,
+	},
+	{
+		id          = "ALL_REAP_MAGE",
+		name 		= "All Reap Mage",
+		description = "Guarantees enemies drop a mage soul when they die",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_mage.png",
+		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/all_reap_mage/reaping_shot.xml" },
+		spawn_requires_flag = "card_unlocked_alchemy",
+		type 		= ACTION_TYPE_MODIFIER,
+		spawn_level                       = "6,10",
+		spawn_probability                 = "0.05,1",
+		price = 200,
+		mana = 70,
+		never_unlimited = true,
+		max_uses = 30,
+		action 		= function()
+			c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/projectiles/all_reap_fly/reaping_shot.xml,"
+			c.fire_rate_wait = c.fire_rate_wait + 20
+			draw_actions( 1, true )
+		end,
+	},
+	{
+		id          = "ALL_REAP_FLY",
+		name 		= "All Reap ALL_REAP_FLY",
+		description = "Guarantees enemies drop a fly soul when they die",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_fly.png",
+		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/all_reap_fly/reaping_shot.xml" },
+		spawn_requires_flag = "card_unlocked_alchemy",
+		type 		= ACTION_TYPE_MODIFIER,
+		spawn_level                       = "6,10",
+		spawn_probability                 = "0.05,1",
+		price = 200,
+		mana = 70,
+		never_unlimited = true,
+		max_uses = 30,
+		action 		= function()
+			c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/projectiles/all_reap_fly/reaping_shot.xml,"
+			c.fire_rate_wait = c.fire_rate_wait + 20
+			draw_actions( 1, true )
+		end,
+	},
+	{
+		id          = "ALL_REAP_SPIDER",
+		name 		= "All Reap Spider",
+		description = "Guarantees enemies drop a spider soul when they die",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_spider.png",
+		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/all_reap_spider/reaping_shot.xml" },
+		spawn_requires_flag = "card_unlocked_alchemy",
+		type 		= ACTION_TYPE_MODIFIER,
+		spawn_level                       = "6,10",
+		spawn_probability                 = "0.05,1",
+		price = 200,
+		mana = 70,
+		never_unlimited = true,
+		max_uses = 30,
+		action 		= function()
+			c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/projectiles/all_reap_spider/reaping_shot.xml,"
+			c.fire_rate_wait = c.fire_rate_wait + 20
+			draw_actions( 1, true )
+		end,
+	},
+	{
+		id          = "SOULDOS",
+		name 		= "Souldos",
+		description = "Enemies drop two souls when they die",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/souldos.png",
+		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/souldos/reaping_shot.xml" },
+		type 		= ACTION_TYPE_MODIFIER,
+		spawn_level                       = "6,10",
+		spawn_probability                 = "0.05,1",
+		price = 160,
+		mana = 40,
+		max_uses = 50,
+		action 		= function()
+			c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/projectiles/souldos/reaping_shot.xml,"
+			c.fire_rate_wait = c.fire_rate_wait + 15
+			draw_actions( 1, true )
 		end,
 	},
 }

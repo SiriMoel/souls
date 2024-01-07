@@ -19,16 +19,16 @@ end
 local mod_id = "tales_of_kupoli"
 mod_settings_version = 1 
 mod_settings = {
-    {
+    --[[{
 		id = "spawn_with_soul_spells",
         ui_name = "Spawn with Soul Spells",
         ui_description = "If you want to spawn with some Soul related spells.",
         value_default = false,
         scope = MOD_SETTING_SCOPE_RUNTIME,
-	},
+	},]]
 	{
         id = "show_souls",
-        ui_name = "Show Souls",
+        ui_name = "Render Souls (recommended Off)",
         ui_description = "If you want to see souls around your player in game.",
         value_default = false,
         scope = MOD_SETTING_SCOPE_RUNTIME,
@@ -67,14 +67,14 @@ mod_settings = {
         ui_description = "Must be set before run.",
         value_default = false,
         scope = MOD_SETTING_SCOPE_RUNTIME,
-	},]]--
+	},]]
     --[[{
 		id = "testing",
         ui_name = "TESTING",
         ui_description = "TESTING",
         value_default = false,
         scope = MOD_SETTING_SCOPE_RUNTIME,
-	},]]--
+	},]]
 }
 
 function ModSettingsUpdate( init_scope )

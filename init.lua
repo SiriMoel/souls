@@ -270,21 +270,6 @@ function OnPlayerSpawned( player )
         EntityLoad("mods/tales_of_kupoli/files/entities/items/minapearl/mina_pearl.xml", px + 5, py)
         --EntityLoad("mods/tales_of_kupoli/files/entities/items/forgewand/weapon.xml", px - 5, py)
     end
-    
-    if ModSettingGet( "tales_of_kupoli.spawn_with_soul_spells" ) then
-        local sx = px
-        local sy = py - 5
-
-        local spells = {
-            "SOUL_BLAST",
-            "SOUL_SPEED",
-            "REAPING_SHOT",
-        }
-
-        for i,v in ipairs(spells) do
-            CreateItemActionEntity( "KUPOLI_" .. v, sx, sy )
-        end
-    end
 
     if ModSettingGet( "tales_of_kupoli.sunbook_unlocked_on_start" ) then
         GameAddFlagRun("talesofkupoli_sunbook_unlocked")

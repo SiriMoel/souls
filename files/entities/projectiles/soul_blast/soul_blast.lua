@@ -12,9 +12,9 @@ local comp = EntityGetFirstComponent( entity, "ProjectileComponent" ) or 0
 local projdamage = ComponentGetValue2( comp, "damage" )
 local expdamage = ComponentObjectGetValue( comp, "config_explosion", "damage" )
 local exprad = ComponentObjectGetValue( comp, "config_explosion", "explosion_radius" )
-local cursedamage = ComponentObjectGetValue( comp, "damage_by_type", "curse" )
 local meleedamage = ComponentObjectGetValue( comp, "damage_by_type", "melee" )
 local icedamage = ComponentObjectGetValue( comp, "damage_by_type", "ice" )
+local poisondamage = ComponentObjectGetValue( comp, "damage_by_type", "poison" )
 
 if soul == nil or soul == 0 then
 	GamePrint("You have no souls.")
@@ -48,7 +48,7 @@ else
 			homing_velocity_multiplier="0.86",
 		} )
 	
-		projdamage = projdamage * 1.2
+		projdamage = projdamage * 1.1
 	
 		ComponentSetValue2( comp, "damage", projdamage )
 	end
@@ -70,7 +70,7 @@ else
 		} )
 	
 		projdamage = projdamage + 0.4
-		projdamage = projdamage * 1.4
+		projdamage = projdamage * 1.2
 	
 		ComponentSetValue2( comp, "damage", projdamage )
 	end
@@ -82,29 +82,16 @@ else
 		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)
 			ComponentSetValue2( particlecomp, "emitted_material_name", "gold" )
 		end)
-		
-		EntityAddComponent( entity, "HitEffectComponent", { 
-			effect_hit="LOAD_UNIQUE_CHILD_ENTITY",
-			value_string="data/entities/misc/curse_wither_projectile.xml",
-		} )
-	
-		EntityAddComponent( entity, "HitEffectComponent", { 
-			effect_hit="LOAD_UNIQUE_CHILD_ENTITY",
-			value_string="data/entities/misc/curse_wither_melee.xml",
-		} )
-	
-		EntityAddComponent( entity, "HitEffectComponent", { 
-			effect_hit="LOAD_UNIQUE_CHILD_ENTITY",
-			value_string="data/entities/misc/curse_wither_explosion.xml",
-		} )
-	
-		EntityAddComponent( entity, "HitEffectComponent", { 
-			effect_hit="LOAD_UNIQUE_CHILD_ENTITY",
-			value_string="data/entities/misc/curse_wither_electricity.xml",
-		} )
 
-		projdamage = projdamage * 1.3
+		projdamage = projdamage + 0.5
+		expdamage = expdamage * 1.2
+		exprad = exprad * 2
+		icedamage = icedamage + 0.3
+		icedamage = icedamage * 2
 	
+		ComponentObjectSetValue( comp, "damage_by_type", "ice", icedamage )
+		ComponentObjectSetValue( comp, "config_explosion", "damage", expdamage )
+		ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )
 		ComponentSetValue2( comp, "damage", projdamage )
 	end
 
@@ -121,10 +108,13 @@ else
 			homing_velocity_multiplier="1.0",
 		} )
 	
-		cursedamage = cursedamage + 0.3
-		cursedamage = cursedamage * 2
-	
-		ComponentObjectSetValue( comp, "damage_by_type", "curse", cursedamage )
+		projdamage = projdamage * 1.3
+		expdamage = expdamage * 1.3
+		exprad = exprad * 0.6
+		
+		ComponentObjectSetValue( comp, "config_explosion", "damage", expdamage )
+		ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )
+		ComponentSetValue2( comp, "damage", projdamage )
 	end
 
 	--orcs & zombie
@@ -153,12 +143,7 @@ else
 			ComponentSetValue2( particlecomp, "emitted_material_name", "spark_green_bright" )
 		end)
 	
-		EntityAddComponent( entity, "HitEffectComponent", { 
-			effect_hit="LOAD_UNIQUE_CHILD_ENTITY",
-			value_string="data/entities/misc/gravity_field_enemy.xml",
-		} )
-	
-		icedamage = icedamage + 0.5
+		icedamage = icedamage + 0.3
 		icedamage = icedamage * 2
 	
 		ComponentObjectSetValue( comp, "damage_by_type", "ice", icedamage )
@@ -170,17 +155,17 @@ else
 			ComponentSetValue2( particlecomp, "emitted_material_name", "spark_purple" )
 		end)
 	
-		EntityAddComponent( entity, "HitEffectComponent", { 
-			effect_hit="LOAD_UNIQUE_CHILD_ENTITY",
-			value_string="data/entities/misc/curse_init.xml",
-		} )
-	
 		EntityAddComponent( entity, "CellEaterComponent", { 
 			eat_probability="90",
 			radius="16",
 			ignored_material="rock_static_cursed",
 			ignored_material_tag="[matter_eater_ignore_list]",
 		} )
+
+		poisondamage = poisondamage + 0.15
+		poisondamage = poisondamage * 1.3
+
+		ComponentObjectSetValue( comp, "damage_by_type", "poison", poisondamage )
 	end
 
 	--worm
@@ -226,11 +211,10 @@ else
 			execute_every_n_frame="8",
 		} )
 	
-		cursedamage = cursedamage + 0.2
-		cursedamage = cursedamage * 2
-		icedamage = icedamage + 0.1
+		icedamage = icedamage + 0.4
+		exprad = exprad * 1.5
 	
-		ComponentObjectSetValue( comp, "damage_by_type", "curse", cursedamage )
+		ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )
 		ComponentObjectSetValue( comp, "damage_by_type", "ice", icedamage )
 	end
 
@@ -247,10 +231,13 @@ else
 			homing_velocity_multiplier="1.3",
 		} )
 	
-		cursedamage = cursedamage + 0.4
-		cursedamage = cursedamage * 2
-	
-		ComponentObjectSetValue( comp, "damage_by_type", "curse", cursedamage )
+		projdamage = projdamage * 1.4
+		expdamage = expdamage * 1.4
+		exprad = exprad * 0.75
+		
+		ComponentObjectSetValue( comp, "config_explosion", "damage", expdamage )
+		ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )
+		ComponentSetValue2( comp, "damage", projdamage )
 	end
 
 	--ghost_whisp
@@ -258,11 +245,9 @@ else
 		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)
 			ComponentSetValue2( particlecomp, "emitted_material_name", "fire" )
 		end)
-	
-		cursedamage = cursedamage + 0.1
-		cursedamage = cursedamage * 2
+
 		firedamage = firedamage + 0.4
-		firedamage = firedamage * 0.2
+		firedamage = firedamage * 1.4
 
 		EntityAddComponent( entity, "MagicConvertMaterialComponent", {
 			from_material_tag="burnable",
@@ -273,7 +258,6 @@ else
 			radius=20,
 		})
 	
-		ComponentObjectSetValue( comp, "damage_by_type", "curse", cursedamage )
 		ComponentObjectSetValue( comp, "damage_by_type", "fire", firedamage )
 	end
 end

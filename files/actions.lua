@@ -755,7 +755,7 @@ local a = {
 	},
 	{
 		id          = "ALL_REAP_FLY",
-		name 		= "All Reap ALL_REAP_FLY",
+		name 		= "All Reap Fly",
 		description = "Guarantees enemies drop a fly soul when they die",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_fly.png",
 		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/all_reap_fly/reaping_shot.xml" },

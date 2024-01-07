@@ -37,6 +37,12 @@ SetFileContent("data/entities/projectiles/deck/cloud_water.xml", "cloud_water.xm
 SetFileContent("data/entities/projectiles/deck/cloud_acid.xml", "cloud_acid.xml")
 SetFileContent("data/scripts/biomes/tower_end.lua", "tower_end.lua")
 
+-- compat
+if ModIsEnabled("Apotheosis") then
+    --table.insert(soul_types, "mage_corrupted")
+    --table.insert(soul_types, "ghost_whisp")
+end
+
 -- enemies
 local biomes = {
     {
@@ -230,6 +236,10 @@ function OnPlayerSpawned( player )
     if GameHasFlagRun("tales_of_kupoli_init") then return end
 
     SoulsInit()
+
+    if ModIsEnabled("Apotheosis") then
+        print("tales x apotheosis compat working!")
+    end
 
     EntityAddComponent2(player, "LuaComponent", {
         script_source_file="mods/tales_of_kupoli/files/scripts/player.lua",

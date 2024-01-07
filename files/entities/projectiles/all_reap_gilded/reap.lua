@@ -12,7 +12,7 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
     herd_id = "gilded"
 
     if ModSettingGet("tales_of_kupoli.say_soul") == true then
-        GamePrint("You have acquired a " .. herd_id .. " soul!")
+        GamePrint("You have acquired a " .. SoulNameCheck(herd_id) .. " soul!")
     end
 
     AddSoul(herd_id)

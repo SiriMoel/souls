@@ -34,7 +34,7 @@ if soul == nil or soul == 0 then
     EntityKill(entity)
 else
 	if ModSettingGet( "tales_of_kupoli.say_consumed_soul" ) then
-		GamePrint( "You have consumed a " .. soul .. " soul." )
+		GamePrint( "You have consumed a " .. SoulNameCheck(soul) .. " soul." )
 	end
 	
 	RemoveSoul(soul)
@@ -125,7 +125,7 @@ else
     --mage
     if soul == "mage" then
 		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)		
-			ComponentSetValue2( particlecomp, "emitted_material_name", "spark_blue" )
+			ComponentSetValue2( particlecomp, "emitted_material_name", "spark_white" )
 		end)
 	
 		EntityAddComponent( entity, "HomingComponent", {
@@ -135,7 +135,7 @@ else
 			homing_velocity_multiplier="1.0",
 		} )
 	
-		cursedamage = cursedamage + 0.4
+		cursedamage = cursedamage + 0.3
 		cursedamage = cursedamage * 2
 	
 		ComponentObjectSetValue( comp, "damage_by_type", "curse", cursedamage )
@@ -230,5 +230,70 @@ else
 		
 		ComponentObjectSetValue( comp, "config_explosion", "damage", expdamage )
 		ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )
+	end
+
+	--ghost
+	if soul == "ghost" then
+		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)
+			ComponentSetValue2( particlecomp, "emitted_material_name", "plasma_fading" )
+		end)
+
+		EntityAddComponent( entity, "LuaComponent", {
+			script_source_file="data/scripts/projectiles/phasing_arc.lua",
+			execute_every_n_frame="20",
+		} )
+		
+		EntityAddComponent( entity, "LuaComponent", {
+			script_source_file="data/scripts/projectiles/homing_area.lua",
+			execute_every_n_frame="1",
+		} )
+	
+		cursedamage = cursedamage + 0.2
+		cursedamage = cursedamage * 2
+	
+		ComponentObjectSetValue( comp, "damage_by_type", "curse", cursedamage )
+	end
+
+	--mage_corrupted
+	if soul == "mage_corrupted" then
+		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)
+			ComponentSetValue2( particlecomp, "emitted_material_name", "blood" )
+		end)
+	
+		EntityAddComponent( entity, "HomingComponent", {
+			target_tag="homing_target",
+			homing_targeting_coeff="10",
+			detect_distance="300",
+			homing_velocity_multiplier="1.3",
+		} )
+	
+		cursedamage = cursedamage + 0.4
+		cursedamage = cursedamage * 2
+	
+		ComponentObjectSetValue( comp, "damage_by_type", "curse", cursedamage )
+	end
+
+	--ghost_whisp
+	if soul == "ghost_whisp" then
+		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)
+			ComponentSetValue2( particlecomp, "emitted_material_name", "fire" )
+		end)
+	
+		cursedamage = cursedamage + 0.1
+		cursedamage = cursedamage * 2
+		firedamage = firedamage + 0.4
+		firedamage = firedamage * 0.2
+
+		EntityAddComponent( entity, "MagicConvertMaterialComponent", {
+			from_material_tag="burnable",
+			to_material="fire",
+			steps_per_frame=20,
+			loop=1,
+			is_circle=1,
+			radius=20,
+		})
+	
+		ComponentObjectSetValue( comp, "damage_by_type", "curse", cursedamage )
+		ComponentObjectSetValue( comp, "damage_by_type", "fire", firedamage )
 	end
 end

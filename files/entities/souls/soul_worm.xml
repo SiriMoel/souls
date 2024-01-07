@@ -1,11 +1,4 @@
 <Entity tags="talesofkupoli_soul,soul_worm">
-	<HitboxComponent 
-        _tags="enabled_in_world"
-        aabb_min_x="-4" 
-        aabb_max_x="4" 
-        aabb_min_y="-4" 
-        aabb_max_y="4"
-    ></HitboxComponent>
 
     <SimplePhysicsComponent
         _tags="enabled_in_world" 

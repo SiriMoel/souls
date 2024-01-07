@@ -12,7 +12,27 @@ soul_types = {
     "zombie",
     "worm",
     "fungi",
+    "ghost",
 }
+
+if ModIsEnabled("Apotheosis") then
+    soul_types = {
+        "bat",
+        "fly",
+        "friendly",
+        "gilded",
+        "mage",
+        "orcs",
+        "slimes",
+        "spider",
+        "zombie",
+        "worm",
+        "fungi",
+        "ghost",
+        "mage_corrupted",
+        "ghost_whisp",
+    }
+end
 
 function SoulsInit()
     local player = GetPlayer()
@@ -79,7 +99,7 @@ function GetRandomSoul()
     return whichtype
 end
 
-function RemoveSouls(amount) 
+function RemoveSouls(amount)
     local player = GetPlayer()
     for i=1,amount do
         RemoveSoul(GetRandomSoul())
@@ -104,4 +124,17 @@ function RenderSouls()
     else
         return
     end
+end
+
+function SoulNameCheck(string)
+    if string == "mage_corrupted" then
+        string = "corrupted mage"
+    end
+    if string == "ghost_whisp" then
+        string = "whisp"
+    end
+    if string == "orcs" then
+        string = "hiisi"
+    end
+    return string
 end

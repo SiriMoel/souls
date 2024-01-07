@@ -1,4 +1,4 @@
-<Entity tags="talesofkupoli_soul,soul_fly">
+<Entity tags="talesofkupoli_soul,soul_mage_corrupted">
 
     <SimplePhysicsComponent
         _tags="enabled_in_world" 
@@ -11,7 +11,7 @@
 
 	<!-- ghost functionality and visuals -->		
 	<SpriteComponent 
-		image_file="mods/tales_of_kupoli/files/entities/souls/sprites/soul_fly.xml" 
+		image_file="mods/tales_of_kupoli/files/entities/souls/sprites/soul_mage_corrupted.xml" 
 		>
 	</SpriteComponent>
 	<LuaComponent 

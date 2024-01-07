@@ -13,12 +13,16 @@
 		[*] 21 wands and weapons
 		[*] 2 perks
 		[*] 2 enemies
-		[*] Harvest the souls from enemies to fuel your spells
+		[*] Harvest the souls from enemies to fuel your spells (12 soul types to find and use)
 		[*] Create new Suns (green and red, and possibly blue?)
 		[*] Special wands, spells, and other items drop from enemies
 		[*] Revive bosses for new rewards
 		[*] Uncover secrets and tales (of Kupoli)
 	[/list]
+
+	[h3] Cross-mod interactions with: [/h3]
+	[b]Copi's Things[/b] spells added to reward pools
+	[b]Apotheosis[/b] new soul types
 
 	[b]New this update![/b]
 	[list]
@@ -28,12 +32,12 @@
 		[*] 2 secrets
 		[*] Trade with the Gods for soul spells
 		[*] New tower rewards
+		[*] Apotheosis compatibility
 		[*] Performance improvements
 	[/list]
 	
 	[i]
 	~ROSETTA 0~
-
 	Dearest Ikkuna,
 	We found the *s$@8} you sent. As expected it was around the desert altar. 
 	If it works, these Rosettas should reach you on the otherside. 
@@ -45,8 +49,8 @@
 	-V
 	[/i]
 
-	[url=https://discord.gg/FKaRA9HMUq] Discord [/url]
-	[url=https://github.com/SiriMoel/tales_of_kupoli] Github [/url]
+	Discord: https://discord.gg/FKaRA9HMUq
+
 	"
 	tags="gameplay,items,spells,perks,creatures"
 	dont_upload_folders=""

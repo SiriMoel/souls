@@ -9,7 +9,7 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
     for i=1,5 do
         type = soul_types[math.random(1,#soul_types)]
         if ModSettingGet("tales_of_kupoli.say_soul") == true then
-            GamePrint("You have acquired a " .. type ..  " soul!")
+            GamePrint("You have acquired a " .. SoulNameCheck(type) ..  " soul!")
         end
         AddSoul(type)
     end

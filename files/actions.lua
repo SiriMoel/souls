@@ -4,8 +4,8 @@ dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
 local a = {
 	{
 		id          = "REAPING_SHOT", -- the basis of the whole mod or something
-		name 		= "Reaping Shot",
-		description = "Guarantees enemies drop their souls when they die",
+		name 		= "$action_kupoli_reaping_shot",
+		description = "$actiondesc_kupoli_reaping_shot",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/reaping_shot.png",
 		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/reaping_shot/reaping_shot.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
@@ -21,8 +21,8 @@ local a = {
 	},
 	{
 		id          = "REAPING_FIELD",
-		name 		= "Circle of Reaping",
-		description = "Causes enemies in a large field to drop their souls on death",
+		name 		= "$action_kupoli_reaping_field",
+		description = "$actiondesc_kupoli_reaping_field",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/reaping_field.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/reaping_field/reaping_field.xml"},
 		type 		= ACTION_TYPE_STATIC_PROJECTILE,
@@ -38,8 +38,8 @@ local a = {
 	},
 	{
 		id          = "SOULS_TO_POWER",
-		name 		= "Souls to Power",
-		description = "Consumes a portion of your souls to increase a projectile's damage",
+		name 		= "$action_kupoli_souls_to_power",
+		description = "$actiondesc_kupoli_souls_to_power",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/souls_to_power.png",
 		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/souls_to_power/souls_to_power.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
@@ -72,8 +72,8 @@ local a = {
 	},]]--
 	{
 		id          = "REAPING_HALO",
-		name 		= "Reaping Halo",
-		description = "No Ikkuna. This is not a portal.",
+		name 		= "$action_kupoli_reaping_halo",
+		description = "$actiondesc_kupoli_reaping_halo",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/reaping_halo.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/reaping_halo/projectile.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
@@ -88,8 +88,8 @@ local a = {
 	},
 	{
 		id = "HIISI_SHOTGUN",
-		name = "Hiisi Shotgun Shell",
-		description = "Fires 3 projectiles",
+		name = "$action_kupoli_hiisi_shotgun",
+		description = "$actiondesc_kupoli_hiisi_shotgun",
         sprite = "mods/tales_of_kupoli/files/spell_icons/hiisi_shotgun.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/items/hiisishotgun/projectile.xml", 3},
 		type = ACTION_TYPE_PROJECTILE,
@@ -106,30 +106,30 @@ local a = {
 	},
 	{
 		id = "HIISI_SNIPER",
-		name = "Hiisi Sniper Shot",
-		description = "Fires a single powerful projectile",
+		name = "$action_kupoli_hiisi_sniper",
+		description = "$actiondesc_kupoli_hiisi_sniper",
         sprite = "mods/tales_of_kupoli/files/spell_icons/hiisi_sniper.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/items/hiisisniper/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "",
 		spawn_probability = "",
 		price = 70,
-		mana = 70,
+		mana = 40,
 		action = function()
 			add_projectile("mods/tales_of_kupoli/files/entities/items/hiisisniper/projectile.xml")
 		end,
 	},
 	{
 		id = "HIISI_PISTOL",
-		name = "Hiisi Pistol Shot",
-		description = "Fires a single projectile",
+		name = "$action_kupoli_hiisi_pistol",
+		description = "$actiondesc_kupoli_hiisi_pistol",
         sprite = "mods/tales_of_kupoli/files/spell_icons/hiisi_pistol.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/items/hiisipistol/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "",
 		spawn_probability = "",
 		price = 70,
-		mana = 50,
+		mana = 30,
 		action = function()
 			add_projectile("mods/tales_of_kupoli/files/entities/items/hiisipistol/projectile.xml")
 		end,
@@ -164,8 +164,8 @@ local a = {
 	},]]--
 	{
 		id          = "SOUL_BLAST",
-		name 		= "Soul Blast",
-		description = "Expels a soul in the form of a magical projectile",
+		name 		= "$action_kupoli_soul_blast",
+		description = "$actiondesc_kupoli_soul_blast",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_blast.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/soul_blast/soul_blast.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
@@ -181,8 +181,8 @@ local a = {
 	},
 	{
 		id          = "SOUL_SPEED",
-		name 		= "Soul Speed",
-		description = "Increases the power and speed of your spells at the cost of a soul",
+		name 		= "$action_kupoli_soul_speed",
+		description = "$actiondesc_kupoli_soul_speed",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_speed.png",
 		--related_extra_entities = { "mods/tales_of_kupoli/files/entities/misc/soul_speed.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
@@ -199,12 +199,6 @@ local a = {
 
 				c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/misc/soul_speed_fx.xml,"
 
-				--[[
-				local entity_id = GetUpdatedEntityID()
-				local effect_id = EntityLoad("mods/tales_of_kupoli/files/entities/particles/souls_to_power.xml", x, y)
-				EntityAddChild( entity_id, effect_id )
-				]]--
-
 				RemoveSouls(1)
 			elseif GetSoulsCount("all") <= 0 then
 				GamePrint("You have no souls!")
@@ -214,8 +208,8 @@ local a = {
 	},
 	{
 		id			= "REAPER_BLADE",
-		name		= "Reaper Blade",
-		description = "Enables your wand to cut the souls from your enemies",
+		name		= "$action_kupoli_reaper_blade",
+		description = "$actiondesc_kupoli_reaper_blade",
 		sprite     	= "mods/tales_of_kupoli/files/spell_icons/reaper_blade.png",
 		type        = ACTION_TYPE_PASSIVE,
 		spawn_level      	= "2,3,4,5",
@@ -228,15 +222,15 @@ local a = {
 	},
 	{
 		id = "ROCKET_ROLL",
-		name = "Rocket Roll",
-		description = "Missile time",
+		name = "$action_kupoli_rocket_roll",
+		description = "$actiondesc_kupoli_rocket_roll",
         sprite = "mods/tales_of_kupoli/files/spell_icons/rocket_roll.png",
 		related_projectiles	= { "mods/tales_of_kupoli/files/entities/items/mechakolmiwand/rocket_roll.xml", 5},
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "",
 		spawn_probability = "",
 		price = 100,
-		mana = 150,
+		mana = 100,
 		max_uses = 10,
 		action = function()
 			add_projectile("mods/tales_of_kupoli/files/entities/items/mechakolmiwand/rocket_roll.xml")
@@ -248,15 +242,15 @@ local a = {
 	},
 	{
 		id          = "SOUL_EXPLOSION",
-		name 		= "Soul Detonation",
-		description = "Detonates a soul to produce an explosion",
+		name 		= "$action_kupoli_soul_explosion",
+		description = "$actiondesc_kupoli_soul_explosion",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_detonation.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/soul_detonation/soul_detonation.xml"},
 		type 		= ACTION_TYPE_STATIC_PROJECTILE,
 		spawn_level                       = "2,3,4,5",
 		spawn_probability                 = "0.5,0.5,0.5,0.5",
 		price = 120,
-		mana = 10,
+		mana = 20,
 		max_uses = 30,
 		custom_xml_file = "mods/tales_of_kupoli/files/entities/misc/soul_detonation.xml",
 		is_dangerous_blast = true,
@@ -268,38 +262,38 @@ local a = {
 	},
 	{
 		id = "HIISI_GLUE_SHOT",
-		name = "Hiisi Glue Shot",
-		description = "Fires a very sticky projectile",
+		name = "$action_kupoli_hiisi_glue_shot",
+		description = "$actiondesc_kupoli_hiisi_glue_shot",
         sprite = "mods/tales_of_kupoli/files/spell_icons/hiisi_glue_shot.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/items/hiisigluegun/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "",
 		spawn_probability = "",
 		price = 70,
-		mana = 50,
+		mana = 35,
 		action = function()
 			add_projectile("mods/tales_of_kupoli/files/entities/items/hiisigluegun/projectile.xml")
 		end,
 	},
 	{
 		id = "HIISI_POISON_SHOT",
-		name = "Hiisi Poison Shot",
-		description = "Rain down bombs and also poison",
+		name = "$action_kupoli_hiisi_poison_shot",
+		description = "$actiondesc_kupoli_hiisi_poison_shot",
         sprite = "mods/tales_of_kupoli/files/spell_icons/hiisi_poison_shot.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/items/hiisipoisongun/projectile.xml"},
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "",
 		spawn_probability = "",
 		price = 70,
-		mana = 60,
+		mana = 30,
 		action = function()
 			add_projectile("mods/tales_of_kupoli/files/entities/items/hiisipoisongun/projectile.xml")
 		end,
 	},
 	{
 		id = "SNIPER_BEAM",
-		name = "Sniper Laser Sight",
-		description = "Sniper Laser Sight",
+		name = "$action_kupoli_sniper_beam",
+		description = "$actiondesc_kupoli_sniper_beam",
         sprite = "mods/tales_of_kupoli/files/spell_icons/sniper_beam.png",
 		type = ACTION_TYPE_PASSIVE,
 		spawn_level                       = "1,2,3",
@@ -313,8 +307,8 @@ local a = {
 	},
 	{
 		id          = "WORM_ENHANCER",
-		name 		= "???",
-		description = "Hello Jättimato",
+		name 		= "$action_kupoli_worm_enhancer",
+		description = "$actiondesc_kupoli_worm_enhancer",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/worm_enhancer.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/worm_enhancer/projectile.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
@@ -330,8 +324,8 @@ local a = {
 	},
 	{
 		id          = "SUMMON_RAINWORM",
-		name 		= "Copi's Thing",
-		description = "there but for the grace of God go I",
+		name 		= "$action_kupoli_summon_rainworm",
+		description = "$actiondesc_kupoli_summon_rainworm",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/summon_rainworm.png",
 		related_projectiles	= {"data/entities/animals/boss_pit/boss_pit.xml"},
 		never_unlimited		= true,
@@ -351,8 +345,8 @@ local a = {
 	},
 	{
 		id          = "RANDOM_HOMING",
-		name 		= "Random Homing",
-		description = "Makes a projectile move towards your foes in a random manner",
+		name 		= "$action_kupoli_random_homing",
+		description = "$actiondesc_kupoli_random_homing",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/random_homing.png",
 		sprite_unidentified = "data/ui_gfx/gun_actions/spread_reduce_unidentified.png",
 		spawn_requires_flag = "card_unlocked_pyramid",
@@ -370,7 +364,6 @@ local a = {
 				"data/entities/misc/homing_accelerating.xml,",
 				"data/entities/misc/homing_short.xml,",
 				"data/entities/misc/homing.xml,",
-				"data/entities/misc/homing_area.xml,",
 			}
 
 			homingspell = pool[math.random(1, #pool)]
@@ -380,8 +373,8 @@ local a = {
 	},
 	{
 		id          = "LIGHT_BULLET_TIER_2",
-		name 		= "Large Spark Bolt",
-		description = "A not so weak but enchanting sparkling projectile",
+		name 		= "$action_kupoli_big_sparkbolt",
+		description = "$actiondesc_kupoli_big_sparkbolt",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/large_sparkbolt.png",
 		sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_unidentified.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/large_sparkbolt/proj.xml"},
@@ -400,8 +393,8 @@ local a = {
 	},
 	{
 		id          = "WATER_ESSENCE_PROJ",
-		name 		= "Water Essence Shot",
-		description = "Converts nearby materials to lava upon landing",
+		name 		= "$action_kupoli_wateressence",
+		description = "$actiondesc_kupoli_wateressence",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/water_essence_proj.png",
 		sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_unidentified.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/items/essencewand_water/proj.xml"},
@@ -417,8 +410,8 @@ local a = {
 	},
 	{
 		id          = "BLOOD_TO_STEAM",
-		name 		= "Blood to steam",
-		description = "Makes any blood within a projectile's range turns into steam",
+		name 		= "$action_kupoli_blood_to_steam",
+		description = "$actiondesc_kupoli_blood_to_steam",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/blood_to_steam.png",
 		sprite_unidentified = "data/ui_gfx/gun_actions/explosive_projectile_unidentified.png",
 		related_extra_entities = { "mods/tales_of_kupoli/files/entities/misc/blood_to_steam.xml", "data/entities/particles/tinyspark_red.xml" },
@@ -435,8 +428,8 @@ local a = {
 	},
 	{
 		id          = "SPELLERIOPHAGE",
-		name 		= "Spelleriophage",
-		description = "Makes enemies cast a copy of the spell on death",
+		name 		= "$action_kupoli_spelleriophage",
+		description = "$actiondesc_kupoli_spelleriophage",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/spelleriophage.png",
 		--sprite_unidentified = "data/ui_gfx/gun_actions/damage_unidentified.png",
 		--spawn_requires_flag = "card_unlocked_mestari",
@@ -452,8 +445,8 @@ local a = {
 	},
 	{
 		id          = "SOUL_IS_MANA",
-		name 		= "Soul is Mana",
-		description = "The next spell is casted with a soul instead of using mana",
+		name 		= "$action_kupoli_soul_is_mana",
+		description = "$actiondesc_kupoli_soul_is_mana",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_is_mana.png",
 		type 		= ACTION_TYPE_MODIFIER,
 		spawn_level                       = "0,1,2,3,4,5,6,10",
@@ -490,8 +483,8 @@ local a = {
 	},
 	{
 		id          = "REAP_MANY",
-		name 		= "Reap Many",
-		description = "All enemies on screen are marked to drop their soul",
+		name 		= "$action_kupoli_reap_many",
+		description = "$actiondesc_kupoli_reap_many",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/reap_many.png",
 		related_extra_entities	= {"mods/tales_of_kupoli/files/entities/projectiles/reap_many/reap_many.xml"},
 		type 		= ACTION_TYPE_UTILITY,
@@ -506,9 +499,9 @@ local a = {
 		end,
 	},
 	{
-		id          = "GILDED_SOULS_TO_GOLD", -- this just doesnt work and i dont know why
-		name 		= "Gilded Souls to Gold",
-		description = "Turns your Gilded souls into gold",
+		id          = "GILDED_SOULS_TO_GOLD",
+		name 		= "$action_kupoli_gilded_souls_to_gold",
+		description = "$actiondesc_kupoli_gilded_souls_to_gold",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/gilded_souls_to_gold.png",
 		--related_extra_entities	= {"mods/tales_of_kupoli/files/entities/projectiles/reap_many/reap_many.xml"},
 		type 		= ACTION_TYPE_UTILITY,
@@ -557,8 +550,8 @@ local a = {
 	},
 	{
 		id          = "SOUL_BATTERY",
-		name 		= "Soul Battery",
-		description = "Casts the whole wand with souls instead of mana",
+		name 		= "$action_kupoli_soul_battery",
+		description = "$actiondesc_kupoli_soul_battery",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_battery.png",
 		type 		= ACTION_TYPE_OTHER,
 		spawn_level                       = "4,5,6,10",
@@ -603,8 +596,8 @@ local a = {
 	},
 	{
 		id          = "SOUL_GUARD",
-		name 		= "Soul Guard",
-		description = "Releases up to eight souls to guard you from harm",
+		name 		= "$action_kupoli_soul_guard",
+		description = "$actiondesc_kupoli_soul_guard",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_guard.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/soul_guard/start.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
@@ -619,8 +612,8 @@ local a = {
 	},
 	{
 		id          = "SUMMON_SUN",
-		name 		= "Summon Sun",
-		description = "I believe we did",
+		name 		= "$action_kupoli_summon_sun",
+		description = "$actiondesc_kupoli_summon_sun",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/summon_sun.png",
 		related_projectiles	= {"data/entities/items/pickup/sun/newsun.xml"},
 		type 		= ACTION_TYPE_STATIC_PROJECTILE,
@@ -650,13 +643,13 @@ local a = {
 	},
 	{
 		id          = "TRIGGER_RETURN",
-		name 		= "Triggerable Return",
-		description = "Cast once to mark a point. Cast again to return to that point",
+		name 		= "$action_kupoli_trigger_return",
+		description = "$actiondesc_kupoli_trigger_return",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/triggerable_return.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/triggerable_return/projectile.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
-		spawn_level                       = "5,6",
-		spawn_probability                 = "0.6,0.6",
+		spawn_level                       = "4,5,6",
+		spawn_probability                 = "0.6,0.6,0.7",
 		price = 110,
 		mana = 50,
 		action 		= function()
@@ -697,8 +690,8 @@ local a = {
 	},]]
 	{
 		id          = "RANDOM_REAP",
-		name 		= "Random Reap",
-		description = "Enemies drop a random soul on death",
+		name 		= "$action_kupoli_random_reap",
+		description = "$actiondesc_kupoli_random_reap",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/random_reap.png",
 		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/random_reap/reaping_shot.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
@@ -715,8 +708,8 @@ local a = {
 
 	{
 		id          = "ALL_REAP_GILDED",
-		name 		= "All Reap Gilded",
-		description = "Guarantees enemies drop a gilded soul when they die",
+		name 		= "$action_kupoli_all_reap_gilded",
+		description = "$actiondesc_kupoli_all_reap_gilded",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_gilded.png",
 		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/all_reap_gilded/reaping_shot.xml" },
 		spawn_requires_flag = "card_unlocked_alchemy",
@@ -735,8 +728,8 @@ local a = {
 	},
 	{
 		id          = "ALL_REAP_MAGE",
-		name 		= "All Reap Mage",
-		description = "Guarantees enemies drop a mage soul when they die",
+		name 		= "$action_kupoli_all_reap_mage",
+		description = "$actiondesc_kupoli_all_reap_mage",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_mage.png",
 		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/all_reap_mage/reaping_shot.xml" },
 		spawn_requires_flag = "card_unlocked_alchemy",
@@ -755,8 +748,8 @@ local a = {
 	},
 	{
 		id          = "ALL_REAP_FLY",
-		name 		= "All Reap Fly",
-		description = "Guarantees enemies drop a fly soul when they die",
+		name 		= "$action_kupoli_all_reap_fly",
+		description = "$actiondesc_kupoli_all_reap_fly",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_fly.png",
 		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/all_reap_fly/reaping_shot.xml" },
 		spawn_requires_flag = "card_unlocked_alchemy",
@@ -775,8 +768,8 @@ local a = {
 	},
 	{
 		id          = "ALL_REAP_SPIDER",
-		name 		= "All Reap Spider",
-		description = "Guarantees enemies drop a spider soul when they die",
+		name 		= "$action_kupoli_all_reap_spider",
+		description = "$actiondesc_kupoli_all_reap_spider",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_spider.png",
 		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/all_reap_spider/reaping_shot.xml" },
 		spawn_requires_flag = "card_unlocked_alchemy",
@@ -795,8 +788,8 @@ local a = {
 	},
 	{
 		id          = "SOULDOS",
-		name 		= "Souldos",
-		description = "Enemies drop two souls when they die",
+		name 		= "$action_kupoli_souldos",
+		description = "$actiondesc_kupoli_souldos",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/souldos.png",
 		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/souldos/reaping_shot.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
@@ -813,8 +806,8 @@ local a = {
 	},
 	{
 		id          = "SOUL_BALL",
-		name 		= "Soul Ball",
-		description = "Expels a soul in the form of a bouncing projectile",
+		name 		= "$action_kupoli_soul_ball",
+		description = "$actiondesc_kupoli_soul_ball",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_ball.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/soul_ball/soul_ball.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
@@ -826,6 +819,92 @@ local a = {
 		action 		= function()
 			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/soul_ball/soul_ball.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 40
+		end,
+	},
+	{
+		id          = "EAT_WAND_FOR_SOULS",
+		name 		= "$action_kupoli_eat_wand_for_souls",
+		description = "$actiondesc_kupoli_eat_wand_for_souls",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/eat_wand_for_souls.png",
+		type 		= ACTION_TYPE_UTILITY,
+		spawn_level                       = "5,6,10",
+		spawn_probability                 = "0.6,0.7,0.5",
+		price = 300,
+		mana = 100,
+		action 		= function()
+			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+			
+			local card = GetUpdatedEntityID()
+			local x, y = EntityGetTransform(GetPlayer())
+			local wand = 0
+			local souls_earned = 1
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(card, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+
+			local possible_types = {
+				"bat",
+				"fly",
+				"mage",
+				"orcs",
+				"slimes",
+				"spider",
+				"worm",
+				"ghost",
+			}
+
+			if wand ~= 0 then
+				local acs = EntityGetComponentIncludingDisabled( wand, "AbilityComponent" )
+
+				if acs == nil then return end
+				for i,ac in ipairs(acs) do
+					local rt = tonumber( ComponentObjectGetValue( ac, "gun_config", "reload_time" ) ) -- reload time
+					local frw = tonumber( ComponentObjectGetValue( ac, "gunaction_config", "fire_rate_wait" ) ) -- fire rate wait
+					local mcs = tonumber( ComponentGetValue2( ac, "mana_charge_speed" ) ) -- mana charge speed
+					local mm = tonumber( ComponentGetValue2( ac, "mana_max" ) ) -- mana max
+					local cp = tonumber( ComponentObjectGetValue( ac, "gun_config", "deck_capacity" ) ) -- capacity
+
+					rt = rt / 50
+					frw = frw / 50
+					mcs = mcs / 300
+					mm = mm / 300
+					cp = cp / 2
+
+					souls_earned = rt + frw + mcs + mm + cp
+					souls_earned = math.ceil(souls_earned)
+
+				end
+
+				local children = EntityGetAllChildren(wand) or {}
+
+				for i,v in ipairs(children) do
+					if EntityHasTag(v, "card_action") then
+						local comp_itemaction = EntityGetFirstComponentIncludingDisabled(v, "ItemActionComponent") or 0
+            			local action_id = ComponentGetValue(comp_itemaction, "action_id") or ""
+            			if action_id ~= "KUPOLI_EAT_WAND_FOR_SOULS" then
+							souls_earned = souls_earned + 1
+						end
+					end
+				end
+
+				if souls_earned > 20 then
+					souls_earned = 20 + ((souls_earned - 20) * 0.5)
+				end
+
+				souls_earned = math.floor(souls_earned)
+
+				for i=1,souls_earned do
+					local which = possible_types[math.random(1,#possible_types)]
+					AddSoul(which)
+					if ModSettingGet("tales_of_kupoli.say_soul") == true then
+						GamePrint("You have acquired a " .. SoulNameCheck(which) .. " soul!")
+					end
+				end
+				GamePrint("The wand was eaten and you have received " .. souls_earned .. " souls!")
+				CreateItemActionEntity( "KUPOLI_EAT_WAND_FOR_SOULS", x, y )
+				EntityKill(wand)
+			end
 		end,
 	},
 }

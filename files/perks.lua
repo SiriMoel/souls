@@ -2,6 +2,8 @@ dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
 local total_perks_picked = 0;
 local has_movement_perk = false;
 local function apply_movement_changes(entity, reset)
+	if entity ~= GetPlayer() then return end
+
 	local values = {
 		jump_velocity_y = -95,
 		jump_velocity_x = 56,
@@ -17,8 +19,11 @@ local function apply_movement_changes(entity, reset)
 
 	if reset then
 		local comp = EntityGetFirstComponentIncludingDisabled(entity, "CharacterPlatformingComponent") or 0;
+		if comp == nil then return end
 		for key, value in pairs(values) do
-			ComponentSetValue2(comp, key, value)
+			if key ~= nil then
+				ComponentSetValue2(comp, key, value)
+			end
 		end
 		return
 	end
@@ -27,15 +32,21 @@ local function apply_movement_changes(entity, reset)
 	if not has_movement_perk then
 		has_movement_perk = true
 		local comp = EntityGetFirstComponentIncludingDisabled(entity, "CharacterPlatformingComponent") or 0;
+		if comp == nil then return end
 		for key, val in pairs(values) do
-			ComponentSetValue2(comp,key, val+(val*(total_perks_picked/10)))
+			if key ~= nil then
+				ComponentSetValue2(comp,key, val+(val*(total_perks_picked/10)))
+			end
 		end
 		return
 	end
 
 	local comp = EntityGetFirstComponentIncludingDisabled(entity, "CharacterPlatformingComponent") or 0;
+	if comp == nil then return end
 	for key, val in pairs(values) do
-		ComponentSetValue2(comp,key, val+(val*(total_perks_picked/10)))
+		if key ~= nil then
+			ComponentSetValue2(comp,key, val+(val*(total_perks_picked/10)))
+		end
 	end
 end
 
@@ -76,23 +87,22 @@ for i,v in ipairs(a) do
     table.insert(perk_list, v)
 end
 
-for i=1, #perk_list do local v = perk_list[i]
-	local oldfunc = v.func;
-	if oldfunc then
-		v.func = function(entity_perk_item, entity_who_picked, item_name)
-			total_perks_picked = total_perks_picked + 1;
+for i,v in ipairs(perk_list) do
+	local oldfunc = v.func
+	if oldfunc ~= nil then
+		v.func = function(entity_perk_item, entity_who_picked, item_name, pickup_count)
+			total_perks_picked = total_perks_picked + 1
 			if has_movement_perk then
 				apply_movement_changes(entity_who_picked, false)
 			end
-			oldfunc(entity_perk_item, entity_who_picked, item_name)
+			oldfunc(entity_perk_item, entity_who_picked, item_name, pickup_count)
 		end
 	else
-		v.func = function (entity_perk_item, entity_who_picked, item_name)
-			total_perks_picked = total_perks_picked + 1;
+		v.func = function(entity_perk_item, entity_who_picked, item_name, pickup_count)
+			total_perks_picked = total_perks_picked + 1
 			if has_movement_perk then
 				apply_movement_changes(entity_who_picked, false)
 			end
 		end
 	end
 end
-

@@ -37,11 +37,16 @@ SetFileContent("data/entities/projectiles/deck/cloud_water.xml", "cloud_water.xm
 SetFileContent("data/entities/projectiles/deck/cloud_acid.xml", "cloud_acid.xml")
 SetFileContent("data/scripts/biomes/tower_end.lua", "tower_end.lua")
 
--- compat
-if ModIsEnabled("Apotheosis") then
-    --table.insert(soul_types, "mage_corrupted")
-    --table.insert(soul_types, "ghost_whisp")
-end
+local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/boss_centipede/ending/ending_sampo_spot_mountain.xml"))
+xml:add_child(nxml.parse([[
+    <LuaComponent
+        _enabled="1" 
+        execute_every_n_frame="240"
+        script_source_file="mods/tales_of_kupoli/files/scripts/mountain_altar_things.lua" 
+        >
+    </LuaComponent>
+]]))
+ModTextFileSetContent("data/entities/animals/boss_centipede/ending/ending_sampo_spot_mountain.xml", tostring(xml))
 
 -- enemies
 local biomes = {
@@ -232,6 +237,8 @@ function OnPlayerSpawned( player )
     local px, py = EntityGetTransform(player)
 
     --EntityLoad("mods/tales_of_kupoli/files/entities/items/wotc/weapon.xml", px, py)
+
+    --EntityLoad("mods/tales_of_kupoli/files/entities/revived/_tablets/dragon.xml", px, py)
 
     if GameHasFlagRun("tales_of_kupoli_init") then return end
 

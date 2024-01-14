@@ -61,6 +61,13 @@ mod_settings = {
         value_default = true,
         scope = MOD_SETTING_SCOPE_RUNTIME,
 	},
+    {
+		id = "redsun_altar",
+        ui_name = "Red Sun Tablets at Mountain Altar",
+        ui_description = "If you want Red Sun Tablets to be usable at the mountain altar.",
+        value_default = false,
+        scope = MOD_SETTING_SCOPE_RUNTIME,
+	},
     --[[{
 		id = "alt_map",
         ui_name = "Alternate Map",

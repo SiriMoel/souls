@@ -248,9 +248,9 @@ function OnPlayerSpawned( player )
         print("tales x apotheosis compat working!")
     end
 
-    for i=1,30 do
+    --[[for i=1,30 do
         AddSoul("slimes")
-    end
+    end]]
 
     --[[EntityAddComponent2(player, "LuaComponent", {
         script_source_file="mods/tales_of_kupoli/files/scripts/player.lua",

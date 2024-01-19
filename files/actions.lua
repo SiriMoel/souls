@@ -915,7 +915,7 @@ local a = {
 		spawn_level                       = "4,5,6",
 		spawn_probability                 = "0.7,0.7,0.8",
 		price = 100,
-		mana = 40,
+		mana = 70,
 		max_uses = 7,
 		never_unlimited = true,
 		action 		= function()
@@ -967,20 +967,65 @@ local a = {
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_minions_to_healing.png",
 		type 		= ACTION_TYPE_UTILITY,
 		spawn_level                       = "4,5,6",
-		spawn_probability                 = "0.1,0.3,0.4",
+		spawn_probability                 = "0.1,0.3,0.5",
 		price = 130,
-		mana = 50,
+		mana = 100,
 		max_uses = 2,
 		never_unlimited = true,
 		action 		= function()
 			local x, y = EntityGetTransform(GetUpdatedEntityID())
-			local targets = EntityGetInRadiusWithTag(x, y, 130, "kupoli_soul_minion")
+			local targets = EntityGetInRadiusWithTag(x, y, 150, "kupoli_soul_minion")
 			for i=1,#targets do
 				local tx, ty = EntityGetTransform(targets[i])
 				EntityLoad("data/entities/projectiles/deck/regeneration_aura.xml", tx, ty)
 				EntityKill(targets[i])
 			end
 			c.fire_rate_wait = c.fire_rate_wait + 30
+		end,
+	},
+	{
+		id          = "SOUL_MINIONS_TO_NUKES",
+		name 		= "$action_kupoli_soul_minions_to_nukes",
+		description = "$actiondesc_kupoli_soul_minions_to_nukes",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_minions_to_nukes.png",
+		type 		= ACTION_TYPE_UTILITY,
+		spawn_level                       = "5,6",
+		spawn_probability                 = "0.3,0.1",
+		price = 150,
+		mana = 300,
+		max_uses = 2,
+		never_unlimited = true,
+		action 		= function()
+			local x, y = EntityGetTransform(GetUpdatedEntityID())
+			local targets = EntityGetInRadiusWithTag(x, y, 150, "kupoli_soul_minion")
+			for i=1,#targets do
+				local px, py = EntityGetTransform( targets[i] )
+				local vel_x, vel_y = 0,0
+				shoot_projectile( targets[i], "data/entities/projectiles/deck/nuke.xml", px, py, vel_x, vel_y )
+				EntityKill( targets[i] )
+			end
+			c.fire_rate_wait = c.fire_rate_wait + 130
+		end,
+	},
+	{
+		id          = "ALL_WORMS",
+		name 		= "$action_kupoli_all_worms",
+		description = "$actiondesc_kupoli_all_worms",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/all_worms.png",
+		sprite_unidentified = "data/ui_gfx/gun_actions/rocket_unidentified.png",
+		spawn_requires_flag = "card_unlocked_alchemy",
+		never_unlimited		= true,
+		type 		= ACTION_TYPE_UTILITY,
+		spawn_level                       = "6,10",
+		spawn_probability                 = "0.1,1",
+		price = 400,
+		mana = 400,
+		ai_never_uses = true,
+		max_uses    = 2,
+		action 		= function()
+			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/all_worms/all_worms.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 100
+			current_reload_time = current_reload_time + 100
 		end,
 	},
 }

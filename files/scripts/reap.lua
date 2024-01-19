@@ -7,6 +7,8 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
     local herd_id = HerdIdToString(herd_id_number)
     local x, y = EntityGetTransform(entity)
 
+    if #EntityGetInRadiusWithTag(x, y, 300, "player_unit") < 1 then return end
+
     if not table.contains(soul_types, herd_id) then return end
 
     SetRandomSeed(x, y)    

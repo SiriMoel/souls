@@ -12,8 +12,8 @@
 
 	<WormComponent
 		acceleration="0.5"
-		gravity="2"
-		tail_gravity="30"
+		gravity="0"
+		tail_gravity="0"
 		part_distance="10"
 		ground_check_offset="1"
 		hitbox_radius="5"
@@ -26,8 +26,8 @@
 	</WormComponent>
 
 	<WormAIComponent
-		speed="1"
-		speed_hunt="2"
+		speed="2"
+		speed_hunt="3"
 		direction_adjust_speed="0.024"
 		direction_adjust_speed_hunt="0.12"
 		hunt_box_radius="256"
@@ -35,7 +35,7 @@
 		new_hunt_target_check_every="120"
 		new_random_target_check_every="120"
 		give_up_area_radius="60"
-		give_up_time_frames="250"
+		give_up_time_frames="300"
 		>
 	</WormAIComponent>
 
@@ -73,6 +73,7 @@
 		>
 		<damage_multipliers
 			drill="0.4"
+			fire="0.3"
 			>
 		</damage_multipliers>
 	</DamageModelComponent>

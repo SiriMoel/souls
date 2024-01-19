@@ -31,6 +31,8 @@ local pool_projectiles = {
     "KUPOLI_SOUL_BATTERY",
     "KUPOLI_GILDED_SOULS_TO_GOLD",
     "KUPOLI_EAT_WAND_FOR_SOULS",
+    "KUPOLI_SOUL_NECROMANCY",
+    "KUPOLI_SOUL_MINIONS_TO_HEALING",
 }
 
 local string = ""

@@ -873,7 +873,6 @@ local a = {
 
 					souls_earned = rt + frw + mcs + mm + cp
 					souls_earned = math.ceil(souls_earned)
-
 				end
 
 				local children = EntityGetAllChildren(wand) or {}
@@ -905,6 +904,83 @@ local a = {
 				CreateItemActionEntity( "KUPOLI_EAT_WAND_FOR_SOULS", x, y )
 				EntityKill(wand)
 			end
+		end,
+	},
+	{
+		id          = "SOUL_NECROMANCY",
+		name 		= "$action_kupoli_soul_necromancy",
+		description = "$actiondesc_kupoli_soul_necromancy",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_necromancy.png",
+		type 		= ACTION_TYPE_UTILITY,
+		spawn_level                       = "4,5,6",
+		spawn_probability                 = "0.7,0.7,0.8",
+		price = 100,
+		mana = 40,
+		max_uses = 7,
+		never_unlimited = true,
+		action 		= function()
+			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+
+			local souls_count = GetSoulsCount("all")
+			local number_to_spawn = 0
+			local x, y = EntityGetTransform(GetUpdatedEntityID())
+
+			number_to_spawn = math.ceil(souls_count * 0.3)
+
+			if number_to_spawn == 0 then
+				GamePrint("You do not have enough souls!")
+			else
+				for i=1,number_to_spawn do
+					local eid = EntityLoad("mods/tales_of_kupoli/files/entities/animals/soul_minion/soul_minion.xml", x+math.random(-5,5), y+math.random(-5,0))
+
+					RemoveSouls(1)
+
+					-- stolen egg hatching code <3
+					local charm_component = GetGameEffectLoadTo( eid, "CHARM", true )
+					if charm_component ~= nil and charm_component ~= 0 then
+						---@diagnostic disable-next-line: param-type-mismatch
+						ComponentSetValue( charm_component, "frames", -1 )
+					end
+
+					--[[local lua_components = EntityGetComponent( eid, "LuaComponent")
+					if( lua_components ~= nil ) then
+						for i,lua_comp in ipairs(lua_components) do
+							if( ComponentGetValue( lua_comp, "script_death") == "data/scripts/items/drop_money.lua" ) then
+								ComponentSetValue( lua_comp, "script_death", "" )
+							end
+						end
+					end]]
+				end
+
+				if number_to_spawn == 1 then
+					GamePrint(tostring(number_to_spawn) .. " soul consumed to spawn 1 minion!")
+				else
+					GamePrint(tostring(number_to_spawn) .. " souls consumed to spawn " .. tostring(number_to_spawn) .. " minions!")
+				end
+			end
+		end,
+	},
+	{
+		id          = "SOUL_MINIONS_TO_HEALING",
+		name 		= "$action_kupoli_soul_minions_to_healing",
+		description = "$actiondesc_kupoli_soul_minions_to_healing",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_minions_to_healing.png",
+		type 		= ACTION_TYPE_UTILITY,
+		spawn_level                       = "4,5,6",
+		spawn_probability                 = "0.1,0.3,0.4",
+		price = 130,
+		mana = 50,
+		max_uses = 2,
+		never_unlimited = true,
+		action 		= function()
+			local x, y = EntityGetTransform(GetUpdatedEntityID())
+			local targets = EntityGetInRadiusWithTag(x, y, 130, "kupoli_soul_minion")
+			for i=1,#targets do
+				local tx, ty = EntityGetTransform(targets[i])
+				EntityLoad("data/entities/projectiles/deck/regeneration_aura.xml", tx, ty)
+				EntityKill(targets[i])
+			end
+			c.fire_rate_wait = c.fire_rate_wait + 30
 		end,
 	},
 }

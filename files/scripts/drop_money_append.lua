@@ -14,11 +14,11 @@ function do_money_drop( amount_multiplier, trick_kill )
     if table.contains(soul_types, herd_id) then
         SetRandomSeed(x, y+GameGetFrameNum())
 
-        --[[if math.random(1,15) == 10 then
+        if math.random(1,15) == 10 then
             herd_id = "gilded"
-        end]]--
-    
-        if math.random(1, 5) == 2 then
+        end
+
+        if math.random(1, 5) == 2 or EntityHasTag(GetPlayer(), "kupoli_always_drop_souls") then
             if ModSettingGet("tales_of_kupoli.say_soul") == true then
                 GamePrint("You have acquired a " .. SoulNameCheck(herd_id) .. " soul!")
             end
@@ -26,8 +26,6 @@ function do_money_drop( amount_multiplier, trick_kill )
             AddSoul(herd_id)
         end
     end
-
-    GamePrint("a")
 
     do_money_drop_old( amount_multiplier, trick_kill )
 end

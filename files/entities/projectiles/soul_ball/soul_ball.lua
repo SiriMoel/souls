@@ -201,8 +201,8 @@ else
         ComponentSetValue2( comp, "on_collision_die", on_collision_die)
 	end
 
-    --fungi
-    if soul == "fungi" then
+    --fungus
+    if soul == "fungus" then
 		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)
 			ComponentSetValue2( particlecomp, "emitted_material_name", "fungi" )
 		end)

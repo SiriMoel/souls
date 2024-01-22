@@ -11,7 +11,7 @@ soul_types = {
     "spider",
     "zombie",
     "worm",
-    "fungi",
+    "fungus",
     "ghost",
 }
 
@@ -27,7 +27,7 @@ if ModIsEnabled("Apotheosis") then
         "spider",
         "zombie",
         "worm",
-        "fungi",
+        "fungus",
         "ghost",
         "mage_corrupted",
         "ghost_whisp",

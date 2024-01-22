@@ -187,8 +187,8 @@ else
 		ComponentObjectSetValue( comp, "damage_by_type", "melee", meleedamage )
 	end
 
-	--fungi
-	if soul == "fungi" then
+	--fungus
+	if soul == "fungus" then
 		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)
 			ComponentSetValue2( particlecomp, "emitted_material_name", "fungi" )
 		end)

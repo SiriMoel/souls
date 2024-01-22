@@ -33,6 +33,7 @@ local pool_projectiles = {
     "KUPOLI_EAT_WAND_FOR_SOULS",
     "KUPOLI_SOUL_NECROMANCY",
     "KUPOLI_SOUL_MINIONS_TO_HEALING",
+    "KUPOLI_SOUL_MINIONS_TO_NUKES",
 }
 
 local string = ""

@@ -1028,6 +1028,26 @@ local a = {
 			current_reload_time = current_reload_time + 100
 		end,
 	},
+	{
+		id          = "GREY_HOLE",
+		name 		= "$action_kupoli_grey_hole",
+		description = "$actiondesc_kupoli_grey_hole",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/grey_hole.png",
+		sprite_unidentified = "data/ui_gfx/gun_actions/black_hole_unidentified.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/grey_hole/projectile.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		spawn_level                       = "2,4,5,6",
+		spawn_probability                 = "0.7,0.7,0.7,0.8",
+		price = 200,
+		mana = 180,
+		max_uses    = 3,
+		never_unlimited = true,
+		action 		= function()
+			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/grey_hole/projectile.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 80
+			c.screenshake = c.screenshake + 20
+		end,
+	},
 }
 
 for i,v in ipairs(a) do

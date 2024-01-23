@@ -9,10 +9,10 @@
 
 	[h3]Features[/h3]
 	[list]
-		[*] 41 spells
+		[*] 42 spells
 		[*] 21 wands and weapons
-		[*] 3 perks
-		[*] 2 enemies
+		[*] 4 perks
+		[*] 3 enemies
 		[*] Harvest the souls from enemies to fuel your spells (12 soul types to find and use)
 		[*] Create new Suns (green and red, and possibly blue?)
 		[*] Special wands, spells, and other items drop from enemies
@@ -27,9 +27,10 @@
 
 	[b]New this update![/b]
 	[list]
-		[*] 4 spells
+		[*] 1 enemy
+		[*] 1 spell
 		[*] 1 perk
-		[*] Tweaks and performance improvements
+		[*] fixed bug affecting fungus souls
 	[/list]
 
 	[i]

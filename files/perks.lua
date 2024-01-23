@@ -94,6 +94,20 @@ local a = {
 			EntityRemoveTag(entity_who_picked, "kupoli_always_drop_souls")
 		end
 	},
+	{
+		id = "BIOME_SOULS",
+		ui_name = "$perk_name_kupoli_biome_souls",
+		ui_description = "$perk_desc_kupoli_biome_souls",
+		ui_icon = "mods/tales_of_kupoli/files/perk_icons/biome_souls.png",
+		perk_icon = "mods/tales_of_kupoli/files/perk_icons/biome_souls_inworld.png",
+		stackable = STACKABLE_NO,
+		func = function (entity_perk_item, entity_who_picked, item_name)
+			EntityAddTag(entity_who_picked, "kupoli_biome_souls")
+		end,
+		func_remove = function(entity_who_picked)
+			EntityRemoveTag(entity_who_picked, "kupoli_biome_souls")
+		end
+	},
 }
 
 for i,v in ipairs(a) do

@@ -56,7 +56,7 @@ local biomes = {
     },
     {
         path = "data/scripts/biomes/wandcave.lua",
-        script = "mods/tales_of_kupoli/files/scripts/biome/wizardcave.lua",
+        script = "mods/tales_of_kupoli/files/scripts/biome/wandcave.lua",
     },
     {
         path = "data/scripts/biomes/crypt.lua",
@@ -236,7 +236,7 @@ function OnPlayerSpawned( player )
 
     local px, py = EntityGetTransform(player)
 
-    --EntityLoad("mods/tales_of_kupoli/files/entities/items/wotc/weapon.xml", px, py)
+    --EntityLoad("mods/tales_of_kupoli/data/entities/animals/kupoli_tank_mage.xml", 0, -150)
 
     --EntityLoad("mods/tales_of_kupoli/files/entities/revived/_tablets/dragon.xml", px, py)
 

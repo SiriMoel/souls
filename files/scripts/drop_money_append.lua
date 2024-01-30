@@ -27,18 +27,20 @@ function do_money_drop( amount_multiplier, trick_kill )
             end
 
             if EntityHasTag(GetPlayer(), "kupoli_biome_souls") then
-                local whichtype = ""
+                local whichtype = "friendly"
                 for i=1,#biomethings do
                     if biomethings[i].biome == BiomeMapGetName(x, y) then
                         if biomethings[i].soul ~= "" then
                             whichtype = biomethings[i].soul
-                            if ModSettingGet("tales_of_kupoli.say_soul") == true then
-                                GamePrint("You have acquired a " .. SoulNameCheck(whichtype) .. " soul!")
-                            end
-                            AddSoul(whichtype)
+                        else
+                            whichtype = "friendly"
                         end
                     end
                 end
+                if ModSettingGet("tales_of_kupoli.say_soul") == true then
+                    GamePrint("You have acquired a " .. SoulNameCheck(whichtype) .. " soul!")
+                end
+                AddSoul(whichtype)
             end
         end
     end

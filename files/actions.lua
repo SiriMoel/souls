@@ -1048,6 +1048,33 @@ local a = {
 			c.screenshake = c.screenshake + 20
 		end,
 	},
+	{
+		id          = "CRYSTALLISE_SOULS",
+		name 		= "$action_kupoli_crystallise_souls",
+		description = "$actiondesc_kupoli_crystallise_souls",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/crystallise_souls.png",
+		type 		= ACTION_TYPE_UTILITY,
+		spawn_level                       = "4,5,6",
+		spawn_probability                 = "0.7,0.7,0.8",
+		price = 100,
+		mana = 100,
+		max_uses = 5,
+		never_unlimited = true,
+		action 		= function()
+			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+			local souls_count = GetSoulsCount("all")
+			local x, y = EntityGetTransform(GetUpdatedEntityID())
+			if souls_count >= 50 then
+				SetRandomSeed(x, y+GameGetFrameNum())
+				local options = { "waterstone.xml", "thunderstone.xml", "stonestone.xml", "brimstone.xml", "poopstone.xml" }
+				local result = "data/entities/items/pickup/" .. options[Random(1, #options)]
+				EntityLoad(result, x, y)
+				RemoveSouls(50)
+			else
+				GamePrint("You do not have enough souls for this.")
+			end
+		end,
+	},
 }
 
 for i,v in ipairs(a) do

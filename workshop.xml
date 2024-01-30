@@ -9,7 +9,7 @@
 
 	[h3]Features[/h3]
 	[list]
-		[*] 42 spells
+		[*] 43 spells
 		[*] 21 wands and weapons
 		[*] 4 perks
 		[*] 3 enemies
@@ -22,15 +22,17 @@
 
 	[h3] Cross-mod interactions with: [/h3]
 	[b]Copi's Things[/b] spells added to reward pools
+	[b]Graham's Things[/b] spells added to reward pools
 	[b]Apotheosis[/b] new soul types
 	For optimal performance make sure Tales of Kupoli loads after any mods that add perks.
 
 	[b]New this update![/b]
 	[list]
 		[*] 1 enemy
-		[*] 1 spell
+		[*] 2 spells
 		[*] 1 perk
-		[*] fixed bug affecting fungus souls
+		[*] graham's things interactions
+		[*] fixed a bug affecting fungus souls
 	[/list]
 
 	[i]

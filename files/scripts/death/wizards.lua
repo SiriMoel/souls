@@ -9,7 +9,7 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
     SetRandomSeed(x, y)
     math.randomseed(x, y+GameGetFrameNum())
 
-    local numbger = 8
+    local numbger = 13
 
     local target = ""
 
@@ -24,7 +24,7 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
         for i,v in ipairs(grahamspells) do
             table.insert(pool, v)
         end
-        numbger = numbger - 1
+        numbger = numbger - 2
     end
 
     if ModIsEnabled("copis_things") then
@@ -37,7 +37,7 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
         for i,v in ipairs(copispells) do
             table.insert(pool, v)
         end
-        numbger = numbger - 1
+        numbger = numbger - 2
     end
 
     target = pool[math.random(1, #pool)]

@@ -1075,6 +1075,28 @@ local a = {
 			end
 		end,
 	},
+	{
+		id          = "BACKWARDS_PLASMA",
+		name 		= "$action_kupoli_backwardsbeam",
+		description = "$actiondesc_kupoli_backwardsbeam",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/backwardslaser.png",
+		sprite_unidentified = "data/ui_gfx/gun_actions/laser_unidentified.png",
+		related_projectiles	= {"data/entities/projectiles/deck/orb_laseremitter.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		spawn_level                       = "1,2,3,4",
+		spawn_probability                 = "0.2,1,1,0.4",
+		price = 160,
+		mana = 30,
+		action 		= function()
+			add_projectile("data/entities/projectiles/deck/orb_laseremitter_weak_opposite.xml")
+			if shot_effects.recoil_knockback > 0 then
+				shot_effects.recoil_knockback = 0
+			end
+			shot_effects.recoil_knockback = shot_effects.recoil_knockback - 20.0
+			c.fire_rate_wait = c.fire_rate_wait + 6
+			c.game_effect_entities = c.game_effect_entities .. "data/entities/misc/effect_disintegrated.xml,"
+		end,
+	},
 }
 
 for i,v in ipairs(a) do

@@ -36,6 +36,7 @@ SetFileContent("data/entities/projectiles/deck/cloud_oil.xml", "cloud_oil.xml")
 SetFileContent("data/entities/projectiles/deck/cloud_water.xml", "cloud_water.xml")
 SetFileContent("data/entities/projectiles/deck/cloud_acid.xml", "cloud_acid.xml")
 SetFileContent("data/scripts/biomes/tower_end.lua", "tower_end.lua")
+SetFileContent("data/entities/buildings/teleport_liquid_powered.xml", "teleport_liquid_powered.xml")
 
 local xml = nxml.parse(ModTextFileGetContent("data/entities/animals/boss_centipede/ending/ending_sampo_spot_mountain.xml"))
 xml:add_child(nxml.parse([[

@@ -9,7 +9,7 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
     SetRandomSeed(x, y)
     math.randomseed(x, y+GameGetFrameNum())
 
-    local numbger = 13
+    local numbger = 15
 
     local target = ""
 

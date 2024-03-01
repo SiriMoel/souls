@@ -10,7 +10,7 @@ dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
 
 local nxml = dofile_once("mods/tales_of_kupoli/lib/nxml.lua")
 
-dofile_once("mods/tales_of_kupoli/files/gui.lua")
+
 
 if ModSettingGet("tales_of_kupoli.alt_map") then
     ModMagicNumbersFileAdd( "mods/tales_of_kupoli/files/magic_numbers.xml" )
@@ -234,6 +234,8 @@ add_scene({
 
 -- player
 function OnPlayerSpawned( player )
+
+    dofile_once("mods/tales_of_kupoli/files/gui.lua")
 
     local px, py = EntityGetTransform(player)
 

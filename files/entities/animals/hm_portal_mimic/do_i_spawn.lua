@@ -5,9 +5,11 @@ local x, y = EntityGetTransform(portal)
 
 --EntityAddTag(portal, "hm_portal")
 
-math.randomseed(x,x+GameGetFrameNum()) -- aaa why cant this do what i want it to do
+--math.randomseed(x,x+GameGetFrameNum()) -- aaa why cant this do what i want it to do
 
-local doidoit = math.random(1,30)
+SetRandomSeed( x, y + tonumber(StatsGetValue("world_seed")))
+
+local doidoit = Random(1,50)
 
 --doidoit = 2
 

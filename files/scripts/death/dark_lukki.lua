@@ -22,11 +22,11 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 
     if ModIsEnabled("copis_things") then
         local copispells = {
-            "COPIS_THINGS_HITFX_LARPA",
-            "COPIS_THINGS_LARPA_BUT_GOOD",
-            "COPIS_THINGS_LARPA_FORWARDS",
-            "COPIS_THINGS_RECURSIVE_LARPA",
-            "COPIS_THINGS_LARPA_FIELD",
+            "COPITH_HITFX_LARPA",
+            "COPITH_LARPA_BUT_GOOD",
+            "COPITH_LARPA_FORWARDS",
+            "COPITH_THINGS_RECURSIVE_LARPA",
+            "COPITH_THINGS_LARPA_FIELD",
         }
         for i,v in ipairs(copispells) do
             table.insert(pool, v)

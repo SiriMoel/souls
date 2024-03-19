@@ -215,10 +215,7 @@ local function add_scene(table)
 	ModTextFileSetContent(biome_path, content)
 end
 
-local wotc_x = 13
-local wotc_y = -26204 + math.random(-1000,-5000)
-
-add_scene({
+local scenes = {
 	{ -4500, -7000, "mods/tales_of_kupoli/files/biome/rainaltar/rainaltar.xml", true }, -- -4500, -7000
     { 13080, 1650, "mods/tales_of_kupoli/files/biome/souldoor/souldoor.xml", true },
     { -1000, -10000, "mods/tales_of_kupoli/files/biome/sillychest/sillychest.xml", true },
@@ -230,7 +227,23 @@ add_scene({
     { -5340, 16640, "mods/tales_of_kupoli/files/entities/items/essencewand_water/weapon.xml", true },
 
     { 4518, 805, "mods/tales_of_kupoli/files/sunbook/item/item.xml", true },
-})
+}
+
+for i=1,4 do
+    local worldsize = ModTextFileGetContent("data/compatibilitydata/worldsize.txt") or 35840
+
+    worldsize = worldsize * 0.8
+
+    local ay = 1000 -- this will probably need to be adjusted
+    local ax = 0
+
+    table.insert(scenes, { ax - ((worldsize / 4)), ay, "mods/tales_of_kupoli/files/biome/wandstatue/wandstatue.xml"})
+    table.insert(scenes, { ax - ((worldsize / 2)), ay, "mods/tales_of_kupoli/files/biome/wandstatue/wandstatue.xml"})
+    table.insert(scenes, { ax + ((worldsize / 4)), ay, "mods/tales_of_kupoli/files/biome/wandstatue/wandstatue.xml"})
+    table.insert(scenes, { ax + ((worldsize / 2)), ay, "mods/tales_of_kupoli/files/biome/wandstatue/wandstatue.xml"})
+end
+
+add_scene(scenes)
 
 -- player
 function OnPlayerSpawned( player )

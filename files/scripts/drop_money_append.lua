@@ -4,7 +4,7 @@ dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
 
 local do_money_drop_old = do_money_drop
 
-local biomethings = {
+biomethings = {
     {
         biome = "$biome_coalmine",
         soul = "zombie",

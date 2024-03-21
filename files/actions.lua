@@ -1125,6 +1125,19 @@ local a = {
 			shot_effects.recoil_knockback = 15.0
 		end,
 	},
+	{
+		id          = "SOUL_DASH", -- wip
+		name 		= "$action_kupoli_soul_dash",
+		description = "$actiondesc_kupoli_soul_dash",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_dash.png",
+		type 		= ACTION_TYPE_UTILITY,
+		spawn_level                       = "4,5,6,10",
+		spawn_probability                 = "0.1,0.3,0.5,0.3",
+		price = 150,
+		mana = 40,
+		action 		= function()
+		end,
+	},
 }
 
 for i,v in ipairs(a) do

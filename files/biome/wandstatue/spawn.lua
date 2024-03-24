@@ -6,8 +6,8 @@ local x, y = EntityGetTransform(altar)
 
 LoadPixelScene( "mods/tales_of_kupoli/files/biome/wandstatue/wandstatue.png", "mods/tales_of_kupoli/files/biome/wandstatue/wandstatue_visual.png", x-64, y-64, "", true )
 
-local wx = x + 20
-local wy = y - 40
+local wx = x - 14
+local wy = y - 17
 
 local wand = "data/entities/items/wand_unshuffle_06.xml"
 

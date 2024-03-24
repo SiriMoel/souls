@@ -227,20 +227,30 @@ local scenes = {
     { -5340, 16640, "mods/tales_of_kupoli/files/entities/items/essencewand_water/weapon.xml", true },
 
     { 4518, 805, "mods/tales_of_kupoli/files/sunbook/item/item.xml", true },
+
+    --{ 0, 0, "mods/tales_of_kupoli/files/biome/wandstatue/wandstatue.xml"}
 }
 
-for i=1,4 do
+for i=1,50 do
     local worldsize = ModTextFileGetContent("data/compatibilitydata/worldsize.txt") or 35840
 
-    worldsize = worldsize * 0.8
+    worldsize = worldsize * 0.95
 
-    local ay = 1000 -- this will probably need to be adjusted
+    local ay = 1000
     local ax = 0
 
-    table.insert(scenes, { ax - ((worldsize / 4)), ay, "mods/tales_of_kupoli/files/biome/wandstatue/wandstatue.xml"})
-    table.insert(scenes, { ax - ((worldsize / 2)), ay, "mods/tales_of_kupoli/files/biome/wandstatue/wandstatue.xml"})
-    table.insert(scenes, { ax + ((worldsize / 4)), ay, "mods/tales_of_kupoli/files/biome/wandstatue/wandstatue.xml"})
-    table.insert(scenes, { ax + ((worldsize / 2)), ay, "mods/tales_of_kupoli/files/biome/wandstatue/wandstatue.xml"})
+    ay = math.random(1000,15000)
+    ax = math.random( (worldsize * -1), worldsize )
+
+    if ax < 1000 and ax > 0 then
+        ax = ax + 1000
+    end
+
+    if ax > -1000 and ax < 0 then
+        ax = ax - 1000
+    end
+
+    table.insert(scenes, {ax, ay, "mods/tales_of_kupoli/files/biome/wandstatue/wandstatue.xml"})
 end
 
 add_scene(scenes)

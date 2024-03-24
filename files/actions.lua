@@ -1105,6 +1105,39 @@ local a = {
 			c.game_effect_entities = c.game_effect_entities .. "data/entities/misc/effect_disintegrated.xml,"
 		end,
 	},
+	{
+		id          = "HEALING_ARROW",
+		name 		= "$action_kupoli_healingarrow",
+		description = "$actiondesc_kupoli_healingarrow",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/healing_arrow.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/healing_arrow/proj.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		spawn_level                       = "2,3,4,5",
+		spawn_probability                 = "0.7,0.8,0.9,1",
+		price = 70,
+		mana = 20,
+		max_uses = 20,
+		never_unlimited = true,
+		action 		= function()
+			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/healing_arrow/proj.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 8
+			c.spread_degrees = c.spread_degrees - 10
+			shot_effects.recoil_knockback = 15.0
+		end,
+	},
+	{
+		id          = "SOUL_DASH", -- wip
+		name 		= "$action_kupoli_soul_dash",
+		description = "$actiondesc_kupoli_soul_dash",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_dash.png",
+		type 		= ACTION_TYPE_UTILITY,
+		spawn_level                       = "4,5,6,10",
+		spawn_probability                 = "0.1,0.3,0.5,0.3",
+		price = 150,
+		mana = 40,
+		action 		= function()
+		end,
+	},
 }
 
 for i,v in ipairs(a) do

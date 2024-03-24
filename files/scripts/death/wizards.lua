@@ -29,10 +29,10 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 
     if ModIsEnabled("copis_things") then
         local copispells = {
-            "COPIS_THINGS_MANA_RANDOM",
-            "COPIS_THINGS_MANA_EFFICENCY",
-            "COPIS_THINGS_MANA_ENGINE",
-            "COPIS_THINGS_MANA_DELTA",
+            "COPITH_THINGS_MANA_RANDOM",
+            "COPITH_THINGS_MANA_EFFICENCY",
+            "COPITH_THINGS_MANA_ENGINE",
+            "COPITH_THINGS_MANA_DELTA",
         }
         for i,v in ipairs(copispells) do
             table.insert(pool, v)

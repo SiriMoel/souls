@@ -4,7 +4,7 @@ dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
 
 local do_money_drop_old = do_money_drop
 
-local biomethings = {
+biomethings = {
     {
         biome = "$biome_coalmine",
         soul = "zombie",
@@ -114,8 +114,9 @@ function do_money_drop( amount_multiplier, trick_kill )
     local herd_id = HerdIdToString(herd_id_number)
     local x, y = EntityGetTransform(entity)
 
+    math.randomseed(x, y)
+
     if table.contains(soul_types, herd_id) then
-        SetRandomSeed(x, y+GameGetFrameNum())
         if #EntityGetInRadiusWithTag(x, y, 300, "player_unit") > 0 then
             if math.random(1,15) == 10 then
                 herd_id = "gilded"
@@ -143,6 +144,20 @@ function do_money_drop( amount_multiplier, trick_kill )
                     GamePrint("You have acquired a " .. SoulNameCheck(whichtype) .. " soul!")
                 end
                 AddSoul(whichtype)
+            end
+
+            if EntityHasTag(GetPlayer(), "kupoli_enemies_drop_wands") then
+                local wand = "data/entities/items/wand_unshuffle_04.xml"
+                for i,biometable in ipairs(biomethings) do
+                    if biometable.biome == BiomeMapGetName(x, y) then
+                        if biometable.wand ~= "" then
+                            wand = biometable.wand
+                        end
+                    end
+                end
+                if math.random(1, 30) == 2 then
+                    EntityLoad(wand, x, y)
+                end
             end
         end
     end

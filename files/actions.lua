@@ -207,15 +207,12 @@ local a = {
 				if GetSoulsCount("all") > 0 then
 					c.speed_multiplier = c.speed_multiplier * 3
 					c.damage_projectile_add = c.damage_projectile_add + 0.5
-	
 					c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/misc/soul_speed_fx.xml,"
-	
 					RemoveSouls(1)
 				elseif GetSoulsCount("all") <= 0 then
 					GamePrint("You have no souls!")
 				end
 			end
-
 			draw_actions( 1, true )
 		end,
 	},
@@ -378,8 +375,7 @@ local a = {
 		price = 130,
 		mana = 50,
 		action 		= function( recursion_level, iteration )
-			SetRandomSeed( GameGetFrameNum() + #deck, GameGetFrameNum() + 133 )
-			
+			SetRandomSeed( GameGetFrameNum() + #deck, GameGetFrameNum() + 133 )	
 			local homingspell = ""
 			local pool = {
 				"data/entities/misc/homing_rotate.xml,",
@@ -387,9 +383,7 @@ local a = {
 				"data/entities/misc/homing_short.xml,",
 				"data/entities/misc/homing.xml,",
 			}
-
 			homingspell = pool[math.random(1, #pool)]
-
 			c.extra_entities = c.extra_entities .. homingspell .. "data/entities/particles/tinyspark_white.xml,"
 		end,
 	},
@@ -481,18 +475,15 @@ local a = {
 		price = 140,
 		mana = 0,
 		action 		= function()
-			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
-			
+			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")	
 			if not reflecting then
 				if GetSoulsCount("all") > 0 then
 					local data = {}
-	
 					if #deck > 0 then
 						data = deck[1]
 					else
 						data = nil
 					end
-	
 					if data ~= nil then
 						if GetSoulsCount("all") <= 0 then
 							GamePrint("You have no souls!")
@@ -501,13 +492,11 @@ local a = {
 						data.mana = 0
 						RemoveSouls(1)
 					end
-	
 					c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/misc/soul_speed_fx.xml,"
 				elseif GetSoulsCount("all") <= 0 then
 					GamePrint("You have no souls!")
 				end
 			end
-
 			draw_actions( 1, true )
 		end,
 	},
@@ -543,44 +532,30 @@ local a = {
 		mana = 100,
 		action 		= function()
 			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
-
 			if not reflecting then
 				if GetSoulsCount("gilded") == nil then return end
-
 				if GetSoulsCount("gilded") > 0 then
-	
 					local player = GetPlayer()
-	
 					if player == nil then return end
-	
 					local comp_wallet = EntityGetFirstComponentIncludingDisabled( player, "WalletComponent" )
-	
 					local money_to_give = 0
-	
 					if comp_wallet ~= nil and player ~= nil then
 						local money = ComponentGetValue2( comp_wallet, "money" )
-	
 						money_to_give = 100 * GetSoulsCount("gilded") * math.ceil(money / 400)
 						-- if you have 1000 gold, each soul will give you 250
-	
 						if money_to_give < 100 then
 							money_to_give = 100
 						end
-	
 						for i=1,GetSoulsCount("gilded") do
 							RemoveSoul("gilded")
 						end
-	
 						money = money + money_to_give
-	
 						ComponentSetValue2(comp_wallet, "money", money)
 					end
-	
 				elseif GetSoulsCount("gilded") <= 0 then
 					GamePrint("You have no gilded souls!")
 				end
 			end
-
 		end,
 	},
 	{
@@ -596,26 +571,20 @@ local a = {
 		mana = 0,
 		action 		= function()
 			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
-
 			local amount = 0
 			local souls_to_use = 0
-
 			if not reflecting then
 				if GetSoulsCount("all") > 0 then
 					local this = {}
-	
 					if #deck > 0 then
 						this = deck[1]
 					else
 						this = nil
 					end
-	
 					for i,data in ipairs(deck) do
 						amount = amount + data.mana
 					end
-	
 					souls_to_use = math.ceil(amount / 200)
-	
 					if GetSoulsCount("all") > souls_to_use then
 						RemoveSouls(souls_to_use)
 						for i,data in ipairs(deck) do
@@ -628,8 +597,7 @@ local a = {
 				elseif GetSoulsCount("all") <= 0 then
 					GamePrint("You do not have enough souls!")
 				end
-			end
-			
+			end		
 			draw_actions( 1, true )
 		end,
 	},
@@ -883,8 +851,7 @@ local a = {
 		price = 300,
 		mana = 100,
 		action 		= function()
-			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
-			
+			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")		
 			local card = GetUpdatedEntityID()
 			local x, y = EntityGetTransform(GetPlayer())
 			local wand = 0
@@ -893,7 +860,6 @@ local a = {
 			if inv_comp then
 				wand = ComponentGetValue2(inv_comp, "mActiveItem")
 			end
-
 			local possible_types = {
 				"bat",
 				"fly",
@@ -904,10 +870,8 @@ local a = {
 				"worm",
 				"ghost",
 			}
-
 			if wand ~= 0 then
 				local acs = EntityGetComponentIncludingDisabled( wand, "AbilityComponent" )
-
 				if acs == nil then return end
 				for i,ac in ipairs(acs) do
 					local rt = tonumber( ComponentObjectGetValue( ac, "gun_config", "reload_time" ) ) -- reload time
@@ -915,19 +879,15 @@ local a = {
 					local mcs = tonumber( ComponentGetValue2( ac, "mana_charge_speed" ) ) -- mana charge speed
 					local mm = tonumber( ComponentGetValue2( ac, "mana_max" ) ) -- mana max
 					local cp = tonumber( ComponentObjectGetValue( ac, "gun_config", "deck_capacity" ) ) -- capacity
-
 					rt = rt / 50
 					frw = frw / 50
 					mcs = mcs / 300
 					mm = mm / 300
 					cp = cp / 2
-
 					souls_earned = rt + frw + mcs + mm + cp
 					souls_earned = math.ceil(souls_earned)
 				end
-
 				local children = EntityGetAllChildren(wand) or {}
-
 				for i,v in ipairs(children) do
 					if EntityHasTag(v, "card_action") then
 						local comp_itemaction = EntityGetFirstComponentIncludingDisabled(v, "ItemActionComponent") or 0
@@ -937,13 +897,10 @@ local a = {
 						end
 					end
 				end
-
 				if souls_earned > 20 then
 					souls_earned = 20 + ((souls_earned - 20) * 0.5)
 				end
-
 				souls_earned = math.floor(souls_earned)
-
 				for i=1,souls_earned do
 					local which = possible_types[math.random(1,#possible_types)]
 					AddSoul(which)
@@ -972,22 +929,17 @@ local a = {
 		never_unlimited = true,
 		action 		= function()
 			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
-
 			if not reflecting then
 				local souls_count = GetSoulsCount("all")
 				local number_to_spawn = 0
 				local x, y = EntityGetTransform(GetUpdatedEntityID())
-
 				number_to_spawn = math.ceil(souls_count * 0.3)
-
 				if number_to_spawn == 0 then
 					GamePrint("You do not have enough souls!")
 				else
 					for i=1,number_to_spawn do
 						local eid = EntityLoad("mods/tales_of_kupoli/files/entities/animals/soul_minion/soul_minion.xml", x+math.random(-5,5), y+math.random(-5,0))
-
 						RemoveSouls(1)
-
 						-- stolen egg hatching code <3
 						local charm_component = GetGameEffectLoadTo( eid, "CHARM", true )
 						if charm_component ~= nil and charm_component ~= 0 then
@@ -995,7 +947,6 @@ local a = {
 							ComponentSetValue( charm_component, "frames", -1 )
 						end
 					end
-
 					if number_to_spawn == 1 then
 						GamePrint(tostring(number_to_spawn) .. " soul consumed to spawn 1 minion!")
 					else

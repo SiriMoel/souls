@@ -109,6 +109,20 @@ local a = {
 		end
 	},
 	{
+		id = "ENEMIES_DROP_WANDS",
+		ui_name = "$perk_name_kupoli_enemies_drop_wands",
+		ui_description = "$perk_desc_kupoli_enemies_drop_wands",
+		ui_icon = "mods/tales_of_kupoli/files/perk_icons/enemies_drop_wands.png",
+		perk_icon = "mods/tales_of_kupoli/files/perk_icons/enemies_drop_wands_inworld.png",
+		stackable = STACKABLE_NO,
+		func = function (entity_perk_item, entity_who_picked, item_name)
+			EntityAddTag(entity_who_picked, "kupoli_enemies_drop_wands")
+		end,
+		func_remove = function(entity_who_picked)
+			EntityRemoveTag(entity_who_picked, "kupoli_enemies_drop_wands")
+		end
+	},
+	--[[{
 		id = "KICK_TO_DASH",
 		ui_name = "$perk_name_kupoli_kick_dash",
 		ui_description = "$perk_desc_kupoli_kick_dash",
@@ -130,7 +144,7 @@ local a = {
 				EntityRemoveComponent(entity_who_picked, comp)
 			end
 		end
-	},
+	},]]
 }
 
 for i,v in ipairs(a) do

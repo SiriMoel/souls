@@ -68,6 +68,13 @@ mod_settings = {
         value_default = false,
         scope = MOD_SETTING_SCOPE_RUNTIME,
 	},
+    {
+		id = "inject_spells",
+        ui_name = "Inject Spells",
+        ui_description = "If you want spells to be injected throughout vanilla spells.",
+        value_default = false,
+        scope = MOD_SETTING_SCOPE_RUNTIME,
+	},
     --[[{
 		id = "alt_map",
         ui_name = "Alternate Map",

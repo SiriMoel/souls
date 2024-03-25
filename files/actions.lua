@@ -1124,17 +1124,62 @@ local a = {
 		end,
 	},
 	{
-		id          = "SOUL_DASH", -- wip
+		id          = "SOUL_DASH",
 		name 		= "$action_kupoli_soul_dash",
 		description = "$actiondesc_kupoli_soul_dash",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_dash.png",
-		type 		= ACTION_TYPE_UTILITY,
+		related_projectiles = {"mods/tales_of_kupoli/files/entities/projectiles/soul_dash/proj.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
 		inject_after = "",
 		spawn_level                       = "4,5,6,10",
 		spawn_probability                 = "0.1,0.3,0.5,0.3",
 		price = 150,
-		mana = 40,
+		mana = 30,
 		action 		= function()
+			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/soul_dash/proj.xml")
+			if not reflecting then
+				local shooter = GetUpdatedEntityID()
+				local x, y = EntityGetTransform(shooter)
+				local comp_controls = EntityGetFirstComponentIncludingDisabled(shooter, "ControlsComponent")
+				if comp_controls ~= nil then
+					local last_shooting_start = 0
+					local casts = 0
+					local shooting_start = ComponentGetValue2(controls_component, "mButtonFrameFire");
+					local shooting_now = ComponentGetValue2(controls_component, "mButtonDownFire");
+					
+					if not shooting_now then
+						casts = 0
+						-- apply buff with some wacko scaling
+						-- add some mana?
+						for i=1,casts do
+							LoadGameEffectEntityTo( shooter, "mods/tales_of_kupoli/files/entities/projectiles/soul_dash/effect.xml" )
+						end
+					else
+						if last_shooting_start ~= shooting_start then
+							casts = 0
+						else
+							casts = casts + 1
+							if casts >= 15 then
+								-- biggest reap field
+								local field = EntityLoad("mods/tales_of_kupoli/files/entities/projectiles/soul_dash/field_4.xml", x, y)
+								EntityAddChild(shooter, field)
+							elseif casts >= 10 then
+								-- big reap field
+								local field = EntityLoad("mods/tales_of_kupoli/files/entities/projectiles/soul_dash/field_3.xml", x, y)
+								EntityAddChild(shooter, field)
+							elseif casts >= 5 then
+								-- medium reap field
+								local field = EntityLoad("mods/tales_of_kupoli/files/entities/projectiles/soul_dash/field_2.xml", x, y)
+								EntityAddChild(shooter, field)
+							elseif casts > 0 then
+								-- small reap field
+								local field = EntityLoad("mods/tales_of_kupoli/files/entities/projectiles/soul_dash/field_1.xml", x, y)
+								EntityAddChild(shooter, field)
+							end
+						end
+					end
+				end
+			end
 		end,
 	},
 }

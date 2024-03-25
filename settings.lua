@@ -72,7 +72,7 @@ mod_settings = {
 		id = "inject_spells",
         ui_name = "Inject Spells",
         ui_description = "If you want spells to be injected throughout vanilla spells.",
-        value_default = false,
+        value_default = true,
         scope = MOD_SETTING_SCOPE_RUNTIME,
 	},
     --[[{

@@ -239,6 +239,8 @@ for i=1,50 do
     local ay = 1000
     local ax = 0
 
+    math.randomseed(tonumber(StatsGetValue("world_seed")))
+
     ay = math.random(1000,15000)
     ax = math.random( (worldsize * -1), worldsize )
 

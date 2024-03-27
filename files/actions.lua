@@ -981,7 +981,7 @@ local a = {
 		end,
 	},
 	{
-		id          = "SOUL_MINIONS_TO_NUKES",
+		id          = "SOUL_MINIONS_TO_NUKES", -- pov murica
 		name 		= "$action_kupoli_soul_minions_to_nukes",
 		description = "$actiondesc_kupoli_soul_minions_to_nukes",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_minions_to_nukes.png",
@@ -1006,7 +1006,7 @@ local a = {
 		end,
 	},
 	{
-		id          = "ALL_WORMS",
+		id          = "ALL_WORMS", -- funy
 		name 		= "$action_kupoli_all_worms",
 		description = "$actiondesc_kupoli_all_worms",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/all_worms.png",
@@ -1028,7 +1028,7 @@ local a = {
 		end,
 	},
 	{
-		id          = "GREY_HOLE",
+		id          = "GREY_HOLE", -- im so creative
 		name 		= "$action_kupoli_grey_hole",
 		description = "$actiondesc_kupoli_grey_hole",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/grey_hole.png",
@@ -1049,7 +1049,7 @@ local a = {
 		end,
 	},
 	{
-		id          = "CRYSTALLISE_SOULS",
+		id          = "CRYSTALLISE_SOULS", -- make sun easier
 		name 		= "$action_kupoli_crystallise_souls",
 		description = "$actiondesc_kupoli_crystallise_souls",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/crystallise_souls.png",
@@ -1080,7 +1080,7 @@ local a = {
 		end,
 	},
 	{
-		id          = "BACKWARDS_PLASMA",
+		id          = "BACKWARDS_PLASMA", -- i saw a need
 		name 		= "$action_kupoli_backwardsbeam",
 		description = "$actiondesc_kupoli_backwardsbeam",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/backwardslaser.png",
@@ -1103,7 +1103,7 @@ local a = {
 		end,
 	},
 	{
-		id          = "HEALING_ARROW",
+		id          = "HEALING_ARROW", -- it could be a tf2 reference
 		name 		= "$action_kupoli_healingarrow",
 		description = "$actiondesc_kupoli_healingarrow",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/healing_arrow.png",
@@ -1124,7 +1124,7 @@ local a = {
 		end,
 	},
 	{
-		id          = "SOUL_DASH",
+		id          = "SOUL_DASH", -- the final mole's souls spell (that was planned for the original mod)
 		name 		= "$action_kupoli_soul_dash",
 		description = "$actiondesc_kupoli_soul_dash",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_dash.png",
@@ -1134,20 +1134,21 @@ local a = {
 		spawn_level                       = "4,5,6,10",
 		spawn_probability                 = "0.1,0.3,0.5,0.3",
 		price = 150,
-		mana = 30,
+		mana = 50,
 		action 		= function()
 			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/soul_dash/proj.xml")
 			if reflecting then
 				return
 			end
+			-- may or may not be a copi thing
 			local caster = GetUpdatedEntityID()
 			local x, y = EntityGetTransform(caster)
-			local controls_component = EntityGetFirstComponentIncludingDisabled(caster, "ControlsComponent");
+			local controls_component = EntityGetFirstComponentIncludingDisabled(caster, "ControlsComponent")
 			if controls_component ~= nil then
 				LastShootingStart = LastShootingStart or 0
 				Revs = Revs or 0
-				local shooting_start = ComponentGetValue2(controls_component, "mButtonFrameFire");
-				local shooting_now = ComponentGetValue2(controls_component, "mButtonDownFire");
+				local shooting_start = ComponentGetValue2(controls_component, "mButtonFrameFire")
+				local shooting_now = ComponentGetValue2(controls_component, "mButtonDownFire")
 					if not shooting_now then
 					Revs = 0
 				else
@@ -1168,7 +1169,7 @@ local a = {
 							local field = EntityLoad("mods/tales_of_kupoli/files/entities/projectiles/soul_dash/field_2.xml", x, y)
 							EntityAddChild(caster, field)
 						elseif Revs > 0 then
-						-- small reap field
+							-- small reap field
 							local field = EntityLoad("mods/tales_of_kupoli/files/entities/projectiles/soul_dash/field_1.xml", x, y)
 							EntityAddChild(caster, field)
 						end
@@ -1185,23 +1186,27 @@ local a = {
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/if_revs.png",
 		sprite_unidentified = "data/ui_gfx/gun_actions/spread_reduce_unidentified.png",
 		spawn_requires_flag = "card_unlocked_maths",
+		inject_after = "IF_HP",
 		type 		= ACTION_TYPE_OTHER,
 		spawn_level                       = "10",
 		spawn_probability                 = "1",
 		price = 100,
 		mana = 0,
 		action 		= function( recursion_level, iteration )
+			if reflecting then
+				return
+			end
 			local endpoint = -1
 			local elsepoint = -1
 			local doskip = true
 			local caster = GetUpdatedEntityID()
 			local x, y = EntityGetTransform(caster)
-			local controls_component = EntityGetFirstComponentIncludingDisabled(caster, "ControlsComponent");
+			local controls_component = EntityGetFirstComponentIncludingDisabled(caster, "ControlsComponent")
 			if controls_component ~= nil then
 				LastShootingStart = LastShootingStart or 0
 				Revs = Revs or 0
-				local shooting_start = ComponentGetValue2(controls_component, "mButtonFrameFire");
-				local shooting_now = ComponentGetValue2(controls_component, "mButtonDownFire");
+				local shooting_start = ComponentGetValue2(controls_component, "mButtonFrameFire")
+				local shooting_now = ComponentGetValue2(controls_component, "mButtonDownFire")
 				if not shooting_now then
 					Revs = 0
 				else
@@ -1213,7 +1218,7 @@ local a = {
 				end
 				LastShootingStart = shooting_start
 			end
-			if Revs >= 5 then
+			if Revs >= 2 then
 				doskip = false
 			else
 				doskip = false
@@ -1222,6 +1227,10 @@ local a = {
 				for i,v in ipairs( deck ) do
 					if ( v ~= nil ) then
 						if ( string.sub( v.id, 1, 3 ) == "IF_" ) and ( v.id ~= "IF_END" ) and ( v.id ~= "IF_ELSE" ) then
+							endpoint = -1
+							break
+						end
+						if ( string.sub( v.id, 1, 10 ) == "KUPOLI_IF_" ) and ( v.id ~= "IF_END" ) and ( v.id ~= "IF_ELSE" ) then
 							endpoint = -1
 							break
 						end
@@ -1236,7 +1245,7 @@ local a = {
 					end
 				end	
 				local envelope_min = 1
-				local envelope_max = 1		
+				local envelope_max = 1
 				if doskip then
 					if ( elsepoint > 0 ) then
 						envelope_max = elsepoint
@@ -1257,9 +1266,9 @@ local a = {
 							envelope_max = endpoint
 						else
 							envelope_max = #deck
-						end		
+						end
 						for i=envelope_min,envelope_max do
-							local v = deck[envelope_min]	
+							local v = deck[envelope_min]
 							if ( v ~= nil ) then
 								table.insert( discarded, v )
 								table.remove( deck, envelope_min )
@@ -1278,23 +1287,27 @@ local a = {
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/if_few_revs.png",
 		sprite_unidentified = "data/ui_gfx/gun_actions/spread_reduce_unidentified.png",
 		spawn_requires_flag = "card_unlocked_maths",
+		inject_after = "KUPOLI_IF_REVS",
 		type 		= ACTION_TYPE_OTHER,
 		spawn_level                       = "10",
 		spawn_probability                 = "1",
 		price = 100,
 		mana = 0,
 		action 		= function( recursion_level, iteration )
+			if reflecting then
+				return
+			end
 			local endpoint = -1
 			local elsepoint = -1
 			local doskip = true
 			local caster = GetUpdatedEntityID()
 			local x, y = EntityGetTransform(caster)
-			local controls_component = EntityGetFirstComponentIncludingDisabled(caster, "ControlsComponent");
+			local controls_component = EntityGetFirstComponentIncludingDisabled(caster, "ControlsComponent")
 			if controls_component ~= nil then
 				LastShootingStart = LastShootingStart or 0
 				Revs = Revs or 0
-				local shooting_start = ComponentGetValue2(controls_component, "mButtonFrameFire");
-				local shooting_now = ComponentGetValue2(controls_component, "mButtonDownFire");
+				local shooting_start = ComponentGetValue2(controls_component, "mButtonFrameFire")
+				local shooting_now = ComponentGetValue2(controls_component, "mButtonDownFire")
 				if not shooting_now then
 					Revs = 0
 				else
@@ -1306,7 +1319,7 @@ local a = {
 				end
 				LastShootingStart = shooting_start
 			end
-			if Revs < 5 then
+			if Revs <= 1 then
 				doskip = false
 			else
 				doskip = true
@@ -1315,6 +1328,10 @@ local a = {
 				for i,v in ipairs( deck ) do
 					if ( v ~= nil ) then
 						if ( string.sub( v.id, 1, 3 ) == "IF_" ) and ( v.id ~= "IF_END" ) and ( v.id ~= "IF_ELSE" ) then
+							endpoint = -1
+							break
+						end
+						if ( string.sub( v.id, 1, 10 ) == "KUPOLI_IF_" ) and ( v.id ~= "IF_END" ) and ( v.id ~= "IF_ELSE" ) then
 							endpoint = -1
 							break
 						end
@@ -1329,7 +1346,7 @@ local a = {
 					end
 				end	
 				local envelope_min = 1
-				local envelope_max = 1		
+				local envelope_max = 1
 				if doskip then
 					if ( elsepoint > 0 ) then
 						envelope_max = elsepoint
@@ -1369,7 +1386,7 @@ local a = {
 for i,v in ipairs(a) do
 	v.id = "KUPOLI_" .. v.id
 
-	if v.inject_after ~= nil and inject_after ~= "" and ModSettingGet("tales_of_kupoli.inject_spells") then
+	if v.inject_after ~= nil and ModSettingGet("tales_of_kupoli.inject_spells") then
 		for i=1,#actions do
 			if actions[i].id == v.inject_after then
 				table.insert(actions, i+1, v)

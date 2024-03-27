@@ -122,16 +122,16 @@ local a = {
 			EntityRemoveTag(entity_who_picked, "kupoli_enemies_drop_wands")
 		end
 	},
-	--[[{
+	{
 		id = "KICK_TO_DASH",
 		ui_name = "$perk_name_kupoli_kick_dash",
 		ui_description = "$perk_desc_kupoli_kick_dash",
-		ui_icon = "mods/tales_of_kupoli/files/perk_icons/enemies_drop_wands.png",
-		perk_icon = "mods/tales_of_kupoli/files/perk_icons/enemies_drop_wands_inworld.png",
+		ui_icon = "mods/tales_of_kupoli/files/perk_icons/kick_dash.png",
+		perk_icon = "mods/tales_of_kupoli/files/perk_icons/kick_dash_inworld.png",
 		stackable = STACKABLE_NO,
 		func = function (entity_perk_item, entity_who_picked, item_name)
 			EntityAddTag(entity_who_picked, "kupoli_kick_to_dash")
-			EntityAddComponent( player, "LuaComponent", {
+			EntityAddComponent( entity_who_picked, "LuaComponent", {
 				_tags="kupoli_kick_to_dash",
 				script_source_file="mods/tales_of_kupoli/files/scripts/kick_to_dash.lua",
 				execute_every_n_frame="1",
@@ -139,12 +139,12 @@ local a = {
 		end,
 		func_remove = function(entity_who_picked)
 			EntityRemoveTag(entity_who_picked, "kupoli_kick_to_dash")
-			local comp = EntityGetComponentIncludingDisabled(entity_who_picked, "LuaComponent", "kupoli_kick_to_dash")[1]
-			if comp ~= nil then
-				EntityRemoveComponent(entity_who_picked, comp)
+			local comps = EntityGetComponentIncludingDisabled(entity_who_picked, "LuaComponent", "kupoli_kick_to_dash") or {}
+			for i=1,#comps do
+				EntityRemoveComponent(entity_who_picked, comps[i])
 			end
 		end
-	},]]
+	},
 }
 
 for i,v in ipairs(a) do

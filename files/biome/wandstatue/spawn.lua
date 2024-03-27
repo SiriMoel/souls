@@ -9,7 +9,7 @@ LoadPixelScene( "mods/tales_of_kupoli/files/biome/wandstatue/wandstatue.png", "m
 local wx = x - 14
 local wy = y - 17
 
-local wand = "data/entities/items/wand_unshuffle_06.xml"
+local wand = "data/entities/items/wand_unshuffle_04.xml"
 
 for i,biometable in ipairs(biomethings) do
     if biometable.biome == BiomeMapGetName(x, y) then

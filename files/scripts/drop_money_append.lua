@@ -88,7 +88,7 @@ biomethings = {
     {
         biome = "$biome_wizardcave",
         soul = "mage",
-        wand = "",
+        wand = "data/entities/items/wand_unshuffle_06.xml",
     },
     {
         biome = "$biome_liquidcave",
@@ -145,20 +145,21 @@ function do_money_drop( amount_multiplier, trick_kill )
                 end
                 AddSoul(whichtype)
             end
+        end
+    end
 
-            if EntityHasTag(GetPlayer(), "kupoli_enemies_drop_wands") then
-                local wand = "data/entities/items/wand_unshuffle_04.xml"
-                for i,biometable in ipairs(biomethings) do
-                    if biometable.biome == BiomeMapGetName(x, y) then
-                        if biometable.wand ~= "" then
-                            wand = biometable.wand
-                        end
-                    end
-                end
-                if math.random(1, 30) == 2 then
-                    EntityLoad(wand, x, y)
+    if EntityHasTag(GetPlayer(), "kupoli_enemies_drop_wands") and #EntityGetInRadiusWithTag(x, y, 300, "player_unit") > 0 then
+        local wand = "data/entities/items/wand_unshuffle_04.xml"
+        for i,biometable in ipairs(biomethings) do
+            if biometable.biome == BiomeMapGetName(x, y) then
+                if biometable.wand ~= "" then
+                    wand = biometable.wand
                 end
             end
+        end
+        if math.random(1, 30) == 2 then
+            EntityLoad(wand, x, y)
+            GamePrint("A wand was dropped!")
         end
     end
 

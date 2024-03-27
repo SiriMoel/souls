@@ -1148,10 +1148,7 @@ local a = {
 				Revs = Revs or 0
 				local shooting_start = ComponentGetValue2(controls_component, "mButtonFrameFire");
 				local shooting_now = ComponentGetValue2(controls_component, "mButtonDownFire");
-							if not shooting_now then
-					for i=1,Revs do
-						--LoadGameEffectEntityTo( caster, "mods/tales_of_kupoli/files/entities/projectiles/soul_dash/effect.xml" )
-					end
+					if not shooting_now then
 					Revs = 0
 				else
 					if LastShootingStart ~= shooting_start then
@@ -1179,6 +1176,192 @@ local a = {
 				end
 				LastShootingStart = shooting_start
 			end
+		end,
+	},
+	{
+		id          = "IF_REVS",
+		name 		= "$action_kupoli_if_revs",
+		description = "$actiondesc_kupoli_if_revs",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/if_revs.png",
+		sprite_unidentified = "data/ui_gfx/gun_actions/spread_reduce_unidentified.png",
+		spawn_requires_flag = "card_unlocked_maths",
+		type 		= ACTION_TYPE_OTHER,
+		spawn_level                       = "10",
+		spawn_probability                 = "1",
+		price = 100,
+		mana = 0,
+		action 		= function( recursion_level, iteration )
+			local endpoint = -1
+			local elsepoint = -1
+			local doskip = true
+			local caster = GetUpdatedEntityID()
+			local x, y = EntityGetTransform(caster)
+			local controls_component = EntityGetFirstComponentIncludingDisabled(caster, "ControlsComponent");
+			if controls_component ~= nil then
+				LastShootingStart = LastShootingStart or 0
+				Revs = Revs or 0
+				local shooting_start = ComponentGetValue2(controls_component, "mButtonFrameFire");
+				local shooting_now = ComponentGetValue2(controls_component, "mButtonDownFire");
+				if not shooting_now then
+					Revs = 0
+				else
+					if LastShootingStart ~= shooting_start then
+						Revs = 0
+					else
+						Revs = Revs + 1
+					end
+				end
+				LastShootingStart = shooting_start
+			end
+			if Revs >= 5 then
+				doskip = false
+			else
+				doskip = false
+			end
+			if ( #deck > 0 ) then
+				for i,v in ipairs( deck ) do
+					if ( v ~= nil ) then
+						if ( string.sub( v.id, 1, 3 ) == "IF_" ) and ( v.id ~= "IF_END" ) and ( v.id ~= "IF_ELSE" ) then
+							endpoint = -1
+							break
+						end
+						if ( v.id == "IF_ELSE" ) then
+							endpoint = i
+							elsepoint = i
+						end	
+						if ( v.id == "IF_END" ) then
+							endpoint = i
+							break
+						end
+					end
+				end	
+				local envelope_min = 1
+				local envelope_max = 1		
+				if doskip then
+					if ( elsepoint > 0 ) then
+						envelope_max = elsepoint
+					elseif ( endpoint > 0 ) then
+						envelope_max = endpoint
+					end
+					for i=envelope_min,envelope_max do
+						local v = deck[envelope_min]
+						if ( v ~= nil ) then
+							table.insert( discarded, v )
+							table.remove( deck, envelope_min )
+						end
+					end
+				else
+					if ( elsepoint > 0 ) then
+						envelope_min = elsepoint
+						if ( endpoint > 0 ) then
+							envelope_max = endpoint
+						else
+							envelope_max = #deck
+						end		
+						for i=envelope_min,envelope_max do
+							local v = deck[envelope_min]	
+							if ( v ~= nil ) then
+								table.insert( discarded, v )
+								table.remove( deck, envelope_min )
+							end
+						end
+					end
+				end
+			end
+			draw_actions( 1, true )
+		end,
+	},
+	{
+		id          = "IF_FEW_REVS",
+		name 		= "$action_kupoli_if_few_revs",
+		description = "$actiondesc_kupoli_if_few_revs",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/if_few_revs.png",
+		sprite_unidentified = "data/ui_gfx/gun_actions/spread_reduce_unidentified.png",
+		spawn_requires_flag = "card_unlocked_maths",
+		type 		= ACTION_TYPE_OTHER,
+		spawn_level                       = "10",
+		spawn_probability                 = "1",
+		price = 100,
+		mana = 0,
+		action 		= function( recursion_level, iteration )
+			local endpoint = -1
+			local elsepoint = -1
+			local doskip = true
+			local caster = GetUpdatedEntityID()
+			local x, y = EntityGetTransform(caster)
+			local controls_component = EntityGetFirstComponentIncludingDisabled(caster, "ControlsComponent");
+			if controls_component ~= nil then
+				LastShootingStart = LastShootingStart or 0
+				Revs = Revs or 0
+				local shooting_start = ComponentGetValue2(controls_component, "mButtonFrameFire");
+				local shooting_now = ComponentGetValue2(controls_component, "mButtonDownFire");
+				if not shooting_now then
+					Revs = 0
+				else
+					if LastShootingStart ~= shooting_start then
+						Revs = 0
+					else
+						Revs = Revs + 1
+					end
+				end
+				LastShootingStart = shooting_start
+			end
+			if Revs < 5 then
+				doskip = false
+			else
+				doskip = true
+			end
+			if ( #deck > 0 ) then
+				for i,v in ipairs( deck ) do
+					if ( v ~= nil ) then
+						if ( string.sub( v.id, 1, 3 ) == "IF_" ) and ( v.id ~= "IF_END" ) and ( v.id ~= "IF_ELSE" ) then
+							endpoint = -1
+							break
+						end
+						if ( v.id == "IF_ELSE" ) then
+							endpoint = i
+							elsepoint = i
+						end
+						if ( v.id == "IF_END" ) then
+							endpoint = i
+							break
+						end
+					end
+				end	
+				local envelope_min = 1
+				local envelope_max = 1		
+				if doskip then
+					if ( elsepoint > 0 ) then
+						envelope_max = elsepoint
+					elseif ( endpoint > 0 ) then
+						envelope_max = endpoint
+					end
+					for i=envelope_min,envelope_max do
+						local v = deck[envelope_min]
+						if ( v ~= nil ) then
+							table.insert( discarded, v )
+							table.remove( deck, envelope_min )
+						end
+					end
+				else
+					if ( elsepoint > 0 ) then
+						envelope_min = elsepoint
+						if ( endpoint > 0 ) then
+							envelope_max = endpoint
+						else
+							envelope_max = #deck
+						end		
+						for i=envelope_min,envelope_max do
+							local v = deck[envelope_min]
+							if ( v ~= nil ) then
+								table.insert( discarded, v )
+								table.remove( deck, envelope_min )
+							end
+						end
+					end
+				end
+			end
+			draw_actions( 1, true )
 		end,
 	},
 }

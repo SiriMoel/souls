@@ -1,0 +1,32 @@
+<Entity name="$kupoli_valkoinen" tags="touchmagic_immunity,polymorphable_NOT,boss,miniboss,boss_kupoli_valkoinen,necrobot_NOT,glue_NOT" > 
+
+    	<Base file="data/entities/base_enemy_basic.xml" >
+
+            <AnimalAIComponent></AnimalAIComponent>
+
+            <DamageModelComponent
+                hp="200"
+                ragdoll_filenames_file=""
+			    blood_material="soul_particles"
+			    blood_spray_material="soul_particles"
+			    ragdoll_offset_y="-14"
+			    fire_probability_of_ignition="0"
+			    ragdoll_fx_forced="DISINTEGRATED"
+			    ragdoll_material="soul_particles"
+			    critical_damage_resistance="1.0"
+			    physics_objects_damage="0"
+            >
+			    <damage_multipliers
+			        projectile="0.4"
+			        explosion="0.1"
+		    	    electricity="0.2"
+	    		    fire="0.1"
+    			    ice="0"
+                    melee="0.5"
+                    slice="1"
+			    >   
+			</damage_multipliers>
+            </DamageModelComponent>
+        </Base>
+
+</Entity>

@@ -228,10 +228,10 @@ local scenes = {
 
     { 4518, 805, "mods/tales_of_kupoli/files/sunbook/item/item.xml", true },
 
-    --{ 0, 0, "mods/tales_of_kupoli/files/biome/wandstatue/wandstatue.xml"}
+    { 13080, 2870, "mods/tales_of_kupoli/files/biome/wandstatue/wandstatue.xml"}
 }
 
-for i=1,50 do
+--[[for i=1,50 do
     local worldsize = ModTextFileGetContent("data/compatibilitydata/worldsize.txt") or 35840
 
     worldsize = worldsize * 0.95
@@ -239,7 +239,7 @@ for i=1,50 do
     local ay = 1000
     local ax = 0
 
-    math.randomseed(tonumber(StatsGetValue("world_seed")))
+    --math.randomseed(tonumber(StatsGetValue("world_seed")))
 
     ay = math.random(1000,15000)
     ax = math.random( (worldsize * -1), worldsize )
@@ -253,7 +253,7 @@ for i=1,50 do
     end
 
     table.insert(scenes, {ax, ay, "mods/tales_of_kupoli/files/biome/wandstatue/wandstatue.xml"})
-end
+end]]
 
 add_scene(scenes)
 

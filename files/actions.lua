@@ -1149,7 +1149,7 @@ local a = {
 				Revs = Revs or 0
 				local shooting_start = ComponentGetValue2(controls_component, "mButtonFrameFire")
 				local shooting_now = ComponentGetValue2(controls_component, "mButtonDownFire")
-					if not shooting_now then
+				if not shooting_now then
 					Revs = 0
 				else
 					if LastShootingStart ~= shooting_start then
@@ -1179,7 +1179,7 @@ local a = {
 			end
 		end,
 	},
-	{
+	--[[{
 		id          = "IF_REVS",
 		name 		= "$action_kupoli_if_revs",
 		description = "$actiondesc_kupoli_if_revs",
@@ -1213,15 +1213,16 @@ local a = {
 					if LastShootingStart ~= shooting_start then
 						Revs = 0
 					else
+						GamePrint(tostring(Revs))
+						if Revs >= 2 then
+							doskip = false
+						else
+							doskip = false
+						end
 						Revs = Revs + 1
 					end
 				end
 				LastShootingStart = shooting_start
-			end
-			if Revs >= 2 then
-				doskip = false
-			else
-				doskip = false
 			end
 			if ( #deck > 0 ) then
 				for i,v in ipairs( deck ) do
@@ -1315,15 +1316,16 @@ local a = {
 						Revs = 0
 					else
 						Revs = Revs + 1
+						if Revs <= 1 then
+							doskip = false
+						else
+							doskip = true
+						end
 					end
 				end
 				LastShootingStart = shooting_start
 			end
-			if Revs <= 1 then
-				doskip = false
-			else
-				doskip = true
-			end
+
 			if ( #deck > 0 ) then
 				for i,v in ipairs( deck ) do
 					if ( v ~= nil ) then
@@ -1380,7 +1382,7 @@ local a = {
 			end
 			draw_actions( 1, true )
 		end,
-	},
+	},]]
 }
 
 for i,v in ipairs(a) do

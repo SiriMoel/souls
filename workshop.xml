@@ -13,6 +13,7 @@
 		[*] 21 wands and weapons
 		[*] 6 perks
 		[*] 4 enemies
+		[*] 1 boss (Valkoinen's Shattered Soul)
 		[*] Harvest the souls from enemies to fuel your spells (12 soul types to find and use)
 		[*] Create new Suns (green and red, and possibly blue?)
 		[*] Special wands, spells, and other items drop from enemies
@@ -32,6 +33,7 @@
 	[list]
 		[*] 2 new spells
 		[*] 2 new perks
+		[*] 1 new boss
 		[*] mod setting to inject this mod's spells throughout vanilla spells
 	[/list]
 
@@ -51,7 +53,7 @@
 	Discord: https://discord.gg/FKaRA9HMUq
 
 	"
-	tags="gameplay,items,spells,perks,creatures"
+	tags="gameplay,items,spells,perks,creatures,bosses"
 	dont_upload_folders=""
 	dont_upload_files=""
 >

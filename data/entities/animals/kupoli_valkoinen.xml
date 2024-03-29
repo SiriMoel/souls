@@ -61,13 +61,33 @@
 		<VariableStorageComponent
 			_tags="state"
 			name="state"
-			value_string="0"
+			value_string="4"
 		></VariableStorageComponent>
 
 
 		<LuaComponent
-				script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/state.lua"
-				execute_every_n_frame="180"
+			script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/state.lua"
+			execute_every_n_frame="360"
+		></LuaComponent>
+
+		<LuaComponent
+			script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/shoot_burst.lua"
+			execute_every_n_frame="100"
+		></LuaComponent>
+
+		<LuaComponent
+			script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/shoot_halos.lua"
+			execute_every_n_frame="120"
+		></LuaComponent>
+
+		<LuaComponent
+			script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/shoot_pillars.lua"
+			execute_every_n_frame="120"
+		></LuaComponent>
+
+		<LuaComponent
+			script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/shoot_swords.lua"
+			execute_every_n_frame="120"
 		></LuaComponent>
 
 		<Entity>

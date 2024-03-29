@@ -20,7 +20,10 @@
 	</HomingComponent>
 
     	<AreaDamageComponent
-			circle_radius="5"
+			aabb_max_x="10"
+			aabb_min_x="-10"
+			aabb_max_y="58"
+			aabb_min_y="-58"
 			damage_per_frame="0.3"
 			update_every_n_frame="1"
 			entity_responsible=""

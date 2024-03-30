@@ -14,7 +14,7 @@ if state == 4 then
     local px = x
     local py = y
 
-    for i=1,20 do
+    for i=1,25 do
         px = x + math.random(-200, 200)
         py = y + math.random(-100, 100)
 

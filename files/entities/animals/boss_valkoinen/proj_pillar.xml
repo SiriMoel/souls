@@ -20,14 +20,20 @@
 	</HomingComponent>
 
     	<AreaDamageComponent
+			offset_x="32"
+			offset_y="32"
 			aabb_max_x="10"
 			aabb_min_x="-10"
 			aabb_max_y="58"
 			aabb_min_y="-58"
-			damage_per_frame="0.3"
+			aabb_min="-58,-10"
+			aabb_max="58,10"
+			damage_per_frame="0.7"
 			update_every_n_frame="1"
+			entities_with_tag="player_unit"
 			entity_responsible=""
 			death_cause="Valkoinen's Touch"
+			
 		></AreaDamageComponent>
 
   <ProjectileComponent 
@@ -44,7 +50,7 @@
     damage="0.5"
     on_collision_die="0"
 	bounces_left="20"
-    lifetime="110"
+    lifetime="170"
 	shoot_light_flash_r="35"
     shoot_light_flash_g="210"
     shoot_light_flash_b="255"
@@ -78,5 +84,13 @@
 		name="projectile_file"
 		value_string="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/proj_pillar.xml"
 		>
-	</VariableStorageComponent>
+	</VariableStorageComponent> 
+
+		<LuaComponent
+		script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/pillar_shoot_swords.lua"
+		execute_every_n_frame="30"
+		>
+	</LuaComponent>
+
+
 </Entity>

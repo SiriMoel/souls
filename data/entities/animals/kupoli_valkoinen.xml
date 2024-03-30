@@ -64,6 +64,14 @@
 			value_string="4"
 		></VariableStorageComponent>
 
+		<HitBoxComponent
+			is_enemy="1"
+			aabb_min_x="-7"
+			aabb_max_x="7"
+			aabb_min_y="-10"
+			aabb_max_y="10"
+		></HitBoxComponent>
+
 
 		<LuaComponent
 			script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/state.lua"
@@ -82,11 +90,16 @@
 
 		<LuaComponent
 			script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/shoot_pillars.lua"
-			execute_every_n_frame="120"
+			execute_every_n_frame="180"
 		></LuaComponent>
 
 		<LuaComponent
 			script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/shoot_swords.lua"
+			execute_every_n_frame="120"
+		></LuaComponent>
+
+		<LuaComponent
+			script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/swords.lua"
 			execute_every_n_frame="120"
 		></LuaComponent>
 
@@ -190,6 +203,10 @@
 		script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/on_spawn.lua"
 		execute_every_n_frame="-1"
 		execute_on_added="1"
+	></LuaComponent>
+
+	<LuaComponent
+		script_death="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/death.lua"
 	></LuaComponent>
 
 </Entity>

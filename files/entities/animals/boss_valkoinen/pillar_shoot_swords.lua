@@ -3,7 +3,7 @@ dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
 local host = GetUpdatedEntityID()
 local x, y = EntityGetTransform(host)
 
-local proj_file = "mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/proj_halo.xml"
+local proj_file = "mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/proj_pillar_sword.xml"
 
 math.randomseed(x, y + GameGetFrameNum())
 
@@ -28,7 +28,7 @@ for i=1,count do -- none of this maths is going to do what i want it do
     end
     v_py = py
 
-    shoot_projectile_from_projectile( host, proj_file, px, py, v_px, v_py)
+    shoot_projectile_from_projectile( host, proj_file, px, py, v_px * 0.1, v_py * 0.1)
 
     arc = arc + ( 360 / count )
 end

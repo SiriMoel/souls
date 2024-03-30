@@ -51,7 +51,7 @@
 		bounces_left="9999999999999"
 		bounce_at_any_angle="1"
 		bounce_energy="0.5"
-		lifetime="150"
+		lifetime="120"
 		velocity_sets_rotation="0"
 		penetrate_entities="1"
 		collide_with_world="0"

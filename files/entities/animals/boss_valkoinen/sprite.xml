@@ -14,7 +14,7 @@ default_animation="stand"
   frame_width="44"
   frame_height="44"
   frame_wait="0.12"
-  frames_per_row="1"
+  frames_per_row="4"
   loop="1"   >
  </RectAnimation>
 

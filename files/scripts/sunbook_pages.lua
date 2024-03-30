@@ -187,6 +187,13 @@ traces = {
         scaleY = 1,
         unlocked = false,
     },
+    {
+        name = "ikkuna_valkoinen",
+        page = "mods/tales_of_kupoli/files/sunbook/traces/valkoinen.png",
+        scaleX = 1,
+        scaleY = 1,
+        unlocked = false,
+    },
 }
 
 unlocked_sbp = {

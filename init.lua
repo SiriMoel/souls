@@ -10,8 +10,6 @@ dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
 
 local nxml = dofile_once("mods/tales_of_kupoli/lib/nxml.lua")
 
-
-
 if ModSettingGet("tales_of_kupoli.alt_map") then
     ModMagicNumbersFileAdd( "mods/tales_of_kupoli/files/magic_numbers.xml" )
 end
@@ -21,6 +19,7 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/tales_of_kupoli/file
 ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/tales_of_kupoli/files/perks.lua" )
 ModLuaFileAppend( "data/scripts/items/orb_pickup.lua", "mods/tales_of_kupoli/files/scripts/orb_pickup_append.lua" )
 ModLuaFileAppend( "data/scripts/items/drop_money.lua", "mods/tales_of_kupoli/files/scripts/drop_money_append.lua" )
+ModLuaFileAppend( "data/scripts/gun/gun.lua", "mods/tales_of_kupoli/files/scripts/gun_append.lua" )
 --ModLuaFileAppend( "data/scripts/biomes/orbrooms/orbroom_07.lua", "mods/tales_of_kupoli/files/scripts/orbroom_07_append.lua" )
 
 SetFileContent("data/scripts/buildings/sun/spot_4.lua", "spot_4.lua")

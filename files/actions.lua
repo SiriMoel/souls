@@ -1383,6 +1383,45 @@ local a = {
 			draw_actions( 1, true )
 		end,
 	},]]
+	{
+		id          = "OPEN_GATE",
+		name 		= "$action_kupoli_open_gate",
+		description = "$actiondesc_kupoli_open_gate",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/open_gate.png",
+		type 		= ACTION_TYPE_OTHER,
+		inject_after = "ALL_SPELLS",
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 1000,
+		mana = 1000,
+		action 		= function()
+			if reflecting then return end
+
+			--EntityKill(card_id)
+
+			local entity = GetUpdatedEntityID()
+			local x, y = EntityGetTransform(entity)
+
+			local wand = 0
+			local souls_earned = 1
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+
+			local targets = EntityGetInRadiusWithTag(x, y, 110, "kupoli_soul_exchanger")
+
+			if GameHasFlagRun("ikkuna_souldoor") and #targets > 0 then
+				local ex, ey = EntityGetTransform(targets[1])
+				EntityLoad("data/entities/animals/kupoli_valkoinen.xml", ex, ey)
+				EntityKill(wand)
+			else
+				GamePrint("Something is not quite right...")
+			end
+
+			c.fire_rate_wait = c.fire_rate_wait + 60
+		end,
+	},
 }
 
 for i,v in ipairs(a) do

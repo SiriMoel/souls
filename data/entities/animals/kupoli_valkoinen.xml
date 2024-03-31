@@ -26,7 +26,7 @@
 			></PathFindingComponent>
 
             <DamageModelComponent
-                hp="30"
+                hp="350"
                 ragdoll_filenames_file=""
 			    blood_material="soul_particles"
 			    blood_spray_material="soul_particles"

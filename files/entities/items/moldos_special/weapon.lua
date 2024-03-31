@@ -1,0 +1,20 @@
+dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("data/scripts/gun/procedural/gun_action_utils.lua")
+
+local weapon = GetUpdatedEntityID()
+
+local x, y = EntityGetTransform(weapon)
+
+AddGunAction( weapon, "KUPOLI_REAPING_SHOT" )
+AddGunAction( weapon, "HOMING" )
+AddGunAction( weapon, "SPITTER_TIMER" )
+AddGunAction( weapon, "HOMING" )
+AddGunAction( weapon, "ADD_TRIGGER" )
+AddGunAction( weapon, "KUPOLI_REAPING_HALO" )
+AddGunAction( weapon, "ELECTRIC_CHARGE" )
+AddGunAction( weaopn, "TRIPLE_SPELL" )
+AddGunAction( weapon, "PINGPONG_PATH" )
+AddGunAction( weaopn, "ARC_ELECTRIC" )
+AddGunAction( weapon, "DISC_BULLET_BIG" )
+AddGunAction( weapon, "DISC_BULLET_BIG" )
+AddGunAction( weapon, "KUPOLI_REAPING_HALO" )

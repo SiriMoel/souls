@@ -1,7 +1,7 @@
 dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
 dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
 
-local a = {
+actions_to_insert = {
 	{
 		id          = "REAPING_SHOT", -- the basis of the whole mod or something
 		name 		= "$action_kupoli_reaping_shot",
@@ -1447,7 +1447,7 @@ local a = {
 	},
 }
 
-for i,v in ipairs(a) do
+for i,v in ipairs(actions_to_insert) do
 	v.id = "KUPOLI_" .. v.id
 
 	if v.inject_after ~= nil and ModSettingGet("tales_of_kupoli.inject_spells") then

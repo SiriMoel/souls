@@ -295,6 +295,17 @@ function OnPlayerSpawned( player )
         value_int=500,
     })]]--
 
+    EntityAddComponent2(player, "VariableStorageComponent", {
+        _tags="movetimer",
+        name="movetimer",
+        value_int=0,
+    })
+    EntityAddComponent2(player, "VariableStorageComponent", {
+        _tags="kickcd",
+        name="kickcd",
+        value_int=0,
+    })
+
     --AddFlagPersistent("progress_greensun")
     --AddFlagPersistent("progress_redsun")
     --AddFlagPersistent("progress_bluesun")

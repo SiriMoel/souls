@@ -114,4 +114,6 @@ actiondesc_kupoli_if_revs,"The next spell is skipped if the wand is not being ca
 action_kupoli_if_few_revs,"Requirement - Single Cast",,,,,,,,,,,,
 actiondesc_kupoli_if_few_revs,"The next spell is skipped if the wand is being casted continuously",,,,,,,,,,,,
 action_kupoli_open_gate,"Open the Gate",,,,,,,,,,,,
-actiondesc_kupoli_open_gate,"Bring forth the soul of Ikkuna's jailer (summons a boss. WILL EAT YOUR WAND.)",,,,,,,,,,,,
+actiondesc_kupoli_open_gate,"Bring forth the soul of Ikkuna's jailer (summons a boss)",,,,,,,,,,,,
+action_kupoli_soul_recharge,"Soul Recharge",,,,,,,,,,,,
+actiondesc_kupoli_soul_recharge,"Improves the cast delay and recharge time of the wand at the cost of a soul",,,,,,,,,,,,

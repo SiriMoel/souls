@@ -169,3 +169,33 @@ function AddMoney(amount)
     money = money + amount
     ComponentSetValue2(comp_wallet, "money", money)
 end
+
+-- copi code
+--- ### Gets the current card entity.
+--- ***
+--- @param wand integer The wand to inspect, should match held wand. Use `current_wand(shooter)` to get.
+--- @return integer|nil card The *Entity ID* of the card being played.
+local current_card = function (wand)
+    local wand_actions = EntityGetAllChildren(wand) or {}
+    for j = 1, #wand_actions do
+        local itemcomp = EntityGetFirstComponentIncludingDisabled(wand_actions[j], "ItemComponent")
+        if itemcomp then
+            if ComponentGetValue2(itemcomp, "mItemUid") == current_action.inventoryitem_id then
+                return wand_actions[j]
+            end
+        end
+    end
+    return nil
+end
+
+function currentcard(wand) -- version of the copi code that makes my brain happy
+    local wand_actions = EntityGetAllChildren(wand) or {}
+    for i=1,#wand_actions do
+        local itemcomp = EntityGetFirstComponentIncludingDisabled(wand_actions[i], "ItemComponent")
+        if itemcomp then
+            if ComponentGetValue2(itemcomp,"mItemUid") == current_action.inventoryitem_id then
+                return wand_actions[i]
+            end
+        end
+    end
+end

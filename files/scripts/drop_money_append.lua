@@ -157,7 +157,7 @@ function do_money_drop( amount_multiplier, trick_kill )
                 end
             end
         end
-        if math.random(1, 30) == 2 then
+        if math.random(1, 35) == 2 then
             EntityLoad(wand, x, y)
             GamePrint("A wand was dropped!")
         end

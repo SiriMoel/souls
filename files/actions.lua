@@ -83,7 +83,7 @@ local a = {
 		type 		= ACTION_TYPE_PROJECTILE,
 		inject_after = "FIREWORK",
 		spawn_level                       = "5,6,10",
-		spawn_probability                 = "0.3,0.5,0.5",
+		spawn_probability                 = "0.1,0.2,0.5",
 		price = 200,
 		mana = 150,
 		action 		= function()
@@ -197,7 +197,7 @@ local a = {
 		type 		= ACTION_TYPE_MODIFIER,
 		inject_after = "BLOODLUST",
 		spawn_level                       = "1,2,3,4,5,6",
-		spawn_probability                 = "0.7,1,1,0.7,0.7,0.7",
+		spawn_probability                 = "0.5,0.5,1,1,1,0.7",
 		price = 120,
 		mana = 10,
 		action 		= function()
@@ -1397,8 +1397,6 @@ local a = {
 		action 		= function()
 			if reflecting then return end
 
-			--EntityKill(card_id)
-
 			local entity = GetUpdatedEntityID()
 			local x, y = EntityGetTransform(entity)
 
@@ -1414,12 +1412,37 @@ local a = {
 			if GameHasFlagRun("ikkuna_souldoor") and #targets > 0 then
 				local ex, ey = EntityGetTransform(targets[1])
 				EntityLoad("data/entities/animals/kupoli_valkoinen.xml", ex, ey)
-				EntityKill(wand)
+				EntityKill(currentcard(wand)) -- does this work???
 			else
 				GamePrint("Something is not quite right...")
 			end
 
 			c.fire_rate_wait = c.fire_rate_wait + 60
+		end,
+	},
+	{
+		id          = "SOUL_RECHARGE",
+		name 		= "$action_kupoli_soul_recharge",
+		description = "$actiondesc_kupoli_soul_recharge",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_is_recharge.png",
+		type 		= ACTION_TYPE_MODIFIER,
+		inject_after = "RECHARGE",
+		spawn_level                       = "0,1,2,3,4,5,6,10",
+		spawn_probability                 = "0.4,0.4,1,1,0.7,0.7,0.7,0.2",
+		price = 140,
+		mana = 0,
+		action 		= function()
+			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+			if not reflecting then
+				if GetSoulsCount("all") > 0 then
+					c.fire_rate_wait    = c.fire_rate_wait - 20
+					current_reload_time = current_reload_time - 35
+					RemoveSouls(1)
+				elseif GetSoulsCount("all") <= 0 then
+					GamePrint("You have no souls!")
+				end
+			end
+			draw_actions( 1, true )
 		end,
 	},
 }

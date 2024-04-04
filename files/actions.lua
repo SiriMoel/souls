@@ -1445,7 +1445,7 @@ actions_to_insert = {
 			draw_actions( 1, true )
 		end,
 	},
-	{
+	--[[{
 		id          = "SHOVEL",
 		name 		= "$action_kupoli_shovel",
 		description = "$actiondesc_kupoli_shovel",
@@ -1459,7 +1459,7 @@ actions_to_insert = {
 		action 		= function()
 			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/shovel/proj.xml")
 		end,
-	},
+	},]]--
 }
 
 for i,v in ipairs(actions_to_insert) do

@@ -1445,6 +1445,21 @@ actions_to_insert = {
 			draw_actions( 1, true )
 		end,
 	},
+	{
+		id          = "SHOVEL",
+		name 		= "$action_kupoli_shovel",
+		description = "$actiondesc_kupoli_shovel",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/shovel.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/shovel/proj.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 0,
+		mana = 0,
+		action 		= function()
+			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/shovel/proj.xml")
+		end,
+	},
 }
 
 for i,v in ipairs(actions_to_insert) do

@@ -215,19 +215,19 @@ local function add_scene(table)
 end
 
 local scenes = {
-	{ -4500, -7000, "mods/tales_of_kupoli/files/biome/rainaltar/rainaltar.xml", true }, -- -4500, -7000
+	{ -4500, -7000, "mods/tales_of_kupoli/files/biome/rainaltar/rainaltar.xml", true },
     { 13080, 1650, "mods/tales_of_kupoli/files/biome/souldoor/souldoor.xml", true },
     { -1000, -10000, "mods/tales_of_kupoli/files/biome/sillychest/sillychest.xml", true },
+    { 13080, 2870, "mods/tales_of_kupoli/files/biome/wandstatue/wandstatue.xml"},
 
     { 16165, -1790, "mods/tales_of_kupoli/files/entities/items/essencewand_earth/weapon.xml", true },
     { -14090, 360, "mods/tales_of_kupoli/files/entities/items/essencewand_fire/weapon.xml", true },
     {-13020, -5380, "mods/tales_of_kupoli/files/entities/items/essencewand_air/weapon.xml", true },
     { -14040, 13570, "mods/tales_of_kupoli/files/entities/items/essencewand_spirits/weapon.xml", true },
     { -5340, 16640, "mods/tales_of_kupoli/files/entities/items/essencewand_water/weapon.xml", true },
+    { 0, 0, "mods/tales_of_kupoli/files/entities/items/shovel/weapon.xml", true }, -- testing
 
     { 4518, 805, "mods/tales_of_kupoli/files/sunbook/item/item.xml", true },
-
-    { 13080, 2870, "mods/tales_of_kupoli/files/biome/wandstatue/wandstatue.xml"}
 }
 
 --[[for i=1,50 do
@@ -262,10 +262,6 @@ function OnPlayerSpawned( player )
     dofile_once("mods/tales_of_kupoli/files/gui.lua")
 
     local px, py = EntityGetTransform(player)
-
-    --EntityLoad("mods/tales_of_kupoli/data/entities/animals/kupoli_tank_mage.xml", 0, -150)
-
-    --EntityLoad("mods/tales_of_kupoli/files/entities/revived/_tablets/dragon.xml", px, py)
 
     if GameHasFlagRun("tales_of_kupoli_init") then return end
 

@@ -271,6 +271,8 @@ function OnPlayerSpawned( player )
         print("tales x apotheosis compat working!")
     end
 
+    EntityLoad("mods/tales_of_kupoli/files/entities/items/tome/weapon.xml", px, py)
+
     --[[for i=1,30 do
         AddSoul("slimes")
     end]]

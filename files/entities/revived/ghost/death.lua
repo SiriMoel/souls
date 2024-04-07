@@ -11,6 +11,10 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 	EntityLoad( "data/entities/items/wand_unshuffle_06.xml", x, y )
 	EntityLoad( "data/entities/items/wand_unshuffle_06.xml", x - 8, y )
 	EntityLoad( "data/entities/items/wand_unshuffle_06.xml", x - 16, y )
+
+	EntityLoad("mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.xml", x - 16, y )
+	EntityLoad("mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.xml", x + 16, y )
+	EntityLoad("mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.xml", x, y + 8 )
 	
 	AddFlagPersistent( "miniboss_ghost" )
 

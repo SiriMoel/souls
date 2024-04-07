@@ -25,6 +25,10 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 		opts = { "ORBIT_DISCS", "ORBIT_FIREBALLS", "ORBIT_LASERS", "ORBIT_LARPA" }
 		count = 1
 	end
+	
+	EntityLoad("mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.xml", pos_x - 16, pos_y )
+	EntityLoad("mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.xml", pos_x + 16, pos_y )
+	EntityLoad("mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.xml", pos_x, pos_y + 8 )
 
 	local spawntablet = math.random(1, 2)
 	if spawntablet == 1 then

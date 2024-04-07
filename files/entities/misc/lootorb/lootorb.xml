@@ -1,0 +1,8 @@
+<Entity>
+
+    <LuaComponent
+        execute_on_added="1"
+        script_source_file="mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.lua"
+    ><LuaComponent>
+
+</Entity>

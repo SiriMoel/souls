@@ -12,6 +12,10 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 
 	AddFlagPersistent( "miniboss_robot" )
 
+	EntityLoad("mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.xml", x - 16, y )
+	EntityLoad("mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.xml", x + 16, y )
+	EntityLoad("mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.xml", x, y + 8 )
+
 	EntityLoad("mods/tales_of_kupoli/files/entities/items/revmechakolmiwand/weapon.xml", x, y)
 
 	local spawntablet = math.random(1, 2)

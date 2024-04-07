@@ -1460,6 +1460,45 @@ actions_to_insert = {
 			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/shovel/proj.xml")
 		end,
 	},]]--
+	{
+		id          = "TOME_BATTERY",
+		name 		= "$action_kupoli_tome_battery",
+		description = "$actiondesc_kupoli_tome_battery",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_battery.png",
+		type 		= ACTION_TYPE_MODIFIER,
+		inject_after = "SUMMON_WANDGHOST",
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 100,
+		mana = 0,
+		action 		= function()
+			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+			local amount = 0
+			local souls_to_use = 0
+			if not reflecting then
+				if GetSoulsCount("all") > 0 then
+					local this = {}
+					for i,data in ipairs(deck) do
+						souls_to_use = souls_to_use + math.ceil(data.mana / 200)
+					end
+					souls_to_use = math.ceil(souls_to_use / 3)
+					if GetSoulsCount("all") > souls_to_use then
+						c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/misc/soul_speed_fx.xml,"
+						c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/projectiles/reaping_shot/reaping_shot.xml,"
+						for i,data in ipairs(deck) do
+							data.mana = 0
+						end
+						RemoveSouls(souls_to_use)
+					else
+						GamePrint("You do not have enough souls!")
+					end
+				elseif GetSoulsCount("all") <= 0 then
+					GamePrint("You do not have enough souls!")
+				end
+			end		
+			draw_actions( 1, true )
+		end,
+	},
 }
 
 for i,v in ipairs(actions_to_insert) do

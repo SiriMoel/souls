@@ -88,7 +88,6 @@ end
 
 function weapon_rngstats(weapon, x, y, statsm)
     local ac = EntityGetComponent( weapon, "AbilityComponent" )[1]
-    SetRandomSeed(x, y)    
     math.randomseed(x, y+GameGetFrameNum())
     if ac ~= nil then
         local sm = (math.random( 100, (statsm * 100) )) / 100
@@ -198,4 +197,60 @@ function currentcard(wand) -- version of the copi code that makes my brain happy
             end
         end
     end
+end
+
+function UpgradeTome(path, amount)
+    local tome = EntityGetWithTag("kupoli_tome")[1]
+    local comp_path_1 = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "path_1") or 0
+    local path_1 = ComponentGetValue2(comp_path_1, "value_int")
+    local comp_path_2 = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "path_2") or 0
+    local path_2 = ComponentGetValue2(comp_path_2, "value_int")
+    local comp_path_3 = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "path_3") or 0
+    local path_3 = ComponentGetValue2(comp_path_3, "value_int")
+    local ac = EntityGetComponent( tome, "AbilityComponent" )[1]
+    local cap = tonumber( ComponentObjectGetValue( ac, "gun_config", "deck_capacity" ) ) -- deck capacity 
+    local rt = tonumber( ComponentObjectGetValue( ac, "gun_config", "reload_time" ) ) -- reload time
+    local frw = tonumber( ComponentObjectGetValue( ac, "gunaction_config", "fire_rate_wait" ) ) -- fire rate wait
+    if path == 1 then
+        for i=1,amount do
+            cap = cap + 2
+            if cap > 27 then
+                cap = 27
+                GamePrint("Max capacity reached!")
+            end
+            rt = rt * 1.15
+            frw = frw * 1.1
+        end
+        path_1 = path_1 + amount
+    end
+    if path == 2 then
+        for i=1,amount do
+            cap = cap - 2
+            if cap < 5 then
+                cap = 5
+                GamePrint("Minimum capacity reached.")
+            end
+            rt = rt * 0.8
+            frw = frw * 1.05
+        end
+        path_2 = path_2 + amount
+    end
+    if path == 3 then
+        for i=1,amount do
+            cap = cap - 2
+            if cap < 5 then
+                cap = 5
+                GamePrint("Minimum capacity reached.")
+            end
+            rt = rt * 1.1
+            frw = frw * 0.8
+        end
+        path_3 = path_3 + amount
+    end
+    ComponentSetValue2(comp_path_1, "value_int", path_1)
+    ComponentSetValue2(comp_path_2, "value_int", path_2)
+    ComponentSetValue2(comp_path_3, "value_int", path_3)
+    ComponentObjectSetValue( ac, "deck_capacity", "reload_time", tostring(cap) )
+    ComponentObjectSetValue( ac, "gun_config", "reload_time", tostring(rt) )
+    ComponentObjectSetValue( ac, "gunaction_config", "fire_rate_wait", tostring(frw) )
 end

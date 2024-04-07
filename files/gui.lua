@@ -10,6 +10,7 @@ local comp_brilliance_max = 0
 local p_brilliance = 0
 local p_brilliance_max = 0
 local soulscount = 0
+local held_item = 0
 
 local sunbook_page = 1
 local sunbook_prevbutton_shown = false
@@ -42,6 +43,18 @@ function OnWorldPreUpdate()
         Gui.state.soultypes = soul_types
     end
 
+    local inv_comp = EntityGetFirstComponentIncludingDisabled(GetPlayer(), "Inventory2Component")
+    if inv_comp then
+        held_item = ComponentGetValue2(inv_comp, "mActiveItem")
+        if EntityHasTag(held_item, "kupoli_tome") then
+            Gui.state.tome_gui_hidden = false
+            Gui.state.tome_path_1 = ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(held_item, "VariableStorageComponent", "path_1") or 0, "value_int")
+            Gui.state.tome_path_2 = ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(held_item, "VariableStorageComponent", "path_2") or 0, "value_int")
+            Gui.state.tome_path_3 = ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(held_item, "VariableStorageComponent", "path_3") or 0, "value_int")
+        else
+            Gui.state.tome_gui_hidden = true
+        end
+    end
 
     for _, value in ipairs(soul_types) do
         Gui.state.souls[value] = GetSoulsCount(value)
@@ -116,6 +129,85 @@ Gui:AddElement(gusgui.Elements.HLayout({
             onClick = function()
                 Gui.state.sunbook_open = not Gui.state.sunbook_open
             end,
+        }),
+    },
+}))
+
+Gui:AddElement(gusgui.Elements.VLayout({
+    id = "tome_gui",
+    margin = { right = 1, bottom = 50, },
+    overrideZ  = 100000000,
+    hidden = Gui:StateValue("tome_gui_hidden"),
+    children = {
+        gusgui.Elements.text({
+            id = "tome_gui_text",
+            value = "Click to upgrade, costs 15 souls."
+        }),
+        gusgui.Elements.HLayout({
+            id = "tome_path_1",
+            children = {
+                gusgui.Elements.Text({
+                    value = Gui:StateValue("tome_path_1")
+                }),
+                gusgui.Elements.ImageButton({
+                    src = "mods/tales_of_kupoli/files/sunbook/tome/path_1.png",
+                    OnClick = function()
+                        if GetSoulsCount("all") > 15 then
+                            UpgradeTome(1, 1)
+                            RemoveSouls(15)
+                        else
+                            GamePrint("You do not have enough souls for this.")
+                        end
+                    end,
+                }),
+                gusgui.Elements.Text({
+                    value = "+capacity +reloadtime +castdelay"
+                }),
+            },
+        }),
+        gusgui.Elements.HLayout({
+            id = "tome_path_2",
+            children = {
+                gusgui.Elements.Text({
+                    value = Gui:StateValue("tome_path_2")
+                }),
+                gusgui.Elements.ImageButton({
+                    src = "mods/tales_of_kupoli/files/sunbook/tome/path_2.png",
+                    OnClick = function()
+                        if GetSoulsCount("all") > 15 then
+                            UpgradeTome(2, 1)
+                            RemoveSouls(15)
+                        else
+                            GamePrint("You do not have enough souls for this.")
+                        end
+                    end,
+                }),
+                gusgui.Elements.Text({
+                    value = "-capacity -reloadtime +castdelay"
+                }),
+            },
+        }),
+        gusgui.Elements.HLayout({
+            id = "tome_path_3",
+            children = {
+                gusgui.Elements.Text({
+                    value = Gui:StateValue("tome_path_3")
+                }),
+                gusgui.Elements.ImageButton({
+                    src = "mods/tales_of_kupoli/files/sunbook/tome/path_3.png",
+                    OnClick = function()
+                        if GetSoulsCount("all") > 15 then
+                            UpgradeTome(3, 1)
+                            RemoveSouls(15)
+                        else
+                            GamePrint("You do not have enough souls for this.")
+                        end
+                    end,
+                }),
+                gusgui.Elements.Text({
+                    value = "-capacity +reloadtime -castdelay"
+                }),
+            },
         }),
     },
 }))

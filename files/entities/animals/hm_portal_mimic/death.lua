@@ -24,6 +24,11 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 		"data/entities/animals/fish.xml",
 		"data/entities/items/pickup/goldnugget_10000.xml",
 	}
+	
+	EntityLoad("mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.xml", x - 16, y )
+	EntityLoad("mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.xml", x + 16, y )
+	EntityLoad("mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.xml", x, y + 8 )
+
 	local whichone = whattodrop[math.random(1,#whattodrop)]
 	EntityLoad(whichone, x, y)
 end

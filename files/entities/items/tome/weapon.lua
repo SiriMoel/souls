@@ -5,5 +5,5 @@ local weapon = GetUpdatedEntityID()
 
 local x, y = EntityGetTransform(weapon)
 
-AddGunAction( weapon, "KUPOLI_HIISI_SHOTGUN" ) -- placeholder :)
+AddGunAction( weapon, "KUPOLI_TOME_SHOT" ) -- placeholder :)
 AddGunActionPermanent( weapon, "KUPOLI_TOME_BATTERY" )

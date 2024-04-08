@@ -120,6 +120,12 @@ local options = {
         entity = "data/entities/items/pickup/physics_gold_orb.xml",
     },
     {
+        prob = 0.65,
+        min_count = 0,
+        max_count = 0,
+        entity = "mods/tales_of_kupoli/files/entities/items/amethyst_orb/item.xml",
+    },
+    {
         prob = 0.8,
         min_count = 0,
         max_count = 0,

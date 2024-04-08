@@ -1464,7 +1464,7 @@ actions_to_insert = {
 		id          = "TOME_BATTERY",
 		name 		= "$action_kupoli_tome_battery",
 		description = "$actiondesc_kupoli_tome_battery",
-		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_battery.png",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_shot.png",
 		type 		= ACTION_TYPE_MODIFIER,
 		inject_after = "SUMMON_WANDGHOST",
 		spawn_level                       = "",
@@ -1497,6 +1497,29 @@ actions_to_insert = {
 				end
 			end		
 			draw_actions( 1, true )
+		end,
+	},
+	{
+		id          = "TOME_SHOT", -- wip
+		name 		= "$action_kupoli_tome_shot",
+		description = "$actiondesc_kupoli_tome_shot",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_shot.png",
+		sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_unidentified.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		inject_after = "KUPOLI_TOME_BATTERY",
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 100,
+		mana = 0,
+		action 		= function()
+			if EntityHasTag(GetUpdatedEntityID(), "kupoli_tome") then
+				add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml")
+			end
+			c.fire_rate_wait = c.fire_rate_wait + 10
+			c.screenshake = c.screenshake + 2
+			c.spread_degrees = c.spread_degrees - 1.0
+			c.damage_critical_chance = c.damage_critical_chance + 5
 		end,
 	},
 }

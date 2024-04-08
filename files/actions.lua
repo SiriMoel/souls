@@ -1571,7 +1571,7 @@ actions_to_insert = {
 		spawn_level                       = "",
 		spawn_probability                 = "",
 		price = 100,
-		mana = 1000,
+		mana = 10,
 		action 		= function()
 			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
 

@@ -8,8 +8,8 @@
         entity_count="1"
         entity_file=""
         fast_projectile="0"
-        mana_charge_speed="0"
-		mana_max="0"
+        mana_charge_speed="1"
+		mana_max="1"
         max_amount_in_inventory="1"
         shooting_reduces_amount_in_inventory="0"
         swim_propel_amount="0"
@@ -18,7 +18,7 @@
         use_gun_script="1"
 		add_these_child_actions=""
 		>
-		<gun_config 
+		<gun_config
             shuffle_deck_when_empty="0"
             deck_capacity="5"
 			actions_per_round="1"
@@ -48,6 +48,8 @@
             collect_nondefault_actions="1" >
         </ItemComponent>
 
+    </Base>
+
         <SpriteComponent
 		    _tags="enabled_in_hand"
 		    offset_x="4"
@@ -55,7 +57,12 @@
 	    	image_file="mods/tales_of_kupoli/files/entities/items/tome/sprite.xml"
     	></SpriteComponent>
 
-    </Base>
+        <SpriteComponent
+		    _tags="enabled_in_world"
+		    offset_x="4"
+    		offset_y="4"
+	    	image_file="mods/tales_of_kupoli/files/entities/items/tome/sprite_inworld.png"
+    	></SpriteComponent>
 
    <LuaComponent 
         execute_on_added="1"
@@ -67,6 +74,12 @@
     <!--<ManaReloaderComponent
         _tags="enabled_in_world,enabled_in_hand,enabled_in_inventory" >
     </ManaReloaderComponent>-->
+
+    <VariableStorageComponent
+        _tags="current_upgrade"
+        name="current_upgrade"
+        value_string="1"
+    ></VariableStorageComponent>
 
     <VariableStorageComponent
         _tags="path_1"

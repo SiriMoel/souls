@@ -17,8 +17,10 @@ local sunbook_prevbutton_shown = false
 local sunbook_nextbutton_shown = false
 local sunbook_page_scalemult = 1
 Gui.state.souls = {}
-Gui.state.sunbook_open = true;
-Gui.state.sunbook_unlocked = false;
+Gui.state.sunbook_open = true
+Gui.state.sunbook_unlocked = false
+Gui.state.tome_gui_hidden = true
+Gui.state.totalsoulscount = 0
 function OnWorldPreUpdate()
     if GetPlayer() ~= nil then
         soulscount = GetSoulsCount("all")
@@ -41,23 +43,25 @@ function OnWorldPreUpdate()
         end
 
         Gui.state.soultypes = soul_types
-    end
 
-    local inv_comp = EntityGetFirstComponentIncludingDisabled(GetPlayer(), "Inventory2Component")
-    if inv_comp then
-        held_item = ComponentGetValue2(inv_comp, "mActiveItem")
-        if EntityHasTag(held_item, "kupoli_tome") then
-            Gui.state.tome_gui_hidden = false
-            Gui.state.tome_path_1 = ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(held_item, "VariableStorageComponent", "path_1") or 0, "value_int")
-            Gui.state.tome_path_2 = ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(held_item, "VariableStorageComponent", "path_2") or 0, "value_int")
-            Gui.state.tome_path_3 = ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(held_item, "VariableStorageComponent", "path_3") or 0, "value_int")
-        else
-            Gui.state.tome_gui_hidden = true
+        for _,value in ipairs(soul_types) do
+            Gui.state.souls[value] = GetSoulsCount(value)
         end
-    end
-
-    for _, value in ipairs(soul_types) do
-        Gui.state.souls[value] = GetSoulsCount(value)
+    
+        --Gui.state.totalsoulscount = GetSoulsCount("all")
+    
+        --[[local inv_comp = EntityGetFirstComponentIncludingDisabled(GetPlayer(), "Inventory2Component") or 0
+        if inv_comp ~= 0 then
+            held_item = ComponentGetValue2(inv_comp, "mActiveItem")
+            if EntityHasTag(held_item, "kupoli_tome") then
+                Gui.state.tome_gui_hidden = false
+                Gui.state.tome_path_1 = ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(held_item, "VariableStorageComponent", "path_1") or 0, "value_int")
+                Gui.state.tome_path_2 = ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(held_item, "VariableStorageComponent", "path_2") or 0, "value_int")
+                Gui.state.tome_path_3 = ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(held_item, "VariableStorageComponent", "path_3") or 0, "value_int")
+            else
+                Gui.state.tome_gui_hidden = true
+            end
+        end]]--
     end
 
 
@@ -98,6 +102,16 @@ Gui:AddElement(gusgui.Elements.HLayout({
             drawBorder = false,
             drawBackground = false,
         }),
+        gusgui.Elements.VLayout({
+            --[[children = {
+                gusgui.Elements.Text({
+                    value = "Current souls"
+                }),
+                gusgui.Elements.Text({
+                    value = "Total souls"
+                }),
+            },]]--
+        }),
         gusgui.Elements.HLayoutForEach({
             id = "soulsgui",
             type = "foreach",
@@ -133,17 +147,17 @@ Gui:AddElement(gusgui.Elements.HLayout({
     },
 }))
 
-Gui:AddElement(gusgui.Elements.VLayout({
+--[[Gui:AddElement(gusgui.Elements.VLayout({
     id = "tome_gui",
     margin = { right = 1, bottom = 50, },
     overrideZ  = 100000000,
-    hidden = Gui:StateValue("tome_gui_hidden"),
+    hidden = false, --Gui:StateValue("tome_gui_hidden"),
     children = {
         gusgui.Elements.text({
             id = "tome_gui_text",
             value = "Click to upgrade, costs 15 souls."
         }),
-        gusgui.Elements.HLayout({
+        --[[gusgui.Elements.HLayout({
             id = "tome_path_1",
             children = {
                 gusgui.Elements.Text({
@@ -152,7 +166,9 @@ Gui:AddElement(gusgui.Elements.VLayout({
                 gusgui.Elements.ImageButton({
                     src = "mods/tales_of_kupoli/files/sunbook/tome/path_1.png",
                     OnClick = function()
-                        if GetSoulsCount("all") > 15 then
+                        dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+                        dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+                        if Gui.state.totalsoulscount > 15 then
                             UpgradeTome(1, 1)
                             RemoveSouls(15)
                         else
@@ -174,7 +190,9 @@ Gui:AddElement(gusgui.Elements.VLayout({
                 gusgui.Elements.ImageButton({
                     src = "mods/tales_of_kupoli/files/sunbook/tome/path_2.png",
                     OnClick = function()
-                        if GetSoulsCount("all") > 15 then
+                        dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+                        dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+                        if Gui.state.totalsoulscount > 15 then
                             UpgradeTome(2, 1)
                             RemoveSouls(15)
                         else
@@ -196,7 +214,9 @@ Gui:AddElement(gusgui.Elements.VLayout({
                 gusgui.Elements.ImageButton({
                     src = "mods/tales_of_kupoli/files/sunbook/tome/path_3.png",
                     OnClick = function()
-                        if GetSoulsCount("all") > 15 then
+                        dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+                        dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+                        if Gui.state.totalsoulscount > 15 then
                             UpgradeTome(3, 1)
                             RemoveSouls(15)
                         else
@@ -210,7 +230,7 @@ Gui:AddElement(gusgui.Elements.VLayout({
             },
         }),
     },
-}))
+}))]]--
 
 Gui:AddElement(gusgui.Elements.VLayout({
     id = "sunbook",

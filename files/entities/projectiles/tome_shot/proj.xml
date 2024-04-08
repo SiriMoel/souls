@@ -23,7 +23,7 @@
     explosion_dont_damage_shooter="1"
     on_collision_die="1"
     lifetime="40"
-    damage="0.2"
+    damage="0.1"
     velocity_sets_scale="1"
     lifetime_randomness="7"
     ragdoll_force_multiplier="0.005"
@@ -37,7 +37,7 @@
 	>
     <config_explosion
       never_cache="1" 
-      damage="0.1"
+      damage="0.05"
       camera_shake="0.9" 
       explosion_radius="5"
       explosion_sprite="data/particles/explosion_008_blue.xml" 

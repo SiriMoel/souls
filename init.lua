@@ -225,7 +225,7 @@ local scenes = {
     {-13020, -5380, "mods/tales_of_kupoli/files/entities/items/essencewand_air/weapon.xml", true },
     { -14040, 13570, "mods/tales_of_kupoli/files/entities/items/essencewand_spirits/weapon.xml", true },
     { -5340, 16640, "mods/tales_of_kupoli/files/entities/items/essencewand_water/weapon.xml", true },
-    { 0, 0, "mods/tales_of_kupoli/files/entities/items/shovel/weapon.xml", true }, -- testing
+    --{ 0, 0, "mods/tales_of_kupoli/files/entities/items/shovel/weapon.xml", true }, -- testing
 
     { 4518, 805, "mods/tales_of_kupoli/files/sunbook/item/item.xml", true },
 }
@@ -259,6 +259,8 @@ add_scene(scenes)
 -- player
 function OnPlayerSpawned( player )
 
+    dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+
     dofile_once("mods/tales_of_kupoli/files/gui.lua")
 
     local px, py = EntityGetTransform(player)
@@ -272,10 +274,9 @@ function OnPlayerSpawned( player )
     end
 
     EntityLoad("mods/tales_of_kupoli/files/entities/items/tome/weapon.xml", px, py)
+    CreateItemActionEntity("KUPOLI_UPGRADE_TOME", px, py)
 
-    --[[for i=1,30 do
-        AddSoul("slimes")
-    end]]
+    --for i=1,100 do AddSoul("slimes") end
 
     --[[EntityAddComponent2(player, "LuaComponent", {
         script_source_file="mods/tales_of_kupoli/files/scripts/player.lua",

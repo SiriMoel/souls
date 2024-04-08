@@ -1,5 +1,6 @@
 <Entity name="Soul Tome" tags="teleportable_NOT,wand,item,kupoli_tome">
 
+    <!--removed sprite_file from this-->
 	<AbilityComponent 
         amount_in_inventory="1"
         cooldown_frames="0"
@@ -11,7 +12,6 @@
 		mana_max="0"
         max_amount_in_inventory="1"
         shooting_reduces_amount_in_inventory="0"
-        sprite_file="mods/tales_of_kupoli/files/entities/items/tome/sprite.xml"
         swim_propel_amount="0"
         throw_as_item="0"
         ui_name="Soul Tome"
@@ -33,17 +33,28 @@
 	
 	<HotspotComponent 
         _tags="shoot_pos" 
-        offset.x="8" 
-        offset.y="0.5" >
+        offset.x="6" 
+        offset.y="2" >
     </HotspotComponent>
 	
     <Base file="data/entities/base_item.xml" >
         <ItemComponent
+        	_tags="enabled_in_world,enabled_in_inventory"
             item_name="Soul Tome"
+            play_hover_animation="1"
+            ui_sprite="mods/tales_of_kupoli/files/entities/items/tome/sprite_inworld.png"
             always_use_item_name_in_ui="1"
             remove_on_death="1"
             collect_nondefault_actions="1" >
         </ItemComponent>
+
+        <SpriteComponent
+		    _tags="enabled_in_hand"
+		    offset_x="4"
+    		offset_y="4"
+	    	image_file="mods/tales_of_kupoli/files/entities/items/tome/sprite.xml"
+    	></SpriteComponent>
+
     </Base>
 
    <LuaComponent 
@@ -74,5 +85,38 @@
         name="path_3"
         value_int="0"
     ></VariableStorageComponent>
+
+    <ParticleEmitterComponent 
+		_tags="enabled_in_world,enabled_in_hand"
+		emitted_material_name="soul_particles"
+		offset.x="0"
+		offset.y="0"
+		x_pos_offset_min="0"
+		x_pos_offset_max="0"
+		y_pos_offset_min="0"
+		y_pos_offset_max="0"
+		x_vel_min="0"
+		x_vel_max="0"
+		y_vel_min="0"
+		y_vel_max="0"
+		count_min="1"
+		count_max="1"
+		emission_interval_min_frames="1"
+		emission_interval_max_frames="3"
+		area_circle_radius.max="6"
+		emit_cosmetic_particles="1"
+		create_real_particles="0"
+		lifetime_min="2.5"
+		lifetime_max="6.5"
+		render_on_grid="1"
+		fade_based_on_lifetime="1"
+		airflow_force="0.5"
+		airflow_time="0.01"
+		airflow_scale="0.05"
+		collide_with_grid="0"
+		gravity.y="0.0"
+		render_back="1"
+		>
+	</ParticleEmitterComponent>
 
 </Entity>

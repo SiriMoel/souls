@@ -4,13 +4,13 @@ local orb = GetUpdatedEntityID()
 local x, y = EntityGetTransform(orb)
 
 local options = {
-    total_prob = 0,
+    --[[total_prob = 0,
     {
         prob = 0,
         min_count = 0,
         max_count = 0,
         entity = "",
-    },
+    },]]--
     {
         prob = 0.3,
         min_count = 0,
@@ -133,6 +133,8 @@ local options = {
     },
 }
 
-spawn(options, x, y)
+--spawn(options, x, y)
+
+EntityLoad(options[math.random(1,#options)].entity, x, y)
 
 EntityKill(orb)

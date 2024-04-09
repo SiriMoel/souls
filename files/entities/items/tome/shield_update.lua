@@ -21,5 +21,5 @@ end
 
 if path_4 >= 1 then
     rechargespeed = rechargespeed / ( path_4 * 0.3 ) -- unsure of scaling
-    ComponentSetValue(comp_shield, "recharge_speed", rechargespeed) 
+    ComponentSetValue(comp_shield, "recharge_speed", rechargespeed)
 end

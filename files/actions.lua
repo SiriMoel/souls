@@ -58,10 +58,10 @@ function UpgradeTome(path, amount)
 	if path == 4 then -- defensive ability
 		path_4 = path_4 + amount
 		cap = cap - 1
-            if cap < 5 then
-                cap = 5
-                GamePrint("Minimum capacity reached.")
-            end
+        if cap < 5 then
+            cap = 5
+            GamePrint("Minimum capacity reached.")
+        end
 	end
     ComponentSetValue2(comp_path_1, "value_int", path_1)
     ComponentSetValue2(comp_path_2, "value_int", path_2)
@@ -1182,7 +1182,7 @@ actions_to_insert = {
 		type 		= ACTION_TYPE_PROJECTILE,
 		inject_after = "ARROW",
 		spawn_level                       = "2,3,4,5",
-		spawn_probability                 = "0.5,0.6,0.8,0.8",
+		spawn_probability                 = "0.3,0.6,0.8,0.8",
 		price = 70,
 		mana = 20,
 		max_uses = 20,
@@ -1483,7 +1483,7 @@ actions_to_insert = {
 			if GameHasFlagRun("ikkuna_souldoor") and #targets > 0 then
 				local ex, ey = EntityGetTransform(targets[1])
 				EntityLoad("data/entities/animals/kupoli_valkoinen.xml", ex, ey)
-				EntityKill(currentcard(wand)) -- does this work???
+				EntityKill(currentcard(wand))
 			else
 				GamePrint("Something is not quite right...")
 			end
@@ -1498,8 +1498,8 @@ actions_to_insert = {
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_is_recharge.png",
 		type 		= ACTION_TYPE_MODIFIER,
 		inject_after = "RECHARGE",
-		spawn_level                       = "0,1,2,3,4,5,6,10",
-		spawn_probability                 = "0.4,0.4,1,1,0.7,0.7,0.7,0.2",
+		spawn_level                       = "3,4,5,6,10",
+		spawn_probability                 = "0.5,0.7,0.7,0.7,0.2",
 		price = 140,
 		mana = 0,
 		action 		= function()
@@ -1548,7 +1548,6 @@ actions_to_insert = {
 			local souls_to_use = 0
 			if not reflecting then
 				if GetSoulsCount("all") > 0 then
-					local this = {}
 					for i,data in ipairs(deck) do
 						souls_to_use = souls_to_use + math.ceil(data.mana / 100)
 					end
@@ -1571,10 +1570,10 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id          = "TOME_SHOT", -- wip
+		id          = "TOME_SHOT",
 		name 		= "$action_kupoli_tome_shot",
 		description = "$actiondesc_kupoli_tome_shot",
-		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_shot.png", -- wip
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_shot.png",
 		sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_unidentified.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
@@ -1582,7 +1581,7 @@ actions_to_insert = {
 		spawn_level                       = "",
 		spawn_probability                 = "",
 		price = 100,
-		mana = 200,
+		mana = 800,
 		action 		= function()
 			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
 
@@ -1598,15 +1597,15 @@ actions_to_insert = {
 			end
 
 			if EntityHasTag(wand, "kupoli_tome") then
-				add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml")
-				add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml")
-				add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml")
-				add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml")
 				c.spread_degrees = c.spread_degrees + 14.0
 				c.fire_rate_wait = c.fire_rate_wait + 10
 				c.screenshake = c.screenshake + 2
 				c.spread_degrees = c.spread_degrees - 1.0
 				c.damage_critical_chance = c.damage_critical_chance + 2
+				add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml")
+				add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml")
+				add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml")
+				add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml")
 			end
 		end,
 	},
@@ -1644,7 +1643,6 @@ actions_to_insert = {
 					if GetSoulsCount("all") > 15 then
 						UpgradeTome(cu, 1)
 						RemoveSouls(15)
-						--EntityKill(currentcard(wand))
 					else
 						GamePrint("You do not have enough souls for this.")
 					end
@@ -1667,6 +1665,66 @@ actions_to_insert = {
 			end
 		end,
 	},
+	{
+		id          = "UPGRADE_TOME_BETTER",
+		name 		= "$action_kupoli_upgrade_tome_better",
+		description = "$actiondesc_kupoli_upgrade_tome_better",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_upgrade_better.png",
+		type 		= ACTION_TYPE_UTILITY,
+		inject_after = "KUPOLI_TOME_SHOT",
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 100,
+		mana = 0,
+		action 		= function()
+			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+			if not reflecting then
+				local entity = GetUpdatedEntityID()
+				local x, y = EntityGetTransform(entity)
+	
+				local tome = EntityGetWithTag("kupoli_tome")[1]
+	
+				local comp_cu = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "current_upgrade") or 0
+				local cu = tonumber(ComponentGetValue(comp_cu, "value_string"))
+	
+				local wand = 0
+				local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+				if inv_comp then
+					wand = ComponentGetValue2(inv_comp, "mActiveItem")
+				end
+	
+				if wand == tome then
+					c.fire_rate_wait = c.fire_rate_wait + 20
+				current_reload_time = current_reload_time + 20
+					if GetSoulsCount("all") > 5 then
+						UpgradeTome(cu, 1)
+						RemoveSouls(5)
+					else
+						GamePrint("You do not have enough souls for this.")
+					end
+				else
+					cu = cu + 1
+					if cu > 5 then
+						cu = 1
+					end
+					if cu == 4 then
+						GamePrint("Now upgrading defensive ability!")
+					elseif cu == 3 then
+						GamePrint("Now upgrading cast delay!")
+					elseif cu == 2 then
+						GamePrint("Now upgrading recharge time!")
+					elseif cu == 1 then
+						GamePrint("Now upgrading capacity!")
+					end
+					ComponentSetValue2(comp_cu, "value_string", tostring(cu))
+				end
+			end
+		end,
+	},
+	--[[{ -- the wise words of prime bandet (pronounced primus bonday)
+		function(flipbool)noita
+			moldos be like.rungame
+	},]]--
 }
 
 for i,v in ipairs(actions_to_insert) do

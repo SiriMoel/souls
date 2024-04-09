@@ -83,8 +83,8 @@
     ></GameAreaEffectComponent>
 
     <LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/projectiles/reaping_halo/reaping_halo.lua"
-		execute_every_n_frame="1"
+		script_source_file="mods/tales_of_kupoli/files/entities/projectiles/tome_shot/tome_shot.lua"
+		execute_every_n_frame="30"
 		>
 	</LuaComponent>
 

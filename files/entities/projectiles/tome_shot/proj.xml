@@ -10,25 +10,11 @@
 
 	<HomingComponent
 		target_tag="homing_target"
-		homing_targeting_coeff="3"
-		detect_distance="100"
+		homing_targeting_coeff="2"
+		detect_distance="50"
 		homing_velocity_multiplier="1"
 		>
 	</HomingComponent>
-
-	
-	<!--<AreaDamageComponent
-		aabb_min.x="-10" 
-		aabb_min.y="-10" 
-		aabb_max.x="10" 
-		aabb_max.y="10" 
-		damage_per_frame="0.05"
-		update_every_n_frame="10"
-		entities_with_tag="destruction_target"
-		damage_type="DAMAGE_PROJECTILE"
-		circle_radius="8"
-		>
-	</AreaDamageComponent>-->
 	
 	<ParticleEmitterComponent 
 		emitted_material_name="soul_particles"
@@ -71,7 +57,7 @@
 		collide_with_world="0"
 		direction_random_rad="0"
 		penetrate_world="0"
-		damage="0.1"
+		damage="0.05"
 		collide_with_tag="hittable"
 		>
 	</ProjectileComponent>
@@ -83,7 +69,7 @@
     ></GameAreaEffectComponent>
 
     <LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/projectiles/reaping_halo/reaping_halo.lua"
+		script_source_file="mods/tales_of_kupoli/files/entities/projectiles/tome_shot/tome_shot.lua"
 		execute_every_n_frame="1"
 		>
 	</LuaComponent>

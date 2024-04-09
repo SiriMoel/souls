@@ -13,23 +13,25 @@ function UpgradeTome(path, amount)
     local path_2 = ComponentGetValue2(comp_path_2, "value_int")
     local comp_path_3 = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "path_3") or 0
     local path_3 = ComponentGetValue2(comp_path_3, "value_int")
+	local comp_path_4 = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "path_4") or 0
+    local path_4 = ComponentGetValue2(comp_path_4, "value_int")
     local ac = EntityGetFirstComponentIncludingDisabled( tome, "AbilityComponent" ) or 0
     local cap = tonumber( ComponentObjectGetValue( ac, "gun_config", "deck_capacity" ) ) -- deck capacity 
     local rt = tonumber( ComponentObjectGetValue( ac, "gun_config", "reload_time" ) ) -- reload time
     local frw = tonumber( ComponentObjectGetValue( ac, "gunaction_config", "fire_rate_wait" ) ) -- fire rate wait
-    if path == 1 then
+    if path == 1 then -- upgrade capacity
         for i=1,amount do
             cap = cap + 2
             if cap > 27 then
                 cap = 27
                 GamePrint("Max capacity reached!")
             end
-            rt = rt * 1.15
-            frw = frw * 1.1
+            rt = rt * 1
+            frw = frw * 1
         end
         path_1 = path_1 + amount
     end
-    if path == 2 then
+    if path == 2 then -- upgrade recharge time
         for i=1,amount do
             cap = cap - 2
             if cap < 5 then
@@ -41,7 +43,7 @@ function UpgradeTome(path, amount)
         end
         path_2 = path_2 + amount
     end
-    if path == 3 then
+    if path == 3 then -- upgrade cast delay
         for i=1,amount do
             cap = cap - 2
             if cap < 5 then
@@ -53,9 +55,18 @@ function UpgradeTome(path, amount)
         end
         path_3 = path_3 + amount
     end
+	if path == 4 then -- defensive ability
+		path_4 = path_4 + amount
+		cap = cap - 1
+            if cap < 5 then
+                cap = 5
+                GamePrint("Minimum capacity reached.")
+            end
+	end
     ComponentSetValue2(comp_path_1, "value_int", path_1)
     ComponentSetValue2(comp_path_2, "value_int", path_2)
     ComponentSetValue2(comp_path_3, "value_int", path_3)
+	ComponentSetValue2(comp_path_4, "value_int", path_4)
     ComponentObjectSetValue( ac, "gun_config", "deck_capacity", tostring(cap) )
     ComponentObjectSetValue( ac, "gun_config", "reload_time", tostring(rt) )
     ComponentObjectSetValue( ac, "gunaction_config", "fire_rate_wait", tostring(frw) )
@@ -1571,7 +1582,7 @@ actions_to_insert = {
 		spawn_level                       = "",
 		spawn_probability                 = "",
 		price = 100,
-		mana = 10,
+		mana = 200,
 		action 		= function()
 			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
 
@@ -1581,7 +1592,6 @@ actions_to_insert = {
 			local x, y = EntityGetTransform(entity)
 
 			local wand = 0
-			local souls_earned = 1
 			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
 			if inv_comp then
 				wand = ComponentGetValue2(inv_comp, "mActiveItem")
@@ -1589,18 +1599,22 @@ actions_to_insert = {
 
 			if EntityHasTag(wand, "kupoli_tome") then
 				add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml")
+				add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml")
+				add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml")
+				add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml")
+				c.spread_degrees = c.spread_degrees + 14.0
+				c.fire_rate_wait = c.fire_rate_wait + 10
+				c.screenshake = c.screenshake + 2
+				c.spread_degrees = c.spread_degrees - 1.0
+				c.damage_critical_chance = c.damage_critical_chance + 2
 			end
-			c.fire_rate_wait = c.fire_rate_wait + 10
-			c.screenshake = c.screenshake + 2
-			c.spread_degrees = c.spread_degrees - 1.0
-			c.damage_critical_chance = c.damage_critical_chance + 5
 		end,
 	},
 	{
 		id          = "UPGRADE_TOME",
 		name 		= "$action_kupoli_upgrade_tome",
 		description = "$actiondesc_kupoli_upgrade_tome",
-		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_shot.png",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_upgrade.png",
 		type 		= ACTION_TYPE_UTILITY,
 		inject_after = "KUPOLI_TOME_SHOT",
 		spawn_level                       = "",
@@ -1625,6 +1639,8 @@ actions_to_insert = {
 				end
 	
 				if wand == tome then
+					c.fire_rate_wait = c.fire_rate_wait + 20
+				current_reload_time = current_reload_time + 20
 					if GetSoulsCount("all") > 15 then
 						UpgradeTome(cu, 1)
 						RemoveSouls(15)
@@ -1634,10 +1650,12 @@ actions_to_insert = {
 					end
 				else
 					cu = cu + 1
-					if cu > 3 then
+					if cu > 5 then
 						cu = 1
 					end
-					if cu == 3 then
+					if cu == 4 then
+						GamePrint("Now upgrading defensive ability!")
+					elseif cu == 3 then
 						GamePrint("Now upgrading cast delay!")
 					elseif cu == 2 then
 						GamePrint("Now upgrading recharge time!")

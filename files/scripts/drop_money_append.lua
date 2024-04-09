@@ -9,106 +9,125 @@ biomethings = {
         biome = "$biome_coalmine",
         soul = "zombie",
         wand = "",
+        multiplier = 1,
     },
     {
         biome = "$biome_coalmine_alt",
         soul = "zombie",
         wand = "",
+        multipler = 1,
     },
     {
         biome = "$biome_excavationsite",
         soul = "bat",
         wand = "",
+        multipler = 1,
     },
     {
         biome = "$biome_fungicave",
         soul = "fungus",
         wand = "",
+        multipler = 2,
     },
     {
         biome = "$biome_snowcave",
         soul = "orcs",
         wand = "",
+        multipler = 1,
     },
     {
         biome = "$biome_snowcastle",
         soul = "orcs",
         wand = "",
+        multiplier = 1,
     },
     {
         biome = "$biome_rainforest",
         soul = "spider",
         wand = "",
+        multiplier = 1,
     },
     {
         biome = "$biome_rainforest_dark",
         soul = "spider",
         wand = "",
+        multiplier = 3,
     },
     {
         biome = "$biome_vault",
         soul = "",
         wand = "",
+        multiplier = 1,
     },
     {
         biome = "$biome_crypt",
         soul = "mage",
         wand = "",
+        multiplier = 1,
     },
     {
         biome = "$biome_gold",
         soul = "gilded",
         wand = "",
+        multiplier = 5,
     },
     {
         biome = "$biome_winter",
         soul = "orcs",
         wand = "",
+        multiplier = 1,
     },
     {
         biome = "$biome_tower",
         soul = "ghost",
         wand = "",
+        multiplier = 3,
     },
     {
         biome = "$biome_secret_lab",
         soul = "mage",
         wand = "",
+        multiplier = 2,
     },
     {
         biome = "$biome_vault_frozen",
         soul = "",
         wand = "",
+        multiplier = 2,
     },
     {
         biome = "$biome_wandcave",
         soul = "mage",
         wand = "",
+        multiplier = 2,
     },
     {
         biome = "$biome_wizardcave",
         soul = "mage",
         wand = "data/entities/items/wand_unshuffle_06.xml",
+        multiplier = 2,
     },
     {
         biome = "$biome_liquidcave",
         soul = "mage",
         wand = "",
+        multiplier = 1,
     },
     {
         biome = "$biome_winter_caves",
         soul = "ghost",
         wand = "",
+        multiplier = 1,
     },
     {
         biome = "$biome_fun",
         soul = "fungus",
         wand = "",
+        multiplier = 2,
     },
 }
 
 function do_money_drop( amount_multiplier, trick_kill )
-
     local entity = GetUpdatedEntityID()
     local herd_id_number = ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( entity, "GenomeDataComponent" ) or 0, "herd_id")
     local herd_id = HerdIdToString(herd_id_number)
@@ -126,7 +145,17 @@ function do_money_drop( amount_multiplier, trick_kill )
                 if ModSettingGet("tales_of_kupoli.say_soul") == true then
                     GamePrint("You have acquired a " .. SoulNameCheck(herd_id) .. " soul!")
                 end
-                AddSoul(herd_id)
+                local howmany = 1
+                for i=1,#biomethings do
+                    if biomethings[i].biome == BiomeMapGetName(x, y) then
+                        if biomethings[i].multiplier ~= "" and bioemthings[i].multiplier ~= nil then
+                            howmany = math.floor(math.random(1,biomethings[i].multiplier)+0.5)
+                        end
+                    end
+                end
+                for i=1,howmany do
+                    AddSoul(herd_id)
+                end
             end
 
             if EntityHasTag(GetPlayer(), "kupoli_biome_souls") then
@@ -136,7 +165,7 @@ function do_money_drop( amount_multiplier, trick_kill )
                         if biomethings[i].soul ~= "" then
                             whichtype = biomethings[i].soul
                         else
-                            whichtype = "hiisi"
+                            whichtype = "friendly"
                         end
                     end
                 end

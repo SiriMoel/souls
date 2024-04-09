@@ -12,7 +12,7 @@ local targets = EntityGetInRadiusWithTag( x, y, mark_radius, "homing_target" )
 
 if ( #targets > 0 ) then
     for i,target_id in ipairs( targets ) do
-        if math.random(1,2) == 1 then
+        if math.random(1,1) == 1 then
             if ( EntityHasTag( target_id, "reap_marked" ) == false ) then
 
                 EntityAddComponent( target_id, "LuaComponent",

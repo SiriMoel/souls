@@ -1,4 +1,5 @@
 <Entity name="$projectile_default" tags="projectile_player" >
+
 	<VelocityComponent
 		gravity_y="0"
 		air_friction="-0.4"
@@ -10,8 +11,8 @@
 
 	<HomingComponent
 		target_tag="homing_target"
-		homing_targeting_coeff="2"
-		detect_distance="50"
+		homing_targeting_coeff="4"
+		detect_distance="120"
 		homing_velocity_multiplier="1"
 		>
 	</HomingComponent>
@@ -45,19 +46,21 @@
 	</ParticleEmitterComponent>
 	
 	<ProjectileComponent
-		speed_min="0"
-		speed_max="0"
+	    lob_min="0.8"
+    	lob_max="1.3"
+		speed_min="50"
+		speed_max="100"
 		bounce_always="1"
-		bounces_left="9999999999999"
+		bounces_left="9"
 		bounce_at_any_angle="1"
 		bounce_energy="0.5"
-		lifetime="100"
+		lifetime="230"
 		velocity_sets_rotation="0"
 		penetrate_entities="1"
-		collide_with_world="0"
+		collide_with_world="1"
 		direction_random_rad="0"
 		penetrate_world="0"
-		damage="0.05"
+		damage="0.06"
 		collide_with_tag="hittable"
 		>
 	</ProjectileComponent>
@@ -70,7 +73,7 @@
 
     <LuaComponent
 		script_source_file="mods/tales_of_kupoli/files/entities/projectiles/tome_shot/tome_shot.lua"
-		execute_every_n_frame="1"
+		execute_every_n_frame="30"
 		>
 	</LuaComponent>
 

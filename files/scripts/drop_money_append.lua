@@ -148,7 +148,7 @@ function do_money_drop( amount_multiplier, trick_kill )
                 local howmany = 1
                 for i=1,#biomethings do
                     if biomethings[i].biome == BiomeMapGetName(x, y) then
-                        if biomethings[i].multiplier ~= "" and bioemthings[i].multiplier ~= nil then
+                        if biomethings[i].multiplier ~= "" and biomethings[i].multiplier ~= nil then
                             howmany = math.floor(math.random(1,biomethings[i].multiplier)+0.5)
                         end
                     end

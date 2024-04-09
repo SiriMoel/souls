@@ -143,9 +143,9 @@
 		>
 	</ParticleEmitterComponent>
 
-
-    <ParticleEmitterComponent
-		_tags="soulshield,character,enabled_in_hand,item_identified__LEGACY,shield_ring"
+    <!--<ParticleEmitterComponent
+		_enabled="1"
+		_tags="enabled_in_hand,pec_1,soulshield,character,item_identified__LEGACY,shield_ring"
 		emitted_material_name="soul_particles"
 		gravity.y="0.0"
 		lifetime_min="0.02"
@@ -167,7 +167,8 @@
 	</ParticleEmitterComponent>
 
 	<ParticleEmitterComponent
-		_tags="soulshield,character,enabled_in_hand,item_identified__LEGACY,shield_hit"
+		_enabled="1"
+		_tags="enabled_in_hand,pec_2,soulshield,character,item_identified__LEGACY,shield_hit"
 		emitted_material_name="soul_particles"
 		gravity.y="0.0"
 		lifetime_min="0.3"
@@ -189,10 +190,10 @@
 	</ParticleEmitterComponent>
 
     <EnergyShieldComponent 
-        _tags="soulshield,enabled_in_hand,item_identified__LEGACY"
-        recharge_speed="1.0" 
+        _tags="enabled_in_hand,comp_soulshield,soulshield,item_identified__LEGACY"
+        recharge_speed="0.1" 
 		radius="15.0"
 		>
-    </EnergyShieldComponent>
+    </EnergyShieldComponent>-->
 
 </Entity>

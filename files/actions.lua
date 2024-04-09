@@ -20,6 +20,7 @@ function UpgradeTome(path, amount)
     local rt = tonumber( ComponentObjectGetValue( ac, "gun_config", "reload_time" ) ) -- reload time
     local frw = tonumber( ComponentObjectGetValue( ac, "gunaction_config", "fire_rate_wait" ) ) -- fire rate wait
     if path == 1 then -- upgrade capacity
+		GamePrint("Upgrading capacity!")
         for i=1,amount do
             cap = cap + 2
             if cap > 27 then
@@ -32,6 +33,7 @@ function UpgradeTome(path, amount)
         path_1 = path_1 + amount
     end
     if path == 2 then -- upgrade recharge time
+		GamePrint("Upgrading recharge time!")
         for i=1,amount do
             cap = cap - 2
             if cap < 5 then
@@ -44,6 +46,7 @@ function UpgradeTome(path, amount)
         path_2 = path_2 + amount
     end
     if path == 3 then -- upgrade cast delay
+		GamePrint("Upgrading cast delay!")
         for i=1,amount do
             cap = cap - 2
             if cap < 5 then
@@ -55,14 +58,15 @@ function UpgradeTome(path, amount)
         end
         path_3 = path_3 + amount
     end
-	if path == 4 then -- defensive ability
+	--[[if path == 4 then -- defensive ability
+		GamePrint("Upgrading defensive ability!")
 		path_4 = path_4 + amount
 		cap = cap - 1
         if cap < 5 then
             cap = 5
             GamePrint("Minimum capacity reached.")
         end
-	end
+	end]]--
     ComponentSetValue2(comp_path_1, "value_int", path_1)
     ComponentSetValue2(comp_path_2, "value_int", path_2)
     ComponentSetValue2(comp_path_3, "value_int", path_3)
@@ -1557,8 +1561,8 @@ actions_to_insert = {
 						for i,data in ipairs(deck) do
 							data.mana = 0
 						end
-						c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/misc/soul_speed_fx.xml,"
-						c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/projectiles/reaping_shot/reaping_shot.xml,"
+						--c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/misc/soul_speed_fx.xml,"
+						--c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/projectiles/reaping_shot/reaping_shot.xml,"
 					else
 						GamePrint("You do not have enough souls!")
 					end
@@ -1648,11 +1652,11 @@ actions_to_insert = {
 					end
 				else
 					cu = cu + 1
-					if cu > 5 then
+					if cu > 3 then
 						cu = 1
 					end
 					if cu == 4 then
-						GamePrint("Now upgrading defensive ability!")
+						--GamePrint("Now upgrading defensive ability!")
 					elseif cu == 3 then
 						GamePrint("Now upgrading cast delay!")
 					elseif cu == 2 then
@@ -1704,7 +1708,7 @@ actions_to_insert = {
 					end
 				else
 					cu = cu + 1
-					if cu > 5 then
+					if cu > 3 then
 						cu = 1
 					end
 					if cu == 4 then

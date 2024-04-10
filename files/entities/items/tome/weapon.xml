@@ -105,10 +105,10 @@
         value_int="0"
     ></VariableStorageComponent>
 
-    <LuaComponent
+    <!--<LuaComponent
         script_source_file="mods/tales_of_kupoli/files/entities/items/tome/shield_update.lua"
         execute_every_n_frame="2"
-    ></LuaComponent>
+    ></LuaComponent>-->
 
     <ParticleEmitterComponent 
 		_tags="enabled_in_world,enabled_in_hand"

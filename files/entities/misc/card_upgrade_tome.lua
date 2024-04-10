@@ -5,7 +5,7 @@ local card = GetUpdatedEntityID()
 local root = EntityGetRootEntity(card) -- player, right?
 local comp_controls = EntityGetFirstComponentIncludingDisabled(root, "ControlsComponent") or 0
 local comp_cd = EntityGetFirstComponentIncludingDisabled(card, "VariableStorageComponent", "cooldown_frame") or 0
-local cooldown_frames = 5
+local cooldown_frames = 6
 local cooldown_frame = ComponentGetValue2(comp_cd, "value_int")
 
 local tome = EntityGetWithTag("kupoli_tome")[1]

@@ -22,7 +22,7 @@ function UpgradeTome(path, amount)
     if path == 1 then -- upgrade capacity
 		GamePrint("Upgrading capacity!")
         for i=1,amount do
-            cap = cap + 3
+            cap = cap + 3	
             if cap > 27 then
                 cap = 27
                 GamePrint("Max capacity reached!")
@@ -1547,31 +1547,33 @@ actions_to_insert = {
 		price = 100,
 		mana = 0,
 		action 		= function()
-			--local this = currentcard(EntityGetWithTag("kupoli_tome")[1]) -- this will work???
 			local souls_to_use = 0
 			if not reflecting then
 				dofile("mods/tales_of_kupoli/files/scripts/souls.lua")
 				if GetSoulsCount("all") > 0 then
 					for i,data in ipairs(deck) do
+						if data.moldos_mana ~= nil then
+							data.mana = data.moldos_mana
+						end
+					end
+					for i,data in ipairs(deck) do
 						souls_to_use = souls_to_use + math.ceil(data.mana / 100)
 					end
 					souls_to_use = math.ceil(souls_to_use / 2)
 					if GetSoulsCount("all") > souls_to_use then
-						--local entity = GetUpdatedEntityID()
 						RemoveSouls(souls_to_use)
 						for i,data in ipairs(deck) do
-							data.mana = 0 -- okay the issue is that this doesnt reset back to its normal amount
+							data.moldos_mana = data.mana
+							data.mana = 0
 						end
-						--c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/misc/soul_speed_fx.xml,"
-						--c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/projectiles/reaping_shot/reaping_shot.xml,"
+						draw_action()
 					else
 						GamePrint("You do not have enough souls!")
 					end
 				elseif GetSoulsCount("all") <= 0 then
 					GamePrint("You do not have enough souls!")
 				end
-			end		
-			draw_actions( 1, true )
+			end
 		end,
 	},
 	{

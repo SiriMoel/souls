@@ -1547,7 +1547,7 @@ actions_to_insert = {
 		price = 100,
 		mana = 0,
 		action 		= function()
-			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+			dofile("mods/tales_of_kupoli/files/scripts/souls.lua")
 			local amount = 0
 			local mana_to_use = 0
 			--local this = currentcard(EntityGetWithTag("kupoli_tome")[1]) -- this will work???
@@ -1565,10 +1565,10 @@ actions_to_insert = {
 							data.mana = 0 -- okay the issue is that this doesnt reset back to its normal amount
 						end
 						-- the following is so incredibly scuffed but it might just work (im delusional)
-						local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component") or 0
+						--[[local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component") or 0
 						local inv_items = GameGetAllInventoryItems(entity) or {}
 						ComponentSetValue2(inv_comp, "mActiveItem", inv_items[5])
-						ComponentSetValue2(inv_comp, "mActiveItem", EntityGetWithTag("kupoli_tome")[1])
+						ComponentSetValue2(inv_comp, "mActiveItem", EntityGetWithTag("kupoli_tome")[1])]]--
 						--c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/misc/soul_speed_fx.xml,"
 						--c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/projectiles/reaping_shot/reaping_shot.xml,"
 					else

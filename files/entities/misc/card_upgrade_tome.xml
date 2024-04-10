@@ -29,4 +29,11 @@
         >
     </VariableStorageComponent>
 
+	<VariableStorageComponent
+		_tags="enabled_in_hand,cooldown_frame"
+        name="cooldown_frame"
+        value_int="0"
+        >
+    </VariableStorageComponent>
+
 </Entity>

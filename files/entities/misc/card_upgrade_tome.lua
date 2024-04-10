@@ -3,13 +3,16 @@ dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
 
 local card = GetUpdatedEntityID()
 local root = EntityGetRootEntity(card) -- player, right?
-local comp_controls = EntityGetFirstComponentIncludingDisabled(root, "ControlsComponent")
+local comp_controls = EntityGetFirstComponentIncludingDisabled(root, "ControlsComponent") or 0
+local comp_cd = EntityGetFirstComponentIncludingDisabled(card, "VariableStorageComponent", "cooldown_frame") or 0
+local cooldown_frames = 5
+local cooldown_frame = ComponentGetValue2(comp_cd, "value_int")
 
 local tome = EntityGetWithTag("kupoli_tome")[1]
 local comp_cu = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "current_upgrade") or 0
 local cu = tonumber(ComponentGetValue(comp_cu, "value_string"))
 
-if ComponentGetValue2(comp_control, "mButtonDownRightClick") == true then
+if ComponentGetValue2(comp_controls, "mButtonDownRightClick") == true and GameGetFrameNum() >= cooldown_frame then
     cu = cu + 1
     if cu > 3 then
         cu = 1
@@ -24,4 +27,5 @@ if ComponentGetValue2(comp_control, "mButtonDownRightClick") == true then
         GamePrint("Now upgrading capacity!")
     end
     ComponentSetValue2(comp_cu, "value_string", tostring(cu))
+    ComponentSetValue2( comp_cd, "value_int", GameGetFrameNum() + cooldown_frames )
 end

@@ -126,4 +126,4 @@ actiondesc_kupoli_tome_shot,"Manifest 4 small homing halo projectiles, but they 
 action_kupoli_upgrade_tome,"Tome Upgrader",,,,,,,,,,,,
 actiondesc_kupoli_upgrade_tome,"Cast on the tome to upgrade selected stat, right click to cycle stat. Upgrades cost 15 souls.",,,,,,,,,,,,
 action_kupoli_upgrade_tome_better,"Better Tome Upgrader",,,,,,,,,,,,
-actiondesc_kupoli_upgrade_tome_better,"Cast on the tome to upgrade selected stat, cast on another wand to cycle stat. Upgrades cost 5 souls.",,,,,,,,,,,,
+actiondesc_kupoli_upgrade_tome_better,"Cast on the tome to upgrade selected stat, right click to cycle stat. Upgrades cost 5 souls.",,,,,,,,,,,,

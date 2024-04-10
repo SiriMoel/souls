@@ -1549,6 +1549,8 @@ actions_to_insert = {
 		action 		= function()
 			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
 			local amount = 0
+			local mana_to_use = 0
+			--local this = currentcard(EntityGetWithTag("kupoli_tome")[1]) -- this will work???
 			local souls_to_use = 0
 			if not reflecting then
 				if GetSoulsCount("all") > 0 then
@@ -1557,10 +1559,16 @@ actions_to_insert = {
 					end
 					souls_to_use = math.ceil(souls_to_use / 2)
 					if GetSoulsCount("all") > souls_to_use then
+						local entity = GetUpdatedEntityID()
 						RemoveSouls(souls_to_use)
 						for i,data in ipairs(deck) do
-							data.mana = 0
+							data.mana = 0 -- okay the issue is that this doesnt reset back to its normal amount
 						end
+						-- the following is so incredibly scuffed but it might just work (im delusional)
+						local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component") or 0
+						local inv_items = GameGetAllInventoryItems(entity) or {}
+						ComponentSetValue2(inv_comp, "mActiveItem", inv_items[5])
+						ComponentSetValue2(inv_comp, "mActiveItem", EntityGetWithTag("kupoli_tome")[1])
 						--c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/misc/soul_speed_fx.xml,"
 						--c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/projectiles/reaping_shot/reaping_shot.xml,"
 					else
@@ -1624,6 +1632,7 @@ actions_to_insert = {
 		spawn_probability                 = "",
 		price = 100,
 		mana = 0,
+		custom_xml_file="mods/tales_of_kupoli/files/entities/misc/card_upgrade_tome.xml",
 		action 		= function()
 			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
 			if not reflecting then
@@ -1643,7 +1652,7 @@ actions_to_insert = {
 	
 				if wand == tome then
 					c.fire_rate_wait = c.fire_rate_wait + 20
-				current_reload_time = current_reload_time + 20
+					current_reload_time = current_reload_time + 20
 					if GetSoulsCount("all") > 15 then
 						UpgradeTome(cu, 1)
 						RemoveSouls(15)
@@ -1651,20 +1660,7 @@ actions_to_insert = {
 						GamePrint("You do not have enough souls for this.")
 					end
 				else
-					cu = cu + 1
-					if cu > 3 then
-						cu = 1
-					end
-					if cu == 4 then
-						--GamePrint("Now upgrading defensive ability!")
-					elseif cu == 3 then
-						GamePrint("Now upgrading cast delay!")
-					elseif cu == 2 then
-						GamePrint("Now upgrading recharge time!")
-					elseif cu == 1 then
-						GamePrint("Now upgrading capacity!")
-					end
-					ComponentSetValue2(comp_cu, "value_string", tostring(cu))
+					GamePrint("The spell must be casted on the tome.")
 				end
 			end
 		end,
@@ -1675,11 +1671,12 @@ actions_to_insert = {
 		description = "$actiondesc_kupoli_upgrade_tome_better",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_upgrade_better.png",
 		type 		= ACTION_TYPE_UTILITY,
-		inject_after = "KUPOLI_TOME_SHOT",
+		inject_after = "KUPOLI_UPGRADE_TOME",
 		spawn_level                       = "",
 		spawn_probability                 = "",
 		price = 100,
 		mana = 0,
+		custom_xml_file="mods/tales_of_kupoli/files/entities/misc/card_upgrade_tome_better.xml",
 		action 		= function()
 			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
 			if not reflecting then
@@ -1699,28 +1696,15 @@ actions_to_insert = {
 	
 				if wand == tome then
 					c.fire_rate_wait = c.fire_rate_wait + 20
-				current_reload_time = current_reload_time + 20
-					if GetSoulsCount("all") > 5 then
+					current_reload_time = current_reload_time + 20
+					if GetSoulsCount("all") > 15 then
 						UpgradeTome(cu, 1)
-						RemoveSouls(5)
+						RemoveSouls(15)
 					else
 						GamePrint("You do not have enough souls for this.")
 					end
 				else
-					cu = cu + 1
-					if cu > 3 then
-						cu = 1
-					end
-					if cu == 4 then
-						GamePrint("Now upgrading defensive ability!")
-					elseif cu == 3 then
-						GamePrint("Now upgrading cast delay!")
-					elseif cu == 2 then
-						GamePrint("Now upgrading recharge time!")
-					elseif cu == 1 then
-						GamePrint("Now upgrading capacity!")
-					end
-					ComponentSetValue2(comp_cu, "value_string", tostring(cu))
+					GamePrint("The spell must be casted on the tome.")
 				end
 			end
 		end,

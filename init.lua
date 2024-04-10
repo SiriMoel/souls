@@ -276,7 +276,7 @@ function OnPlayerSpawned( player )
     EntityLoad("mods/tales_of_kupoli/files/entities/items/tome/weapon.xml", px, py)
     CreateItemActionEntity("KUPOLI_UPGRADE_TOME", px, py)
 
-    for i=1,100 do AddSoul("slimes") end
+    for i=1,100 do AddSoul("slimes") GamePrintImportant("REMINDER TO REMOVE THE DEBUG SOULS", "GO DO THAT MOLDOS") end
 
     --[[EntityAddComponent2(player, "LuaComponent", {
         script_source_file="mods/tales_of_kupoli/files/scripts/player.lua",

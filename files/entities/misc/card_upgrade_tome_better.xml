@@ -1,0 +1,32 @@
+<Entity>
+	
+	<Base file="data/entities/base_custom_card.xml" > 
+		<SpriteComponent 
+			image_file="mods/tales_of_kupoli/files/spell_icons/tome_upgrade.png"
+			>
+		</SpriteComponent>
+		
+		<ItemActionComponent 
+			_tags="enabled_in_world"
+			action_id="KUPOLI_UPGRADE_TOME_BETTER" >
+		</ItemActionComponent>
+	</Base>
+
+	<InheritTransformComponent
+		_tags="enabled_in_world,enabled_in_hand" >
+	</InheritTransformComponent>
+
+	<LuaComponent 
+		_tags="enabled_in_hand"
+		script_source_file="mods/tales_of_kupoli/files/entities/misc/card_upgrade_tome.lua"
+		execute_every_n_frame="1" >
+	</LuaComponent>
+
+    <VariableStorageComponent
+		_tags="enabled_in_hand,selected_path"
+        name="selected_path"
+        value_int="1"
+        >
+    </VariableStorageComponent>
+
+</Entity>

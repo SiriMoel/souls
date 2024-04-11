@@ -14,6 +14,6 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
         doalterant = 3
     end
     if doalterant == 3 then
-        SpawnAlterant("FISH_LARGE", x, y)
+        --SpawnAlterant("FISH_LARGE", x, y)
     end
 end

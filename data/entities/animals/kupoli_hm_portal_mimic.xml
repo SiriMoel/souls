@@ -26,8 +26,8 @@
 		radius="255"
 		fade_out_time="1.5" 
 		r="255"
-		g="100"
-		b="100"
+		g="40"
+		b="40"
 		offset_y="-16"
 	></LightComponent>
 	
@@ -37,8 +37,8 @@
 		radius="64"
 		fade_out_time="1.5" 
 		r="255"
-		g="100"
-		b="100"
+		g="40"
+		b="40"
 		offset_y="-16"
 	></LightComponent>
 	
@@ -73,7 +73,7 @@
 
 	<ParticleEmitterComponent 
 		_tags=""
-		emitted_material_name="spark_purple"
+		emitted_material_name="spark_red"
 		gravity.y="0.0"
 		lifetime_min="3"
 		lifetime_max="4"

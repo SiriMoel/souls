@@ -20,9 +20,9 @@
 		>
 		<gun_config
             shuffle_deck_when_empty="0"
-            deck_capacity="5"
+            deck_capacity="7"
 			actions_per_round="1"
-            reload_time="50"
+            reload_time="40"
 			speed_multiplier="1"
 			spread_degrees="1" >
         </gun_config>
@@ -81,6 +81,12 @@
         value_string="1"
     ></VariableStorageComponent>
 
+	<VariableStorageComponent
+        _tags="current_attack"
+        name="current_attack"
+        value_string="1"
+    ></VariableStorageComponent>
+
     <VariableStorageComponent
         _tags="path_1"
         name="path_1"
@@ -99,11 +105,11 @@
         value_int="0"
     ></VariableStorageComponent>
 
-    <VariableStorageComponent
+    <!--<VariableStorageComponent
         _tags="path_4"
         name="path_4"
         value_int="0"
-    ></VariableStorageComponent>
+    ></VariableStorageComponent>-->
 
     <!--<LuaComponent
         script_source_file="mods/tales_of_kupoli/files/entities/items/tome/shield_update.lua"

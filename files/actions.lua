@@ -22,7 +22,7 @@ function UpgradeTome(path, amount)
     if path == 1 then -- upgrade capacity
 		GamePrint("Upgrading capacity!")
         for i=1,amount do
-            cap = cap + 3	
+            cap = cap + 3
             if cap > 27 then
                 cap = 27
                 GamePrint("Max capacity reached!")
@@ -40,8 +40,8 @@ function UpgradeTome(path, amount)
                 cap = 5
                 GamePrint("Minimum capacity reached.")
             end
-            rt = rt * 0.75
-            frw = frw * 1.05
+            rt = rt * 0.7
+            frw = frw * 1.1
         end
         path_2 = path_2 + amount
     end
@@ -54,7 +54,7 @@ function UpgradeTome(path, amount)
                 GamePrint("Minimum capacity reached.")
             end
             rt = rt * 1.1
-            frw = frw * 0.75
+            frw = frw * 0.7
         end
         path_3 = path_3 + amount
     end
@@ -640,8 +640,8 @@ actions_to_insert = {
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_battery.png",
 		type 		= ACTION_TYPE_OTHER,
 		inject_after = "SUMMON_PORTAL",
-		spawn_level                       = "4,5,6,10",
-		spawn_probability                 = "0.3,0.7,0.7,0.5",
+		spawn_level                       = "6,10",
+		spawn_probability                 = "0.5,0.5",
 		price = 160,
 		mana = 0,
 		action 		= function()
@@ -659,7 +659,7 @@ actions_to_insert = {
 					for i,data in ipairs(deck) do
 						amount = amount + data.mana
 					end
-					souls_to_use = math.ceil(amount / 200)
+					souls_to_use = math.ceil(amount / 100)
 					if GetSoulsCount("all") > souls_to_use then
 						RemoveSouls(souls_to_use)
 						for i,data in ipairs(deck) do
@@ -1582,13 +1582,14 @@ actions_to_insert = {
 		description = "$actiondesc_kupoli_tome_shot",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_shot.png",
 		sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_unidentified.png",
-		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml"},
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/tome_seek/proj.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
 		inject_after = "KUPOLI_TOME_BATTERY",
 		spawn_level                       = "",
 		spawn_probability                 = "",
 		price = 100,
-		mana = 800,
+		mana = 600,
+		custom_xml_file="mods/tales_of_kupoli/files/entities/misc/card_tome_shot.xml",
 		action 		= function()
 			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
 
@@ -1603,16 +1604,34 @@ actions_to_insert = {
 				wand = ComponentGetValue2(inv_comp, "mActiveItem")
 			end
 
-			if EntityHasTag(wand, "kupoli_tome") then
-				c.spread_degrees = c.spread_degrees + 14.0
-				c.fire_rate_wait = c.fire_rate_wait + 10
-				c.screenshake = c.screenshake + 2
-				c.spread_degrees = c.spread_degrees - 1.0
-				c.damage_critical_chance = c.damage_critical_chance + 2
-				add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml")
-				add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml")
-				add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml")
-				add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml")
+			local tome = EntityGetWithTag("kupoli_tome")[1] or 1
+			local comp_ca = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "current_attack") or 0
+			local ca = tonumber(ComponentGetValue(comp_cu, "value_string"))
+
+			c.fire_rate_wait = c.fire_rate_wait + 10
+
+			if wand == tome then
+				if ca == 1 then -- tome shot
+					c.spread_degrees = c.spread_degrees + 13.0
+					c.screenshake = c.screenshake + 2
+					c.damage_critical_chance = c.damage_critical_chance + 2
+					add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml")
+					add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml")
+					add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml")
+					add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml")
+				end
+				if ca == 2 then -- tome seek
+					c.spread_degrees = c.spread_degrees + 15.0
+					add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_seek/proj.xml")
+					add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_seek/proj.xml")
+					add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_seek/proj.xml")
+					add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_seek/proj.xml")
+					add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_seek/proj.xml")
+				end
+				if ca == 3 then -- tome bomb
+					c.fire_rate_wait = c.fire_rate_wait + 10
+					add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_bomb/proj.xml")
+				end
 			end
 		end,
 	},

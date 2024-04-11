@@ -135,6 +135,8 @@ local options = {
 
 --spawn(options, x, y)
 
+math.randomseed(x, y + tonumber(StatsGetValue("world_seed")))
+
 EntityLoad(options[math.random(1,#options)].entity, x, y)
 
 EntityKill(orb)

@@ -9,7 +9,7 @@ local x, y = EntityGetTransform(portal)
 
 SetRandomSeed( x, y + tonumber(StatsGetValue("world_seed")))
 
-local doidoit = Random(1,50)
+local doidoit = Random(1,65)
 
 --doidoit = 2
 

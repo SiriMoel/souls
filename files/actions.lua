@@ -1492,7 +1492,8 @@ actions_to_insert = {
 				GamePrint("Something is not quite right...")
 			end
 
-			c.fire_rate_wait = c.fire_rate_wait + 60
+			c.fire_rate_wait = c.fire_rate_wait + 240
+			current_reload_time = current_reload_time + 240
 		end,
 	},
 	{
@@ -1606,7 +1607,7 @@ actions_to_insert = {
 
 			local tome = EntityGetWithTag("kupoli_tome")[1] or 1
 			local comp_ca = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "current_attack") or 0
-			local ca = tonumber(ComponentGetValue(comp_cu, "value_string"))
+			local ca = tonumber(ComponentGetValue(comp_ca, "value_string"))
 
 			c.fire_rate_wait = c.fire_rate_wait + 10
 

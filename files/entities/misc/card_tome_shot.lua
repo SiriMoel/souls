@@ -26,6 +26,6 @@ if ComponentGetValue2(comp_controls, "mButtonDownRightClick") == true and GameGe
     if ca == 3 then -- tome bomb
         GamePrint("Casting TOME BOMB - Fire a powerful explosive")
     end
-    ComponentSetValue2(comp_cu, "value_string", tostring(ca))
+    ComponentSetValue2(comp_ca, "value_string", tostring(ca))
     ComponentSetValue2( comp_cd, "value_int", GameGetFrameNum() + cooldown_frames )
 end

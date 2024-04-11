@@ -15,13 +15,13 @@ function drop()
 		
 		SetRandomSeed( x + entity_id, y - GameGetFrameNum() )
 		
-		local outcome = Random( 1, 26 )
+		local outcome = Random( 1, 3 )
 		
-		if ( count == 1 ) then
+		--[[if ( count == 1 ) then
 			outcome = 10
 		elseif ( count > 3 ) then
 			outcome = math.max( 1, outcome - ( count - 2 ) )
-		end
+		end]]
 		
 		-- print( tostring( outcome ) )
 		
@@ -29,16 +29,8 @@ function drop()
 			EntityLoad( "data/entities/projectiles/deck/explosion.xml", x, y )
 			EntityKill( entity_id )
 			return
-		elseif ( outcome == 20 ) then
-			shoot_projectile( entity_id, "data/entities/items/pickup/random_card.xml", x, y, Random(-40,40), Random(-40,40) )
-		elseif ( outcome == 15 ) then
-			shoot_projectile( entity_id, "data/entities/items/pickup/random_card.xml", x - 8, y, Random(-40,40), Random(-40,40) )
-			shoot_projectile( entity_id, "data/entities/items/pickup/random_card.xml", x + 8, y, Random(-40,40), Random(-40,40) )
-		elseif ( outcome < 10 ) then
-			shoot_projectile( entity_id, "data/entities/items/pickup/random_card.xml", x, y, Random(-40,40), Random(-40,40) )
 		else
-			shoot_projectile( entity_id, "data/entities/items/pickup/random_card.xml", x - 8, y, Random(-40,40), Random(-40,40) )
-			shoot_projectile( entity_id, "data/entities/items/pickup/random_card.xml", x + 8, y, Random(-40,40), Random(-40,40) )
+			shoot_projectile( entity_id, "data/entities/items/pickup/random_card.xml", x, y, Random(-40,40), Random(-40,40) )
 		end
 	end
 end

@@ -277,6 +277,9 @@ function OnPlayerSpawned( player )
     CreateItemActionEntity("KUPOLI_UPGRADE_TOME", px, py)
 
     --for i=1,100 do AddSoul("slimes") GamePrintImportant("REMINDER TO REMOVE THE DEBUG SOULS", "GO DO THAT MOLDOS") end
+    --for i=1,4 do EntityLoad("mods/tales_of_kupoli/files/entities/revived/_tablets/alchemist.xml", px, py) end
+    --for i=1,4 do EntityLoad("mods/tales_of_kupoli/files/entities/items/amethyst_orb/item.xml", px, py) end
+    --CreateItemActionEntity("KUPOLI_OPEN_GATE", px, py)
 
     --[[EntityAddComponent2(player, "LuaComponent", {
         script_source_file="mods/tales_of_kupoli/files/scripts/player.lua",

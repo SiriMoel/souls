@@ -48,13 +48,13 @@
 	<ProjectileComponent
 	    lob_min="0.9"
     	lob_max="1.5"
-		speed_min="100"
-		speed_max="200"
+		speed_min="90"
+		speed_max="150"
 		bounce_always="1"
 		bounces_left="9"
 		bounce_at_any_angle="1"
 		bounce_energy="0.5"
-		lifetime="280"
+		lifetime="200"
 		velocity_sets_rotation="0"
 		penetrate_entities="1"
 		collide_with_world="0"
@@ -71,9 +71,9 @@
         frame_length="1"
     ></GameAreaEffectComponent>
 
-        <SpriteComponent
+        <!--<SpriteComponent
 	    	image_file="mods/tales_of_kupoli/files/entities/projectiles/tome_seek/spark.xml"
-    	></SpriteComponent>
+    	></SpriteComponent-->
 
     <LuaComponent
 		script_source_file="mods/tales_of_kupoli/files/entities/projectiles/tome_seek/tome_shot.lua"

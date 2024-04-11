@@ -16,7 +16,7 @@
   <PhysicsImageShapeComponent 
     body_id="1"
     centered="1"
-    image_file="mods/tales_of_kupoli/files/entities/items/amethyst_orb/orb_amethyst.png"
+    image_file="mods/tales_of_kupoli/files/entities/items/amethyst_orb/orb_inhand.png"
     material="metal_hard" >
   </PhysicsImageShapeComponent>
   
@@ -27,7 +27,7 @@
 	
 	<LuaComponent
 		_tags="enabled_in_world,enabled_in_hand"
-		script_kick="mods/tales_of_kupoli/files/entities/items/amethyst_orb/item.png"
+		script_kick="mods/tales_of_kupoli/files/entities/items/amethyst_orb/item.lua"
 		execute_every_n_frame="-1"
 		>
 	</LuaComponent>
@@ -56,7 +56,7 @@
     max_child_items="0"
     is_pickable="1"
     is_equipable_forced="1"
-    ui_sprite="mods/tales_of_kupoli/files/entities/items/amethyst_orb/orb_amethyst.png"
+    ui_sprite="mods/tales_of_kupoli/files/entities/items/amethyst_orb/orb_inhand.png"
     ui_description="$itemdesc_gold_orb"
     preferred_inventory="QUICK"
   ></ItemComponent>

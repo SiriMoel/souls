@@ -17,6 +17,7 @@ end
 -- set & append
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/tales_of_kupoli/files/actions.lua" )
 ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/tales_of_kupoli/files/perks.lua" )
+ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/tales_of_kupoli/files/status_list.lua" )
 ModLuaFileAppend( "data/scripts/items/orb_pickup.lua", "mods/tales_of_kupoli/files/scripts/orb_pickup_append.lua" )
 ModLuaFileAppend( "data/scripts/items/drop_money.lua", "mods/tales_of_kupoli/files/scripts/drop_money_append.lua" )
 ModLuaFileAppend( "data/scripts/gun/gun.lua", "mods/tales_of_kupoli/files/scripts/gun_append.lua" )

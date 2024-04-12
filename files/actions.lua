@@ -905,7 +905,7 @@ actions_to_insert = {
 		type 		= ACTION_TYPE_PROJECTILE,
 		inject_after = "KUPOLI_SOUL_BLAST",
 		spawn_level                       = "5,6,10",
-		spawn_probability                 = "0.3,0.3,0.1",
+		spawn_probability                 = "0.4,0.5,0.1",
 		price = 120,
 		mana = 70,
 		max_uses = 10,
@@ -1724,12 +1724,16 @@ actions_to_insert = {
 			end
 		end,
 	},
-	--[[{
+	--[[{ -- the wise words of prime bandet (pronounced primus bonday)
+		function(flipbool)noita
+			moldos be like.rungame
+	},]]--
+	{
 		id          = "SOUL_HEALER",
 		name 		= "$action_kupoli_soul_healer",
 		description = "$actiondesc_kupoli_soul_healer",
-		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_upgrade_better.png",
-		type 		= ACTION_TYPE_UTILITY,
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_healer.png",
+		type 		= ACTION_TYPE_PASSIVE,
 		inject_after = "KUPOLI_SOUL_MINIONS_TO_NUKES",
 		spawn_level                       = "",
 		spawn_probability                 = "",
@@ -1740,11 +1744,43 @@ actions_to_insert = {
 			c.fire_rate_wait = c.fire_rate_wait + 10
 			current_reload_time = current_reload_time + 10
 		end,
-	},]]
-	--[[{ -- the wise words of prime bandet (pronounced primus bonday)
-		function(flipbool)noita
-			moldos be like.rungame
-	},]]--
+	},
+	{
+		id          = "SOUL_METEOR",
+		name 		= "$action_kupoli_soul_meteor",
+		description = "$actiondesc_kupoli_soul_meteor",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_meteor.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/soul_meteor/proj.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		inject_after = "KUPOLI_SOUL_BALL",
+		spawn_level                       = "5,6,10",
+		spawn_probability                 = "0.3,0.3,0.2",
+		price = 120,
+		mana = 100,
+		max_uses = 10,
+		action 		= function()
+			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/soul_meteor/proj.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 40
+		end,
+	},
+	{
+		id          = "SOUL_ARROW",
+		name 		= "$action_kupoli_soul_arrow",
+		description = "$actiondesc_kupoli_soul_arrow",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_arrow.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/soul_arrow/proj.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		inject_after = "KUPOLI_SOUL_METEOR",
+		spawn_level                       = "2,3,4,5,6",
+		spawn_probability                 = "0.5,0.5,0.5,0.5,0.5",
+		price = 100,
+		mana = 20,
+		max_uses = 30,
+		action 		= function()
+			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/soul_arrow/proj.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 5
+		end,
+	},
 }
 
 for i,v in ipairs(actions_to_insert) do

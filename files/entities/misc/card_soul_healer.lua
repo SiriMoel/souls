@@ -9,11 +9,12 @@ if root == GetPlayer() then
     local hp = ComponentGetValue2(comp_damagemodel, "hp")
     local hp_max = ComponentGetValue2(comp_damagemodel, "max_hp")
     if GetSoulsCount("all") > 0 then
-        hp = hp * 1.01
-        if hp > hp_max then
+        hp = hp * 1.03
+        if hp >= hp_max then
             hp = hp_max
+        else
+            RemoveSouls(1) 
         end
-        RemoveSouls(1)
         ComponentSetValue2(comp_damagemodel, "hp", hp)
     end
 end

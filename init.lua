@@ -273,8 +273,10 @@ function OnPlayerSpawned( player )
         print("tales x apotheosis compat working!")
     end
 
-    EntityLoad("mods/tales_of_kupoli/files/entities/items/tome/weapon.xml", px, py)
-    CreateItemActionEntity("KUPOLI_UPGRADE_TOME", px, py)
+    if ModSettingGet( "tales_of_kupoli.spawn_tome" ) then
+        EntityLoad("mods/tales_of_kupoli/files/entities/items/tome/weapon.xml", px, py)
+        CreateItemActionEntity("KUPOLI_UPGRADE_TOME", px, py)
+    end
 
     --for i=1,100 do AddSoul("slimes") GamePrintImportant("REMINDER TO REMOVE THE DEBUG SOULS", "GO DO THAT MOLDOS") end
     --for i=1,4 do EntityLoad("mods/tales_of_kupoli/files/entities/revived/_tablets/alchemist.xml", px, py) end

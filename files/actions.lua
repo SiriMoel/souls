@@ -87,7 +87,7 @@ actions_to_insert = {
 		inject_after = "MANA_REDUCE",
 		spawn_level                       = "0,1,2,3,4,5,6",
 		spawn_probability                 = "1,1,1,1,1,1,1",
-		price = 120,
+		price = 100,
 		mana = 10,
 		action 		= function()
 			c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/projectiles/reaping_shot/reaping_shot.xml,"
@@ -106,7 +106,7 @@ actions_to_insert = {
 		spawn_level                       = "2,3,4,5,6",
 		spawn_probability                 = "0.3,0.1,0.2,0.5,0.4",
 		price = 140,
-		mana = 40,
+		mana = 30,
 		max_uses = 15,
 		action 		= function()
 			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/reaping_field/reaping_field.xml")
@@ -1724,6 +1724,23 @@ actions_to_insert = {
 			end
 		end,
 	},
+	--[[{
+		id          = "SOUL_HEALER",
+		name 		= "$action_kupoli_soul_healer",
+		description = "$actiondesc_kupoli_soul_healer",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_upgrade_better.png",
+		type 		= ACTION_TYPE_UTILITY,
+		inject_after = "KUPOLI_SOUL_MINIONS_TO_NUKES",
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 100,
+		mana = 30,
+		custom_xml_file="mods/tales_of_kupoli/files/entities/misc/card_soul_healer.xml",
+		action 		= function()
+			c.fire_rate_wait = c.fire_rate_wait + 10
+			current_reload_time = current_reload_time + 10
+		end,
+	},]]
 	--[[{ -- the wise words of prime bandet (pronounced primus bonday)
 		function(flipbool)noita
 			moldos be like.rungame

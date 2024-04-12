@@ -5,7 +5,7 @@
 	"
 	Hello Mina.
 	
-	A bunch of things, because you need all the things.
+	A collection of things.
 
 	[h3]Features[/h3]
 	[list]
@@ -14,15 +14,13 @@
 		[*] 6 perks
 		[*] 4 enemies
 		[*] 1 boss
-		[*] Harvest the souls from enemies to fuel your spells (12 soul types to find and use)
-		[*] Use your souls to upgrade a magic tome which uses souls to cast spells
+		[*] Harvest the souls from enemies to fuel spells (12 soul types to find and use)
+		[*] Use your souls to cast spells from (and upgrade) a magic tome 
 		[*] Create new Suns (green and red, and possibly blue?)
 		[*] Special wands, spells, and other items drop from enemies
 		[*] Revive bosses for new rewards
 		[*] Uncover secrets and tales (of Kupoli)
 	[/list]
-
-	Designed to be played on the beta branch.
 
 	[h3] Cross-mod interactions with: [/h3]
 	[b]Copi's Things[/b] spells added to reward pools
@@ -34,11 +32,12 @@
 
 	[b]New this update![/b]
 	[list]
+		[*] upgradeable magic tome as a starting wand
 		[*] 2 new wands and items
 		[*] 4 new spells
-		[*] rebalanced rarity of some spells
-		[*] new drops to bosses spawned via revival
-		[*] upgradeable magic tome as a starting wand
+		[*] rebalanced rarities and stats of some spells and items
+		[*] random items now drop from revived bosses
+		[*] made a secret enemy much rarer :)
 	[/list]
 
 	[i]

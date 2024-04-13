@@ -10,6 +10,12 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 
 	local spells = { "UPGRADE_TOME_BETTER", "REAPING_FIELD", "REAPING_HALO", "SOULS_TO_POWER", "SOUL_DASH", "REAP_MANY", "SOUL_BALL" }
 
+	local targets = EntityGetWithTag("kupoli_soul_exchanger")
+
+	for i,v in ipairs(targets) do
+		EntityKill(v)
+	end
+
 	for i,v in ipairs(spells) do
 		CreateItemActionEntity( "KUPOLI_" .. v, x, y )
 	end

@@ -7,7 +7,7 @@ local x, y = EntityGetTransform(altar)
 
 local radius = 120
 
-math.randomseed(x, y + tonumber(StatsGetValue("world_seed")))
+math.randomseed(x+GameGetFrameNum(), y+tonumber(StatsGetValue("world_seed")))
 
 local targets = EntityGetInRadiusWithTag(x, y, radius, "card_action")
 

@@ -279,6 +279,14 @@ function OnPlayerSpawned( player )
         CreateItemActionEntity("KUPOLI_UPGRADE_TOME", px, py)
     end
 
+    for i=1,tonumber(ModSettingGet("tales_of_kupoli.starting_souls")) do
+        local which = soul_types[math.random(1,#soul_types)]
+        if which == "gilded" then
+            which = "orcs"
+        end
+        AddSoul(which)
+    end
+
     --for i=1,100 do AddSoul("slimes") GamePrintImportant("REMINDER TO REMOVE THE DEBUG SOULS", "GO DO THAT MOLDOS") end
     --for i=1,4 do EntityLoad("mods/tales_of_kupoli/files/entities/revived/_tablets/alchemist.xml", px, py) end
     --for i=1,4 do EntityLoad("mods/tales_of_kupoli/files/entities/items/amethyst_orb/item.xml", px, py) end

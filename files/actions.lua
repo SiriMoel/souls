@@ -1561,7 +1561,7 @@ actions_to_insert = {
 						souls_to_use = souls_to_use + math.ceil(data.mana / 100)
 					end
 					souls_to_use = math.ceil(souls_to_use / 2)
-					if GetSoulsCount("all") > souls_to_use then
+					if GetSoulsCount("all") >= souls_to_use then
 						RemoveSouls(souls_to_use)
 						for i,data in ipairs(deck) do
 							data.moldos_mana = data.mana

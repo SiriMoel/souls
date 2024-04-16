@@ -196,7 +196,7 @@ actions_to_insert = {
 		spawn_level = "",
 		spawn_probability = "",
 		price = 70,
-		mana = 40,
+		mana = 30,
 		action = function()
 			add_projectile("mods/tales_of_kupoli/files/entities/items/hiisisniper/projectile.xml")
 		end,
@@ -212,7 +212,7 @@ actions_to_insert = {
 		spawn_level = "",
 		spawn_probability = "",
 		price = 70,
-		mana = 30,
+		mana = 20,
 		action = function()
 			add_projectile("mods/tales_of_kupoli/files/entities/items/hiisipistol/projectile.xml")
 		end,
@@ -1779,6 +1779,23 @@ actions_to_insert = {
 		action 		= function()
 			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/soul_arrow/proj.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 5
+		end,
+	},
+	{
+		id = "HIISI_MINE",
+		name = "$action_kupoli_hiisi_mine",
+		description = "$actiondesc_kupoli_hiisi_mine",
+        sprite = "mods/tales_of_kupoli/files/spell_icons/hiisi_mine.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/items/hiisiminethrower/proj.xml"},
+		type = ACTION_TYPE_PROJECTILE,
+		inject_after = "HIISI_POISON_SHOT",
+		spawn_level = "",
+		spawn_probability = "",
+		price = 70,
+		mana = 40,
+		max_uses = 5,
+		action = function()
+			add_projectile("mods/tales_of_kupoli/files/entities/items/hiisiminethrower/proj.xml")
 		end,
 	},
 }

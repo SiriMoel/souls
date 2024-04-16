@@ -1798,6 +1798,40 @@ actions_to_insert = {
 			add_projectile("mods/tales_of_kupoli/files/entities/items/hiisiminethrower/proj.xml")
 		end,
 	},
+	{
+		id = "ROBOT_FLAME",
+		name = "$action_kupoli_robot_flamer",
+		description = "$actiondesc_kupoli_robot_flamer",
+        sprite = "mods/tales_of_kupoli/files/spell_icons/robot_flamer.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/items/robot_flamethrower/proj.xml"},
+		type = ACTION_TYPE_PROJECTILE,
+		inject_after = "FLAMETHROWER",
+		spawn_level = "",
+		spawn_probability = "",
+		price = 70,
+		mana = 15,
+		max_uses = 50,
+		action = function()
+			add_projectile("mods/tales_of_kupoli/files/entities/items/robot_flamethrower/proj.xml")
+		end,
+	},
+	{
+		id = "ROBOT_ICE",
+		name = "$action_kupoli_robot_icer",
+		description = "$actiondesc_kupoli_robot_icer",
+        sprite = "mods/tales_of_kupoli/files/spell_icons/robot_icer.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/items/robot_icethrower/proj.xml"},
+		type = ACTION_TYPE_PROJECTILE,
+		inject_after = "ICEBALL",
+		spawn_level = "",
+		spawn_probability = "",
+		price = 70,
+		mana = 15,
+		max_uses = 50,
+		action = function()
+			add_projectile("mods/tales_of_kupoli/files/entities/items/robot_icethrower/proj.xml")
+		end,
+	},
 }
 
 for i,v in ipairs(actions_to_insert) do

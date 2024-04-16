@@ -157,6 +157,22 @@ local dropdoers = {
         path = "data/entities/animals/shaman.xml",
         script = "mods/tales_of_kupoli/files/scripts/death/shaman.lua",
     },
+    {
+        path = "data/entities/animals/shotgunner_hell.xml",
+        script = "mods/tales_of_kupoli/files/scripts/death/hiisi_shotgunner.lua",
+    },
+    {
+        path = "data/entities/animals/sniper_hell.xml",
+        script = "mods/tales_of_kupoli/files/scripts/death/hiisi_sniper.lua",
+    },
+    {
+        path = "data/entities/animals/flamer.xml",
+        script = "mods/tales_of_kupoli/files/scripts/death/robot_flamer.lua",
+    },
+    {
+        path = "data/entities/animals/icer.xml",
+        script = "mods/tales_of_kupoli/files/scripts/death/robot_icer.lua",
+    },
 }
 
 for i,v in ipairs(dropdoers) do
@@ -293,7 +309,8 @@ function OnPlayerSpawned( player )
 
     --for i=1,100 do AddSoul("slimes") GamePrintImportant("REMINDER TO REMOVE THE DEBUG SOULS", "GO DO THAT MOLDOS") end
     --for i=1,4 do EntityLoad("mods/tales_of_kupoli/files/entities/revived/_tablets/alchemist.xml", px, py) end
-    --for i=1,4 do EntityLoad("mods/tales_of_kupoli/files/entities/items/hiisiminethrower/weapon.xml", px, py) end
+    --for i=1,2 do EntityLoad("mods/tales_of_kupoli/files/entities/items/robot_flamethrower/weapon.xml", px, py) end
+    --for i=1,2 do EntityLoad("mods/tales_of_kupoli/files/entities/items/robot_icethrower/weapon.xml", px, py) end
     --for i=1,4 do EntityLoad("mods/tales_of_kupoli/files/entities/items/amethyst_orb/item.xml", px, py) end
     --CreateItemActionEntity("KUPOLI_OPEN_GATE", px, py)
 

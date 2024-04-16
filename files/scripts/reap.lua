@@ -9,9 +9,13 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
 
     if #EntityGetInRadiusWithTag(x, y, 300, "player_unit") < 1 then return end
 
+    if herd_id == "apparition" then
+        herd_id = "gilded"
+    end
+
     if not table.contains(soul_types, herd_id) then return end
 
-    SetRandomSeed(x, y)    
+    SetRandomSeed(x, y) 
     math.randomseed(x, y+GameGetFrameNum())
 
     if math.random(1,15) == 10 then

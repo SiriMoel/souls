@@ -7,14 +7,14 @@
         entity_count="1"
         entity_file=""
         fast_projectile="0"
-        mana_charge_speed="234"
-		mana_max="555"
+        mana_charge_speed="100"
+		mana_max="500"
         max_amount_in_inventory="1"
         shooting_reduces_amount_in_inventory="0"
-        sprite_file="mods/tales_of_kupoli/files/entities/items/hiisiminethrower/sprite.xml"
+        sprite_file="mods/tales_of_kupoli/files/entities/items/robot_flamethrower/sprite.xml"
         swim_propel_amount="0"
         throw_as_item="0"
-        ui_name="Hiisi Mine Thrower"
+        ui_name="Flammenwerfer"
         use_gun_script="1"
 		add_these_child_actions=""
 		>
@@ -22,23 +22,23 @@
             shuffle_deck_when_empty="0"
             deck_capacity="7"
 			actions_per_round="1"
-            reload_time="80"
+            reload_time="50"
 			spread_degrees="1" >
         </gun_config>
         <gunaction_config 
-            fire_rate_wait="65" >
+            fire_rate_wait="40" >
         </gunaction_config>
     </AbilityComponent>
 	
 	<HotspotComponent 
         _tags="shoot_pos" 
-        offset.x="4" 
-        offset.y="5" >
+        offset.x="8" 
+        offset.y="0.5" >
     </HotspotComponent>
 	
     <Base file="data/entities/base_item.xml" >
         <ItemComponent
-            item_name="Hiisi Mine Thrower"
+            item_name="Flammenwerfer"
             always_use_item_name_in_ui="1"
             remove_on_death="1"
             collect_nondefault_actions="1" >
@@ -48,12 +48,12 @@
    <LuaComponent 
         execute_on_added="1"
         remove_after_executed="1"
-        script_source_file="mods/tales_of_kupoli/files/entities/items/hiisiminethrower/weapon.lua"
+        script_source_file="mods/tales_of_kupoli/files/entities/items/robot_flamethrower/weapon.lua"
         >
     </LuaComponent>
 
     <ManaReloaderComponent
         _tags="enabled_in_world,enabled_in_hand,enabled_in_inventory" >
     </ManaReloaderComponent>
-
+    
 </Entity>

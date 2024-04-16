@@ -133,7 +133,11 @@ function do_money_drop( amount_multiplier, trick_kill )
     local herd_id = HerdIdToString(herd_id_number)
     local x, y = EntityGetTransform(entity)
 
-    math.randomseed(x, y)
+    math.randomseed(x, y+GameGetFrameNum())
+
+    if herd_id == "apparition" then
+        herd_id = "gilded"
+    end
 
     if table.contains(soul_types, herd_id) then
         if #EntityGetInRadiusWithTag(x, y, 300, "player_unit") > 0 then

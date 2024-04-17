@@ -251,30 +251,6 @@ local scenes = {
     { 4518, 805, "mods/tales_of_kupoli/files/sunbook/item/item.xml", true },
 }
 
---[[for i=1,50 do
-    local worldsize = ModTextFileGetContent("data/compatibilitydata/worldsize.txt") or 35840
-
-    worldsize = worldsize * 0.95
-
-    local ay = 1000
-    local ax = 0
-
-    --math.randomseed(tonumber(StatsGetValue("world_seed")))
-
-    ay = math.random(1000,15000)
-    ax = math.random( (worldsize * -1), worldsize )
-
-    if ax < 1000 and ax > 0 then
-        ax = ax + 1000
-    end
-
-    if ax > -1000 and ax < 0 then
-        ax = ax - 1000
-    end
-
-    table.insert(scenes, {ax, ay, "mods/tales_of_kupoli/files/biome/wandstatue/wandstatue.xml"})
-end]]
-
 add_scene(scenes)
 
 -- player
@@ -309,9 +285,12 @@ function OnPlayerSpawned( player )
 
     --for i=1,100 do AddSoul("slimes") GamePrintImportant("REMINDER TO REMOVE THE DEBUG SOULS", "GO DO THAT MOLDOS") end
     --for i=1,4 do EntityLoad("mods/tales_of_kupoli/files/entities/revived/_tablets/alchemist.xml", px, py) end
-    --for i=1,2 do EntityLoad("mods/tales_of_kupoli/files/entities/items/robot_flamethrower/weapon.xml", px, py) end
-    --for i=1,2 do EntityLoad("mods/tales_of_kupoli/files/entities/items/robot_icethrower/weapon.xml", px, py) end
+    --for i=1,2 do EntityLoad("mods/tales_of_kupoli/files/entities/items/darklukkirifle/weapon.xml", px, py) end
+    --for i=1,2 do EntityLoad("mods/tales_of_kupoli/files/entities/items/hiisisniper/weapon.xml", px, py) end
     --for i=1,4 do EntityLoad("mods/tales_of_kupoli/files/entities/items/amethyst_orb/item.xml", px, py) end
+    --GameAddFlagRun("kupoli_better_weapons")
+    --for i=1,2 do EntityLoad("mods/tales_of_kupoli/files/entities/items/darklukkirifle/weapon.xml", px, py) end
+    --for i=1,2 do EntityLoad("mods/tales_of_kupoli/files/entities/items/hiisisniper/weapon.xml", px, py) end
     --CreateItemActionEntity("KUPOLI_OPEN_GATE", px, py)
 
     --[[EntityAddComponent2(player, "LuaComponent", {

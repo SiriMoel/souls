@@ -5,7 +5,6 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 	local entity = GetUpdatedEntityID()
 	local x, y = EntityGetTransform(entity)
 
-    SetRandomSeed(x, y)    
     math.randomseed(x, y+GameGetFrameNum())
 
     local target = ""
@@ -37,5 +36,8 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 
     if math.random(1, 4) == 3 then
         CreateItemActionEntity( target, x, y )
+    end
+    if math.random(1, 7) == 2 then
+        EntityLoad("mods/tales_of_kupoli/files/entities/items/darklukkirifle/weapon.xml", x, y)
     end
 end

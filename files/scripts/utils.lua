@@ -105,6 +105,15 @@ function weapon_rngstats(weapon, x, y, statsm)
             local frw = tonumber( ComponentObjectGetValue( ac, "gunaction_config", "fire_rate_wait" ) ) -- fire rate wait
             local mcs = tonumber( ComponentGetValue2( ac, "mana_charge_speed" ) ) -- mana charge speed
             local mm = tonumber( ComponentGetValue2( ac, "mana_max" ) ) -- mana max
+            local cap = tonumber( ComponentObjectGetValue( ac, "gun_config", "deck_capacity" ) ) -- deck capacity 
+
+            if GameHasFlagRun("kupoli_better_weapons") then
+                rt = rt * 0.6
+                frw = frw * 0.6
+                mcs = mcs * 1.6
+                mm = mm * 1.6
+                cap = math.ceil(cap * 1.6)
+            end
 
             rt = math.floor( ( rt / (sm_rt * 0.8) + 0.5 ) )
             frw = math.floor( ( frw / (sm_frw * 0.8) + 0.5 ) )
@@ -115,6 +124,7 @@ function weapon_rngstats(weapon, x, y, statsm)
             ComponentObjectSetValue( ac, "gunaction_config", "fire_rate_wait", tostring(frw) )
             ComponentSetValue2( ac, "mana_charge_speed", mcs )
             ComponentSetValue2( ac, "mana_max", mm )
+            ComponentObjectSetValue( ac, "gun_config", "deck_capacity", tostring(cap) )
         end
     end
 end

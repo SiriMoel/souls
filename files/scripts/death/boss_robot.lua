@@ -10,6 +10,8 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 
 	EntityLoad("mods/tales_of_kupoli/files/entities/revived/_tablets/robot.xml", x, y)
 
+	GameAddFlagRun("kupoli_better_weapons")
 	GameAddFlagRun("ikkuna_robot")
+	GamePrint("Newly dropped weapons are now stronger!")
 	GamePrint("Trace found!")
 end

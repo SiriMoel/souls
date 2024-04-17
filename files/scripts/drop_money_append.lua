@@ -162,6 +162,10 @@ function do_money_drop( amount_multiplier, trick_kill )
                 end
             end
 
+            if EntityHasTag(GetPlayer(), "kupoli_extra_soul") and EntityHasTag(entity, "reap_marked") then
+                AddSoul(herd_id)
+            end
+
             if EntityHasTag(GetPlayer(), "kupoli_biome_souls") then
                 local whichtype = "friendly"
                 for i=1,#biomethings do

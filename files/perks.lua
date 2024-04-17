@@ -145,6 +145,20 @@ local a = {
 			end
 		end
 	},
+	{
+		id = "EXTRA_SOUL",
+		ui_name = "$perk_name_kupoli_extra_soul",
+		ui_description = "$perk_desc_kupoli_extra_soul",
+		ui_icon = "mods/tales_of_kupoli/files/perk_icons/extra_soul.png",
+		perk_icon = "mods/tales_of_kupoli/files/perk_icons/extra_soul_inworld.png",
+		stackable = STACKABLE_NO,
+		func = function (entity_perk_item, entity_who_picked, item_name)
+			EntityAddTag(entity_who_picked, "kupoli_extra_soul")
+		end,
+		func_remove = function(entity_who_picked)
+			EntityRemoveTag(entity_who_picked, "kupoli_extra_soul")
+		end
+	},
 }
 
 for i,v in ipairs(a) do

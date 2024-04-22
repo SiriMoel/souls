@@ -13,7 +13,7 @@ if root == GetPlayer() then
         if hp >= hp_max then
             hp = hp_max
         else
-            RemoveSouls(1) 
+            RemoveSouls(1)
         end
         ComponentSetValue2(comp_damagemodel, "hp", hp)
     end

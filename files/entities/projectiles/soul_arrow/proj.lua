@@ -142,13 +142,13 @@ else
 	
 		EntityAddComponent( entity, "CellEaterComponent", { 
 			eat_probability="90",
-			radius="16",
+			radius="1",
 			ignored_material="rock_static_cursed",
 			ignored_material_tag="[matter_eater_ignore_list]",
 		} )
 
 		poisondamage = poisondamage + 0.15
-		poisondamage = poisondamage * 1.3
+		poisondamage = poisondamage * 1.1
 
 		ComponentObjectSetValue( comp, "damage_by_type", "poison", poisondamage )
 	end
@@ -161,7 +161,7 @@ else
 	
 		EntityAddComponent( entity, "CellEaterComponent", {
 			eat_probability="90",
-			radius="24",
+			radius="4",
 			ignored_material="",
 			ignored_material_tag="",
 		} )
@@ -193,9 +193,9 @@ else
 		} )
 	
 		icedamage = icedamage + 0.4
-		exprad = exprad * 1.5
+		--exprad = exprad * 1.5
 	
-		ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )
+		--ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )
 		ComponentObjectSetValue( comp, "damage_by_type", "ice", icedamage )
 	end
 

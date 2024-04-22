@@ -155,12 +155,12 @@ else
 			ComponentSetValue2( particlecomp, "emitted_material_name", "spark_purple" )
 		end)
 	
-		EntityAddComponent( entity, "CellEaterComponent", { 
+		--[[EntityAddComponent( entity, "CellEaterComponent", { 
 			eat_probability="90",
 			radius="16",
 			ignored_material="rock_static_cursed",
 			ignored_material_tag="[matter_eater_ignore_list]",
-		} )
+		} )]]
 
 		poisondamage = poisondamage + 0.15
 		poisondamage = poisondamage * 1.3
@@ -174,12 +174,12 @@ else
 			ComponentSetValue2( particlecomp, "emitted_material_name", "spark_yellow" )
 		end)
 	
-		EntityAddComponent( entity, "CellEaterComponent", {
+		--[[EntityAddComponent( entity, "CellEaterComponent", {
 			eat_probability="90",
 			radius="24",
 			ignored_material="",
 			ignored_material_tag="",
-		} )
+		})]]
 
 		meleedamage = meleedamage + 0.5
 		meleedamage = meleedamage * 1.3

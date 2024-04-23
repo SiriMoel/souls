@@ -1832,6 +1832,113 @@ actions_to_insert = {
 			add_projectile("mods/tales_of_kupoli/files/entities/items/robot_icethrower/proj.xml")
 		end,
 	},
+	{
+		id          = "TOME_BUFF",
+		name 		= "$action_kupoli_tome_buff",
+		description = "$actiondesc_kupoli_tome_buff",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_buff.png",
+		sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_unidentified.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/tome_seek/proj.xml"},
+		type 		= ACTION_TYPE_UTILITY,
+		inject_after = "KUPLI_UPGRADE_TOME_BETTER",
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 100,
+		mana = 1000,
+		custom_xml_file="mods/tales_of_kupoli/files/entities/misc/card_tome_buff.xml",
+		action 		= function()
+			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+
+			if reflecting then return end
+
+			local entity = GetUpdatedEntityID()
+			local x, y = EntityGetTransform(entity)
+
+			local wand = 0
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+
+			local tome = EntityGetWithTag("kupoli_tome")[1] or 1
+			local comp_ca = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "current_attack") or 0
+			local ca = tonumber(ComponentGetValue(comp_ca, "value_string"))
+
+			c.fire_rate_wait = c.fire_rate_wait + 20
+
+			if wand == tome then
+				if ca == 1 then
+					EntityIngestMaterial(entity, CellFactory_GetType("magic_liquid_berserk"), 100)
+				end
+				if ca == 2 then
+					EntityIngestMaterial(entity, CellFactory_GetType("magic_liquid_faster_levitation_and_movement"), 100)
+				end
+				if ca == 3 then
+					EntityIngestMaterial(entity, CellFactory_GetType("magic_liquid_mana_regeneration"), 100)
+				end
+			end
+		end,
+	},
+	{
+		id          = "TOME_LOOTER",
+		name 		= "$action_kupoli_upgrade_tome_looter",
+		description = "$actiondesc_kupoli_upgrade_tome_looter",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_looter.png",
+		type 		= ACTION_TYPE_MODIFIER,
+		inject_after = "KUPOLI_TOME_BUFF",
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 200,
+		mana = 0,
+		action 		= function()
+			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+			if not reflecting then
+				local entity = GetUpdatedEntityID()
+				local x, y = EntityGetTransform(entity)
+				local tome = EntityGetWithTag("kupoli_tome")[1]
+				local wand = 0
+				local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+				if inv_comp then
+					wand = ComponentGetValue2(inv_comp, "mActiveItem")
+				end
+				if wand == tome then
+					c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/misc/tome_looter.xml,"
+				else
+					GamePrint("The spell must be casted on the tome.")
+				end
+			end
+		end,
+	},
+	{
+		id          = "TOME_REAP",
+		name 		= "$action_kupoli_upgrade_tome_reap",
+		description = "$actiondesc_kupoli_upgrade_tome_reap",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_reap.png",
+		type 		= ACTION_TYPE_MODIFIER,
+		inject_after = "KUPOLI_TOME_LOOTER",
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 200,
+		mana = 0,
+		action 		= function()
+			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+			if not reflecting then
+				local entity = GetUpdatedEntityID()
+				local x, y = EntityGetTransform(entity)
+				local tome = EntityGetWithTag("kupoli_tome")[1]
+				local wand = 0
+				local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+				if inv_comp then
+					wand = ComponentGetValue2(inv_comp, "mActiveItem")
+				end
+				if wand == tome then
+					c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/misc/tome_reap.xml,"
+				else
+					GamePrint("The spell must be casted on the tome.")
+				end
+			end
+		end,
+	},
 }
 
 for i,v in ipairs(actions_to_insert) do

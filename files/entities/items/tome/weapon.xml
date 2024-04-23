@@ -87,6 +87,12 @@
         value_string="1"
     ></VariableStorageComponent>
 
+	<VariableStorageComponent
+        _tags="current_buff"
+        name="current_buff"
+        value_string="1"
+    ></VariableStorageComponent>
+
     <VariableStorageComponent
         _tags="path_1"
         name="path_1"

@@ -173,6 +173,10 @@ local dropdoers = {
         path = "data/entities/animals/icer.xml",
         script = "mods/tales_of_kupoli/files/scripts/death/robot_icer.lua",
     },
+    {
+        path = "data/entities/animals/frog_big.xml",
+        script = "mods/tales_of_kupoli/files/scripts/death/three_random_souls.lua",
+    },
 }
 
 for i,v in ipairs(dropdoers) do

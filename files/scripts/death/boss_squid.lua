@@ -7,7 +7,7 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 
 	EntityLoad("mods/tales_of_kupoli/files/entities/items/squidpearl/weapon.xml", x, y)
 
-	CreateItemActionEntity("KUPOLI_TOME_REAP", x, y)
+	--CreateItemActionEntity("KUPOLI_TOME_LOOTER", x, y)
 
 	GameAddFlagRun("ikkuna_squid")
 	GamePrint("Trace found!")

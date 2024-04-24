@@ -1832,7 +1832,7 @@ actions_to_insert = {
 			add_projectile("mods/tales_of_kupoli/files/entities/items/robot_icethrower/proj.xml")
 		end,
 	},
-	{
+	--[[{
 		id          = "TOME_BUFF",
 		name 		= "$action_kupoli_tome_buff",
 		description = "$actiondesc_kupoli_tome_buff",
@@ -1868,21 +1868,24 @@ actions_to_insert = {
 
 			if wand == tome then
 				if ca == 1 then
-					EntityIngestMaterial(entity, CellFactory_GetType("magic_liquid_berserk"), 100)
+					local buff = EntityLoad("mods/tales_of_kupoli/files/entities/misc/effect_tome_buff_1.xml", x, y)
+					EntityAddChild(entity, buff)
 				end
 				if ca == 2 then
-					EntityIngestMaterial(entity, CellFactory_GetType("magic_liquid_faster_levitation_and_movement"), 100)
+					local buff = EntityLoad("mods/tales_of_kupoli/files/entities/misc/effect_tome_buff_2.xml", x, y)
+					EntityAddChild(entity, buff)
 				end
 				if ca == 3 then
-					EntityIngestMaterial(entity, CellFactory_GetType("magic_liquid_mana_regeneration"), 100)
+					local buff = EntityLoad("mods/tales_of_kupoli/files/entities/misc/effect_tome_buff_3.xml", x, y)
+					EntityAddChild(entity, buff)
 				end
 			end
 		end,
 	},
 	{
 		id          = "TOME_LOOTER",
-		name 		= "$action_kupoli_upgrade_tome_looter",
-		description = "$actiondesc_kupoli_upgrade_tome_looter",
+		name 		= "$action_kupoli_tome_looter",
+		description = "$actiondesc_kupoli_tome_looter",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_looter.png",
 		type 		= ACTION_TYPE_MODIFIER,
 		inject_after = "KUPOLI_TOME_BUFF",
@@ -1911,8 +1914,8 @@ actions_to_insert = {
 	},
 	{
 		id          = "TOME_REAP",
-		name 		= "$action_kupoli_upgrade_tome_reap",
-		description = "$actiondesc_kupoli_upgrade_tome_reap",
+		name 		= "$action_kupoli_tome_reap",
+		description = "$actiondesc_kupoli_tome_reap",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_reap.png",
 		type 		= ACTION_TYPE_MODIFIER,
 		inject_after = "KUPOLI_TOME_LOOTER",
@@ -1938,7 +1941,7 @@ actions_to_insert = {
 				end
 			end
 		end,
-	},
+	},]]
 }
 
 for i,v in ipairs(actions_to_insert) do

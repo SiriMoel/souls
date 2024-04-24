@@ -1668,7 +1668,7 @@ actions_to_insert = {
 				if wand == tome then
 					c.fire_rate_wait = c.fire_rate_wait + 20
 					current_reload_time = current_reload_time + 20
-					if GetSoulsCount("all") > 15 then
+					if GetSoulsCount("all") >= 15 then
 						UpgradeTome(cu, 1)
 						RemoveSouls(15)
 					else
@@ -1712,7 +1712,7 @@ actions_to_insert = {
 				if wand == tome then
 					c.fire_rate_wait = c.fire_rate_wait + 20
 					current_reload_time = current_reload_time + 20
-					if GetSoulsCount("all") > 15 then
+					if GetSoulsCount("all") >= 15 then
 						UpgradeTome(cu, 1)
 						RemoveSouls(15)
 					else

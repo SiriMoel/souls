@@ -1712,9 +1712,9 @@ actions_to_insert = {
 				if wand == tome then
 					c.fire_rate_wait = c.fire_rate_wait + 20
 					current_reload_time = current_reload_time + 20
-					if GetSoulsCount("all") >= 15 then
+					if GetSoulsCount("all") >= 5 then
 						UpgradeTome(cu, 1)
-						RemoveSouls(15)
+						RemoveSouls(5)
 					else
 						GamePrint("You do not have enough souls for this.")
 					end

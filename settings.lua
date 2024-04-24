@@ -82,9 +82,9 @@ mod_settings = {
         ui_description = "The mod's other settings",
         settings = {
             {
-                id = "mina_pearl",
-                ui_name = "Mould N Pearl",
-                ui_description = "If you want to start with the pearl from Mould N.",
+                id = "inject_spells",
+                ui_name = "Inject Spells",
+                ui_description = "If you want spells to be injected throughout vanilla spells.",
                 value_default = false,
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
             },
@@ -103,9 +103,9 @@ mod_settings = {
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
             },
             {
-                id = "inject_spells",
-                ui_name = "Inject Spells",
-                ui_description = "If you want spells to be injected throughout vanilla spells.",
+                id = "mina_pearl",
+                ui_name = "Mould N Pearl",
+                ui_description = "If you want to start with the pearl from Mould N.",
                 value_default = false,
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
             },

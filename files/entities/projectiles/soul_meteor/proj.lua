@@ -85,7 +85,7 @@ else
 
 		projdamage = projdamage + 0.5
 		expdamage = expdamage * 1.2
-		exprad = exprad * 2
+		exprad = exprad * 1.5
 		icedamage = icedamage + 0.3
 		icedamage = icedamage * 2
 	
@@ -131,7 +131,7 @@ else
 		end)
 	
 		expdamage = expdamage * 1.2
-		exprad = exprad * 2
+		exprad = exprad * 1.5
 		
 		ComponentObjectSetValue( comp, "config_explosion", "damage", expdamage )
 		ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )
@@ -194,7 +194,7 @@ else
 		end)
 	
 		expdamage = expdamage * 1.1
-		exprad = exprad * 3
+		exprad = exprad * 1.5
 		
 		ComponentObjectSetValue( comp, "config_explosion", "damage", expdamage )
 		ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )

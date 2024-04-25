@@ -289,7 +289,7 @@ function OnPlayerSpawned( player )
 
     --for i=1,100 do AddSoul("slimes") GamePrintImportant("REMINDER TO REMOVE THE DEBUG SOULS", "GO DO THAT MOLDOS") end
     --for i=1,4 do EntityLoad("mods/tales_of_kupoli/files/entities/revived/_tablets/alchemist.xml", px, py) end
-    for i=1,2 do EntityLoad("mods/tales_of_kupoli/files/entities/items/moldos_special/weapon.xml", px, py) end
+    --for i=1,2 do EntityLoad("mods/tales_of_kupoli/files/entities/items/moldos_special/weapon.xml", px, py) end
     --for i=1,2 do EntityLoad("mods/tales_of_kupoli/files/entities/items/hiisisniper/weapon.xml", px, py) end
     --for i=1,4 do EntityLoad("mods/tales_of_kupoli/files/entities/items/amethyst_orb/item.xml", px, py) end
     --GameAddFlagRun("kupoli_better_weapons")

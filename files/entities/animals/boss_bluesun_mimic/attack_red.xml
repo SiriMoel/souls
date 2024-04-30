@@ -1,0 +1,9 @@
+<Entity>
+
+    <LuaComponent
+        script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_bluesun_mimic/attack_red.lua"
+        execute_on_added="1"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+</Entity>

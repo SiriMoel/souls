@@ -323,10 +323,17 @@
 		execute_every_n_frame="10"
 		>
 	</LuaComponent>
+
+	<LuaComponent
+		script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_bluesun_mimic/attack.lua"
+		execute_every_n_frame="300"
+		>
+	</LuaComponent>
 	
 	<!--<LuaComponent
 		script_source_file="data/scripts/buildings/sun/sun_collision.lua"
 		execute_every_n_frame="10"
 		>
 	</LuaComponent>-->
+
 </Entity>

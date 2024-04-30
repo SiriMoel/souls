@@ -1,0 +1,13 @@
+<Entity>
+
+
+    <ProjectileComponent
+        lifetime="60"
+    ></ProjectileComponent>
+
+    <LuaComponent
+        script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_bluesun_mimic/attack_purple.lua"
+        execute_every_n_frame="2"
+    ></LuaComponent>
+
+</Entity>

@@ -1,0 +1,82 @@
+<Entity name="$projectile_default" >
+	<VelocityComponent
+		gravity_y="0"
+		air_friction="-0.4"
+		terminal_velocity="300" 
+		displace_liquid="0"
+		liquid_drag="1"
+		>
+	</VelocityComponent>
+
+	<HomingComponent
+		target_tag="player_unit"
+		homing_targeting_coeff="25"
+		detect_distance="500"
+		homing_velocity_multiplier="1"
+		>
+	</HomingComponent>
+	
+	<ParticleEmitterComponent 
+		emitted_material_name="spark_purple"
+		gravity.y="0.0"
+		lifetime_min="1"
+		lifetime_max="2"
+		x_vel_min="0"
+		x_vel_max="0"
+		y_vel_min="0"
+		y_vel_max="0"
+		count_min="25"
+		count_max="45"
+		render_on_grid="1"
+		fade_based_on_lifetime="0"
+		area_circle_radius.min="4"
+		area_circle_radius.max="4"
+		cosmetic_force_create="1"
+		collide_with_grid="0"
+		airflow_force="0.051"
+		airflow_time="1.01"
+		airflow_scale="0.03"
+		emission_interval_min_frames="1"
+		emission_interval_max_frames="1"
+		emit_cosmetic_particles="1"
+		velocity_always_away_from_center="11"
+		render_back="1"
+		is_emitting="1" >
+	</ParticleEmitterComponent>
+	
+	<ProjectileComponent
+		speed_min="0"
+		speed_max="0"
+		bounce_always="1"
+		bounces_left="9999999999999"
+		bounce_at_any_angle="1"
+		bounce_energy="0.5"
+		lifetime="120"
+		velocity_sets_rotation="0"
+		penetrate_entities="1"
+		collide_with_world="0"
+		direction_random_rad="0"
+		penetrate_world="0"
+		damage="0"
+		collide_with_tag="hittable"
+		>
+	</ProjectileComponent>
+
+	<GameAreaEffectComponent
+        radius="2"
+        collide_with_tag="hittable"
+        frame_length="1"
+    ></GameAreaEffectComponent>
+
+    <LuaComponent
+        script_source_file="mods/tales_of_kupoli/entities/animals/boss_bluesun_mimic/proj_purple.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+	<VariableStorageComponent
+		name="projectile_file"
+		value_string="mods/tales_of_kupoli/entities/animals/boss_bluesun_mimic/proj_purple.xml"
+		>
+	</VariableStorageComponent>
+	
+</Entity>

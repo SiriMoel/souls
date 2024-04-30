@@ -55,6 +55,13 @@ sunbookpages = {
         scaleY = 1,
         unlocked = true,
     },
+    {
+        name = "bluesun",
+        page = "mods/tales_of_kupoli/files/sunbook/bluesun.png",
+        scaleX = 1,
+        scaleY = 1,
+        unlocked = true,
+    },
 }
 
 rosettas = {

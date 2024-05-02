@@ -1,0 +1,12 @@
+<Entity>
+
+    <ProjectileComponent
+        lifetime="180"
+    ></ProjectileComponent>
+
+    <Luacomponent
+        script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_bluesun_mimic/attack_yellow.lua"
+        execute_every_n_frame="1"
+    ></Luacomponent>
+
+</Entity>

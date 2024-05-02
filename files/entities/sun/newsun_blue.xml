@@ -1,92 +1,7 @@
-<Entity tags="hittable,teleportable_NOT,seed_z,sun,sun_blue_mimic" >
+<Entity tags="hittable,teleportable_NOT,seed_k,sun,sun_blue" >
 	<StreamingKeepAliveComponent />
 	
 	<Base file="data/entities/base_item_projectile.xml" />
-
-	<Base file="data/entities/base_enemy_basic.xml" >
-			<ItemChestComponent level="2" > </ItemChestComponent>
-
-            <DamageModelComponent
-                hp="400"
-                ragdoll_filenames_file=""
-			    blood_material="soul_particles"
-			    blood_spray_material="soul_particles"
-			    ragdoll_offset_y="-14"
-			    fire_probability_of_ignition="0"
-			    ragdoll_fx_forced="DISINTEGRATED"
-			    ragdoll_material="soul_particles"
-			    critical_damage_resistance="1.0"
-			    physics_objects_damage="0"
-            >
-			    <damage_multipliers
-			        projectile="0.4"
-			        explosion="0"
-		    	    electricity="0"
-	    		    fire="0"
-    			    ice="5"
-                    melee="0.5"
-                    slice="0.5"
-			    >   
-				</damage_multipliers>
-            </DamageModelComponent>
-
-    </Base>
-
-	<HomingComponent
-		target_tag="homing_target"
-		homing_targeting_coeff="1"
-		detect_distance="500"
-		homing_velocity_multiplier="1"
-	></HomingComponent>
-
-	<SpriteComponent 
-		_tags="health_bar_back,ui"
-		_enabled="1" 
-		transform_offset.x="0"
-		transform_offset.y="-26"
-		alpha="1" 
-		has_special_scale="1" 
-		image_file="data/ui_gfx/health_slider_back.png" 
-		is_text_sprite="0" 
-		next_rect_animation="" 
-		offset_x="12" 
-		offset_y="42" 
-		rect_animation="" 
-		special_scale_x="1" 
-		special_scale_y="1" 
-		ui_is_parent="0" 
-		update_transform="1" 
-		visible="1" 
-		emissive="1"
-		never_ragdollify_on_death="1"
-		z_index="-9000" >
-	</SpriteComponent>
-	
-	<SpriteComponent 
-		_tags="health_bar,ui" 
-		_enabled="1" 
-		alpha="1" 
-		transform_offset.x="0"
-		transform_offset.y="-26"
-		has_special_scale="1" 
-		image_file="data/ui_gfx/health_slider_front.png" 
-		is_text_sprite="0" 
-		next_rect_animation="" 
-		offset_x="12" 
-		offset_y="42" 
-		rect_animation="" 
-		special_scale_x="1" 
-		special_scale_y="1" 
-		ui_is_parent="0" 
-		update_transform="1" 
-		visible="1" 
-		emissive="1"
-		never_ragdollify_on_death="1"
-		z_index="-9000" >
-	</SpriteComponent>
-	
-	<HealthBarComponent>
-	</HealthBarComponent>
 
 	<!-- physical presence -->
 	
@@ -125,7 +40,7 @@
 		offset_y="105"
 		emissive="1"
 		additive="1"
-		image_file="mods/tales_of_kupoli/files/entities/sun/bluesun.png"
+		image_file="mods/tales_of_kupoli/files/entities/sun/greensun.png"
 		smooth_filtering="1"
 	></SpriteComponent>
 
@@ -138,7 +53,7 @@
 		_tags="enabled_in_world,enabled_in_hand"
 		kill_when_finished="0"
 		steps_per_frame="16"
-		to_material="spark_blue"
+		to_material="smoke"
 		convert_entities="1"
 		clean_stains="0"
 		is_circle="1"
@@ -152,7 +67,7 @@
 		kill_when_finished="0"
 		from_material_tag="[alchemy]"
 		steps_per_frame="16"
-		to_material="spark_blue"
+		to_material="smoke"
 		clean_stains="0"
 		is_circle="1"
 		radius="230" 
@@ -256,7 +171,7 @@
 	
 	<ParticleEmitterComponent 
 		_tags="enabled_in_world,enabled_in_hand"
-		emitted_material_name="spark_blue"
+		emitted_material_name="magic_gas_hp_regeneration"
 		fade_based_on_lifetime="1"
 		x_pos_offset_min="0"
 		x_pos_offset_max="0"
@@ -319,26 +234,14 @@
 	</Entity>
 	
 	<LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_bluesun_mimic/sun_controls.lua"
+		script_source_file="data/scripts/buildings/sun/sun_controls.lua"
 		execute_every_n_frame="10"
-		>
-	</LuaComponent>
-
-	<LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_bluesun_mimic/attack.lua"
-		execute_every_n_frame="300"
-		>
-	</LuaComponent>
-
-	<LuaComponent
-		script_death="mods/tales_of_kupoli/files/entities/animals/boss_bluesun_mimic/death.lua"
 		>
 	</LuaComponent>
 	
-	<!--<LuaComponent
+	<LuaComponent
 		script_source_file="data/scripts/buildings/sun/sun_collision.lua"
 		execute_every_n_frame="10"
 		>
-	</LuaComponent>-->
-
+	</LuaComponent>
 </Entity>

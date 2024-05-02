@@ -1942,6 +1942,23 @@ actions_to_insert = {
 			end
 		end,
 	},]]
+	{
+		id          = "WEAKENING_HALO",
+		name 		= "$action_kupoli_weakening_halo",
+		description = "$actiondesc_kupoli_weakening_halo",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/nezha_chakram.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/weakening_halo/projectile.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		inject_after = "KUPOLI_REAPING_HALO",
+		spawn_level                       = "5,6,10",
+		spawn_probability                 = "0.1,0.2,0.5",
+		price = 200,
+		mana = 150,
+		action 		= function()
+			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/weakening_halo/projectile.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 80
+		end,
+	},
 }
 
 for i,v in ipairs(actions_to_insert) do

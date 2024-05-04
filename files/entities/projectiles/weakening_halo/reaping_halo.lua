@@ -8,20 +8,19 @@ local mark_radius = 56
 
 local targets = EntityGetInRadiusWithTag( x, y, mark_radius, "homing_target" )
 
-if ( #targets > 0 ) then
+if #targets > 0 then
     for i,target_id in ipairs( targets ) do
-
-        if ( EntityHasTag( target_id, "weak_marked" ) == false ) then
+        if EntityHasTag( target_id, "weak_marked" ) == false then
             local comps_damagemodel = EntityGetComponentIncludingDisabled(entity, "DamageModelComponent") or {}
-
             for i,comp in ipairs(comps_damagemodel) do
-                local members = ComponentObjectGetMembers(comp, "damage_multipliers") or {}
-                for i,multiplier in ipairs(members) do
-                    -- does this work?
-                    ComponentObjectSetValue2(comp, "damage_multipliers", multiplier, ComponentObjectGetValue2(comp, "damage_multipliers", multiplier) * 1.3)
-                end
+                ComponentObjectSetValue2(comp, "damage_multipliers", "projectile", (ComponentObjectGetValue2(comp, "damage_multipliers", "projectile") or 1) + 0.3)
+                ComponentObjectSetValue2(comp, "damage_multipliers", "slice", (ComponentObjectGetValue2(comp, "damage_multipliers", "slice") or 1) + 0.3)
+                ComponentObjectSetValue2(comp, "damage_multipliers", "melee", (ComponentObjectGetValue2(comp, "damage_multipliers", "melee") or 1) + 0.3)
+                ComponentObjectSetValue2(comp, "damage_multipliers", "melee", (ComponentObjectGetValue2(comp, "damage_multipliers", "explosion") or 1) + 0.3)
+                ComponentObjectSetValue2(comp, "damage_multipliers", "fire", (ComponentObjectGetValue2(comp, "damage_multipliers", "fire") or 1) + 0.3)
+                ComponentObjectSetValue2(comp, "damage_multipliers", "ice", (ComponentObjectGetValue2(comp, "damage_multipliers", "ice") or 1) + 0.3)
+                ComponentObjectSetValue2(comp, "damage_multipliers", "electricity", (ComponentObjectGetValue2(comp, "damage_multipliers", "electricity") or 1) + 0.3)
             end
-
             EntityAddTag( target_id, "weak_marked")
         end
     end

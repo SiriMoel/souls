@@ -38,6 +38,19 @@
         </Graphics>
     </CellDataChild>
 
+	<CellDataChild
+      	_parent="spark"
+      	_inherit_reactions="1"
+      	name="spark_orange" 
+    	ui_name=""
+    	wang_color="7fe26d1f"
+    	>
+      	<Graphics
+    	color="7fe26d1f"
+    	fire_colors_index="1" >
+        </Graphics>
+    </CellDataChild>
+
 	<!--<CellData
 	name="blood_mole"
 	ui_name="Mole Blood"

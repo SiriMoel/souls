@@ -1953,10 +1953,10 @@ actions_to_insert = {
 		spawn_level                       = "5,6,10",
 		spawn_probability                 = "0.1,0.2,0.5",
 		price = 200,
-		mana = 150,
+		mana = 100,
 		action 		= function()
 			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/weakening_halo/projectile.xml")
-			c.fire_rate_wait = c.fire_rate_wait + 80
+			c.fire_rate_wait = c.fire_rate_wait + 40
 		end,
 	},
 }

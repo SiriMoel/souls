@@ -77,7 +77,7 @@
 	</ProjectileComponent>
 
 	<GameAreaEffectComponent
-        radius="5"
+        radius="7"
         collide_with_tag="hittable"
         frame_length="1"
     ></GameAreaEffectComponent>
@@ -93,5 +93,26 @@
 		value_string="mods/tales_of_kupoli/files/entities/projectiles/weakening_halo/projectile.xml"
 		>
 	</VariableStorageComponent>
+
+	<HitEffectComponent 
+        effect_hit="LOAD_UNIQUE_CHILD_ENTITY"
+        value_string="data/entities/misc/curse_wither_projectile.xml" >
+	</HitEffectComponent >
+
+	<HitEffectComponent 
+        effect_hit="LOAD_UNIQUE_CHILD_ENTITY"
+        value_string="data/entities/misc/curse_wither_melee.xml" >
+	</HitEffectComponent >
+
+	<HitEffectComponent 
+        effect_hit="LOAD_UNIQUE_CHILD_ENTITY"
+        value_string="data/entities/misc/curse_wither_explosion.xml" >
+	</HitEffectComponent >
+
+	<HitEffectComponent 
+        effect_hit="LOAD_UNIQUE_CHILD_ENTITY"
+        value_string="data/entities/misc/curse_wither_electricity.xml" >
+	</HitEffectComponent >
+
 	
 </Entity>

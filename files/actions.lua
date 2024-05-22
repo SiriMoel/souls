@@ -1959,6 +1959,27 @@ actions_to_insert = {
 			c.fire_rate_wait = c.fire_rate_wait + 40
 		end,
 	},
+	{
+		id          = "MAGICAL_RAT_KING",
+		name 		= "$action_kupoli_ratking",
+		description = "$actiondesc_kupoli_ratking",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/ratking.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/ratking/proj.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		spawn_level                       = "4,5,6,10",
+		spawn_probability                 = "0.3,1,0.4,0.3",
+		price = 270,
+		mana = 70,
+		--max_uses = 40,
+		action 		= function()
+			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/ratking/proj.xml")
+			-- damage = 0.3
+			c.fire_rate_wait = c.fire_rate_wait + 40
+			c.spread_degrees = c.spread_degrees + 6.4
+			shot_effects.recoil_knockback = shot_effects.recoil_knockback + 30.0
+			c.damage_projectile_add = c.damage_projectile_add + 0.2
+		end,
+	},
 }
 
 for i,v in ipairs(actions_to_insert) do

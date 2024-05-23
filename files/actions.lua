@@ -1775,7 +1775,7 @@ actions_to_insert = {
 		spawn_probability                 = "0.4,0.4,0.4,0.7,0.7",
 		price = 100,
 		mana = 20,
-		max_uses = 30,
+		max_uses = 70,
 		action 		= function()
 			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/soul_arrow/proj.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 5
@@ -1966,18 +1966,33 @@ actions_to_insert = {
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/ratking.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/ratking/proj.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
-		spawn_level                       = "4,5,6,10",
-		spawn_probability                 = "0.3,1,0.4,0.3",
+		spawn_level                       = "5,6,10",
+		spawn_probability                 = "1,0.4,0.3",
 		price = 270,
 		mana = 70,
-		--max_uses = 40,
+		max_uses = 3,
 		action 		= function()
 			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/ratking/proj.xml")
-			-- damage = 0.3
 			c.fire_rate_wait = c.fire_rate_wait + 40
 			c.spread_degrees = c.spread_degrees + 6.4
 			shot_effects.recoil_knockback = shot_effects.recoil_knockback + 30.0
 			c.damage_projectile_add = c.damage_projectile_add + 0.2
+		end,
+	},
+	{
+		id = "DETONATOR",
+		name = "$action_kupoli_detonator",
+		description = "$actiondesc_kupoli_detonator",
+        sprite = "mods/tales_of_kupoli/files/spell_icons/detonator.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/detonator/proj.xml"},
+		type = ACTION_TYPE_PROJECTILE,
+		inject_after = "KUPOLI_HIISI_MINE",
+		spawn_level                       = "3,4,5,6",
+		spawn_probability                 = "0.4,0.4,0.7,0.7",
+		price = 70,
+		mana = 40,
+		action = function()
+			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/detonator/proj.xml")
 		end,
 	},
 }

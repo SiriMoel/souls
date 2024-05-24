@@ -1985,12 +1985,14 @@ actions_to_insert = {
 		description = "$actiondesc_kupoli_detonator",
         sprite = "mods/tales_of_kupoli/files/spell_icons/detonator.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/detonator/proj.xml"},
+		custom_xml_file="mods/tales_of_kupoli/files/entities/misc/card_detonator.xml",
 		type = ACTION_TYPE_PROJECTILE,
 		inject_after = "KUPOLI_HIISI_MINE",
 		spawn_level                       = "3,4,5,6",
 		spawn_probability                 = "0.4,0.4,0.7,0.7",
-		price = 70,
+		price = 90,
 		mana = 40,
+		max_uses = 30,
 		action = function()
 			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/detonator/proj.xml")
 		end,

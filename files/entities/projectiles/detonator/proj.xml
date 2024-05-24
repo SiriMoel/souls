@@ -1,4 +1,4 @@
-<Entity name="$projectile_default" tags="projectile_player" >
+<Entity name="$projectile_default" tags="projectile_player,kupoli_detonator_proj" >
   
 	<Base file="data/entities/base_projectile.xml" >
 		<VelocityComponent
@@ -15,7 +15,7 @@
     speed_max="280"
     friction="0.6"
     direction_random_rad="0.05"
-    on_death_explode="1"
+    on_death_explode="0"
     on_death_gfx_leave_sprite="0" 
     on_lifetime_out_explode="0"
     explosion_dont_damage_shooter="0" 
@@ -44,7 +44,7 @@
     <config_explosion
       never_cache="0" 
       camera_shake="10" 
-      explosion_radius="20"
+      explosion_radius="30"
       explosion_sprite="data/particles/explosion_016.xml" 
 	  load_this_entity="data/entities/particles/particle_explosion/main_gunpowder_tiny.xml"
       explosion_sprite_lifetime="0" 

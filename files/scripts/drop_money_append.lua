@@ -139,6 +139,10 @@ function do_money_drop( amount_multiplier, trick_kill )
         herd_id = "gilded"
     end
 
+    if herd_id == "rat" then
+        herd_id = "friendly"
+    end
+
     if table.contains(soul_types, herd_id) then
         if #EntityGetInRadiusWithTag(x, y, 300, "player_unit") > 0 then
             if math.random(1,15) == 10 then

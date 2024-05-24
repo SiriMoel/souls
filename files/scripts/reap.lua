@@ -13,6 +13,10 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
         herd_id = "gilded"
     end
 
+    if herd_id == "rat" then
+        herd_id = "friendly"
+    end
+
     if not table.contains(soul_types, herd_id) then return end
 
     SetRandomSeed(x, y) 

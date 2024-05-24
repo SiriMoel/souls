@@ -23,8 +23,8 @@ function UpgradeTome(path, amount)
 		GamePrint("Upgrading capacity!")
         for i=1,amount do
             cap = cap + 3
-            if cap > 27 then
-                cap = 27
+            if cap > 30 then
+                cap = 30
                 GamePrint("Max capacity reached!")
             end
             rt = rt * 1

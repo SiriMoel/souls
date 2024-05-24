@@ -296,6 +296,7 @@ function OnPlayerSpawned( player )
     --for i=1,2 do EntityLoad("mods/tales_of_kupoli/files/entities/items/darklukkirifle/weapon.xml", px, py) end
     --for i=1,2 do EntityLoad("mods/tales_of_kupoli/files/entities/items/hiisisniper/weapon.xml", px, py) end
     --for i=1,1 do EntityLoad("data/entities/animals/kupoli_bluesun_mimic.xml", px, py) end
+    --for i=1,1000 do AddSoul("gilded") end
     --CreateItemActionEntity("KUPOLI_OPEN_GATE", px, py)
 
     --[[EntityAddComponent2(player, "LuaComponent", {

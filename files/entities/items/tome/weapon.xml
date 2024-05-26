@@ -84,7 +84,7 @@
 	<VariableStorageComponent
         _tags="current_charge"
         name="current_charge"
-        value_string="0"
+        value_int="0"
     ></VariableStorageComponent>
 
 	<VariableStorageComponent

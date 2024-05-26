@@ -1,0 +1,25 @@
+<Entity>
+	
+	<Base file="data/entities/base_custom_card.xml" > 
+		<SpriteComponent 
+			image_file="mods/tales_of_kupoli/files/spell_icons/tome_charge/0.png"
+			>
+		</SpriteComponent>
+		
+		<ItemActionComponent 
+			_tags="enabled_in_world"
+			action_id="KUPOLI_TOME_CHARGE" >
+		</ItemActionComponent>
+	</Base>
+
+	<InheritTransformComponent
+		_tags="enabled_in_world,enabled_in_hand" >
+	</InheritTransformComponent>
+
+	<LuaComponent 
+		_tags="enabled_in_hand"
+		script_source_file="mods/tales_of_kupoli/files/entities/misc/card_tome_charge.lua"
+		execute_every_n_frame="1" >
+	</LuaComponent>
+
+</Entity>

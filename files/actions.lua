@@ -1636,13 +1636,57 @@ actions_to_insert = {
 			end
 		end,
 	},
+	--[[{
+		id          = "TOME_CHARGE",
+		name 		= "$action_kupoli_tome_charge",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_charge/0.png",
+		description = "$actiondesc_kupoli_tome_charge",
+		type 		= ACTION_TYPE_MODIFIER,
+		inject_after = "KUPOLI_TOME_SHOT",
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 0,
+		mana = 0,
+		custom_xml_file="mods/tales_of_kupoli/files/entities/misc/card_tome_charge.xml",
+		action 		= function()
+			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+
+			if reflecting then return end
+
+			local entity = GetUpdatedEntityID()
+			local x, y = EntityGetTransform(entity)
+
+			local wand = 0
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+
+			local tome = EntityGetWithTag("kupoli_tome")[1] or 1
+			local comp_cc = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "current_charge") or 0
+			local cc = ComponentGetValue2(comp_ca, "value_int")
+
+			if wand == tome then
+				if cc < 5 then
+					cc = cc + 1
+				elseif cc >= 5 then
+					cc = 0
+					c.damage_projectile_add = c.damage_projectile_add + 0.5
+					c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/projectiles/reaping_shot/reaping_shot.xml,"
+					GamePrint("Power!")
+				end
+				ComponentSetValue2(comp_cc, "value_int", cc)
+			end
+			draw_actions(1, true)
+		end,
+	},]]--
 	{
 		id          = "UPGRADE_TOME",
 		name 		= "$action_kupoli_upgrade_tome",
 		description = "$actiondesc_kupoli_upgrade_tome",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_upgrade.png",
 		type 		= ACTION_TYPE_UTILITY,
-		inject_after = "KUPOLI_TOME_SHOT",
+		inject_after = "KUPOLI_TOME_CHARGE",
 		spawn_level                       = "",
 		spawn_probability                 = "",
 		price = 100,
@@ -2001,45 +2045,6 @@ actions_to_insert = {
 					GetGameEffectLoadTo(entity, "MANA_REGENERATION", true)
 					GamePrint("Buffed with MANA REGENERATION")
 				end
-			end
-		end,
-	},]]--
-	--[[{
-		id          = "TOME_SHOT",
-		name 		= "$action_kupoli_tome_shot",
-		description = "$actiondesc_kupoli_tome_shot",
-		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_shot.png",
-		sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_unidentified.png",
-		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/tome_seek/proj.xml"},
-		type 		= ACTION_TYPE_PROJECTILE,
-		inject_after = "KUPOLI_TOME_BATTERY",
-		spawn_level                       = "",
-		spawn_probability                 = "",
-		price = 100,
-		mana = 600,
-		custom_xml_file="mods/tales_of_kupoli/files/entities/misc/card_tome_shot.xml",
-		action 		= function()
-			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
-
-			if reflecting then return end
-
-			local entity = GetUpdatedEntityID()
-			local x, y = EntityGetTransform(entity)
-
-			local wand = 0
-			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
-			if inv_comp then
-				wand = ComponentGetValue2(inv_comp, "mActiveItem")
-			end
-
-			local tome = EntityGetWithTag("kupoli_tome")[1] or 1
-			local comp_cc = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "current_charge") or 0
-			local cc = tonumber(ComponentGetValue(comp_ca, "value_string"))
-
-			c.fire_rate_wait = c.fire_rate_wait + 10
-
-			if wand == tome then
-
 			end
 		end,
 	},]]--

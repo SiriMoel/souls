@@ -39,6 +39,6 @@
         effect="BERSERK"
         frames="300"
     >
-	</GameEffectComponent >
+	</GameEffectComponent>
 
 </Entity>

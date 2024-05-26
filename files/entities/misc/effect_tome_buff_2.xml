@@ -30,6 +30,6 @@
     	effect="MOVEMENT_FASTER_2X"
     	frames="300"
     >
-	</GameEffectComponent >
+	</GameEffectComponent>
 	
 </Entity>

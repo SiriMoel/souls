@@ -55,6 +55,6 @@
         effect="MANA_REGENERATION"
         frames="300"
     >
-	</GameEffectComponent >
+	</GameEffectComponent>
 
 </Entity>

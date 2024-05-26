@@ -24,7 +24,7 @@ if ComponentGetValue2(comp_controls, "mButtonDownRightClick") == true and GameGe
         GamePrint("Buffing with AGILITY")
     end
     if ca == 3 then
-        GamePrint("Buffing with MANA")
+        GamePrint("Buffing with MANA REGENERATION")
     end
     ComponentSetValue2(comp_ca, "value_string", tostring(ca))
     ComponentSetValue2( comp_cd, "value_int", GameGetFrameNum() + cooldown_frames )

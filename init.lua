@@ -321,8 +321,19 @@ function OnPlayerSpawned( player )
         value_int=0,
     })
     EntityAddComponent2(player, "VariableStorageComponent", {
-        _tags="kickcd",
+        _tags="cd",
         name="kickcd",
+        value_int=0,
+    })
+
+    EntityAddComponent2(player, "LuaComponent", {
+        script_source_file="mods/tales_of_kupoli/files/scripts/player_kick.lua",
+        execute_every_n_frame="1",
+    })
+
+    EntityAddComponent2(player, "VariableStorageComponent", {
+        _tags="soul_kick_cd",
+        name="soul_kick_cd",
         value_int=0,
     })
 

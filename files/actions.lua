@@ -1628,6 +1628,8 @@ actions_to_insert = {
 					add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_seek/proj.xml")
 					add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_seek/proj.xml")
 					add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_seek/proj.xml")
+					add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_seek/proj.xml")
+					add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_seek/proj.xml")
 				end
 				if ca == 3 then -- tome bomb
 					c.fire_rate_wait = c.fire_rate_wait + 10

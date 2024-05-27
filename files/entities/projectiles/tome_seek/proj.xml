@@ -11,7 +11,7 @@
 
 	<HomingComponent
 		target_tag="homing_target"
-		homing_targeting_coeff="5"
+		homing_targeting_coeff="8"
 		detect_distance="500"
 		homing_velocity_multiplier="1"
 		>

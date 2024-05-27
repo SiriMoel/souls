@@ -15,10 +15,16 @@ if ( #targets > 0 ) then
         if math.random(1,1) == 1 then
             if ( EntityHasTag( target_id, "reap_marked" ) == false ) then
 
-                EntityAddComponent( target_id, "LuaComponent",
-                {
+                EntityAddComponent( target_id, "LuaComponent", {
                     script_death = "mods/tales_of_kupoli/files/scripts/reap.lua",
                     execute_every_n_frame = "-1",
+                } )
+
+                EntityAddComponent( target_id, "LightComponent", {
+                    radius = "100",
+                    r = "100",
+                    g = "255",
+                    b = "255",
                 } )
     
                 EntityAddTag( target_id, "reap_marked")

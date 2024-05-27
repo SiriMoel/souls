@@ -12,7 +12,7 @@ if HeldItem(player) == EntityGetWithTag("kupoli_tome") then
         GamePrint("hi")
     
         if GetSoulsCount("all") > 0 then
-            if ComponentGetValue2(comp_controls, "mButtonDownRightClick") and not ComponentGetValue2(comp_controls, "mButtonDownLeftClick") then
+            --[[if ComponentGetValue2(comp_controls, "mButtonDownRightClick") and not ComponentGetValue2(comp_controls, "mButtonDownLeftClick") then
                 GamePrint("kick and right click")
                 -- eat projectiles
                 local targets = EntityGetInRadiusWithTag(x, y, 5, "projectile")
@@ -22,9 +22,17 @@ if HeldItem(player) == EntityGetWithTag("kupoli_tome") then
                 end
 
                 RemoveSouls(1)
+            end]]
+
+            local targets = EntityGetInRadiusWithTag(x, y, 5, "projectile")
+            EntityLoad("mods/tales_of_kupoli/files/entities/misc/soul_kick_rightclick.xml", x, y)
+            for i,v in ipairs(targets) do
+                EntityKill(v)
             end
+
+            RemoveSouls(1)
             
-            if ComponentGetValue2(comp_controls, "mButtonDownUp") and not ComponentGetValue2(comp_controls, "mButtonDownRightClick") then
+            --[[if ComponentGetValue2(comp_controls, "mButtonDownUp") and not ComponentGetValue2(comp_controls, "mButtonDownRightClick") then
                 GamePrint("kick and up")
                 -- mark nearby enemies to drop souls
                 local mark_radius = 100
@@ -51,7 +59,7 @@ if HeldItem(player) == EntityGetWithTag("kupoli_tome") then
                 end
 
                 RemoveSouls(1)
-            end
+            end]]--
         end
     
         ComponentSetValue2( comp_cd, "value_int", GameGetFrameNum() + cooldown_frames )

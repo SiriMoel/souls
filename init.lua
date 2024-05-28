@@ -20,6 +20,8 @@ ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/tales_of_kupoli/file
 ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/tales_of_kupoli/files/status_list.lua" )
 ModLuaFileAppend( "data/scripts/items/orb_pickup.lua", "mods/tales_of_kupoli/files/scripts/orb_pickup_append.lua" )
 ModLuaFileAppend( "data/scripts/items/drop_money.lua", "mods/tales_of_kupoli/files/scripts/drop_money_append.lua" )
+--ModLuaFileAppend( "data/scripts/biome/temple_altar_left.lua", "mods/tales_of_kupoli/files/scripts/temple_altar_left_things.lua" )
+--ModLuaFileAppend( "data/scripts/biome/temple_altar_left_empty.lua", "mods/tales_of_kupoli/files/scripts/temple_altar_left_things.lua" )
 ModLuaFileAppend( "data/scripts/gun/gun.lua", "mods/tales_of_kupoli/files/scripts/gun_append.lua" )
 --ModLuaFileAppend( "data/scripts/biomes/orbrooms/orbroom_07.lua", "mods/tales_of_kupoli/files/scripts/orbroom_07_append.lua" )
 

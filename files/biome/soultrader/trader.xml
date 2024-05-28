@@ -1,0 +1,10 @@
+<entity>
+
+    <LuaComponent
+        script_source_file="mods/tales_of_kupoli/files/biome/soultrader/spawn.lua"
+        execute_on_added="1"
+        remove_after_executed="1"
+    ></LuaComponent>
+
+
+</entity>

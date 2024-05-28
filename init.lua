@@ -328,7 +328,7 @@ function OnPlayerSpawned( player )
         value_int=0,
     })
 
-    EntityAddComponent2(player, "LuaComponent", {
+    --[[EntityAddComponent2(player, "LuaComponent", {
         script_source_file="mods/tales_of_kupoli/files/scripts/player_kick.lua",
         execute_every_n_frame="1",
     })
@@ -337,7 +337,7 @@ function OnPlayerSpawned( player )
         _tags="soul_kick_cd",
         name="soul_kick_cd",
         value_int=0,
-    })
+    })]]--
 
     --AddFlagPersistent("progress_greensun")
     --AddFlagPersistent("progress_redsun")

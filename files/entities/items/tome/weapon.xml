@@ -71,6 +71,20 @@
         >
     </LuaComponent>
 
+	<LuaComponent 
+		_tags="enabled_in_hand"
+		execute_every_n_frame="1"
+        script_source_file="mods/tales_of_kupoli/files/entities/items/tome/radar.lua"
+        >
+    </LuaComponent>
+
+	<LightComponent
+		r="100"
+		g="255"
+		b="255"
+		radius="56"
+	></LightComponent>
+
     <!--<ManaReloaderComponent
         _tags="enabled_in_world,enabled_in_hand,enabled_in_inventory" >
     </ManaReloaderComponent>-->

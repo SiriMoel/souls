@@ -20,7 +20,7 @@ if state == 1 then
         
         local rnd = Random( 1, #opts )
         
-        --local eid = shoot_projectile( valk, "data/entities/projectiles/" .. opts[rnd] .. ".xml", x, y, vel_x, vel_y )
+        local eid = shoot_projectile( valk, "data/entities/projectiles/" .. opts[rnd] .. ".xml", x, y, vel_x, vel_y )
     end
     print("valk - shooting burst")
 end

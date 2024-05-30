@@ -37,26 +37,32 @@ local ability_comp = EntityGetFirstComponent( entity_id, "AbilityComponent" )
 
 local gun = { }
 gun.name = {"Souls wand"}
-gun.deck_capacity = 21
+gun.deck_capacity = 20
 gun.actions_per_round = 1
-gun.reload_time = {20,27}
+gun.reload_time = {10,20}
 gun.shuffle_deck_when_empty = 0
-gun.fire_rate_wait = {2,7}
+gun.fire_rate_wait = {10,20}
 gun.spread_degrees = -1
-gun.speed_multiplier = 1.3
-gun.mana_charge_speed = {500,650}
+gun.speed_multiplier = 1.1
+gun.mana_charge_speed = {500,950}
 gun.mana_max = {900,1100}
-gun.actions_mod = {"KUPOLI_SOULS_TO_POWER","KUPOLI_REAPING_SHOT","KUPOLI_SOUL_IS_MANA", "KUPOLI_SOUL_SPEED", "KUPOLI_RANDOM_REAP", "KUPOLI_SOULDOS"}
-gun.actions_proj = {"KUPOLI_SOUL_BLAST","KUPOLI_SOUL_BALL","KUPOLI_SOUL_NECROMANCY", "KUPOLI_SOUL_ARROW"}
+gun.actions_mod = {"MANA_REDUCE", "DAMAGE", "BLOOD_MAGIC"}
+gun.actions_proj = {"LIGHT_BULLET","BULLET","BUCKSHOT"}
 
 local mana_max = get_random_between_range( gun.mana_max )
 local deck_capacity = gun.deck_capacity
 
+gun.reload_time = get_random_between_range( gun.reload_time )
+gun.fire_rate_wait = gun.reload_time
+
+gun.mana_max = get_random_between_range(gun.mana_max)
+gun.mana_charge_speed = gun.mana_max
+
 ComponentSetValue( ability_comp, "ui_name", get_random_from( gun.name ) )
 
-ComponentObjectSetValue( ability_comp, "gun_config", "reload_time", get_random_between_range( gun.reload_time ) )
-ComponentObjectSetValue( ability_comp, "gunaction_config", "fire_rate_wait", get_random_between_range( gun.fire_rate_wait ) )
-ComponentSetValue( ability_comp, "mana_charge_speed", get_random_between_range( gun.mana_charge_speed) )
+ComponentObjectSetValue( ability_comp, "gun_config", "reload_time", gun.reload_time )
+ComponentObjectSetValue( ability_comp, "gunaction_config", "fire_rate_wait", gun.fire_rate_wait )
+ComponentSetValue( ability_comp, "mana_charge_speed", gun.mana_charge_speed )
 
 ComponentObjectSetValue( ability_comp, "gun_config", "actions_per_round", gun.actions_per_round )
 ComponentObjectSetValue( ability_comp, "gun_config", "deck_capacity", deck_capacity )
@@ -64,8 +70,8 @@ ComponentObjectSetValue( ability_comp, "gun_config", "shuffle_deck_when_empty", 
 ComponentObjectSetValue( ability_comp, "gunaction_config", "spread_degrees", gun.spread_degrees )
 ComponentObjectSetValue( ability_comp, "gunaction_config", "speed_multiplier", gun.speed_multiplier )
 
-ComponentSetValue( ability_comp, "mana_max", mana_max )
-ComponentSetValue( ability_comp, "mana", mana_max )
+ComponentSetValue( ability_comp, "mana_max", gun.mana_max )
+ComponentSetValue( ability_comp, "mana", gun.mana_max )
 
 local action_count = 1
 local gun_action_mod = get_random_from( gun.actions_mod )
@@ -79,8 +85,6 @@ for i=1,action_count do
 	AddGunAction( entity_id, gun_action_proj )
 end
 
-AddGunActionPermanent( entity_id, "KUPOLI_REAPING_SHOT" )
-
 local item_comp = EntityGetFirstComponent( entity_id, "ItemComponent" )
-ComponentSetValue2( item_comp, "item_name", "Wand of Souls" )
+ComponentSetValue2( item_comp, "item_name", "Wand of Balance" )
 ComponentSetValue2( item_comp, "always_use_item_name_in_ui", true )

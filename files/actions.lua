@@ -1504,6 +1504,7 @@ actions_to_insert = {
 		mana = 1000,
 		action 		= function()
 			if reflecting then return end
+			dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
 
 			local entity = GetUpdatedEntityID()
 			local x, y = EntityGetTransform(entity)
@@ -2112,11 +2113,13 @@ actions_to_insert = {
 		custom_xml_file="mods/tales_of_kupoli/files/entities/misc/card_soul_strike.xml",
 		type = ACTION_TYPE_MODIFIER,
 		inject_after = "KUPOLI_SOULS_TO_POWER",
-		spawn_level                       = "3,4,5,6,10",
-		spawn_probability                 = "0.4,0.4,0.7,0.7,0.2",
+		spawn_level                       = "4,5,6,10",
+		spawn_probability                 = "0.3,0.4,0.4,0.2",
 		price = 100,
-		mana = 30,
+		mana = 70,
 		action = function()
+			if reflecting then return end
+			dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
 			local wand = HeldItem(GetUpdatedEntityID())
 			local card = currentcard(wand)
 			local comp_soulstrike = EntityGetFirstComponentIncludingDisabled(card, "VariableStorageComponent", "soul_strike_amount") or 0

@@ -10,9 +10,9 @@ dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
 
 local nxml = dofile_once("mods/tales_of_kupoli/lib/nxml.lua")
 
-if ModSettingGet("tales_of_kupoli.alt_map") then
+--[[if ModSettingGet("tales_of_kupoli.alt_map") then
     ModMagicNumbersFileAdd( "mods/tales_of_kupoli/files/magic_numbers.xml" )
-end
+end]]
 
 -- set & append
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/tales_of_kupoli/files/actions.lua" )

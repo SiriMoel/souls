@@ -1,6 +1,7 @@
 ---@diagnostic disable: param-type-mismatch
 dofile("data/scripts/lib/utilities.lua")
 dofile("data/scripts/gun/procedural/gun_action_utils.lua")
+dofile_once("data/scripts/gun/gun_actions.lua")
 
 function get_random_from( target )
 	local rnd = Random(1, #target)
@@ -36,18 +37,17 @@ SetRandomSeed( x, y + GameGetFrameNum() )
 local ability_comp = EntityGetFirstComponent( entity_id, "AbilityComponent" )
 
 local gun = { }
-gun.name = {"Souls wand"}
-gun.deck_capacity = 21
+gun.name = {"Wand wand"}
+gun.deck_capacity = 14
 gun.actions_per_round = 1
-gun.reload_time = {20,27}
+gun.reload_time = {30,40}
 gun.shuffle_deck_when_empty = 0
-gun.fire_rate_wait = {2,7}
-gun.spread_degrees = -1
-gun.speed_multiplier = 1.3
-gun.mana_charge_speed = {500,650}
-gun.mana_max = {900,1100}
-gun.actions_mod = {"KUPOLI_SOULS_TO_POWER","KUPOLI_REAPING_SHOT","KUPOLI_SOUL_IS_MANA", "KUPOLI_SOUL_SPEED", "KUPOLI_RANDOM_REAP", "KUPOLI_SOULDOS"}
-gun.actions_proj = {"KUPOLI_SOUL_BLAST","KUPOLI_SOUL_BALL","KUPOLI_SOUL_NECROMANCY", "KUPOLI_SOUL_ARROW"}
+gun.fire_rate_wait = {10,20}
+gun.spread_degrees = 3
+gun.speed_multiplier = 1.1
+gun.mana_charge_speed = {100,650}
+gun.mana_max = {500,1000}
+gun.actions_proj = actions
 
 local mana_max = get_random_between_range( gun.mana_max )
 local deck_capacity = gun.deck_capacity
@@ -67,20 +67,13 @@ ComponentObjectSetValue( ability_comp, "gunaction_config", "speed_multiplier", g
 ComponentSetValue( ability_comp, "mana_max", mana_max )
 ComponentSetValue( ability_comp, "mana", mana_max )
 
-local action_count = 1
-local gun_action_mod = get_random_from( gun.actions_mod )
+local action_count = 7
 local gun_action_proj = get_random_from( gun.actions_proj )
-
-for i=1,action_count do
-	AddGunAction( entity_id, gun_action_mod )
-end
 
 for i=1,action_count do
 	AddGunAction( entity_id, gun_action_proj )
 end
 
-AddGunActionPermanent( entity_id, "KUPOLI_REAPING_SHOT" )
-
 local item_comp = EntityGetFirstComponent( entity_id, "ItemComponent" )
-ComponentSetValue2( item_comp, "item_name", "Wand of Souls" )
+ComponentSetValue2( item_comp, "item_name", "Wand of the Gift" )
 ComponentSetValue2( item_comp, "always_use_item_name_in_ui", true )

@@ -31,12 +31,15 @@ function spawn_orb(x, y)
 end
 
 function spawn_essence(x, y)
-	EntityLoad( "data/entities/items/wands/wand_good/wand_good_1.xml", x - 20, y + 12 )
+	EntityLoad( "data/entities/items/wands/wand_good/wand_good_1.xml", x - 16, y + 12 )
 	EntityLoad( "data/entities/items/wands/wand_good/wand_good_2.xml", x, y + 12 )
-	EntityLoad( "data/entities/items/wands/wand_good/wand_good_3.xml", x + 20, y + 12 )
+	EntityLoad( "data/entities/items/wands/wand_good/wand_good_3.xml", x + 16, y + 12 )
 
-	EntityLoad( "mods/tales_of_kupoli/files/entities/items/towerwand_souls/weapon.xml" , x + 40, y + 12 )
-	EntityLoad( "mods/tales_of_kupoli/files/entities/items/towerwand_glass/weapon.xml" , x - 40, y + 12 )
+	EntityLoad( "mods/tales_of_kupoli/files/entities/items/towerwand_souls/weapon.xml" , x + 32, y + 12 )
+	EntityLoad( "mods/tales_of_kupoli/files/entities/items/towerwand_glass/weapon.xml" , x - 32, y + 12 )
+
+	EntityLoad( "mods/tales_of_kupoli/files/entities/items/towerwand_gift/weapon.xml" , x + 48, y + 12 )
+	EntityLoad( "mods/tales_of_kupoli/files/entities/items/towerwand_balance/weapon.xml" , x - 48, y + 12 )
 
 	EntityLoad( "data/entities/buildings/mystery_teleport_back.xml", x, y - 200 )
 end

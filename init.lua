@@ -66,6 +66,10 @@ local biomes = {
         path = "data/scripts/biomes/crypt.lua",
         script = "mods/tales_of_kupoli/files/scripts/biome/crypt.lua",
     },
+    {
+        path = "data/scripts/biomes/coalmine.lua",
+        script = "mods/tales_of_kupoli/files/scripts/biome/coalmine.lua",
+    },
 }
 for i,v in ipairs(biomes) do
     if ModTextFileGetContent(v.path) ~= nil then
@@ -401,6 +405,9 @@ local xml = nxml.parse(content)
 for element in xml:each_child() do
     if element.attr.name == "magic_liquid_hp_regeneration" or element.attr.name == "magic_liquid_hp_regeneration_unstable" then
         element.attr.tags = "[liquid],[water],[magic_liquid],[regenerative],[greensun_fuel],[sunbaby_ignore_list]"
+    end
+    if element.attr.name == "radioactive_liquid" then
+        element.attr.tags = "[liquid],[corrodible],[soluble],[radioactive],[impure],[liquid_common],[greensun_fuel],[sunbaby_ignore_list]"
     end
 end
 ModTextFileSetContent("data/materials.xml", tostring(xml))

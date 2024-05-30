@@ -11,11 +11,6 @@ math.randomseed(x+GameGetFrameNum(), y+tonumber(StatsGetValue("world_seed")))
 
 local targets = EntityGetInRadiusWithTag(x, y, radius, "card_action")
 
---local keys = EntityGetInRadiusWithTag(x, y, radius, "kupoli_door_key")
-
--- the separate pools dont work in a way i dont quite understand
--- also i keep getting the same order of spells im so confused
-
 local spell_projectiles = {}
 local pool_projectiles = {
     "KUPOLI_SOUL_BLAST",
@@ -40,16 +35,10 @@ local pool_projectiles = {
     "KUPOLI_SOUL_BALL",
     "KUPOLI_SOUL_METEOR",
     "KUPOLI_SOUL_ARROW",
+    "KUPOLI_SOUL_STRIKE"
 }
 
 local string = ""
-
---[[if #keys > 0 and #keys ~- nil then
-    if not GameHasFlagRun("kupoli_opened") then
-        GamePrint("The altar is unattended.")
-        GameAddFlagRun("kupoli_opened")
-    end
-end]]--
 
 if #targets > 0 and targets ~= nil then
     for i,v in ipairs(targets) do

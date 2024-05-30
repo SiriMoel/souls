@@ -158,7 +158,7 @@ actions_to_insert = {
 		spawn_level                       = "2,3,4,5,6,10",
 		spawn_probability                 = "1,0.9,0.9,0.9,0.8,0.8",
 		price = 120,
-		mana = 70,
+		mana = 50,
 		action 		= function()
 			c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/projectiles/souls_to_power/souls_to_power.xml,"
 			c.fire_rate_wait    = c.fire_rate_wait + 20
@@ -923,7 +923,6 @@ actions_to_insert = {
 		spawn_probability                 = "0.05,1",
 		price = 160,
 		mana = 37,
-		max_uses = 50,
 		action 		= function()
 			c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/projectiles/souldos/reaping_shot.xml,"
 			c.fire_rate_wait = c.fire_rate_wait + 15
@@ -1939,16 +1938,16 @@ actions_to_insert = {
 		end,
 	},]]
 	{
-		id          = "WEAKENING_HALO",
+		id          = "WEAKENING_HALO", -- nezha gaming
 		name 		= "$action_kupoli_weakening_halo",
 		description = "$actiondesc_kupoli_weakening_halo",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/nezha_chakram.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/weakening_halo/projectile.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
 		inject_after = "KUPOLI_REAPING_HALO",
-		spawn_level                       = "5,6,10",
-		spawn_probability                 = "0.1,0.2,0.5",
-		price = 200,
+		spawn_level                       = "10",
+		spawn_probability                 = "0.1",
+		price = 500,
 		mana = 100,
 		action 		= function()
 			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/weakening_halo/projectile.xml")
@@ -1963,11 +1962,12 @@ actions_to_insert = {
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/ratking/proj.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
 		spawn_level                       = "5,6,10",
-		spawn_probability                 = "1,0.4,0.3",
+		spawn_probability                 = "0.4,0.4,0.3",
 		price = 270,
-		mana = 70,
+		mana = 100,
 		max_uses = 3,
-		action 		= function()
+		never_unlimited = true,
+		action = function()
 			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/ratking/proj.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 40
 			c.spread_degrees = c.spread_degrees + 6.4
@@ -2050,7 +2050,7 @@ actions_to_insert = {
 			end
 		end,
 	},]]--
-	{
+	--[[{
 		id          = "TOME_LOOTER",
 		name 		= "$action_kupoli_tome_looter",
 		description = "$actiondesc_kupoli_tome_looter",
@@ -2103,6 +2103,32 @@ actions_to_insert = {
 			end
 			c.fire_rate_wait = c.fire_rate_wait + 30
 		end
+	},]]
+	{
+		id = "SOUL_STRIKE",
+		name = "$action_kupoli_soul_strike",
+		description = "$actiondesc_kupoli_soul_strike",
+        sprite = "mods/tales_of_kupoli/files/spell_icons/soul_strike.png",
+		custom_xml_file="mods/tales_of_kupoli/files/entities/misc/card_soul_strike.xml",
+		type = ACTION_TYPE_MODIFIER,
+		inject_after = "KUPOLI_SOULS_TO_POWER",
+		spawn_level                       = "3,4,5,6,10",
+		spawn_probability                 = "0.4,0.4,0.7,0.7,0.2",
+		price = 100,
+		mana = 30,
+		action = function()
+			local wand = HeldItem(GetUpdatedEntityID())
+			local card = currentcard(wand)
+			local comp_soulstrike = EntityGetFirstComponentIncludingDisabled(card, "VariableStorageComponent", "soul_strike_amount") or 0
+			local soul_strike_amount = ComponentGetValue2(comp_soulstrike, "value_int")
+			for i=1,soul_strike_amount do
+				c.speed_multiplier = c.speed_multiplier * 1.1
+				c.damage_projectile_add = c.damage_projectile_add + 0.2
+				c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/misc/soul_speed_fx.xml,"
+			end
+			draw_actions(1, true)
+		end,
+	},
 }
 
 for i,v in ipairs(actions_to_insert) do

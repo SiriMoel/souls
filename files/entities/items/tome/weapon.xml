@@ -22,12 +22,12 @@
             shuffle_deck_when_empty="0"
             deck_capacity="7"
 			actions_per_round="1"
-            reload_time="40"
+            reload_time="55"
 			speed_multiplier="1"
 			spread_degrees="1" >
         </gun_config>
         <gunaction_config 
-            fire_rate_wait="30" >
+            fire_rate_wait="45" >
         </gunaction_config>
     </AbilityComponent>
 	
@@ -85,9 +85,9 @@
 		radius="56"
 	></LightComponent>
 
-    <!--<ManaReloaderComponent
+    <ManaReloaderComponent
         _tags="enabled_in_world,enabled_in_hand,enabled_in_inventory" >
-    </ManaReloaderComponent>-->
+    </ManaReloaderComponent>
 
     <VariableStorageComponent
         _tags="current_upgrade"

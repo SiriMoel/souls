@@ -76,7 +76,7 @@ function UpgradeTome(path, amount, is_better)
 					cap = 5
 					GamePrint("Minimum capacity reached.")
 				end
-				mm = mm * 1.35
+				mm = mm * 1.45
 			end
 			path_4 = path_4 + amount
 		end
@@ -87,12 +87,13 @@ function UpgradeTome(path, amount, is_better)
 					cap = 5
 					GamePrint("Minimum capacity reached.")
 				end
-				mcs = mcs * 1.35
+				mcs = mcs * 1.45
 			end
 			path_5 = path_5 + amount
 		end
 		cost = cost * 1.25
 		cost = math.floor(cost + 0.5)
+		GamePrint("Next upgrade will cost " .. cost .. " souls.")
 		if cost > 30 then
 			cost = 30
 		end
@@ -584,7 +585,7 @@ actions_to_insert = {
 		price = 140,
 		mana = 0,
 		action 		= function()
-			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")	
+			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
 			if not reflecting then
 				if GetSoulsCount("all") > 0 then
 					local data = {}
@@ -959,7 +960,7 @@ actions_to_insert = {
 		price = 300,
 		mana = 100,
 		action 		= function()
-			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")		
+			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
 			local card = GetUpdatedEntityID()
 			local x, y = EntityGetTransform(GetPlayer())
 			local wand = 0
@@ -2119,16 +2120,24 @@ actions_to_insert = {
 		mana = 70,
 		action = function()
 			if reflecting then return end
-			dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
-			local wand = HeldItem(GetUpdatedEntityID())
-			local card = currentcard(wand)
+			dofile("mods/tales_of_kupoli/files/scripts/utils.lua")
+			local card = GetUpdatedEntityID()
+			local x, y = EntityGetTransform(GetPlayer())
+			local wand = 0
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(card, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+			card = currentcard(wand)
 			local comp_soulstrike = EntityGetFirstComponentIncludingDisabled(card, "VariableStorageComponent", "soul_strike_amount") or 0
 			local soul_strike_amount = ComponentGetValue2(comp_soulstrike, "value_int")
 			for i=1,soul_strike_amount do
-				c.speed_multiplier = c.speed_multiplier * 1.1
-				c.damage_projectile_add = c.damage_projectile_add + 0.2
+				c.speed_multiplier = c.speed_multiplier * 1.05
+				c.damage_projectile_add = c.damage_projectile_add + 0.15
 				c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/misc/soul_speed_fx.xml,"
 			end
+			ComponentSetValue2(comp_soulstrike, "value_int", 0)
+			c.fire_rate_wait    = c.fire_rate_wait + 20
 			draw_actions(1, true)
 		end,
 	},

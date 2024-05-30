@@ -1,7 +1,7 @@
 ---@diagnostic disable: param-type-mismatch
 dofile("data/scripts/lib/utilities.lua")
 dofile("data/scripts/gun/procedural/gun_action_utils.lua")
-dofile_once("data/scripts/gun/gun_actions.lua")
+dofile("data/scripts/gun/gun_actions.lua")
 
 function get_random_from( target )
 	local rnd = Random(1, #target)
@@ -33,6 +33,7 @@ end
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform( entity_id )
 SetRandomSeed( x, y + GameGetFrameNum() )
+math.randomseed(x, y + tonumber(StatsGetValue("world_seed")))
 
 local ability_comp = EntityGetFirstComponent( entity_id, "AbilityComponent" )
 
@@ -67,11 +68,15 @@ ComponentObjectSetValue( ability_comp, "gunaction_config", "speed_multiplier", g
 ComponentSetValue( ability_comp, "mana_max", mana_max )
 ComponentSetValue( ability_comp, "mana", mana_max )
 
-local action_count = 7
+--[[local action_count = 7
 local gun_action_proj = get_random_from( gun.actions_proj )
 
 for i=1,action_count do
 	AddGunAction( entity_id, gun_action_proj )
+end]]--
+
+for i=1,7 do
+	AddGunAction( entity_id, GetRandomAction(x+i,y, 10, tonumber(StatsGetValue("world_seed"))+i))
 end
 
 local item_comp = EntityGetFirstComponent( entity_id, "ItemComponent" )

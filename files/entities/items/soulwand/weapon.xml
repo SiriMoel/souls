@@ -42,7 +42,9 @@
             item_name="Wand"
             always_use_item_name_in_ui="0"
             remove_on_death="1"
-            collect_nondefault_actions="1" >
+            collect_nondefault_actions="1"
+            play_hover_animation="1"
+             >
         </ItemComponent>
     </Base>
 

@@ -297,7 +297,7 @@ function OnPlayerSpawned( player )
     --for i=1,100 do AddSoul("slimes") GamePrintImportant("REMINDER TO REMOVE THE DEBUG SOULS", "GO DO THAT MOLDOS") end
     --for i=1,4 do EntityLoad("mods/tales_of_kupoli/files/entities/revived/_tablets/alchemist.xml", px, py) end
     --for i=1,2 do EntityLoad("mods/tales_of_kupoli/files/entities/items/moldos_special/weapon.xml", px, py) end
-    --for i=1,2 do EntityLoad("mods/tales_of_kupoli/files/entities/items/hiisisniper/weapon.xml", px, py) end
+    --for i=1,2 do EntityLoad("mods/tales_of_kupoli/files/entities/items/towerwand_gift/weapon.xml", px, py) end
     --for i=1,4 do EntityLoad("mods/tales_of_kupoli/files/entities/items/amethyst_orb/item.xml", px, py) end
     --GameAddFlagRun("kupoli_better_weapons")
     --for i=1,2 do EntityLoad("mods/tales_of_kupoli/files/entities/items/darklukkirifle/weapon.xml", px, py) end
@@ -348,10 +348,10 @@ function OnPlayerSpawned( player )
     --AddFlagPersistent("progress_redsun")
     --AddFlagPersistent("progress_bluesun")
 
-    if HasFlagPersistent("progress_greensun") and HasFlagPersistent("progress_redsun") and HasFlagPersistent("progress_bluesun") then
+    --[[if HasFlagPersistent("progress_greensun") and HasFlagPersistent("progress_redsun") and HasFlagPersistent("progress_bluesun") then
         EntitySetComponentsWithTagEnabled( player, "player_hat2", false )
         EntitySetComponentsWithTagEnabled( player, "player_hat", true ) -- placeholder hat
-    end
+    end]]--
 
     if ModSettingGet( "tales_of_kupoli.mina_pearl" ) then
         EntityLoad("mods/tales_of_kupoli/files/entities/items/minapearl/mina_pearl.xml", px + 5, py)

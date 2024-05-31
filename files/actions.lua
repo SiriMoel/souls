@@ -38,56 +38,56 @@ function UpgradeTome(path, amount, is_better)
 					cap = 30
 					GamePrint("Max capacity reached!")
 				end
-				rt = rt * 1
-				frw = frw * 1
+				--rt = rt * 1
+				--frw = frw * 1
 			end
 			path_1 = path_1 + amount
 		end
 		if path == 2 then -- upgrade recharge time
 			GamePrint("Upgrading recharge time!")
 			for i=1,amount do
-				cap = cap - 2
+				--cap = cap - 2
 				if cap < 5 then
 					cap = 5
 					GamePrint("Minimum capacity reached.")
 				end
 				rt = rt * 0.7
-				frw = frw * 1.1
+				--frw = frw * 1.1
 			end
 			path_2 = path_2 + amount
 		end
 		if path == 3 then -- upgrade cast delay
 			GamePrint("Upgrading cast delay!")
 			for i=1,amount do
-				cap = cap - 2
+				--cap = cap - 1
 				if cap < 5 then
 					cap = 5
 					GamePrint("Minimum capacity reached.")
 				end
-				rt = rt * 1.1
+				--rt = rt * 1.1
 				frw = frw * 0.7
 			end
 			path_3 = path_3 + amount
 		end
 		if path == 4 then -- mana max
 			for i=1,amount do
-				cap = cap - 2
+				--cap = cap - 1
 				if cap < 5 then
 					cap = 5
 					GamePrint("Minimum capacity reached.")
 				end
-				mm = mm * 1.45
+				mm = mm * 1.3
 			end
 			path_4 = path_4 + amount
 		end
 		if path == 5 then -- mana charge speed
 			for i=1,amount do
-				cap = cap - 2
+				--cap = cap - 1
 				if cap < 5 then
 					cap = 5
 					GamePrint("Minimum capacity reached.")
 				end
-				mcs = mcs * 1.45
+				mcs = mcs * 1.3
 			end
 			path_5 = path_5 + amount
 		end

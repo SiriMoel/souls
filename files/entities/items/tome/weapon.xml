@@ -146,7 +146,7 @@
 	<VariableStorageComponent
         _tags="upgrade_cost"
         name="upgrade_cost"
-        value_int="7"
+        value_int="3"
     ></VariableStorageComponent>
 
     <!--<VariableStorageComponent

@@ -29,14 +29,14 @@
   	hit_particle_force_multiplier="0.1"
     create_shell_casing="1"
     bounces_left="0"
-  	damage="0.4"	
+  	damage="0.5"	
 	go_through_this_material="aluminium_robot"
 	muzzle_flash_file="data/entities/particles/muzzle_flashes/muzzle_flash_medium.xml"
 	knockback_force="0.3"
 	>
     <config_explosion
       never_cache="1" 
-      damage="0.5"
+      damage="0.1"
       camera_shake="0.5" 
       explosion_radius="2" 
       explosion_sprite="data/particles/explosion_008.xml" 

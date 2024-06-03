@@ -93,10 +93,10 @@ function UpgradeTome(path, amount, is_better)
 		end
 		cost = cost * 1.25
 		cost = math.floor(cost + 0.5)
-		GamePrint("Next upgrade will cost " .. cost .. " souls.")
 		if cost > 30 then
 			cost = 30
 		end
+		GamePrint("Next upgrade will cost " .. cost .. " souls.")
 		ComponentSetValue2(comp_path_1, "value_int", path_1)
 		ComponentSetValue2(comp_path_2, "value_int", path_2)
 		ComponentSetValue2(comp_path_3, "value_int", path_3)

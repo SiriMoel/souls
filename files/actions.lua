@@ -69,7 +69,7 @@ function UpgradeTome(path, amount, is_better)
 			end
 			path_3 = path_3 + amount
 		end
-		if path == 4 then -- mana max
+		if path == 4 then -- upgrade mana max
 			for i=1,amount do
 				--cap = cap - 1
 				if cap < 5 then
@@ -80,7 +80,7 @@ function UpgradeTome(path, amount, is_better)
 			end
 			path_4 = path_4 + amount
 		end
-		if path == 5 then -- mana charge speed
+		if path == 5 then -- upgrade mana charge speed
 			for i=1,amount do
 				--cap = cap - 1
 				if cap < 5 then
@@ -194,7 +194,7 @@ actions_to_insert = {
 		inject_after = "FIREWORK",
 		spawn_level                       = "5,6,10",
 		spawn_probability                 = "0.1,0.2,0.5",
-		price = 200,
+		price = 300,
 		mana = 150,
 		action 		= function()
 			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/reaping_halo/projectile.xml")
@@ -1950,7 +1950,7 @@ actions_to_insert = {
 		spawn_level                       = "10",
 		spawn_probability                 = "0.1",
 		price = 500,
-		mana = 100,
+		mana = 200,
 		action 		= function()
 			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/weakening_halo/projectile.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 40

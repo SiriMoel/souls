@@ -9,7 +9,7 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 
 	EntityLoad("mods/tales_of_kupoli/files/entities/items/dragonwand/weapon.xml", x, y)
 
-	--CreateItemActionEntity("KUPOLI_TOME_REAP", x, y)
+	CreateItemActionEntity("KUPOLI_TOME_SLICE", x, y)
 
 	GameAddFlagRun("ikkuna_dragon")
 	GamePrint("Trace found!")

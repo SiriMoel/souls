@@ -1,4 +1,3 @@
-
 <Mod
 	name="Tales of Kupoli (things mod)"
 	description=
@@ -15,7 +14,7 @@
 		[*] 4 enemies
 		[*] 1 boss
 		[*] Harvest the souls from enemies to fuel spells (12 soul types to find and use)
-		[*] Use your souls to cast spells from (and upgrade) a magic tome 
+		[*] Cast spells from an upgradable (using souls) magic tome 
 		[*] Create new Suns (green and red and possibly blue)
 		[*] Special wands, spells, and other items drop from enemies
 		[*] Revive bosses for new rewards

@@ -1963,6 +1963,7 @@ actions_to_insert = {
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/ratking.png",
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/ratking/proj.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
+		inject_after = "KUPOLI_WEAKENING_HALO",
 		spawn_level                       = "5,6,10",
 		spawn_probability                 = "0.4,0.4,0.3",
 		price = 270,
@@ -2139,6 +2140,100 @@ actions_to_insert = {
 			ComponentSetValue2(comp_soulstrike, "value_int", 0)
 			c.fire_rate_wait    = c.fire_rate_wait + 20
 			draw_actions(1, true)
+		end,
+	},
+	{
+		id          = "TOME_SLICE",
+		name 		= "$action_kupoli_tome_slice",
+		description = "$actiondesc_kupoli_tome_slice",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_slice.png",
+		sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_unidentified.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/tome_slice/proj.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		inject_after = "KUPOLI_TOME_SHOT",
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 100,
+		mana = 50,
+		custom_xml_file="mods/tales_of_kupoli/files/entities/misc/card_tome_slice.xml",
+		action 		= function()
+			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+
+			if reflecting then return end
+
+			local entity = GetUpdatedEntityID()
+			local x, y = EntityGetTransform(entity)
+
+			local wand = 0
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+
+			local tome = EntityGetWithTag("kupoli_tome")[1] or 1
+			local comp_ca = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "current_attack") or 0
+			local ca = tonumber(ComponentGetValue(comp_ca, "value_string"))
+
+			c.fire_rate_wait = c.fire_rate_wait + 10
+
+			if GetSoulsCount("all") >= 1 then
+				if wand == tome then
+					add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_slice/proj.xml")
+					RemoveSouls(1)
+				else
+					GamePrint("The spell must be casted on the tome.")
+				end
+			else
+				GamePrint("You do not have enough souls for this.")
+			end
+		end,
+	},
+	{
+		id          = "TOME_LAUNCHER",
+		name 		= "$action_kupoli_tome_launcher",
+		description = "$actiondesc_kupoli_tome_launcher",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_launcher.png",
+		sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_unidentified.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/tome_launcher/proj.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		inject_after = "KUPOLI_TOME_SLICE",
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 100,
+		mana = 50,
+		custom_xml_file="mods/tales_of_kupoli/files/entities/misc/card_tome_launcher.xml",
+		action 		= function()
+			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+
+			if reflecting then return end
+
+			local entity = GetUpdatedEntityID()
+			local x, y = EntityGetTransform(entity)
+
+			local wand = 0
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+
+			local tome = EntityGetWithTag("kupoli_tome")[1] or 1
+			local comp_ca = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "current_attack") or 0
+			local ca = tonumber(ComponentGetValue(comp_ca, "value_string"))
+
+			c.fire_rate_wait = c.fire_rate_wait + 10
+
+			if wand == tome then
+				local comp_sl = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "launcher_souls_loaded") or 0
+				local sl = tonumber(ComponentGetValue(comp_sl, "value_int"))
+
+				for i=1,sl do
+					add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_launcher/proj.xml")
+				end
+				sl = 0
+				ComponentSetValue2(comp_sl, "value_int", sl)
+			else
+				GamePrint("The spell must be casted on the tome.")
+			end
 		end,
 	},
 }

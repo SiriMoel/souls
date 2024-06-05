@@ -44,6 +44,17 @@
     rect_animation="" 
      >
   </SpriteComponent>
+
+  <LuaComponent
+    script_source_file="mods/tales_of_kupoli/files/entities/projectiles/tome_slice/proj.lua"
+    execute_every_n_frame="1"
+  ></LuaComponent>
+
+  	<GameAreaEffectComponent
+        radius="10"
+        collide_with_tag="hittable"
+        frame_length="1"
+    ></GameAreaEffectComponent>
   
     <VariableStorageComponent
 		name="projectile_file"

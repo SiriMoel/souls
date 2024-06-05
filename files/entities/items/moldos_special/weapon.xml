@@ -14,7 +14,7 @@
         sprite_file="mods/tales_of_kupoli/files/entities/items/moldos_special/sprite.xml" 
         swim_propel_amount="0" 
         throw_as_item="0" 
-        ui_name"Moldos\' Special" 
+        ui_name="Moldos\' Special" 
         use_gun_script="1" 
         >
         <gun_config 

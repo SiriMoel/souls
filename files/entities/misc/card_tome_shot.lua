@@ -18,7 +18,7 @@ if ComponentGetValue2(comp_controls, "mButtonDownRightClick") == true and GameGe
         ca = 1
     end
     if ca == 1 then -- tome shot
-        GamePrint("Casting TOME SHOT - Fire 4 homing and reaping projectiles")
+        GamePrint("Casting TOME SHOT - Fires homing and reaping projectiles")
     end
     if ca == 2 then -- tome seek
         GamePrint("Casting TOME SEEK - Fire a volley of fast projectiles that mark enemies to drop their souls")

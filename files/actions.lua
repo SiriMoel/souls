@@ -1624,7 +1624,7 @@ actions_to_insert = {
 		spawn_level                       = "",
 		spawn_probability                 = "",
 		price = 100,
-		mana = 0,
+		mana = 50,
 		custom_xml_file="mods/tales_of_kupoli/files/entities/misc/card_tome_shot.xml",
 		action 		= function()
 			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")

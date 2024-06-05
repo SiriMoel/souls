@@ -13,7 +13,7 @@ local comp_ca = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageC
 local ca = tonumber(ComponentGetValue(comp_ca, "value_string"))
 
 if ComponentGetValue2(comp_controls, "mButtonDownRightClick") == true and GameGetFrameNum() >= cooldown_frame then
-    local entity_id = GetUpdatedEntityID()
+    local entity_id = GetPlayer()
             local controls_comp = EntityGetFirstComponentIncludingDisabled(entity_id, "ControlsComponent")
             if controls_comp ~= nil then
 

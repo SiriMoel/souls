@@ -1,7 +1,7 @@
 <Sprite
     filename="mods/tales_of_kupoli/files/entities/projectiles/tome_slice/sprite.png"
-    offset_x="23.5"
-    offset_y="13"
+    offset_x="60"
+    offset_y="35"
     default_animation="fireball"
     >
 

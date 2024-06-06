@@ -35,7 +35,9 @@ local pool_projectiles = {
     "KUPOLI_SOUL_BALL",
     "KUPOLI_SOUL_METEOR",
     "KUPOLI_SOUL_ARROW",
-    "KUPOLI_SOUL_STRIKE"
+    "KUPOLI_SOUL_STRIKE",
+    "KUPOLI_TOME_LAUNCHER",
+    "KUPOLI_TOME_SLICE",
 }
 
 local string = ""

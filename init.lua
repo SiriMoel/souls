@@ -281,10 +281,8 @@ function OnPlayerSpawned( player )
         print("tales x apotheosis compat working!")
     end
 
-    if ModSettingGet( "tales_of_kupoli.spawn_tome" ) then
-        EntityLoad("mods/tales_of_kupoli/files/entities/items/tome/weapon.xml", px, py)
-        CreateItemActionEntity("KUPOLI_UPGRADE_TOME", px, py)
-    end
+    EntityLoad("mods/tales_of_kupoli/files/entities/items/tome/weapon.xml", px, py)
+    CreateItemActionEntity("KUPOLI_UPGRADE_TOME", px, py)
 
     for i=1,tonumber(ModSettingGet("tales_of_kupoli.starting_souls")) do
         local which = soul_types[math.random(1,#soul_types)]

@@ -157,7 +157,7 @@ actions_to_insert = {
 		type 		= ACTION_TYPE_MODIFIER,
 		inject_after = "SPELLS_TO_POWER",
 		spawn_level                       = "2,3,4,5,6,10",
-		spawn_probability                 = "1,0.9,0.9,0.9,0.8,0.8",
+		spawn_probability                 = "1,0.9,0.9,0.9,0.8,0.5",
 		price = 120,
 		mana = 50,
 		action 		= function()
@@ -629,7 +629,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id          = "GILDED_SOULS_TO_GOLD",
+		id          = "GILDED_SOULS_TO_GOLD", -- money
 		name 		= "$action_kupoli_gilded_souls_to_gold",
 		description = "$actiondesc_kupoli_gilded_souls_to_gold",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/gilded_souls_to_gold.png",
@@ -669,7 +669,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id          = "SOUL_BATTERY",
+		id          = "SOUL_BATTERY", -- buggy but has tech
 		name 		= "$action_kupoli_soul_battery",
 		description = "$actiondesc_kupoli_soul_battery",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_battery.png",
@@ -712,7 +712,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id          = "SOUL_GUARD",
+		id          = "SOUL_GUARD", -- not a copy paste from a vanilla spell
 		name 		= "$action_kupoli_soul_guard",
 		description = "$actiondesc_kupoli_soul_guard",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_guard.png",
@@ -729,7 +729,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id          = "SUMMON_SUN",
+		id          = "SUMMON_SUN", -- macrocosm
 		name 		= "$action_kupoli_summon_sun",
 		description = "$actiondesc_kupoli_summon_sun",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/summon_sun.png",
@@ -761,7 +761,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id          = "TRIGGER_RETURN",
+		id          = "TRIGGER_RETURN", -- i like this spell
 		name 		= "$action_kupoli_trigger_return",
 		description = "$actiondesc_kupoli_trigger_return",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/triggerable_return.png",
@@ -810,7 +810,7 @@ actions_to_insert = {
 		end,
 	},]]
 	{
-		id          = "RANDOM_REAP",
+		id          = "RANDOM_REAP", -- gaming
 		name 		= "$action_kupoli_random_reap",
 		description = "$actiondesc_kupoli_random_reap",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/random_reap.png",
@@ -829,7 +829,7 @@ actions_to_insert = {
 	},
 
 	{
-		id          = "ALL_REAP_GILDED",
+		id          = "ALL_REAP_GILDED", -- infinite money
 		name 		= "$action_kupoli_all_reap_gilded",
 		description = "$actiondesc_kupoli_all_reap_gilded",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_gilded.png",
@@ -850,7 +850,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id          = "ALL_REAP_MAGE",
+		id          = "ALL_REAP_MAGE", --
 		name 		= "$action_kupoli_all_reap_mage",
 		description = "$actiondesc_kupoli_all_reap_mage",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_mage.png",
@@ -871,7 +871,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id          = "ALL_REAP_FLY",
+		id          = "ALL_REAP_FLY", --
 		name 		= "$action_kupoli_all_reap_fly",
 		description = "$actiondesc_kupoli_all_reap_fly",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_fly.png",
@@ -892,7 +892,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id          = "ALL_REAP_SPIDER",
+		id          = "ALL_REAP_SPIDER", -- 
 		name 		= "$action_kupoli_all_reap_spider",
 		description = "$actiondesc_kupoli_all_reap_spider",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_spider.png",
@@ -913,7 +913,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id          = "SOULDOS",
+		id          = "SOULDOS", -- moldos
 		name 		= "$action_kupoli_souldos",
 		description = "$actiondesc_kupoli_souldos",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/souldos.png",
@@ -921,7 +921,7 @@ actions_to_insert = {
 		type 		= ACTION_TYPE_MODIFIER,
 		inject_after = "KUPOLI_RANDOM_REAP",
 		spawn_level                       = "6,10",
-		spawn_probability                 = "0.05,1",
+		spawn_probability                 = "0.5,1",
 		price = 160,
 		mana = 37,
 		action 		= function()
@@ -931,7 +931,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id          = "SOUL_BALL",
+		id          = "SOUL_BALL", -- tennis
 		name 		= "$action_kupoli_soul_ball",
 		description = "$actiondesc_kupoli_soul_ball",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_ball.png",
@@ -949,7 +949,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id          = "EAT_WAND_FOR_SOULS",
+		id          = "EAT_WAND_FOR_SOULS", -- humgy
 		name 		= "$action_kupoli_eat_wand_for_souls",
 		description = "$actiondesc_kupoli_eat_wand_for_souls",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/eat_wand_for_souls.png",
@@ -1024,7 +1024,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id          = "SOUL_NECROMANCY",
+		id          = "SOUL_NECROMANCY", -- a request?
 		name 		= "$action_kupoli_soul_necromancy",
 		description = "$actiondesc_kupoli_soul_necromancy",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_necromancy.png",
@@ -1066,7 +1066,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id          = "SOUL_MINIONS_TO_HEALING",
+		id          = "SOUL_MINIONS_TO_HEALING", -- cov but cooler
 		name 		= "$action_kupoli_soul_minions_to_healing",
 		description = "$actiondesc_kupoli_soul_minions_to_healing",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_minions_to_healing.png",
@@ -1493,7 +1493,7 @@ actions_to_insert = {
 		end,
 	},]]
 	{
-		id          = "OPEN_GATE",
+		id          = "OPEN_GATE", -- BOSS!!!
 		name 		= "$action_kupoli_open_gate",
 		description = "$actiondesc_kupoli_open_gate",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/open_gate.png",
@@ -1532,7 +1532,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id          = "SOUL_RECHARGE",
+		id          = "SOUL_RECHARGE", -- kind of useless
 		name 		= "$action_kupoli_soul_recharge",
 		description = "$actiondesc_kupoli_soul_recharge",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_is_recharge.png",
@@ -1546,8 +1546,8 @@ actions_to_insert = {
 			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
 			if not reflecting then
 				if GetSoulsCount("all") > 0 then
-					c.fire_rate_wait    = c.fire_rate_wait - 20
-					current_reload_time = current_reload_time - 35
+					c.fire_rate_wait    = c.fire_rate_wait - 60
+					current_reload_time = current_reload_time - 60
 					RemoveSouls(1)
 				elseif GetSoulsCount("all") <= 0 then
 					GamePrint("You have no souls!")
@@ -1572,7 +1572,7 @@ actions_to_insert = {
 		end,
 	},]]--
 	{
-		id          = "TOME_BATTERY",
+		id          = "TOME_BATTERY", -- see reap-marked enemies
 		name 		= "$action_kupoli_tome_battery",
 		description = "$actiondesc_kupoli_tome_battery",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome.png",
@@ -1613,7 +1613,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id          = "TOME_SHOT",
+		id          = "TOME_SHOT", -- infinite bombs
 		name 		= "$action_kupoli_tome_shot",
 		description = "$actiondesc_kupoli_tome_shot",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_shot.png",
@@ -1659,6 +1659,7 @@ actions_to_insert = {
 					end
 					if ca == 2 then -- tome seek
 						c.spread_degrees = c.spread_degrees + 15.0
+						c.damage_projectile_add = c.damage_projectile_add - 1.0
 						add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_seek/proj.xml")
 						add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_seek/proj.xml")
 						add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_seek/proj.xml")
@@ -1723,7 +1724,7 @@ actions_to_insert = {
 		end,
 	},]]--
 	{
-		id          = "UPGRADE_TOME",
+		id          = "UPGRADE_TOME", -- tome gaming
 		name 		= "$action_kupoli_upgrade_tome",
 		description = "$actiondesc_kupoli_upgrade_tome",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_upgrade.png",
@@ -1762,7 +1763,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id          = "UPGRADE_TOME_BETTER",
+		id          = "UPGRADE_TOME_BETTER", -- we love tome :)))
 		name 		= "$action_kupoli_upgrade_tome_better",
 		description = "$actiondesc_kupoli_upgrade_tome_better",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_upgrade_better.png",
@@ -1805,15 +1806,15 @@ actions_to_insert = {
 			moldos be like.rungame
 	},]]--
 	{
-		id          = "SOUL_HEALER",
+		id          = "SOUL_HEALER", -- my favourite spell in the mod, no idea why
 		name 		= "$action_kupoli_soul_healer",
 		description = "$actiondesc_kupoli_soul_healer",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_healer.png",
 		type 		= ACTION_TYPE_PASSIVE,
 		inject_after = "KUPOLI_SOUL_MINIONS_TO_NUKES",
-		spawn_level                       = "",
-		spawn_probability                 = "",
-		price = 100,
+		spawn_level                       = "1,2,3,4,5,6,10",
+		spawn_probability                 = "0.3,0.3,0.3,0.3,0.3,0.3,0.2",
+		price = 250,
 		mana = 30,
 		custom_xml_file="mods/tales_of_kupoli/files/entities/misc/card_soul_healer.xml",
 		action 		= function()
@@ -1822,7 +1823,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id          = "SOUL_METEOR",
+		id          = "SOUL_METEOR", -- big circle
 		name 		= "$action_kupoli_soul_meteor",
 		description = "$actiondesc_kupoli_soul_meteor",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_meteor.png",
@@ -1840,7 +1841,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id          = "SOUL_ARROW",
+		id          = "SOUL_ARROW", -- blacklight arrow from graham's but drawn from memory (i didnt realise it was a spell)
 		name 		= "$action_kupoli_soul_arrow",
 		description = "$actiondesc_kupoli_soul_arrow",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_arrow.png",
@@ -1858,7 +1859,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id = "HIISI_MINE",
+		id = "HIISI_MINE", -- hiisi mine
 		name = "$action_kupoli_hiisi_mine",
 		description = "$actiondesc_kupoli_hiisi_mine",
         sprite = "mods/tales_of_kupoli/files/spell_icons/hiisi_mine.png",
@@ -1875,7 +1876,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id = "ROBOT_FLAME",
+		id = "ROBOT_FLAME", -- will i ever complete the hiisi weapons?
 		name = "$action_kupoli_robot_flamer",
 		description = "$actiondesc_kupoli_robot_flamer",
         sprite = "mods/tales_of_kupoli/files/spell_icons/robot_flamer.png",
@@ -1892,7 +1893,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id = "ROBOT_ICE",
+		id = "ROBOT_ICE", -- probably not no
 		name = "$action_kupoli_robot_icer",
 		description = "$actiondesc_kupoli_robot_icer",
         sprite = "mods/tales_of_kupoli/files/spell_icons/robot_icer.png",
@@ -1953,11 +1954,12 @@ actions_to_insert = {
 		mana = 200,
 		action 		= function()
 			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/weakening_halo/projectile.xml")
+			c.damage_projectile_add = c.damage_projectile_add - 3.0
 			c.fire_rate_wait = c.fire_rate_wait + 40
 		end,
 	},
 	{
-		id          = "MAGICAL_RAT_KING",
+		id          = "MAGICAL_RAT_KING", -- no idea why i made this
 		name 		= "$action_kupoli_ratking",
 		description = "$actiondesc_kupoli_ratking",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/ratking.png",
@@ -1979,7 +1981,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id = "DETONATOR",
+		id = "DETONATOR", -- pyro tf2
 		name = "$action_kupoli_detonator",
 		description = "$actiondesc_kupoli_detonator",
         sprite = "mods/tales_of_kupoli/files/spell_icons/detonator.png",
@@ -2108,17 +2110,17 @@ actions_to_insert = {
 		end
 	},]]
 	{
-		id = "SOUL_STRIKE",
+		id = "SOUL_STRIKE", -- souls to power if it was cool
 		name = "$action_kupoli_soul_strike",
 		description = "$actiondesc_kupoli_soul_strike",
         sprite = "mods/tales_of_kupoli/files/spell_icons/soul_strike.png",
 		custom_xml_file="mods/tales_of_kupoli/files/entities/misc/card_soul_strike.xml",
 		type = ACTION_TYPE_MODIFIER,
 		inject_after = "KUPOLI_SOULS_TO_POWER",
-		spawn_level                       = "4,5,6,10",
-		spawn_probability                 = "0.3,0.4,0.4,0.2",
+		spawn_level                       = "2,3,4,5,6,10",
+		spawn_probability                 = "0.3,0.8,0.8,0.8,0.7,0.2",
 		price = 100,
-		mana = 70,
+		mana = 50,
 		action = function()
 			if reflecting then return end
 			dofile("mods/tales_of_kupoli/files/scripts/utils.lua")
@@ -2143,7 +2145,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id          = "TOME_SLICE",
+		id          = "TOME_SLICE", -- was originally a mole's souls spell
 		name 		= "$action_kupoli_tome_slice",
 		description = "$actiondesc_kupoli_tome_slice",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_slice.png",
@@ -2151,31 +2153,23 @@ actions_to_insert = {
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/tome_slice/proj.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
 		inject_after = "KUPOLI_TOME_SHOT",
-		spawn_level                       = "",
-		spawn_probability                 = "",
-		price = 100,
+		spawn_level                       = "3,4,5,6,10",
+		spawn_probability                 = "0.4,0.4,0.4,0.4,0.4",
+		price = 110,
 		mana = 50,
 		custom_xml_file="mods/tales_of_kupoli/files/entities/misc/card_tome_slice.xml",
 		action 		= function()
 			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
-
 			if reflecting then return end
-
 			local entity = GetUpdatedEntityID()
 			local x, y = EntityGetTransform(entity)
-
 			local wand = 0
 			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
 			if inv_comp then
 				wand = ComponentGetValue2(inv_comp, "mActiveItem")
 			end
-
 			local tome = EntityGetWithTag("kupoli_tome")[1] or 1
-			local comp_ca = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "current_attack") or 0
-			local ca = tonumber(ComponentGetValue(comp_ca, "value_string"))
-
 			c.fire_rate_wait = c.fire_rate_wait + 10
-
 			if GetSoulsCount("all") >= 1 then
 				if wand == tome then
 					add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_slice/proj.xml")
@@ -2189,7 +2183,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id          = "TOME_LAUNCHER",
+		id          = "TOME_LAUNCHER", -- im beggin
 		name 		= "$action_kupoli_tome_launcher",
 		description = "$actiondesc_kupoli_tome_launcher",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_launcher.png",
@@ -2197,35 +2191,26 @@ actions_to_insert = {
 		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/tome_launcher/proj.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
 		inject_after = "KUPOLI_TOME_SLICE",
-		spawn_level                       = "",
-		spawn_probability                 = "",
-		price = 100,
+		spawn_level                       = "3,4,5,6,10",
+		spawn_probability                 = "0.5,0.5,0.5,0.5,0.5",
+		price = 110,
 		mana = 50,
 		custom_xml_file="mods/tales_of_kupoli/files/entities/misc/card_tome_launcher.xml",
 		action 		= function()
 			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
-
 			if reflecting then return end
-
 			local entity = GetUpdatedEntityID()
 			local x, y = EntityGetTransform(entity)
-
 			local wand = 0
 			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
 			if inv_comp then
 				wand = ComponentGetValue2(inv_comp, "mActiveItem")
 			end
-
 			local tome = EntityGetWithTag("kupoli_tome")[1] or 1
-			local comp_ca = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "current_attack") or 0
-			local ca = tonumber(ComponentGetValue(comp_ca, "value_string"))
-
 			c.fire_rate_wait = c.fire_rate_wait + 10
-
 			if wand == tome then
 				local comp_sl = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "launcher_souls_loaded") or 0
 				local sl = tonumber(ComponentGetValue(comp_sl, "value_int"))
-
 				for i=1,sl do
 					add_projectile("mods/tales_of_kupoli/files/entities/projectiles/tome_launcher/proj.xml")
 				end
@@ -2240,13 +2225,14 @@ actions_to_insert = {
 
 for i,v in ipairs(actions_to_insert) do
 	v.id = "KUPOLI_" .. v.id
-
 	if v.inject_after ~= nil and ModSettingGet("tales_of_kupoli.inject_spells") then
 		for i=1,#actions do
 			if actions[i].id == v.inject_after then
 				table.insert(actions, i+1, v)
 			end
 		end
+	elseif ModSettingGet("tales_of_kupoli.inject_spells") then
+		table.insert(actions, v)
 	else
 		table.insert(actions, v)
 	end

@@ -56,13 +56,13 @@ mod_settings = {
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_RUNTIME,
             },
-            {
+            --[[{
                 id = "spawn_tome",
                 ui_name = "Spawn Tome",
                 ui_description = "If you want spawn with the Soul Tome.",
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
-            },
+            },]]--
             {
 				id = "starting_souls",
 				ui_name = "Start with souls",

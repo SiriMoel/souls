@@ -13,7 +13,7 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 
 	EntityLoad("mods/tales_of_kupoli/files/entities/revived/_tablets/grandmaster.xml", x, y)
 
-	CreateItemActionEntity( "KUPOLI_OPEN_GATE", x, y )
+	--CreateItemActionEntity( "KUPOLI_OPEN_GATE", x, y )
 
 	GameAddFlagRun("ikkuna_wizard")
 	GamePrint("Trace found!")

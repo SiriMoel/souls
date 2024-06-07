@@ -74,6 +74,7 @@ local a = {
 		perk_icon = "mods/tales_of_kupoli/files/perk_icons/perk_movement_inworld.png",
 		stackable = STACKABLE_NO,
 		func = function (entity_perk_item, entity_who_picked, item_name)
+			total_perks_picked = 1
 			apply_movement_changes(entity_who_picked, false)
 		end,
 		func_remove = function(entity_who_picked)
@@ -170,16 +171,16 @@ for i,v in ipairs(perk_list) do
 	local oldfunc = v.func
 	if oldfunc ~= nil then
 		v.func = function(entity_perk_item, entity_who_picked, item_name, pickup_count)
+			total_perks_picked = total_perks_picked + 1
 			if has_movement_perk then
-				total_perks_picked = total_perks_picked + 1
 				apply_movement_changes(entity_who_picked, false)
 			end
 			oldfunc(entity_perk_item, entity_who_picked, item_name, pickup_count)
 		end
 	else
 		v.func = function(entity_perk_item, entity_who_picked, item_name, pickup_count)
+			total_perks_picked = total_perks_picked + 1
 			if has_movement_perk then
-				total_perks_picked = total_perks_picked + 1
 				apply_movement_changes(entity_who_picked, false)
 			end
 		end

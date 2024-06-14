@@ -123,7 +123,7 @@ local a = {
 			EntityRemoveTag(entity_who_picked, "kupoli_enemies_drop_wands")
 		end
 	},
-	{
+	--[[{
 		id = "KICK_TO_DASH",
 		ui_name = "$perk_name_kupoli_kick_dash",
 		ui_description = "$perk_desc_kupoli_kick_dash",
@@ -145,7 +145,7 @@ local a = {
 				EntityRemoveComponent(entity_who_picked, comps[i])
 			end
 		end
-	},
+	},]]
 	{
 		id = "EXTRA_SOUL",
 		ui_name = "$perk_name_kupoli_extra_soul",

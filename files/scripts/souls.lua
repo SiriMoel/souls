@@ -33,7 +33,7 @@ if ModIsEnabled("Apotheosis") then
         "ghost_whisp",
     }
 end
-
+    
 function SoulsInit()
     local player = GetPlayer()
     for i,v in ipairs(soul_types) do
@@ -83,7 +83,7 @@ end
 
 function GetRandomSoul()
     local player = GetPlayer()
-    local whichtype = 0
+    local whichtype = ""
     local whichtypes = {}
 
     for i,v in ipairs(soul_types) do
@@ -97,6 +97,21 @@ function GetRandomSoul()
     end
 
     return whichtype
+end
+
+function AddSouls(amount, includegilded)
+    for i=1,amount do
+        local type = ""
+        if includegilded then
+            type = soul_types[math.random(1,soultypes)]
+        else
+            type = soul_types[math.random(1,soultypes)]
+            if type == "gilded" then
+                type = "orcs"
+            end
+        end
+        AddSoul(type)
+    end
 end
 
 function RemoveSouls(amount)

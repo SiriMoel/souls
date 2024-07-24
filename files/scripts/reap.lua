@@ -17,9 +17,19 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
         herd_id = "friendly"
     end
 
+    local boss_names = {
+
+    }
+
+    if table.contains(boss_names, EntityGetName(entity)) then
+        herd_id = "boss"
+    end
+
     if not table.contains(soul_types, herd_id) then return end
 
-    SetRandomSeed(x, y) 
+
+
+    SetRandomSeed(x, y)
     math.randomseed(x, y+GameGetFrameNum())
 
     if math.random(1,15) == 10 then

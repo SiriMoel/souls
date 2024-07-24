@@ -78,4 +78,56 @@
     </Graphics>
   </CellData>-->
 
+  <CellData
+	name="material_souljuice"
+	ui_name="Blood of Souls"
+  	tags="[liquid],[water],[magic_liquid],[impure]"
+	density="1.2434"
+	cell_type="liquid"
+	wang_color="8000c888"
+	generates_smoke="0"
+	liquid_gravity="0.8"
+	liquid_sand="0"
+	gfx_glow="150"
+	on_fire="0"
+	requires_oxygen="0"
+	liquid_stains="1"
+	liquid_sprite_stain_shaken_drop_chance="5"
+	status_effects="POISONED"
+	audio_materialaudio_type="MAGICAL" 
+	show_in_creative_mode="1" 
+	>
+	<Graphics 
+	texture_file="mods/tales_of_kupoli/files/materials_gfx/souljuice.png" 
+	color="8000e29a"
+	fire_colors_index="2" >
+    </Graphics>
+	<ParticleEffect
+		vel.y="2.86"
+		vel_random.min_x="-6"
+		vel_random.max_x="6"
+		vel_random.min_y="-2.9"
+		vel_random.max_y="3.2"
+		render_on_grid="1"
+		probability="0.6"
+		count.min="0"
+		count.max="1"
+	>
+	</ParticleEffect>
+	<StatusEffects>
+		<Ingestion>
+			<StatusEffect type="POISONED" amount="0.15" />
+			<StatusEffect type="KUPOLI_SOULJUICE" amount="0.05" />
+		</Ingestion>
+	</StatusEffects>
+  </CellData>
+
+  <Reaction probability="100"
+	fast_reaction="1"
+	input_cell1="material_darkness" 			input_cell2="[blood]"
+	output_cell1="material_souljuice" 			output_cell2="steam" 
+	blob_radius2="3"
+	>
+  </Reaction>
+
 </Materials>

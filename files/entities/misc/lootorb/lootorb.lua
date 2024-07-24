@@ -126,6 +126,12 @@ local options = {
         entity = "mods/tales_of_kupoli/files/entities/items/amethyst_orb/item.xml",
     },
     {
+        prob = 0.2,
+        min_count = 0,
+        max_count = 0,
+        entity = "mods/tales_of_kupoli/files/entities/items/deadringer/item.xml",
+    },
+    {
         prob = 0.8,
         min_count = 0,
         max_count = 0,

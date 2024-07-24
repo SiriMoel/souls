@@ -1,0 +1,102 @@
+<Entity name="unknown" tags="hittable,teleportable_NOT,item_physics,item_pickup" >
+
+  <PhysicsBodyComponent 
+    _tags="enabled_in_world"
+    uid="1" 
+    allow_sleep="1" 
+    angular_damping="0" 
+    fixed_rotation="0" 
+    is_bullet="1" 
+    linear_damping="0"
+    auto_clean="0"
+    on_death_leave_physics_body="0"
+    hax_fix_going_through_ground="1"
+  ></PhysicsBodyComponent>
+  
+  <PhysicsImageShapeComponent 
+    body_id="1"
+    centered="1"
+    image_file="mods/tales_of_kupoli/files/entities/items/deadringer/sprite_inhand.png"
+    material="metal_hard" >
+  </PhysicsImageShapeComponent>
+  
+  <CameraBoundComponent
+    max_count="50"
+    distance="500">
+  </CameraBoundComponent>
+	
+	<PhysicsThrowableComponent
+	_tags="enabled_in_world"
+    max_throw_speed="180"
+    throw_force_coeff="1.5"
+  ></PhysicsThrowableComponent>
+  
+  <PhysicsBodyCollisionDamageComponent 
+    _tags="enabled_in_world" 
+    speed_threshold="140.0"
+  ></PhysicsBodyCollisionDamageComponent>
+  
+  <ItemComponent
+    _tags="enabled_in_world"
+    item_name="Dead Ringer"
+    max_child_items="0"
+    is_pickable="1"
+    is_equipable_forced="1"
+    ui_sprite="mods/tales_of_kupoli/files/entities/items/deadringer/sprite_cd.png"
+    ui_description="Hold to feign your death upon taking damage, going invisible and gaining speed. Costs 10 souls. Has a cooldown."
+    preferred_inventory="QUICK"
+  ></ItemComponent>
+  
+  <UIInfoComponent
+    _tags="enabled_in_world"
+    name="Dead Ringer" >
+  </UIInfoComponent>
+  
+  <AbilityComponent
+		ui_name="Dead Ringer"
+		throw_as_item="1"
+		><gun_config
+			deck_capacity="0"
+		></gun_config>
+	</AbilityComponent>
+	
+	<SpriteComponent
+    _tags="enabled_in_hand"
+    _enabled="0"
+    offset_x="4"
+    offset_y="4"
+    image_file="mods/tales_of_kupoli/files/entities/items/deadringer/sprite_inhand.png"
+  ></SpriteComponent>
+
+  <VariableStorageComponent
+    _tags="deadringer_cd"
+    name="deadringer_cd"
+    value_int="60"
+  ></VariableStorageComponent>
+
+  <VariableStorageComponent
+    _tags="player_health_old"
+    name="player_health_old"
+    value_int="0"
+  ></VariableStorageComponent>
+
+  <LuaComponent
+    _tags="enabled_in_hand,enabled_in_inventory,enabled_in_world"
+    _enabled="1"
+    script_source_file="mods/tales_of_kupoli/files/entities/items/deadringer/check_player_health.lua"
+    execute_every_n_frame="2"
+  ></LuaComponent>
+
+  <LuaComponent
+    _tags="enabled_in_hand,disabled_in_world,disabled_in_inventory"
+    script_source_file="mods/tales_of_kupoli/files/entities/items/deadringer/feign.lua"
+    execute_every_n_frame="1"
+  ></LuaComponent>
+
+   <LuaComponent
+    _tags="enabled_in_hand,enabled_in_inventory"
+    script_source_file="mods/tales_of_kupoli/files/entities/items/deadringer/cd.lua"
+    execute_every_n_frame="2"
+  ></LuaComponent>
+
+</Entity>

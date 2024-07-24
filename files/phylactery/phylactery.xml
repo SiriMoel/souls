@@ -1,0 +1,22 @@
+<Entity tags="kupoli_phylactery_constructor">
+
+    <LuaComponent
+        script_source_file="mods/tales_of_kupoli/files/phylactery/spawn.lua"
+        execute_on_added="1"
+        remove_after_executed="1"
+    ></LuaComponent>
+
+    <!--<InteractableComponent
+        radius="64"
+        ui_text="[INTERACT]"
+        name="???" >
+    </InteractableComponent>-->
+
+    <LuaComponent
+        script_source_file="mods/tales_of_kupoli/files/phylactery/interact.lua"
+        execute_every_n_frame="60"
+        >
+    </LuaComponent>
+
+
+</Entity>

@@ -3,6 +3,13 @@ dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
 
 to_insert = {
 	{
+		id="KUPOLI_SOULJUICE",
+		ui_name="Soulful",
+		ui_description="Perhaps you can power something...",
+		ui_icon="mods/tales_of_kupoli/files/status_icons/souljuice.png",
+		effect_entity="mods/tales_of_kupoli/files/entities/misc/effect_souljuice.xml",
+	},
+	{
 		id="KUPOLI_TOME_BUFF_1",
 		ui_name="$status_berserk",
 		ui_description="$statusdesc_berserk",

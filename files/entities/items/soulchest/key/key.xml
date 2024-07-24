@@ -1,0 +1,69 @@
+<Entity tags="hittable,teleportable_NOT,item_physics,kupoli_soul_key" >
+  <Base file="data/entities/base_item_projectile.xml" />
+
+  <!-- physical presence -->
+  
+  <PhysicsBodyComponent 
+    _tags="enabled_in_world"
+    uid="1" 
+    allow_sleep="1" 
+    angular_damping="0" 
+    fixed_rotation="0" 
+    is_bullet="1" 
+    linear_damping="0"
+    auto_clean="0"
+    on_death_leave_physics_body="1"
+    hax_fix_going_through_ground="1"
+  ></PhysicsBodyComponent>
+  
+  <PhysicsImageShapeComponent 
+    body_id="1"
+    centered="1"
+    image_file="mods/tales_of_kupoli/files/entities/items/soulchest/key/key.png"
+    material="item_box2d_glass"
+  ></PhysicsImageShapeComponent>
+  
+  <PhysicsThrowableComponent
+    max_throw_speed="180"
+    throw_force_coeff="1.5"
+  ></PhysicsThrowableComponent>
+
+  <VelocityComponent
+    _tags="enabled_in_world"
+  ></VelocityComponent>
+
+  <!-- item -->
+
+  <SpriteComponent
+    _tags="enabled_in_hand"
+    _enabled="0"
+    offset_x="4"
+    offset_y="6"
+    image_file="mods/tales_of_kupoli/files/entities/items/soulchest/key/key_inhand.png"
+  ></SpriteComponent>
+
+  <ItemComponent
+    _tags="enabled_in_world"
+    item_name="Soul Key"
+    max_child_items="0"
+    is_pickable="1"
+    is_equipable_forced="1"
+    ui_sprite="mods/tales_of_kupoli/files/entities/items/soulchest/key/key.png"
+    ui_description="$itemdesc_key_0"
+    preferred_inventory="QUICK"
+  ></ItemComponent>
+
+  <AbilityComponent
+    ui_name="Soul Key"
+    throw_as_item="1"
+  ><gun_config
+    deck_capacity="0"
+  ></gun_config>
+  </AbilityComponent>
+
+  <UIInfoComponent
+    _tags="enabled_in_world"
+    name="Soul Key">
+  </UIInfoComponent>
+
+</Entity>

@@ -214,6 +214,16 @@ actions_to_insert = {
 		price = 70,
 		mana = 30,
 		action = function()
+			local entity = GetUpdatedEntityID()
+			local wand = 0
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+			if EntityHasTag(wand, "kupoli_hiisi_shotgun") then
+				--c.damage_critical_chance = c.damage_critical_chance + 5
+				c.damage_projectile_add = c.damage_projectile_add + 0.1
+			end
 			add_projectile("mods/tales_of_kupoli/files/entities/items/hiisishotgun/projectile.xml")
 			add_projectile("mods/tales_of_kupoli/files/entities/items/hiisishotgun/projectile.xml")
 			add_projectile("mods/tales_of_kupoli/files/entities/items/hiisishotgun/projectile.xml")
@@ -233,6 +243,16 @@ actions_to_insert = {
 		price = 70,
 		mana = 30,
 		action = function()
+			local entity = GetUpdatedEntityID()
+			local wand = 0
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+			if EntityHasTag(wand, "kupoli_hiisi_sniper") then
+				c.damage_critical_chance = c.damage_critical_chance + 5
+				c.damage_projectile_add = c.damage_projectile_add + 0.1
+			end
 			add_projectile("mods/tales_of_kupoli/files/entities/items/hiisisniper/projectile.xml")
 		end,
 	},
@@ -249,6 +269,16 @@ actions_to_insert = {
 		price = 70,
 		mana = 20,
 		action = function()
+			local entity = GetUpdatedEntityID()
+			local wand = 0
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+			if EntityHasTag(wand, "kupoli_hiisi_pistol") then
+				--c.damage_critical_chance = c.damage_critical_chance + 5
+				c.damage_projectile_add = c.damage_projectile_add + 0.1
+			end
 			add_projectile("mods/tales_of_kupoli/files/entities/items/hiisipistol/projectile.xml")
 		end,
 	},
@@ -396,6 +426,17 @@ actions_to_insert = {
 		price = 70,
 		mana = 30,
 		action = function()
+			local entity = GetUpdatedEntityID()
+			local wand = 0
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+			if EntityHasTag(wand, "kupoli_hiisi_glue_gun") then
+				--c.damage_critical_chance = c.damage_critical_chance + 5
+				c.damage_projectile_add = c.damage_projectile_add + 0.1
+				c.speed_multiplier = c.speed_multiplier * 1.05
+			end
 			add_projectile("mods/tales_of_kupoli/files/entities/items/hiisigluegun/projectile.xml")
 		end,
 	},
@@ -412,6 +453,17 @@ actions_to_insert = {
 		price = 70,
 		mana = 30,
 		action = function()
+			local entity = GetUpdatedEntityID()
+			local wand = 0
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+			if EntityHasTag(wand, "kupoli_hiisi_poison_gun") then
+				--c.damage_critical_chance = c.damage_critical_chance + 5
+				c.damage_projectile_add = c.damage_projectile_add + 0.1
+				c.speed_multiplier = c.speed_multiplier * 1.05
+			end
 			add_projectile("mods/tales_of_kupoli/files/entities/items/hiisipoisongun/projectile.xml")
 		end,
 	},
@@ -1870,7 +1922,7 @@ actions_to_insert = {
 		spawn_probability = "",
 		price = 70,
 		mana = 40,
-		max_uses = 5,
+		max_uses = 15,
 		action = function()
 			add_projectile("mods/tales_of_kupoli/files/entities/items/hiisiminethrower/proj.xml")
 		end,
@@ -1959,7 +2011,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id          = "MAGICAL_RAT_KING", -- no idea why i made this
+		id          = "MAGICAL_RAT_KING", -- came to me in a dream
 		name 		= "$action_kupoli_ratking",
 		description = "$actiondesc_kupoli_ratking",
 		sprite 		= "mods/tales_of_kupoli/files/spell_icons/ratking.png",
@@ -2219,6 +2271,60 @@ actions_to_insert = {
 			else
 				GamePrint("The spell must be casted on the tome.")
 			end
+		end,
+	},
+	{
+		id          = "TOME_LOOTER",
+		name 		= "$action_kupoli_tome_looter",
+		description = "$actiondesc_kupoli_tome_looter",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/tome_looter.png",
+		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/tome_looter/reaping_shot.xml" },
+		type 		= ACTION_TYPE_MODIFIER,
+		inject_after = "KUPOLI_TOME_SLICE",
+		spawn_level                       = "3,4,5,6,10",
+		spawn_probability                 = "0.3,0.3,0.4,0.4,0.4",
+		price = 130,
+		mana = 100,
+		action 		= function()
+			c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/projectiles/tome_looter/reaping_shot.xml,"
+			c.fire_rate_wait = c.fire_rate_wait + 14
+			draw_actions( 1, true )
+		end,
+	},
+	--[[{
+		id          = "BIND_PHYLACTERY",
+		name 		= "$action_kupoli_bind_phylactery",
+		description = "$actiondesc_kupoli_bind_phylactery",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/bind_phylactery.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/bind_phylactery/proj.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		inject_after = "KUPOLI_MAGICAL_RAT_KING",
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 180,
+		mana = 50,
+		action 		= function()
+			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/bind_phylactery/proj.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 10
+			c.spread_degrees = c.spread_degrees - 33.0
+		end,
+	},]]
+	{
+		id          = "SOUL_STRING",
+		name 		= "$action_kupoli_soul_string",
+		description = "$actiondesc_kupoli_soul_string",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/soul_string.png", -- placeholder
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/soul_string/proj.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		inject_after = "KUPOLI_MAGICAL_RAT_KING",
+		spawn_level                       = "5,6",
+		spawn_probability                 = "0.4, 0.4",
+		price = 120,
+		mana = 80,
+		max_uses = 20,
+		action 		= function()
+			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/soul_string/proj.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 40
 		end,
 	},
 }

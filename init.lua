@@ -250,7 +250,8 @@ local scenes = {
 	{ -4500, -7000, "mods/tales_of_kupoli/files/biome/rainaltar/rainaltar.xml", true },
     { 13080, 1650, "mods/tales_of_kupoli/files/biome/souldoor/souldoor.xml", true },
     { -1000, -10000, "mods/tales_of_kupoli/files/biome/sillychest/sillychest.xml", true },
-    { 13080, 2870, "mods/tales_of_kupoli/files/biome/wandstatue/wandstatue.xml"},
+    { 13080, 2870, "mods/tales_of_kupoli/files/biome/wandstatue/wandstatue.xml", true },
+    { 0, 0, "mods/tales_of_kupoli/files/phylactery/phylactery.xml", false },
 
     { 16165, -1790, "mods/tales_of_kupoli/files/entities/items/essencewand_earth/weapon.xml", true },
     { -14090, 360, "mods/tales_of_kupoli/files/entities/items/essencewand_fire/weapon.xml", true },
@@ -295,7 +296,7 @@ function OnPlayerSpawned( player )
     --for i=1,100 do AddSoul("slimes") GamePrintImportant("REMINDER TO REMOVE THE DEBUG SOULS", "GO DO THAT MOLDOS") end
     --for i=1,4 do EntityLoad("mods/tales_of_kupoli/files/entities/revived/_tablets/alchemist.xml", px, py) end
     --for i=1,2 do EntityLoad("mods/tales_of_kupoli/files/entities/items/hiisipistol/weapon.xml", px, py) end
-    --for i=1,2 do EntityLoad("mods/tales_of_kupoli/files/entities/items/hiisisniper/weapon.xml", px, py) end
+    --for i=1,1 do EntityLoad("mods/tales_of_kupoli/files/entities/items/deadringer/item.xml", px, py) end
     --for i=1,4 do EntityLoad("mods/tales_of_kupoli/files/entities/items/amethyst_orb/item.xml", px, py) end
     --GameAddFlagRun("kupoli_better_weapons")
     --for i=1,2 do EntityLoad("mods/tales_of_kupoli/files/entities/items/darklukkirifle/weapon.xml", px, py) end

@@ -11,20 +11,26 @@ local p_brilliance = 0
 local p_brilliance_max = 0
 local soulscount = 0
 local held_item = 0
+local phylactery_points = 0
 
 local sunbook_page = 1
 local sunbook_prevbutton_shown = false
 local sunbook_nextbutton_shown = false
 local sunbook_page_scalemult = 1
+
 Gui.state.souls = {}
 Gui.state.sunbook_open = true
 Gui.state.sunbook_unlocked = false
 Gui.state.tome_gui_hidden = true
 Gui.state.totalsoulscount = 0
+
 function OnWorldPreUpdate()
     if GetPlayer() ~= nil then
         soulscount = GetSoulsCount("all")
         Gui.state.soulscount = soulscount
+
+        phylactery_points = tonumber(GlobalsGetValue("kupoli_phylactery_points", "0")) or 0
+        Gui.state.phylacterypoints = phylactery_points
 
         unlocked_sbp = sunbookpages
         for i,v in ipairs(rosettas) do
@@ -97,43 +103,42 @@ Gui:AddElement(gusgui.Elements.HLayout({
         gusgui.Elements.Text({
             id = "SoulsCountText",
             overrideZ = 12,
-            value = "${soulscount} souls",
+            value = "/n ${soulscount} souls",
             padding = 1,
             drawBorder = false,
             drawBackground = false,
         }),
         gusgui.Elements.VLayout({
-            --[[children = {
+            children = {
                 gusgui.Elements.Text({
-                    value = "Current souls"
+                    value = "Phylactery points: ${phylacterypoints}",
+                    hidden = not GameHasFlagRun("kupoli_phylactery_done"),
                 }),
-                gusgui.Elements.Text({
-                    value = "Total souls"
+                gusgui.Elements.HLayoutForEach({
+                    id = "soulsgui",
+                    type = "foreach",
+                    stateVal = "soultypes",
+                    hidden = false,
+                    calculateEveryNFrames = -1,
+                    func = function(v)
+                        return gusgui.Elements.VLayout({
+                            children = {
+                                gusgui.Elements.Image({
+                                    src = "mods/tales_of_kupoli/files/entities/souls/sprites/soul_" .. v .. ".png",
+                                    scaleX = 0.75,
+                                    scaleY = 0.75,
+                                }),
+                                gusgui.Elements.Text({
+                                    value = Gui:StateValue("souls/" .. v),
+                                    margin = { left = 1, },
+                                }),
+                            }
+                        })
+                    end,
                 }),
-            },]]--
+            },
         }),
-        gusgui.Elements.HLayoutForEach({
-            id = "soulsgui",
-            type = "foreach",
-            stateVal = "soultypes",
-            hidden = false,
-            calculateEveryNFrames = -1,
-            func = function(v)
-                return gusgui.Elements.VLayout({
-                    children = {
-                        gusgui.Elements.Image({
-                            src = "mods/tales_of_kupoli/files/entities/souls/sprites/soul_" .. v .. ".png",
-                            scaleX = 0.75,
-                            scaleY = 0.75,
-                        }),
-                        gusgui.Elements.Text({
-                            value = Gui:StateValue("souls/" .. v),
-                            margin = { left = 1, },
-                        }),
-                    }
-                })
-            end,
-        }),
+        
         gusgui.Elements.ImageButton({ -- open and close button
             id = "sunbook_openandclosebutton",
             src = "mods/tales_of_kupoli/files/sunbook/button_open.png",

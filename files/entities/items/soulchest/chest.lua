@@ -3,7 +3,7 @@ dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform( entity_id )
 
-local keys = EntityGetInRadiusWithTag( x, y, 24, "kupoli_soul_key" )
+local keys = EntityGetInRadiusWithTag( x, y, 8, "kupoli_soul_key" )
 
 math.randomseed(x, y+tonumber(StatsGetValue("world_seed")))
 
@@ -11,8 +11,8 @@ if ( #keys > 0 ) then
 
 	local pool = {
 		"data/entities/items/pickup/goldnugget_200.xml",
-		"data/entities/items/pickup/goldnugget_200.xml",
-		"data/entities/items/pickup/goldnugget_200.xml",
+		--"data/entities/items/pickup/goldnugget_200.xml",
+		--"data/entities/items/pickup/goldnugget_200.xml",
 		"data/entities/items/pickup/goldnugget_200.xml",
 		"data/entities/items/pickup/goldnugget_1000.xml",
 		"data/entities/items/pickup/potion.xml",

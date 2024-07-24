@@ -209,7 +209,7 @@ function currentcard(wand) -- version of the copi code that makes my brain happy
 end
 
 function HeldItem(player)
-    local comp_inv = EntityGetFirstComponentIncludingDisabled(player, "Inventory2Component")
-    local held_item = ComponentGetValue2(inv_comp, "mActiveItem")
+    local comp_inv = EntityGetFirstComponentIncludingDisabled(player, "Inventory2Component") or 0
+    local held_item = ComponentGetValue2(comp_inv, "mActiveItem")
     return held_item
 end

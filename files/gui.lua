@@ -103,7 +103,7 @@ Gui:AddElement(gusgui.Elements.HLayout({
         gusgui.Elements.Text({
             id = "SoulsCountText",
             overrideZ = 12,
-            value = "/n ${soulscount} souls",
+            value = "${soulscount} souls",
             padding = 1,
             drawBorder = false,
             drawBackground = false,

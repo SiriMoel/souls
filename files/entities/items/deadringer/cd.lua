@@ -11,7 +11,7 @@ local comp_item = EntityGetFirstComponentIncludingDisabled(item, "ItemComponent"
 if cd > 0 then
     cd = cd - 2
     ComponentSetValue2(comp_cd, "value_int", cd)
-    GamePrint(cd)
+    --GamePrint(cd)
     ComponentSetValue2(comp_item, "ui_sprite", "mods/tales_of_kupoli/files/entities/items/deadringer/sprite_cd.png")
 else
     ComponentSetValue2(comp_item, "ui_sprite", "mods/tales_of_kupoli/files/entities/items/deadringer/sprite.png")

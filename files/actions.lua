@@ -2284,10 +2284,24 @@ actions_to_insert = {
 		spawn_level                       = "3,4,5,6,10",
 		spawn_probability                 = "0.3,0.3,0.4,0.4,0.4",
 		price = 130,
-		mana = 100,
+		mana = 40,
 		action 		= function()
-			c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/projectiles/tome_looter/reaping_shot.xml,"
+			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+			if reflecting then return end
+			local entity = GetUpdatedEntityID()
+			local x, y = EntityGetTransform(entity)
+			local wand = 0
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+			local tome = EntityGetWithTag("kupoli_tome")[1] or 1
 			c.fire_rate_wait = c.fire_rate_wait + 14
+			if wand == tome then
+				c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/projectiles/tome_looter/reaping_shot.xml,"
+			else
+				GamePrint("The spell must be casted on the tome.")
+			end
 			draw_actions( 1, true )
 		end,
 	},

@@ -28,9 +28,9 @@ else
             EntityKill(EntityGetInRadiusWithTag(x, y, 60, "kupoli_phylactery_vessel")[1])
             GameAddFlagRun("kupoli_phylactery_done")
             -- spawn the final phylactery
-            EntityAddComponent(GetPlayer(), "LuaComponent", {
+            --[[EntityAddComponent(GetPlayer(), "LuaComponent", {
                 script_damage_about_to_be_received="mods/tales_of_kupoli/files/phylactery/about_to_be_damaged.lua"
-            })
+            })]]--
         end
     end
 end

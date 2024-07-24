@@ -12,14 +12,16 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
     SetRandomSeed(x, y)
     math.randomseed(x, y+GameGetFrameNum())
 
-    local dodrop = math.random(1,30)
+    local dodrop = math.random(1,2)
 
     if dodrop == 2 then
         local which = math.random(1,2)
         if which == 1 then
+            GamePrint("Chest dropped!")
             EntityLoad("mods/tales_of_kupoli/files/entities/items/soulchest/chest.xml", x, y)
         end
         if which == 2 then
+            GamePrint("Key dropped!")
             EntityLoad("mods/tales_of_kupoli/files/entities/items/soulchest/key/key.xml", x, y)
         end
     end

@@ -293,6 +293,10 @@ function OnPlayerSpawned( player )
         AddSoul(which)
     end
 
+    EntityAddComponent(player, "LuaComponent", {
+        script_damage_about_to_be_received="mods/tales_of_kupoli/files/scripts/player_about_to_be_damaged.lua"
+    })
+
     --for i=1,100 do AddSoul("slimes") GamePrintImportant("REMINDER TO REMOVE THE DEBUG SOULS", "GO DO THAT MOLDOS") end
     --for i=1,4 do EntityLoad("mods/tales_of_kupoli/files/entities/revived/_tablets/alchemist.xml", px, py) end
     --for i=1,2 do EntityLoad("mods/tales_of_kupoli/files/entities/items/hiisipistol/weapon.xml", px, py) end

@@ -1,4 +1,4 @@
-<Entity name="unknown" tags="hittable,teleportable_NOT,item_physics,item_pickup" >
+<Entity name="unknown" tags="hittable,teleportable_NOT,item_physics,item_pickup,kupoli_deadringer" >
 
   <PhysicsBodyComponent 
     _tags="enabled_in_world"
@@ -80,18 +80,18 @@
     value_int="0"
   ></VariableStorageComponent>
 
-  <LuaComponent
+  <!--<LuaComponent
     _tags="enabled_in_hand,enabled_in_inventory,enabled_in_world"
     _enabled="1"
     script_source_file="mods/tales_of_kupoli/files/entities/items/deadringer/check_player_health.lua"
     execute_every_n_frame="2"
-  ></LuaComponent>
+  ></LuaComponent-->
 
-  <LuaComponent
+  <!--<LuaComponent
     _tags="enabled_in_hand,disabled_in_world,disabled_in_inventory"
     script_source_file="mods/tales_of_kupoli/files/entities/items/deadringer/feign.lua"
     execute_every_n_frame="1"
-  ></LuaComponent>
+  ></LuaComponent-->
 
    <LuaComponent
     _tags="enabled_in_hand,enabled_in_inventory"

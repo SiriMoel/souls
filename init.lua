@@ -251,7 +251,7 @@ local scenes = {
     { 13080, 1650, "mods/tales_of_kupoli/files/biome/souldoor/souldoor.xml", true },
     { -1000, -10000, "mods/tales_of_kupoli/files/biome/sillychest/sillychest.xml", true },
     { 13080, 2870, "mods/tales_of_kupoli/files/biome/wandstatue/wandstatue.xml", true },
-    { 0, 0, "mods/tales_of_kupoli/files/phylactery/phylactery.xml", false },
+    --{ 0, 0, "mods/tales_of_kupoli/files/phylactery/phylactery.xml", false },
 
     { 16165, -1790, "mods/tales_of_kupoli/files/entities/items/essencewand_earth/weapon.xml", true },
     { -14090, 360, "mods/tales_of_kupoli/files/entities/items/essencewand_fire/weapon.xml", true },

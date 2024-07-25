@@ -2341,6 +2341,69 @@ actions_to_insert = {
 			c.fire_rate_wait = c.fire_rate_wait + 40
 		end,
 	},]]
+	{
+		id          = "LIGHT_BULLET_TIER_3",
+		name 		= "$action_kupoli_giga_sparkbolt",
+		description = "$actiondesc_kupoli_giga_sparkbolt",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/giga_sparkbolt.png",
+		sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_unidentified.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/giga_sparkbolt/proj.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		inject_after = "KUPOLI_LIGHT_BULLET_TIER_2",
+		spawn_level                       = "3,4,5",
+		spawn_probability                 = "1,1,0.5",
+		price = 180,
+		mana = 15,
+		action 		= function()
+			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/giga_sparkbolt/proj.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 12
+			c.screenshake = c.screenshake + 4
+			c.spread_degrees = c.spread_degrees - 2.0
+			c.damage_critical_chance = c.damage_critical_chance + 6
+		end,
+	},
+	{
+		id          = "LIGHT_BULLET_TIER_4",
+		name 		= "$action_kupoli_omega_sparkbolt",
+		description = "$actiondesc_kupoli_omega_sparkbolt",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/omega_sparkbolt.png",
+		sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_unidentified.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/omega_sparkbolt/proj.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		inject_after = "KUPOLI_LIGHT_BULLET_TIER_3",
+		spawn_level                       = "4,5",
+		spawn_probability                 = "1,0.5",
+		price = 180,
+		mana = 30,
+		action 		= function()
+			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/omega_sparkbolt/proj.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 16
+			c.screenshake = c.screenshake + 6
+			c.spread_degrees = c.spread_degrees - 2.0
+			c.damage_critical_chance = c.damage_critical_chance + 6
+		end,
+	},
+	{
+		id          = "LIGHT_BULLET_TIER_5",
+		name 		= "$action_kupoli_zenith_sparkbolt",
+		description = "$actiondesc_kupoli_zenith_sparkbolt",
+		sprite 		= "mods/tales_of_kupoli/files/spell_icons/zenith_sparkbolt.png",
+		sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_unidentified.png",
+		related_projectiles	= {"mods/tales_of_kupoli/files/entities/projectiles/zenith_sparkbolt/proj.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		inject_after = "KUPOLI_LIGHT_BULLET_TIER_4",
+		spawn_level                       = "5",
+		spawn_probability                 = "0.5",
+		price = 180,
+		mana = 50,
+		action 		= function()
+			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/zenith_sparkbolt/proj.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 20
+			c.screenshake = c.screenshake + 8
+			c.spread_degrees = c.spread_degrees - 2.0
+			c.damage_critical_chance = c.damage_critical_chance + 6
+		end,
+	},
 }
 
 for i,v in ipairs(actions_to_insert) do

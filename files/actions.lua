@@ -2323,7 +2323,7 @@ actions_to_insert = {
 			c.spread_degrees = c.spread_degrees - 33.0
 		end,
 	},]]
-	{
+	--[[{
 		id          = "SOUL_STRING",
 		name 		= "$action_kupoli_soul_string",
 		description = "$actiondesc_kupoli_soul_string",
@@ -2340,7 +2340,7 @@ actions_to_insert = {
 			add_projectile("mods/tales_of_kupoli/files/entities/projectiles/soul_string/proj.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 40
 		end,
-	},
+	},]]
 }
 
 for i,v in ipairs(actions_to_insert) do

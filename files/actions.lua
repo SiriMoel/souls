@@ -126,7 +126,7 @@ actions_to_insert = {
 		mana = 10,
 		action 		= function()
 			c.extra_entities = c.extra_entities .. "mods/tales_of_kupoli/files/entities/projectiles/reaping_shot/reaping_shot.xml,"
-			c.fire_rate_wait = c.fire_rate_wait + 5
+			c.fire_rate_wait = c.fire_rate_wait + 2
 			draw_actions( 1, true )
 		end,
 	},

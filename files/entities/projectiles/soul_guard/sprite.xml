@@ -1,5 +1,5 @@
 <Sprite
-	filename="mods/tales_of_kupoli/files/entities/projectiles/soul_guard/sprite.png"
+	filename="mods/souls/files/entities/projectiles/soul_guard/sprite.png"
 	offset_x="5.5"
 	offset_y="5.5"
 	default_animation="default"

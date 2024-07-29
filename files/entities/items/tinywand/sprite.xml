@@ -2,7 +2,7 @@
 In all my testing, this never needed to be modified. 
 -->
 
-<Sprite filename="mods/tales_of_kupoli/files/entities/items/tinywand/sprite.png" >
+<Sprite filename="mods/souls/files/entities/items/tinywand/sprite.png" >
 	
   <RectAnimation 
 	name="default" 

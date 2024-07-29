@@ -57,7 +57,7 @@
   <SpriteComponent 
     _enabled="1" 
     alpha="1" 
-    image_file="mods/tales_of_kupoli/files/entities/projectiles/healing_arrow/sprite.xml" 
+    image_file="mods/souls/files/entities/projectiles/healing_arrow/sprite.xml" 
     next_rect_animation=""
     rect_animation="" 
      >
@@ -167,12 +167,12 @@
   
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/tales_of_kupoli/files/entities/projectiles/healing_arrow/proj.xml"
+		value_string="mods/souls/files/entities/projectiles/healing_arrow/proj.xml"
 		>
 	</VariableStorageComponent>
 
   <LuaComponent
-      script_source_file="mods/tales_of_kupoli/files/entities/projectiles/healing_arrow/proj.lua"
+      script_source_file="mods/souls/files/entities/projectiles/healing_arrow/proj.lua"
       execute_every_n_frame="15"
   ></LuaComponent>
 

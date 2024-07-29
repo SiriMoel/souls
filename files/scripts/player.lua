@@ -1,4 +1,4 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
 
 local player = GetUpdatedEntityID()
 local x, y = EntityGetTransform(player)
@@ -17,11 +17,11 @@ if ( #targets > 0 ) then
             if math.random(1,5) == 2 then
                 EntityAddComponent( targets[i], "LuaComponent",
                 {
-                    script_death = "mods/tales_of_kupoli/files/scripts/reap.lua",
+                    script_death = "mods/souls/files/scripts/reap.lua",
                     execute_every_n_frame = "-1",
                 } )
     
-                --local effect_id = EntityLoad("mods/tales_of_kupoli/files/entities/particles/marked_particles.xml", x, y)
+                --local effect_id = EntityLoad("mods/souls/files/entities/particles/marked_particles.xml", x, y)
                 --EntityAddChild( targets[i], effect_id )
                 EntityAddTag( targets[i], "reap_marked")
             end

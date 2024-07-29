@@ -1,4 +1,4 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
 
 local entity_id = GetUpdatedEntityID()
 local root_id = EntityGetRootEntity( entity_id )
@@ -16,7 +16,7 @@ if ( #targets > 0 ) then
             if ( EntityHasTag( target_id, "reap_marked" ) == false ) then
 
                 EntityAddComponent( target_id, "LuaComponent", {
-                    script_death = "mods/tales_of_kupoli/files/scripts/reap.lua",
+                    script_death = "mods/souls/files/scripts/reap.lua",
                     execute_every_n_frame = "-1",
                 } )
     
@@ -24,7 +24,7 @@ if ( #targets > 0 ) then
             end
     
             if EntityHasTag(target_id, "reap_marked_fx") == false then
-                local effect_id = EntityLoad("mods/tales_of_kupoli/files/entities/particles/marked_particles.xml", x, y)
+                local effect_id = EntityLoad("mods/souls/files/entities/particles/marked_particles.xml", x, y)
                 EntityAddChild(target_id, effect_id)
                 EntityAddTag(target_id, "reap_marked_fx")
             end

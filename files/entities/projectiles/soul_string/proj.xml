@@ -102,7 +102,7 @@
   <SpriteComponent 
     _enabled="1" 
     alpha="1" 
-    image_file="mods/tales_of_kupoli/files/entities/projectiles/soul_string/spark.xml"
+    image_file="mods/souls/files/entities/projectiles/soul_string/spark.xml"
     next_rect_animation="default"
     rect_animation="default"
 	additive="1"
@@ -122,13 +122,13 @@
 
   <LuaComponent
     execute_on_added="1"
-    script_source_file="mods/tales_of_kupoli/files/entities/projectiles/soul_chain/shoot.lua"
+    script_source_file="mods/souls/files/entities/projectiles/soul_chain/shoot.lua"
     remove_after_executed="1"
   ></LuaComponent>
   
     <VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/tales_of_kupoli/files/entities/items/projectiles/soul_chain/proj.xml"
+		value_string="mods/souls/files/entities/items/projectiles/soul_chain/proj.xml"
 		>
 	</VariableStorageComponent>
 </Entity>

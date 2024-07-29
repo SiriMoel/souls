@@ -22,7 +22,7 @@
 	<PhysicsImageShapeComponent 
 		body_id="1"
 		centered="1"
-		image_file="mods/tales_of_kupoli/files/entities/alterants/alterant.png"
+		image_file="mods/souls/files/entities/alterants/alterant.png"
 		material="rock_box2d_hard"
 	></PhysicsImageShapeComponent>
 
@@ -47,7 +47,7 @@
 		max_child_items="0"
 		is_pickable="1"
 		is_equipable_forced="1"
-		ui_sprite="mods/tales_of_kupoli/files/entities/alterants/alterant_ui.png"
+		ui_sprite="mods/souls/files/entities/alterants/alterant_ui.png"
 		preferred_inventory="QUICK"
 		item_name="Alterant"
 		ui_description="Alterant Description"
@@ -58,7 +58,7 @@
 		_enabled="0"
 		offset_x="4"
 		offset_y="4"
-		image_file="mods/tales_of_kupoli/files/entities/alterants/alterant_inhand.png"
+		image_file="mods/souls/files/entities/alterants/alterant_inhand.png"
 	></SpriteComponent>
 
 	<HitboxComponent 

@@ -62,7 +62,7 @@
 
     <SpriteComponent 
     _enabled="1" 
-    image_file="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/sprite_pillar.xml" 
+    image_file="mods/souls/files/entities/animals/boss_valkoinen/sprite_pillar.xml" 
     next_rect_animation="" 
     offset_x="32" 
     offset_y="64" 
@@ -82,12 +82,12 @@
   
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/proj_pillar.xml"
+		value_string="mods/souls/files/entities/animals/boss_valkoinen/proj_pillar.xml"
 		>
 	</VariableStorageComponent> 
 
 		<LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/pillar_shoot_swords.lua"
+		script_source_file="mods/souls/files/entities/animals/boss_valkoinen/pillar_shoot_swords.lua"
 		execute_every_n_frame="30"
 		>
 	</LuaComponent>

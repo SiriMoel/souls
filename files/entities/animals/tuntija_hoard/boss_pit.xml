@@ -13,7 +13,7 @@
 
 	<SpriteComponent 
 		_tags="character"
-		image_file="mods/tales_of_kupoli/files/entities/animals/tuntija_hoard/body.xml" 
+		image_file="mods/souls/files/entities/animals/tuntija_hoard/body.xml" 
 		>
 	</SpriteComponent>
 
@@ -52,7 +52,7 @@
 	</LuaComponent>
 	
 	<LuaComponent 
-		script_death="mods/tales_of_kupoli/files/entities/animals/tuntija_hoard/death.lua">
+		script_death="mods/souls/files/entities/animals/tuntija_hoard/death.lua">
 	</LuaComponent>
 
 	<PathFindingComponent 

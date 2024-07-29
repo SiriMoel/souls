@@ -1,18 +1,18 @@
 <entity>
 
     <LuaComponent
-        script_source_file="mods/tales_of_kupoli/files/biome/souldoor/spawn.lua"
+        script_source_file="mods/souls/files/biome/souldoor/spawn.lua"
         execute_on_added="1"
         remove_after_executed="1"
     ></LuaComponent>
 
     <LuaComponent
-        script_source_file="mods/tales_of_kupoli/files/biome/souldoor/ambience.lua"
+        script_source_file="mods/souls/files/biome/souldoor/ambience.lua"
         execute_every_n_frame="45"
     ></LuaComponent>
 
     <LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/biome/souldoor/high_check.lua"
+		script_source_file="mods/souls/files/biome/souldoor/high_check.lua"
 		execute_every_n_frame="5"
 	></LuaComponent>
 

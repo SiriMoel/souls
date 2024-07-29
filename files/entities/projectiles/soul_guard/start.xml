@@ -27,7 +27,7 @@
 	</ProjectileComponent>
 	
 	<LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/projectiles/soul_guard/start.lua"
+		script_source_file="mods/souls/files/entities/projectiles/soul_guard/start.lua"
 		execute_on_added="1"
 		>
 	</LuaComponent>
@@ -40,7 +40,7 @@
 	
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/tales_of_kupoli/files/entities/projectiles/soul_guard/start.xml"
+		value_string="mods/souls/files/entities/projectiles/soul_guard/start.xml"
 		>
 	</VariableStorageComponent>
 </Entity>

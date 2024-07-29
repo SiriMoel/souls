@@ -89,7 +89,7 @@
   <SpriteComponent 
     _enabled="1" 
     alpha="1" 
-    image_file="mods/tales_of_kupoli/files/entities/animals/soul_angry/laser_sprite.xml"
+    image_file="mods/souls/files/entities/animals/soul_angry/laser_sprite.xml"
     next_rect_animation="" 
     offset_x="2" 
     offset_y="2" 
@@ -170,7 +170,7 @@
   
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/tales_of_kupoli/files/entities/animals/soul_angry/laser.xml"
+		value_string="mods/souls/files/entities/animals/soul_angry/laser.xml"
 		>
 	</VariableStorageComponent>
 

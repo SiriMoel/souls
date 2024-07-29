@@ -1,7 +1,7 @@
 <Entity name="$projectile_default" tags="projectile_player" >
 	<Base file="data/entities/base_custom_card.xml" > 
 		<SpriteComponent 
-			image_file="mods/tales_of_kupoli/files/spell_icons/reaper_blade.png" >
+			image_file="mods/souls/files/spell_icons/reaper_blade.png" >
 		</SpriteComponent>
 		
 		<ItemActionComponent 
@@ -21,7 +21,7 @@
 	</InheritTransformComponent>
 
     <LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/misc/reaper_blade.lua"
+		script_source_file="mods/souls/files/entities/misc/reaper_blade.lua"
 		execute_every_n_frame="4"
 		>
 	</LuaComponent>

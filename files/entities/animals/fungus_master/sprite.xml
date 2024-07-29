@@ -1,5 +1,5 @@
 <Sprite 
-  filename="mods/tales_of_kupoli/files/entities/animals/fungus_master/sprite.png" 
+  filename="mods/souls/files/entities/animals/fungus_master/sprite.png" 
   hotspots_filename="data/enemies_gfx/wizard_hotspots.png" 
   offset_x="8" 
   offset_y="14"

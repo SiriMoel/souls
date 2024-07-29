@@ -1,13 +1,13 @@
 <Entity >
    
 	<LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/projectiles/reaping_shot/reaping_shot.lua"
+		script_source_file="mods/souls/files/entities/projectiles/reaping_shot/reaping_shot.lua"
 		execute_every_n_frame="1"
 		>
 	</LuaComponent>
 
 	<LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/projectiles/reaping_shot/reaping_shot_fx.lua"
+		script_source_file="mods/souls/files/entities/projectiles/reaping_shot/reaping_shot_fx.lua"
 		execute_every_n_frame="1"
 		remove_after_executed="1"
 		>

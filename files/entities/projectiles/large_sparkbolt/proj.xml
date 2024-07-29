@@ -68,7 +68,7 @@
   <SpriteComponent 
     _enabled="1" 
     alpha="1" 
-    image_file="mods/tales_of_kupoli/files/entities/projectiles/large_sparkbolt/spark.xml"
+    image_file="mods/souls/files/entities/projectiles/large_sparkbolt/spark.xml"
     next_rect_animation="default"
     rect_animation="default"
 	additive="1"
@@ -238,7 +238,7 @@
   
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/tales_of_kupoli/files/entities/projectiles/large_sparkbolt/proj.xml" 
+		value_string="mods/souls/files/entities/projectiles/large_sparkbolt/proj.xml" 
 		>
 	</VariableStorageComponent>
 

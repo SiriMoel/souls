@@ -38,20 +38,20 @@
   <SpriteComponent 
     _enabled="1" 
     alpha="1" 
-    image_file="mods/tales_of_kupoli/files/entities/projectiles/tome_slice/sprite.xml" 
+    image_file="mods/souls/files/entities/projectiles/tome_slice/sprite.xml" 
     next_rect_animation=""
     rect_animation="" 
      >
   </SpriteComponent>
 
   <LuaComponent
-    script_source_file="mods/tales_of_kupoli/files/entities/projectiles/tome_slice/proj.lua"
+    script_source_file="mods/souls/files/entities/projectiles/tome_slice/proj.lua"
     execute_every_n_frame="1"
   ></LuaComponent>
 
   <!--this does not work-->
   <LuaComponent
-    script_collision_trigger_hit="mods/tales_of_kupoli/files/entities/projectiles/tome_slice/collide.lua"
+    script_collision_trigger_hit="mods/souls/files/entities/projectiles/tome_slice/collide.lua"
   ></LuaComponent>
 
   	<GameAreaEffectComponent
@@ -62,7 +62,7 @@
   
     <VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/tales_of_kupoli/files/entities/projectiles/tome_slice/proj.xml"
+		value_string="mods/souls/files/entities/projectiles/tome_slice/proj.xml"
 		>
 	</VariableStorageComponent>
 </Entity>

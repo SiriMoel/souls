@@ -1,25 +1,25 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
 
 local entity = GetUpdatedEntityID()
 local x, y = EntityGetTransform( entity )
 local radius = 70
 
 function SpawnExchanger(x, y)
-    EntityLoad("mods/tales_of_kupoli/files/biome/souldoor/exchanger.xml", x, y)
+    EntityLoad("mods/souls/files/biome/souldoor/exchanger.xml", x, y)
 
     lx = x - 60
     ly = y
 
-    local light1 = EntityLoad("mods/tales_of_kupoli/files/biome/souldoor/exchanger_light_1.xml", lx, ly)
+    local light1 = EntityLoad("mods/souls/files/biome/souldoor/exchanger_light_1.xml", lx, ly)
     
     lx = lx + 30
-    local light2 = EntityLoad("mods/tales_of_kupoli/files/biome/souldoor/exchanger_light_2.xml", lx, ly)
+    local light2 = EntityLoad("mods/souls/files/biome/souldoor/exchanger_light_2.xml", lx, ly)
     
     lx = lx + 60
-    local light3 = EntityLoad("mods/tales_of_kupoli/files/biome/souldoor/exchanger_light_3.xml", lx, ly)
+    local light3 = EntityLoad("mods/souls/files/biome/souldoor/exchanger_light_3.xml", lx, ly)
 
     lx = lx + 30
-    local light4 = EntityLoad("mods/tales_of_kupoli/files/biome/souldoor/exchanger_light_4.xml", lx, ly)
+    local light4 = EntityLoad("mods/souls/files/biome/souldoor/exchanger_light_4.xml", lx, ly)
 end
 
 local eyes = EntityGetInRadiusWithTag( x, y, radius, "evil_eye" )

@@ -1,5 +1,5 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
-dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/souls.lua")
 
 local item = GetUpdatedEntityID()
 
@@ -16,7 +16,7 @@ if cd <= 0 then
     if GetSoulsCount("all") >= 10 then
         if player_hp < ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(item, "VariableStorageComponent", "player_health_old") or 0, "value_int") then
             RemoveSouls(10)
-            LoadGameEffectEntityTo(player, "mods/tales_of_kupoli/files/entities/items/deadringer/buff.xml")
+            LoadGameEffectEntityTo(player, "mods/souls/files/entities/items/deadringer/buff.xml")
             ComponentSetValue2(comp_cd, "value_int", 480)
         end
     end

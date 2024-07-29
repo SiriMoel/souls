@@ -1,4 +1,4 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
 
 local entity = GetUpdatedEntityID()
 local x, y = EntityGetTransform(entity)
@@ -29,7 +29,7 @@ else
             GameAddFlagRun("kupoli_phylactery_done")
             -- spawn the final phylactery
             --[[EntityAddComponent(GetPlayer(), "LuaComponent", {
-                script_damage_about_to_be_received="mods/tales_of_kupoli/files/phylactery/about_to_be_damaged.lua"
+                script_damage_about_to_be_received="mods/souls/files/phylactery/about_to_be_damaged.lua"
             })]]--
         end
     end

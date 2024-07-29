@@ -11,7 +11,7 @@
 
     <!--LuaComponent
         _enabled="1"
-        script_source_file="mods/tales_of_kupoli/files/entities/projectiles/triggerable_return/a.lua"
+        script_source_file="mods/souls/files/entities/projectiles/triggerable_return/a.lua"
         execute_every_n_frame="2"
   ></LuaComponent-->
 

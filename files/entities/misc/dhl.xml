@@ -1,6 +1,6 @@
 <Entity name="Diamond Heart Lense" tags="card_action">
     <Base name="moldos" file="data/entities/base_custom_card.xml">
-        <SpriteComponent image_file="mods/tales_of_kupoli/files/spell_icons/rivenmod.png"></SpriteComponent>
+        <SpriteComponent image_file="mods/souls/files/spell_icons/rivenmod.png"></SpriteComponent>
 
         <ItemActionComponent
             _tags="enabled_in_world"
@@ -15,7 +15,7 @@
     <Entity>
 
     <LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/scripts/dhl.lua"
+		script_source_file="mods/souls/files/scripts/dhl.lua"
 		execute_on_added="1"
 		remove_after_executed="1"
 	></LuaComponent>

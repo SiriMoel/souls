@@ -1,4 +1,4 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
 
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform( entity_id )
@@ -25,8 +25,8 @@ if ( #keys > 0 ) then
 		"data/entities/items/pickup/brimstone.xml",
 
 		"souls",
-		"mods/tales_of_kupoli/files/entities/items/amethyst_orb/item.xml",
-		"mods/tales_of_kupoli/files/entities/items/deadringer/item.xml",
+		"mods/souls/files/entities/items/amethyst_orb/item.xml",
+		"mods/souls/files/entities/items/deadringer/item.xml",
 	}
 
 	local which = pool[math.random(1,#pool)]

@@ -265,7 +265,7 @@
 	</AudioLoopComponent>
 
         <LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/projectiles/soul_meteor/proj.lua"
+		script_source_file="mods/souls/files/entities/projectiles/soul_meteor/proj.lua"
 		execute_every_n_frame="1"
 		remove_after_executed="1"
 		>
@@ -273,7 +273,7 @@
 
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/tales_of_kupoli/files/entities/projectiles/soul_meteor/proj.xml"
+		value_string="mods/souls/files/entities/projectiles/soul_meteor/proj.xml"
 		>
 	</VariableStorageComponent>
 </Entity>

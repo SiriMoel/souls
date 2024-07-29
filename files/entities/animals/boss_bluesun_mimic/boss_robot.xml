@@ -320,7 +320,7 @@
 	</VariableStorageComponent>
 	
 	<LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/revived/robot/state.lua"
+		script_source_file="mods/souls/files/entities/revived/robot/state.lua"
 		execute_every_n_frame="40"
 		>
 	</LuaComponent>

@@ -1,11 +1,11 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
 
 local entity = GetUpdatedEntityID()
 local x, y = EntityGetTransform(entity)
 
 SetRandomSeed(x, y+GameGetFrameNum())
 
-local path = "mods/tales_of_kupoli/files/entities/animals/boss_bluesun_mimic/"
+local path = "mods/souls/files/entities/animals/boss_bluesun_mimic/"
 
 local opts = {
     "boss_dragon.xml",

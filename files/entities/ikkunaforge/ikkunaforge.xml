@@ -2,13 +2,13 @@
 
     <LuaComponent
         execute_every_n_frame="30"
-        script_source_file="mods/tales_of_kupoli/files/entities/ikkunaforge/forge.lua"
+        script_source_file="mods/souls/files/entities/ikkunaforge/forge.lua"
     ></LuaComponent>
 
     <LuaComponent
         execute_every_n_frame="-1"
         execute_on_added="1"
-        script_source_file="mods/tales_of_kupoli/files/entities/ikkunaforge/spawn.lua"
+        script_source_file="mods/souls/files/entities/ikkunaforge/spawn.lua"
     ></LuaComponent>
 
     <!--<InteractableComponent
@@ -18,8 +18,8 @@
     </InteractableComponent>
 
     <LuaComponent
-        script_interacting="mods/tales_of_kupoli/files/entities/ikkunaforge/forge.lua"
-        script_source_file="mods/tales_of_kupoli/files/entities/ikkunaforge/forge.lua"
+        script_interacting="mods/souls/files/entities/ikkunaforge/forge.lua"
+        script_source_file="mods/souls/files/entities/ikkunaforge/forge.lua"
         execute_every_n_frame="-1"
         enable_coroutines="1" >
     </LuaComponent>-->

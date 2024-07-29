@@ -70,7 +70,7 @@
 
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/tales_of_kupoli/entities/animals/boss_bluesun_mimic/proj_yellow.xml"
+		value_string="mods/souls/entities/animals/boss_bluesun_mimic/proj_yellow.xml"
 		>
 	</VariableStorageComponent>
 	

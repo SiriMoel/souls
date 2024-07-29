@@ -1,5 +1,5 @@
 <Sprite
- filename="mods/tales_of_kupoli/files/entities/projectiles/healing_arrow/sprite.png"
+ filename="mods/souls/files/entities/projectiles/healing_arrow/sprite.png"
  offset_x="3.5"
  offset_y="2.5"
  default_animation="fireball" >

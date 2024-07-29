@@ -12,5 +12,5 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
         CreateItemActionEntity( "KUPOLI_DIAHEART_LENSE", x , y )
     end
 
-	EntityLoad("mods/tales_of_kupoli/files/entities/revived/_tablets/alchemist.xml", x, y)
+	EntityLoad("mods/souls/files/entities/revived/_tablets/alchemist.xml", x, y)
 end

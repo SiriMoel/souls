@@ -1,4 +1,4 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
 
 local orb = GetUpdatedEntityID()
 local x, y = EntityGetTransform(orb)
@@ -123,13 +123,13 @@ local options = {
         prob = 0.65,
         min_count = 0,
         max_count = 0,
-        entity = "mods/tales_of_kupoli/files/entities/items/amethyst_orb/item.xml",
+        entity = "mods/souls/files/entities/items/amethyst_orb/item.xml",
     },
     {
         prob = 0.2,
         min_count = 0,
         max_count = 0,
-        entity = "mods/tales_of_kupoli/files/entities/items/deadringer/item.xml",
+        entity = "mods/souls/files/entities/items/deadringer/item.xml",
     },
     {
         prob = 0.8,

@@ -1,4 +1,4 @@
-<Sprite filename="mods/tales_of_kupoli/files/entities/items/essencewand_spirits/sprite.png" >
+<Sprite filename="mods/souls/files/entities/items/essencewand_spirits/sprite.png" >
 	
   <RectAnimation 
 	name="default" 

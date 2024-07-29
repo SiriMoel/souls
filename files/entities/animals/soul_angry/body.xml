@@ -1,5 +1,5 @@
 <Sprite 
-	filename="mods/tales_of_kupoli/files/entities/animals/soul_angry/body.png"
+	filename="mods/souls/files/entities/animals/soul_angry/body.png"
 	offset_x="10" 
 	offset_y="10"
 	default_animation="stand"

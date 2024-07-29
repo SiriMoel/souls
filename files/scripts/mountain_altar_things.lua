@@ -1,4 +1,4 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
 
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform( entity_id )
@@ -26,7 +26,7 @@ if ( #tablets > 0 ) then
 			local distance = math.abs(x - tx) + math.abs(y - ty)
 		
 			if ( distance < 56 ) then
-                if ModSettingGet("tales_of_kupoli.redsun_altar") then
+                if ModSettingGet("souls.redsun_altar") then
                     local boss_comp = EntityGetFirstComponentIncludingDisabled(tablet_id, "VariableStorageComponent", "boss") or 0
                     local boss = ComponentGetValue2(boss_comp, "value_string")
                     EntityLoad(boss, tx, ty)

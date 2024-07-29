@@ -7,7 +7,7 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 	EntityLoad( "data/entities/items/pickup/heart.xml", pos_x - 16, pos_y )
 	EntityLoad( "data/entities/items/wand_unshuffle_06.xml", pos_x + 16, pos_y )
 
-	EntityLoad("mods/tales_of_kupoli/files/entities/items/revdragonwand/weapon.xml", pos_x, pos_y)
+	EntityLoad("mods/souls/files/entities/items/revdragonwand/weapon.xml", pos_x, pos_y)
 	
 	AddFlagPersistent( "miniboss_dragon" )
 	AddFlagPersistent( "card_unlocked_dragon" )
@@ -26,13 +26,13 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 		count = 1
 	end
 	
-	EntityLoad("mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.xml", pos_x - 16, pos_y )
-	EntityLoad("mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.xml", pos_x + 16, pos_y )
-	EntityLoad("mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.xml", pos_x, pos_y + 8 )
+	EntityLoad("mods/souls/files/entities/misc/lootorb/lootorb.xml", pos_x - 16, pos_y )
+	EntityLoad("mods/souls/files/entities/misc/lootorb/lootorb.xml", pos_x + 16, pos_y )
+	EntityLoad("mods/souls/files/entities/misc/lootorb/lootorb.xml", pos_x, pos_y + 8 )
 
 	local spawntablet = math.random(1, 2)
 	if spawntablet == 1 then
-		EntityLoad( "mods/tales_of_kupoli/files/entities/revived/_tablets/dragon.xml", pos_x, pos_y)
+		EntityLoad( "mods/souls/files/entities/revived/_tablets/dragon.xml", pos_x, pos_y)
 	end
 	
 	for i=1,count do

@@ -1,4 +1,4 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
 
 local bluesun = GetUpdatedEntityID()
 local x, y = EntityGetTransform(bluesun)
@@ -24,7 +24,7 @@ local spot = {
     },
 }
 
-local path = "mods/tales_of_kupoli/files/entities/animals/boss_bluesun_mimic/"
+local path = "mods/souls/files/entities/animals/boss_bluesun_mimic/"
 local opts = { "attack_green", "attack_red", "attack_yellow", "attack_purple" }
 
 for i=1,4 do

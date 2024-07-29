@@ -13,7 +13,7 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 
 	--CreateItemActionEntity("KUPOLI_TOME_BUFF", x - 8 * 4 + (4-4) * 16, y ) -- maybe
 
-	EntityLoad("mods/tales_of_kupoli/files/entities/revived/_tablets/alchemist.xml", x, y)
+	EntityLoad("mods/souls/files/entities/revived/_tablets/alchemist.xml", x, y)
 
 	GameAddFlagRun("ikkuna_alchemist")
 	GamePrint("Trace found!")

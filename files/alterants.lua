@@ -1,4 +1,4 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
 
 alterants = {
     {
@@ -18,13 +18,13 @@ alterants = {
         name = "Sniper Kit",
         desc = "Apply a laser sight and make your wand shoot faster and more accurate projectiles.",
         actionid = "",
-        sprite = "mods/tales_of_kupoli/files/entities/alterants/sniperkit/alterant.png",
-        sprite_inhand = "mods/tales_of_kupoli/files/entities/alterants/sniperkit/alterant_inhand.png",
-        sprite_ui = "mods/tales_of_kupoli/files/entities/alterants/sniperkit/alterant_ui.png",
-        sprite_onwand = "mods/tales_of_kupoli/files/entities/alterants/sniperkit/alterant_onwand.png",
+        sprite = "mods/souls/files/entities/alterants/sniperkit/alterant.png",
+        sprite_inhand = "mods/souls/files/entities/alterants/sniperkit/alterant_inhand.png",
+        sprite_ui = "mods/souls/files/entities/alterants/sniperkit/alterant_ui.png",
+        sprite_onwand = "mods/souls/files/entities/alterants/sniperkit/alterant_onwand.png",
         func_apply = function(weapon)
             local x, y = EntityGetTransform(weapon)
-            local sniperbeam = EntityLoad("mods/tales_of_kupoli/files/entities/alterants/sniperkit/sniperbeam.xml", x, y)
+            local sniperbeam = EntityLoad("mods/souls/files/entities/alterants/sniperkit/sniperbeam.xml", x, y)
             EntityAddChild(weapon, sniperbeam)
             local speed = ComponentObjectGetValue2(EntityGetFirstComponentIncludingDisabled(weapon, "AbilityComponent") or 0, "gun_config", "speed_multiplier") or 0
             local spread = ComponentObjectGetValue2(EntityGetFirstComponentIncludingDisabled(weapon, "AbilityComponent") or 0, "gun_config", "spread_degrees") or 0
@@ -45,10 +45,10 @@ alterants = {
         name = "Shotgun Kit",
         desc = "Apply an extra barrel to your wand.",
         actionid = "",
-        sprite = "mods/tales_of_kupoli/files/entities/alterants/shotgunkit/alterant.png",
-        sprite_inhand = "mods/tales_of_kupoli/files/entities/alterants/shotgunkit/alterant_inhand.png",
-        sprite_ui = "mods/tales_of_kupoli/files/entities/alterants/shotgunkit/alterant_ui.png",
-        sprite_onwand = "mods/tales_of_kupoli/files/entities/alterants/shotgunkit/alterant_onwand.png",
+        sprite = "mods/souls/files/entities/alterants/shotgunkit/alterant.png",
+        sprite_inhand = "mods/souls/files/entities/alterants/shotgunkit/alterant_inhand.png",
+        sprite_ui = "mods/souls/files/entities/alterants/shotgunkit/alterant_ui.png",
+        sprite_onwand = "mods/souls/files/entities/alterants/shotgunkit/alterant_onwand.png",
         func_apply = function(weapon)
             local x, y = EntityGetTransform(weapon)
             local spread = ComponentObjectGetValue2(EntityGetFirstComponentIncludingDisabled(weapon, "AbilityComponent") or 0, "gun_config", "spread_degrees") or 0
@@ -64,10 +64,10 @@ alterants = {
         name = "Poisoner Kit",
         desc = "Shoot a trail of poison.",
         actionid = "KUPOLI_ALTERANT_POISONER_KIT",
-        sprite = "mods/tales_of_kupoli/files/entities/alterants/poisonerkit/alterant.png",
-        sprite_inhand = "mods/tales_of_kupoli/files/entities/alterants/poisonerkit/alterant_inhand.png",
-        sprite_ui = "mods/tales_of_kupoli/files/entities/alterants/poisonerkit/alterant_ui.png",
-        sprite_onwand = "mods/tales_of_kupoli/files/entities/alterants/poisonerkit/alterant_onwand.png",
+        sprite = "mods/souls/files/entities/alterants/poisonerkit/alterant.png",
+        sprite_inhand = "mods/souls/files/entities/alterants/poisonerkit/alterant_inhand.png",
+        sprite_ui = "mods/souls/files/entities/alterants/poisonerkit/alterant_ui.png",
+        sprite_onwand = "mods/souls/files/entities/alterants/poisonerkit/alterant_onwand.png",
         func_apply = function(weapon)
             local x, y = EntityGetTransform(weapon)
         end,
@@ -77,10 +77,10 @@ alterants = {
         name = "Rag of Homing",
         desc = "The mages may want this back.",
         actionid = "KUPOLI_ALTERANT_HOMING_RAG",
-        sprite = "mods/tales_of_kupoli/files/entities/alterants/homingrag/alterant.png",
-        sprite_inhand = "mods/tales_of_kupoli/files/entities/alterants/homingrag/alterant_inhand.png",
-        sprite_ui = "mods/tales_of_kupoli/files/entities/alterants/homingrag/alterant_ui.png",
-        sprite_onwand = "mods/tales_of_kupoli/files/entities/alterants/homingrag/alterant_onwand.png",
+        sprite = "mods/souls/files/entities/alterants/homingrag/alterant.png",
+        sprite_inhand = "mods/souls/files/entities/alterants/homingrag/alterant_inhand.png",
+        sprite_ui = "mods/souls/files/entities/alterants/homingrag/alterant_ui.png",
+        sprite_onwand = "mods/souls/files/entities/alterants/homingrag/alterant_onwand.png",
         func_apply = function(weapon)
             local x, y = EntityGetTransform(weapon)
         end,
@@ -90,10 +90,10 @@ alterants = {
         name = "Rag of Risk",
         desc = "The mages may want this back.",
         actionid = "KUPOLI_ALTERANT_RANDOM_RAG",
-        sprite = "mods/tales_of_kupoli/files/entities/alterants/randomrag/alterant.png",
-        sprite_inhand = "mods/tales_of_kupoli/files/entities/alterants/randomrag/alterant_inhand.png",
-        sprite_ui = "mods/tales_of_kupoli/files/entities/alterants/randomrag/alterant_ui.png",
-        sprite_onwand = "mods/tales_of_kupoli/files/entities/alterants/randomrag/alterant_onwand.png",
+        sprite = "mods/souls/files/entities/alterants/randomrag/alterant.png",
+        sprite_inhand = "mods/souls/files/entities/alterants/randomrag/alterant_inhand.png",
+        sprite_ui = "mods/souls/files/entities/alterants/randomrag/alterant_ui.png",
+        sprite_onwand = "mods/souls/files/entities/alterants/randomrag/alterant_onwand.png",
         func_apply = function(weapon)
             local x, y = EntityGetTransform(weapon)
         end,
@@ -103,10 +103,10 @@ alterants = {
         name = "Glue Kit",
         desc = "Sticky...",
         actionid = "KUPOLI_ALTERANT_MAGIC_GLUE",
-        sprite = "mods/tales_of_kupoli/files/entities/alterants/magicglue/alterant.png",
-        sprite_inhand = "mods/tales_of_kupoli/files/entities/alterants/magicglue/alterant_inhand.png",
-        sprite_ui = "mods/tales_of_kupoli/files/entities/alterants/magicglue/alterant_ui.png",
-        sprite_onwand = "mods/tales_of_kupoli/files/entities/alterants/magicglue/alterant_onwand.png",
+        sprite = "mods/souls/files/entities/alterants/magicglue/alterant.png",
+        sprite_inhand = "mods/souls/files/entities/alterants/magicglue/alterant_inhand.png",
+        sprite_ui = "mods/souls/files/entities/alterants/magicglue/alterant_ui.png",
+        sprite_onwand = "mods/souls/files/entities/alterants/magicglue/alterant_onwand.png",
         func_apply = function(weapon)
             local x, y = EntityGetTransform(weapon)
         end,
@@ -116,10 +116,10 @@ alterants = {
         name = "Firecracker",
         desc = "Fun and festive!",
         actionid = "KUPOLI_ALTERANT_FIRECRACKER",
-        sprite = "mods/tales_of_kupoli/files/entities/alterants/firecracker/alterant.png",
-        sprite_inhand = "mods/tales_of_kupoli/files/entities/alterants/firecracker/alterant_inhand.png",
-        sprite_ui = "mods/tales_of_kupoli/files/entities/alterants/firecracker/alterant_ui.png",
-        sprite_onwand = "mods/tales_of_kupoli/files/entities/alterants/firecracker/alterant_onwand.png",
+        sprite = "mods/souls/files/entities/alterants/firecracker/alterant.png",
+        sprite_inhand = "mods/souls/files/entities/alterants/firecracker/alterant_inhand.png",
+        sprite_ui = "mods/souls/files/entities/alterants/firecracker/alterant_ui.png",
+        sprite_onwand = "mods/souls/files/entities/alterants/firecracker/alterant_onwand.png",
         func_apply = function(weapon)
             local x, y = EntityGetTransform(weapon)
         end,
@@ -129,10 +129,10 @@ alterants = {
         name = "Fish",
         desc = "",
         actionid = "KUPOLI_ALTERANT_FIRECRACKER",
-        sprite = "mods/tales_of_kupoli/files/entities/alterants/fish/alterant.png",
-        sprite_inhand = "mods/tales_of_kupoli/files/entities/alterants/fish/alterant_inhand.png",
-        sprite_ui = "mods/tales_of_kupoli/files/entities/alterants/fish/alterant_ui.png",
-        sprite_onwand = "mods/tales_of_kupoli/files/entities/alterants/fish/alterant_onwand.png",
+        sprite = "mods/souls/files/entities/alterants/fish/alterant.png",
+        sprite_inhand = "mods/souls/files/entities/alterants/fish/alterant_inhand.png",
+        sprite_ui = "mods/souls/files/entities/alterants/fish/alterant_ui.png",
+        sprite_onwand = "mods/souls/files/entities/alterants/fish/alterant_onwand.png",
         func_apply = function(weapon)
             GameAddFlagRun("kupoli_alterant_fish_applied")
         end,
@@ -142,10 +142,10 @@ alterants = {
         name = "Fish",
         desc = "",
         actionid = "KUPOLI_ALTERANT_FIRECRACKER",
-        sprite = "mods/tales_of_kupoli/files/entities/alterants/fishlarge/alterant.png",
-        sprite_inhand = "mods/tales_of_kupoli/files/entities/alterants/fishlarge/alterant_inhand.png",
-        sprite_ui = "mods/tales_of_kupoli/files/entities/alterants/fishlarge/alterant_ui.png",
-        sprite_onwand = "mods/tales_of_kupoli/files/entities/alterants/fishlarge/alterant_onwand.png",
+        sprite = "mods/souls/files/entities/alterants/fishlarge/alterant.png",
+        sprite_inhand = "mods/souls/files/entities/alterants/fishlarge/alterant_inhand.png",
+        sprite_ui = "mods/souls/files/entities/alterants/fishlarge/alterant_ui.png",
+        sprite_onwand = "mods/souls/files/entities/alterants/fishlarge/alterant_onwand.png",
         func_apply = function(weapon)
             GameAddFlagRun("kupoli_alterant_fish_large_applied")
         end,
@@ -155,10 +155,10 @@ alterants = {
         name = "Rag of Relocation",
         desc = "The mages may want this back.",
         actionid = "KUPOLI_ALTERANT_TELE_RAG",
-        sprite = "mods/tales_of_kupoli/files/entities/alterants/telerag/alterant.png",
-        sprite_inhand = "mods/tales_of_kupoli/files/entities/alterants/telerag/alterant_inhand.png",
-        sprite_ui = "mods/tales_of_kupoli/files/entities/alterants/telerag/alterant_ui.png",
-        sprite_onwand = "mods/tales_of_kupoli/files/entities/alterants/telerag/alterant_onwand.png",
+        sprite = "mods/souls/files/entities/alterants/telerag/alterant.png",
+        sprite_inhand = "mods/souls/files/entities/alterants/telerag/alterant_inhand.png",
+        sprite_ui = "mods/souls/files/entities/alterants/telerag/alterant_ui.png",
+        sprite_onwand = "mods/souls/files/entities/alterants/telerag/alterant_onwand.png",
         func_apply = function(weapon)
             local x, y = EntityGetTransform(weapon)
         end,
@@ -167,7 +167,7 @@ alterants = {
 
 function SpawnAlterant(id, x, y)
     --[[
-    local a = EntityLoad("mods/tales_of_kupoli/files/entities/alterants/alterant.xml", x, y)
+    local a = EntityLoad("mods/souls/files/entities/alterants/alterant.xml", x, y)
     for i,v in ipairs(alterants) do
         if v.id == id then
             ComponentSetValue2(EntityGetFirstComponentIncludingDisabled(a, "UIInfoComponent") or 0, "name", v.name)

@@ -42,7 +42,7 @@
         	_tags="enabled_in_world,enabled_in_inventory"
             item_name="Soul Tome"
             play_hover_animation="1"
-            ui_sprite="mods/tales_of_kupoli/files/entities/items/tome/sprite_inworld.png"
+            ui_sprite="mods/souls/files/entities/items/tome/sprite_inworld.png"
             always_use_item_name_in_ui="1"
             remove_on_death="1"
             collect_nondefault_actions="1" >
@@ -54,27 +54,27 @@
 		    _tags="enabled_in_hand"
 		    offset_x="4"
     		offset_y="4"
-	    	image_file="mods/tales_of_kupoli/files/entities/items/tome/sprite.xml"
+	    	image_file="mods/souls/files/entities/items/tome/sprite.xml"
     	></SpriteComponent>
 
         <SpriteComponent
 		    _tags="enabled_in_world"
 		    offset_x="4"
     		offset_y="4"
-	    	image_file="mods/tales_of_kupoli/files/entities/items/tome/sprite_inworld.png"
+	    	image_file="mods/souls/files/entities/items/tome/sprite_inworld.png"
     	></SpriteComponent>
 
    <LuaComponent 
         execute_on_added="1"
         remove_after_executed="1"
-        script_source_file="mods/tales_of_kupoli/files/entities/items/tome/weapon.lua"
+        script_source_file="mods/souls/files/entities/items/tome/weapon.lua"
         >
     </LuaComponent>
 
 	<LuaComponent 
 		_tags="enabled_in_hand"
 		execute_every_n_frame="1"
-        script_source_file="mods/tales_of_kupoli/files/entities/items/tome/radar.lua"
+        script_source_file="mods/souls/files/entities/items/tome/radar.lua"
         >
     </LuaComponent>
 
@@ -156,7 +156,7 @@
     ></VariableStorageComponent>
 
     <!--<LuaComponent
-        script_source_file="mods/tales_of_kupoli/files/entities/items/tome/shield_update.lua"
+        script_source_file="mods/souls/files/entities/items/tome/shield_update.lua"
         execute_every_n_frame="2"
     ></LuaComponent>-->
 

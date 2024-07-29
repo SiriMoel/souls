@@ -1,4 +1,4 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
 
 local entity = GetUpdatedEntityID()
 local x, y = EntityGetTransform(entity)
@@ -11,5 +11,5 @@ if target ~= nil then
     local vx = 100
     local vy = 100
 
-    shoot_projectile_from_projectile(entity, "mods/tales_of_kupoli/files/entities/animals/boss_bluesun_mimic/proj_yellow.xml", x, y, vx, vy)
+    shoot_projectile_from_projectile(entity, "mods/souls/files/entities/animals/boss_bluesun_mimic/proj_yellow.xml", x, y, vx, vy)
 end

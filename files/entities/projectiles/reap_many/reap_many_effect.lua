@@ -1,4 +1,4 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
 
 local entity_id    = GetUpdatedEntityID()
 local pos_x, pos_y = EntityGetTransform( entity_id )
@@ -16,5 +16,5 @@ for i=1,how_many do
 	local vel_y = math.sin( theta ) * length
 	theta = theta + angle_inc
 
-	shoot_projectile( entity_id, "mods/tales_of_kupoli/files/entities/projectiles/reap_many/reap_many_effect.xml", pos_x, pos_y, vel_x, vel_y )
+	shoot_projectile( entity_id, "mods/souls/files/entities/projectiles/reap_many/reap_many_effect.xml", pos_x, pos_y, vel_x, vel_y )
 end

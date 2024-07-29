@@ -134,7 +134,7 @@
   
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/tales_of_kupoli/files/entities/projectiles/shovel/proj.xml"
+		value_string="mods/souls/files/entities/projectiles/shovel/proj.xml"
 		>
 	</VariableStorageComponent>
 </Entity>

@@ -108,7 +108,7 @@
 
   <VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/tales_of_kupoli/files/entities/items/essencewand_water/proj.xml"
+		value_string="mods/souls/files/entities/items/essencewand_water/proj.xml"
 		>
 	</VariableStorageComponent>
 

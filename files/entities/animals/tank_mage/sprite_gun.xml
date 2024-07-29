@@ -1,6 +1,6 @@
 <Sprite 
   default_animation="stand" 
-  filename="mods/tales_of_kupoli/files/entities/animals/tank_mage/gun.png" 
+  filename="mods/souls/files/entities/animals/tank_mage/gun.png" 
   offset_x="9" 
   offset_y="10" >
 

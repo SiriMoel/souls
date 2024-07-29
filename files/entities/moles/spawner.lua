@@ -1,6 +1,6 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
-dofile_once("mods/tales_of_kupoli/files/scripts/molebiomes.lua")
-dofile_once("mods/tales_of_kupoli/files/scripts/moleslist.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/molebiomes.lua")
+dofile_once("mods/souls/files/scripts/moleslist.lua")
 
 local entity = GetUpdatedEntityID()
 local x, y = EntityGetTransform(entity)

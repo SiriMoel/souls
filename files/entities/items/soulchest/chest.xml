@@ -21,7 +21,7 @@
   <PhysicsImageShapeComponent 
     body_id="1"
     centered="1"
-    image_file="mods/tales_of_kupoli/files/entities/items/soulchest/chest.png"
+    image_file="mods/souls/files/entities/items/soulchest/chest.png"
     material="rock_box2d_nohit_hard"
   ></PhysicsImageShapeComponent>
 
@@ -36,7 +36,7 @@
   
   <LuaComponent
   	_enabled="1"
-	script_source_file="mods/tales_of_kupoli/files/entities/items/soulchest/chest.lua"
+	script_source_file="mods/souls/files/entities/items/soulchest/chest.lua"
 	execute_every_n_frame="5"
 	_tags="chest_disable"
 	>

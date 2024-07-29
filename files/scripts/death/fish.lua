@@ -1,4 +1,4 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("data/scripts/perks/perk.lua")
 
 function death( damage_type_bit_field, damage_message, entity_thats_responsible, drop_items )
@@ -10,7 +10,7 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
     math.randomseed(x, y+GameGetFrameNum())
 
 	local doalterant = math.random(1, 4)
-    if ModSettingGet( "tales_of_kupoli.testing" ) then
+    if ModSettingGet( "souls.testing" ) then
         doalterant = 3
     end
     if doalterant == 3 then

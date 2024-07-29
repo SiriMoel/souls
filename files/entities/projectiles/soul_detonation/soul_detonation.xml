@@ -56,7 +56,7 @@
   </ProjectileComponent> <!--	  audio_event_name="explosions/fire" -->
 
   	<LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/projectiles/soul_detonation/soul_explosion.lua"
+		script_source_file="mods/souls/files/entities/projectiles/soul_detonation/soul_explosion.lua"
 		execute_every_n_frame="1"
 		remove_after_executed="1"
 		>
@@ -64,7 +64,7 @@
   
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/tales_of_kupoli/files/entities/projectiles/soul_detonation/soul_detonation.xml"
+		value_string="mods/souls/files/entities/projectiles/soul_detonation/soul_detonation.xml"
 		>
 	</VariableStorageComponent>
 

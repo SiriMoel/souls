@@ -1,6 +1,6 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("data/scripts/gun/procedural/gun_action_utils.lua")
-dofile_once("mods/tales_of_kupoli/files/alterants.lua")
+dofile_once("mods/souls/files/alterants.lua")
 
 local weapon = GetUpdatedEntityID()
 

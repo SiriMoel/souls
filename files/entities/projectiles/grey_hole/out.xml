@@ -1,6 +1,6 @@
 <Sprite 
   default_animation="explosion" 
-  filename="mods/tales_of_kupoli/files/entities/projectiles/grey_hole/out.png"
+  filename="mods/souls/files/entities/projectiles/grey_hole/out.png"
   offset_x="12" 
   offset_y="12" >
 

@@ -126,14 +126,14 @@
     ></GameAreaEffectComponent>
 
     <LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/projectiles/tome_shot/tome_shot.lua"
+		script_source_file="mods/souls/files/entities/projectiles/tome_shot/tome_shot.lua"
 		execute_every_n_frame="30"
 		>
 	</LuaComponent>
 
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/tales_of_kupoli/files/entities/projectiles/tome_shot/proj.xml"
+		value_string="mods/souls/files/entities/projectiles/tome_shot/proj.xml"
 		>
 	</VariableStorageComponent>
 	

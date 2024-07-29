@@ -1,5 +1,5 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
-dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/souls.lua")
 
 local card = GetUpdatedEntityID()
 local root = EntityGetRootEntity(card) -- player, right?
@@ -13,4 +13,4 @@ local whichsprite = 0
 whichsprite = cc * 20
 
 local comp_sprite = EntityGetFirstComponentIncludingDisabled(card, "SpriteComponent") or 0
-ComponentSetValue2(comp_sprite, "image_file", "mod/tales_of_kupoli/files/spell_icons/tome_charge/" .. tostring(whichsprite) .. ".png")
+ComponentSetValue2(comp_sprite, "image_file", "mod/souls/files/spell_icons/tome_charge/" .. tostring(whichsprite) .. ".png")

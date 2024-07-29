@@ -73,7 +73,7 @@
 		</Ingestion>
 	</StatusEffects>
     <Graphics 
-	texture_file="mods/tales_of_kupoli/files/materials_gfx/moleblood.png" 
+	texture_file="mods/souls/files/materials_gfx/moleblood.png" 
 	color="88386EC6" >
     </Graphics>
   </CellData>-->
@@ -98,7 +98,7 @@
 	show_in_creative_mode="1" 
 	>
 	<Graphics 
-	texture_file="mods/tales_of_kupoli/files/materials_gfx/souljuice.png" 
+	texture_file="mods/souls/files/materials_gfx/souljuice.png" 
 	color="8000e29a"
 	fire_colors_index="2" >
     </Graphics>

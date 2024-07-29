@@ -8,7 +8,7 @@
 	</IKLimbComponent>
 
 	<SpriteComponent 
-		image_file="mods/tales_of_kupoli/files/entities/animals/soul_angry/leg_a.png"
+		image_file="mods/souls/files/entities/animals/soul_angry/leg_a.png"
 		z_index="1.1"
 		offset_x="0"
 		offset_y="5"
@@ -17,7 +17,7 @@
 	</SpriteComponent>
 
 	<SpriteComponent 
-		image_file="mods/tales_of_kupoli/files/entities/animals/soul_angry/knee.png"
+		image_file="mods/souls/files/entities/animals/soul_angry/knee.png"
 		z_index="1.1"
 		offset_x="0"
 		offset_y="5"
@@ -26,7 +26,7 @@
 	</SpriteComponent>
 
 	<SpriteComponent 
-		image_file="mods/tales_of_kupoli/files/entities/animals/soul_angry/leg_b.png"
+		image_file="mods/souls/files/entities/animals/soul_angry/leg_b.png"
 		z_index="1.1"
 		offset_x="4"
 		offset_y="4"

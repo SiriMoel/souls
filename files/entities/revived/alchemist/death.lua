@@ -34,13 +34,13 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 
 	EntityLoad( "data/entities/animals/boss_alchemist/key.xml",  x, y )
 
-	EntityLoad("mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.xml", x - 16, y )
-	EntityLoad("mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.xml", x + 16, y )
-	EntityLoad("mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.xml", x, y + 8 )
+	EntityLoad("mods/souls/files/entities/misc/lootorb/lootorb.xml", x - 16, y )
+	EntityLoad("mods/souls/files/entities/misc/lootorb/lootorb.xml", x + 16, y )
+	EntityLoad("mods/souls/files/entities/misc/lootorb/lootorb.xml", x, y + 8 )
 
 	local spawntablet = math.random(1, 2)
 	if spawntablet == 1 then
-		EntityLoad( "mods/tales_of_kupoli/files/entities/revived/_tablets/alchemist.xml", x, y)
+		EntityLoad( "mods/souls/files/entities/revived/_tablets/alchemist.xml", x, y)
 	end
 	
 	AddFlagPersistent( "card_unlocked_duplicate" )

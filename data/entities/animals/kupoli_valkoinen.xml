@@ -51,7 +51,7 @@
 
 			<SpriteComponent
 				_tags="character"
-				image_file="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/sprite.xml" 
+				image_file="mods/souls/files/entities/animals/boss_valkoinen/sprite.xml" 
 				offset_y="0"
 				offset_x="0"
 			></SpriteComponent>
@@ -74,32 +74,32 @@
 
 
 		<LuaComponent
-			script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/state.lua"
+			script_source_file="mods/souls/files/entities/animals/boss_valkoinen/state.lua"
 			execute_every_n_frame="360"
 		></LuaComponent>
 
 		<LuaComponent
-			script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/shoot_burst.lua"
+			script_source_file="mods/souls/files/entities/animals/boss_valkoinen/shoot_burst.lua"
 			execute_every_n_frame="100"
 		></LuaComponent>
 
 		<LuaComponent
-			script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/shoot_halos.lua"
+			script_source_file="mods/souls/files/entities/animals/boss_valkoinen/shoot_halos.lua"
 			execute_every_n_frame="120"
 		></LuaComponent>
 
 		<LuaComponent
-			script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/shoot_pillars.lua"
+			script_source_file="mods/souls/files/entities/animals/boss_valkoinen/shoot_pillars.lua"
 			execute_every_n_frame="180"
 		></LuaComponent>
 
 		<LuaComponent
-			script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/shoot_swords.lua"
+			script_source_file="mods/souls/files/entities/animals/boss_valkoinen/shoot_swords.lua"
 			execute_every_n_frame="120"
 		></LuaComponent>
 
 		<LuaComponent
-			script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/swords.lua"
+			script_source_file="mods/souls/files/entities/animals/boss_valkoinen/swords.lua"
 			execute_every_n_frame="120"
 		></LuaComponent>
 
@@ -200,13 +200,13 @@
 	></LightComponent>
 
 	<LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/on_spawn.lua"
+		script_source_file="mods/souls/files/entities/animals/boss_valkoinen/on_spawn.lua"
 		execute_every_n_frame="-1"
 		execute_on_added="1"
 	></LuaComponent>
 
 	<LuaComponent
-		script_death="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/death.lua"
+		script_death="mods/souls/files/entities/animals/boss_valkoinen/death.lua"
 	></LuaComponent>
 
 </Entity>

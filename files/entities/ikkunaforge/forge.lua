@@ -1,5 +1,5 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
-dofile_once("mods/tales_of_kupoli/files/alterants.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
+dofile_once("mods/souls/files/alterants.lua")
 dofile_once("data/scripts/gun/procedural/gun_action_utils.lua")
 
 local forge = GetUpdatedEntityID()
@@ -18,7 +18,7 @@ for i,v in ipairs(targets) do
     local alterant_id = ComponentGetValue2(comp_alterant, "value_string")
     stored_alterants_string = stored_alterants_string .. alterant_id .. ","
     ComponentSetValue2(comp_stored_alterants, "value_string", stored_alterants_string)
-    if ModSettingGet( "tales_of_kupoli.testing" ) then
+    if ModSettingGet( "souls.testing" ) then
         GamePrint(stored_alterants_string)
     end
     EntityKill(v)
@@ -75,7 +75,7 @@ if wand ~= nil then
     for i,v in ipairs(applied_alterants) do
         applied_alterants_string = applied_alterants_string .. "," .. v
     end
-    if ModSettingGet( "tales_of_kupoli.testing" ) then
+    if ModSettingGet( "souls.testing" ) then
         GamePrint(applied_alterants_string)
     end
     GamePrint("Forge complete!")

@@ -1,4 +1,4 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("data/scripts/gun/gun_actions.lua")
 --dofile( "data/scripts/items/generate_shop_item.lua" )
 
@@ -58,7 +58,7 @@ end
 if #targets >= 1 then
     if not EntityHasTag(altar, "kupoli_secret_done") then
         generate_shop_item(x, y)
-        local e = EntityLoad("mods/tales_of_kupoli/files/biome/rainaltar/emitter.xml", x, y)
+        local e = EntityLoad("mods/souls/files/biome/rainaltar/emitter.xml", x, y)
     	EntityAddChild(entity_id, e)
         EntityAddTag(altar, "kupoli_secret_done")
     end

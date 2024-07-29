@@ -1,5 +1,5 @@
 <Sprite
-    filename="mods/tales_of_kupoli/files/entities/moles/mole/sprite.png" 
+    filename="mods/souls/files/entities/moles/mole/sprite.png" 
     offset_x="20" 
     offset_y="12"
     default_animation="stand" >

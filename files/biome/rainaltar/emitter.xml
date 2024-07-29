@@ -23,7 +23,7 @@
 		emission_interval_min_frames="1"
 		emission_interval_max_frames="1"
 		emit_cosmetic_particles="1"
-		image_animation_file="mods/tales_of_kupoli/files/biome/rainaltar/rainaltar.png"
+		image_animation_file="mods/souls/files/biome/rainaltar/rainaltar.png"
 		image_animation_speed="2"
 		image_animation_loop="0"
 		image_animation_raytrace_from_center="0"

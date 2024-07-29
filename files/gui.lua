@@ -1,8 +1,8 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
-dofile_once("mods/tales_of_kupoli/files/scripts/sunbook_pages.lua")
-dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/sunbook_pages.lua")
+dofile_once("mods/souls/files/scripts/souls.lua")
 
-local gusgui = dofile_once("mods/tales_of_kupoli/lib/gusgui/Gui.lua")
+local gusgui = dofile_once("mods/souls/lib/gusgui/Gui.lua")
 local Gui = gusgui.Create()
 
 local comp_brilliance = 0
@@ -124,7 +124,7 @@ Gui:AddElement(gusgui.Elements.HLayout({
                         return gusgui.Elements.VLayout({
                             children = {
                                 gusgui.Elements.Image({
-                                    src = "mods/tales_of_kupoli/files/entities/souls/sprites/soul_" .. v .. ".png",
+                                    src = "mods/souls/files/entities/souls/sprites/soul_" .. v .. ".png",
                                     scaleX = 0.75,
                                     scaleY = 0.75,
                                 }),
@@ -141,7 +141,7 @@ Gui:AddElement(gusgui.Elements.HLayout({
         
         gusgui.Elements.ImageButton({ -- open and close button
             id = "sunbook_openandclosebutton",
-            src = "mods/tales_of_kupoli/files/sunbook/button_open.png",
+            src = "mods/souls/files/sunbook/button_open.png",
             margin = { bottom = 1, },
             hidden = Gui:StateValue("sunbook_unlocked"),
             overrideZ  = 100000000,
@@ -169,10 +169,10 @@ Gui:AddElement(gusgui.Elements.HLayout({
                     value = Gui:StateValue("tome_path_1")
                 }),
                 gusgui.Elements.ImageButton({
-                    src = "mods/tales_of_kupoli/files/sunbook/tome/path_1.png",
+                    src = "mods/souls/files/sunbook/tome/path_1.png",
                     OnClick = function()
-                        dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
-                        dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+                        dofile_once("mods/souls/files/scripts/souls.lua")
+                        dofile_once("mods/souls/files/scripts/utils.lua")
                         if Gui.state.totalsoulscount > 15 then
                             UpgradeTome(1, 1)
                             RemoveSouls(15)
@@ -193,10 +193,10 @@ Gui:AddElement(gusgui.Elements.HLayout({
                     value = Gui:StateValue("tome_path_2")
                 }),
                 gusgui.Elements.ImageButton({
-                    src = "mods/tales_of_kupoli/files/sunbook/tome/path_2.png",
+                    src = "mods/souls/files/sunbook/tome/path_2.png",
                     OnClick = function()
-                        dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
-                        dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+                        dofile_once("mods/souls/files/scripts/souls.lua")
+                        dofile_once("mods/souls/files/scripts/utils.lua")
                         if Gui.state.totalsoulscount > 15 then
                             UpgradeTome(2, 1)
                             RemoveSouls(15)
@@ -217,10 +217,10 @@ Gui:AddElement(gusgui.Elements.HLayout({
                     value = Gui:StateValue("tome_path_3")
                 }),
                 gusgui.Elements.ImageButton({
-                    src = "mods/tales_of_kupoli/files/sunbook/tome/path_3.png",
+                    src = "mods/souls/files/sunbook/tome/path_3.png",
                     OnClick = function()
-                        dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
-                        dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+                        dofile_once("mods/souls/files/scripts/souls.lua")
+                        dofile_once("mods/souls/files/scripts/utils.lua")
                         if Gui.state.totalsoulscount > 15 then
                             UpgradeTome(3, 1)
                             RemoveSouls(15)
@@ -263,7 +263,7 @@ Gui:AddElement(gusgui.Elements.VLayout({
                     children = {
                         gusgui.Elements.ImageButton({ -- prev button
                             id = "sunbook_button_prev",
-                            src = "mods/tales_of_kupoli/files/sunbook/button_prev.png",
+                            src = "mods/souls/files/sunbook/button_prev.png",
                             visible = Gui:StateValue("sunbook_prev_visible"),
                             onClick = function(element)
                                 sunbook_page = sunbook_page - 1
@@ -271,12 +271,12 @@ Gui:AddElement(gusgui.Elements.VLayout({
                         }),
                         gusgui.Elements.Image({
                             id = "sunbook_button_spacing",
-                            src = "mods/tales_of_kupoli/files/sunbook/button_space1.png",
+                            src = "mods/souls/files/sunbook/button_space1.png",
                         }),
                         gusgui.Elements.ImageButton({ -- next button
                             id = "sunbook_button_next",
                             margin = { right = 1, },
-                            src = "mods/tales_of_kupoli/files/sunbook/button_next.png",
+                            src = "mods/souls/files/sunbook/button_next.png",
                             visible = Gui:StateValue("sunbook_next_visible"),
                             onClick = function(element)
                                 sunbook_page = sunbook_page + 1

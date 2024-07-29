@@ -1,6 +1,6 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("data/scripts/perks/perk.lua")
-dofile_once("mods/tales_of_kupoli/files/alterants.lua")
+dofile_once("mods/souls/files/alterants.lua")
 
 function death( damage_type_bit_field, damage_message, entity_thats_responsible, drop_items )
 	local entity_id    = GetUpdatedEntityID()
@@ -12,11 +12,11 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 
 	local r = math.random(1,4)
 	if r == 2 then
-		EntityLoad("mods/tales_of_kupoli/files/entities/items/hiisishotgun/weapon.xml", x, y-20)
+		EntityLoad("mods/souls/files/entities/items/hiisishotgun/weapon.xml", x, y-20)
 	end
 
 	local rr = math.random(1,4)
-	if ModSettingGet( "tales_of_kupoli.testing" ) then
+	if ModSettingGet( "souls.testing" ) then
         rr = 2
     end
 	if rr == 2 then

@@ -1,6 +1,6 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("data/scripts/gun/gun_actions.lua")
-dofile_once("mods/tales_of_kupoli/files/biome/souldoor/recipes.lua")
+dofile_once("mods/souls/files/biome/souldoor/recipes.lua")
 
 local altar = GetUpdatedEntityID()
 local x, y = EntityGetTransform(altar)

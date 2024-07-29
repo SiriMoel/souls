@@ -1,7 +1,7 @@
 <Entity >
 
 	<LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/misc/soul_speed_fx.lua"
+		script_source_file="mods/souls/files/entities/misc/soul_speed_fx.lua"
 		execute_every_n_frame="1"
 		remove_after_executed="1"
 		>

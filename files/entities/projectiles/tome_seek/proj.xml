@@ -72,18 +72,18 @@
     ></GameAreaEffectComponent>
 
         <!--<SpriteComponent
-	    	image_file="mods/tales_of_kupoli/files/entities/projectiles/tome_seek/spark.xml"
+	    	image_file="mods/souls/files/entities/projectiles/tome_seek/spark.xml"
     	></SpriteComponent-->
 
     <LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/projectiles/tome_seek/tome_shot.lua"
+		script_source_file="mods/souls/files/entities/projectiles/tome_seek/tome_shot.lua"
 		execute_every_n_frame="2"
 		>
 	</LuaComponent>
 
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/tales_of_kupoli/files/entities/projectiles/tome_seek/proj.xml"
+		value_string="mods/souls/files/entities/projectiles/tome_seek/proj.xml"
 		>
 	</VariableStorageComponent>
 	

@@ -1,4 +1,4 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
 
 function death( damage_type_bit_field, damage_message, entity_thats_responsible, drop_items )
 	local entity = GetUpdatedEntityID()
@@ -20,11 +20,11 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 		CreateItemActionEntity( "KUPOLI_" .. v, x, y )
 	end
 
-	EntityLoad("mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.xml", x - 16, y )
-	EntityLoad("mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.xml", x + 16, y )
-	EntityLoad("mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.xml", x, y + 8 )
+	EntityLoad("mods/souls/files/entities/misc/lootorb/lootorb.xml", x - 16, y )
+	EntityLoad("mods/souls/files/entities/misc/lootorb/lootorb.xml", x + 16, y )
+	EntityLoad("mods/souls/files/entities/misc/lootorb/lootorb.xml", x, y + 8 )
 
-	EntityLoad("mods/tales_of_kupoli/files/entities/items/moldos_special/weapon.xml", x, y-16)
+	EntityLoad("mods/souls/files/entities/items/moldos_special/weapon.xml", x, y-16)
 
 	GameAddFlagRun("ikkuna_valkoinen")
 	GamePrint("Trace found!")

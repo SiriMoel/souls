@@ -1,4 +1,4 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
 
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform( entity_id )
@@ -45,9 +45,9 @@ if ( Random( 1, 4 ) > 1 ) then
 	vel_y = 0- math.sin( angle ) * length
 
     if #EntityGetInRadiusWithTag(x, y, 25, "player_unit") > 0 then
-        shoot_projectile( entity_id, "mods/tales_of_kupoli/files/entities/animals/hm_portal_mimic/tentacle.xml", x, y, vel_x * 1.1, vel_y * 1.1 )
-        shoot_projectile( entity_id, "mods/tales_of_kupoli/files/entities/animals/hm_portal_mimic/tentacle.xml", x, y, vel_x * 0.9, vel_y * 0.9 )
-        shoot_projectile( entity_id, "mods/tales_of_kupoli/files/entities/animals/hm_portal_mimic/tentacle.xml", x, y, vel_x, vel_y )
+        shoot_projectile( entity_id, "mods/souls/files/entities/animals/hm_portal_mimic/tentacle.xml", x, y, vel_x * 1.1, vel_y * 1.1 )
+        shoot_projectile( entity_id, "mods/souls/files/entities/animals/hm_portal_mimic/tentacle.xml", x, y, vel_x * 0.9, vel_y * 0.9 )
+        shoot_projectile( entity_id, "mods/souls/files/entities/animals/hm_portal_mimic/tentacle.xml", x, y, vel_x, vel_y )
     end
 end
 

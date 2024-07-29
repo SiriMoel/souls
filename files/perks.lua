@@ -1,4 +1,4 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
 local total_perks_picked = 0;
 local has_movement_perk = false;
 local function apply_movement_changes(entity, reset)
@@ -55,13 +55,13 @@ local a = {
 		id = "SOLAR_RADAR",
 		ui_name = "$perk_name_kupoli_solar_radar",
 		ui_description = "$perk_desc_kupoli_solar_radar",
-		ui_icon = "mods/tales_of_kupoli/files/perk_icons/radar_sun.png",
-		perk_icon = "mods/tales_of_kupoli/files/perk_icons/radar_sun_inworld.png",
+		ui_icon = "mods/souls/files/perk_icons/radar_sun.png",
+		perk_icon = "mods/souls/files/perk_icons/radar_sun_inworld.png",
 		stackable = STACKABLE_NO,
 		func = function( entity_perk_item, entity_who_picked, item_name )
 			EntityAddComponent(entity_who_picked, "LuaComponent", {
 				_tags = "perk_component",
-				script_source_file = "mods/tales_of_kupoli/files/scripts/solar_radar.lua",
+				script_source_file = "mods/souls/files/scripts/solar_radar.lua",
 				execute_every_n_frame = "1",
 			})
 		end,
@@ -70,8 +70,8 @@ local a = {
 		id = "PERK_MOVEMENT",
 		ui_name = "$perk_name_kupoli_perk_movement",
 		ui_description = "$perk_desc_kupoli_perk_movement",
-		ui_icon = "mods/tales_of_kupoli/files/perk_icons/perk_movement.png",
-		perk_icon = "mods/tales_of_kupoli/files/perk_icons/perk_movement_inworld.png",
+		ui_icon = "mods/souls/files/perk_icons/perk_movement.png",
+		perk_icon = "mods/souls/files/perk_icons/perk_movement_inworld.png",
 		stackable = STACKABLE_NO,
 		func = function (entity_perk_item, entity_who_picked, item_name)
 			total_perks_picked = 1
@@ -85,8 +85,8 @@ local a = {
 		id = "ALWAYS_DROP_SOULS",
 		ui_name = "$perk_name_kupoli_always_drop_souls",
 		ui_description = "$perk_desc_kupoli_always_drop_souls",
-		ui_icon = "mods/tales_of_kupoli/files/perk_icons/always_drop_souls.png",
-		perk_icon = "mods/tales_of_kupoli/files/perk_icons/always_drop_souls_inworld.png",
+		ui_icon = "mods/souls/files/perk_icons/always_drop_souls.png",
+		perk_icon = "mods/souls/files/perk_icons/always_drop_souls_inworld.png",
 		stackable = STACKABLE_NO,
 		func = function (entity_perk_item, entity_who_picked, item_name)
 			EntityAddTag(entity_who_picked, "kupoli_always_drop_souls")
@@ -99,8 +99,8 @@ local a = {
 		id = "BIOME_SOULS",
 		ui_name = "$perk_name_kupoli_biome_souls",
 		ui_description = "$perk_desc_kupoli_biome_souls",
-		ui_icon = "mods/tales_of_kupoli/files/perk_icons/biome_souls.png",
-		perk_icon = "mods/tales_of_kupoli/files/perk_icons/biome_souls_inworld.png",
+		ui_icon = "mods/souls/files/perk_icons/biome_souls.png",
+		perk_icon = "mods/souls/files/perk_icons/biome_souls_inworld.png",
 		stackable = STACKABLE_NO,
 		func = function (entity_perk_item, entity_who_picked, item_name)
 			EntityAddTag(entity_who_picked, "kupoli_biome_souls")
@@ -113,8 +113,8 @@ local a = {
 		id = "ENEMIES_DROP_WANDS",
 		ui_name = "$perk_name_kupoli_enemies_drop_wands",
 		ui_description = "$perk_desc_kupoli_enemies_drop_wands",
-		ui_icon = "mods/tales_of_kupoli/files/perk_icons/enemies_drop_wands.png",
-		perk_icon = "mods/tales_of_kupoli/files/perk_icons/enemies_drop_wands_inworld.png",
+		ui_icon = "mods/souls/files/perk_icons/enemies_drop_wands.png",
+		perk_icon = "mods/souls/files/perk_icons/enemies_drop_wands_inworld.png",
 		stackable = STACKABLE_NO,
 		func = function (entity_perk_item, entity_who_picked, item_name)
 			EntityAddTag(entity_who_picked, "kupoli_enemies_drop_wands")
@@ -127,14 +127,14 @@ local a = {
 		id = "KICK_TO_DASH",
 		ui_name = "$perk_name_kupoli_kick_dash",
 		ui_description = "$perk_desc_kupoli_kick_dash",
-		ui_icon = "mods/tales_of_kupoli/files/perk_icons/kick_dash.png",
-		perk_icon = "mods/tales_of_kupoli/files/perk_icons/kick_dash_inworld.png",
+		ui_icon = "mods/souls/files/perk_icons/kick_dash.png",
+		perk_icon = "mods/souls/files/perk_icons/kick_dash_inworld.png",
 		stackable = STACKABLE_NO,
 		func = function (entity_perk_item, entity_who_picked, item_name)
 			EntityAddTag(entity_who_picked, "kupoli_kick_to_dash")
 			EntityAddComponent( entity_who_picked, "LuaComponent", {
 				_tags="kupoli_kick_to_dash",
-				script_source_file="mods/tales_of_kupoli/files/scripts/kick_to_dash.lua",
+				script_source_file="mods/souls/files/scripts/kick_to_dash.lua",
 				execute_every_n_frame="1",
 			} )
 		end,
@@ -150,8 +150,8 @@ local a = {
 		id = "EXTRA_SOUL",
 		ui_name = "$perk_name_kupoli_extra_soul",
 		ui_description = "$perk_desc_kupoli_extra_soul",
-		ui_icon = "mods/tales_of_kupoli/files/perk_icons/extra_soul.png",
-		perk_icon = "mods/tales_of_kupoli/files/perk_icons/extra_soul_inworld.png",
+		ui_icon = "mods/souls/files/perk_icons/extra_soul.png",
+		perk_icon = "mods/souls/files/perk_icons/extra_soul_inworld.png",
 		stackable = STACKABLE_NO,
 		func = function (entity_perk_item, entity_who_picked, item_name)
 			EntityAddTag(entity_who_picked, "kupoli_extra_soul")

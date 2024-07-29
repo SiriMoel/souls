@@ -1,5 +1,5 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
-dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/souls.lua")
 
 dofile_once("data/scripts/lib/utilities.lua")
 
@@ -49,7 +49,7 @@ if ( shooter_id ~= nil ) and ( shooter_id ~= NULL_ENTITY ) then
 		local new_x = pos_x + math.cos( theta ) * length
 		local new_y = pos_y + math.sin( theta ) * length
 		
-		local part_id = shoot_projectile_from_projectile( entity_id, "mods/tales_of_kupoli/files/entities/projectiles/soul_guard/part.xml", new_x, new_y, 0, 0 )
+		local part_id = shoot_projectile_from_projectile( entity_id, "mods/souls/files/entities/projectiles/soul_guard/part.xml", new_x, new_y, 0, 0 )
 		RemoveSouls(1)
 
 		EntityAddComponent( part_id, "VariableStorageComponent", 

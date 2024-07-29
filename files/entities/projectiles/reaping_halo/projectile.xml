@@ -83,14 +83,14 @@
     ></GameAreaEffectComponent>
 
     <LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/projectiles/reaping_halo/reaping_halo.lua"
+		script_source_file="mods/souls/files/entities/projectiles/reaping_halo/reaping_halo.lua"
 		execute_every_n_frame="1"
 		>
 	</LuaComponent>
 
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/tales_of_kupoli/files/entities/projectiles/reaping_halo/projectile.xml"
+		value_string="mods/souls/files/entities/projectiles/reaping_halo/projectile.xml"
 		>
 	</VariableStorageComponent>
 	

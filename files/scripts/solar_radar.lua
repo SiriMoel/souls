@@ -28,11 +28,11 @@ for _,sun_id in pairs(EntityGetInRadiusWithTag( pos_x, pos_y, range, "sun_new"))
 
 	-- display sprite based on proximity
 	if distance > range * 0.8 then
-		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/sunradar/new/radar_sun_faint.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+		GameCreateSpriteForXFrames( "mods/souls/files/particles/sunradar/new/radar_sun_faint.png", indicator_x, indicator_y, true, 0, 0, 1, true )
 	elseif distance > range * 0.5 then
-		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/sunradar/new/radar_sun_medium.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+		GameCreateSpriteForXFrames( "mods/souls/files/particles/sunradar/new/radar_sun_medium.png", indicator_x, indicator_y, true, 0, 0, 1, true )
 	else
-		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/sunradar/new/radar_sun_strong.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+		GameCreateSpriteForXFrames( "mods/souls/files/particles/sunradar/new/radar_sun_strong.png", indicator_x, indicator_y, true, 0, 0, 1, true )
 	end
 end
 
@@ -57,11 +57,11 @@ for _,sun_id in pairs(EntityGetInRadiusWithTag( pos_x, pos_y, range, "sun_dark")
 
 	-- display sprite based on proximity
 	if distance > range * 0.8 then
-		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/sunradar/dark/radar_sun_faint.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+		GameCreateSpriteForXFrames( "mods/souls/files/particles/sunradar/dark/radar_sun_faint.png", indicator_x, indicator_y, true, 0, 0, 1, true )
 	elseif distance > range * 0.5 then
-		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/sunradar/dark/radar_sun_medium.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+		GameCreateSpriteForXFrames( "mods/souls/files/particles/sunradar/dark/radar_sun_medium.png", indicator_x, indicator_y, true, 0, 0, 1, true )
 	else
-		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/sunradar/dark/radar_sun_strong.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+		GameCreateSpriteForXFrames( "mods/souls/files/particles/sunradar/dark/radar_sun_strong.png", indicator_x, indicator_y, true, 0, 0, 1, true )
 	end
 end
 
@@ -86,11 +86,11 @@ for _,sun_id in pairs(EntityGetInRadiusWithTag( pos_x, pos_y, range, "sun_green"
 
 	-- display sprite based on proximity
 	if distance > range * 0.8 then
-		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/sunradar/green/radar_sun_faint.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+		GameCreateSpriteForXFrames( "mods/souls/files/particles/sunradar/green/radar_sun_faint.png", indicator_x, indicator_y, true, 0, 0, 1, true )
 	elseif distance > range * 0.5 then
-		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/sunradar/green/radar_sun_medium.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+		GameCreateSpriteForXFrames( "mods/souls/files/particles/sunradar/green/radar_sun_medium.png", indicator_x, indicator_y, true, 0, 0, 1, true )
 	else
-		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/sunradar/green/radar_sun_strong.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+		GameCreateSpriteForXFrames( "mods/souls/files/particles/sunradar/green/radar_sun_strong.png", indicator_x, indicator_y, true, 0, 0, 1, true )
 	end
 end
 
@@ -115,10 +115,10 @@ for _,sun_id in pairs(EntityGetInRadiusWithTag( pos_x, pos_y, range, "sun_red"))
 
 	-- display sprite based on proximity
 	if distance > range * 0.8 then
-		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/sunradar/red/radar_sun_faint.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+		GameCreateSpriteForXFrames( "mods/souls/files/particles/sunradar/red/radar_sun_faint.png", indicator_x, indicator_y, true, 0, 0, 1, true )
 	elseif distance > range * 0.5 then
-		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/sunradar/red/radar_sun_medium.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+		GameCreateSpriteForXFrames( "mods/souls/files/particles/sunradar/red/radar_sun_medium.png", indicator_x, indicator_y, true, 0, 0, 1, true )
 	else
-		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/particles/sunradar/red/radar_sun_strong.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+		GameCreateSpriteForXFrames( "mods/souls/files/particles/sunradar/red/radar_sun_strong.png", indicator_x, indicator_y, true, 0, 0, 1, true )
 	end
 end

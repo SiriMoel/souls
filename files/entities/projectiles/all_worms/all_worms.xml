@@ -1,6 +1,6 @@
 <Entity tags="projectile_player" >
 	<LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/projectiles/all_worms/all_worms.lua"
+		script_source_file="mods/souls/files/entities/projectiles/all_worms/all_worms.lua"
 		execute_every_n_frame="-1"
 		execute_on_added="1"
 		>

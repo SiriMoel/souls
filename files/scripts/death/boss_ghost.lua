@@ -5,5 +5,5 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 	local entity = GetUpdatedEntityID()
 	local x, y = EntityGetTransform(entity)
 
-	EntityLoad("mods/tales_of_kupoli/files/entities/revived/_tablets/ghost.xml", x, y)
+	EntityLoad("mods/souls/files/entities/revived/_tablets/ghost.xml", x, y)
 end

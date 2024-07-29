@@ -152,14 +152,14 @@
 	</AudioLoopComponent>
 
     <LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/projectiles/worm_enhancer/enhance.lua"
+		script_source_file="mods/souls/files/entities/projectiles/worm_enhancer/enhance.lua"
 		execute_every_n_frame="5"
 		>
 	</LuaComponent>
 	
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/tales_of_kupoli/files/entities/projectiles/worm_enhancer/projectile.xml"
+		value_string="mods/souls/files/entities/projectiles/worm_enhancer/projectile.xml"
 		>
 	</VariableStorageComponent>
 </Entity>

@@ -194,7 +194,7 @@
   
   <VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/tales_of_kupoli/files/entities/items/robot_flamethrower/proj.xml"
+		value_string="mods/souls/files/entities/items/robot_flamethrower/proj.xml"
 		>
 	</VariableStorageComponent>
 

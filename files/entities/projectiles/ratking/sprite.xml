@@ -1,5 +1,5 @@
 <Sprite
- filename="mods/tales_of_kupoli/files/entities/projectiles/ratking/sprite.png"
+ filename="mods/souls/files/entities/projectiles/ratking/sprite.png"
  offset_x="12.5"
  offset_y="12.5"
  default_animation="fireball" >

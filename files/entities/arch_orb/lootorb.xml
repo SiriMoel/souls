@@ -1,7 +1,7 @@
 <Entity>
 
     <LuaComponent
-        script_source_file="mods/tales_of_kupoli/files/entities/arch_orb/lootorb.lua"
+        script_source_file="mods/souls/files/entities/arch_orb/lootorb.lua"
         execute_every_n_frame="30"
     ></LuaComponent>
 

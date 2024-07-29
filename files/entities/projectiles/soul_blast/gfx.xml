@@ -1,5 +1,5 @@
 <Sprite
- filename="mods/tales_of_kupoli/files/entities/projectiles/soul_blast/gfx.png"
+ filename="mods/souls/files/entities/projectiles/soul_blast/gfx.png"
  offset_x="2"
  offset_y="2"
  default_animation="fireball" >

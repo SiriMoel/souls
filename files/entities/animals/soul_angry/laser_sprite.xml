@@ -1,5 +1,5 @@
 <Sprite
- filename="mods/tales_of_kupoli/files/entities/animals/soul_angry/laser_sprite.png"
+ filename="mods/souls/files/entities/animals/soul_angry/laser_sprite.png"
  offset_x="3"
  offset_y="1"
  default_animation="fireball" >

@@ -1,5 +1,5 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
-dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/souls.lua")
 
 function death(damage_type_bit_field, damage_message, entity_thats_responsible, drop_items)
     local entity = GetUpdatedEntityID()
@@ -18,11 +18,11 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
         local which = math.random(1,2)
         if which == 1 then
             GamePrint("Chest dropped!")
-            EntityLoad("mods/tales_of_kupoli/files/entities/items/soulchest/chest.xml", x, y)
+            EntityLoad("mods/souls/files/entities/items/soulchest/chest.xml", x, y)
         end
         if which == 2 then
             GamePrint("Key dropped!")
-            EntityLoad("mods/tales_of_kupoli/files/entities/items/soulchest/key/key.xml", x, y)
+            EntityLoad("mods/souls/files/entities/items/soulchest/key/key.xml", x, y)
         end
     end
 end

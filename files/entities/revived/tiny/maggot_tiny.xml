@@ -272,7 +272,7 @@
 	</LightComponent>
 	
 	<LuaComponent
-		script_death="mods/tales_of_kupoli/files/entities/revived/tiny/death.lua"
+		script_death="mods/souls/files/entities/revived/tiny/death.lua"
 		>
 	</LuaComponent>
 

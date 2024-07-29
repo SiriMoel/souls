@@ -1,5 +1,5 @@
 <Sprite
- filename="mods/tales_of_kupoli/files/entities/animals/tank_mage/tank.png" 
+ filename="mods/souls/files/entities/animals/tank_mage/tank.png" 
  offset_x="9"
  offset_y="16" 
   default_animation="stand">

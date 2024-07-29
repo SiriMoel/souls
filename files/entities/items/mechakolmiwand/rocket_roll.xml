@@ -60,7 +60,7 @@
   </AudioComponent>
 
 	<LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/items/mechakolmiwand/rocket_roll_end.lua"
+		script_source_file="mods/souls/files/entities/items/mechakolmiwand/rocket_roll_end.lua"
 		execute_every_n_frame="55"
 		remove_after_executed="1"
 		>
@@ -68,7 +68,7 @@
 	
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/tales_of_kupoli/files/entities/items/mechakolmiwand/rocket.xml"
+		value_string="mods/souls/files/entities/items/mechakolmiwand/rocket.xml"
 		>
 	</VariableStorageComponent>
 

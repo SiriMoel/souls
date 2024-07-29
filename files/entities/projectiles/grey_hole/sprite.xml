@@ -1,5 +1,5 @@
 <Sprite
- filename="mods/tales_of_kupoli/files/entities/projectiles/grey_hole/sprite.png"
+ filename="mods/souls/files/entities/projectiles/grey_hole/sprite.png"
  offset_x="12"
  offset_y="12"
  default_animation="fireball" >

@@ -1,12 +1,12 @@
 <Entity tags="molespawner">
 
     <LuaComponent
-        script_source_file="mods/tales_of_kupoli/files/entities/moles/spawner.lua"
+        script_source_file="mods/souls/files/entities/moles/spawner.lua"
         execute_every_n_frame="5"
     ></LuaComponent>
 
     <SpriteParticleEmitterComponent
-			sprite_file="mods/tales_of_kupoli/files/particles/mole_spawner.xml" >
+			sprite_file="mods/souls/files/particles/mole_spawner.xml" >
 	</SpriteParticleEmitterComponent>
 
 </Entity>

@@ -1,5 +1,5 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
-dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/souls.lua")
 
 local entity_id = GetUpdatedEntityID()
 local pos_x, pos_y = EntityGetTransform( entity_id )
@@ -30,10 +30,10 @@ for _,enemy_id in pairs(EntityGetInRadiusWithTag( pos_x, pos_y, range, "reap_mar
 
 	-- display sprite based on proximity
 	if distance > range * 0.8 then
-		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/entities/items/tome/radar_faint.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+		GameCreateSpriteForXFrames( "mods/souls/files/entities/items/tome/radar_faint.png", indicator_x, indicator_y, true, 0, 0, 1, true )
 	elseif distance > range * 0.5 then
-		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/entities/items/tome/radar_medium.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+		GameCreateSpriteForXFrames( "mods/souls/files/entities/items/tome/radar_medium.png", indicator_x, indicator_y, true, 0, 0, 1, true )
 	else
-		GameCreateSpriteForXFrames( "mods/tales_of_kupoli/files/entities/items/tome/radar_strong.png", indicator_x, indicator_y, true, 0, 0, 1, true )
+		GameCreateSpriteForXFrames( "mods/souls/files/entities/items/tome/radar_strong.png", indicator_x, indicator_y, true, 0, 0, 1, true )
 	end
 end

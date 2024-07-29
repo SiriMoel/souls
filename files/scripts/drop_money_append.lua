@@ -1,6 +1,6 @@
 dofile_once( "data/scripts/game_helpers.lua" )
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
-dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/souls.lua")
 
 local do_money_drop_old = do_money_drop
 
@@ -150,7 +150,7 @@ function do_money_drop( amount_multiplier, trick_kill )
             end
     
             if math.random(1, 4) == 2 or EntityHasTag(GetPlayer(), "kupoli_always_drop_souls") then
-                if ModSettingGet("tales_of_kupoli.say_soul") == true then
+                if ModSettingGet("souls.say_soul") == true then
                     GamePrint("You have acquired a " .. SoulNameCheck(herd_id) .. " soul!")
                 end
                 local howmany = 1
@@ -181,7 +181,7 @@ function do_money_drop( amount_multiplier, trick_kill )
                         end
                     end
                 end
-                if ModSettingGet("tales_of_kupoli.say_soul") == true then
+                if ModSettingGet("souls.say_soul") == true then
                     GamePrint("You have acquired a " .. SoulNameCheck(whichtype) .. " soul!")
                 end
                 AddSoul(whichtype)

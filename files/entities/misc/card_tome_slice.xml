@@ -2,7 +2,7 @@
 	
 	<Base file="data/entities/base_custom_card.xml" > 
 		<SpriteComponent 
-			image_file="mods/tales_of_kupoli/files/spell_icons/tome_slice.png"
+			image_file="mods/souls/files/spell_icons/tome_slice.png"
 			>
 		</SpriteComponent>
 		
@@ -18,7 +18,7 @@
 
 	<LuaComponent 
 		_tags="enabled_in_hand"
-		script_source_file="mods/tales_of_kupoli/files/entities/misc/card_tome_slice.lua"
+		script_source_file="mods/souls/files/entities/misc/card_tome_slice.lua"
 		execute_every_n_frame="1" >
 	</LuaComponent>
 

@@ -13,7 +13,7 @@
 			sense_creatures="1"
 			attack_ranged_enabled="1"
 			can_fly="1" 
-			attack_ranged_entity_file="mods/tales_of_kupoli/files/entities/animals/soul_angry/halo.xml"
+			attack_ranged_entity_file="mods/souls/files/entities/animals/soul_angry/halo.xml"
 			attack_ranged_action_frame="5"
 			attack_ranged_frames_between="5"
 			attack_ranged_offset_y="0"
@@ -23,7 +23,7 @@
 		</AnimalAIComponent>
 
         <LuaComponent
-		    script_death="mods/tales_of_kupoli/files/entities/animals/puppet_master/death.lua"
+		    script_death="mods/souls/files/entities/animals/puppet_master/death.lua"
 	    ></LuaComponent>
 		
 		<DamageModelComponent 
@@ -35,7 +35,7 @@
 		</DamageModelComponent>
 
 		<SpriteComponent 
-			image_file="mods/tales_of_kupoli/files/entities/animals/puppet_master/sprite.xml"
+			image_file="mods/souls/files/entities/animals/puppet_master/sprite.xml"
 			offset_x="0"
 			offset_y="0"
 			>

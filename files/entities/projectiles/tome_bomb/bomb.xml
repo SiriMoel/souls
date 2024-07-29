@@ -1,5 +1,5 @@
 <Sprite
- filename="mods/tales_of_kupoli/files/entities/projectiles/tome_bomb/bomb.png"
+ filename="mods/souls/files/entities/projectiles/tome_bomb/bomb.png"
  offset_x="6"
  offset_y="9"
  default_animation="default" >

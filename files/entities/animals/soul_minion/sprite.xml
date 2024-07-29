@@ -1,5 +1,5 @@
 <Sprite 
-  filename="mods/tales_of_kupoli/files/entities/animals/soul_minion/sprite.png"
+  filename="mods/souls/files/entities/animals/soul_minion/sprite.png"
   offset_x="5" 
   offset_y="7" 
   default_animation="stand">

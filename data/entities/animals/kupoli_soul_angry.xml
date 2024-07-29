@@ -46,7 +46,7 @@
 		sense_creatures="1"
 		attack_ranged_enabled="1"
 		can_fly="1" 
-		attack_ranged_entity_file="mods/tales_of_kupoli/files/entities/animals/soul_angry/laser.xml"
+		attack_ranged_entity_file="mods/souls/files/entities/animals/soul_angry/laser.xml"
 		attack_ranged_action_frame="5"
 		attack_ranged_frames_between="10"
 		attack_ranged_offset_y="0"
@@ -55,7 +55,7 @@
 	></AnimalAIComponent>
 
 	<SpriteComponent 
-		image_file="mods/tales_of_kupoli/files/entities/animals/soul_angry/body.xml"
+		image_file="mods/souls/files/entities/animals/soul_angry/body.xml"
 		offset_x="0"
 		offset_y="0"
 	></SpriteComponent>
@@ -132,7 +132,7 @@
         radius="8"
 		friction="0.0"
 		restitution="0.3" 
-    ></PhysicsShapeComponent> <!--image_file="mods/tales_of_kupoli/files/entities/animals/soul_angry/body.png"-->
+    ></PhysicsShapeComponent> <!--image_file="mods/souls/files/entities/animals/soul_angry/body.png"-->
      
     <GenomeDataComponent 
 		food_chain_rank="7" 
@@ -155,13 +155,13 @@
 		target_sprite_comp_name="character" >
 	</SpriteAnimatorComponent>
 
-    <Entity> <Base file="mods/tales_of_kupoli/files/entities/animals/soul_angry/leg.xml" /> </Entity>
-    <Entity> <Base file="mods/tales_of_kupoli/files/entities/animals/soul_angry/leg.xml" /> </Entity>
-    <Entity> <Base file="mods/tales_of_kupoli/files/entities/animals/soul_angry/leg.xml" /> </Entity>
-    <Entity> <Base file="mods/tales_of_kupoli/files/entities/animals/soul_angry/leg.xml" /> </Entity>
+    <Entity> <Base file="mods/souls/files/entities/animals/soul_angry/leg.xml" /> </Entity>
+    <Entity> <Base file="mods/souls/files/entities/animals/soul_angry/leg.xml" /> </Entity>
+    <Entity> <Base file="mods/souls/files/entities/animals/soul_angry/leg.xml" /> </Entity>
+    <Entity> <Base file="mods/souls/files/entities/animals/soul_angry/leg.xml" /> </Entity>
 
     <LuaComponent
-		script_death="mods/tales_of_kupoli/files/entities/animals/soul_angry/death.lua"
+		script_death="mods/souls/files/entities/animals/soul_angry/death.lua"
 	></LuaComponent>
 
     <LuaComponent

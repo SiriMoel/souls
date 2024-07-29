@@ -21,7 +21,7 @@
 	<PhysicsImageShapeComponent 
 		body_id="1"
 		centered="1"
-		image_file="mods/tales_of_kupoli/files/entities/revived/_tablets/sprite/s_in_hand.png"
+		image_file="mods/souls/files/entities/revived/_tablets/sprite/s_in_hand.png"
 		material="rock_box2d_hard"
 	></PhysicsImageShapeComponent>
 
@@ -46,7 +46,7 @@
 		max_child_items="0"
 		is_pickable="1"
 		is_equipable_forced="1"
-		ui_sprite="mods/tales_of_kupoli/files/entities/revived/_tablets/sprite/s.png"
+		ui_sprite="mods/souls/files/entities/revived/_tablets/sprite/s.png"
 		preferred_inventory="QUICK"
 		item_name="Red Sun Tablet"
 		ui_description="Revives the robot."
@@ -57,7 +57,7 @@
 		_enabled="0"
 		offset_x="4"
 		offset_y="4"
-		image_file="mods/tales_of_kupoli/files/entities/revived/_tablets/sprite/s_in_hand.png"
+		image_file="mods/souls/files/entities/revived/_tablets/sprite/s_in_hand.png"
 	></SpriteComponent>
 
 	<HitboxComponent 
@@ -122,7 +122,7 @@
 	<VariableStorageComponent
 		_tags="boss"
 		name="boss"
-		value_string="mods/tales_of_kupoli/files/entities/revived/robot/boss_robot.xml"
+		value_string="mods/souls/files/entities/revived/robot/boss_robot.xml"
 	></VariableStorageComponent>
 	
 </Entity>

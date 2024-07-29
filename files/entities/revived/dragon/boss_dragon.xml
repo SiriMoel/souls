@@ -10,7 +10,7 @@
 	</_Transform>
 
 		<LuaComponent
-			script_death="mods/tales_of_kupoli/files/entities/revived/dragon/boss_dragon_death.lua"
+			script_death="mods/souls/files/entities/revived/dragon/boss_dragon_death.lua"
 		></LuaComponent>
 
 	<BossDragonComponent

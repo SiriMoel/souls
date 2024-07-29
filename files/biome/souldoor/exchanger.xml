@@ -1,7 +1,7 @@
 <entity tags="kupoli_soul_exchanger">
 
     <LuaComponent
-        script_source_file="mods/tales_of_kupoli/files/biome/souldoor/souldoor.lua"
+        script_source_file="mods/souls/files/biome/souldoor/souldoor.lua"
         execute_every_n_frame="50"
     ></LuaComponent>
 

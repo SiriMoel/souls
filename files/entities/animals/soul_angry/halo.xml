@@ -70,7 +70,7 @@
 
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/tales_of_kupoli/files/entities/animals/soul_angry/halo.xml"
+		value_string="mods/souls/files/entities/animals/soul_angry/halo.xml"
 		>
 	</VariableStorageComponent>
 	

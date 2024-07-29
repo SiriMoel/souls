@@ -201,7 +201,7 @@
 	</AudioComponent>
 	
 	<LuaComponent
-		script_death="mods/tales_of_kupoli/files/entities/revived/grandmaster/death.lua"
+		script_death="mods/souls/files/entities/revived/grandmaster/death.lua"
 		>
 	</LuaComponent>
 	

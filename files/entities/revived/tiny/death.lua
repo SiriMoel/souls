@@ -17,9 +17,9 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 	
 	--StatsLogPlayerKill( entity_id )
 
-	EntityLoad("mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.xml", pos_x - 16, pos_y )
-	EntityLoad("mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.xml", pos_x + 16, pos_y )
-	EntityLoad("mods/tales_of_kupoli/files/entities/misc/lootorb/lootorb.xml", pos_x, pos_y + 8 )
+	EntityLoad("mods/souls/files/entities/misc/lootorb/lootorb.xml", pos_x - 16, pos_y )
+	EntityLoad("mods/souls/files/entities/misc/lootorb/lootorb.xml", pos_x + 16, pos_y )
+	EntityLoad("mods/souls/files/entities/misc/lootorb/lootorb.xml", pos_x, pos_y + 8 )
 
 	--EntityKill( entity_id )
 
@@ -28,6 +28,6 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 
 	local spawntablet = math.random(1, 2)
 	if spawntablet == 1 then
-		EntityLoad( "mods/tales_of_kupoli/files/entities/revived/_tablets/tiny.xml", x, y)
+		EntityLoad( "mods/souls/files/entities/revived/_tablets/tiny.xml", x, y)
 	end
 end

@@ -1,4 +1,4 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("data/scripts/gun/gun_actions.lua")
 
 local entity = GetUpdatedEntityID()
@@ -23,7 +23,7 @@ local target = targets[math.random(1, #targets)]
 
 GamePrint(target.name)
 
---EntitySave(entity, "mods/tales_of_kupoli/moldos.xml")
+--EntitySave(entity, "mods/souls/moldos.xml")
 
 EntitySetName(entity, "Diamond " .. target.name .. " Lense")
 ComponentSetValue2(target_comp, "value_string", target.id)

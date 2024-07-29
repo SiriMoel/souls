@@ -196,7 +196,7 @@
 	</HealthBarComponent>
 	
 	<LuaComponent
-		script_death="mods/tales_of_kupoli/files/entities/revived/robot/death.lua"
+		script_death="mods/souls/files/entities/revived/robot/death.lua"
 		>
 	</LuaComponent>
 	
@@ -324,7 +324,7 @@
 	</VariableStorageComponent>
 	
 	<LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/revived/robot/state.lua"
+		script_source_file="mods/souls/files/entities/revived/robot/state.lua"
 		execute_every_n_frame="40"
 		>
 	</LuaComponent>

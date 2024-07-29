@@ -51,7 +51,7 @@
       explosion_radius="15"
       explosion_sprite="data/particles/explosion_032_slime.xml" 
       explosion_sprite_lifetime="0" 
-	  load_this_entity="mods/tales_of_kupoli/files/entities/projectiles/soul_blast/soul_explosion_swirly.xml"
+	  load_this_entity="mods/souls/files/entities/projectiles/soul_blast/soul_explosion_swirly.xml"
       create_cell_probability="40" 
       hole_destroy_liquid="0"
 	  explosion_sprite_additive="1"
@@ -77,7 +77,7 @@
   <SpriteComponent 
     _enabled="1" 
     alpha="1" 
-    image_file="mods/tales_of_kupoli/files/entities/projectiles/soul_ball/sprite.xml"
+    image_file="mods/souls/files/entities/projectiles/soul_ball/sprite.xml"
     next_rect_animation="" 
     offset_x="4" 
     offset_y="4" 
@@ -201,7 +201,7 @@
   </LightComponent>
 
       	<LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/projectiles/soul_ball/soul_ball.lua"
+		script_source_file="mods/souls/files/entities/projectiles/soul_ball/soul_ball.lua"
 		execute_every_n_frame="1"
 		remove_after_executed="1"
 		>
@@ -209,7 +209,7 @@
   
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/tales_of_kupoli/files/entities/projectiles/soul_ball/soul_ball.xml"
+		value_string="mods/souls/files/entities/projectiles/soul_ball/soul_ball.xml"
 		>
 	</VariableStorageComponent>
   

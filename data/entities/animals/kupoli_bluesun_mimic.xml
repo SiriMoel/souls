@@ -125,7 +125,7 @@
 		offset_y="105"
 		emissive="1"
 		additive="1"
-		image_file="mods/tales_of_kupoli/files/entities/sun/bluesun.png"
+		image_file="mods/souls/files/entities/sun/bluesun.png"
 		smooth_filtering="1"
 	></SpriteComponent>
 
@@ -319,19 +319,19 @@
 	</Entity>
 	
 	<LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_bluesun_mimic/sun_controls.lua"
+		script_source_file="mods/souls/files/entities/animals/boss_bluesun_mimic/sun_controls.lua"
 		execute_every_n_frame="10"
 		>
 	</LuaComponent>
 
 	<LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/animals/boss_bluesun_mimic/attack.lua"
+		script_source_file="mods/souls/files/entities/animals/boss_bluesun_mimic/attack.lua"
 		execute_every_n_frame="300"
 		>
 	</LuaComponent>
 
 	<LuaComponent
-		script_death="mods/tales_of_kupoli/files/entities/animals/boss_bluesun_mimic/death.lua"
+		script_death="mods/souls/files/entities/animals/boss_bluesun_mimic/death.lua"
 		>
 	</LuaComponent>
 	

@@ -56,7 +56,7 @@
   <SpriteComponent 
     _enabled="1" 
     alpha="1" 
-    image_file="mods/tales_of_kupoli/files/entities/projectiles/ratking/sprite.xml" 
+    image_file="mods/souls/files/entities/projectiles/ratking/sprite.xml" 
     next_rect_animation=""
     rect_animation="" 
      >
@@ -91,7 +91,7 @@
 	
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/tales_of_kupoli/files/entities/projectiles/ratking/proj.xml"
+		value_string="mods/souls/files/entities/projectiles/ratking/proj.xml"
 		>
 	</VariableStorageComponent>
 
@@ -104,8 +104,8 @@
     <LuaComponent
       execute_on_removed="1"
       execute_every_n_frame="-1"
-      script_source_file="mods/tales_of_kupoli/files/entities/projectiles/ratking/spawn_rats.lua"
-      script_death="mods/tales_of_kupoli/files/entities/projectiles/ratking/spawn_rats.lua"
+      script_source_file="mods/souls/files/entities/projectiles/ratking/spawn_rats.lua"
+      script_death="mods/souls/files/entities/projectiles/ratking/spawn_rats.lua"
     ></LuaComponent>
 
 </Entity>

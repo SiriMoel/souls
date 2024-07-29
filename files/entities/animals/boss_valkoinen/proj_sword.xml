@@ -98,7 +98,7 @@
 
     <SpriteComponent 
     _enabled="1" 
-    image_file="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/sprite_sword.xml" 
+    image_file="mods/souls/files/entities/animals/boss_valkoinen/sprite_sword.xml" 
     next_rect_animation="" 
     offset_x="32" 
     offset_y="32" 
@@ -172,7 +172,7 @@
   
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/proj_sword.xml"
+		value_string="mods/souls/files/entities/animals/boss_valkoinen/proj_sword.xml"
 		>
 	</VariableStorageComponent>
 </Entity>

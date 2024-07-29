@@ -1,9 +1,9 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
 
 local host = GetUpdatedEntityID()
 local x, y = EntityGetTransform(host)
 
-local proj_file = "mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/proj_pillar_sword.xml"
+local proj_file = "mods/souls/files/entities/animals/boss_valkoinen/proj_pillar_sword.xml"
 
 math.randomseed(x, y + GameGetFrameNum())
 

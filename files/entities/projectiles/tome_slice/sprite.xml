@@ -1,5 +1,5 @@
 <Sprite
-    filename="mods/tales_of_kupoli/files/entities/projectiles/tome_slice/sprite.png"
+    filename="mods/souls/files/entities/projectiles/tome_slice/sprite.png"
     offset_x="60"
     offset_y="35"
     default_animation="fireball"

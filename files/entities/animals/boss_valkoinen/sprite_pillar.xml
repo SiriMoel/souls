@@ -1,5 +1,5 @@
 <Sprite
- filename="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/sprite_pillar.png"
+ filename="mods/souls/files/entities/animals/boss_valkoinen/sprite_pillar.png"
  offset_x="32"
  offset_y="64"
  default_animation="fireball" >

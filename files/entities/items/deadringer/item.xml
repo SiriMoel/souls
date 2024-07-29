@@ -16,7 +16,7 @@
   <PhysicsImageShapeComponent 
     body_id="1"
     centered="1"
-    image_file="mods/tales_of_kupoli/files/entities/items/deadringer/sprite_inhand.png"
+    image_file="mods/souls/files/entities/items/deadringer/sprite_inhand.png"
     material="metal_hard" >
   </PhysicsImageShapeComponent>
   
@@ -42,7 +42,7 @@
     max_child_items="0"
     is_pickable="1"
     is_equipable_forced="1"
-    ui_sprite="mods/tales_of_kupoli/files/entities/items/deadringer/sprite_cd.png"
+    ui_sprite="mods/souls/files/entities/items/deadringer/sprite_cd.png"
     ui_description="Hold to feign your death upon taking damage, going invisible and gaining speed. Costs 10 souls. Has a cooldown."
     preferred_inventory="QUICK"
   ></ItemComponent>
@@ -65,7 +65,7 @@
     _enabled="0"
     offset_x="4"
     offset_y="4"
-    image_file="mods/tales_of_kupoli/files/entities/items/deadringer/sprite_inhand.png"
+    image_file="mods/souls/files/entities/items/deadringer/sprite_inhand.png"
   ></SpriteComponent>
 
   <VariableStorageComponent
@@ -83,19 +83,19 @@
   <!--<LuaComponent
     _tags="enabled_in_hand,enabled_in_inventory,enabled_in_world"
     _enabled="1"
-    script_source_file="mods/tales_of_kupoli/files/entities/items/deadringer/check_player_health.lua"
+    script_source_file="mods/souls/files/entities/items/deadringer/check_player_health.lua"
     execute_every_n_frame="2"
   ></LuaComponent-->
 
   <!--<LuaComponent
     _tags="enabled_in_hand,disabled_in_world,disabled_in_inventory"
-    script_source_file="mods/tales_of_kupoli/files/entities/items/deadringer/feign.lua"
+    script_source_file="mods/souls/files/entities/items/deadringer/feign.lua"
     execute_every_n_frame="1"
   ></LuaComponent-->
 
    <LuaComponent
     _tags="enabled_in_hand,enabled_in_inventory"
-    script_source_file="mods/tales_of_kupoli/files/entities/items/deadringer/cd.lua"
+    script_source_file="mods/souls/files/entities/items/deadringer/cd.lua"
     execute_every_n_frame="2"
   ></LuaComponent>
 

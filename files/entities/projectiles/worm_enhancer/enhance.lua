@@ -1,4 +1,4 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
 
 local entity_id = GetUpdatedEntityID()
 local root_id = EntityGetRootEntity( entity_id )
@@ -16,11 +16,11 @@ if ( #targets > 0 ) then
 
                 EntityAddComponent( target_id, "LuaComponent",
                 {
-                    script_death = "mods/tales_of_kupoli/files/entities/projectiles/worm_enhancer/enhanced_death.lua",
+                    script_death = "mods/souls/files/entities/projectiles/worm_enhancer/enhanced_death.lua",
                     execute_every_n_frame = "-1",
                 } )
     
-                local effect_id = EntityLoad("mods/tales_of_kupoli/files/entities/projectiles/worm_enhancer/enhanced_particles.xml", x, y)
+                local effect_id = EntityLoad("mods/souls/files/entities/projectiles/worm_enhancer/enhanced_particles.xml", x, y)
                 EntityAddChild( target_id, effect_id )
     
                 EntityAddTag( target_id, "kupoli_worm_enhanced")

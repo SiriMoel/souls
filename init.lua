@@ -62,8 +62,8 @@ function OnPlayerSpawned( player )
 
     SoulsInit()
 
-    EntityLoad("mods/souls/files/entities/items/tome/weapon.xml", px, py)
-    CreateItemActionEntity("KUPOLI_UPGRADE_TOME", px, py)
+    --EntityLoad("mods/souls/files/entities/items/tome/weapon.xml", px, py)
+    --CreateItemActionEntity("MOLDOS_UPGRADE_TOME", px, py)
 
     for i=1,tonumber(ModSettingGet("souls.starting_souls")) do
         local which = soul_types[math.random(1,#soul_types)]
@@ -73,7 +73,7 @@ function OnPlayerSpawned( player )
         if which == "boss" then
             which = "orcs"
         end
-        AddSoul(which)
+        AddSouls(which, 1)
     end
 
     EntityAddComponent(player, "LuaComponent", {

@@ -6,7 +6,7 @@ function UpgradeTome(path, amount, is_better)
 		GamePrint("You must select an upgrade first.")
 		return
 	end
-    local tome = EntityGetWithTag("kupoli_tome")[1]
+    local tome = EntityGetWithTag("soul_tome")[1]
     local comp_cost = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "upgrade_cost") or 0
     local cost = ComponentGetValue2(comp_cost, "value_int")
 	local comp_path_1 = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "path_1") or 0

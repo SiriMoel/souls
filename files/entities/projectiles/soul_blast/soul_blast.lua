@@ -1,18 +1,17 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
-dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
-
+dofile_once("mods/souls/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/souls.lua")
 
 local entity = GetUpdatedEntityID()
 local root_id = EntityGetRootEntity( entity )
 local x, y = EntityGetTransform( entity )
 
-local comp = EntityGetFirstComponent( entity, "ProjectileComponent" ) or 0
-local projdamage = ComponentGetValue2( comp, "damage" )
-local expdamage = ComponentObjectGetValue( comp, "config_explosion", "damage" )
-local exprad = ComponentObjectGetValue( comp, "config_explosion", "explosion_radius" )
-local meleedamage = ComponentObjectGetValue( comp, "damage_by_type", "melee" )
-local icedamage = ComponentObjectGetValue( comp, "damage_by_type", "ice" )
-local poisondamage = ComponentObjectGetValue( comp, "damage_by_type", "poison" )
+local comp_proj = EntityGetFirstComponent( entity, "ProjectileComponent" ) or 0
+local projdamage = ComponentGetValue2( comp_proj, "damage" )
+local expdamage = ComponentObjectGetValue( comp_proj, "config_explosion", "damage" )
+local exprad = ComponentObjectGetValue( comp_proj, "config_explosion", "explosion_radius" )
+local meleedamage = ComponentObjectGetValue( comp_proj, "damage_by_type", "melee" )
+local icedamage = ComponentObjectGetValue( comp_proj, "damage_by_type", "ice" )
+local poisondamage = ComponentObjectGetValue( comp_proj, "damage_by_type", "poison" )
 
 local player = GetPlayer()
 local wand = HeldItem(player)
@@ -22,17 +21,15 @@ local soul = GetRandomSoulForWand(wand)
 if soul == nil or soul == 0 or soul == "0" then
 	GamePrint("You have no souls.")
 
-	local projcomp = EntityGetFirstComponent( entity, "ProjectileComponent" ) or 0
-
-	ComponentSetValue2( projcomp, "on_death_explode", false )
-	ComponentSetValue2( projcomp, "on_lifetime_out_explode", false )
-	ComponentSetValue2( projcomp, "collide_with_entities", false )
-	ComponentSetValue2( projcomp, "collide_with_world", false )
-	ComponentSetValue2( projcomp, "lifetime", 1 )
+	ComponentSetValue2( comp_proj, "on_death_explode", false )
+	ComponentSetValue2( comp_proj, "on_lifetime_out_explode", false )
+	ComponentSetValue2( comp_proj, "collide_with_entities", false )
+	ComponentSetValue2( comp_proj, "collide_with_world", false )
+	ComponentSetValue2( comp_proj, "lifetime", 1 )
 
     EntityKill(entity)
 else
-	if ModSettingGet( "tales_of_kupoli.say_consumed_soul" ) then
+	if ModSettingGet( "souls.say_consumed_soul" ) then
 		GamePrint( "A " .. SoulNameCheck(soul) .. " soul has been consumed." )
 	end
 	

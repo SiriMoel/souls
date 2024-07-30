@@ -18,6 +18,7 @@ end]]
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/souls/files/actions.lua" )
 ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/souls/files/perks.lua" )
 ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/souls/files/status_list.lua" )
+ModLuaFileAppend( "data/scripts/items/drop_money.lua", "mods/souls/files/scripts/drop_money_append.lua" )
 SetFileContent("data/entities/base_wand_pickup.xml", "base_wand_pickup.xml")
 
 
@@ -67,6 +68,9 @@ function OnPlayerSpawned( player )
     for i=1,tonumber(ModSettingGet("souls.starting_souls")) do
         local which = soul_types[math.random(1,#soul_types)]
         if which == "gilded" then
+            which = "orcs"
+        end
+        if which == "boss" then
             which = "orcs"
         end
         AddSoul(which)

@@ -112,12 +112,66 @@ function UpgradeTome(path, amount, is_better)
 end
 
 actions_to_insert = {
-	
+	{
+		{
+			id          = "REAPING_SHOT", -- the basis of the whole mod
+			name 		= "$action_moldos_reaping_shot",
+			description = "$actiondesc_moldos_reaping_shot",
+			sprite 		= "mods/souls/files/spell_icons/reaping_shot.png",
+			related_extra_entities = { "mods/souls/files/entities/projectiles/reaping_shot/reaping_shot.xml" },
+			type 		= ACTION_TYPE_MODIFIER,
+			inject_after = "MANA_REDUCE",
+			spawn_level                       = "0,1,2,3,4,5,6",
+			spawn_probability                 = "1,1,1,1,1,1,1",
+			price = 100,
+			mana = 10,
+			action 		= function()
+				c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/reaping_shot/reaping_shot.xml,"
+				draw_actions( 1, true )
+			end,
+		},
+	},
+	{
+		{
+			id          = "WAND_CONSUMES_X_SOULS", -- new souls thing!!!
+			name 		= "$action_moldos_wand_consumes_x_souls",
+			description = "$actiondesc_moldos_wand_consumes_x_souls",
+			sprite 		= "mods/souls/files/spell_icons/wand_consumes_x_souls.png",
+			custom_xml_file="mods/tales_of_kupoli/files/entities/misc/card_wand_consumes_x_souls.xml",
+			type 		= ACTION_TYPE_PASSIVE,
+			inject_after = "MOLDOS_REAPING_SHOT",
+			spawn_level                       = "0,1,2,3,4,5,6",
+			spawn_probability                 = "1,1,1,1,1,1,1",
+			price = 100,
+			mana = 0,
+			action 		= function()
+				draw_actions( 1, true )
+			end,
+		},
+	},
+	{
+		id          = "SOUL_BLAST",
+		name 		= "$action_moldos_soul_blast",
+		description = "$actiondesc_moldos_soul_blast",
+		sprite 		= "mods/souls/files/spell_icons/soul_blast.png",
+		related_projectiles	= {"mods/souls/files/entities/projectiles/soul_blast/soul_blast.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		inject_after = "PIPE_BOMB_DEATH_TRIGGER",
+		spawn_level                       = "2,3,4,5,6",
+		spawn_probability                 = "0.8,1,1,1,1",
+		price = 120,
+		mana = 40,
+		max_uses = 20,
+		action 		= function()
+			add_projectile("mods/souls/files/entities/projectiles/soul_blast/soul_blast.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 20
+		end,
+	},
 }
 
 for i,v in ipairs(actions_to_insert) do
 	v.id = "MOLDOS_" .. v.id
-	if v.inject_after ~= nil and ModSettingGet("souls.inject_spells") then
+	--[[if v.inject_after ~= nil and ModSettingGet("souls.inject_spells") then
 		for i=1,#actions do
 			if actions[i].id == v.inject_after then
 				table.insert(actions, i+1, v)
@@ -127,5 +181,6 @@ for i,v in ipairs(actions_to_insert) do
 		table.insert(actions, v)
 	else
 		table.insert(actions, v)
-	end
+	end]]
+	table.insert(actions, v)
 end

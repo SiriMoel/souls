@@ -1,9 +1,0 @@
-<Entity>
-
-	<LuaComponent
-		script_source_file="mods/souls/files/entities/projectiles/add_mortem_trigger/add.lua"
-		execute_every_n_frame="4"
-		>
-	</LuaComponent>
-  
-</Entity>

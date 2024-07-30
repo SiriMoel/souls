@@ -32,4 +32,10 @@
         value_string="0"
     ></VariableStorageComponent>
 
+    <VariableStorageComponent
+        _tags="which_soul_type_number"
+        name="which_soul_type_number"
+        value_int="1"
+    ></VariableStorageComponent>
+
 </Entity>

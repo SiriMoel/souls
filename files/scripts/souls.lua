@@ -58,10 +58,6 @@ function RemoveSoul(type)
     local player = GetPlayer()
     local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. type) or 0
     ComponentSetValue2(comp, "value_int", ComponentGetValue2(comp, "value_int") - 1)
-
-    if not ModSettingGet( "souls.show_souls" ) then return end
-    -- kill soul entity
-    EntityKill(EntityGetWithTag("soul_" .. type)[1])
 end
 
 ---@return number
@@ -102,11 +98,14 @@ function GetRandomSoul(includeboss)
 end
 
 function GetRandomSoulForWand(wand)
+    local which_soul = "0"
     local comp_whichsoul = EntityGetFirstComponentIncludingDisabled(wand, "VariableStorageComponent", "which_soul_type") or 0
     local whichsoul = ComponentGetValue2(comp_whichsoul, "value_string")
+    which_soul = whichsoul
     if whichsoul == "0" then
-        return GetRandomSoul(false)
+        which_soul = GetRandomSoul(false)
     end
+    return which_soul
 end
 
 function GetRandomSoulType(includeboss)
@@ -159,6 +158,7 @@ function ReapSoul(entity_id, amount, random)
     local herd_id_number = ComponentGetValue2( EntityGetFirstComponent( entity, "GenomeDataComponent" ) or 0, "herd_id")
     local herd_id = HerdIdToString(herd_id_number)
     local x, y = EntityGetTransform(entity)
+    local player = GetPlayer()
     local ok = false
     if #EntityGetInRadiusWithTag(x, y, 300, "player_unit") < 1 then return end
     local boss_names = {

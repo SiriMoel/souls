@@ -32,56 +32,28 @@ else
 	if ModSettingGet( "souls.say_consumed_soul" ) then
 		GamePrint( "A " .. SoulNameCheck(soul) .. " soul has been consumed." )
 	end
-	
+
 	RemoveSoul(soul)
 
 	local comp_particles = EntityGetFirstComponent(entity, "ParticleEmitterComponent") or 0
-end
 
-
-
---[[if soul == nil or soul == 0 then
-	GamePrint("You have no souls.")
-
-	local projcomp = EntityGetFirstComponent( entity, "ProjectileComponent" ) or 0
-
-	ComponentSetValue2( projcomp, "on_death_explode", false )
-	ComponentSetValue2( projcomp, "on_lifetime_out_explode", false )
-	ComponentSetValue2( projcomp, "collide_with_entities", false )
-	ComponentSetValue2( projcomp, "collide_with_world", false )
-	ComponentSetValue2( projcomp, "lifetime", 1 )
-
-    EntityKill(entity)
-else
-	if ModSettingGet( "tales_of_kupoli.say_consumed_soul" ) then
-		GamePrint( "You have consumed a " .. SoulNameCheck(soul) .. " soul." )
-	end
-	
-	RemoveSoul(soul)
-	
-	local particlecomp = EntityGetFirstComponent(entity, "ParticleEmitterComponent") or 0
-
-	--bat
+	-- bat
 	if soul == "bat" then
-		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)		
-			ComponentSetValue2( particlecomp, "emitted_material_name", "spark_purple_bright" )
-		end)
-	
+		ComponentSetValue2( comp_particles, "emitted_material_name", "spark_purple_bright" )
+
 		EntityAddComponent( entity, "HomingComponent", {
 			homing_targeting_coeff="130.0",
 			homing_velocity_multiplier="0.86",
 		} )
-	
+
 		projdamage = projdamage * 1.1
-	
-		ComponentSetValue2( comp, "damage", projdamage )
+
+		ComponentSetValue2( comp_proj, "damage", projdamage )
 	end
 
-	--fly
+	-- fly
 	if soul == "fly" then
-		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)		
-			ComponentSetValue2( particlecomp, "emitted_material_name", "spark_red" )
-		end)
+		ComponentSetValue2( comp_particles, "emitted_material_name", "lava" )
 	
 		EntityAddComponent( entity, "LuaComponent", {
 			script_source_file="data/scripts/projectiles/chaotic_arc.lua",
@@ -93,19 +65,18 @@ else
 			homing_velocity_multiplier="0.86",
 		} )
 	
-		projdamage = projdamage + 0.4
-		projdamage = projdamage * 1.2
+		projdamage = projdamage + 0.2
+		projdamage = projdamage * 0.95
 	
-		ComponentSetValue2( comp, "damage", projdamage )
+		ComponentSetValue2( comp_proj, "damage", projdamage )
 	end
 
-	--friendly
+	-- friendly
 
-	--gilded
+
+	-- gilded
 	if soul == "gilded" then
-		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)
-			ComponentSetValue2( particlecomp, "emitted_material_name", "gold" )
-		end)
+		ComponentSetValue2( comp_particles, "emitted_material_name", "gold" )
 
 		projdamage = projdamage + 0.5
 		expdamage = expdamage * 1.2
@@ -113,17 +84,15 @@ else
 		icedamage = icedamage + 0.3
 		icedamage = icedamage * 2
 	
-		ComponentObjectSetValue( comp, "damage_by_type", "ice", icedamage )
-		ComponentObjectSetValue( comp, "config_explosion", "damage", expdamage )
-		ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )
-		ComponentSetValue2( comp, "damage", projdamage )
+		ComponentObjectSetValue( comp_proj, "damage_by_type", "ice", icedamage )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "damage", expdamage )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "explosion_radius", exprad )
+		ComponentSetValue2( comp_proj, "damage", projdamage )
 	end
 
-	--mage
+	-- mage
 	if soul == "mage" then
-		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)		
-			ComponentSetValue2( particlecomp, "emitted_material_name", "spark_white" )
-		end)
+		ComponentSetValue2( comp_particles, "emitted_material_name", "magic_liquid_mana_regeneration" )
 	
 		EntityAddComponent( entity, "HomingComponent", {
 			target_tag="homing_target",
@@ -132,17 +101,19 @@ else
 			homing_velocity_multiplier="1.0",
 		} )
 	
-		projdamage = projdamage * 1.3
+		projdamage = projdamage * 0.8
 		expdamage = expdamage * 1.3
 		exprad = exprad * 0.6
 		
-		ComponentObjectSetValue( comp, "config_explosion", "damage", expdamage )
-		ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )
-		ComponentSetValue2( comp, "damage", projdamage )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "damage", expdamage )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "explosion_radius", exprad )
+		ComponentSetValue2( comp_proj, "damage", projdamage )
 	end
 
-	--orcs & zombie
+	-- orcs and zombie
 	if soul == "orcs" or soul == "zombie" then
+		ComponentSetValue2( comp_particles, "emitted_material_name", "spark_green" )
+
 		EntityAddComponent( entity, "SineWaveComponent", {
 			_enabled="1",
 			sinewave_freq="1.0",
@@ -150,34 +121,26 @@ else
 			lifetime="-1",
 		} )
 	
-		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)
-			ComponentSetValue2( particlecomp, "emitted_material_name", "spark_green" )
-		end)
-	
 		expdamage = expdamage * 1.2
 		exprad = exprad * 2
 		
-		ComponentObjectSetValue( comp, "config_explosion", "damage", expdamage )
-		ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "damage", expdamage )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "explosion_radius", exprad )
 	end
 
-	--slimes
+	-- slimes
 	if soul == "slimes" then
-		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)		
-			ComponentSetValue2( particlecomp, "emitted_material_name", "spark_green_bright" )
-		end)
+		ComponentSetValue2( comp_particles, "emitted_material_name", "radioactive_liquid" )
 	
-		icedamage = icedamage + 0.3
-		icedamage = icedamage * 2
+		poisondamage = poisondamage + 0.2
+		poisondamage = poisondamage * 1.5
 	
-		ComponentObjectSetValue( comp, "damage_by_type", "ice", icedamage )
+		ComponentObjectSetValue( comp_proj, "damage_by_type", "poison", poisondamage )
 	end
 
-	--spider
+	-- spider
 	if soul == "spider" then
-		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)	
-			ComponentSetValue2( particlecomp, "emitted_material_name", "spark_purple" )
-		end)
+		ComponentSetValue2( comp_particles, "emitted_material_name", "spark_purple" )
 	
 		EntityAddComponent( entity, "CellEaterComponent", { 
 			eat_probability="90",
@@ -186,17 +149,15 @@ else
 			ignored_material_tag="[matter_eater_ignore_list]",
 		} )
 
-		poisondamage = poisondamage + 0.15
-		poisondamage = poisondamage * 1.3
+		meleedamage = meleedamage + 0.15
+		meleedamage = meleedamage * 1.3
 
-		ComponentObjectSetValue( comp, "damage_by_type", "poison", poisondamage )
+		ComponentObjectSetValue( comp_proj, "damage_by_type", "melee", meleedamage )
 	end
 
-	--worm
+	-- worm
 	if soul == "worm" then
-		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)	
-			ComponentSetValue2( particlecomp, "emitted_material_name", "spark_yellow" )
-		end)
+		ComponentSetValue2( comp_particles, "emitted_material_name", "blood_worm" )
 	
 		EntityAddComponent( entity, "CellEaterComponent", {
 			eat_probability="90",
@@ -205,30 +166,26 @@ else
 			ignored_material_tag="",
 		} )
 
-		meleedamage = meleedamage + 0.5
+		meleedamage = meleedamage + 0.3
 		meleedamage = meleedamage * 1.3
 	
-		ComponentObjectSetValue( comp, "damage_by_type", "melee", meleedamage )
+		ComponentObjectSetValue( comp_proj, "damage_by_type", "melee", meleedamage )
 	end
 
-	--fungus
+	-- fungus
 	if soul == "fungus" then
-		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)
-			ComponentSetValue2( particlecomp, "emitted_material_name", "fungi" )
-		end)
+		ComponentSetValue2( comp_particles, "emitted_material_name", "fungi" )
 	
 		expdamage = expdamage * 1.1
 		exprad = exprad * 3
 		
-		ComponentObjectSetValue( comp, "config_explosion", "damage", expdamage )
-		ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "damage", expdamage )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "explosion_radius", exprad )
 	end
 
-	--ghost
+	-- ghost
 	if soul == "ghost" then
-		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)
-			ComponentSetValue2( particlecomp, "emitted_material_name", "plasma_fading" )
-		end)
+		ComponentSetValue2( comp_particles, "emitted_material_name", "plasma_fading" )
 
 		EntityAddComponent( entity, "LuaComponent", {
 			script_source_file="data/scripts/projectiles/phasing_arc.lua",
@@ -236,17 +193,31 @@ else
 		} )
 	
 		icedamage = icedamage + 0.4
-		exprad = exprad * 1.5
+		exprad = exprad * 1.1
 	
-		ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )
-		ComponentObjectSetValue( comp, "damage_by_type", "ice", icedamage )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "explosion_radius", exprad )
+		ComponentObjectSetValue( comp_proj, "damage_by_type", "ice", icedamage )
 	end
 
-	--mage_corrupted
+	-- boss
+	if soul == "boss" then
+		ComponentSetValue2( comp_particles, "emitted_material_name", "magic_liquid_berserk" )
+
+		projdamage = projdamage + 0.5
+		expdamage = expdamage * 1.2
+		exprad = exprad * 2
+		icedamage = icedamage + 0.6
+		icedamage = icedamage * 2
+	
+		ComponentObjectSetValue( comp_proj, "damage_by_type", "ice", icedamage )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "damage", expdamage )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "explosion_radius", exprad )
+		ComponentSetValue2( comp_proj, "damage", projdamage )
+	end
+
+	-- mage_corrupted
 	if soul == "mage_corrupted" then
-		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)
-			ComponentSetValue2( particlecomp, "emitted_material_name", "blood" )
-		end)
+		ComponentSetValue2( comp_particles, "emitted_material_name", "blood" )
 	
 		EntityAddComponent( entity, "HomingComponent", {
 			target_tag="homing_target",
@@ -259,16 +230,14 @@ else
 		expdamage = expdamage * 1.4
 		exprad = exprad * 0.75
 		
-		ComponentObjectSetValue( comp, "config_explosion", "damage", expdamage )
-		ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )
-		ComponentSetValue2( comp, "damage", projdamage )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "damage", expdamage )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "explosion_radius", exprad )
+		ComponentSetValue2( comp_proj, "damage", projdamage )
 	end
 
-	--ghost_whisp
+	-- ghost_whisp
 	if soul == "ghost_whisp" then
-		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)
-			ComponentSetValue2( particlecomp, "emitted_material_name", "fire" )
-		end)
+		ComponentSetValue2( comp_particles, "emitted_material_name", "fire" )
 
 		firedamage = firedamage + 0.4
 		firedamage = firedamage * 1.4
@@ -282,6 +251,6 @@ else
 			radius=20,
 		})
 	
-		ComponentObjectSetValue( comp, "damage_by_type", "fire", firedamage )
+		ComponentObjectSetValue( comp_proj, "damage_by_type", "fire", firedamage )
 	end
-end]]
+end

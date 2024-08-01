@@ -79,9 +79,9 @@
   </CellData>-->
 
   <CellData
-	name="material_souljuice"
-	ui_name="Blood of Souls"
-  	tags="[liquid],[water],[magic_liquid],[impure]"
+	name="soul_blood_1"
+	ui_name="Soul Blood I"
+  	tags="[liquid],[water],[magic_liquid],[impure],[soul_blood_1]"
 	density="1.2434"
 	cell_type="liquid"
 	wang_color="8000c888"
@@ -117,7 +117,6 @@
 	<StatusEffects>
 		<Ingestion>
 			<StatusEffect type="POISONED" amount="0.15" />
-			<StatusEffect type="KUPOLI_SOULJUICE" amount="0.05" />
 		</Ingestion>
 	</StatusEffects>
   </CellData>
@@ -125,7 +124,7 @@
   <Reaction probability="100"
 	fast_reaction="1"
 	input_cell1="material_darkness" 			input_cell2="[blood]"
-	output_cell1="material_souljuice" 			output_cell2="steam" 
+	output_cell1="soul_blood_1" 			output_cell2="steam" 
 	blob_radius2="3"
 	>
   </Reaction>

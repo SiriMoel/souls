@@ -21,34 +21,6 @@ ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/souls/fil
 ModLuaFileAppend( "data/scripts/items/drop_money.lua", "mods/souls/files/scripts/drop_money_append.lua" )
 SetFileContent("data/entities/base_wand_pickup.xml", "base_wand_pickup.xml")
 
-
--- pixel scenes (thanks graham)
-local function add_scene(table)
-	local biome_path = ModIsEnabled("noitavania") and "mods/noitavania/data/biome/_pixel_scenes.xml" or "data/biome/_pixel_scenes.xml"
-	local content = ModTextFileGetContent(biome_path)
-	local string = "<mBufferedPixelScenes>"
-	local worldsize = ModTextFileGetContent("data/compatibilitydata/worldsize.txt") or 35840
-	for i = 1, #table do
-		string = string .. [[<PixelScene pos_x="]] .. table[i][1] .. [[" pos_y="]] .. table[i][2] .. [[" just_load_an_entity="]] .. table[i][3] .. [["/>]]
-		if table[i][4] then
-			-- make things show up in first 2 parallel worlds
-			-- hopefully this won't cause too much lag when starting a run
-			string = string .. [[<PixelScene pos_x="]] .. table[i][1] + worldsize .. [[" pos_y="]] .. table[i][2] .. [[" just_load_an_entity="]] .. table[i][3] .. [["/>]]
-			string = string .. [[<PixelScene pos_x="]] .. table[i][1] - worldsize .. [[" pos_y="]] .. table[i][2] .. [[" just_load_an_entity="]] .. table[i][3] .. [["/>]]
-			string = string .. [[<PixelScene pos_x="]] .. table[i][1] + worldsize * 2 .. [[" pos_y="]] .. table[i][2] .. [[" just_load_an_entity="]] .. table[i][3] .. [["/>]]
-			string = string .. [[<PixelScene pos_x="]] .. table[i][1] - worldsize * 2 .. [[" pos_y="]] .. table[i][2] .. [[" just_load_an_entity="]] .. table[i][3] .. [["/>]]
-		end
-	end
-	content = content:gsub("<mBufferedPixelScenes>", string)
-	ModTextFileSetContent(biome_path, content)
-end
-
-local scenes = {
-    { 13080, 1650, "mods/souls/files/biome/souldoor/souldoor.xml", true },
-}
-
-add_scene(scenes)
-
 -- player
 function OnPlayerSpawned( player )
 
@@ -83,19 +55,6 @@ function OnPlayerSpawned( player )
     GameAddFlagRun("souls_init")
 end
 
--- moles spawning
---[[if not GameHasFlagRun("souls_moles_init") then -- thanks conga
-    for i=1,#molebiomes do v = molebiomes[i]
-        local biomepath = table.concat({"data/scripts/biomes/", v.biome, ".lua"})
-        local spawnerpath = "mods/souls/files/scripts/molespawner.lua"
-        if v.modded ~= nil and v.modded == true then
-            biomepath = v.biome
-        end
-        ModLuaFileAppend(biomepath, spawnerpath)
-    end
-    GameAddFlagRun("souls_moles_init")
-end]]
-
 --translations
 local translations = ModTextFileGetContent( "data/translations/common.csv" );
 if translations ~= nil then
@@ -108,16 +67,6 @@ if translations ~= nil then
 
     ModTextFileSetContent( "data/translations/common.csv", translations );
 end
-
--- biomes
---[[local content = ModTextFileGetContent("data/biome/_biomes_all.xml")
-local xml = nxml.parse(content)
-xml:add_children(nxml.parse_many[[
-)
-ModTextFileSetContent("data/biome/_biomes_all.xml", tostring(xml))]]
---[[ <Biome height_index="0" color="ff9dceb9" biome_filename="mods/souls/files/biome/sunlab/sunlab.xml" /> ]]
-
--- nxml
 
 function OnModSettingsChanged()
     --RenderSouls()

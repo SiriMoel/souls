@@ -113,41 +113,37 @@ end
 
 actions_to_insert = {
 	{
-		{
-			id          = "REAPING_SHOT", -- the basis of the whole mod
-			name 		= "$action_moldos_reaping_shot",
-			description = "$actiondesc_moldos_reaping_shot",
-			sprite 		= "mods/souls/files/spell_icons/reaping_shot.png",
-			related_extra_entities = { "mods/souls/files/entities/projectiles/reaping_shot/reaping_shot.xml" },
-			type 		= ACTION_TYPE_MODIFIER,
-			inject_after = "MANA_REDUCE",
-			spawn_level                       = "0,1,2,3,4,5,6",
-			spawn_probability                 = "1,1,1,1,1,1,1",
-			price = 100,
-			mana = 10,
-			action 		= function()
-				c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/reaping_shot/reaping_shot.xml,"
-				draw_actions( 1, true )
-			end,
-		},
+		id          = "REAPING_SHOT", -- the basis of the whole mod
+		name 		= "$action_moldos_reaping_shot",
+		description = "$actiondesc_moldos_reaping_shot",
+		sprite 		= "mods/souls/files/spell_icons/reaping_shot.png",
+		related_extra_entities = { "mods/souls/files/entities/projectiles/reaping_shot/reaping_shot.xml" },
+		type 		= ACTION_TYPE_MODIFIER,
+		inject_after = "MANA_REDUCE",
+		spawn_level                       = "0,1,2,3,4,5,6",
+		spawn_probability                 = "1,1,1,1,1,1,1",
+		price = 100,
+		mana = 10,
+		action 		= function()
+			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/reaping_shot/reaping_shot.xml,"
+			draw_actions( 1, true )
+		end,
 	},
 	{
-		{
-			id          = "WAND_CONSUMES_X_SOULS", -- new souls thing!!!
-			name 		= "$action_moldos_wand_consumes_x_souls",
-			description = "$actiondesc_moldos_wand_consumes_x_souls",
-			sprite 		= "mods/souls/files/spell_icons/wand_consumes_x_souls.png",
-			custom_xml_file="mods/tales_of_kupoli/files/entities/misc/card_wand_consumes_x_souls.xml",
-			type 		= ACTION_TYPE_PASSIVE,
-			inject_after = "MOLDOS_REAPING_SHOT",
-			spawn_level                       = "0,1,2,3,4,5,6",
-			spawn_probability                 = "1,1,1,1,1,1,1",
-			price = 100,
-			mana = 0,
-			action 		= function()
-				draw_actions( 1, true )
-			end,
-		},
+		id          = "WAND_CONSUMES_X_SOULS", -- new souls thing!!!
+		name 		= "$action_moldos_wand_consumes_x_souls",
+		description = "$actiondesc_moldos_wand_consumes_x_souls",
+		sprite 		= "mods/souls/files/spell_icons/wand_consumes_x_souls.png",
+		custom_xml_file="mods/souls/files/entities/misc/card_wand_consumes_x_souls/card.xml",
+		type 		= ACTION_TYPE_PASSIVE,
+		inject_after = "MOLDOS_REAPING_SHOT",
+		spawn_level                       = "0,1,2,3,4,5,6",
+		spawn_probability                 = "1,1,1,1,1,1,1",
+		price = 100,
+		mana = 0,
+		action 		= function()
+			draw_actions( 1, true )
+		end,
 	},
 	{
 		id          = "SOUL_BLAST",

@@ -52,6 +52,15 @@ function AddSouls(type, amount)
     local x, y = EntityGetTransform(player)
     local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. type) or 0
     ComponentSetValue2(comp, "value_int", ComponentGetValue2(comp, "value_int") + amount)
+    if amount == 1 then
+        if ModSettingGet( "souls.say_acquired_soul" ) then
+            GamePrint( "You have acquired a " .. SoulNameCheck(soul) .. " soul." )
+        end
+    else
+        if ModSettingGet( "souls.say_acquired_soul" ) then
+            GamePrint( "You have acquired " .. amount .. " " .. SoulNameCheck(soul) .. " souls." )
+        end
+    end
 end
 
 function RemoveSoul(type)
@@ -102,10 +111,18 @@ function GetRandomSoulForWand(wand)
     local comp_whichsoul = EntityGetFirstComponentIncludingDisabled(wand, "VariableStorageComponent", "which_soul_type") or 0
     local whichsoul = ComponentGetValue2(comp_whichsoul, "value_string")
     which_soul = whichsoul
-    if whichsoul == "0" then
-        which_soul = GetRandomSoul(false)
+    if which_soul == "0" then
+        if GetSoulsCount("all") > 0 then
+            which_soul = GetRandomSoul(false)
+        else
+            return "0"
+        end
     end
-    return which_soul
+    if GetSoulsCount(which_soul) > 0 then
+        return which_soul
+    else
+        return "0"
+    end
 end
 
 function GetRandomSoulType(includeboss)
@@ -154,8 +171,8 @@ function SoulNameCheck(string)
     return string
 end
 
-function ReapSoul(entity_id, amount, random)
-    local herd_id_number = ComponentGetValue2( EntityGetFirstComponent( entity, "GenomeDataComponent" ) or 0, "herd_id")
+function ReapSoul(entity, amount, random)
+    local herd_id_number = ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( entity, "GenomeDataComponent" ) or 0, "herd_id")
     local herd_id = HerdIdToString(herd_id_number)
     local x, y = EntityGetTransform(entity)
     local player = GetPlayer()

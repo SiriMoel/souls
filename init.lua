@@ -37,6 +37,8 @@ function OnPlayerSpawned( player )
     --EntityLoad("mods/souls/files/entities/items/tome/weapon.xml", px, py)
     --CreateItemActionEntity("MOLDOS_UPGRADE_TOME", px, py)
 
+    --EntityLoad("mods/souls/files/entities/items/_soulcrystals/alchemist.xml", px, py)
+
     for i=1,tonumber(ModSettingGet("souls.starting_souls")) do
         local which = soul_types[math.random(1,#soul_types)]
         if which == "gilded" then

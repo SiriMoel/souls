@@ -6,16 +6,12 @@ local comp_mi = EntityGetFirstComponentIncludingDisabled(entity, "MaterialInvent
 local comp_ms = EntityGetFirstComponentIncludingDisabled(entity, "MaterialSuckerComponent") or 0
 local x, y = EntityGetTransform(entity)
 
-if comp_mi ~= nil then
-   --[[local amount_soulblood = ComponentObjectGetValue2(comp_mi, "count_per_material_type", "soul_blood_1")
+function kick( entity_who_kicked )
+    local amount_soulblood = ComponentGetValue2(comp_mi, "count_per_material_type")[CellFactory_GetType("soul_blood_1") + 1] or 0 --tostring(CellFactory_GetType("soul_blood_1"))
+    GamePrint(tostring(amount_soulblood))
     if amount_soulblood >= 300 then
+        GamePrint("Revived a boss!")
         EntityKill(entity)
-        EntityLoad(Componentgetvalue2(EntityGetFirstComponentIncludingDisabled(entity, "VariableStorageComponent", "boss"), "value_string"), x, y)
-    end]]
-    if ComponentGetValue2(comp_ms, "mAmountUsed") >= 1 then
-        EntityKill(entity)
-        EntityLoad(Componentgetvalue2(EntityGetFirstComponentIncludingDisabled(entity, "VariableStorageComponent", "boss"), "value_string"), x, y)
+        EntityLoad(ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(entity, "VariableStorageComponent", "boss") or 0, "value_string"), x, y)
     end
-else
-    GamePrint("SOULS - cannot find material inventory")
 end

@@ -5,5 +5,5 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 	local entity = GetUpdatedEntityID()
 	local x, y = EntityGetTransform(entity)
 
-	EntityLoad("mods/souls/files/entities/items/_soulcrystals/alchemist.xml", x, y)
+	EntityLoad("mods/souls/files/entities/items/_soulcrystals/dragon.xml", x, y)
 end

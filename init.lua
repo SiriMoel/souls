@@ -10,16 +10,66 @@ dofile_once("mods/souls/files/scripts/souls.lua")
 
 local nxml = dofile_once("mods/souls/lib/nxml.lua")
 
---[[if ModSettingGet("souls.alt_map") then
-    ModMagicNumbersFileAdd( "mods/souls/files/magic_numbers.xml" )
-end]]
-
 -- set & append
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/souls/files/actions.lua" )
 ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/souls/files/perks.lua" )
 ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/souls/files/status_list.lua" )
 ModLuaFileAppend( "data/scripts/items/drop_money.lua", "mods/souls/files/scripts/drop_money_append.lua" )
 SetFileContent("data/entities/base_wand_pickup.xml", "base_wand_pickup.xml")
+
+local dropdoers = {
+    {
+        path = "data/entities/animals/boss_alchemist/boss_alchemist.xml",
+        script = "mods/souls/files/scripts/death/boss_alchemist.lua",
+    },
+    {
+        path = "data/entities/animals/boss_limbs/boss_limbs.xml",
+        script = "mods/souls/files/scripts/death/boss_pyramid.lua",
+    },
+    {
+        path = "data/entities/animals/boss_dragon/boss_dragon.xml",
+        script = "mods/souls/files/scripts/death/boss_dragon.lua",
+    },
+    {
+        path = "data/entities/animals/boss_wizard/boss_wizard.xml",
+        script = "mods/souls/files/scripts/death/boss_wizard.lua",
+    },
+    {
+        path = "data/entities/animals/boss_fish/fish_giga.xml",
+        script = "mods/souls/files/scripts/death/boss_fish.lua",
+    },
+    {
+        path = "data/entities/animals/boss_spirit/islandspirit.xml",
+        script = "mods/souls/files/scripts/death/boss_deer.lua",
+    },
+    {
+        path = "data/entities/animals/boss_ghost/boss_ghost.xml",
+        script = "mods/souls/files/scripts/death/boss_ghost.lua",
+    },
+    {
+        path = "data/entities/animals/boss_meat/boss_meat.xml",
+        script = "mods/souls/files/scripts/death/boss_meat.lua",
+    },
+    {
+        path = "data/entities/animals/boss_robot/boss_robot.xml",
+        script = "mods/souls/files/scripts/death/boss_robot.lua",
+    },
+    {
+        path = "data/entities/animals/maggot_tiny/maggot_tiny.xml",
+        script = "mods/souls/files/scripts/death/maggot_tiny.lua",
+    },
+}
+
+for i,v in ipairs(dropdoers) do
+    local xml = nxml.parse(ModTextFileGetContent(v.path))
+    xml:add_child(nxml.parse(([[
+        <LuaComponent
+              script_death="%s"
+              >
+        </LuaComponent>
+    ]]):format(v.script)))
+    ModTextFileSetContent(v.path, tostring(xml))
+end
 
 -- player
 function OnPlayerSpawned( player )

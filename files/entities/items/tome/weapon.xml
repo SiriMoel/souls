@@ -1,4 +1,4 @@
-<Entity name="Soul Tome" tags="teleportable_NOT,wand,item,kupoli_tome">
+<Entity name="Soul Tome" tags="teleportable_NOT,wand,item,soul_tome">
 
     <!--removed sprite_file from this-->
 	<AbilityComponent 

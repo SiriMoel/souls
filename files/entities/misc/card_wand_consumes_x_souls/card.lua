@@ -18,18 +18,18 @@ if ComponentGetValue2(comp_controls, "mButtonDownRightClick") == true and GameGe
     local whichsoul_number = ComponentGetValue2(comp_whichsoulnumber, "value_int")
 
     if whichsoul == "0" then
-        whichsoul = "orcs"
+        whichsoul = "bat"
     else
         whichsoul_number = whichsoul_number + 1
         whichsoul = soul_types[whichsoul_number]
         if whichsoul == nil then
-            whichsoul = "orcs"
-            whichsoul_number = 1
+            whichsoul = "0"
+            whichsoul_number = 0
         end
     end
 
     ComponentSetValue2(comp_whichsoul, "value_string", whichsoul)
     ComponentSetValue2(comp_whichsoulnumber, "value_int", whichsoul_number)
     ComponentSetValue2( comp_cd, "value_int", GameGetFrameNum() + cooldown_frames )
-    GamePrint("Now only consuming " .. SoulNameCheck(whichsoul) .. " souls on this wand.")
+    GamePrint("Now consuming " .. SoulNameCheck(whichsoul) .. " souls on this wand.")
 end

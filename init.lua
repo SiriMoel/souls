@@ -84,7 +84,7 @@ function OnPlayerSpawned( player )
 
     SoulsInit()
 
-    --EntityLoad("mods/souls/files/entities/items/tome/weapon.xml", px, py)
+    EntityLoad("mods/souls/files/entities/items/tome/weapon.xml", px, py)
     --CreateItemActionEntity("MOLDOS_UPGRADE_TOME", px, py)
 
     --EntityLoad("mods/souls/files/entities/items/_soulcrystals/alchemist.xml", px, py)
@@ -101,7 +101,7 @@ function OnPlayerSpawned( player )
     end
 
     EntityAddComponent(player, "LuaComponent", {
-        script_damage_about_to_be_received="mods/souls/files/scripts/player_about_to_be_damaged.lua"
+        script_damage_about_to_be_received="mods/souls/files/scripts/player_damage_handler.lua"
     })
 
     GameAddFlagRun("souls_init")

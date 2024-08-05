@@ -29,7 +29,7 @@ function OnWorldPreUpdate()
         soulscount = GetSoulsCount("all")
         Gui.state.soulscount = soulscount
 
-        phylactery_points = tonumber(GlobalsGetValue("kupoli_phylactery_points", "0")) or 0
+        phylactery_points = tonumber(GlobalsGetValue("souls_phylactery_points", "0")) or 0
         Gui.state.phylacterypoints = phylactery_points
 
         unlocked_sbp = sunbookpages
@@ -59,7 +59,7 @@ function OnWorldPreUpdate()
         --[[local inv_comp = EntityGetFirstComponentIncludingDisabled(GetPlayer(), "Inventory2Component") or 0
         if inv_comp ~= 0 then
             held_item = ComponentGetValue2(inv_comp, "mActiveItem")
-            if EntityHasTag(held_item, "kupoli_tome") then
+            if EntityHasTag(held_item, "souls_tome") then
                 Gui.state.tome_gui_hidden = false
                 Gui.state.tome_path_1 = ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(held_item, "VariableStorageComponent", "path_1") or 0, "value_int")
                 Gui.state.tome_path_2 = ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(held_item, "VariableStorageComponent", "path_2") or 0, "value_int")
@@ -73,7 +73,7 @@ function OnWorldPreUpdate()
 
     Gui.state.sunbook_prev_visible = (unlocked_sbp[sunbook_page - 1] ~= nil)
     Gui.state.sunbook_next_visible = (unlocked_sbp[sunbook_page + 1] ~= nil)
-    Gui.state.sunbook_unlocked = not GameHasFlagRun("talesofkupoli_sunbook_unlocked")
+    Gui.state.sunbook_unlocked = not GameHasFlagRun("talesofsouls_sunbook_unlocked")
     Gui.state.sunbook_page_src = unlocked_sbp[sunbook_page].page
     Gui.state.sunbook_page_scaleX = unlocked_sbp[sunbook_page].scaleX * sunbook_page_scalemult
     Gui.state.sunbook_page_scaleY = unlocked_sbp[sunbook_page].scaleY * sunbook_page_scalemult
@@ -112,7 +112,7 @@ Gui:AddElement(gusgui.Elements.HLayout({
             children = {
                 gusgui.Elements.Text({
                     value = "Phylactery points: ${phylacterypoints}",
-                    hidden = not GameHasFlagRun("kupoli_phylactery_done"),
+                    hidden = not GameHasFlagRun("souls_phylactery_done"),
                 }),
                 gusgui.Elements.HLayoutForEach({
                     id = "soulsgui",
@@ -139,7 +139,7 @@ Gui:AddElement(gusgui.Elements.HLayout({
             },
         }),
         
-        gusgui.Elements.ImageButton({ -- open and close button
+        --[[gusgui.Elements.ImageButton({ -- open and close button
             id = "sunbook_openandclosebutton",
             src = "mods/souls/files/sunbook/button_open.png",
             margin = { bottom = 1, },
@@ -148,7 +148,7 @@ Gui:AddElement(gusgui.Elements.HLayout({
             onClick = function()
                 Gui.state.sunbook_open = not Gui.state.sunbook_open
             end,
-        }),
+        }),]]
     },
 }))
 
@@ -237,7 +237,7 @@ Gui:AddElement(gusgui.Elements.HLayout({
     },
 }))]]--
 
-Gui:AddElement(gusgui.Elements.VLayout({
+--[[Gui:AddElement(gusgui.Elements.VLayout({
     id = "sunbook",
     horizontalAlign = 0.5,
     verticalAlign = 0.5,
@@ -287,4 +287,4 @@ Gui:AddElement(gusgui.Elements.VLayout({
             },
         })
     },
-}))
+}))]]

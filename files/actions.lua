@@ -156,11 +156,93 @@ actions_to_insert = {
 		spawn_level                       = "2,3,4,5,6",
 		spawn_probability                 = "0.8,1,1,1,1",
 		price = 120,
-		mana = 40,
+		mana = 70,
 		max_uses = 20,
 		action 		= function()
 			add_projectile("mods/souls/files/entities/projectiles/soul_blast/soul_blast.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 20
+		end,
+	},
+	{
+		id          = "TOME_SHOT", -- infinite bombs
+		name 		= "$action_souls_tome_shot",
+		description = "$actiondesc_souls_tome_shot",
+		sprite 		= "mods/souls/files/spell_icons/tome_shot.png",
+		sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_unidentified.png",
+		related_projectiles	= {"mods/souls/files/entities/projectiles/tome_seek/proj.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		inject_after = "SUMMON_WANDGHOST",
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 100,
+		mana = 50,
+		custom_xml_file="mods/souls/files/entities/misc/card_tome_shot.xml",
+		action 		= function()
+			dofile_once("mods/souls/files/scripts/souls.lua")
+
+			if reflecting then return end
+
+			local entity = GetUpdatedEntityID()
+			local x, y = EntityGetTransform(entity)
+
+			local wand = 0
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+
+			local tome = EntityGetWithTag("soul_tome")[1] or 1
+			local comp_ca = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "current_attack") or 0
+			local ca = tonumber(ComponentGetValue(comp_ca, "value_string"))
+
+			c.fire_rate_wait = c.fire_rate_wait + 10
+
+			function TomeAddProjectiles()
+				if ca == 1 then -- tome shot
+					c.spread_degrees = c.spread_degrees + 13.0
+					c.screenshake = c.screenshake + 2
+					c.damage_critical_chance = c.damage_critical_chance + 2
+					add_projectile("mods/souls/files/entities/projectiles/tome_shot/proj.xml")
+					add_projectile("mods/souls/files/entities/projectiles/tome_shot/proj.xml")
+					add_projectile("mods/souls/files/entities/projectiles/tome_shot/proj.xml")
+					add_projectile("mods/souls/files/entities/projectiles/tome_shot/proj.xml")
+				end
+				if ca == 2 then -- tome seek
+					c.spread_degrees = c.spread_degrees + 15.0
+					c.damage_projectile_add = c.damage_projectile_add - 1.0
+					add_projectile("mods/souls/files/entities/projectiles/tome_seek/proj.xml")
+					add_projectile("mods/souls/files/entities/projectiles/tome_seek/proj.xml")
+					add_projectile("mods/souls/files/entities/projectiles/tome_seek/proj.xml")
+					add_projectile("mods/souls/files/entities/projectiles/tome_seek/proj.xml")
+					add_projectile("mods/souls/files/entities/projectiles/tome_seek/proj.xml")
+					add_projectile("mods/souls/files/entities/projectiles/tome_seek/proj.xml")
+					add_projectile("mods/souls/files/entities/projectiles/tome_seek/proj.xml")
+				end
+				if ca == 3 then -- tome bomb
+					c.fire_rate_wait = c.fire_rate_wait + 10
+					add_projectile("mods/souls/files/entities/projectiles/tome_bomb/proj.xml")
+				end
+			end
+
+			if wand == tome then
+				if DoesWandUseSpecificSoul(wand) then
+					if GetSoulsCount(GetWandSoulType(wand)) >= 3 then
+						for i=1,3 do
+							RemoveSoul(GetWandSoulType(wand))
+						end
+						TomeAddProjectiles()
+					else
+						GamePrint("You do not have enough souls for this.")
+					end
+				else
+					if GetSoulsCount("all") >= 3 then
+						RemoveRandomSouls(3)
+						TomeAddProjectiles()
+					else
+						GamePrint("You do not have enough souls for this.")
+					end
+				end
+			end
 		end,
 	},
 }

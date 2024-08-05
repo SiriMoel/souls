@@ -35,7 +35,8 @@ if ModIsEnabled("Apotheosis") then
         "ghost_whisp",
     }
 end
-    
+
+-- Initialises the Souls mechanic, should only be ran once in init.lua
 function SoulsInit()
     local player = GetPlayer()
     for i,v in ipairs(soul_types) do
@@ -47,6 +48,24 @@ function SoulsInit()
     end
 end
 
+-- Use this when printing the name of souls
+function SoulNameCheck(string)
+    if string == "mage_corrupted" then
+        string = "corrupted mage"
+    end
+    if string == "ghost_whisp" then
+        string = "whisp"
+    end
+    if string == "orcs" then
+        string = "hiisi"
+    end
+    if string == "0" then
+        string = "any"
+    end
+    return string
+end
+
+-- Adds souls, provide type and amount
 function AddSouls(type, amount)
     local player = GetPlayer()
     local x, y = EntityGetTransform(player)
@@ -63,12 +82,14 @@ function AddSouls(type, amount)
     end
 end
 
+-- Removes a single soul
 function RemoveSoul(type)
     local player = GetPlayer()
     local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. type) or 0
     ComponentSetValue2(comp, "value_int", ComponentGetValue2(comp, "value_int") - 1)
 end
 
+-- Gets the amount of souls of a specific type, or "all" for all souls
 ---@return number
 function GetSoulsCount(type)
     local player = GetPlayer()
@@ -83,6 +104,7 @@ function GetSoulsCount(type)
     return count
 end
 
+-- Gets a random soul
 function GetRandomSoul(includeboss)
     local player = GetPlayer()
     local whichtype = ""
@@ -106,6 +128,7 @@ function GetRandomSoul(includeboss)
     return whichtype
 end
 
+-- GetRandomSoul() but for wands, used incase the wand is meant to only consume a specific soul type
 function GetRandomSoulForWand(wand)
     local which_soul = "0"
     local comp_whichsoul = EntityGetFirstComponentIncludingDisabled(wand, "VariableStorageComponent", "which_soul_type") or 0
@@ -125,6 +148,29 @@ function GetRandomSoulForWand(wand)
     end
 end
 
+-- Does the provided wand use a specific soul type or can it use any soul?
+function DoesWandUseSpecificSoul(wand)
+    local which_soul = "0"
+    local comp_whichsoul = EntityGetFirstComponentIncludingDisabled(wand, "VariableStorageComponent", "which_soul_type") or 0
+    local whichsoul = ComponentGetValue2(comp_whichsoul, "value_string")
+    which_soul = whichsoul
+    if which_soul == "0" then
+        return false
+    else
+        return true
+    end
+end
+
+-- What soul type does the wand use? Returns "0" if the wand does not consume a specific soul type
+function GetWandSoulType(wand)
+    local which_soul = "0"
+    local comp_whichsoul = EntityGetFirstComponentIncludingDisabled(wand, "VariableStorageComponent", "which_soul_type") or 0
+    local whichsoul = ComponentGetValue2(comp_whichsoul, "value_string")
+    which_soul = whichsoul
+    return which_soul
+end
+
+-- Gets a random soul type
 function GetRandomSoulType(includeboss)
     local type = soul_types[math.random(1, #soul_types)]
     if includeboss then
@@ -137,6 +183,7 @@ function GetRandomSoulType(includeboss)
     end
 end
 
+-- Adds random souls
 function AddRandomSouls(amount, includegilded)
     for i=1,amount do
         local type = ""
@@ -152,25 +199,14 @@ function AddRandomSouls(amount, includegilded)
     end
 end
 
+-- Removes random souls
 function RemoveRandomSouls(amount)
     for i=1,amount do
         RemoveSoul(GetRandomSoul())
     end
 end
 
-function SoulNameCheck(string)
-    if string == "mage_corrupted" then
-        string = "corrupted mage"
-    end
-    if string == "ghost_whisp" then
-        string = "whisp"
-    end
-    if string == "orcs" then
-        string = "hiisi"
-    end
-    return string
-end
-
+-- Tales' reap.lua but a function
 function ReapSoul(entity, amount, random)
     local herd_id_number = ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( entity, "GenomeDataComponent" ) or 0, "herd_id")
     local herd_id = HerdIdToString(herd_id_number)

@@ -165,8 +165,8 @@ actions_to_insert = {
 	},
 	{
 		id          = "TOME_SHOT", -- infinite bombs
-		name 		= "$action_souls_tome_shot",
-		description = "$actiondesc_souls_tome_shot",
+		name 		= "$action_moldos_tome_shot",
+		description = "$actiondesc_moldos_tome_shot",
 		sprite 		= "mods/souls/files/spell_icons/tome_shot.png",
 		sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_unidentified.png",
 		related_projectiles	= {"mods/souls/files/entities/projectiles/tome_seek/proj.xml"},

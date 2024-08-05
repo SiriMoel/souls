@@ -176,7 +176,7 @@ actions_to_insert = {
 		spawn_probability                 = "",
 		price = 100,
 		mana = 50,
-		custom_xml_file="mods/souls/files/entities/misc/card_tome_shot.xml",
+		custom_xml_file="mods/souls/files/entities/misc/card_tome_shot/card.xml",
 		action 		= function()
 			dofile_once("mods/souls/files/scripts/souls.lua")
 

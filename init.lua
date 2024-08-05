@@ -8,6 +8,7 @@ dofile_once("mods/souls/files/scripts/souls.lua")
 
 --PatchGunSystem()
 
+dofile_once("mods/souls/lib/nxml.lua")
 local nxml = dofile_once("mods/souls/lib/nxml.lua")
 
 -- set & append
@@ -27,7 +28,7 @@ local dropdoers = {
         script = "mods/souls/files/scripts/death/boss_pyramid.lua",
     },
     {
-        path = "data/entities/animals/boss_dragon/boss_dragon.xml",
+        path = "data/entities/animals/boss_dragon.xml",
         script = "mods/souls/files/scripts/death/boss_dragon.lua",
     },
     {

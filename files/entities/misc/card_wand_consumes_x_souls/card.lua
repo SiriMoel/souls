@@ -12,8 +12,22 @@ if ComponentGetValue2(comp_controls, "mButtonDownRightClick") == true and GameGe
     local player = GetPlayer()
     local wand = HeldItem(player)
 
-    local comp_whichsoul = EntityGetFirstComponentIncludingDisabled(wand, "VariableStorageComponent", "which_soul_type") or 0
-    local comp_whichsoulnumber = EntityGetFirstComponentIncludingDisabled(wand, "VariableStorageComponent", "which_soul_type_number") or 0
+    local comp_whichsoul = EntityGetFirstComponentIncludingDisabled(wand, "VariableStorageComponent", "which_soul_type")
+    if comp_whichsoul == nil then
+        EntityAddComponent2(wand, "VariableStorageComponent", {
+            _tags="which_soul_type",
+            name="which_soul_type",
+            value_string="0",
+        })
+    end
+    local comp_whichsoulnumber = EntityGetFirstComponentIncludingDisabled(wand, "VariableStorageComponent", "which_soul_type_number")
+    if comp_whichsoulnumber == nil then
+        EntityAddComponent2(wand, "VariableStorageComponent", {
+            _tags="which_soul_type_number",
+            name="which_soul_type_number",
+            value_int="1",
+        })
+    end
     local whichsoul = ComponentGetValue2(comp_whichsoul, "value_string")
     local whichsoul_number = ComponentGetValue2(comp_whichsoulnumber, "value_int")
 

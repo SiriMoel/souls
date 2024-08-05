@@ -122,7 +122,7 @@
 	<VariableStorageComponent
 		_tags="boss"
 		name="boss"
-		value_string="data/entities/animals/boss_dragon/boss_dragon.xml"
+		value_string="data/entities/animals/boss_dragon.xml"
 	></VariableStorageComponent>
 
   <MaterialSuckerComponent 

@@ -86,7 +86,7 @@ function OnPlayerSpawned( player )
     SoulsInit()
 
     EntityLoad("mods/souls/files/entities/items/tome/weapon.xml", px, py)
-    --CreateItemActionEntity("MOLDOS_UPGRADE_TOME", px, py)
+    CreateItemActionEntity("MOLDOS_UPGRADE_TOME", px, py)
 
     --EntityLoad("mods/souls/files/entities/items/_soulcrystals/alchemist.xml", px, py)
 

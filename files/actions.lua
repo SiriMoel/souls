@@ -1,7 +1,7 @@
 dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("mods/souls/files/scripts/souls.lua")
 
-function UpgradeTome(path, amount, is_better)
+function UpgradeTome(wand, path, amount, is_better)
 	if path == 0 then
 		GamePrint("You must select an upgrade first.")
 		return
@@ -28,8 +28,7 @@ function UpgradeTome(path, amount, is_better)
 	if is_better then
 		cost = math.floor((cost / 2) + 0.5)
 	end
-	if GetSoulsCount("all") >= cost then
-		RemoveSouls(cost)
+	function DoTomeUpgrade()
 		if path == 1 then -- upgrade capacity
 			GamePrint("Upgrading capacity!")
 			for i=1,amount do
@@ -93,8 +92,8 @@ function UpgradeTome(path, amount, is_better)
 		end
 		cost = cost * 1.25
 		cost = math.floor(cost + 0.5)
-		if cost > 30 then
-			cost = 30
+		if cost > 50 then
+			cost = 50
 		end
 		GamePrint("Next upgrade will cost " .. cost .. " souls.")
 		ComponentSetValue2(comp_path_1, "value_int", path_1)
@@ -108,6 +107,25 @@ function UpgradeTome(path, amount, is_better)
 		ComponentObjectSetValue( ac, "gunaction_config", "fire_rate_wait", tostring(frw) )
 		ComponentSetValue2( ac, "mana_charge_speed", mcs )
 		ComponentSetValue2( ac, "mana_max", mm )
+	end
+	if wand == tome then
+		if DoesWandUseSpecificSoul(wand) then
+			if GetSoulsCount(GetWandSoulType(wand)) >= cost then
+				for i=1,cost do
+					RemoveSoul(GetWandSoulType(wand))
+				end
+				DoTomeUpgrade()
+			else
+				GamePrint("You do not have enough souls for this.")
+			end
+		else
+			if GetSoulsCount("all") >= cost then
+				RemoveRandomSouls(cost)
+				DoTomeUpgrade()
+			else
+				GamePrint("You do not have enough souls for this.")
+			end
+		end
 	end
 end
 
@@ -241,6 +259,45 @@ actions_to_insert = {
 					else
 						GamePrint("You do not have enough souls for this.")
 					end
+				end
+			end
+		end,
+	},
+	{
+		id          = "UPGRADE_TOME", -- tome gaming
+		name 		= "$action_moldos_upgrade_tome",
+		description = "$actiondesc_moldos_upgrade_tome",
+		sprite 		= "mods/souls/files/spell_icons/tome_upgrade.png",
+		type 		= ACTION_TYPE_UTILITY,
+		inject_after = "MOLDOS_TOME_SHOT",
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		price = 100,
+		mana = 0,
+		custom_xml_file="mods/souls/files/entities/misc/card_upgrade_tome/card.xml",
+		action 		= function()
+			dofile_once("mods/souls/files/scripts/souls.lua")
+			if not reflecting then
+				local entity = GetUpdatedEntityID()
+				local x, y = EntityGetTransform(entity)
+	
+				local tome = EntityGetWithTag("soul_tome")[1]
+	
+				local comp_cu = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "current_upgrade") or 0
+				local cu = tonumber(ComponentGetValue(comp_cu, "value_string"))
+	
+				local wand = 0
+				local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+				if inv_comp then
+					wand = ComponentGetValue2(inv_comp, "mActiveItem")
+				end
+	
+				if wand == tome then
+					c.fire_rate_wait = c.fire_rate_wait + 20
+					current_reload_time = current_reload_time + 20
+					UpgradeTome(wand, cu, 1, false)
+				else
+					GamePrint("The spell must be casted on the tome.")
 				end
 			end
 		end,

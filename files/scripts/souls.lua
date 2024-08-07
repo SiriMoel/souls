@@ -202,7 +202,7 @@ end
 -- Removes random souls
 function RemoveRandomSouls(amount)
     for i=1,amount do
-        RemoveSoul(GetRandomSoul())
+        RemoveSoul(GetRandomSoul(false))
     end
 end
 

@@ -1,7 +1,7 @@
-<entity tags="kupoli_exchanger_light,kupoli_exchanger_light_4">
+<entity tags="souls_exchanger_light,souls_exchanger_light_4">
 
     	<ParticleEmitterComponent
-		_tags="kupoli_exchanger_light_proj"
+		_tags="souls_exchanger_light_proj"
         _enabled="0"
 		emitted_material_name="spark_purple"
 		offset.x="0"
@@ -35,7 +35,7 @@
 	</ParticleEmitterComponent>
 
 	<ParticleEmitterComponent
-		_tags="kupoli_exchanger_light_mod"
+		_tags="souls_exchanger_light_mod"
         _enabled="0"
 		emitted_material_name="spark_purple"
 		offset.x="0"

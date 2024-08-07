@@ -55,8 +55,6 @@ if #targets > 0 and #targets2 > 0 then
 
     if not EntityHasTag(entity, "activated") then
         SpawnExchanger(x, y-60)
-        GameAddFlagRun("ikkuna_souldoor")
-        GamePrint("Trace found!")
         EntityAddTag(entity, "activated")
     end
 end

@@ -201,7 +201,7 @@ else
 
 	-- boss
 	if soul == "boss" then
-		ComponentSetValue2( comp_particles, "emitted_material_name", "magic_liquid_berserk" )
+		ComponentSetValue2( comp_particles, "emitted_material_name", "living_partices" )
 
 		projdamage = projdamage + 0.5
 		expdamage = expdamage * 1.2

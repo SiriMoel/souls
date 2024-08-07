@@ -302,6 +302,64 @@ actions_to_insert = {
 			end
 		end,
 	},
+	{
+		id          = "SOUL_SPEED",
+		name 		= "$action_moldos_soul_speed",
+		description = "$actiondesc_moldos_soul_speed",
+		sprite 		= "mods/souls/files/spell_icons/soul_speed.png",
+		--related_extra_entities = { "mods/tales_of_kupoli/files/entities/misc/soul_speed.xml" },
+		type 		= ACTION_TYPE_MODIFIER,
+		inject_after = "BLOODLUST",
+		spawn_level                       = "1,2,3,4,5,6",
+		spawn_probability                 = "1,1,1,1,1,1",
+		price = 100,
+		mana = 10,
+		action 		= function()
+			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+			
+			if reflecting then return end
+
+			if DoesWandUseSpecificSoul(wand) then
+				if GetSoulsCount(GetWandSoulType(wand)) >= 1 then
+					RemoveSoul(GetWandSoulType(wand))
+					c.speed_multiplier = c.speed_multiplier * 2
+					c.damage_projectile_add = c.damage_projectile_add + 0.3
+					c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_speed/soul_speed_fx.xml,"
+				else
+					GamePrint("You do not have enough souls for this.")
+				end
+			else
+				if GetSoulsCount("all") >= 1 then
+					RemoveRandomSouls(1)
+					c.speed_multiplier = c.speed_multiplier * 2
+					c.damage_projectile_add = c.damage_projectile_add + 0.3
+					c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_speed/soul_speed_fx.xml,"
+				else
+					GamePrint("You do not have enough souls for this.")
+				end
+			end
+
+			draw_actions( 1, true )
+		end,
+	},
+	{
+		id          = "SOULS_TO_POWER",
+		name 		= "$action_moldos_souls_to_power",
+		description = "$actiondesc_moldos_souls_to_power",
+		sprite 		= "mods/souls/files/spell_icons/souls_to_power.png",
+		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/souls_to_power/souls_to_power.xml" },
+		type 		= ACTION_TYPE_MODIFIER,
+		inject_after = "SPELLS_TO_POWER",
+		spawn_level                       = "2,3,4,5,6,10",
+		spawn_probability                 = "0.7,0.7,0.9,0.9,0.8,0.5",
+		price = 120,
+		mana = 50,
+		action 		= function()
+			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/souls_to_power/souls_to_power.xml,"
+			c.fire_rate_wait    = c.fire_rate_wait + 20
+			draw_actions( 1, true )
+		end,
+	},
 }
 
 for i,v in ipairs(actions_to_insert) do

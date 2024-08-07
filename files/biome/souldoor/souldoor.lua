@@ -13,46 +13,11 @@ local targets = EntityGetInRadiusWithTag(x, y, radius, "card_action")
 
 local spell_projectiles = {}
 local pool_projectiles = {
-    "KUPOLI_SOUL_EXPLOSION",
-    "KUPOLI_SOUL_GUARD",
-
-    "KUPOLI_REAPING_FIELD",
-    "KUPOLI_REAPING_SHOT",
-    "KUPOLI_REAPER_BLADE",
-    "KUPOLI_RANDOM_REAP",
-
-    "KUPOLI_SOULS_TO_POWER",
-    "KUPOLI_SOUL_SPEED",
-
-    "KUPOLI_SOUL_IS_MANA",
-    "KUPOLI_SOUL_BATTERY",
-
-    "KUPOLI_SOUL_NECROMANCY",
-    "KUPOLI_SOUL_MINIONS_TO_HEALING",
-    "KUPOLI_SOUL_MINIONS_TO_NUKES",
-
-    "KUPOLI_SOUL_DASH",
-    "KUPOLI_SOUL_HEALER",
-
-    "KUPOLI_CRYSTALLISE_SOULS",
-    "KUPOLI_GILDED_SOULS_TO_GOLD",
-    "KUPOLI_EAT_WAND_FOR_SOULS",
-
-    "KUPOLI_SOUL_BLAST",
-    "KUPOLI_SOUL_BALL",
-    "KUPOLI_SOUL_METEOR",
-    "KUPOLI_SOUL_ARROW",
-    "KUPOLI_SOUL_STRIKE",
-
-    "KUPOLI_TOME_LAUNCHER",
-    "KUPOLI_TOME_SLICE",
-    "KUPOLI_TOME_LOOTER",
-
-    --[["KUPOLI_ALL_REAP_MAGE",
-    "KUPOLI_ALL_REAP_GILDED",
-    "KUPOLI_ALL_REAP_FLY",
-    "KUPOLI_ALL_REAP_SPIDER",
-    "KUPOLI_SOULDOS",]]
+    "MOLDOS_REAPING_SHOT",
+    "MOLDOS_WAND_CONSUMES_X_SOULS",
+    "MOLDOS_SOUL_BLAST",
+    "MOLDOS_SOUL_SPEED",
+    "MOLDOS_SOULS_TO_POWER"
 }
 
 local string = ""
@@ -76,35 +41,35 @@ if #targets > 0 and targets ~= nil then
 end
 
 if #spell_projectiles >= 1 then
-    local light_1 = EntityGetInRadiusWithTag(x, y, 150, "kupoli_exchanger_light_1")[1]
-    EntitySetComponentsWithTagEnabled( light_1, "kupoli_exchanger_light_proj", true )
+    local light_1 = EntityGetInRadiusWithTag(x, y, 150, "souls_exchanger_light_1")[1]
+    EntitySetComponentsWithTagEnabled( light_1, "souls_exchanger_light_proj", true )
 else
-    local light_1 = EntityGetInRadiusWithTag(x, y, 150, "kupoli_exchanger_light_1")[1]
-    EntitySetComponentsWithTagEnabled( light_1, "kupoli_exchanger_light_proj", false )
+    local light_1 = EntityGetInRadiusWithTag(x, y, 150, "souls_exchanger_light_1")[1]
+    EntitySetComponentsWithTagEnabled( light_1, "souls_exchanger_light_proj", false )
 end
 
 if #spell_projectiles >= 2 then
-    local light_2 = EntityGetInRadiusWithTag(x, y, 150, "kupoli_exchanger_light_2")[1]
-    EntitySetComponentsWithTagEnabled( light_2, "kupoli_exchanger_light_proj", true )
+    local light_2 = EntityGetInRadiusWithTag(x, y, 150, "souls_exchanger_light_2")[1]
+    EntitySetComponentsWithTagEnabled( light_2, "souls_exchanger_light_proj", true )
 else
-    local light_2 = EntityGetInRadiusWithTag(x, y, 150, "kupoli_exchanger_light_2")[1]
-    EntitySetComponentsWithTagEnabled( light_2, "kupoli_exchanger_light_proj", false )
+    local light_2 = EntityGetInRadiusWithTag(x, y, 150, "souls_exchanger_light_2")[1]
+    EntitySetComponentsWithTagEnabled( light_2, "souls_exchanger_light_proj", false )
 end
 
 if #spell_projectiles >= 3 then
-    local light_3 = EntityGetInRadiusWithTag(x, y, 150, "kupoli_exchanger_light_3")[1]
-    EntitySetComponentsWithTagEnabled( light_3, "kupoli_exchanger_light_proj", true )
+    local light_3 = EntityGetInRadiusWithTag(x, y, 150, "souls_exchanger_light_3")[1]
+    EntitySetComponentsWithTagEnabled( light_3, "souls_exchanger_light_proj", true )
 else
-    local light_3 = EntityGetInRadiusWithTag(x, y, 150, "kupoli_exchanger_light_3")[1]
-    EntitySetComponentsWithTagEnabled( light_3, "kupoli_exchanger_light_proj", false )
+    local light_3 = EntityGetInRadiusWithTag(x, y, 150, "souls_exchanger_light_3")[1]
+    EntitySetComponentsWithTagEnabled( light_3, "souls_exchanger_light_proj", false )
 end
 
 if #spell_projectiles >= 4 then
-    local light_4 = EntityGetInRadiusWithTag(x, y, 150, "kupoli_exchanger_light_4")[1]
-    EntitySetComponentsWithTagEnabled( light_4, "kupoli_exchanger_light_proj", true )
+    local light_4 = EntityGetInRadiusWithTag(x, y, 150, "souls_exchanger_light_4")[1]
+    EntitySetComponentsWithTagEnabled( light_4, "souls_exchanger_light_proj", true )
 else
-    local light_4 = EntityGetInRadiusWithTag(x, y, 150, "kupoli_exchanger_light_4")[1]
-    EntitySetComponentsWithTagEnabled( light_4, "kupoli_exchanger_light_proj", false )
+    local light_4 = EntityGetInRadiusWithTag(x, y, 150, "souls_exchanger_light_4")[1]
+    EntitySetComponentsWithTagEnabled( light_4, "souls_exchanger_light_proj", false )
 end
 
 if #spell_projectiles >= 5 then
@@ -116,12 +81,12 @@ if #spell_projectiles >= 5 then
 
     spell_projectiles = {}
 
-    local light_1 = EntityGetInRadiusWithTag(x, y, 80, "kupoli_exchanger_light_1")[1]
-    EntitySetComponentsWithTagEnabled( light_1, "kupoli_exchanger_light_proj", false )
-    local light_2 = EntityGetInRadiusWithTag(x, y, 80, "kupoli_exchanger_light_2")[1]
-    EntitySetComponentsWithTagEnabled( light_2, "kupoli_exchanger_light_proj", false )
-    local light_3 = EntityGetInRadiusWithTag(x, y, 80, "kupoli_exchanger_light_3")[1]
-    EntitySetComponentsWithTagEnabled( light_3, "kupoli_exchanger_light_proj", false )
-    local light_4 = EntityGetInRadiusWithTag(x, y, 80, "kupoli_exchanger_light_4")[1]
-    EntitySetComponentsWithTagEnabled( light_4, "kupoli_exchanger_light_proj", false )
+    local light_1 = EntityGetInRadiusWithTag(x, y, 80, "souls_exchanger_light_1")[1]
+    EntitySetComponentsWithTagEnabled( light_1, "souls_exchanger_light_proj", false )
+    local light_2 = EntityGetInRadiusWithTag(x, y, 80, "souls_exchanger_light_2")[1]
+    EntitySetComponentsWithTagEnabled( light_2, "souls_exchanger_light_proj", false )
+    local light_3 = EntityGetInRadiusWithTag(x, y, 80, "souls_exchanger_light_3")[1]
+    EntitySetComponentsWithTagEnabled( light_3, "souls_exchanger_light_proj", false )
+    local light_4 = EntityGetInRadiusWithTag(x, y, 80, "souls_exchanger_light_4")[1]
+    EntitySetComponentsWithTagEnabled( light_4, "souls_exchanger_light_proj", false )
 end

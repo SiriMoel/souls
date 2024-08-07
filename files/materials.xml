@@ -51,33 +51,6 @@
         </Graphics>
     </CellDataChild>
 
-	<!--<CellData
-	name="blood_mole"
-	ui_name="Mole Blood"
-  	tags="[liquid],[corrodible],[soluble],[blood],[impure],[liquid_common],[food]"
-	burnable="0"
-	density="5"
-	cell_type="liquid"
-	wang_color="88386EC6"
-	generates_smoke="0"
-	liquid_gravity="1.0"
-	liquid_sand="0"
-	liquid_stains="2"
-	on_fire="0"
-	requires_oxygen="1"
-	temperature_of_fire="10"
-	>
-	<StatusEffects>
-		<Ingestion>
-			<StatusEffect type="NIGHTVISION" amount="1.0" />
-		</Ingestion>
-	</StatusEffects>
-    <Graphics 
-	texture_file="mods/souls/files/materials_gfx/moleblood.png" 
-	color="88386EC6" >
-    </Graphics>
-  </CellData>-->
-
   <CellData
 	name="soul_blood_1"
 	ui_name="Soul Blood I"

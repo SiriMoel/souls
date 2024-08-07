@@ -319,6 +319,14 @@ actions_to_insert = {
 			
 			if reflecting then return end
 
+			local entity = GetUpdatedEntityID()
+
+			local wand = 0
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+
 			if DoesWandUseSpecificSoul(wand) then
 				if GetSoulsCount(GetWandSoulType(wand)) >= 1 then
 					RemoveSoul(GetWandSoulType(wand))

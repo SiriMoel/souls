@@ -17,6 +17,7 @@ ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/souls/files/perks.lu
 ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/souls/files/status_list.lua" )
 ModLuaFileAppend( "data/scripts/items/drop_money.lua", "mods/souls/files/scripts/drop_money_append.lua" )
 SetFileContent("data/entities/base_wand_pickup.xml", "base_wand_pickup.xml")
+SetFileContent("data/scripts/biomes/mountain_tree.lua", "mountain_tree.lua")
 
 local dropdoers = {
     {
@@ -95,6 +96,7 @@ end
 
 local scenes = {
     { 13080, 1650, "mods/souls/files/biome/souldoor/souldoor.xml", true },
+    { -1568, -400, "mods/souls/files/biome/soulplace/place.xml", true },
 }
 
 add_scene(scenes)
@@ -112,8 +114,8 @@ function OnPlayerSpawned( player )
 
     SoulsInit()
 
-    EntityLoad("mods/souls/files/entities/items/tome/weapon.xml", px, py)
-    CreateItemActionEntity("MOLDOS_UPGRADE_TOME", px, py)
+    --EntityLoad("mods/souls/files/entities/items/tome/weapon.xml", px, py)
+    --CreateItemActionEntity("MOLDOS_UPGRADE_TOME", px, py)
 
     --EntityLoad("mods/souls/files/entities/items/_soulcrystals/alchemist.xml", px, py)
 

@@ -54,8 +54,8 @@
   <CellData
 	name="soul_blood_1"
 	ui_name="Soul Blood I"
-  	tags="[liquid],[water],[magic_liquid],[impure],[soul_blood_1]"
-	density="1.2434"
+  	tags="[liquid],[soul_blood_1]"
+	density="10"
 	cell_type="liquid"
 	wang_color="8000c888"
 	generates_smoke="0"
@@ -96,7 +96,7 @@
 
   <Reaction probability="100"
 	fast_reaction="1"
-	input_cell1="material_darkness" 			input_cell2="[blood]"
+	input_cell1="[magic_liquid]" 			input_cell2="[blood]"
 	output_cell1="soul_blood_1" 			output_cell2="steam" 
 	blob_radius2="3"
 	>

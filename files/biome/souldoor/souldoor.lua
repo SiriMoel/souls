@@ -17,7 +17,12 @@ local pool_projectiles = {
     "MOLDOS_WAND_CONSUMES_X_SOULS",
     "MOLDOS_SOUL_BLAST",
     "MOLDOS_SOUL_SPEED",
-    "MOLDOS_SOULS_TO_POWER"
+    "MOLDOS_SOULS_TO_POWER",
+    "MOLDOS_SOUL_STRIKE",
+    "MOLDOS_SOUL_ARROW",
+    "MOLDOS_SOUL_BALL",
+    "MOLDOS_SOUL_METEOR",
+    --"MOLDOS_SOUL_HEALER",
 }
 
 local string = ""

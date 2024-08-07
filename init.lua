@@ -19,6 +19,32 @@ ModLuaFileAppend( "data/scripts/items/drop_money.lua", "mods/souls/files/scripts
 SetFileContent("data/entities/base_wand_pickup.xml", "base_wand_pickup.xml")
 SetFileContent("data/scripts/biomes/mountain_tree.lua", "mountain_tree.lua")
 
+-- enemies
+local biomes = {
+    {
+        path = "data/scripts/biomes/wizardcave.lua",
+        script = "mods/souls/files/scripts/biome/wizardcave.lua",
+    },
+    {
+        path = "data/scripts/biomes/wandcave.lua",
+        script = "mods/souls/files/scripts/biome/wandcave.lua",
+    },
+    {
+        path = "data/scripts/biomes/crypt.lua",
+        script = "mods/souls/files/scripts/biome/crypt.lua",
+    },
+    {
+        path = "data/scripts/biomes/coalmine.lua",
+        script = "mods/souls/files/scripts/biome/coalmine.lua",
+    },
+}
+for i,v in ipairs(biomes) do
+    if ModTextFileGetContent(v.path) ~= nil then
+        ModLuaFileAppend(v.path, v.script)
+    end
+end
+
+-- drops
 local dropdoers = {
     {
         path = "data/entities/animals/boss_alchemist/boss_alchemist.xml",

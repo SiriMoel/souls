@@ -340,7 +340,7 @@ actions_to_insert = {
 				if GetSoulsCount("all") >= 1 then
 					RemoveRandomSouls(1)
 					c.speed_multiplier = c.speed_multiplier * 2
-					c.damage_projectile_add = c.damage_projectile_add + 0.3
+					c.damage_projectile_add = c.damage_projectile_add + 0.2
 					c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_speed/soul_speed_fx.xml,"
 				else
 					GamePrint("You do not have enough souls for this.")
@@ -366,6 +366,187 @@ actions_to_insert = {
 			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/souls_to_power/souls_to_power.xml,"
 			c.fire_rate_wait    = c.fire_rate_wait + 20
 			draw_actions( 1, true )
+		end,
+	},
+	{
+		id = "SOUL_STRIKE", -- souls to power if it was cool
+		name = "$action_moldos_soul_strike",
+		description = "$actiondesc_moldos_soul_strike",
+        sprite = "mods/souls/files/spell_icons/soul_strike.png",
+		custom_xml_file="mods/souls/files/entities/misc/card_soul_strike/card.xml",
+		type = ACTION_TYPE_MODIFIER,
+		inject_after = "MOLDOS_SOULS_TO_POWER",
+		spawn_level                       = "2,3,4,5,6,10",
+		spawn_probability                 = "0.3,0.8,0.8,0.8,0.7,0.2",
+		price = 100,
+		mana = 50,
+		action = function()
+			if reflecting then return end
+			dofile("mods/souls/files/scripts/utils.lua")
+			local card = GetUpdatedEntityID()
+			local x, y = EntityGetTransform(GetPlayer())
+			local wand = 0
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(card, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+			card = currentcard(wand)
+			local comp_soulstrike = EntityGetFirstComponentIncludingDisabled(card, "VariableStorageComponent", "soul_strike_amount") or 0
+			local soul_strike_amount = ComponentGetValue2(comp_soulstrike, "value_int")
+			for i=1,soul_strike_amount do
+				c.speed_multiplier = c.speed_multiplier * 1.05
+				c.damage_projectile_add = c.damage_projectile_add + 0.1
+				c.extra_entities = c.extra_entities .. "mods/souls/files/entities/misc/soul_speed_fx.xml,"
+			end
+			ComponentSetValue2(comp_soulstrike, "value_int", 0)
+			c.fire_rate_wait    = c.fire_rate_wait + 20
+			draw_actions(1, true)
+		end,
+	},
+	{
+		id          = "EAT_WAND_FOR_SOULS", -- humgy
+		name 		= "$action_moldos_eat_wand_for_souls",
+		description = "$actiondesc_moldos_eat_wand_for_souls",
+		sprite 		= "mods/souls/files/spell_icons/eat_wand_for_souls.png",
+		type 		= ACTION_TYPE_UTILITY,
+		inject_after = "KUPOLI_GILDED_SOULS_TO_GOLD",
+		spawn_level                       = "5,6,10",
+		spawn_probability                 = "0.6,0.7,0.5",
+		price = 300,
+		mana = 100,
+		action 		= function()
+			dofile_once("mods/souls/files/scripts/souls.lua")
+			local card = GetUpdatedEntityID()
+			local x, y = EntityGetTransform(GetPlayer())
+			local wand = 0
+			local souls_earned = 1
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(card, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+			local possible_types = {
+				"bat",
+				"fly",
+				"mage",
+				"orcs",
+				"slimes",
+				"spider",
+				"worm",
+				"ghost",
+			}
+			if wand ~= 0 then
+				local acs = EntityGetComponentIncludingDisabled( wand, "AbilityComponent" )
+				if acs == nil then return end
+				for i,ac in ipairs(acs) do
+					local rt = tonumber( ComponentObjectGetValue( ac, "gun_config", "reload_time" ) ) -- reload time
+					local frw = tonumber( ComponentObjectGetValue( ac, "gunaction_config", "fire_rate_wait" ) ) -- fire rate wait
+					local mcs = tonumber( ComponentGetValue2( ac, "mana_charge_speed" ) ) -- mana charge speed
+					local mm = tonumber( ComponentGetValue2( ac, "mana_max" ) ) -- mana max
+					local cp = tonumber( ComponentObjectGetValue( ac, "gun_config", "deck_capacity" ) ) -- capacity
+					rt = rt / 50
+					frw = frw / 50
+					mcs = mcs / 300
+					mm = mm / 300
+					cp = cp / 2
+					souls_earned = rt + frw + mcs + mm + cp
+					souls_earned = math.ceil(souls_earned)
+				end
+				local children = EntityGetAllChildren(wand) or {}
+				for i,v in ipairs(children) do
+					if EntityHasTag(v, "card_action") then
+						local comp_itemaction = EntityGetFirstComponentIncludingDisabled(v, "ItemActionComponent") or 0
+            			local action_id = ComponentGetValue(comp_itemaction, "action_id") or ""
+            			if action_id ~= "MOLDOS_EAT_WAND_FOR_SOULS" then
+							souls_earned = souls_earned + 1
+						end
+					end
+				end
+				if souls_earned > 20 then
+					souls_earned = 20 + ((souls_earned - 20) * 0.5)
+				end
+				souls_earned = math.floor(souls_earned)
+				for i=1,souls_earned do
+					local which = possible_types[math.random(1,#possible_types)]
+					AddSouls(which, 1)
+					if ModSettingGet("tales_of_kupoli.say_soul") == true then
+						GamePrint("You have acquired a " .. SoulNameCheck(which) .. " soul!")
+					end
+				end
+				GamePrint("The wand was eaten and you have received " .. souls_earned .. " souls!")
+				CreateItemActionEntity( "KUPOLI_EAT_WAND_FOR_SOULS", x, y )
+				EntityKill(wand)
+			end
+		end,
+	},
+	{
+		id          = "SOUL_ARROW", -- blacklight arrow from graham's but drawn from memory (i didnt realise it was a spell)
+		name 		= "$action_moldos_soul_arrow",
+		description = "$actiondesc_moldos_soul_arrow",
+		sprite 		= "mods/souls/files/spell_icons/soul_arrow.png",
+		related_projectiles	= {"mods/souls/files/entities/projectiles/soul_arrow/proj.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		inject_after = "MOLDOS_SOUL_BLAST",
+		spawn_level                       = "2,3,4,5,6",
+		spawn_probability                 = "0.4,0.4,0.4,0.7,0.7",
+		price = 100,
+		mana = 30,
+		max_uses = 70,
+		action 		= function()
+			add_projectile("mods/souls/files/entities/projectiles/soul_arrow/proj.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 5
+		end,
+	},
+	{
+		id          = "SOUL_BALL", -- tennis
+		name 		= "$action_moldos_soul_ball",
+		description = "$actiondesc_moldos_soul_ball",
+		sprite 		= "mods/souls/files/spell_icons/soul_ball.png",
+		related_projectiles	= {"mods/souls/files/entities/projectiles/soul_ball/soul_ball.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		inject_after = "MOLDOS_SOUL_ARROW",
+		spawn_level                       = "5,6,10",
+		spawn_probability                 = "0.4,0.5,0.1",
+		price = 120,
+		mana = 70,
+		max_uses = 10,
+		action 		= function()
+			add_projectile("mods/souls/files/entities/projectiles/soul_ball/soul_ball.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 40
+		end,
+	},
+	{
+		id          = "SOUL_METEOR", -- big circle
+		name 		= "$action_moldos_soul_meteor",
+		description = "$actiondesc_moldos_soul_meteor",
+		sprite 		= "mods/souls/files/spell_icons/soul_meteor.png",
+		related_projectiles	= {"mods/souls/files/entities/projectiles/soul_meteor/proj.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		inject_after = "KUPOLI_SOUL_BALL",
+		spawn_level                       = "6,10",
+		spawn_probability                 = "0.2,0.2",
+		price = 120,
+		mana = 100,
+		max_uses = 10,
+		action 		= function()
+			add_projectile("mods/souls/files/entities/projectiles/soul_meteor/proj.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 40
+		end,
+	},
+	{
+		id          = "SOUL_HEALER", -- my favourite spell in the mod, no idea why
+		name 		= "$action_moldos_soul_healer",
+		description = "$actiondesc_moldos_soul_healer",
+		sprite 		= "mods/souls/files/spell_icons/soul_healer.png",
+		type 		= ACTION_TYPE_PASSIVE,
+		inject_after = "KUPOLI_SOUL_MINIONS_TO_NUKES",
+		spawn_level                       = "1,2,3,4,5,6,10",
+		spawn_probability                 = "0.3,0.3,0.3,0.3,0.3,0.3,0.2",
+		price = 250,
+		mana = 30,
+		custom_xml_file="mods/souls/files/entities/misc/card_soul_healer.xml",
+		action 		= function()
+			c.fire_rate_wait = c.fire_rate_wait + 10
+			current_reload_time = current_reload_time + 10
 		end,
 	},
 }

@@ -23,6 +23,8 @@ local pool_projectiles = {
     "MOLDOS_SOUL_BALL",
     "MOLDOS_SOUL_METEOR",
     --"MOLDOS_SOUL_HEALER",
+    --"MOLDOS_REAPING_HALO",
+    --"MOLDOS_WEAKENING_HALO",
 }
 
 local string = ""

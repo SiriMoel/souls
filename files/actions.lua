@@ -549,6 +549,68 @@ actions_to_insert = {
 			current_reload_time = current_reload_time + 10
 		end,
 	},
+	{
+		id          = "REAPING_HALO",
+		name 		= "$action_moldos_reaping_halo",
+		description = "$actiondesc_moldos_reaping_halo",
+		sprite 		= "mods/souls/files/spell_icons/reaping_halo.png",
+		related_projectiles	= {"mods/souls/files/entities/projectiles/reaping_halo/projectile.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		inject_after = "FIREWORK",
+		spawn_level                       = "5,6,10",
+		spawn_probability                 = "0.1,0.2,0.5",
+		price = 300,
+		mana = 150,
+		action 		= function()
+			add_projectile("mods/souls/files/entities/projectiles/reaping_halo/projectile.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 80
+		end,
+	},
+	{
+		id          = "WEAKENING_HALO", -- nezha gaming
+		name 		= "$action_moldos_weakening_halo",
+		description = "$actiondesc_moldos_weakening_halo",
+		sprite 		= "mods/souls/files/spell_icons/nezha_chakram.png",
+		related_projectiles	= {"mods/souls/files/entities/projectiles/weakening_halo/projectile.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		inject_after = "MOLDOS_REAPING_HALO",
+		spawn_level                       = "10",
+		spawn_probability                 = "0.1",
+		price = 500,
+		mana = 200,
+		action 		= function()
+			c.damage_projectile_add = c.damage_projectile_add - 3.0
+			c.fire_rate_wait = c.fire_rate_wait + 40
+
+			if reflecting then return end
+
+			local entity = GetUpdatedEntityID()
+
+			local wand = 0
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+
+			if DoesWandUseSpecificSoul(wand) then
+				if GetSoulsCount(GetWandSoulType(wand)) >= 1 then
+					RemoveSoul(GetWandSoulType(wand))
+					add_projectile("mods/souls/files/entities/projectiles/weakening_halo/projectile.xml")
+				else
+					GamePrint("You do not have enough souls for this.")
+				end
+			else
+				if GetSoulsCount("all") >= 1 then
+					RemoveRandomSouls(1)
+					add_projectile("mods/souls/files/entities/projectiles/weakening_halo/projectile.xml")
+				else
+					GamePrint("You do not have enough souls for this.")
+				end
+			end
+
+			draw_actions( 1, true )
+		end,
+	},
 }
 
 for i,v in ipairs(actions_to_insert) do

@@ -3,20 +3,20 @@ dofile_once("mods/souls/files/scripts/souls.lua")
 
 function damage_about_to_be_received(damage, x, y, entity_thats_responsible, critical_hit_chance )
     local player = GetUpdatedEntityID()
-
     local helditem = HeldItem(player)
+
     if EntityHasTag(helditem, "souls_deadringer") then
         local comp_cd = EntityGetFirstComponentIncludingDisabled(helditem, "VariableStorageComponent", "deadringer_cd") or 0
         local cd = ComponentGetValue2(comp_cd, "value_int")
         if cd <= 0 then
-            if GetSoulsCount("all") >= 10 then
-                RemoveSouls(10)
+            if (GetSoulsCount("all") - GetSoulsCount("boss")) >= 5 then
+                RemoveRandomSouls(5)
                 local effects_to_remove = { "WET", "OILY", "BLOODY", "RADIOACTIVE", "ON_FIRE" }
                 for i,v in ipairs(effects_to_remove) do
                     EntityRemoveStainStatusEffect(player, v)
                 end
                 LoadGameEffectEntityTo(player, "mods/souls/files/entities/items/deadringer/buff.xml")
-                ComponentSetValue2(comp_cd, "value_int", 600)
+                ComponentSetValue2(comp_cd, "value_int", 900)
                 GamePrint("Feigned death!")
                 GamePlaySound("data/audio/Desktop/explosions.bank", "explosions/electric", x, y)
                 LoadRagdoll("data/ragdolls/player/filenames.txt" , x, y-5)

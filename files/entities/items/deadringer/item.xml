@@ -1,4 +1,4 @@
-<Entity name="unknown" tags="hittable,teleportable_NOT,item_physics,item_pickup,kupoli_deadringer" >
+<Entity name="unknown" tags="hittable,teleportable_NOT,item_physics,item_pickup,souls_deadringer" >
 
   <PhysicsBodyComponent 
     _tags="enabled_in_world"

@@ -615,7 +615,7 @@ actions_to_insert = {
 		id          = "SOUL_CLOAK",
 		name 		= "$action_moldos_soul_cloak",
 		description = "$actiondesc_moldos_soul_cloak",
-		sprite 		= "mods/souls/files/spell_icons/soul_cloak.png",
+		sprite 		= "mods/souls/files/spell_icons/soul_rage.png",
 		type 		= ACTION_TYPE_PASSIVE,
 		inject_after = "MOLDOS_SOUL_HEALER",
 		spawn_level                       = "1,2,3,4,5,6,10",
@@ -632,7 +632,7 @@ actions_to_insert = {
 		id          = "SOUL_RAGE",
 		name 		= "$action_moldos_soul_rage",
 		description = "$actiondesc_moldos_soul_rage",
-		sprite 		= "mods/souls/files/spell_icons/soul_rage.png",
+		sprite 		= "mods/souls/files/spell_icons/soul_cloak.png",
 		type 		= ACTION_TYPE_PASSIVE,
 		inject_after = "MOLDOS_SOUL_CLOAK",
 		spawn_level                       = "1,2,3,4,5,6,10",
@@ -643,6 +643,23 @@ actions_to_insert = {
 		action 		= function()
 			c.fire_rate_wait = c.fire_rate_wait + 10
 			current_reload_time = current_reload_time + 10
+		end,
+	},
+	{
+		id          = "SOUL_BOLT",
+		name 		= "$action_moldos_soul_bolt",
+		description = "$actiondesc_moldos_soul_bolt",
+		sprite 		= "mods/souls/files/spell_icons/soul_bolt.png",
+		related_projectiles	= {"mods/souls/files/entities/projectiles/soul_bolt/proj.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		inject_after = "MOLDOS_SOUL_METEOR",
+		spawn_level                       = "2,3,4,5,6",
+		spawn_probability                 = "0.4,0.4,0.4,0.7,0.7",
+		price = 100,
+		mana = 25,
+		action 		= function()
+			add_projectile("mods/souls/files/entities/projectiles/soul_bolt/proj.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 5
 		end,
 	},
 }

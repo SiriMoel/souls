@@ -56,7 +56,7 @@ else
 	--fly
 	if soul == "fly" then
 		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)		
-			ComponentSetValue2( comp_particles, "emitted_material_name", "spark_red" )
+			ComponentSetValue2( comp_particles, "emitted_material_name", "lava" )
 		end)
 	
 		EntityAddComponent( entity, "LuaComponent", {
@@ -108,7 +108,7 @@ else
 	--mage
 	if soul == "mage" then
 		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)		
-			ComponentSetValue2( comp_particles, "emitted_material_name", "spark_white" )
+			ComponentSetValue2( comp_particles, "emitted_material_name", "magic_liquid_mana_regeneration" )
 		end)
 	
 		EntityAddComponent( entity, "HomingComponent", {
@@ -141,7 +141,7 @@ else
 	--slimes
 	if soul == "slimes" then
 		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)		
-			ComponentSetValue2( comp_particles, "emitted_material_name", "spark_green_bright" )
+			ComponentSetValue2( comp_particles, "emitted_material_name", "radioactive_liquid" )
 		end)
 	
 		icedamage = icedamage + 0.3
@@ -172,7 +172,7 @@ else
 	--worm
 	if soul == "worm" then
 		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)	
-			ComponentSetValue2( comp_particles, "emitted_material_name", "spark_yellow" )
+			ComponentSetValue2( comp_particles, "emitted_material_name", "blood_worm" )
 		end)
 	
 		EntityAddComponent( entity, "CellEaterComponent", {

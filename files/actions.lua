@@ -473,7 +473,7 @@ actions_to_insert = {
 					end
 				end
 				GamePrint("The wand was eaten and you have received " .. souls_earned .. " souls!")
-				CreateItemActionEntity( "KUPOLI_EAT_WAND_FOR_SOULS", x, y )
+				CreateItemActionEntity( "MOLDOS_EAT_WAND_FOR_SOULS", x, y )
 				EntityKill(wand)
 			end
 		end,
@@ -521,7 +521,7 @@ actions_to_insert = {
 		sprite 		= "mods/souls/files/spell_icons/soul_meteor.png",
 		related_projectiles	= {"mods/souls/files/entities/projectiles/soul_meteor/proj.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
-		inject_after = "KUPOLI_SOUL_BALL",
+		inject_after = "MOLDOS_SOUL_BALL",
 		spawn_level                       = "6,10",
 		spawn_probability                 = "0.2,0.2",
 		price = 120,
@@ -538,7 +538,7 @@ actions_to_insert = {
 		description = "$actiondesc_moldos_soul_healer",
 		sprite 		= "mods/souls/files/spell_icons/soul_healer.png",
 		type 		= ACTION_TYPE_PASSIVE,
-		inject_after = "KUPOLI_SOUL_MINIONS_TO_NUKES",
+		inject_after = "MOLDOS_SOUL_METEOR",
 		spawn_level                       = "1,2,3,4,5,6,10",
 		spawn_probability                 = "0.3,0.3,0.3,0.3,0.3,0.3,0.2",
 		price = 250,
@@ -570,7 +570,7 @@ actions_to_insert = {
 		id          = "WEAKENING_HALO", -- nezha gaming
 		name 		= "$action_moldos_weakening_halo",
 		description = "$actiondesc_moldos_weakening_halo",
-		sprite 		= "mods/souls/files/spell_icons/nezha_chakram.png",
+		sprite 		= "mods/souls/files/spell_icons/weakening_halo.png",
 		related_projectiles	= {"mods/souls/files/entities/projectiles/weakening_halo/projectile.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
 		inject_after = "MOLDOS_REAPING_HALO",

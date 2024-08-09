@@ -1,0 +1,17 @@
+<Entity>
+	
+	<InheritTransformComponent>
+    </InheritTransformComponent>	
+    
+    <GameEffectComponent 
+        effect="BERSERK"
+        frames="120"
+    >
+	</GameEffectComponent>
+
+	<AudioComponent
+		file="data/audio/Desktop/misc.bank"
+		event_root="game_effect/electrocution" >
+	</AudioComponent>
+
+</Entity>

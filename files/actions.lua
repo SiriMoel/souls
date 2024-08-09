@@ -543,7 +543,7 @@ actions_to_insert = {
 		spawn_probability                 = "0.3,0.3,0.3,0.3,0.3,0.3,0.2",
 		price = 250,
 		mana = 30,
-		custom_xml_file="mods/souls/files/entities/misc/card_soul_healer.xml",
+		custom_xml_file="mods/souls/files/entities/misc/card_soul_healer/card.xml",
 		action 		= function()
 			c.fire_rate_wait = c.fire_rate_wait + 10
 			current_reload_time = current_reload_time + 10
@@ -609,6 +609,40 @@ actions_to_insert = {
 			end
 
 			draw_actions( 1, true )
+		end,
+	},
+	{
+		id          = "SOUL_CLOAK",
+		name 		= "$action_moldos_soul_cloak",
+		description = "$actiondesc_moldos_soul_cloak",
+		sprite 		= "mods/souls/files/spell_icons/soul_cloak.png",
+		type 		= ACTION_TYPE_PASSIVE,
+		inject_after = "MOLDOS_SOUL_HEALER",
+		spawn_level                       = "1,2,3,4,5,6,10",
+		spawn_probability                 = "0.3,0.3,0.3,0.3,0.3,0.3,0.2",
+		price = 250,
+		mana = 30,
+		custom_xml_file="mods/souls/files/entities/misc/card_soul_cloak/card.xml",
+		action 		= function()
+			c.fire_rate_wait = c.fire_rate_wait + 10
+			current_reload_time = current_reload_time + 10
+		end,
+	},
+	{
+		id          = "SOUL_RAGE",
+		name 		= "$action_moldos_soul_rage",
+		description = "$actiondesc_moldos_soul_rage",
+		sprite 		= "mods/souls/files/spell_icons/soul_rage.png",
+		type 		= ACTION_TYPE_PASSIVE,
+		inject_after = "MOLDOS_SOUL_CLOAK",
+		spawn_level                       = "1,2,3,4,5,6,10",
+		spawn_probability                 = "0.3,0.3,0.3,0.3,0.3,0.3,0.2",
+		price = 250,
+		mana = 30,
+		custom_xml_file="mods/souls/files/entities/misc/card_soul_rage/card.xml",
+		action 		= function()
+			c.fire_rate_wait = c.fire_rate_wait + 10
+			current_reload_time = current_reload_time + 10
 		end,
 	},
 }

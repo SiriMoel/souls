@@ -25,6 +25,11 @@ local pool_projectiles = {
     --"MOLDOS_SOUL_HEALER",
     --"MOLDOS_REAPING_HALO",
     --"MOLDOS_WEAKENING_HALO",
+    "MOLDOS_SOUL_CLOAK",
+    "MOLDOS_SOUL_RAGE",
+    "MOLDOS_SOUL_BOLT",
+    "MOLDOS_SOULDOS",
+    "MOLDOS_RANDOM_REAP"
 }
 
 local string = ""

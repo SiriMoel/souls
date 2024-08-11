@@ -9,8 +9,8 @@ function damage_about_to_be_received(damage, x, y, entity_thats_responsible, cri
         local comp_cd = EntityGetFirstComponentIncludingDisabled(helditem, "VariableStorageComponent", "deadringer_cd") or 0
         local cd = ComponentGetValue2(comp_cd, "value_int")
         if cd <= 0 then
-            if (GetSoulsCount("all") - GetSoulsCount("boss")) >= 5 then
-                RemoveRandomSouls(5)
+            if (GetSoulsCount("all") - GetSoulsCount("boss")) >= 10 then
+                RemoveRandomSouls(10)
                 local effects_to_remove = { "WET", "OILY", "BLOODY", "RADIOACTIVE", "ON_FIRE" }
                 for i,v in ipairs(effects_to_remove) do
                     EntityRemoveStainStatusEffect(player, v)

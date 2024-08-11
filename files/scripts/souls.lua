@@ -199,7 +199,7 @@ function AddRandomSouls(amount, includegilded)
     end
 end
 
--- Removes random souls
+-- Removes random souls, does not include boss souls
 function RemoveRandomSouls(amount)
     for i=1,amount do
         RemoveSoul(GetRandomSoul(false))
@@ -210,6 +210,7 @@ end
 function ReapSoul(entity, amount, random)
     local herd_id_number = ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( entity, "GenomeDataComponent" ) or 0, "herd_id")
     local herd_id = HerdIdToString(herd_id_number)
+    local herd_id_old = herd_id
     local x, y = EntityGetTransform(entity)
     local player = GetPlayer()
     local ok = false

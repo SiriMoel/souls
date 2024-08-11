@@ -37,6 +37,10 @@ local biomes = {
         path = "data/scripts/biomes/coalmine.lua",
         script = "mods/souls/files/scripts/biome/coalmine.lua",
     },
+    {
+        path = "data/scripts/biomes/snowcave.lua",
+        script = "mods/souls/files/scripts/biome/snowcave.lua",
+    },
 }
 for i,v in ipairs(biomes) do
     if ModTextFileGetContent(v.path) ~= nil then

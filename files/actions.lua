@@ -662,6 +662,40 @@ actions_to_insert = {
 			c.fire_rate_wait = c.fire_rate_wait + 5
 		end,
 	},
+	{
+		id          = "SOULDOS", -- moldos
+		name 		= "$action_moldos_souldos",
+		description = "$actiondesc_moldos_souldos",
+		sprite 		= "mods/souls/files/spell_icons/souldos.png",
+		related_extra_entities = { "mods/souls/files/entities/projectiles/souldos/reaping_shot.xml" },
+		type 		= ACTION_TYPE_MODIFIER,
+		inject_after = "MOLDOS_REAPING_SHOT",
+		spawn_level                       = "4,5,6,10",
+		spawn_probability                 = "0.4,0.5,0.5,0.7",
+		price = 100,
+		mana = 20,
+		action 		= function()
+			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/souldos/reaping_shot.xml,"
+			draw_actions( 1, true )
+		end,
+	},
+	{
+		id          = "RANDOM_REAP",
+		name 		= "$action_moldos_random_reap",
+		description = "$actiondesc_moldos_random_reap",
+		sprite 		= "mods/souls/files/spell_icons/souldos.png",
+		related_extra_entities = { "mods/souls/files/entities/projectiles/random_reap/reaping_shot.xml" },
+		type 		= ACTION_TYPE_MODIFIER,
+		inject_after = "MOLDOS_REAPING_SHOT",
+		spawn_level                       = "4,5,6,10",
+		spawn_probability                 = "0.4,0.5,0.5,0.7",
+		price = 100,
+		mana = 20,
+		action 		= function()
+			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/random_reap/reaping_shot.xml,"
+			draw_actions( 1, true )
+		end,
+	},
 }
 
 for i,v in ipairs(actions_to_insert) do

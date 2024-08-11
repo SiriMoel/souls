@@ -15,7 +15,7 @@ if ( #targets > 0 ) then
 
             EntityAddComponent( target_id, "LuaComponent",
             {
-                script_death = "mods/souls/files/scripts/reap.lua",
+                script_death = "mods/souls/files/scripts/reap_random.lua",
                 execute_every_n_frame = "-1",
             } )
 

@@ -654,7 +654,7 @@ actions_to_insert = {
 		type 		= ACTION_TYPE_PROJECTILE,
 		inject_after = "MOLDOS_SOUL_METEOR",
 		spawn_level                       = "2,3,4,5,6",
-		spawn_probability                 = "0.4,0.4,0.4,0.7,0.7",
+		spawn_probability                 = "0.8,0.8,0.8,0.7,0.7",
 		price = 100,
 		mana = 25,
 		action 		= function()
@@ -683,7 +683,7 @@ actions_to_insert = {
 		id          = "RANDOM_REAP",
 		name 		= "$action_moldos_random_reap",
 		description = "$actiondesc_moldos_random_reap",
-		sprite 		= "mods/souls/files/spell_icons/souldos.png",
+		sprite 		= "mods/souls/files/spell_icons/random_reap.png",
 		related_extra_entities = { "mods/souls/files/entities/projectiles/random_reap/reaping_shot.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
 		inject_after = "MOLDOS_REAPING_SHOT",
@@ -694,6 +694,24 @@ actions_to_insert = {
 		action 		= function()
 			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/random_reap/reaping_shot.xml,"
 			draw_actions( 1, true )
+		end,
+	},
+	{
+		id          = "REAPING_FIELD",
+		name 		= "$action_moldos_reaping_field",
+		description = "$actiondesc_moldos_reaping_field",
+		sprite 		= "mods/souls/files/spell_icons/reaping_field.png",
+		related_projectiles	= {"mods/souls/files/entities/projectiles/reaping_field/reaping_field.xml"},
+		type 		= ACTION_TYPE_STATIC_PROJECTILE,
+		inject_after = "SHIELD_FIELD",
+		spawn_level                       = "2,3,4,5,6",
+		spawn_probability                 = "0.3,0.4,0.2,0.5,0.4",
+		price = 140,
+		mana = 40,
+		max_uses = 15,
+		action 		= function()
+			add_projectile("mods/souls/files/entities/projectiles/reaping_field/reaping_field.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 50
 		end,
 	},
 }

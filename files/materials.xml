@@ -66,7 +66,7 @@
 	requires_oxygen="0"
 	liquid_stains="1"
 	liquid_sprite_stain_shaken_drop_chance="5"
-	status_effects="POISONED"
+	status_effects="BLOODY"
 	audio_materialaudio_type="MAGICAL" 
 	show_in_creative_mode="1" 
 	>
@@ -89,7 +89,7 @@
 	</ParticleEffect>
 	<StatusEffects>
 		<Ingestion>
-			<StatusEffect type="POISONED" amount="0.15" />
+			<StatusEffect type="BLOODY" amount="0.15" />
 		</Ingestion>
 	</StatusEffects>
   </CellData>
@@ -109,13 +109,13 @@
 	requires_oxygen="0"
 	liquid_stains="1"
 	liquid_sprite_stain_shaken_drop_chance="5"
-	status_effects="POISONED"
+	status_effects="INVISIBILITY"
 	audio_materialaudio_type="MAGICAL" 
 	show_in_creative_mode="1" 
 	>
 	<Graphics 
 	texture_file="mods/souls/files/materials_gfx/souljuice_true.png" 
-	color="8000e29a"
+	color="8000FA96"
 	fire_colors_index="2" >
     </Graphics>
 	<ParticleEffect
@@ -132,7 +132,7 @@
 	</ParticleEffect>
 	<StatusEffects>
 		<Ingestion>
-			<StatusEffect type="POISONED" amount="0.25" />
+			<StatusEffect type="INVISIBILITY" amount="0.25" />
 		</Ingestion>
 	</StatusEffects>
   </CellData>

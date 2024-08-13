@@ -93,6 +93,7 @@
   ></SpriteComponent>
 
     <LuaComponent
+    _tags="enabled_in_world"
 		script_kick="mods/souls/files/entities/items/phylactery/fill_with_blood.lua"
 	></LuaComponent>
 

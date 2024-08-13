@@ -8,7 +8,7 @@ local x, y = EntityGetTransform(entity)
 
 function kick( entity_who_kicked )
     local amount_soulblood = ComponentGetValue2(comp_mi, "count_per_material_type")[CellFactory_GetType("soul_blood_1") + 1] or 0 --tostring(CellFactory_GetType("soul_blood_1"))
-    GamePrint(tostring(amount_soulblood))
+    --GamePrint(tostring(amount_soulblood))
     if amount_soulblood >= 300 then
         GamePrint("Revived a boss!")
         EntityKill(entity)

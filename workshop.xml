@@ -1,51 +1,7 @@
 <Mod
-	name="Tales of Kupoli (things mod)"
-	description=
-	"
-	Hello Mina.
-	
-	A collection of things.
-
-	[h3]Features[/h3]
-	[list]
-		[*] 64 spells
-		[*] 31 wands and items
-		[*] 6 perks
-		[*] 4 enemies
-		[*] 1 boss
-		[*] Harvest the souls from enemies to fuel spells (12 soul types to find and use)
-		[*] Cast spells from an upgradable (using souls) magic tome 
-		[*] Create new Suns (green and red and possibly blue)
-		[*] Special wands, spells, and other items drop from enemies
-		[*] Revive bosses for new rewards
-		[*] Uncover secrets and tales (of Kupoli)
-	[/list]
-
-	[h3] Cross-mod interactions with: [/h3]
-	[b]Copi's Things[/b] spells added to reward pools
-	[b]Graham's Things[/b] spells added to reward pools
-	[b]Apotheosis[/b] new soul types
-	For optimal performance make sure Tales of Kupoli loads after any mods that add perks.
-
-	Not compatible with mods that add more tower wands, as this mod adds more tower wands.
-
-	[i]
-	~ROSETTA 0~
-	Dearest Ikkuna,
-	We found the *s$@8} you sent. As expected, it was around the glass altar. 
-	If it works, these Rosettas should reach you on the otherside.
-	We hope you can find %{!#0a^3 under one of your shrines. Its the one guarded by the octopus I believe.
-	The Hermits have made great advancements in their shard-powered robotics program so I fear I don't have
-	much time left. Oh, and we have managed to track that ruby thief to my Soul Grove.
-	I've dispatched a party down to it so hopefully we should be able to make that 3/9 shards found.
-	Anyways I should get going now. Glass to find and all. I love you. Goodbye.
-	-V
-	[/i]
-
-	Discord: https://discord.gg/FKaRA9HMUq
-
-	"
-	tags="gameplay,items,spells,perks,creatures,bosses"
+	name="Souls"
+	description=""
+	tags="gameplay,items,spells,creatures"
 	dont_upload_folders=""
 	dont_upload_files=""
 >

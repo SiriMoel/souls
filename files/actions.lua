@@ -770,6 +770,179 @@ actions_to_insert = {
 			end
 		end,
 	},
+	{
+		id          = "TOME_SLICE", -- demoknight
+		name 		= "$action_moldos_tome_slice",
+		description = "$actiondesc_moldos_tome_slice",
+		sprite 		= "mods/souls/files/spell_icons/tome_slice.png",
+		sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_unidentified.png",
+		related_projectiles	= {"mods/souls/files/entities/projectiles/tome_slice/proj.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		inject_after = "MOLDOS_TOME_SHOT",
+		spawn_level                       = "3,4,5,6,10",
+		spawn_probability                 = "0.3,0.3,0.4,0.4,0.4",
+		price = 200,
+		mana = 50,
+		custom_xml_file="mods/souls/files/entities/misc/card_tome_slice/card.xml",
+		action 		= function()
+			dofile_once("mods/souls/files/scripts/souls.lua")
+			if reflecting then return end
+			local entity = GetUpdatedEntityID()
+			local x, y = EntityGetTransform(entity)
+			local wand = 0
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+			local tome = EntityGetWithTag("soul_tome")[1] or 1
+			c.fire_rate_wait = c.fire_rate_wait + 10
+			if wand == tome then
+				if DoesWandUseSpecificSoul(wand) then
+					if GetSoulsCount(GetWandSoulType(wand)) >= 1 then
+						RemoveSoul(GetWandSoulType(wand))
+						add_projectile("mods/souls/files/entities/projectiles/tome_slice/proj.xml")
+					else
+						GamePrint("You do not have enough souls for this.")
+					end
+				else
+					if GetSoulsCount("all") >= 1 then
+						RemoveRandomSouls(1)
+						add_projectile("mods/souls/files/entities/projectiles/tome_slice/proj.xml")
+					else
+						GamePrint("You do not have enough souls for this.")
+					end
+				end
+			else
+				GamePrint("The spell must be casted on the tome.")
+			end
+		end,
+	},
+	{
+		id          = "TOME_LAUNCHER", -- im beggin
+		name 		= "$action_modlos_tome_launcher",
+		description = "$actiondesc_moldos_tome_launcher",
+		sprite 		= "mods/souls/files/spell_icons/tome_launcher.png",
+		sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_unidentified.png",
+		related_projectiles	= {"mods/souls/files/entities/projectiles/tome_launcher/proj.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		inject_after = "MOLDOS_TOME_SLICE",
+		spawn_level                       = "3,4,5,6,10",
+		spawn_probability                 = "0.3,0.3,0.4,0.4,0.4",
+		price = 200,
+		mana = 50,
+		custom_xml_file="mods/souls/files/entities/misc/card_tome_launcher/card.xml",
+		action 		= function()
+			dofile_once("mods/souls/files/scripts/souls.lua")
+			if reflecting then return end
+			local entity = GetUpdatedEntityID()
+			local x, y = EntityGetTransform(entity)
+			local wand = 0
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+			local tome = EntityGetWithTag("soul_tome")[1] or 1
+			c.fire_rate_wait = c.fire_rate_wait + 10
+			if wand == tome then
+				local comp_sl = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "launcher_souls_loaded") or 0
+				local sl = tonumber(ComponentGetValue(comp_sl, "value_int"))
+				for i=1,sl do
+					add_projectile("mods/souls/files/entities/projectiles/tome_launcher/proj.xml")
+				end
+				sl = 0
+				ComponentSetValue2(comp_sl, "value_int", sl)
+			else
+				GamePrint("The spell must be casted on the tome.")
+			end
+		end,
+	},
+	{
+		id          = "SOUL_BOOST",
+		name 		= "$action_moldos_soul_boost",
+		description = "$actiondesc_moldos_soul_boost",
+		sprite 		= "mods/souls/files/spell_icons/soul_boost.png",
+		type 		= ACTION_TYPE_MODIFIER,
+		inject_after = "MOLDOS_SOUL_SPEED",
+		spawn_level                       = "1,2,3,4,5,6",
+		spawn_probability                 = "0.7,0.9,0.9,0.9,0.9,0.9",
+		price = 100,
+		mana = 25,
+		action 		= function()
+			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+			if reflecting then return end
+			local entity = GetUpdatedEntityID()
+			local wand = 0
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+			local soul = GetRandomSoulForWand(wand)
+			if soul == nil or soul == 0 or soul == "0" then
+			else
+				if ModSettingGet( "souls.say_consumed_soul" ) then
+					GamePrint( "A " .. SoulNameCheck(soul) .. " soul has been consumed." )
+				end
+				RemoveSoul(soul)
+				c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_speed/soul_speed_fx.xml,"
+
+				if soul == "bat" then
+					c.speed_multiplier = c.speed_multiplier * 1.2
+					c.damage_projectile_add = c.damage_projectile_add + 0.05
+				end
+				if soul == "fly" then
+					c.speed_multiplier = c.speed_multiplier * 1.2
+					c.damage_projectile_add = c.damage_projectile_add + 0.05
+				end
+				if soul == "friendly" then
+					c.damage_projectile_add = c.damage_projectile_add + 0.15
+				end
+				if soul == "gilded" then
+					c.damage_critical_chance = c.damage_critical_chance + 20
+					c.damage_critical_multiplier = c.damage_critical_multiplier + 0.5
+				end
+				if soul == "mage" then
+					c.damage_projectile_add = c.damage_projectile_add + 0.3
+				end
+				if soul == "orcs" then
+					c.explosion_radius = c.explosion_radius * 1.7
+				end
+				if soul == "slimes" then
+					c.damage_projectile_add = c.damage_projectile_add + 0.2
+				end
+				if soul == "spider" then
+					c.speed_multiplier = c.speed_multiplier * 1.2
+					c.explosion_radius = c.explosion_radius * 1.3
+				end
+				if soul == "zombie" then
+					c.explosion_radius = c.explosion_radius * 1.7
+				end
+				if soul == "worm" then
+					c.explosion_radius = c.explosion_radius * 0.7
+					c.damage_critical_chance = c.damage_critical_chance + 5
+					c.extra_entities = c.extra_entities .. "data/entities/misc/matter_eater.xml,"
+				end
+				if soul == "fungus" then
+					c.explosion_radius = c.explosion_radius * 1.5
+					c.damage_critical_chance = c.damage_critical_chance + 3
+				end
+				if soul == "ghost" then
+					c.damage_projectile_add = c.damage_projectile_add + 0.3
+				end
+				if soul == "boss" then
+					c.damage_critical_chance = c.damage_critical_chance + 20
+					c.damage_critical_multiplier = c.damage_critical_multiplier + 0.5
+				end
+				if soul == "mage_corrupted" then
+					c.damage_projectile_add = c.damage_projectile_add + 0.3
+				end
+				if soul == "ghost_whisp" then
+					c.speed_multiplier = c.speed_multiplier * 1.2
+					c.damage_projectile_add = c.damage_projectile_add + 0.05
+				end
+			end
+			draw_actions( 1, true )
+		end,
+	},
 }
 
 for i,v in ipairs(actions_to_insert) do

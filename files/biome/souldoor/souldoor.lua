@@ -31,6 +31,8 @@ local pool_projectiles = {
     "MOLDOS_SOULDOS",
     "MOLDOS_RANDOM_REAP",
     "MOLDOS_REAP_TELE",
+    "MOLDOS_TOME_SLICE",
+    "MOLDOS_TOME_LAUNCHER",
 }
 
 local string = ""

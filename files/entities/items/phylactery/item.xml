@@ -1,0 +1,99 @@
+<Entity name="unknown" tags="hittable,teleportable_NOT,item_physics,item_pickup,souls_phylactery" >
+
+  <PhysicsBodyComponent 
+    _tags="enabled_in_world"
+    uid="1" 
+    allow_sleep="1" 
+    angular_damping="0" 
+    fixed_rotation="0" 
+    is_bullet="1" 
+    linear_damping="0"
+    auto_clean="0"
+    on_death_leave_physics_body="0"
+    hax_fix_going_through_ground="1"
+  ></PhysicsBodyComponent>
+  
+  <PhysicsImageShapeComponent 
+    body_id="1"
+    centered="1"
+    image_file="mods/souls/files/entities/items/phylactery/sprite_inhand.png"
+    material="metal_hard" >
+  </PhysicsImageShapeComponent>
+  
+  <CameraBoundComponent
+    max_count="50"
+    distance="500">
+  </CameraBoundComponent>
+	
+	<PhysicsThrowableComponent
+	_tags="enabled_in_world"
+    max_throw_speed="180"
+    throw_force_coeff="1.5"
+  ></PhysicsThrowableComponent>
+  
+  <PhysicsBodyCollisionDamageComponent 
+    _tags="enabled_in_world" 
+    speed_threshold="140.0"
+  ></PhysicsBodyCollisionDamageComponent>
+  
+  <ItemComponent
+    _tags="enabled_in_world"
+    item_name="Phylactery"
+    max_child_items="0"
+    is_pickable="1"
+    is_equipable_forced="1"
+    ui_sprite="mods/souls/files/entities/items/phylactery/sprite.png"
+    ui_description="Fill both this flask and yourself with perfect soul blood and kick to create a Phylactery."
+    preferred_inventory="QUICK"
+  ></ItemComponent>
+  
+  <UIInfoComponent
+    _tags="enabled_in_world"
+    name="Phylactery" >
+  </UIInfoComponent>
+  
+  <AbilityComponent
+		ui_name="Phylactery"
+		throw_as_item="1"
+		><gun_config
+			deck_capacity="0"
+		></gun_config>
+	</AbilityComponent>
+
+  <MaterialSuckerComponent 
+    _tags="enabled_in_world,enabled_in_hand"
+    barrel_size="300"
+    num_cells_sucked_per_frame="5"
+	material_type="0"
+	suck_tag="[soul_blood_perfect]"
+  ></MaterialSuckerComponent> <!-- will this work? -->
+
+    <MaterialInventoryComponent 
+    _tags="enabled_in_world,enabled_in_hand,enabled_in_inventory"
+    drop_as_item="0" 
+    on_death_spill="1"
+    leak_pressure_min="0.07"
+    leak_on_damage_percent="1"
+    min_damage_to_leak="0.0"
+    death_throw_particle_velocity_coeff="0.5"
+    do_reactions="20"
+    do_reactions_explosions="1"
+    do_reactions_entities="1"
+     >
+    <count_per_material_type
+	></count_per_material_type>
+  </MaterialInventoryComponent>
+	
+	<SpriteComponent
+    _tags="enabled_in_hand"
+    _enabled="0"
+    offset_x="4"
+    offset_y="4"
+    image_file="mods/souls/files/entities/items/phylactery/sprite_inhand.png"
+  ></SpriteComponent>
+
+    <LuaComponent
+		script_kick="mods/souls/files/entities/items/phylactery/fill_with_blood.lua"
+	></LuaComponent>
+
+</Entity>

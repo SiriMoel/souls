@@ -17,7 +17,7 @@ ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/souls/files/perks.lu
 ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/souls/files/status_list.lua" )
 ModLuaFileAppend( "data/scripts/items/drop_money.lua", "mods/souls/files/scripts/drop_money_append.lua" )
 SetFileContent("data/entities/base_wand_pickup.xml", "base_wand_pickup.xml")
-SetFileContent("data/scripts/biomes/mountain_tree.lua", "mountain_tree.lua")
+--SetFileContent("data/scripts/biomes/mountain_tree.lua", "mountain_tree.lua")
 
 -- enemies
 local biomes = {
@@ -40,6 +40,10 @@ local biomes = {
     {
         path = "data/scripts/biomes/snowcave.lua",
         script = "mods/souls/files/scripts/biome/snowcave.lua",
+    },
+    {
+        path = "data/scripts/biomes/mountain_tree.lua",
+        script = "mods/souls/files/scripts/biome/mountain_tree.lua",
     },
 }
 for i,v in ipairs(biomes) do

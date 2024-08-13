@@ -1,7 +1,7 @@
 
 <Mod
 	name="Souls"
-	description="Hello Mina."
+	description="Collect and use souls from enemies!"
 	request_no_api_restrictions="0"	
 	>
 </Mod>

@@ -1,0 +1,75 @@
+<Entity name="unknown" tags="hittable,teleportable_NOT,item_physics,item_pickup,souls_phylactery" >
+
+  <PhysicsBodyComponent 
+    _tags="enabled_in_world"
+    uid="1" 
+    allow_sleep="1" 
+    angular_damping="0" 
+    fixed_rotation="0" 
+    is_bullet="1" 
+    linear_damping="0"
+    auto_clean="0"
+    on_death_leave_physics_body="0"
+    hax_fix_going_through_ground="1"
+  ></PhysicsBodyComponent>
+  
+  <PhysicsImageShapeComponent 
+    body_id="1"
+    centered="1"
+    image_file="mods/souls/files/entities/items/phylactery/sprite_inhand.png"
+    material="metal_hard" >
+  </PhysicsImageShapeComponent>
+  
+  <CameraBoundComponent
+    max_count="50"
+    distance="500">
+  </CameraBoundComponent>
+	
+	<PhysicsThrowableComponent
+	_tags="enabled_in_world"
+    max_throw_speed="180"
+    throw_force_coeff="1.5"
+  ></PhysicsThrowableComponent>
+  
+  <PhysicsBodyCollisionDamageComponent 
+    _tags="enabled_in_world" 
+    speed_threshold="140.0"
+  ></PhysicsBodyCollisionDamageComponent>
+  
+  <ItemComponent
+    _tags="enabled_in_world"
+    item_name="Phylactery"
+    max_child_items="0"
+    is_pickable="1"
+    is_equipable_forced="1"
+    ui_sprite="mods/souls/files/entities/items/phylactery/sprite_done.png"
+    ui_description="Kick to power with 10 souls."
+    preferred_inventory="QUICK"
+  ></ItemComponent>
+  
+  <UIInfoComponent
+    _tags="enabled_in_world"
+    name="Phylactery" >
+  </UIInfoComponent>
+  
+  <AbilityComponent
+		ui_name="Phylactery"
+		throw_as_item="1"
+		><gun_config
+			deck_capacity="0"
+		></gun_config>
+	</AbilityComponent>
+	
+	<SpriteComponent
+    _tags="enabled_in_hand"
+    _enabled="0"
+    offset_x="4"
+    offset_y="4"
+    image_file="mods/souls/files/entities/items/phylactery/sprite_done_inhand.png"
+  ></SpriteComponent>
+
+      <LuaComponent
+		script_kick="mods/souls/files/entities/items/phylactery/kick.lua"
+	></LuaComponent>
+
+</Entity>

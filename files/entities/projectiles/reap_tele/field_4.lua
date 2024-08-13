@@ -4,22 +4,22 @@ local entity_id = GetUpdatedEntityID()
 local root_id = EntityGetRootEntity( entity_id )
 local x, y = EntityGetTransform( entity_id )
 
-local mark_radius = 42
+local mark_radius = 130
 
 local targets = EntityGetInRadiusWithTag( x, y, mark_radius, "homing_target" )
 
 if ( #targets > 0 ) then
     for i,target_id in ipairs( targets ) do
 
-        if ( EntityHasTag( target_id, "reap_marked_random" ) == false ) then
+        if ( EntityHasTag( target_id, "reap_marked" ) == false ) then
 
-            EntityAddComponent( target_id, "LuaComponent",
+            EntityAddComponent( target_id, "LuaComponent", 
             {
-                script_death = "mods/souls/files/scripts/reap_random.lua",
+                script_death = "mods/souls/files/scripts/reap.lua",
                 execute_every_n_frame = "-1",
             } )
 
-            EntityAddTag( target_id, "reap_marked_random")
+            EntityAddTag( target_id, "reap_marked")
         end
 
         if EntityHasTag(target_id, "reap_marked_fx") == false then

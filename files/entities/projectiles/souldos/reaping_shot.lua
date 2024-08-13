@@ -11,7 +11,7 @@ local targets = EntityGetInRadiusWithTag( x, y, mark_radius, "homing_target" )
 if ( #targets > 0 ) then
     for i,target_id in ipairs( targets ) do
 
-        if ( EntityHasTag( target_id, "reap_marked" ) == false ) then
+        if ( EntityHasTag( target_id, "reap_marked_souldos" ) == false ) then
 
             EntityAddComponent( target_id, "LuaComponent",
             {
@@ -19,7 +19,7 @@ if ( #targets > 0 ) then
                 execute_every_n_frame = "-1",
             } )
 
-            EntityAddTag( target_id, "reap_marked")
+            EntityAddTag( target_id, "reap_marked_souldos")
         end
 
         if EntityHasTag(target_id, "reap_marked_fx") == false then

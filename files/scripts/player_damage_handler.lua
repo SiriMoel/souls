@@ -32,16 +32,16 @@ function damage_about_to_be_received(damage, x, y, entity_thats_responsible, cri
     if GameHasFlagRun("souls_phylactery_done") then
         local phylactery_points = tonumber(GlobalsGetValue("souls_phylactery_points", "0"))
 
-        if tonumber(GlobalsGetValue("souls_phylactery_points_used", "0")) == 250 then
+        --[[if tonumber(GlobalsGetValue("souls_phylactery_points_used", "0")) == 250 then
             EntityAddTag(player, "souls_lich")
-        end
+        end]]
     
         if  phylactery_points > 0 then
             GlobalsSetValue("souls_phylactery_points", tostring(phylactery_points - 1))
             GlobalsSetValue("souls_phylactery_points_used", tostring(tonumber(GlobalsGetValue("souls_phylactery_points_used")) + 1))
             return 0, 0
         elseif phylactery_points <= 0 then
-            return damage * 1.5, critical_hit_chance
+            return damage, critical_hit_chance
         end
     end
 

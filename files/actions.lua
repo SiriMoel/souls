@@ -714,6 +714,62 @@ actions_to_insert = {
 			c.fire_rate_wait = c.fire_rate_wait + 50
 		end,
 	},
+	{
+		id          = "REAP_TELE",
+		name 		= "$action_moldos_reap_tele",
+		description = "$actiondesc_moldos_reap_tele",
+		sprite 		= "mods/souls/files/spell_icons/reap_tele.png",
+		related_projectiles = {"mods/souls/files/entities/projectiles/reap_tele/proj.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		inject_after = "TELEPORT_PROJECTILE_CLOSER",
+		spawn_level                       = "4,5,6,10",
+		spawn_probability                 = "0.1,0.3,0.5,0.3",
+		price = 150,
+		mana = 50,
+		action 		= function()
+			add_projectile("mods/souls/files/entities/projectiles/reap_tele/proj.xml")
+			if reflecting then
+				return
+			end
+			-- may or may not be a copi thing
+			local caster = GetUpdatedEntityID()
+			local x, y = EntityGetTransform(caster)
+			local controls_component = EntityGetFirstComponentIncludingDisabled(caster, "ControlsComponent")
+			if controls_component ~= nil then
+				LastShootingStart = LastShootingStart or 0
+				Revs = Revs or 0
+				local shooting_start = ComponentGetValue2(controls_component, "mButtonFrameFire")
+				local shooting_now = ComponentGetValue2(controls_component, "mButtonDownFire")
+				if not shooting_now then
+					Revs = 0
+				else
+					if LastShootingStart ~= shooting_start then
+						Revs = 0
+					else
+						Revs = Revs + 1
+						if Revs >= 60 then
+							-- biggest reap field
+							local field = EntityLoad("mods/souls/files/entities/projectiles/reap_tele/field_4.xml", x, y)
+							EntityAddChild(caster, field)
+						elseif Revs >= 40 then
+							-- big reap field
+							local field = EntityLoad("mods/souls/files/entities/projectiles/reap_tele/field_3.xml", x, y)
+							EntityAddChild(caster, field)
+						elseif Revs >= 20 then
+							-- medium reap field
+							local field = EntityLoad("mods/souls/files/entities/projectiles/reap_tele/field_2.xml", x, y)
+							EntityAddChild(caster, field)
+						elseif Revs > 0 then
+							-- small reap field
+							local field = EntityLoad("mods/souls/files/entities/projectiles/reap_tele/field_1.xml", x, y)
+							EntityAddChild(caster, field)
+						end
+					end
+				end
+				LastShootingStart = shooting_start
+			end
+		end,
+	},
 }
 
 for i,v in ipairs(actions_to_insert) do

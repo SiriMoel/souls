@@ -16,7 +16,7 @@
   <PhysicsImageShapeComponent 
     body_id="1"
     centered="1"
-    image_file="mods/souls/files/entities/items/phylactery/sprite_inhand.png"
+    image_file="mods/souls/files/entities/items/phylactery/sprite_done_inhand.png"
     material="metal_hard" >
   </PhysicsImageShapeComponent>
   

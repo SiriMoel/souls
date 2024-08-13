@@ -130,7 +130,7 @@ end
 
 local scenes = {
     { 13080, 1650, "mods/souls/files/biome/souldoor/souldoor.xml", true },
-    { -1568, -400, "mods/souls/files/biome/soulplace/place.xml", true },
+    { -1568, -400, "mods/souls/files/biome/soulplace/place.xml", false },
 }
 
 add_scene(scenes)

@@ -7,7 +7,7 @@ to_insert = {
 		ui_name="Soulful",
 		ui_description="Perhaps you can power something...",
 		ui_icon="mods/souls/files/status_icons/souljuice.png",
-		effect_entity="mods/souls/files/entities/misc/effect_souljuice.xml",
+		effect_entity="mods/souls/files/entities/misc/effect_souljuice/effect.xml",
 	},
 }
 

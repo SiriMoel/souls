@@ -29,7 +29,7 @@
 	</ParticleEmitterComponent>
 
 	<!--<LuaComponent
-		script_source_file="mods/tales_of_kupoli/files/entities/misc/effect_souljuice.lua"
+		script_source_file="mods/souls/files/entities/misc/effect_souljuice/effect.lua"
 		execute_every_n_frame="30"
 	></LuaComponent>-->
 

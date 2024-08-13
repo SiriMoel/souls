@@ -43,7 +43,7 @@
     is_pickable="1"
     is_equipable_forced="1"
     ui_sprite="mods/souls/files/entities/items/phylactery/sprite_done.png"
-    ui_description="Kick to power with 10 souls."
+    ui_description="Kick to power with 10 souls. Each point nullifies a hit of damage."
     preferred_inventory="QUICK"
   ></ItemComponent>
   
@@ -69,6 +69,7 @@
   ></SpriteComponent>
 
       <LuaComponent
+      _tags="enabled_in_world"
 		script_kick="mods/souls/files/entities/items/phylactery/kick.lua"
 	></LuaComponent>
 

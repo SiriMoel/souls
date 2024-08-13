@@ -132,7 +132,7 @@
 	</ParticleEffect>
 	<StatusEffects>
 		<Ingestion>
-			<StatusEffect type="MOLDOS_SOULJUICE" amount="0.25" />
+			<StatusEffect type="MOLDOS_SOULJUICE" amount="0.1" />
 		</Ingestion>
 	</StatusEffects>
   </CellData>

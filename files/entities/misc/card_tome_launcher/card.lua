@@ -1,5 +1,5 @@
-dofile_once("mods/tales_of_kupoli/files/scripts/utils.lua")
-dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+dofile_once("mods/souls/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/souls.lua")
 
 local card = GetUpdatedEntityID()
 local root = EntityGetRootEntity(card) -- player, right?
@@ -8,9 +8,15 @@ local comp_cd = EntityGetFirstComponentIncludingDisabled(card, "VariableStorageC
 local cooldown_frames = 6
 local cooldown_frame = ComponentGetValue2(comp_cd, "value_int")
 
-local tome = EntityGetWithTag("kupoli_tome")[1]
+local tome = EntityGetWithTag("soul_tome")[1]
 local comp_sl = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "launcher_souls_loaded") or 0
 local sl = tonumber(ComponentGetValue(comp_sl, "value_int"))
+
+local wand = 0
+local inv_comp = EntityGetFirstComponentIncludingDisabled(GetPlayer(), "Inventory2Component")
+if inv_comp then
+    wand = ComponentGetValue2(inv_comp, "mActiveItem")
+end
 
 if ComponentGetValue2(comp_controls, "mButtonDownRightClick") == true and GameGetFrameNum() >= cooldown_frame then
     if DoesWandUseSpecificSoul(wand) then

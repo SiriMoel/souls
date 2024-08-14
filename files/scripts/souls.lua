@@ -131,6 +131,22 @@ end
 -- GetRandomSoul() but for wands, used incase the wand is meant to only consume a specific soul type
 function GetRandomSoulForWand(wand)
     local which_soul = "0"
+    local comp_whichsoul = EntityGetFirstComponentIncludingDisabled(wand, "VariableStorageComponent", "which_soul_type")
+    if comp_whichsoul == nil then
+        comp_whichsoul = EntityAddComponent2(wand, "VariableStorageComponent", {
+            _tags="which_soul_type",
+            name="which_soul_type",
+            value_string="0",
+        })
+    end
+    local comp_whichsoulnumber = EntityGetFirstComponentIncludingDisabled(wand, "VariableStorageComponent", "which_soul_type_number")
+    if comp_whichsoulnumber == nil then
+        comp_whichsoulnumber = EntityAddComponent2(wand, "VariableStorageComponent", {
+            _tags="which_soul_type_number",
+            name="which_soul_type_number",
+            value_int="1",
+        })
+    end
     local comp_whichsoul = EntityGetFirstComponentIncludingDisabled(wand, "VariableStorageComponent", "which_soul_type") or 0
     local whichsoul = ComponentGetValue2(comp_whichsoul, "value_string")
     which_soul = whichsoul
@@ -214,6 +230,7 @@ function ReapSoul(entity, amount, random)
     local x, y = EntityGetTransform(entity)
     local player = GetPlayer()
     local ok = false
+    local boss = false
     if #EntityGetInRadiusWithTag(x, y, 300, "player_unit") < 1 then return end
     local boss_names = {
         "$animal_maggot_tiny",
@@ -228,6 +245,15 @@ function ReapSoul(entity, amount, random)
         "$animal_islandspirit",
         "$animal_boss_wizard",
     }
+    for i,v in ipairs(boss_names) do
+        if EntityGetName(entity) == GameTextGetTranslatedOrNot(v) then
+            ok = true
+            boss = true
+        end
+    end
+    if EntityHasTag(entity, "boss") then
+        boss = true
+    end
     if table.contains(soul_types, herd_id) then
         ok = true
     end
@@ -250,7 +276,7 @@ function ReapSoul(entity, amount, random)
                 end
             end
         end
-        if table.contains(boss_names, EntityGetName(entity_id)) then
+        if boss == true then
             herd_id = "boss"
         end
         if ModSettingGet("souls.say_soul") == true then

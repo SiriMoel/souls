@@ -819,7 +819,7 @@ actions_to_insert = {
 	},
 	{
 		id          = "TOME_LAUNCHER", -- im beggin
-		name 		= "$action_modlos_tome_launcher",
+		name 		= "$action_moldos_tome_launcher",
 		description = "$actiondesc_moldos_tome_launcher",
 		sprite 		= "mods/souls/files/spell_icons/tome_launcher.png",
 		sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_unidentified.png",

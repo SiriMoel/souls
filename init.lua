@@ -163,7 +163,7 @@ function OnPlayerSpawned( player )
         end
         AddSouls(which, 1)
     end
-
+    
     EntityAddComponent(player, "LuaComponent", {
         script_damage_about_to_be_received="mods/souls/files/scripts/player_damage_handler.lua"
     })

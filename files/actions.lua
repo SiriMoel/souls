@@ -953,12 +953,12 @@ actions_to_insert = {
 		spawn_level                       = "5,6",
 		spawn_probability                 = "0.5,0.5",
 		price = 100,
-		mana = 10,
+		mana = 30,
 		action 		= function()
 			dofile_once("mods/souls/files/scripts/souls.lua")
 			local count = GetSoulsCount("boss")
 			if reflecting then return end
-			c.damage_projectile_add = c.damage_projectile_add + (0.1 * count)
+			c.damage_projectile_add = c.damage_projectile_add + (0.03 * count)
 			draw_actions( 1, true )
 		end,
 	},
@@ -972,12 +972,12 @@ actions_to_insert = {
 		spawn_level                       = "5,6",
 		spawn_probability                 = "0.5,0.5",
 		price = 100,
-		mana = 10,
+		mana = 30,
 		action 		= function()
 			dofile_once("mods/souls/files/scripts/souls.lua")
 			local count = GetSoulsCount("boss")
 			if reflecting then return end
-			c.speed_multiplier = c.speed_multiplier + (0.1 * count)
+			c.speed_multiplier = c.speed_multiplier * (1 + (0.3 * count))
 			draw_actions( 1, true )
 		end,
 	},

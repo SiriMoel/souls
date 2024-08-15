@@ -315,7 +315,7 @@ actions_to_insert = {
 		price = 100,
 		mana = 10,
 		action 		= function()
-			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+			dofile_once("mods/souls/files/scripts/souls.lua")
 			
 			if reflecting then return end
 
@@ -355,7 +355,7 @@ actions_to_insert = {
 		name 		= "$action_moldos_souls_to_power",
 		description = "$actiondesc_moldos_souls_to_power",
 		sprite 		= "mods/souls/files/spell_icons/souls_to_power.png",
-		related_extra_entities = { "mods/tales_of_kupoli/files/entities/projectiles/souls_to_power/souls_to_power.xml" },
+		related_extra_entities = { "mods/souls/files/entities/projectiles/souls_to_power/souls_to_power.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
 		inject_after = "SPELLS_TO_POWER",
 		spawn_level                       = "2,3,4,5,6,10",
@@ -468,7 +468,7 @@ actions_to_insert = {
 				for i=1,souls_earned do
 					local which = possible_types[math.random(1,#possible_types)]
 					AddSouls(which, 1)
-					if ModSettingGet("tales_of_kupoli.say_soul") == true then
+					if ModSettingGet("souls.say_soul") == true then
 						GamePrint("You have acquired a " .. SoulNameCheck(which) .. " soul!")
 					end
 				end
@@ -868,7 +868,7 @@ actions_to_insert = {
 		price = 100,
 		mana = 25,
 		action 		= function()
-			dofile_once("mods/tales_of_kupoli/files/scripts/souls.lua")
+			dofile_once("mods/souls/files/scripts/souls.lua")
 			if reflecting then return end
 			local entity = GetUpdatedEntityID()
 			local wand = 0
@@ -940,6 +940,44 @@ actions_to_insert = {
 					c.damage_projectile_add = c.damage_projectile_add + 0.05
 				end
 			end
+			draw_actions( 1, true )
+		end,
+	},
+	{
+		id          = "SCALING_DAMAGE",
+		name 		= "$action_moldos_scaling_damage",
+		description = "$actiondesc_moldos_scaling_damage",
+		sprite 		= "mods/souls/files/spell_icons/scaling_damage.png",
+		type 		= ACTION_TYPE_MODIFIER,
+		inject_after = "MOLDOS_SOUL_SPEED",
+		spawn_level                       = "5,6",
+		spawn_probability                 = "0.5,0.5",
+		price = 100,
+		mana = 10,
+		action 		= function()
+			dofile_once("mods/souls/files/scripts/souls.lua")
+			local count = GetSoulsCount("boss")
+			if reflecting then return end
+			c.damage_projectile_add = c.damage_projectile_add + (0.1 * count)
+			draw_actions( 1, true )
+		end,
+	},
+	{
+		id          = "SCALING_SPEED",
+		name 		= "$action_moldos_scaling_speed",
+		description = "$actiondesc_moldos_scaling_speed",
+		sprite 		= "mods/souls/files/spell_icons/scaling_speed.png",
+		type 		= ACTION_TYPE_MODIFIER,
+		inject_after = "MOLDOS_SCALING_DAMAGE",
+		spawn_level                       = "5,6",
+		spawn_probability                 = "0.5,0.5",
+		price = 100,
+		mana = 10,
+		action 		= function()
+			dofile_once("mods/souls/files/scripts/souls.lua")
+			local count = GetSoulsCount("boss")
+			if reflecting then return end
+			c.speed_multiplier = c.speed_multiplier + (0.1 * count)
 			draw_actions( 1, true )
 		end,
 	},

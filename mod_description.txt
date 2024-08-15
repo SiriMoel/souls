@@ -1,0 +1,30 @@
+[img]https://i.imgur.com/RHXXaL3.png[/img]
+
+A continuation of Tales of Kupoli's souls mechanic.
+
+This mod adds the ability to collect and use the souls of enemies for your spells.
+Spells added by this mod have different effects depending on what type of soul you use to cast them.
+
+[img]https://i.imgur.com/z1SIIJF.png[/img]
+
+[list]
+	[*] 27 spells
+	[*] 13 soul types
+	[*] 4 wands and items
+	[*] 2 enemies
+	[*] An upgradeable magic tome
+	[*] A method to revive bosses
+	[*] Create a Phylactery to enhance your survivability
+[/list]
+
+Kill enemies to collect souls, and cast spells with those souls (to get more souls, ofcourse).
+
+[img]https://i.imgur.com/EfsTYyC.png[/img]
+
+Cross-mod interactions with:
+[b]Apotheosis[/b] 2 new soul types
+
+Discord: https://discord.gg/FKaRA9HMUq
+
+[img]https://i.imgur.com/7MNdeHB.png[/img]
+

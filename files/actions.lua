@@ -981,6 +981,23 @@ actions_to_insert = {
 			draw_actions( 1, true )
 		end,
 	},
+	{
+		id          = "SOUL_TINKER",
+		name 		= "$action_moldos_soul_tinker",
+		description = "$actiondesc_moldos_soul_tinker",
+		sprite 		= "mods/souls/files/spell_icons/soul_tinker.png",
+		type 		= ACTION_TYPE_PASSIVE,
+		inject_after = "MOLDOS_SOUL_HEALER",
+		spawn_level                       = "6,10",
+		spawn_probability                 = "0.3,0.2",
+		price = 300,
+		mana = 40,
+		custom_xml_file="mods/souls/files/entities/misc/card_soul_tinker/card.xml",
+		action 		= function()
+			c.fire_rate_wait = c.fire_rate_wait + 20
+			current_reload_time = current_reload_time + 20
+		end,
+	},
 }
 
 for i,v in ipairs(actions_to_insert) do

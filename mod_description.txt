@@ -7,7 +7,7 @@ Spells added by this mod have different effects depending on what type of soul y
 
 [img]https://i.imgur.com/z1SIIJF.png[/img]
 
-27 new spells
+28 new spells
 13 soul types
 4 wands and items
 2 new enemies
@@ -15,7 +15,6 @@ Spells added by this mod have different effects depending on what type of soul y
 An upgradeable magic tome
 Revive bosses
 Create a Phylactery to enhance your survivability
-
 
 Kill enemies to collect souls, and cast spells with those souls.
 

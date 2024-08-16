@@ -1,0 +1,17 @@
+<Entity>
+	
+	<InheritTransformComponent>
+    </InheritTransformComponent>	
+    
+    <GameEffectComponent 
+        effect="EDIT_WANDS_EVERYWHERE"
+        frames="61"
+    >
+	</GameEffectComponent>
+
+	<AudioComponent
+		file="data/audio/Desktop/misc.bank"
+		event_root="game_effect/electrocution" >
+	</AudioComponent>
+
+</Entity>

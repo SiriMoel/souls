@@ -37,6 +37,7 @@ local pool_projectiles = {
     { probability = 0.7, id = "MOLDOS_SOUL_BOOST", },
     { probability = 0.6, id = "MOLDOS_SCALING_DAMAGE", },
     { probability = 0.6, id = "MOLDOS_SCALING_SPEED", },
+    { probability = 0.1, id = "MOLDOS_SOUL_TINKER", },
 }
 
 local string = ""
@@ -95,7 +96,7 @@ if #spell_projectiles >= 5 then
     for i,v in ipairs(spell_projectiles) do
         EntityKill(v)
     end
-    
+
     local rnd = random_create(x+GameGetFrameNum(), y+tonumber(StatsGetValue("world_seed")))
     local which = pick_random_from_table_weighted(rnd, pool_projectiles) or { id = "LIGHT_BULLET" }
     CreateItemActionEntity(which.id, x, y)

@@ -13,26 +13,30 @@ local targets = EntityGetInRadiusWithTag(x, y, radius, "card_action")
 
 local spell_projectiles = {}
 local pool_projectiles = {
-    "MOLDOS_REAPING_SHOT",
-    "MOLDOS_WAND_CONSUMES_X_SOULS",
-    "MOLDOS_SOUL_BLAST",
-    "MOLDOS_SOUL_SPEED",
-    "MOLDOS_SOULS_TO_POWER",
-    "MOLDOS_SOUL_STRIKE",
-    "MOLDOS_SOUL_ARROW",
-    "MOLDOS_SOUL_BALL",
-    "MOLDOS_SOUL_METEOR",
-    --"MOLDOS_SOUL_HEALER",
-    --"MOLDOS_REAPING_HALO",
-    --"MOLDOS_WEAKENING_HALO",
-    "MOLDOS_SOUL_CLOAK",
-    "MOLDOS_SOUL_RAGE",
-    "MOLDOS_SOUL_BOLT",
-    "MOLDOS_SOULDOS",
-    "MOLDOS_RANDOM_REAP",
-    "MOLDOS_REAP_TELE",
-    "MOLDOS_TOME_SLICE",
-    "MOLDOS_TOME_LAUNCHER",
+    { probability = 1.0, id = "MOLDOS_REAPING_SHOT", },
+    { probability = 1.0, id = "MOLDOS_WAND_CONSUMES_X_SOULS", },
+    { probability = 0.9, id = "MOLDOS_SOUL_BLAST" },
+    { probability = 0.9, id = "MOLDOS_SOUL_SPEED" },
+    { probability = 0.8, id = "MOLDOS_SOULS_TO_POWER", },
+    { probability = 0.6, id = "MOLDOS_SOUL_STRIKE", },
+    { probability = 0.1, id = "MOLDOS_EAT_WAND_FOR_SOULS", },
+    { probability = 0.9, id = "MOLDOS_SOUL_ARROW", },
+    { probability = 0.6, id = "MOLDOS_SOUL_BALL", },
+    { probability = 0.6, id = "MOLDOS_SOUL_METEOR", },
+    { probability = 0.1, id = "MOLDOS_SOUL_HEALER", },
+    { probability = 0.1, id = "MOLDOS_REAPING_HALO", },
+    { probability = 0.1, id = "MOLDOS_WEAKENING_HALO", },
+    { probability = 0.7, id = "MOLDOS_SOUL_CLOAK", },
+    { probability = 0.7, id = "MOLDOS_SOUL_RAGE", },
+    { probability = 1.0, id = "MOLDOS_SOUL_BOLT", },
+    { probability = 0.7, id = "MOLDOS_SOULDOS", },
+    { probability = 0.7, id = "MOLDOS_RANDOM_REAP", },
+    { probability = 0.7, id = "MOLDOS_REAP_TELE", },
+    { probability = 0.5, id = "MOLDOS_TOME_SLICE", },
+    { probability = 0.5, id = "MOLDOS_TOME_LAUNCHER", },
+    { probability = 0.7, id = "MOLDOS_SOUL_BOOST", },
+    { probability = 0.6, id = "MOLDOS_SCALING_DAMAGE", },
+    { probability = 0.6, id = "MOLDOS_SCALING_SPEED", },
 }
 
 local string = ""
@@ -91,8 +95,10 @@ if #spell_projectiles >= 5 then
     for i,v in ipairs(spell_projectiles) do
         EntityKill(v)
     end
-
-    CreateItemActionEntity(pool_projectiles[math.random(1,#pool_projectiles)], x, y)
+    
+    local rnd = random_create(x+GameGetFrameNum(), y+tonumber(StatsGetValue("world_seed")))
+    local which = pick_random_from_table_weighted(rnd, pool_projectiles) or { id = "LIGHT_BULLET" }
+    CreateItemActionEntity(which.id, x, y)
 
     spell_projectiles = {}
 

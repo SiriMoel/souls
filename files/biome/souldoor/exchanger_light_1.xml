@@ -3,7 +3,7 @@
     	<ParticleEmitterComponent
 		_tags="souls_exchanger_light_proj"
         _enabled="0"
-		emitted_material_name="spark_yellow"
+		emitted_material_name="soul_particles"
 		offset.x="0"
 		offset.y="6"
 		x_pos_offset_min="0"
@@ -37,7 +37,7 @@
 	<ParticleEmitterComponent
 		_tags="souls_exchanger_light_mod"
         _enabled="0"
-		emitted_material_name="spark_yellow"
+		emitted_material_name="soul_particles"
 		offset.x="0"
 		offset.y="-6"
 		x_pos_offset_min="0"

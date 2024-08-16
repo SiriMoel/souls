@@ -280,7 +280,11 @@ function ReapSoul(entity, amount, random)
             herd_id = "boss"
         end
         if ModSettingGet("souls.say_soul") == true then
-            GamePrint("You have acquired a " .. SoulNameCheck(herd_id) .. " soul!")
+            if amount == 1 then
+                GamePrint("You have acquired a " .. SoulNameCheck(herd_id) .. " soul!")
+            else
+                GamePrint("You have acquired " .. amount .. " " .. SoulNameCheck(herd_id) .. " souls!")
+            end
         end
         AddSouls(herd_id, amount)
     end

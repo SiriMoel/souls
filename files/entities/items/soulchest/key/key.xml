@@ -1,4 +1,4 @@
-<Entity tags="hittable,teleportable_NOT,item_physics,kupoli_soul_key" >
+<Entity tags="hittable,teleportable_NOT,item_physics,souls_soul_key" >
   <Base file="data/entities/base_item_projectile.xml" />
 
   <!-- physical presence -->

@@ -7,7 +7,7 @@ local comp_cd = EntityGetFirstComponentIncludingDisabled(card, "VariableStorageC
 local cooldown_frames = 6
 local cooldown_frame = ComponentGetValue2(comp_cd, "value_int")
 
-if HeldItem(player) == EntityGetWithTag("kupoli_tome") then
+if HeldItem(player) == EntityGetWithTag("souls_tome") then
     if ComponentGetValue2(comp_controls, "mButtonDownKick") and GameGetFrameNum() >= cooldown_frame then
         GamePrint("hi")
     

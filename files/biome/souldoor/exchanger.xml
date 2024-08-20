@@ -1,4 +1,4 @@
-<entity tags="kupoli_soul_exchanger">
+<entity tags="souls_soul_exchanger">
 
     <LuaComponent
         script_source_file="mods/souls/files/biome/souldoor/souldoor.lua"

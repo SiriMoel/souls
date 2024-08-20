@@ -40,13 +40,28 @@ mod_settings = {
     {
         id = "starting_souls",
         ui_name = "Start with souls",
-        ui_description = "How many souls you want to start with (this is kinda cheaty)",
+        ui_description = "How many souls you want to start with (this is kinda cheaty).",
         value_default = 0,
         value_min = 0,
         value_max = 100,
         value_display_multiplier = 1,
         value_display_formatting = " $0 souls",
         scope = MOD_SETTING_SCOPE_NEW_GAME,
+    },
+    {
+        id = "spell_spawn_chance_multiplier",
+        ui_name = "Spell spawn chance multiplier",
+        ui_description = "How frequently do you want this mod's spells to spawn.",
+        value_default = 1,
+        value_min = 0,
+        value_max = 1.5,
+        value_display_multiplier = 1,
+        value_display_formatting = " $0x multiplier",
+        scope = MOD_SETTING_SCOPE_NEW_GAME,
+    },
+    {
+        image_filename = "mods/souls/ddd.png",
+        ui_fn = mod_setting_image,
     },
 }
 

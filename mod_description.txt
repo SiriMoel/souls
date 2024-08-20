@@ -9,7 +9,7 @@ Spells added by this mod have different effects depending on what type of soul y
 
 28 new spells
 13 soul types
-4 wands and items
+3+ wands and items
 2 new enemies
 2+ new materials
 An upgradeable magic tome

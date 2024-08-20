@@ -85,7 +85,7 @@ function TransferBrilliance(from_comp, to_comp, to_comp_max, amount)
     ComponentSetValue2(from_comp, "value_int", from_comp_amount)]]--
 end
 
-function weapon_rngstats(weapon, x, y, statsm)
+function weapon_rngstats(weapon, x, y, statsm) -- not used in this mod iirc
     local ac = EntityGetComponent( weapon, "AbilityComponent" )[1]
     math.randomseed(x, y+GameGetFrameNum())
     if ac ~= nil then
@@ -106,7 +106,7 @@ function weapon_rngstats(weapon, x, y, statsm)
             local mm = tonumber( ComponentGetValue2( ac, "mana_max" ) ) -- mana max
             local cap = tonumber( ComponentObjectGetValue( ac, "gun_config", "deck_capacity" ) ) -- deck capacity 
 
-            if GameHasFlagRun("kupoli_better_weapons") then
+            if GameHasFlagRun("souls_better_weapons") then
                 rt = rt * 0.6
                 frw = frw * 0.6
                 mcs = mcs * 1.6

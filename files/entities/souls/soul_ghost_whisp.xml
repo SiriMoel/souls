@@ -1,4 +1,4 @@
-<Entity tags="talesofkupoli_soul,soul_ghost_whisp">
+<Entity tags="souls_soul,soul_ghost_whisp">
 
     <SimplePhysicsComponent
         _tags="enabled_in_world" 

@@ -1,4 +1,4 @@
-<Entity tags="talesofkupoli_soul,soul_mage_corrupted">
+<Entity tags="souls_soul,soul_mage_corrupted">
 
     <SimplePhysicsComponent
         _tags="enabled_in_world" 

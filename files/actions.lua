@@ -307,7 +307,6 @@ actions_to_insert = {
 		name 		= "$action_moldos_soul_speed",
 		description = "$actiondesc_moldos_soul_speed",
 		sprite 		= "mods/souls/files/spell_icons/soul_speed.png",
-		--related_extra_entities = { "mods/tales_of_kupoli/files/entities/misc/soul_speed.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
 		inject_after = "BLOODLUST",
 		spawn_level                       = "1,2,3,4,5,6",
@@ -956,8 +955,8 @@ actions_to_insert = {
 		mana = 30,
 		action 		= function()
 			dofile_once("mods/souls/files/scripts/souls.lua")
-			local count = GetSoulsCount("boss")
 			if reflecting then return end
+			local count = GetSoulsCount("boss")
 			c.damage_projectile_add = c.damage_projectile_add + (0.03 * count)
 			draw_actions( 1, true )
 		end,
@@ -975,8 +974,8 @@ actions_to_insert = {
 		mana = 30,
 		action 		= function()
 			dofile_once("mods/souls/files/scripts/souls.lua")
-			local count = GetSoulsCount("boss")
 			if reflecting then return end
+			local count = GetSoulsCount("boss")
 			c.speed_multiplier = c.speed_multiplier * (1 + (0.3 * count))
 			draw_actions( 1, true )
 		end,

@@ -154,7 +154,7 @@
   </ParticleEmitterComponent>
   
 	<SpriteParticleEmitterComponent
-		sprite_file="mods/tales_of_kupoli/files/particles/soul.xml"
+		sprite_file="mods/souls/files/particles/soul.xml"
 		delay="0"
 		lifetime="2"
 		color.r="1" color.g="1" color.b="1" color.a="1"

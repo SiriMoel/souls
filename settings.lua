@@ -20,7 +20,7 @@ local mod_id = "souls"
 mod_settings_version = 1
 mod_settings = {
     {
-        image_filename = "mods/souls/aaa.png",
+        image_filename = "mods/souls/ddd.png",
         ui_fn = mod_setting_image,
     },
     {
@@ -52,16 +52,12 @@ mod_settings = {
         id = "spell_spawn_chance_multiplier",
         ui_name = "Spell spawn chance multiplier",
         ui_description = "How frequently do you want this mod's spells to spawn.",
-        value_default = 1,
+        value_default = 1.0,
         value_min = 0,
-        value_max = 1.5,
+        value_max = 2,
         value_display_multiplier = 1,
         value_display_formatting = " $0x multiplier",
         scope = MOD_SETTING_SCOPE_NEW_GAME,
-    },
-    {
-        image_filename = "mods/souls/ddd.png",
-        ui_fn = mod_setting_image,
     },
 }
 

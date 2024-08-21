@@ -7,11 +7,11 @@ Spells added by this mod have different effects depending on what type of soul y
 
 [img]https://i.imgur.com/z1SIIJF.png[/img]
 
-28 new spells
-13 soul types
-3+ wands and items
-2 new enemies
-2+ new materials
+[b]28[/b] new spells
+[b]3+[/b] wands and items
+[b]2[/b] new enemies
+[b]2+[/b] new materials
+[b]13[/b] soul types
 An upgradeable magic tome
 Revive bosses
 Create a Phylactery to enhance your survivability
@@ -22,9 +22,9 @@ Kill enemies to collect souls, and cast spells with those souls.
 
 Cross-mod interactions with:
 [b]Apotheosis[/b] 2 new soul types
+This mod should be compatible with all content mods, except Tales of Kupoli.
 
 Discord: https://discord.gg/FKaRA9HMUq
 Github: https://github.com/SiriMoel/souls
 
 [img]https://i.imgur.com/7MNdeHB.png[/img]
-

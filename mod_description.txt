@@ -24,6 +24,7 @@ Cross-mod interactions with:
 [b]Apotheosis[/b] 2 new soul types
 
 Discord: https://discord.gg/FKaRA9HMUq
+Github: https://github.com/SiriMoel/souls
 
 [img]https://i.imgur.com/7MNdeHB.png[/img]
 

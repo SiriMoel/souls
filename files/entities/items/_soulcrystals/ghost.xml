@@ -1,7 +1,7 @@
 <Entity tags="hittable,soul_crystal">
 
 	<UIInfoComponent
-		name="Alchemist's Crystal Soul"
+		name="Ghost's Crystal Soul"
 	></UIInfoComponent>
 
 	<PhysicsBodyComponent 

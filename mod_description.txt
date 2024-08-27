@@ -7,9 +7,10 @@ Spells added by this mod have different effects depending on what type of soul y
 
 [img]https://i.imgur.com/z1SIIJF.png[/img]
 
-[b]28[/b] new spells
+[b]29[/b] new spells
 [b]3+[/b] wands and items
 [b]2[/b] new enemies
+[b]2[/b] new structures
 [b]2+[/b] new materials
 [b]13[/b] soul types
 An upgradeable magic tome
@@ -22,7 +23,9 @@ Kill enemies to collect souls, and cast spells with those souls.
 
 Cross-mod interactions with:
 [b]Apotheosis[/b] 2 new soul types
-This mod should be compatible with all content mods, except Tales of Kupoli.
+[b]Glimmers Expanded[/b] 1 new spell
+This mod should load after Apotheosis and before Glimmers Expanded for compatibility to work.
+Souls should be compatible with all content mods, except Tales of Kupoli.
 
 Discord: https://discord.gg/FKaRA9HMUq
 Github: https://github.com/SiriMoel/souls

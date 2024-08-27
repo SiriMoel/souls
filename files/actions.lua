@@ -343,7 +343,7 @@ actions_to_insert = {
 					RemoveSoul(GetWandSoulType(wand))
 					c.speed_multiplier = c.speed_multiplier * 2
 					c.damage_projectile_add = c.damage_projectile_add + 0.3
-					c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_speed/soul_speed_fx.xml,"
+					--c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_speed/soul_speed_fx.xml,"
 				else
 					GamePrint("You do not have enough souls for this.")
 				end
@@ -352,7 +352,7 @@ actions_to_insert = {
 					RemoveRandomSouls(1)
 					c.speed_multiplier = c.speed_multiplier * 2
 					c.damage_projectile_add = c.damage_projectile_add + 0.2
-					c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_speed/soul_speed_fx.xml,"
+					--c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_speed/soul_speed_fx.xml,"
 				else
 					GamePrint("You do not have enough souls for this.")
 				end
@@ -1051,6 +1051,49 @@ actions_to_insert = {
 		action 		= function()
 			c.fire_rate_wait = c.fire_rate_wait + 20
 			current_reload_time = current_reload_time + 20
+		end,
+	},
+	{
+		id          = "SOUL_CRIT",
+		name 		= "$action_moldos_soul_crit",
+		description = "$actiondesc_moldos_soul_crit",
+		sprite 		= "mods/souls/files/spell_icons/soul_crit.png",
+		type 		= ACTION_TYPE_MODIFIER,
+		inject_after = "MOLDOS_SOUL_SPEED",
+		spawn_level                       = "1,2,3,4,5,6",
+		spawn_probability                 = "1,1,1,1,1,1",
+		spawn_level_table = { 1, 2, 3, 4, 5, 6 },
+		spawn_probability_table = { 0.5, 0.7, 0.7, 0.7, 0.7, 0.7 },
+		price = 100,
+		mana = 15,
+		action 		= function()
+			dofile_once("mods/souls/files/scripts/souls.lua")
+			if reflecting then return end
+			local entity = GetUpdatedEntityID()
+			local wand = 0
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+			if DoesWandUseSpecificSoul(wand) then
+				if GetSoulsCount(GetWandSoulType(wand)) >= 1 then
+					RemoveSoul(GetWandSoulType(wand))
+					c.damage_critical_chance = c.damage_critical_chance + 100
+					--c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_speed/soul_speed_fx.xml,"
+				else
+					GamePrint("You do not have enough souls for this.")
+				end
+			else
+				if GetSoulsCount("all") >= 1 then
+					RemoveRandomSouls(1)
+					c.damage_critical_chance = c.damage_critical_chance + 100
+					--c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_speed/soul_speed_fx.xml,"
+				else
+					GamePrint("You do not have enough souls for this.")
+				end
+			end
+
+			draw_actions( 1, true )
 		end,
 	},
 }

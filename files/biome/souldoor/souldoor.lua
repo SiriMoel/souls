@@ -38,6 +38,7 @@ local pool_projectiles = {
     { probability = 0.6, id = "MOLDOS_SCALING_DAMAGE", },
     { probability = 0.6, id = "MOLDOS_SCALING_SPEED", },
     { probability = 0.1, id = "MOLDOS_SOUL_TINKER", },
+    { probability = 0.8, id = "MOLDOS_SOUL_CRIT" },
 }
 
 local string = ""

@@ -135,6 +135,17 @@ local scenes = {
 
 add_scene(scenes)
 
+--apotheosis
+if ModIsEnabled("Apotheosis") then
+    --print("Souls - Apotheosis detected!")
+end
+
+--glimmers expanded
+if ModIsEnabled("GlimmersExpanded") then
+    --print("Souls - GlimmersExpanded detected!")
+	ModLuaFileAppend("mods/GlimmersExpanded/files/addGlimmers.lua", "mods/souls/files/scripts/glimmersexpanded.lua")
+end
+
 -- player
 function OnPlayerSpawned( player )
 

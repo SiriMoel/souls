@@ -143,7 +143,7 @@ end
 --glimmers expanded
 if ModIsEnabled("GlimmersExpanded") then
     --print("Souls - GlimmersExpanded detected!")
-	ModLuaFileAppend("mods/GlimmersExpanded/files/addGlimmers.lua", "mods/souls/files/scripts/glimmersexpanded.lua")
+	ModLuaFileAppend("mods/GlimmersExpanded/files/lib/glimmer_data.lua", "mods/souls/files/scripts/glimmersexpanded.lua")
 end
 
 -- player

@@ -572,6 +572,7 @@ actions_to_insert = {
 		action 		= function()
 			c.fire_rate_wait = c.fire_rate_wait + 10
 			current_reload_time = current_reload_time + 10
+			draw_actions( 1, true )
 		end,
 	},
 	{
@@ -657,6 +658,7 @@ actions_to_insert = {
 		action 		= function()
 			c.fire_rate_wait = c.fire_rate_wait + 10
 			current_reload_time = current_reload_time + 10
+			draw_actions( 1, true )
 		end,
 	},
 	{
@@ -676,6 +678,7 @@ actions_to_insert = {
 		action 		= function()
 			c.fire_rate_wait = c.fire_rate_wait + 10
 			current_reload_time = current_reload_time + 10
+			draw_actions( 1, true )
 		end,
 	},
 	{
@@ -1051,6 +1054,7 @@ actions_to_insert = {
 		action 		= function()
 			c.fire_rate_wait = c.fire_rate_wait + 20
 			current_reload_time = current_reload_time + 20
+			draw_actions( 1, true )
 		end,
 	},
 	{

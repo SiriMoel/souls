@@ -5,6 +5,4 @@ local weapon = GetUpdatedEntityID()
 
 local x, y = EntityGetTransform(weapon)
 
---AddGunActionPermanent( weapon, "KUPOLI_TOME_BATTERY" )
---AddGunAction( weapon, "KUPOLI_TOME_CHARGE" )
 AddGunAction( weapon, "MOLDOS_TOME_SHOT" )

@@ -407,7 +407,7 @@ actions_to_insert = {
 			end
 			card = currentcard(wand)
 			local comp_soulstrike = EntityGetFirstComponentIncludingDisabled(card, "VariableStorageComponent", "soul_strike_amount") or 0
-			local soul_strike_amount = ComponentGetValue2(comp_soulstrike, "value_int")
+			local soul_strike_amount = ComponentGetValue2(comp_soulstrike, "value_int") or 0
 			for i=1,soul_strike_amount do
 				c.speed_multiplier = c.speed_multiplier * 1.05
 				c.damage_projectile_add = c.damage_projectile_add + 0.1

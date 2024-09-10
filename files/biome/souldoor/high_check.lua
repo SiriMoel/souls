@@ -3,6 +3,7 @@ dofile_once("mods/souls/files/scripts/utils.lua")
 local entity = GetUpdatedEntityID()
 local x, y = EntityGetTransform( entity )
 local radius = 70
+local radius2 = 200
 
 function SpawnExchanger(x, y)
     EntityLoad("mods/souls/files/biome/souldoor/exchanger.xml", x, y)
@@ -38,8 +39,8 @@ end
 
 local t = EntityGetFirstComponent( entity, "ParticleEmitterComponent" )
 
-local targets = EntityGetInRadiusWithTag( x, y, radius, "player_unit" )
-local targets2 = EntityGetInRadiusWithTag( x, y, radius, "tripping_extreme" )
+local targets = EntityGetInRadiusWithTag( x, y, radius2, "player_unit" )
+local targets2 = EntityGetInRadiusWithTag( x, y, radius2, "tripping_extreme" )
 
 if found then
     if t ~= 0 and t ~= nil then

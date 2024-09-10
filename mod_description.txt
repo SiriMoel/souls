@@ -22,8 +22,8 @@ Kill enemies to collect souls, and cast spells with those souls.
 [img]https://i.imgur.com/EfsTYyC.png[/img]
 
 Cross-mod interactions with:
-[b]Apotheosis[/b] 2 new soul types
-[b]Glimmers Expanded[/b] 1 new spell
+[b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3032128572]Apotheosis[/url][/b] 2 new soul types
+[b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3316355233]Glimmers Expanded[url][/b] 1 new spell
 This mod should load after Apotheosis and before Glimmers Expanded for compatibility to work.
 Souls should be compatible with all content mods, except Tales of Kupoli.
 

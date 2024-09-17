@@ -1,0 +1,54 @@
+<Entity>
+	
+	<Base file="data/entities/base_custom_card.xml" > 
+		<SpriteComponent 
+			image_file="mods/souls/files/spell_icons/soul_fire.png"
+			>
+		</SpriteComponent>
+		
+		<ItemActionComponent 
+			_tags="enabled_in_world"
+			action_id="MOLDOS_SOUL_FIRE" >
+		</ItemActionComponent>
+	</Base>
+
+	<InheritTransformComponent
+		_tags="enabled_in_world,enabled_in_hand" >
+	</InheritTransformComponent>
+
+	<LuaComponent 
+		_tags="enabled_in_hand"
+		script_source_file="mods/souls/files/entities/misc/card_soul_fire/card.lua"
+		execute_every_n_frame="40" >
+	</LuaComponent>
+
+	<ParticleEmitterComponent 
+		_tags="enabled_in_hand"
+		emitted_material_name="soul_particles"
+		gravity.y="0.0"
+		lifetime_min="1"
+		lifetime_max="2"
+		x_vel_min="0"
+		x_vel_max="0"
+		y_vel_min="0"
+		y_vel_max="0"
+		count_min="45"
+		count_max="85"
+		render_on_grid="1"
+		fade_based_on_lifetime="0"
+		area_circle_radius.min="100"
+		area_circle_radius.max="100"
+		cosmetic_force_create="1"
+		collide_with_grid="0"
+		airflow_force="0.051"
+		airflow_time="1.01"
+		airflow_scale="0.03"
+		emission_interval_min_frames="1"
+		emission_interval_max_frames="1"
+		emit_cosmetic_particles="1"
+		velocity_always_away_from_center="11"
+		render_back="1"
+		is_emitting="1" >
+	</ParticleEmitterComponent>
+
+</Entity>

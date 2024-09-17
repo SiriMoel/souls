@@ -1100,6 +1100,43 @@ actions_to_insert = {
 			draw_actions( 1, true )
 		end,
 	},
+	{
+		id          = "SOUL_FIRE",
+		name 		= "$action_moldos_soul_fire",
+		description = "$actiondesc_moldos_soul_fire",
+		sprite 		= "mods/souls/files/spell_icons/soul_fire.png",
+		type 		= ACTION_TYPE_PASSIVE,
+		inject_after = "MOLDOS_SOUL_HEALER",
+		spawn_level                       = "6,10",
+		spawn_probability                 = "0.3,0.2",
+		spawn_level_table = { 4, 5, 6, },
+		spawn_probability_table = { 0.4, 0.4, 0.4, },
+		price = 300,
+		mana = 40,
+		custom_xml_file="mods/souls/files/entities/misc/card_soul_fire/card.xml",
+		action 		= function()
+			draw_actions( 1, true )
+		end,
+	},
+	{
+		id          = "REAP_FROM_FIRE", 
+		name 		= "$action_moldos_reap_from_fire",
+		description = "$actiondesc_moldos_reap_from_fire",
+		sprite 		= "mods/souls/files/spell_icons/reap_from_fire.png",
+		related_extra_entities = { "mods/souls/files/entities/projectiles/reap_from_fire/reaping_shot.xml" },
+		type 		= ACTION_TYPE_MODIFIER,
+		inject_after = "MOLDOS_REAPING_SHOT",
+		spawn_level                       = "4,5,6,10",
+		spawn_probability                 = "0.4,0.5,0.5,0.7",
+		spawn_level_table = { 4, 5, 6, },
+		spawn_probability_table = { 0.4, 0.4, 0.4, },
+		price = 100,
+		mana = 5,
+		action 		= function()
+			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/reap_from_fire/reaping_shot.xml,"
+			draw_actions( 1, true )
+		end,
+	},
 }
 
 for i,action in ipairs(actions_to_insert) do

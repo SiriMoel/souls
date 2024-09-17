@@ -19,7 +19,7 @@ ModLuaFileAppend( "data/scripts/items/drop_money.lua", "mods/souls/files/scripts
 SetFileContent("data/entities/base_wand_pickup.xml", "base_wand_pickup.xml")
 --SetFileContent("data/scripts/biomes/mountain_tree.lua", "mountain_tree.lua")
 
--- enemies
+-- enemies & biome things
 local biomes = {
     {
         path = "data/scripts/biomes/wizardcave.lua",

@@ -286,6 +286,18 @@ function ReapSoul(entity, amount, random)
                 GamePrint("You have acquired " .. amount .. " " .. SoulNameCheck(herd_id) .. " souls!")
             end
         end
+        if EntityHasTag(player, "souls_anima_conduit") then
+            local comp_damagemodel = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
+            if comp_damagemodel ~= nil then
+                local hp = ComponentGetValue2(comp_damagemodel, "hp")
+                local max_hp = ComponentGetValue2(comp_damagemodel, "max_hp")
+                hp = hp + (max_hp * 0.005)
+                if hp > max_hp then
+                    hp = max_hp
+                end
+                ComponentSetValue2(comp_damagemodel, "hp", hp)
+            end
+        end
         AddSouls(herd_id, amount)
     end
 end

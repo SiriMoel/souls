@@ -1119,7 +1119,7 @@ actions_to_insert = {
 		end,
 	},
 	{
-		id          = "REAP_FROM_FIRE", 
+		id          = "REAP_FROM_FIRE",
 		name 		= "$action_moldos_reap_from_fire",
 		description = "$actiondesc_moldos_reap_from_fire",
 		sprite 		= "mods/souls/files/spell_icons/reap_from_fire.png",

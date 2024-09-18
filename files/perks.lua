@@ -7,8 +7,8 @@ local a = {
 		id = "ANIMA_CONDUIT",
 		ui_name = "$perk_name_moldos_anima_conduit",
 		ui_description = "$perk_desc_moldos_anima_conduit",
-		ui_icon = "mods/tales_of_kupoli/files/perk_icons/extra_soul.png",
-		perk_icon = "mods/tales_of_kupoli/files/perk_icons/extra_soul_inworld.png",
+		ui_icon = "mods/souls/files/perk_icons/anima_conduit.png",
+		perk_icon = "mods/souls/files/perk_icons/anima_conduit_inworld.png",
 		stackable = STACKABLE_NO,
 		func = function (entity_perk_item, entity_who_picked, item_name)
 			EntityAddTag(entity_who_picked, "souls_anima_conduit")

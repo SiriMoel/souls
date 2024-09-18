@@ -224,11 +224,11 @@ end
 
 -- Tales' reap.lua but a function
 function ReapSoul(entity, amount, random)
+    local x, y = EntityGetTransform(entity)
     if #EntityGetInRadiusWithTag(x, y, 500, "player_unit") < 1 then return end
     local herd_id_number = ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( entity, "GenomeDataComponent" ) or 0, "herd_id")
     local herd_id = HerdIdToString(herd_id_number)
     local herd_id_old = herd_id
-    local x, y = EntityGetTransform(entity)
     local player = GetPlayer()
     local ok = false
     local boss = false
@@ -286,6 +286,7 @@ function ReapSoul(entity, amount, random)
                 GamePrint("You have acquired " .. amount .. " " .. SoulNameCheck(herd_id) .. " souls!")
             end
         end
+        AddSouls(herd_id, amount)
         if EntityHasTag(player, "souls_anima_conduit") then
             local comp_damagemodel = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
             if comp_damagemodel ~= nil then
@@ -299,6 +300,5 @@ function ReapSoul(entity, amount, random)
                 ComponentSetValue2(comp_damagemodel, "hp", hp)
             end
         end
-        AddSouls(herd_id, amount)
     end
 end

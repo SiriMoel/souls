@@ -224,6 +224,7 @@ end
 
 -- Tales' reap.lua but a function
 function ReapSoul(entity, amount, random)
+    if #EntityGetInRadiusWithTag(x, y, 500, "player_unit") < 1 then return end
     local herd_id_number = ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( entity, "GenomeDataComponent" ) or 0, "herd_id")
     local herd_id = HerdIdToString(herd_id_number)
     local herd_id_old = herd_id
@@ -231,7 +232,6 @@ function ReapSoul(entity, amount, random)
     local player = GetPlayer()
     local ok = false
     local boss = false
-    if #EntityGetInRadiusWithTag(x, y, 300, "player_unit") < 1 then return end
     local boss_names = {
         "$animal_maggot_tiny",
         "$animal_fish_giga",

@@ -1112,7 +1112,7 @@ actions_to_insert = {
 		spawn_level_table = { 4, 5, 6, },
 		spawn_probability_table = { 0.4, 0.4, 0.4, },
 		price = 300,
-		mana = 40,
+		mana = 5,
 		custom_xml_file="mods/souls/files/entities/misc/card_soul_fire/card.xml",
 		action 		= function()
 			draw_actions( 1, true )

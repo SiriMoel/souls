@@ -233,20 +233,20 @@ function ReapSoul(entity, amount, random)
     local ok = false
     local boss = false
     local boss_names = {
-        "$animal_maggot_tiny",
-        "$animal_fish_giga",
-        "$animal_boss_alchemist",
-        "$animal_boss_centipede",
-        "$animal_boss_ghost",
-        "$animal_boss_limbs",
-        "$animal_boss_meat",
-        "$animal_boss_pit",
-        "$animal_boss_robot",
-        "$animal_islandspirit",
-        "$animal_boss_wizard",
+        "$animal_maggot_tiny", "Limatoukka",
+        "$animal_fish_giga", "Syväolento",
+        "$animal_boss_alchemist", "Ylialkemisti",
+        "$animal_boss_centipede", "Kolmisilmä",
+        "$animal_boss_ghost", "Unohdettu",
+        "$animal_boss_limbs", "Kolmisilmän koipi",
+        "$animal_boss_meat", "Kolmisilmän sydän",
+        "$animal_boss_pit", "Sauvojen tuntija",
+        "$animal_boss_robot", "Kolmisilmän silmä",
+        "$animal_islandspirit", "Tapion vasalli",
+        "$animal_boss_wizard", "Mestarien mestari",
     }
     for i,v in ipairs(boss_names) do
-        if EntityGetName(entity) == GameTextGetTranslatedOrNot(v) then
+        if EntityGetName(entity) == v then
             ok = true
             boss = true
         end

@@ -1,5 +1,4 @@
-dofile_once("mods/souls/files/scripts/utils.lua")
-dofile_once("mods/souls/files/scripts/sunbook_pages.lua")
+--[[dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("mods/souls/files/scripts/souls.lua")
 
 local gusgui = dofile_once("mods/souls/lib/gusgui/Gui.lua")
@@ -58,14 +57,6 @@ Gui:AddElement(gusgui.Elements.HLayout({
     overrideZ  = 100000000,
     hidden = false,
     children = {
-        --[[gusgui.Elements.Text({
-            id = "SoulsCountText",
-            overrideZ = 12,
-            value = "${soulscount} souls",
-            padding = 5,
-            drawBorder = false,
-            drawBackground = false,
-        }),]]
         gusgui.Elements.VLayout({
             children = {
                 gusgui.Elements.HLayout({
@@ -105,4 +96,72 @@ Gui:AddElement(gusgui.Elements.HLayout({
             },
         }),
     },
-}))
+}))]]
+
+dofile_once("mods/souls/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/souls.lua")
+ 
+local comp_brilliance = 0
+local comp_brilliance_max = 0
+local p_brilliance = 0
+local p_brilliance_max = 0
+local soulscount = 0
+local held_item = 0
+local phylactery_points = 0
+local iter = 0
+ 
+local souls = {}
+local sunbook_open = true
+local sunbook_unlocked = false
+local tome_gui_hidden = true
+local totalsoulscount = 0
+ 
+function OnWorldPreUpdate()
+    iter = iter + 1
+    if iter ~= 15 then
+        return
+    end
+    iter = 0
+ 
+    if GetPlayer() ~= nil then
+        soulscount = GetSoulsCount("all")
+        phylactery_points = tonumber(GlobalsGetValue("souls_phylactery_points", "0")) or 0
+ 
+        souls = {}
+        for _, value in ipairs(soul_types) do
+            souls[value] = GetSoulsCount(value)
+        end
+    end
+end
+ 
+function OnWorldPostUpdate()
+    local player = EntityGetWithTag("player_unit")[1]
+    if player ~= nil then
+        GuiRender()
+    end
+end
+ 
+function GuiRender()
+    local gui = GuiCreate()
+    GuiStartFrame(gui)
+ 
+    -- Souls and Phylactery points display
+    GuiLayoutBeginHorizontal(gui, 78, 91)
+        GuiText(gui, 0, 0, "Souls: " .. soulscount)
+        if GameHasFlagRun("souls_phylactery_done") then
+            GuiText(gui, 0, 0, "Phylactery: " .. phylactery_points)
+        end
+    GuiLayoutEnd(gui)
+ 
+    -- Render soul icons and their counts
+    GuiLayoutBeginHorizontal(gui, 78, 94)
+        for _, soul in ipairs(soul_types) do
+            GuiLayoutBeginVertical(gui, 0, 0)
+                GuiImage(gui, gui_id, 0, 0, "mods/souls/files/entities/souls/sprites/soul_" .. soul .. ".png", 1, 0.75, 0.75)
+                GuiText(gui, 0, 0, tostring(math.min(souls[soul], 99)) .. " ")
+            GuiLayoutEnd(gui)
+        end
+    GuiLayoutEnd(gui)
+ 
+    GuiDestroy(gui)
+end

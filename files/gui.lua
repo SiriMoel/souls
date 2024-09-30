@@ -1,5 +1,7 @@
 dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("mods/souls/files/scripts/souls.lua")
+
+-- thankyou kmccord1 <3
  
 local soulscount = 0
 local phylactery_points = 0

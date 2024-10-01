@@ -150,6 +150,7 @@
   </MaterialInventoryComponent>
 
   	<LuaComponent
+		_tags="enabled_in_world"
 		script_kick="mods/souls/files/entities/items/_soulcrystals/spawn_boss.lua"
 	></LuaComponent>
 

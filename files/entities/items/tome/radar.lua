@@ -8,6 +8,11 @@ pos_y = pos_y - 4 -- offset to middle of character
 local range = 400
 local indicator_distance = 20
 
+if #EntityGetAllChildren(entity_id, "tome_magic_robot_page") > 0 then
+	range = range * 2
+	indicator_distance = indicator_distance * 2
+end
+
 -- ping nearby enemies
 for _,enemy_id in pairs(EntityGetInRadiusWithTag( pos_x, pos_y, range, "reap_marked")) do
 	local enemy_x, enemy_y = EntityGetFirstHitboxCenter(enemy_id)

@@ -25,7 +25,7 @@ function OnWorldPostUpdate()
         GuiRender()
     end
 end
- 
+
 function GuiRender()
     local gui = GuiCreate()
     GuiStartFrame(gui)

@@ -71,15 +71,6 @@ function AddSouls(type, amount)
     local x, y = EntityGetTransform(player)
     local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. type) or 0
     ComponentSetValue2(comp, "value_int", ComponentGetValue2(comp, "value_int") + amount)
-    if amount == 1 then
-        if ModSettingGet( "souls.say_acquired_soul" ) then
-            GamePrint( "You have acquired a " .. SoulNameCheck(soul) .. " soul." )
-        end
-    else
-        if ModSettingGet( "souls.say_acquired_soul" ) then
-            GamePrint( "You have acquired " .. amount .. " " .. SoulNameCheck(soul) .. " souls." )
-        end
-    end
 end
 
 -- Removes a single soul
@@ -261,8 +252,8 @@ function ReapSoul(entity, amount, random)
         ok = true
     end
     if ok then
-        SetRandomSeed(x, y)
-        math.randomseed(x, y+GameGetFrameNum())
+        local frame = GameGetFrameNum()
+        math.randomseed(x + frame, y + frame)
         if math.random(1,15) == 10 then
             herd_id = "gilded"
         end
@@ -279,25 +270,40 @@ function ReapSoul(entity, amount, random)
         if boss == true then
             herd_id = "boss"
         end
-        if ModSettingGet("souls.say_soul") == true then
-            if amount == 1 then
-                GamePrint("You have acquired a " .. SoulNameCheck(herd_id) .. " soul!")
-            else
-                GamePrint("You have acquired " .. amount .. " " .. SoulNameCheck(herd_id) .. " souls!")
-            end
-        end
-        AddSouls(herd_id, amount)
-        if EntityHasTag(player, "souls_anima_conduit") then
-            local comp_damagemodel = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
-            if comp_damagemodel ~= nil then
-                local hp = ComponentGetValue2(comp_damagemodel, "hp")
-                local max_hp = ComponentGetValue2(comp_damagemodel, "max_hp")
-                -- heals 0.25% rounding up, stronger at lower max hp, weaker at higher max hp as you get more reaping spells
-                hp = hp + math.ceil((max_hp * 0.0025))
-                if hp > max_hp then
-                    hp = max_hp
+        if tobool(GlobalsGetValue("souls.collect_soul_from_entity", "true")) then
+            for i=1,amount do
+                local entity_soul = EntityLoad("mods/souls/files/entities/souls/_soul.xml", x + math.random(-2, 2), y + math.random(-2, 2))
+                local comp_sprite = EntityGetFirstComponentIncludingDisabled(entity_soul, "SpriteComponent")
+                local comp_soul = EntityGetFirstComponentIncludingDisabled(entity_soul, "VariableStorageComponent", "soul")
+                if comp_sprite ~= nil then
+                    ComponentSetValue2(comp_sprite, "image_file", "mods/souls/files/entities/souls/sprites/soul_" .. herd_id .. ".xml")
+                    EntityRefreshSprite(entity_soul, comp_sprite)
                 end
-                ComponentSetValue2(comp_damagemodel, "hp", hp)
+                if comp_soul ~= nil then
+                    ComponentSetValue2(comp_soul, "value_string", herd_id)
+                end
+            end
+        else
+            if tobool(GlobalsGetValue("souls.say_soul", "true")) == true then
+                if amount == 1 then
+                    GamePrint("You have acquired a " .. SoulNameCheck(herd_id) .. " soul!")
+                else
+                    GamePrint("You have acquired " .. amount .. " " .. SoulNameCheck(herd_id) .. " souls!")
+                end
+            end
+            AddSouls(herd_id, amount)
+            if EntityHasTag(player, "souls_anima_conduit") then
+                local comp_damagemodel = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
+                if comp_damagemodel ~= nil then
+                    local hp = ComponentGetValue2(comp_damagemodel, "hp")
+                    local max_hp = ComponentGetValue2(comp_damagemodel, "max_hp")
+                    -- heals 0.25% rounding up, stronger at lower max hp, weaker at higher max hp as you get more reaping spells
+                    hp = hp + math.ceil((max_hp * 0.0025))
+                    if hp > max_hp then
+                        hp = max_hp
+                    end
+                    ComponentSetValue2(comp_damagemodel, "hp", hp)
+                end
             end
         end
     end

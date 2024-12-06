@@ -8,7 +8,7 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
 
     for i=1,5 do
         type = GetRandomSoul(false)
-        if ModSettingGet("souls.say_soul") == true then
+        if tobool(GlobalsGetValue("souls.say_soul", "true")) == true then
             GamePrint("You have acquired a " .. SoulNameCheck(type) ..  " soul!")
         end
         AddSouls(type, 1)

@@ -405,7 +405,7 @@ actions_to_insert = {
 			if inv_comp then
 				wand = ComponentGetValue2(inv_comp, "mActiveItem")
 			end
-			card = currentcard(wand)
+			card = CurrentCard(wand)
 			local comp_soulstrike = EntityGetFirstComponentIncludingDisabled(card, "VariableStorageComponent", "soul_strike_amount") or 0
 			local soul_strike_amount = ComponentGetValue2(comp_soulstrike, "value_int") or 0
 			for i=1,soul_strike_amount do
@@ -485,7 +485,7 @@ actions_to_insert = {
 				for i=1,souls_earned do
 					local which = possible_types[math.random(1,#possible_types)]
 					AddSouls(which, 1)
-					if ModSettingGet("souls.say_soul") == true then
+					if tobool(GlobalsGetValue("souls.say_soul", "true")) == true then
 						GamePrint("You have acquired a " .. SoulNameCheck(which) .. " soul!")
 					end
 				end
@@ -931,7 +931,7 @@ actions_to_insert = {
 			local soul = GetRandomSoulForWand(wand)
 			if soul == nil or soul == 0 or soul == "0" then
 			else
-				if ModSettingGet( "souls.say_consumed_soul" ) then
+				if tobool(GlobalsGetValue("souls.say_consumed_soul", "true")) then
 					GamePrint( "A " .. SoulNameCheck(soul) .. " soul has been consumed." )
 				end
 				RemoveSoul(soul)

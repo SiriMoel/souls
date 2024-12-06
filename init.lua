@@ -160,6 +160,10 @@ function OnPlayerSpawned( player )
 
     SoulsInit()
 
+    GlobalsSetValue("souls.collect_soul_from_entity", tostring(ModSettingGet("souls.collect_soul_from_entity")))
+    GlobalsSetValue("souls.say_soul", tostring(ModSettingGet("souls.say_soul")))
+    GlobalsSetValue("souls.say_consumed_soul", tostring(ModSettingGet("souls.say_consumed_soul")))
+
     --EntityLoad("mods/souls/files/entities/items/tome/weapon.xml", px, py)
     --CreateItemActionEntity("MOLDOS_UPGRADE_TOME", px, py)
 
@@ -197,5 +201,8 @@ if translations ~= nil then
 end
 
 function OnModSettingsChanged()
+    GlobalsSetValue("souls.collect_soul_from_entity", tostring(ModSettingGet("souls.collect_soul_from_entity")))
+    GlobalsSetValue("souls.say_soul", tostring(ModSettingGet("souls.say_soul")))
+    GlobalsSetValue("souls.say_consumed_soul", tostring(ModSettingGet("souls.say_consumed_soul")))
     --RenderSouls()
 end

@@ -29,7 +29,7 @@ if soul == nil or soul == 0 or soul == "0" then
 
     EntityKill(entity)
 else
-	if ModSettingGet( "souls.say_consumed_soul" ) then
+	if tobool(GlobalsGetValue("souls.say_consumed_soul", "true")) then
 		GamePrint( "A " .. SoulNameCheck(soul) .. " soul has been consumed." )
 	end
 

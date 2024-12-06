@@ -178,25 +178,7 @@ function AddMoney(amount)
     ComponentSetValue2(comp_wallet, "money", money)
 end
 
--- copi code
---- ### Gets the current card entity.
---- ***
---- @param wand integer The wand to inspect, should match held wand. Use `current_wand(shooter)` to get.
---- @return integer|nil card The *Entity ID* of the card being played.
-local current_card = function (wand)
-    local wand_actions = EntityGetAllChildren(wand) or {}
-    for j = 1, #wand_actions do
-        local itemcomp = EntityGetFirstComponentIncludingDisabled(wand_actions[j], "ItemComponent")
-        if itemcomp then
-            if ComponentGetValue2(itemcomp, "mItemUid") == current_action.inventoryitem_id then
-                return wand_actions[j]
-            end
-        end
-    end
-    return nil
-end
-
-function currentcard(wand) -- version of the copi code that makes my brain happy
+function CurrentCard(wand) -- version of copi code that makes my brain happy
     local wand_actions = EntityGetAllChildren(wand) or {}
     for i=1,#wand_actions do
         local itemcomp = EntityGetFirstComponentIncludingDisabled(wand_actions[i], "ItemComponent")
@@ -212,4 +194,93 @@ function HeldItem(player)
     local comp_inv = EntityGetFirstComponentIncludingDisabled(player, "Inventory2Component") or 0
     local held_item = ComponentGetValue2(comp_inv, "mActiveItem")
     return held_item
+end
+
+function IncreaseFlightLeft(player, amount)
+    local comp = EntityGetFirstComponent( player, "CharacterDataComponent" )
+    if comp ~= nil then
+        local flight = ComponentGetValue2( comp, "mFlyingTimeLeft" )
+		local maxflight = ComponentGetValue2( comp, "fly_time_max" ) or 3.0
+        flight = math.min( maxflight, flight + amount )
+        ComponentSetValue2( comp, "mFlyingTimeLeft", flight )
+    end
+end
+
+function PickRandomFromTableWeighted(x, y, table) -- i stole from utilities.lua
+    if #table == 0 then return nil end
+    math.randomseed(x, y)
+    local weight_sum = 0.0
+    for i,v in ipairs(table) do
+        v.weight_min = weight_sum
+        v.weight_max = weight_sum + v.probability
+        weight_sum = v.weight_max
+    end
+    local val = ProceduralRandomf(x, y, 0.0, weight_sum )
+    local result = table[1]
+    for i,v in ipairs(table) do
+        if val >= v.weight_min and val <= v.weight_max then
+            result = v
+            break
+        end
+    end
+    return result
+end
+
+function EntityKillAllWithTag(tag)
+    local targets = EntityGetWithTag(tag)
+    for i,target in ipairs(targets) do
+        EntityKill(target)
+    end
+end
+
+function DistanceBetween(x1, y1, x2, y2)
+    return math.sqrt(((x2 - x1)^2) + ((y2 - y1)^2))
+end
+
+
+function string.scramble(s) -- danke https://stackoverflow.com/questions/51752497/how-to-shuffle-the-letters-of-a-word-using-lua
+    local frame = GameGetFrameNum()
+    math.randomseed(frame, frame)
+    local letters = {}
+    for letter in s:gmatch'.[\128-\191]*' do
+       table.insert(letters, {letter = letter, rnd = math.random()})
+    end
+    table.sort(letters, function(a, b) return a.rnd < b.rnd end)
+    for i, v in ipairs(letters) do letters[i] = v.letter end
+    return table.concat(letters)
+end
+
+function AnyOfTableEquals(table, what)
+    for i=1,#table do
+        if table[i] == what then
+            return true
+        end
+    end
+    return false
+end
+
+function AmountOfTableEquals(table, what)
+    local amount = 0
+    for i=1,#table do
+        if table[i] == what then
+            amount = amount + 1
+        end
+    end
+    return amount
+end
+
+function tobool(thing)
+    if thing == "true" then
+        return true
+    end
+    if thing == "false" then
+        return false
+    end
+    if thing == 1 then
+        return true
+    end
+    if thing == 0 then
+        return false
+    end
+    return nil
 end

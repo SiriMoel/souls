@@ -63,6 +63,10 @@ local dropdoers = {
         script = "mods/souls/files/scripts/death/boss_limbs.lua",
     },
     {
+        path = "data/entities/animals/boss_pit/boss_pit.xml",
+        script = "mods/souls/files/scripts/death/boss_pit.lua",
+    },
+    {
         path = "data/entities/animals/boss_dragon.xml",
         script = "mods/souls/files/scripts/death/boss_dragon.lua",
     },

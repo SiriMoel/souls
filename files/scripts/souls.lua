@@ -135,7 +135,7 @@ function GetRandomSoulForWand(wand)
         comp_whichsoulnumber = EntityAddComponent2(wand, "VariableStorageComponent", {
             _tags="which_soul_type_number",
             name="which_soul_type_number",
-            value_int="1",
+            value_int=1,
         })
     end
     local comp_whichsoul = EntityGetFirstComponentIncludingDisabled(wand, "VariableStorageComponent", "which_soul_type") or 0

@@ -13,7 +13,7 @@
 			sense_creatures="1"
 			attack_ranged_enabled="1"
 			can_fly="1" 
-			attack_ranged_entity_file="mods/souls/files/entities/animals/soul_angry/halo.xml"
+			attack_ranged_entity_file="mods/souls/files/entities/animals/puppet_master/halo.xml"
 			attack_ranged_action_frame="5"
 			attack_ranged_frames_between="5"
 			attack_ranged_offset_y="0"

@@ -4,10 +4,17 @@ dofile_once("mods/souls/files/scripts/souls.lua")
 to_insert = {
     {
 		id="MOLDOS_SOULJUICE",
-		ui_name="Soulful",
-		ui_description="Perhaps you can power something...",
-		ui_icon="mods/souls/files/status_icons/souljuice.png",
+		ui_name="$status_moldos_souljuice",
+		ui_description="statusdesc_moldos_souljuice",
+		ui_icon="mods/souls/files/status_indicators/souljuice.png",
 		effect_entity="mods/souls/files/entities/misc/effect_souljuice/effect.xml",
+	},
+	{
+		id="MOLDOS_SOUL_DRAIN",
+		ui_name="$status_moldos_soul_drain",
+		ui_description="statusdesc_moldos_soul_drain",
+		ui_icon="mods/souls/files/status_indicators/soul_drain.png",
+		effect_entity="mods/souls/files/entities/misc/effect_soul_drain/effect.xml",
 	},
 }
 

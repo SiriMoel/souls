@@ -170,6 +170,7 @@ function OnPlayerSpawned( player )
 
     --EntityLoad("mods/souls/files/entities/items/tome/weapon.xml", px, py)
     --CreateItemActionEntity("MOLDOS_UPGRADE_TOME", px, py)
+    --for i=1,3 do EntityLoad("data/entities/animals/moldos_puppet_master.xml", 0, -100) end
 
     --EntityLoad("mods/souls/files/entities/items/_soulcrystals/alchemist.xml", px, py)
 

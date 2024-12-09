@@ -11,7 +11,7 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
         AddSouls("gilded", 1)
     end
 
-    if math.random(1,10) == 2 then
+    if math.random(1,6) == 2 then
         CreateItemActionEntity( "MOLDOS_EAT_WAND_FOR_SOULS", x, y )
     end
 end

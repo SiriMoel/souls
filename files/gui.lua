@@ -37,12 +37,25 @@ function GuiRender()
             GuiText(gui, 0, 0, "Phylactery: " .. phylactery_points)
         end
     GuiLayoutEnd(gui)
+
+    local year, month, day = GameGetDateAndTimeLocal()
+    local christmas = false
+    if month == 12 then
+        christmas = true
+    end
  
     -- Render soul icons and their counts
     GuiLayoutBeginHorizontal(gui, 65, 94)
         for _, soul in ipairs(soul_types) do
             GuiLayoutBeginVertical(gui, 0, 0)
-                GuiImage(gui, gui_id, 0, 0, "mods/souls/files/entities/souls/sprites/soul_" .. soul .. ".png", 1, 0.75, 0.75)
+                if christmas then
+                    GuiZSetForNextWidget(gui, 99998)
+                    GuiImage(gui, gui_id, 0, 0, "mods/souls/files/soul_santa_hat.png", 1, 0.75, 0.75)
+                    GuiZSetForNextWidget(gui, 99999)
+                    GuiImage(gui, gui_id, 0, -5, "mods/souls/files/entities/souls/sprites/soul_" .. soul .. ".png", 1, 0.75, 0.75)
+                else
+                    GuiImage(gui, gui_id, 0, 0, "mods/souls/files/entities/souls/sprites/soul_" .. soul .. ".png", 1, 0.75, 0.75)
+                end
                 GuiText(gui, 0, 0, tostring(math.min(souls[soul], 99)) .. " ")
             GuiLayoutEnd(gui)
         end

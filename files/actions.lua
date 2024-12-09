@@ -650,8 +650,8 @@ actions_to_insert = {
 		inject_after = "MOLDOS_SOUL_HEALER",
 		spawn_level                       = "1,2,3,4,5,6,10",
 		spawn_probability                 = "0.3,0.3,0.3,0.3,0.3,0.3,0.2",
-		spawn_level_table = { 1, 2, 3, 4, 5, 6, 10, },
-		spawn_probability_table = { 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.2 },
+		spawn_level_table = { 1, 2, 3, 4, 5, 6, },
+		spawn_probability_table = { 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, },
 		price = 250,
 		mana = 30,
 		custom_xml_file="mods/souls/files/entities/misc/card_soul_cloak/card.xml",
@@ -670,8 +670,8 @@ actions_to_insert = {
 		inject_after = "MOLDOS_SOUL_CLOAK",
 		spawn_level                       = "1,2,3,4,5,6,10",
 		spawn_probability                 = "0.3,0.3,0.3,0.3,0.3,0.3,0.2",
-		spawn_level_table = { 1, 2, 3, 4, 5, 6, 10, },
-		spawn_probability_table = { 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.2 },
+		spawn_level_table = { 1, 2, 3, 4, 5, 6, },
+		spawn_probability_table = { 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, },
 		price = 250,
 		mana = 30,
 		custom_xml_file="mods/souls/files/entities/misc/card_soul_rage/card.xml",
@@ -1134,6 +1134,48 @@ actions_to_insert = {
 		mana = 5,
 		action 		= function()
 			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/reap_from_fire/reaping_shot.xml,"
+			draw_actions( 1, true )
+		end,
+	},
+	{
+		id          = "SOUL_BATTERY",
+		name 		= "$action_moldos_soul_battery",
+		description = "$actiondesc_moldos_soul_battery",
+		sprite 		= "mods/souls/files/spell_icons/soul_battery.png",
+		type 		= ACTION_TYPE_UTILITY,
+		inject_after = "MOLDOS_SOUL_SPEED",
+		spawn_level                       = "1,2,3,4,5,6",
+		spawn_probability                 = "1,1,1,1,1,1",
+		spawn_level_table = { 5, 6, 10, },
+		spawn_probability_table = { 0.3, 0.7, 0.5 },
+		price = 150,
+		mana = -100,
+		action 		= function()
+			dofile_once("mods/souls/files/scripts/souls.lua")
+			if reflecting then return end
+			local entity = GetUpdatedEntityID()
+			local wand = 0
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+			if DoesWandUseSpecificSoul(wand) then
+				if GetSoulsCount(GetWandSoulType(wand)) >= 1 then
+					RemoveSoul(GetWandSoulType(wand))
+					c.fire_rate_wait = c.fire_rate_wait - 20
+					current_reload_time = current_reload_time - 20
+				else
+					GamePrint("You do not have enough souls for this.")
+				end
+			else
+				if GetSoulsCount("all") >= 1 then
+					RemoveRandomSouls(1)
+					c.fire_rate_wait = c.fire_rate_wait - 20
+					current_reload_time = current_reload_time - 20
+				else
+					GamePrint("You do not have enough souls for this.")
+				end
+			end
 			draw_actions( 1, true )
 		end,
 	},

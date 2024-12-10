@@ -40,7 +40,7 @@ function GuiRender()
 
     local year, month, day = GameGetDateAndTimeLocal()
     local christmas = false
-    if month == 12 then
+    if month == 12 and day <= 25 then
         christmas = true
     end
  

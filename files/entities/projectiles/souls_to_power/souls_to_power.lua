@@ -33,8 +33,9 @@ if DoesWandUseSpecificSoul(wand) then
 		GamePrint("You do not have enough souls for this.")
 	end
 else
-	if (GetSoulsCount("all") * 0.3) >= 1 then
-		count = math.floor(GetSoulsCount("all") * 0.3)
+	local soulscount = GetSoulsCount("all") - GetSoulsCount("boss")
+	if (soulscount * 0.3) >= 1 then
+		count = math.floor(soulscount * 0.3)
 		for i=1,count do
 			RemoveSoul(GetRandomSoul(false))
 			damage = damage + (count * 0.25)

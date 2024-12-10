@@ -1,25 +1,36 @@
-dofile_once("mods/souls/lib/gusgui/gusgui.lua").init("mods/souls/lib/gusgui")
 --ModMagicNumbersFileAdd( "mods/souls/files/magic_numbers.xml" )
 ModMaterialsFileAdd("mods/souls/files/materials.xml")
 
 dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("mods/souls/files/scripts/souls.lua")
---dofile_once("mods/souls/files/scripts/molebiomes.lua")
 
---PatchGunSystem()
-
-dofile_once("mods/souls/lib/nxml.lua")
-local nxml = dofile_once("mods/souls/lib/nxml.lua")
-
--- set & append
+-- appends
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/souls/files/actions.lua" )
 ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/souls/files/perks.lua" )
 ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/souls/files/status_list.lua" )
 ModLuaFileAppend( "data/scripts/items/drop_money.lua", "mods/souls/files/scripts/drop_money_append.lua" )
-SetFileContent("data/entities/base_wand_pickup.xml", "base_wand_pickup.xml")
---SetFileContent("data/scripts/biomes/mountain_tree.lua", "mountain_tree.lua")
 
--- enemies & biome things
+-- nxml
+local nxml = dofile_once("mods/souls/lib/nxml.lua")
+
+local xml = nxml.parse(ModTextFileGetContent("data/entities/base_wand_pickup.xml"))
+xml:add_child(nxml.parse(([[
+    <VariableStorageComponent
+        _tags="which_soul_type"
+        name="which_soul_type"
+        value_string="0"
+    ></VariableStorageComponent>
+]])))
+xml:add_child(nxml.parse(([[
+    <VariableStorageComponent
+        _tags="which_soul_type_number"
+        name="which_soul_type_number"
+        value_int="1"
+    ></VariableStorageComponent>
+]])))
+ModTextFileSetContent("data/entities/base_wand_pickup.xml", tostring(xml))
+
+-- biome things
 local biomes = {
     {
         path = "data/scripts/biomes/wizardcave.lua",
@@ -36,10 +47,6 @@ local biomes = {
     {
         path = "data/scripts/biomes/coalmine.lua",
         script = "mods/souls/files/scripts/biome/coalmine.lua",
-    },
-    {
-        path = "data/scripts/biomes/snowcave.lua",
-        script = "mods/souls/files/scripts/biome/snowcave.lua",
     },
     {
         path = "data/scripts/biomes/mountain_tree.lua",

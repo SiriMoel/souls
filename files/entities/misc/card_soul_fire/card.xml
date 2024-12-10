@@ -19,7 +19,7 @@
 	<LuaComponent 
 		_tags="enabled_in_hand"
 		script_source_file="mods/souls/files/entities/misc/card_soul_fire/card.lua"
-		execute_every_n_frame="40" >
+		execute_every_n_frame="10" >
 	</LuaComponent>
 
 	<ParticleEmitterComponent 
@@ -36,8 +36,8 @@
 		count_max="85"
 		render_on_grid="1"
 		fade_based_on_lifetime="0"
-		area_circle_radius.min="100"
-		area_circle_radius.max="100"
+		area_circle_radius.min="200"
+		area_circle_radius.max="200"
 		cosmetic_force_create="1"
 		collide_with_grid="0"
 		airflow_force="0.051"

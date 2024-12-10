@@ -95,7 +95,7 @@ function UpgradeTome(wand, path, amount, is_better)
 		if cost > 50 then
 			cost = 50
 		end
-		GamePrint("Next upgrade will cost " .. cost .. " souls.")
+		GamePrintImportant("TOME UPGRADED!", "The next upgrade will cost " .. cost .. " souls.", "mods/souls/files/souls_decoration.png")
 		ComponentSetValue2(comp_path_1, "value_int", path_1)
 		ComponentSetValue2(comp_path_2, "value_int", path_2)
 		ComponentSetValue2(comp_path_3, "value_int", path_3)
@@ -119,7 +119,7 @@ function UpgradeTome(wand, path, amount, is_better)
 				GamePrint("You do not have enough souls for this.")
 			end
 		else
-			if GetSoulsCount("all") >= cost then
+			if (GetSoulsCount("all") - GetSoulsCount("boss")) >= cost then
 				RemoveRandomSouls(cost)
 				DoTomeUpgrade()
 			else
@@ -261,7 +261,7 @@ actions_to_insert = {
 						GamePrint("You do not have enough souls for this.")
 					end
 				else
-					if GetSoulsCount("all") >= 3 then
+					if (GetSoulsCount("all") - GetSoulsCount("boss")) >= 3 then
 						RemoveRandomSouls(3)
 						TomeAddProjectiles()
 					else
@@ -348,7 +348,7 @@ actions_to_insert = {
 					GamePrint("You do not have enough souls for this.")
 				end
 			else
-				if GetSoulsCount("all") >= 1 then
+				if (GetSoulsCount("all") - GetSoulsCount("boss")) >= 1 then
 					RemoveRandomSouls(1)
 					c.speed_multiplier = c.speed_multiplier * 2
 					c.damage_projectile_add = c.damage_projectile_add + 0.2
@@ -630,7 +630,7 @@ actions_to_insert = {
 					GamePrint("You do not have enough souls for this.")
 				end
 			else
-				if GetSoulsCount("all") >= 1 then
+				if (GetSoulsCount("all") - GetSoulsCount("boss")) >= 1 then
 					RemoveRandomSouls(1)
 					add_projectile("mods/souls/files/entities/projectiles/weakening_halo/projectile.xml")
 				else
@@ -853,7 +853,7 @@ actions_to_insert = {
 						GamePrint("You do not have enough souls for this.")
 					end
 				else
-					if GetSoulsCount("all") >= 1 then
+					if (GetSoulsCount("all") - GetSoulsCount("boss")) >= 1 then
 						RemoveRandomSouls(1)
 						add_projectile("mods/souls/files/entities/projectiles/tome_slice/proj.xml")
 					else
@@ -1083,20 +1083,17 @@ actions_to_insert = {
 				if GetSoulsCount(GetWandSoulType(wand)) >= 1 then
 					RemoveSoul(GetWandSoulType(wand))
 					c.damage_critical_chance = c.damage_critical_chance + 100
-					--c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_speed/soul_speed_fx.xml,"
 				else
 					GamePrint("You do not have enough souls for this.")
 				end
 			else
-				if GetSoulsCount("all") >= 1 then
+				if (GetSoulsCount("all") - GetSoulsCount("boss")) >= 1 then
 					RemoveRandomSouls(1)
 					c.damage_critical_chance = c.damage_critical_chance + 100
-					--c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_speed/soul_speed_fx.xml,"
 				else
 					GamePrint("You do not have enough souls for this.")
 				end
 			end
-
 			draw_actions( 1, true )
 		end,
 	},
@@ -1168,7 +1165,7 @@ actions_to_insert = {
 					GamePrint("You do not have enough souls for this.")
 				end
 			else
-				if GetSoulsCount("all") >= 1 then
+				if (GetSoulsCount("all") - GetSoulsCount("boss")) >= 1 then
 					RemoveRandomSouls(1)
 					c.fire_rate_wait = c.fire_rate_wait - 20
 					current_reload_time = current_reload_time - 20

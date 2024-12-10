@@ -7,8 +7,9 @@ local comp_controls = EntityGetFirstComponentIncludingDisabled(root, "ControlsCo
 local comp_cd = EntityGetFirstComponentIncludingDisabled(card, "VariableStorageComponent", "cooldown_frame") or 0
 local cooldown_frames = 6
 local cooldown_frame = ComponentGetValue2(comp_cd, "value_int")
+local frame = GameGetFrameNum()
 
-if ComponentGetValue2(comp_controls, "mButtonDownRightClick") == true and GameGetFrameNum() >= cooldown_frame then
+if ComponentGetValue2(comp_controls, "mButtonDownRightClick") == true and frame >= cooldown_frame then
     local player = GetPlayer()
     local wand = HeldItem(player)
 
@@ -38,12 +39,12 @@ if ComponentGetValue2(comp_controls, "mButtonDownRightClick") == true and GameGe
         whichsoul = soul_types[whichsoul_number]
         if whichsoul == nil then
             whichsoul = "0"
-            whichsoul_number = 0
+            whichsoul_number = 1 -- should this be 0 or 1?
         end
     end
 
     ComponentSetValue2(comp_whichsoul, "value_string", whichsoul)
     ComponentSetValue2(comp_whichsoulnumber, "value_int", whichsoul_number)
-    ComponentSetValue2( comp_cd, "value_int", GameGetFrameNum() + cooldown_frames )
-    GamePrint("Now consuming " .. SoulNameCheck(whichsoul) .. " souls on this wand.")
+    ComponentSetValue2( comp_cd, "value_int", frame + cooldown_frames )
+    GamePrint("This wand will now consume " .. SoulNameCheck(whichsoul) .. " souls.")
 end

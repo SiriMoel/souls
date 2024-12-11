@@ -41,6 +41,7 @@ local pool_projectiles = {
     { probability = 0.8, id = "MOLDOS_SOUL_CRIT" },
     { probability = 0.5, id = "MOLDOS_SOUL_FIRE" },
     { probability = 0.5, id = "MOLDOS_REAP_FROM_FIRE" },
+    { probability = 0.3, id = "MOLDOS_SOUL_BATTERY" },
 }
 
 local string = ""

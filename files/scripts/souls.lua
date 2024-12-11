@@ -70,29 +70,46 @@ function AddSouls(type, amount)
     local player = GetPlayer()
     local x, y = EntityGetTransform(player)
     local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. type) or 0
-    ComponentSetValue2(comp, "value_int", ComponentGetValue2(comp, "value_int") + amount)
+    local amt = ComponentGetValue2(comp, "value_int")
+    if amt == -1 then return end
+    ComponentSetValue2(comp, "value_int", amt + amount)
 end
 
 -- Removes a single soul
 function RemoveSoul(type)
     local player = GetPlayer()
     local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. type) or 0
-    ComponentSetValue2(comp, "value_int", ComponentGetValue2(comp, "value_int") - 1)
+    local amt = ComponentGetValue2(comp, "value_int")
+    if amt == -1 then return end
+    ComponentSetValue2(comp, "value_int", amt - 1)
 end
 
 -- Gets the amount of souls of a specific type, or "all" for all souls
 ---@return number
+---@return boolean
 function GetSoulsCount(type)
     local player = GetPlayer()
     local count = 0
+    local inf = false
     if type == "all" then
         for i,v in ipairs(soul_types) do
-            count = count + (ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. v) or 0, "value_int") or 0)
+            local amount = ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. v) or 0, "value_int") or 0
+            if amount == -1 then
+                amount = 99
+                inf = true
+            end
+            count = count + amount
         end
     else
         count = ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. type) or 0, "value_int")
     end
-    return count
+    if count == "-1" then return 99, true end
+    return count, inf
+end
+
+function SetSoulsCount(type, count)
+    local player = GetPlayer()
+    ComponentSetValue2(EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. type) or 0, "value_int", count)
 end
 
 -- Gets a random soul

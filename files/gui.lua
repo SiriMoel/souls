@@ -4,17 +4,18 @@ dofile_once("mods/souls/files/scripts/souls.lua")
 -- thankyou kmccord1 <3
  
 local soulscount = 0
+local hasinfsouls = false
 local phylactery_points = 0
-local souls = {}
+local soulcounts = {}
  
 function OnWorldPreUpdate()
     if GetPlayer() ~= nil then
-        soulscount = GetSoulsCount("all")
+        soulscount, hasinfsouls = GetSoulsCount("all")
         phylactery_points = tonumber(GlobalsGetValue("souls_phylactery_points", "0")) or 0
  
-        souls = {}
+        soulcounts = {}
         for _, value in ipairs(soul_types) do
-            souls[value] = GetSoulsCount(value)
+            soulcounts[value] = GetSoulsCount(value)
         end
     end
 end
@@ -32,7 +33,11 @@ function GuiRender()
  
     -- Souls and Phylactery points display
     GuiLayoutBeginHorizontal(gui, 65, 91)
-        GuiText(gui, 0, 0, "Souls: " .. soulscount)
+        if hasinfsouls then
+            GuiText(gui, 0, 0, "Souls: ∞ + " .. soulscount)
+        else
+            GuiText(gui, 0, 0, "Souls: " .. soulscount)
+        end
         if GameHasFlagRun("souls_phylactery_done") then
             GuiText(gui, 0, 0, "Phylactery: " .. phylactery_points)
         end
@@ -56,7 +61,11 @@ function GuiRender()
                 else
                     GuiImage(gui, gui_id, 0, 0, "mods/souls/files/entities/souls/sprites/soul_" .. soul .. ".png", 1, 0.75, 0.75)
                 end
-                GuiText(gui, 0, 0, tostring(math.min(souls[soul], 99)) .. " ")
+                local t = tostring(math.min(soulcounts[soul], 99))
+                if t == "-1" then
+                    t = "∞"
+                end
+                GuiText(gui, 0, 0, t .. " ")
             GuiLayoutEnd(gui)
         end
     GuiLayoutEnd(gui)

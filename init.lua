@@ -143,6 +143,7 @@ local scenes = {
     { 13080, 1650, "mods/souls/files/biome/souldoor/souldoor.xml", true },
     { -1568, -400, "mods/souls/files/biome/soulplace/place.xml", false },
     { -1144, -455, "mods/souls/files/biome/soulplace/sign.xml", false },
+    { 0, 21000, "mods/souls/files/biome/amphitheatre/amphitheatre.xml", false },
 }
 
 add_scene(scenes)
@@ -174,6 +175,8 @@ function OnPlayerSpawned( player )
     GlobalsSetValue("souls.collect_soul_from_entity", tostring(ModSettingGet("souls.collect_soul_from_entity")))
     GlobalsSetValue("souls.say_soul", tostring(ModSettingGet("souls.say_soul")))
     GlobalsSetValue("souls.say_consumed_soul", tostring(ModSettingGet("souls.say_consumed_soul")))
+
+    GlobalsSetValue("souls.amphitheatre_enemy_count", "10")
 
     --EntityLoad("mods/souls/files/entities/items/tome/weapon.xml", px, py)
     --CreateItemActionEntity("MOLDOS_UPGRADE_TOME", px, py)

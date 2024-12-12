@@ -6,7 +6,8 @@ RegisterSpawnFunction( 0xff259e88, "spawn_tome_upgrader" )
 RegisterSpawnFunction( 0xff449e88, "spawn_phylactery" )
 
 function spawn_tome(x, y)
-    EntityLoad("mods/souls/files/entities/items/tome/weapon.xml", x, y)
+    EntityLoad("mods/souls/files/entities/items/tome/weapon.xml", x - 4, y)
+    EntityLoad("mods/souls/files/entities/items/soul_emulator/item.xml", x, y - 16)
 end
 
 function spawn_tome_upgrader(x, y)

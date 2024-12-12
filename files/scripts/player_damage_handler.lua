@@ -6,6 +6,16 @@ function damage_about_to_be_received(damage, x, y, entity_thats_responsible, cri
     local helditem = HeldItem(player)
 
     if damage > 0 then
+        local soul_emulator_state = GlobalsGetValue("souls.soul_emulator_state", "0")
+        if soul_emulator_state == "1" then
+            local comp_damagemodel = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent") or 0
+            local max_hp = ComponentGetValue2(comp_damagemodel, "max_hp")
+            if damage >= max_hp then
+                GlobalsSetValue("souls.soul_emulator_state", "2")
+                GamePrintImportant("Soul separated!", "You are now a soulless being.", "mods/souls/files/souls_decoration.png")
+                return 0, 0
+            end
+        end
         if EntityHasTag(helditem, "souls_deadringer") then
             local comp_cd = EntityGetFirstComponentIncludingDisabled(helditem, "VariableStorageComponent", "deadringer_cd") or 0
             local cd = ComponentGetValue2(comp_cd, "value_int")

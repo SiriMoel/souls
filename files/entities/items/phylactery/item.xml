@@ -1,4 +1,4 @@
-<Entity name="unknown" tags="hittable,teleportable_NOT,item_physics,item_pickup,souls_phylactery" >
+<Entity name="$item_moldos_phylactery" tags="hittable,teleportable_NOT,item_physics,item_pickup,souls_phylactery" >
 
   <PhysicsBodyComponent 
     _tags="enabled_in_world"
@@ -38,22 +38,22 @@
   
   <ItemComponent
     _tags="enabled_in_world"
-    item_name="Phylactery"
+    item_name="$item_moldos_phylactery"
     max_child_items="0"
     is_pickable="1"
     is_equipable_forced="1"
     ui_sprite="mods/souls/files/entities/items/phylactery/sprite.png"
-    ui_description="Fill both this flask and yourself with perfect soul blood and kick to create a Phylactery."
+    ui_description="$itemdesc_moldos_phylactery"
     preferred_inventory="QUICK"
   ></ItemComponent>
   
   <UIInfoComponent
     _tags="enabled_in_world"
-    name="Phylactery" >
+    name="$item_moldos_phylactery" >
   </UIInfoComponent>
   
   <AbilityComponent
-		ui_name="Phylactery"
+		ui_name="$item_moldos_phylactery"
 		throw_as_item="1"
 		><gun_config
 			deck_capacity="0"

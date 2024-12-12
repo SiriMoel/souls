@@ -1,0 +1,25 @@
+<Entity name="$item_moldos_soul_emulator" tags="hittable,teleportable_NOT,item_physics,item_pickup,souls_soul_emulator" >
+
+  <ItemComponent
+		item_name="$item_moldos_soul_emulator"
+		ui_description="$itemdesc_moldos_soul_emulator"
+		play_spinning_animation="0"
+		stats_count_as_item_pick_up="0"
+		>
+	</ItemComponent>
+	
+	<SpriteComponent
+		image_file="mods/souls/files/entities/items/soul_emulator/sprite.png"
+		offset_x="8"
+		offset_y="8"
+		update_transform="1"
+		update_transform_rotation="0"
+		>
+	</SpriteComponent>
+
+	<LuaComponent 
+		script_item_picked_up="mods/souls/files/entities/items/soul_emulator/pickup.lua"
+		>
+	</LuaComponent>
+
+</Entity>

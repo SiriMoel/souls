@@ -1,0 +1,1 @@
+GameAddFlagRun("souls_spawn_soul_boss")

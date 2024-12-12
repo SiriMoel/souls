@@ -1,4 +1,4 @@
-<Entity tags="enemy,mortal,hittable,homing_target,teleportable_NOT,glue_NOT" name="Ilkeä naama">
+<Entity tags="boss,enemy,mortal,hittable,homing_target,teleportable_NOT,glue_NOT" name="$animal_moldos_boss_soul">
 
    <DamageModelComponent
 		hp="100"

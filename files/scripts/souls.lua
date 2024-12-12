@@ -287,6 +287,14 @@ function ReapSoul(entity, amount, random)
         if boss == true then
             herd_id = "boss"
         end
+        local canreap = true
+        for i,v in ipairs(GameGetAllInventoryItems(player) or {}) do
+            if EntityHasTag(v, "souls_deny_reap") then
+                canreap = false
+                break
+            end
+        end
+        if not canreap then return end
         if tobool(GlobalsGetValue("souls.collect_soul_from_entity", "true")) then
             for i=1,amount do
                 local entity_soul = EntityLoad("mods/souls/files/entities/souls/_soul.xml", x + math.random(-2, 2), y + math.random(-2, 2))

@@ -197,23 +197,22 @@ function OnPlayerSpawned( player )
     end
     
     EntityAddComponent(player, "LuaComponent", {
-        script_damage_about_to_be_received="mods/souls/files/scripts/player_damage_handler.lua"
+        script_damage_about_to_be_received="mods/souls/files/scripts/player_damage_handler.lua",
+        --script_damage_received="mods/souls/files/scripts/player_damage_handler.lua",
     })
 
     GameAddFlagRun("souls_init")
 end
 
 --translations
-local translations = ModTextFileGetContent( "data/translations/common.csv" );
+local translations = ModTextFileGetContent("data/translations/common.csv")
 if translations ~= nil then
     while translations:find("\r\n\r\n") do
-        translations = translations:gsub("\r\n\r\n","\r\n");
+        translations = translations:gsub("\r\n\r\n","\r\n")
     end
-
-    local new_translations = ModTextFileGetContent( table.concat({"mods/souls/files/translations.csv"}) );
-    translations = translations .. new_translations;
-
-    ModTextFileSetContent( "data/translations/common.csv", translations );
+    local new_translations = ModTextFileGetContent(table.concat({"mods/souls/files/translations.csv"}))
+    translations = translations .. new_translations
+    ModTextFileSetContent("data/translations/common.csv", translations)
 end
 
 function OnModSettingsChanged()

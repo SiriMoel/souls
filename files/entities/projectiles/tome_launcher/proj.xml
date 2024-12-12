@@ -1,4 +1,4 @@
-<Entity name="$projectile_default" tags="projectile_player" >
+<Entity name="$projectile_default" tags="projectile_player,soul_projectile" >
 
 	<VelocityComponent
 		gravity_y="0"

@@ -15,6 +15,10 @@ function damage_about_to_be_received(damage, x, y, entity_thats_responsible, cri
                 GamePlaySound("data/audio/Desktop/misc.bank", "misc/chest_dark_open", x, y)
                 GamePlaySound("data/audio/Desktop/misc.bank", "misc/beam_from_sky_kick", x, y)
                 GamePrintImportant("Soul separated!", "You are now a soulless being.", "mods/souls/files/souls_decoration.png")
+                EntityAddComponent2(player, "LuaComponent", {
+                    script_source_file="mods/souls/files/scripts/player_souls_count_check.lua",
+                    execute_every_n_frame=2,
+                })
                 return 0, 0
             end
         end

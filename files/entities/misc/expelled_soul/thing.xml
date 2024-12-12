@@ -1,0 +1,44 @@
+<Entity>
+
+    <LifetimeComponent
+        lifetime="180"
+    ></LifetimeComponent>
+
+    <ParticleEmitterComponent 
+		emitted_material_name="soul_particles_black"
+		gravity.y="0.0"
+		lifetime_min="1"
+		lifetime_max="2"
+		x_vel_min="0"
+		x_vel_max="0"
+		y_vel_min="0"
+		y_vel_max="0"
+		count_min="40"
+		count_max="80"
+		render_on_grid="1"
+		fade_based_on_lifetime="0"
+		area_circle_radius.min="1"
+		area_circle_radius.max="4"
+		cosmetic_force_create="1"
+		collide_with_grid="0"
+		airflow_force="0.051"
+		airflow_time="1.01"
+		airflow_scale="0.03"
+		emission_interval_min_frames="1"
+		emission_interval_max_frames="1"
+		emit_cosmetic_particles="1"
+		velocity_always_away_from_center="11"
+		render_back="1"
+		is_emitting="1" >
+	</ParticleEmitterComponent>
+
+    <SpriteParticleEmitterComponent
+		sprite_file="mods/souls/files/particles/soul.xml" >
+	</SpriteParticleEmitterComponent>
+
+    <LuaComponent
+        script_source_file="mods/souls/files/entities/misc/expelled_soul/move.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+</Entity>

@@ -41,6 +41,19 @@
 	<CellDataChild
       	_parent="spark"
       	_inherit_reactions="1"
+      	name="soul_particles_black" 
+    	ui_name=""
+    	wang_color="7f000000"
+    	>
+      	<Graphics
+    	color="7f000000"
+    	fire_colors_index="1" >
+        </Graphics>
+    </CellDataChild>
+
+	<CellDataChild
+      	_parent="spark"
+      	_inherit_reactions="1"
       	name="spark_orange" 
     	ui_name=""
     	wang_color="7fe26d1f"

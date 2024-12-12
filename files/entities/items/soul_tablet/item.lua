@@ -5,8 +5,6 @@ local this = GetUpdatedEntityID()
 
 local state = GlobalsGetValue("souls.soul_emulator_state", "1")
 
-local comp = EntityGetFirstComponentIncludingDisabled(this, "ItemComponent")
+local comp = EntityGetFirstComponentIncludingDisabled(this, "ItemComponent") or 0
 
-if comp ~= nil then
-    ComponentSetValue2(comp, "ui_description", "$itemdesc_moldos_soul_tablet_" .. state)
-end
+ComponentSetValue2(comp, "ui_description", "$itemdesc_moldos_soul_tablet_" .. state)

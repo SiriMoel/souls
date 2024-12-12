@@ -4,7 +4,6 @@ dofile_once("mods/souls/files/scripts/souls.lua")
 function damage_about_to_be_received(damage, x, y, entity_thats_responsible, critical_hit_chance )
     local player = GetUpdatedEntityID()
     local helditem = HeldItem(player)
-
     if damage > 0 then
         local soul_emulator_state = GlobalsGetValue("souls.soul_emulator_state", "0")
         if soul_emulator_state == "1" then
@@ -12,6 +11,9 @@ function damage_about_to_be_received(damage, x, y, entity_thats_responsible, cri
             local max_hp = ComponentGetValue2(comp_damagemodel, "max_hp")
             if damage >= max_hp then
                 GlobalsSetValue("souls.soul_emulator_state", "2")
+                EntityLoad("mods/souls/files/entities/misc/expelled_soul/thing.xml", x, y)
+                GamePlaySound("data/audio/Desktop/misc.bank", "misc/chest_dark_open", x, y)
+                GamePlaySound("data/audio/Desktop/misc.bank", "misc/beam_from_sky_kick", x, y)
                 GamePrintImportant("Soul separated!", "You are now a soulless being.", "mods/souls/files/souls_decoration.png")
                 return 0, 0
             end
@@ -39,14 +41,11 @@ function damage_about_to_be_received(damage, x, y, entity_thats_responsible, cri
                 return damage, critical_hit_chance
             end
         end
-    
         if GameHasFlagRun("souls_phylactery_done") then
             local phylactery_points = tonumber(GlobalsGetValue("souls_phylactery_points", "0"))
-    
             --[[if tonumber(GlobalsGetValue("souls_phylactery_points_used", "0")) == 250 then
                 EntityAddTag(player, "souls_lich")
             end]]
-        
             if  phylactery_points > 0 then
                 GlobalsSetValue("souls_phylactery_points", tostring(phylactery_points - 1))
                 GlobalsSetValue("souls_phylactery_points_used", tostring(tonumber(GlobalsGetValue("souls_phylactery_points_used")) + 1))
@@ -56,6 +55,5 @@ function damage_about_to_be_received(damage, x, y, entity_thats_responsible, cri
             end
         end
     end
-
     return damage, critical_hit_chance
 end

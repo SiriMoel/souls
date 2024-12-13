@@ -22,6 +22,6 @@ function damage_received(damage, message, entity_thats_responsible, is_fatal, pr
     local x, y = EntityGetTransform(this)
     if not EntityHasTag(projectile_thats_responsible, "soul_projectile") then
         EntityInflictDamage(this, (damage * -1.5), "DAMAGE_HEALING", message, "DISINTEGRATED", 0, 0, entity_thats_responsible, x, y, 0)
-        GamePrint("Only soul magic can hurt it...")
+        GamePrint("Only soul magic can truly hurt it...")
     end
 end

@@ -12,7 +12,6 @@ local exprad = ComponentObjectGetValue( comp_proj, "config_explosion", "explosio
 local meleedamage = ComponentObjectGetValue( comp_proj, "damage_by_type", "melee" )
 local icedamage = ComponentObjectGetValue( comp_proj, "damage_by_type", "ice" )
 local poisondamage = ComponentObjectGetValue( comp_proj, "damage_by_type", "poison" )
-local firedamage = ComponentObjectGetValue2( copm_proj, "damage_by_type", "fire" )
 
 local player = GetPlayer()
 local wand = HeldItem(player)
@@ -32,6 +31,12 @@ if soul == nil or soul == 0 or soul == "0" then
 else
 	if tobool(GlobalsGetValue("souls.say_consumed_soul", "true")) then
 		GamePrint( "A " .. SoulNameCheck(soul) .. " soul has been consumed." )
+	end
+
+	local comp_sprite = EntityGetFirstComponentIncludingDisabled(entity, "SpriteComponent")
+	if comp_sprite ~= nil then
+		ComponentSetValue2(comp_sprite, "image_file", "mods/souls/files/entities/souls/sprites/soul_" .. soul .. ".xml")
+		EntityRefreshSprite(entity, comp_sprite)
 	end
 
 	RemoveSoul(soul)

@@ -140,10 +140,10 @@ local function add_scene(table)
 end
 
 local scenes = {
-    { 13080, 1650, "mods/souls/files/biome/souldoor/souldoor.xml", true },
+    { 13080, 1650, "mods/souls/files/biome/souldoor/souldoor.xml", false },
     { -1568, -400, "mods/souls/files/biome/soulplace/place.xml", false },
     { -1144, -455, "mods/souls/files/biome/soulplace/sign.xml", false },
-    { 0, 21000, "mods/souls/files/biome/amphitheatre/amphitheatre.xml", false },
+    { -270, 18100, "mods/souls/files/biome/amphitheatre/amphitheatre.xml", false },
 }
 
 add_scene(scenes)

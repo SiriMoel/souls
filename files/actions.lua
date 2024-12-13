@@ -525,8 +525,8 @@ actions_to_insert = {
 		inject_after = "MOLDOS_SOUL_ARROW",
 		spawn_level                       = "5,6,10",
 		spawn_probability                 = "0.4,0.5,0.1",
-		spawn_level_table = { 5, 6, 10, },
-		spawn_probability_table = { 0.4, 0.5, 0.1, },
+		spawn_level_table = { 5, 6, },
+		spawn_probability_table = { 0.4, 0.5, },
 		price = 120,
 		mana = 70,
 		max_uses = 10,
@@ -768,8 +768,8 @@ actions_to_insert = {
 		inject_after = "TELEPORT_PROJECTILE_CLOSER",
 		spawn_level                       = "4,5,6,10",
 		spawn_probability                 = "0.1,0.3,0.5,0.3",
-		spawn_level_table = { 4, 5, 6, 10, },
-		spawn_probability_table = { 0.1, 0.3, 0.5, 0.3, },
+		spawn_level_table = { 4, 5, 6, },
+		spawn_probability_table = { 0.1, 0.3, 0.5, },
 		price = 150,
 		mana = 50,
 		action 		= function()
@@ -827,8 +827,8 @@ actions_to_insert = {
 		inject_after = "MOLDOS_TOME_SHOT",
 		spawn_level                       = "3,4,5,6,10",
 		spawn_probability                 = "0.3,0.3,0.4,0.4,0.4",
-		spawn_level_table = { 3, 4, 5, 6, 10, },
-		spawn_probability_table = { 0.3, 0.3, 0.4, 0.4, 0.4 },
+		spawn_level_table = { 3, 4, 5, 6, },
+		spawn_probability_table = { 0.3, 0.3, 0.4, 0.4, },
 		price = 200,
 		mana = 50,
 		custom_xml_file="mods/souls/files/entities/misc/card_tome_slice/card.xml",
@@ -876,8 +876,8 @@ actions_to_insert = {
 		inject_after = "MOLDOS_TOME_SLICE",
 		spawn_level                       = "3,4,5,6,10",
 		spawn_probability                 = "0.3,0.3,0.4,0.4,0.4",
-		spawn_level_table = { 3, 4, 5, 6, 10, },
-		spawn_probability_table = { 0.3, 0.3, 0.4, 0.4, 0.4 },
+		spawn_level_table = { 3, 4, 5, 6, },
+		spawn_probability_table = { 0.3, 0.3, 0.4, 0.4, },
 		price = 200,
 		mana = 50,
 		custom_xml_file="mods/souls/files/entities/misc/card_tome_launcher/card.xml",
@@ -1174,6 +1174,25 @@ actions_to_insert = {
 				end
 			end
 			draw_actions( 1, true )
+		end,
+	},
+	{
+		id          = "EXPEL_SOUL",
+		name 		= "$action_moldos_expel_soul",
+		description = "$actiondesc_moldos_expel_soul",
+		sprite 		= "mods/souls/files/spell_icons/expel_soul.png",
+		related_projectiles	= {"mods/souls/files/entities/projectiles/expel_soul/proj.xml"},
+		type 		= ACTION_TYPE_PROJECTILE,
+		inject_after = "PIPE_BOMB_DEATH_TRIGGER",
+		spawn_level                       = "2,3,4,5,6",
+		spawn_probability                 = "0.8,0.9,0.9,0.9,0.9",
+		spawn_level_table = { 5, 6, 10, },
+		spawn_probability_table = { 0.5, 0.5, 0.5, },
+		price = 120,
+		mana = 40,
+		action 		= function()
+			add_projectile("mods/souls/files/entities/projectiles/expel_soul/proj.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 10
 		end,
 	},
 }

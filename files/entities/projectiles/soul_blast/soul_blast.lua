@@ -12,6 +12,7 @@ local exprad = ComponentObjectGetValue( comp_proj, "config_explosion", "explosio
 local meleedamage = ComponentObjectGetValue( comp_proj, "damage_by_type", "melee" )
 local icedamage = ComponentObjectGetValue( comp_proj, "damage_by_type", "ice" )
 local poisondamage = ComponentObjectGetValue( comp_proj, "damage_by_type", "poison" )
+local firedamage = ComponentObjectGetValue2( copm_proj, "damage_by_type", "fire" )
 
 local player = GetPlayer()
 local wand = HeldItem(player)
@@ -201,7 +202,7 @@ else
 
 	-- boss
 	if soul == "boss" then
-		ComponentSetValue2( comp_particles, "emitted_material_name", "living_partices" )
+		ComponentSetValue2( comp_particles, "emitted_material_name", "living_particles" )
 
 		projdamage = projdamage + 0.5
 		expdamage = expdamage * 1.2

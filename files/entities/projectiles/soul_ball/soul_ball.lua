@@ -53,9 +53,9 @@ else
         speed_min = speed_min * 1.4
         speed_max = speed_max * 1.4
 	
-		ComponentSetValue2( comp, "damage", projdamage )
-        ComponentSetValue2( comp, "speed_min", speed_min )
-        ComponentSetValue2( comp, "speed_max", speed_max )
+		ComponentSetValue2( comp_proj, "damage", projdamage )
+        ComponentSetValue2( comp_proj, "speed_min", speed_min )
+        ComponentSetValue2( comp_proj, "speed_max", speed_max )
 	end
 
     --fly
@@ -80,10 +80,10 @@ else
         speed_max = speed_max * 1.2
         on_collision_die = true
 	
-		ComponentSetValue2( comp, "damage", projdamage )
-        ComponentSetValue2( comp, "speed_min", speed_min )
-        ComponentSetValue2( comp, "speed_max", speed_max )
-        ComponentSetValue2( comp, "on_collision_die", on_collision_die)
+		ComponentSetValue2( comp_proj, "damage", projdamage )
+        ComponentSetValue2( comp_proj, "speed_min", speed_min )
+        ComponentSetValue2( comp_proj, "speed_max", speed_max )
+        ComponentSetValue2( comp_proj, "on_collision_die", on_collision_die)
 	end
 
     --friendly
@@ -100,10 +100,10 @@ else
 		icedamage = icedamage + 0.1
 		icedamage = icedamage * 2
 	
-		ComponentObjectSetValue( comp, "damage_by_type", "ice", icedamage )
-		ComponentObjectSetValue( comp, "config_explosion", "damage", expdamage )
-		ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )
-		ComponentSetValue2( comp, "damage", projdamage )
+		ComponentObjectSetValue( comp_proj, "damage_by_type", "ice", icedamage )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "damage", expdamage )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "explosion_radius", exprad )
+		ComponentSetValue2( comp_proj, "damage", projdamage )
 	end
 
 	--boss
@@ -118,10 +118,10 @@ else
 		icedamage = icedamage + 0.1
 		icedamage = icedamage * 3
 	
-		ComponentObjectSetValue( comp, "damage_by_type", "ice", icedamage )
-		ComponentObjectSetValue( comp, "config_explosion", "damage", expdamage )
-		ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )
-		ComponentSetValue2( comp, "damage", projdamage )
+		ComponentObjectSetValue( comp_proj, "damage_by_type", "ice", icedamage )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "damage", expdamage )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "explosion_radius", exprad )
+		ComponentSetValue2( comp_proj, "damage", projdamage )
 	end
 
 	--mage
@@ -141,9 +141,9 @@ else
 		expdamage = expdamage * 1.3
 		exprad = exprad * 0.6
 		
-		ComponentObjectSetValue( comp, "config_explosion", "damage", expdamage )
-		ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )
-		ComponentSetValue2( comp, "damage", projdamage )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "damage", expdamage )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "explosion_radius", exprad )
+		ComponentSetValue2( comp_proj, "damage", projdamage )
 	end
 
     --orcs & zombie
@@ -157,9 +157,9 @@ else
 		exprad = exprad * 2
         on_collision_die = true
 		
-		ComponentObjectSetValue( comp, "config_explosion", "damage", expdamage )
-		ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )
-        ComponentSetValue2( comp, "on_collision_die", on_collision_die)
+		ComponentObjectSetValue( comp_proj, "config_explosion", "damage", expdamage )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "explosion_radius", exprad )
+        ComponentSetValue2( comp_proj, "on_collision_die", on_collision_die)
 	end
 
     --slimes
@@ -172,8 +172,8 @@ else
 		icedamage = icedamage * 2
         bounces_left = bounces_left + 5
 	
-		ComponentObjectSetValue( comp, "damage_by_type", "ice", icedamage )
-        ComponentSetValue2( comp, "bounces_left", bounces_left )
+		ComponentObjectSetValue( comp_proj, "damage_by_type", "ice", icedamage )
+        ComponentSetValue2( comp_proj, "bounces_left", bounces_left )
 	end
 
     --spider
@@ -193,7 +193,7 @@ else
 		poisondamage = poisondamage + 0.15
 		poisondamage = poisondamage * 1.3
 
-		ComponentObjectSetValue( comp, "damage_by_type", "poison", poisondamage )
+		ComponentObjectSetValue( comp_proj, "damage_by_type", "poison", poisondamage )
 	end
 
     --worm
@@ -213,8 +213,8 @@ else
 		meleedamage = meleedamage * 1.3
         on_collision_die = true
 	
-		ComponentObjectSetValue( comp, "damage_by_type", "melee", meleedamage )
-        ComponentSetValue2( comp, "on_collision_die", on_collision_die)
+		ComponentObjectSetValue( comp_proj, "damage_by_type", "melee", meleedamage )
+        ComponentSetValue2( comp_proj, "on_collision_die", on_collision_die)
 	end
 
     --fungus
@@ -226,8 +226,8 @@ else
 		expdamage = expdamage * 1.5
 		exprad = exprad * 10
 		
-		ComponentObjectSetValue( comp, "config_explosion", "damage", expdamage )
-		ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "damage", expdamage )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "explosion_radius", exprad )
 	end
 
 	--ghost
@@ -249,8 +249,8 @@ else
 		icedamage = icedamage + 0.2
 		exprad = exprad * 1.5
 	
-		ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )
-		ComponentObjectSetValue( comp, "damage_by_type", "ice", icedamage )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "explosion_radius", exprad )
+		ComponentObjectSetValue( comp_proj, "damage_by_type", "ice", icedamage )
 	end
 
 	--mage_corrupted
@@ -270,9 +270,9 @@ else
 		expdamage = expdamage * 1.4
 		exprad = exprad * 0.75
 		
-		ComponentObjectSetValue( comp, "config_explosion", "damage", expdamage )
-		ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )
-		ComponentSetValue2( comp, "damage", projdamage )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "damage", expdamage )
+		ComponentObjectSetValue( comp_proj, "config_explosion", "explosion_radius", exprad )
+		ComponentSetValue2( comp_proj, "damage", projdamage )
 	end
 
 	--ghost_whisp
@@ -293,6 +293,6 @@ else
 			radius=20,
 		})
 	
-		ComponentObjectSetValue( comp, "damage_by_type", "fire", firedamage )
+		ComponentObjectSetValue( comp_proj, "damage_by_type", "fire", firedamage )
 	end
 end

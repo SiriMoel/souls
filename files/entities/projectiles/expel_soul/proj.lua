@@ -57,7 +57,7 @@ else
 	
 		projdamage = projdamage * 1.1
 	
-		ComponentSetValue2( comp, "damage", projdamage )
+		ComponentSetValue2( comp_proj, "damage", projdamage )
 	end
 
 	--fly
@@ -79,7 +79,7 @@ else
 		projdamage = projdamage + 0.4
 		projdamage = projdamage * 1.2
 	
-		ComponentSetValue2( comp, "damage", projdamage )
+		ComponentSetValue2( comp_proj, "damage", projdamage )
 	end
 
 	--friendly
@@ -94,8 +94,8 @@ else
 		icedamage = icedamage + 0.3
 		icedamage = icedamage * 2
 	
-		ComponentObjectSetValue( comp, "damage_by_type", "ice", icedamage )
-		ComponentSetValue2( comp, "damage", projdamage )
+		ComponentObjectSetValue( comp_proj, "damage_by_type", "ice", icedamage )
+		ComponentSetValue2( comp_proj, "damage", projdamage )
 	end
 
 	--boss
@@ -108,8 +108,8 @@ else
 		icedamage = icedamage + 0.3
 		icedamage = icedamage * 3
 	
-		ComponentObjectSetValue( comp, "damage_by_type", "ice", icedamage )
-		ComponentSetValue2( comp, "damage", projdamage )
+		ComponentObjectSetValue( comp_proj, "damage_by_type", "ice", icedamage )
+		ComponentSetValue2( comp_proj, "damage", projdamage )
 	end
 
 	--mage
@@ -127,7 +127,7 @@ else
 	
 		projdamage = projdamage * 1.3
 		
-		ComponentSetValue2( comp, "damage", projdamage )
+		ComponentSetValue2( comp_proj, "damage", projdamage )
 	end
 
 	--orcs & zombie
@@ -154,7 +154,7 @@ else
 		icedamage = icedamage + 0.3
 		icedamage = icedamage * 2
 	
-		ComponentObjectSetValue( comp, "damage_by_type", "ice", icedamage )
+		ComponentObjectSetValue( comp_proj, "damage_by_type", "ice", icedamage )
 	end
 
 	--spider
@@ -173,7 +173,7 @@ else
 		poisondamage = poisondamage + 0.15
 		poisondamage = poisondamage * 1.1
 
-		ComponentObjectSetValue( comp, "damage_by_type", "poison", poisondamage )
+		ComponentObjectSetValue( comp_proj, "damage_by_type", "poison", poisondamage )
 	end
 
 	--worm
@@ -192,7 +192,7 @@ else
 		meleedamage = meleedamage + 0.5
 		meleedamage = meleedamage * 1.3
 	
-		ComponentObjectSetValue( comp, "damage_by_type", "melee", meleedamage )
+		ComponentObjectSetValue( comp_proj, "damage_by_type", "melee", meleedamage )
 	end
 
 	--fungus
@@ -218,8 +218,8 @@ else
 		icedamage = icedamage + 0.4
 		--exprad = exprad * 1.5
 	
-		--ComponentObjectSetValue( comp, "config_explosion", "explosion_radius", exprad )
-		ComponentObjectSetValue( comp, "damage_by_type", "ice", icedamage )
+		--ComponentObjectSetValue( comp_proj, "config_explosion", "explosion_radius", exprad )
+		ComponentObjectSetValue( comp_proj, "damage_by_type", "ice", icedamage )
 	end
 
 	--mage_corrupted
@@ -237,7 +237,7 @@ else
 	
 		projdamage = projdamage * 1.4
 		
-		ComponentSetValue2( comp, "damage", projdamage )
+		ComponentSetValue2( comp_proj, "damage", projdamage )
 	end
 
 	--ghost_whisp
@@ -258,6 +258,6 @@ else
 			radius=20,
 		})
 	
-		ComponentObjectSetValue( comp, "damage_by_type", "fire", firedamage )
+		ComponentObjectSetValue( comp_proj, "damage_by_type", "fire", firedamage )
 	end
 end

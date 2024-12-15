@@ -195,7 +195,7 @@ function OnPlayerSpawned( player )
     --EntityLoad("mods/souls/files/entities/items/tome/weapon.xml", px, py)
     --EntityLoad("mods/souls/files/entities/items/soul_emulator/item.xml", px, py)
     --EntityLoad("mods/souls/files/entities/items/soul_of_the_diviner/item.xml", px, py)
-    --GlobalsSetValue("souls.soul_emulator_state", "8")
+    --GlobalsSetValue("souls.soul_emulator_state", "3")
     --EntityLoad("data/entities/animals/moldos_boss_soul.xml", 0, -100)
     --CreateItemActionEntity("MOLDOS_UPGRADE_TOME", px, py)
     --for i=1,3 do EntityLoad("data/entities/animals/moldos_puppet_master.xml", 0, -100) end

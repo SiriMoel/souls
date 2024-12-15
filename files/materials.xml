@@ -70,7 +70,7 @@
   	tags="[liquid],[soul_blood_1]"
 	density="4.17"
 	cell_type="liquid"
-	wang_color="8000c888"
+	wang_color="8000c887"
 	generates_smoke="0"
 	liquid_gravity="0.8"
 	liquid_sand="0"
@@ -147,6 +147,39 @@
 		<Ingestion>
 			<StatusEffect type="MOLDOS_SOULJUICE" amount="0.1" />
 		</Ingestion>
+	</StatusEffects>
+  </CellData>
+
+  <CellData
+	name="soulaway"
+	ui_name="Soul-Away!"
+  	tags="[liquid]"
+	density="4.18"
+	cell_type="liquid"
+	wang_color="8000c889"
+	generates_smoke="0"
+	liquid_gravity="0.8"
+	liquid_sand="0"
+	gfx_glow="150"
+	on_fire="0"
+	requires_oxygen="0"
+	liquid_stains="1"
+	liquid_sprite_stain_shaken_drop_chance="5"
+	audio_materialaudio_type="MAGICAL" 
+	show_in_creative_mode="1" 
+	>
+	<Graphics 
+	texture_file="mods/souls/files/materials_gfx/soulaway.png" 
+	color="8000FA97"
+	fire_colors_index="2" >
+    </Graphics>
+	<StatusEffects>
+		<Ingestion>
+			<StatusEffect type="MOLDOS_SOUL_DRAIN" amount="0.1" />
+		</Ingestion>
+		<Stains>
+			<StatusEffect type="MOLDOS_SOUL_DRAIN" />
+		</Stains>
 	</StatusEffects>
   </CellData>
 

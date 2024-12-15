@@ -12,9 +12,9 @@ to_insert = {
 	{
 		id="MOLDOS_SOUL_DRAIN",
 		ui_name="$status_moldos_soul_drain",
-		ui_description="statusdesc_moldos_soul_drain",
+		ui_description="$statusdesc_moldos_soul_drain",
 		ui_icon="mods/souls/files/status_indicators/soul_drain.png",
-		effect_entity="mods/souls/files/entities/misc/effect_soul_drain/effect.xml",
+		effect_entity="mods/souls/files/entities/misc/effect_soul_drain_status/effect.xml",
 	},
 }
 

@@ -1,0 +1,22 @@
+<Entity tags="souls_effect_soul_drain">
+	
+	<InheritTransformComponent 
+		_enabled="1" >
+    </InheritTransformComponent>	
+
+    <LifetimeComponent
+		lifetime="600"
+		>
+	</LifetimeComponent>
+
+	<GameEffectComponent
+		effect="CUSTOM"
+		custom_effect_id="MOLDOS_SOUL_DRAIN"
+	></GameEffectComponent>
+
+	<LuaComponent
+		script_source_file="mods/souls/files/entities/misc/effect_soul_drain_status/effect.lua"
+		execute_every_n_frame="30"
+	></LuaComponent>
+
+</Entity>

@@ -1195,6 +1195,52 @@ actions_to_insert = {
 			c.fire_rate_wait = c.fire_rate_wait + 10
 		end,
 	},
+	{
+		id          = "SCALING_MANA",
+		name 		= "$action_moldos_scaling_mana",
+		description = "$actiondesc_moldos_scaling_mana",
+		sprite 		= "mods/souls/files/spell_icons/scaling_mana.png",
+		type 		= ACTION_TYPE_MODIFIER,
+		inject_after = "MOLDOS_SOUL_SPEED",
+		spawn_level                       = "5,6",
+		spawn_probability                 = "0.5,0.5",
+		spawn_level_table = { 5, 6, },
+		spawn_probability_table = { 0.5, 0.5, },
+		price = 100,
+		mana = 0,
+		action 		= function()
+			dofile_once("mods/souls/files/scripts/souls.lua")
+			if reflecting then return end
+			local count = GetSoulsCount("boss")
+			if ( #deck > 0 ) then
+				data = deck[1]
+			end
+			data.mana = -2 * count
+			draw_actions( 1, true )
+		end,
+	},
+	{
+		id          = "SCALING_RECHARGE",
+		name 		= "$action_moldos_scaling_recharge",
+		description = "$actiondesc_moldos_scaling_recharge",
+		sprite 		= "mods/souls/files/spell_icons/scaling_recharge.png",
+		type 		= ACTION_TYPE_MODIFIER,
+		inject_after = "MOLDOS_SOUL_SPEED",
+		spawn_level                       = "5,6",
+		spawn_probability                 = "0.5,0.5",
+		spawn_level_table = { 5, 6, },
+		spawn_probability_table = { 0.5, 0.5, },
+		price = 100,
+		mana = 30,
+		action 		= function()
+			dofile_once("mods/souls/files/scripts/souls.lua")
+			if reflecting then return end
+			local count = GetSoulsCount("boss")
+			c.fire_rate_wait = c.fire_rate_wait - (5 * count)
+			current_reload_time = current_reload_time - (5 * count)
+			draw_actions( 1, true )
+		end,
+	},
 }
 
 for i,action in ipairs(actions_to_insert) do

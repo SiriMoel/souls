@@ -1,7 +1,5 @@
 [img]https://i.imgur.com/RHXXaL3.png[/img]
 
-A continuation & remaster of Tales of Kupoli's souls mechanic.
-
 This mod adds the ability to collect and use the souls of enemies for your spells.
 Spells added by this mod have different effects depending on what type of soul you use to cast them.
 

@@ -1,4 +1,4 @@
-<Entity name="$projectile_default" tags="projectile,souls_boss_soul_field" >
+<Entity name="$projectile_default" tags="projectile" >
 	<VelocityComponent
 		gravity_y="0"
 		air_friction="-0.4"
@@ -12,7 +12,7 @@
 		target_tag="player_unit"
 		homing_targeting_coeff="6"
 		detect_distance="250"
-		homing_velocity_multiplier="0.5"
+		homing_velocity_multiplier="0.95"
 		>
 	</HomingComponent>
 	
@@ -29,8 +29,8 @@
 		count_max="45"
 		render_on_grid="1"
 		fade_based_on_lifetime="0"
-		area_circle_radius.min="50"
-		area_circle_radius.max="50"
+		area_circle_radius.min="25"
+		area_circle_radius.max="25"
 		cosmetic_force_create="1"
 		collide_with_grid="0"
 		airflow_force="0.051"
@@ -58,7 +58,7 @@
 		render_on_grid="1"
 		fade_based_on_lifetime="0"
 		area_circle_radius.min="0"
-		area_circle_radius.max="50"
+		area_circle_radius.max="25"
 		cosmetic_force_create="1"
 		collide_with_grid="0"
 		airflow_force="0.051"
@@ -79,7 +79,7 @@
 		bounces_left="9999999999999"
 		bounce_at_any_angle="1"
 		bounce_energy="0.5"
-		lifetime="1200"
+		lifetime="120"
 		velocity_sets_rotation="0"
 		penetrate_entities="1"
 		collide_with_world="0"
@@ -97,14 +97,14 @@
     ></GameAreaEffectComponent>
 
     <LuaComponent
-		script_source_file="mods/souls/files/entities/animals/boss_soul/soul_drain_field.lua"
+		script_source_file="mods/souls/files/entities/animals/boss_soul/soul_drain_field_small.lua"
 		execute_every_n_frame="30"
 		>
 	</LuaComponent>
 
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/souls/files/entities/animals/boss_soul/soul_drain_field.xml"
+		value_string="mods/souls/files/entities/animals/boss_soul/soul_drain_field_small.xml"
 		>
 	</VariableStorageComponent>
 	

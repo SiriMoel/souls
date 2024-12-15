@@ -10,8 +10,10 @@ local state = ComponentGetValue2(comp_state, "value_int")
 
 state = state + 1
 
-if state > 4 then
+if state > 3 then
     state = 1
 end
+
+--GamePrint(tostring(state)) -- TESTING
 
 ComponentSetValue2(comp_state, "value_int", state)

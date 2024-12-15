@@ -48,7 +48,7 @@
       explosion_sprite="data/particles/explosion_032_plasma.xml" 
       explosion_sprite_lifetime="0.0" 
       create_cell_probability="1" 
-      create_cell_material="soul_particles"
+      create_cell_material="soul_particles_black"
 	  explosion_sprite_additive="1"
 	  ray_energy="50000"
       hole_destroy_liquid="1" 
@@ -64,7 +64,7 @@
       sparks_enabled="1" 
       sparks_count_max="8" 
       sparks_count_min="4"
-	  spark_material="soul_particles"
+	  spark_material="soul_particles_black"
       light_fade_time="1.2" 
 	  light_r="15"
 	  light_g="180"
@@ -90,7 +90,7 @@
 
     <SpriteComponent 
     _enabled="1" 
-    image_file="mods/tales_of_kupoli/files/entities/animals/boss_valkoinen/sprite_sword.xml" 
+    image_file="mods/souls/files/entities/animals/boss_soul/sprite_sword.xml" 
     next_rect_animation="" 
     offset_x="32" 
     offset_y="32" 
@@ -169,6 +169,8 @@
 	</VariableStorageComponent>
 
     <LuaComponent
-      script_death="mods/souls/files/entities/animals/boss_soul/proj_sword_death.lua"
+      script_source_file="mods/souls/files/entities/animals/boss_soul/proj_sword.lua"
+      execute_every_n_frame="20"
+      execute_on_removed="1"
     ></LuaComponent>
 </Entity>

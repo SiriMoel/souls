@@ -5,7 +5,7 @@ local entity_id = GetUpdatedEntityID()
 local root_id = EntityGetRootEntity( entity_id )
 local x, y = EntityGetTransform( entity_id )
 
-local targets = EntityGetInRadiusWithTag(x, y, 50, "player_unit") or {}
+local targets = EntityGetInRadiusWithTag(x, y, 25, "player_unit") or {}
 
 if #targets > 0 then
     for i=1,#targets do

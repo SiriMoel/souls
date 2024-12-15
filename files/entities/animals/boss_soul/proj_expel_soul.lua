@@ -14,13 +14,9 @@ local icedamage = ComponentObjectGetValue( comp_proj, "damage_by_type", "ice" )
 local poisondamage = ComponentObjectGetValue( comp_proj, "damage_by_type", "poison" )
 local firedamage = ComponentObjectGetValue( comp_proj, "damage_by_type", "fire" )
 
-local player = GetPlayer()
-local wand = HeldItem(player)
-
-local soul = GetRandomSoulForWand(wand)
+local soul = GetRandomSoulType(false)
 
 if soul == nil or soul == 0 or soul == "0" then
-	GamePrint("You have no souls.")
 
 	ComponentSetValue2( comp_proj, "on_death_explode", false )
 	ComponentSetValue2( comp_proj, "on_lifetime_out_explode", false )
@@ -30,23 +26,17 @@ if soul == nil or soul == 0 or soul == "0" then
 
     EntityKill(entity)
 else
-	if tobool(GlobalsGetValue("souls.say_consumed_soul", "true")) then
-		GamePrint( "A " .. SoulNameCheck(soul) .. " soul has been consumed." )
-	end
-
 	local comp_sprite = EntityGetFirstComponentIncludingDisabled(entity, "SpriteComponent")
 	if comp_sprite ~= nil then
 		ComponentSetValue2(comp_sprite, "image_file", "mods/souls/files/entities/souls/sprites/soul_" .. soul .. ".xml")
 		EntityRefreshSprite(entity, comp_sprite)
 	end
 
-	RemoveSoul(soul)
-
 	local comp_particles = EntityGetFirstComponent(entity, "ParticleEmitterComponent") or 0
 
 	--bat
 	if soul == "bat" then
-		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)	
+		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)
 			ComponentSetValue2( comp_particles, "emitted_material_name", "spark_purple_bright" )
 		end)
 	

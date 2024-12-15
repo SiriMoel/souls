@@ -108,7 +108,7 @@
   </LightComponent>
   
   <ParticleEmitterComponent 
-    emitted_material_name="soul_particles_black"
+    emitted_material_name="soul_particles"
     offset.x="-1"
     offset.y="0"
     x_pos_offset_min="-1"
@@ -133,7 +133,7 @@
   </ParticleEmitterComponent>
   
   <ParticleEmitterComponent 
-    emitted_material_name="soul_particles_black"
+    emitted_material_name="soul_particles"
     offset.x="-1"
     offset.y="0"
     x_pos_offset_min="-1"

@@ -7,14 +7,16 @@ Spells added by this mod have different effects depending on what type of soul y
 
 [b]33[/b] new spells
 [b]1[/b] new perk
-[b]4+[/b] wands and items
+[b]5+[/b] wands and items
 [b]2[/b] new enemies
+[b]1[/b] new boss
 [b]3[/b] new structures
 [b]2+[/b] new materials
 [b]13[/b] soul types
 An upgradeable magic tome
 Revive bosses
 Create a Phylactery to enhance your survivability
+Complete a new quest line to achieve unlimited souls
 
 Kill enemies to collect souls. Different enemies drop different souls.
 Use souls with spells added by this mod.

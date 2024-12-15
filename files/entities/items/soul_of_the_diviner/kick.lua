@@ -1,0 +1,30 @@
+dofile_once("mods/souls/files/scripts/utils.lua")
+dofile_once("mods/souls/files/scripts/souls.lua")
+
+function kick(entity_who_kicked)
+    local this = GetUpdatedEntityID()
+    local root = EntityGetRootEntity(this)
+    local player = GetPlayer()
+    if entity_who_kicked ~= player or this ~= root then return end
+    if GlobalsGetValue("souls.soul_emulator_state") == "7" then
+
+    end
+    if GlobalsGetValue("souls.soul_emulator_state") == "8" then
+        local comp_soul_count_old = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "soul_count_old")
+        local comp_soulinfinite = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "soul_infinite")
+        if comp_soul_count_old ~= nil and comp_soulinfinite ~= nil then
+            local soul_number = ComponentGetValue2(comp_soulinfinite, "value_int")
+            local soul_count_old = ComponentGetValue2(comp_soul_count_old, "value_int")
+            local soul = soul_types[soul_number]
+            SetSoulsCount(soul, soul_count_old)
+            soul_number = soul_number + 1
+            if soul_types[soul_number] == nil then
+                soul_number = 1
+            end
+            GamePrint("You now have infinite " .. SoulNameCheck(soul_types[soul_number]) .. " souls.")
+            ComponentSetValue2(comp_soul_count_old, "value_int", GetSoulsCount(soul_types[soul_number]))
+            ComponentSetValue2(comp_soulinfinite, "value_int", soul_number)
+            SetSoulsCount(soul_types[soul_number], -1)
+        end
+    end
+end

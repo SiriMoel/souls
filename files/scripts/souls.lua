@@ -103,7 +103,27 @@ function GetSoulsCount(type)
     else
         count = ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. type) or 0, "value_int")
     end
-    if count == "-1" then return 99, true end
+    if count == -1 then return 99, true end
+    return count, inf
+end
+
+function GetSoulsCountTrue(type) -- probably unecessary
+    local player = GetPlayer()
+    local count = 0
+    local inf = false
+    if type == "all" then
+        for i,v in ipairs(soul_types) do
+            local amount = ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. v) or 0, "value_int") or 0
+            if amount == -1 then
+                count = -1
+                inf = true
+                break
+            end
+            count = count + amount
+        end
+    else
+        count = ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. type) or 0, "value_int")
+    end
     return count, inf
 end
 

@@ -26,8 +26,8 @@ if state == 1 then -- soul drain fields
     for i=1,4 do
         proj_x = x + math.random(-8, 8)
         proj_y = y + math.random(-8, 8)
-        local vel_x = math.cos(0 - math.atan2(py - y, px - x)) * 1500.0
-        local vel_y = 0 - math.sin(0 - math.atan2(py - y, px - x)) * 1500.0
+        local vel_x = math.cos(0 - math.atan2(py - y, px - x)) * 1200.0
+        local vel_y = 0 - math.sin(0 - math.atan2(py - y, px - x)) * 1200.0
         shoot_projectile(this, "mods/souls/files/entities/animals/boss_soul/proj_expel_soul.xml", proj_x, proj_y, vel_x, vel_y)
     end
 end
@@ -38,8 +38,8 @@ if state == 2 then -- "beam" of fast moving soul projectiles
     for i=1,15 do
         proj_x = x + math.random(-20, 20)
         proj_y = y + math.random(-20, 20)
-        local vel_x = math.cos(0 - math.atan2(py - y, px - x)) * 1500.0
-        local vel_y = 0 - math.sin(0 - math.atan2(py - y, px - x)) * 1500.0
+        local vel_x = math.cos(0 - math.atan2(py - y, px - x)) * 1200.0
+        local vel_y = 0 - math.sin(0 - math.atan2(py - y, px - x)) * 1200.0
         shoot_projectile(this, "mods/souls/files/entities/animals/boss_soul/proj_expel_soul.xml", proj_x, proj_y, vel_x, vel_y)
     end
 end

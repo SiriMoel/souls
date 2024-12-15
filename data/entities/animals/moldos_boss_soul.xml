@@ -1,5 +1,16 @@
 <Entity tags="boss,enemy,mortal,hittable,homing_target,teleportable_NOT,glue_NOT" name="$animal_moldos_boss_soul">
-
+		
+	<!--<GenomeDataComponent 
+		herd_id="apparition"
+		food_chain_rank="10"
+		is_predator="1" >
+	</GenomeDataComponent>-->
+		
+	<CameraBoundComponent
+		max_count="30"
+		distance="160000">
+	</CameraBoundComponent>
+		
    <DamageModelComponent
 		hp="100"
 		ragdoll_fx_forced="DISINTEGRATED"
@@ -113,6 +124,10 @@
 		execute_every_n_frame="160"
 	></LuaComponent>
 
+	<LuaComponent
+		script_source_file="mods/souls/files/entities/animals/boss_soul/move.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
 
 	<LuaComponent
 		script_source_file="mods/souls/files/entities/animals/boss_soul/disable_shield.lua"
@@ -122,7 +137,7 @@
 	<ParticleEmitterComponent 
 		_tags="shield"
 		_enabled="0"
-		emitted_material_name="soul_particles_black"
+		emitted_material_name="soul_particles"
 		gravity.y="0.0"
 		lifetime_min="1"
 		lifetime_max="2"

@@ -44,7 +44,6 @@ function GuiRender()
         GuiLayoutEnd(gui)
     end
 
- 
     -- Souls and Phylactery points display
     GuiLayoutBeginHorizontal(gui, 65, 91)
         if hasinfsouls then

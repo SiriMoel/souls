@@ -17,7 +17,7 @@
 	</HomingComponent>
 	
 	<ParticleEmitterComponent 
-		emitted_material_name="soul_particles_black"
+		emitted_material_name="soul_particles"
 		gravity.y="0.0"
 		lifetime_min="1"
 		lifetime_max="2"
@@ -45,7 +45,7 @@
 	</ParticleEmitterComponent>
 
 	<ParticleEmitterComponent 
-		emitted_material_name="soul_particles_black"
+		emitted_material_name="soul_particles"
 		gravity.y="0.0"
 		lifetime_min="1"
 		lifetime_max="2"

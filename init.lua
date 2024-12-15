@@ -118,6 +118,20 @@ for i,v in ipairs(dropdoers) do
     ModTextFileSetContent(v.path, tostring(xml))
 end
 
+-- clouds
+local clouds = {
+    "data/entities/projectiles/deck/cloud_acid.xml",
+    "data/entities/projectiles/deck/cloud_blood.xml",
+    "data/entities/projectiles/deck/cloud_oil.xml",
+    "data/entities/projectiles/deck/cloud_thunder.xml",
+    "data/entities/projectiles/deck/cloud_water.xml",
+}
+for i,v in ipairs(clouds) do
+    local xml = nxml.parse(ModTextFileGetContent(v))
+    xml.attr.tags = xml.attr.tags .. ",spell_cloud"
+    ModTextFileSetContent(v, tostring(xml))
+end
+
 -- pixel scenes (thanks graham)
 local function add_scene(table)
 	local biome_path = ModIsEnabled("noitavania") and "mods/noitavania/data/biome/_pixel_scenes.xml" or "data/biome/_pixel_scenes.xml"
@@ -180,10 +194,12 @@ function OnPlayerSpawned( player )
 
     --EntityLoad("mods/souls/files/entities/items/tome/weapon.xml", px, py)
     --EntityLoad("mods/souls/files/entities/items/soul_emulator/item.xml", px, py)
-    EntityLoad("data/entities/animals/moldos_boss_soul.xml", 0, -100)
+    --EntityLoad("mods/souls/files/entities/items/soul_of_the_diviner/item.xml", px, py)
+    --GlobalsSetValue("souls.soul_emulator_state", "8")
+    --EntityLoad("data/entities/animals/moldos_boss_soul.xml", 0, -100)
     --CreateItemActionEntity("MOLDOS_UPGRADE_TOME", px, py)
     --for i=1,3 do EntityLoad("data/entities/animals/moldos_puppet_master.xml", 0, -100) end
-    for i=1,300 do AddSouls(GetRandomSoulType(true), 10) end
+    --for i=1,300 do AddSouls(GetRandomSoulType(true), 10) end
     --EntityLoad("mods/souls/files/entities/items/_soulcrystals/alchemist.xml", px, py)
 
     for i=1,tonumber(ModSettingGet("souls.starting_souls")) do

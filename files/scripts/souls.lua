@@ -250,28 +250,78 @@ function RemoveRandomSouls(amount)
     end
 end
 
+function ConvertHerdIdToSoul(herd_id)
+    if herd_id == "player" then
+        herd_id = "friendly"
+    end
+    if herd_id == "ant" then
+        herd_id = "fly"
+    end
+    if herd_id == "ghost_fairy" then
+        herd_id = "ghost_whisp"
+    end
+    if herd_id == "helpless" then
+        herd_id = "friendly"
+    end
+    if herd_id == "fire" then
+        herd_id = "mage"
+    end
+    if herd_id == "ice" then
+        herd_id = "mage"
+    end
+    if herd_id == "rat" then
+        herd_id = "friendly"
+    end
+    if herd_id == "flower" then
+        herd_id = "slimes"
+    end
+    if herd_id == "healer" then
+        herd_id = "friendly"
+    end
+    if herd_id == "apparition" then
+        herd_id = "friendly"
+    end
+    if herd_id == "mage_swapper" then
+        herd_id = "mage"
+    end
+    return herd_id
+end
+
 -- Tales' reap.lua but a function
 function ReapSoul(entity, amount, random)
     local x, y = EntityGetTransform(entity)
     if #EntityGetInRadiusWithTag(x, y, 500, "player_unit") < 1 then return end
-    local herd_id_number = ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( entity, "GenomeDataComponent" ) or 0, "herd_id")
-    local herd_id = HerdIdToString(herd_id_number)
-    local herd_id_old = herd_id
+    local comp_genome = EntityGetFirstComponentIncludingDisabled(entity, "GenomeDataComponent")
+    local herd_id_number = 0
+    local herd_id = ""
+    local herd_id_old = ""
+    if comp_genome ~= nil then
+        herd_id_number = ComponentGetValue2(comp_genome, "herd_id")
+        herd_id = HerdIdToString(herd_id_number)
+        herd_id_old = herd_id
+    end
     local player = GetPlayer()
     local ok = false
     local boss = false
+    herd_id = ConvertHerdIdToSoul(herd_id)
     local boss_names = {
-        "$animal_maggot_tiny", "Limatoukka",
-        "$animal_fish_giga", "Syväolento",
-        "$animal_boss_alchemist", "Ylialkemisti",
-        "$animal_boss_centipede", "Kolmisilmä",
-        "$animal_boss_ghost", "Unohdettu",
-        "$animal_boss_limbs", "Kolmisilmän koipi",
-        "$animal_boss_meat", "Kolmisilmän sydän",
-        "$animal_boss_pit", "Sauvojen tuntija",
-        "$animal_boss_robot", "Kolmisilmän silmä",
-        "$animal_islandspirit", "Tapion vasalli",
-        "$animal_boss_wizard", "Mestarien mestari",
+        "$animal_maggot_tiny",
+        "$animal_fish_giga",
+        "$animal_boss_alchemist",
+        "$animal_boss_centipede",
+        "$animal_boss_ghost",
+        "$animal_boss_limbs",
+        "$animal_boss_meat",
+        "$animal_boss_pit",
+        "$animal_boss_robot",
+        "$animal_islandspirit",
+        "$animal_boss_wizard",
+        "$animal_boss_dragon",
+        "$animal_moldos_boss_soul",
+        "$enemy_apotheosis_boss_musical_ghost",
+        "$enemy_apotheosis_boss_toxic_worm",
+        "$creep_apotheosis_boss_fire_lukki_name",
+        "$creep_apotheosis_boss_flesh_monster_name",
     }
     for i,v in ipairs(boss_names) do
         if EntityGetName(entity) == v then

@@ -55,4 +55,3 @@ function interacting()
     
     EntitySetComponentsWithTagEnabled(this, "amphitheatre_interact", false)
 end
-

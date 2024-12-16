@@ -350,6 +350,16 @@ function ReapSoul(entity, amount, random)
                     ComponentSetValue2(comp_damagemodel, "hp", hp)
                 end
             end
+            if EntityHasTag(player, "souls_reap_bullet") then
+                local comp_controls = EntityGetFirstComponentIncludingDisabled(player, "ControlsComponent")
+                if comp_controls ~= nil then
+                    local tx, ty = ComponentGetValue2(comp_controls, "mMousePosition")
+                    local px, py = EntityGetTransform(player)
+                    local vel_x = math.cos(0 - math.atan2(ty - py, tx - px)) * 1000.0
+                    local vel_y = 0 - math.sin(0 - math.atan2(ty - py, tx - px)) * 1000.0
+                    shoot_projectile(player, "data/entities/projectiles/deck/bullet_heavy.xml", px, py, vel_x, vel_y)
+                end
+            end
         end
     end
 end

@@ -12,7 +12,7 @@
 	</CameraBoundComponent>
 		
    <DamageModelComponent
-		hp="100"
+		hp="65"
 		ragdoll_fx_forced="DISINTEGRATED"
 		ragdoll_material="soul_particles_black"
 		blood_material="soul_particles_black"

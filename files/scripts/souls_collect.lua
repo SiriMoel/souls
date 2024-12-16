@@ -27,6 +27,16 @@ if #targets > 0 then
                 ComponentSetValue2(comp_damagemodel, "hp", hp)
             end
         end
+        if EntityHasTag(targets[1], "souls_reap_bullet") then
+            local comp_controls = EntityGetFirstComponentIncludingDisabled(targets[1], "ControlsComponent")
+            if comp_controls ~= nil then
+                local tx, ty = ComponentGetValue2(comp_controls, "mMousePosition")
+                local px, py = EntityGetTransform(targets[1])
+                local vel_x = math.cos(0 - math.atan2(ty - py, tx - px)) * 1000.0
+                local vel_y = 0 - math.sin(0 - math.atan2(ty - py, tx - px)) * 1000.0
+                shoot_projectile(targets[1], "data/entities/projectiles/deck/bullet_heavy.xml", px, py, vel_x, vel_y)
+            end
+        end
         EntityKill(this)
     end
 end

@@ -129,7 +129,7 @@ function UpgradeTome(wand, path, amount, is_better)
 	end
 end
 
-actions_to_insert = {
+local new_actions = {
 	{
 		id          = "REAPING_SHOT", -- the basis of the whole mod
 		name 		= "$action_moldos_reaping_shot",
@@ -827,8 +827,8 @@ actions_to_insert = {
 		inject_after = "MOLDOS_TOME_SHOT",
 		spawn_level                       = "3,4,5,6,10",
 		spawn_probability                 = "0.3,0.3,0.4,0.4,0.4",
-		spawn_level_table = { 3, 4, 5, 6, },
-		spawn_probability_table = { 0.3, 0.3, 0.4, 0.4, },
+		spawn_level_table = {},
+		spawn_probability_table = {},
 		price = 200,
 		mana = 50,
 		custom_xml_file="mods/souls/files/entities/misc/card_tome_slice/card.xml",
@@ -876,8 +876,8 @@ actions_to_insert = {
 		inject_after = "MOLDOS_TOME_SLICE",
 		spawn_level                       = "3,4,5,6,10",
 		spawn_probability                 = "0.3,0.3,0.4,0.4,0.4",
-		spawn_level_table = { 3, 4, 5, 6, },
-		spawn_probability_table = { 0.3, 0.3, 0.4, 0.4, },
+		spawn_level_table = {},
+		spawn_probability_table = {},
 		price = 200,
 		mana = 50,
 		custom_xml_file="mods/souls/files/entities/misc/card_tome_launcher/card.xml",
@@ -1138,6 +1138,7 @@ actions_to_insert = {
 		id          = "SOUL_BATTERY",
 		name 		= "$action_moldos_soul_battery",
 		description = "$actiondesc_moldos_soul_battery",
+		custom_xml_file = "mods/souls/files/entities/misc/card_soul_battery/card.xml",
 		sprite 		= "mods/souls/files/spell_icons/soul_battery.png",
 		type 		= ACTION_TYPE_UTILITY,
 		inject_after = "MOLDOS_SOUL_SPEED",
@@ -1181,6 +1182,7 @@ actions_to_insert = {
 		name 		= "$action_moldos_expel_soul",
 		description = "$actiondesc_moldos_expel_soul",
 		sprite 		= "mods/souls/files/spell_icons/expel_soul.png",
+		--custom_xml_file = "mods/souls/files/entities/misc/card_expel_soul/card.xml",
 		related_projectiles	= {"mods/souls/files/entities/projectiles/expel_soul/proj.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
 		inject_after = "PIPE_BOMB_DEATH_TRIGGER",
@@ -1242,6 +1244,55 @@ actions_to_insert = {
 		end,
 	},
 }
+
+local actions_to_insert = {}
+
+local action_ids_in_order = {
+	"WAND_CONSUMES_X_SOULS",
+	"REAPING_SHOT",
+	"RANDOM_REAP",
+	"SOULDOS",
+	"REAP_FROM_FIRE",
+	"REAPING_FIELD",
+	"REAPING_HALO",
+	"SOUL_BOLT",
+	"SOUL_ARROW",
+	"SOUL_BLAST",
+	"SOUL_BALL",
+	"SOUL_METEOR",
+	"EXPEL_SOUL",
+	"SOUL_SPEED",
+	"SOULS_TO_POWER",
+	"SOUL_STRIKE",
+	"SOUL_BOOST",
+	"SOUL_CRIT",
+	"SOUL_CLOAK",
+	"SOUL_RAGE",
+	"SOUL_TINKER",
+	"SCALING_DAMAGE",
+	"SCALING_SPEED",
+	"SCALING_MANA",
+	"SCALING_RECHARGE",
+	"UPGRADE_TOME",
+	"TOME_SHOT",
+	"TOME_LAUNCHER",
+	"TOME_SLICE",
+	"SOUL_BATTERY",
+	"SOUL_HEALER",
+	"SOUL_FIRE",
+	"EAT_WAND_FOR_SOULS",
+	"WEAKENING_HALO",
+	"REAP_TELE",
+}
+
+for i,id in ipairs(action_ids_in_order) do
+	for ii=1,#new_actions do
+		local action = new_actions[ii]
+		if action.id == id then
+			table.insert(actions_to_insert, action)
+		end
+	end
+end
 
 for i,action in ipairs(actions_to_insert) do
 	action.id = "MOLDOS_" .. action.id

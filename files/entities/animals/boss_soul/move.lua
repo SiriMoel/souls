@@ -16,7 +16,7 @@ local tx, ty = px, py - 70
 local dist_t = DistanceBetween(x, y, tx, ty)
 local dist_p = DistanceBetween(x, y, px, py)
 
-movespeed = math.max(1, (dist_p / 200))
+movespeed = math.min(1.2, (100 / dist_p))
 
 if x >= px then
     if scale_x > 0 then

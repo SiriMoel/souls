@@ -162,15 +162,22 @@ local scenes = {
 
 add_scene(scenes)
 
---apotheosis
+-- apotheosis
 if ModIsEnabled("Apotheosis") then
     --print("Souls - Apotheosis detected!")
 end
 
---glimmers expanded
+-- glimmers expanded
 if ModIsEnabled("GlimmersExpanded") then
     --print("Souls - GlimmersExpanded detected!")
 	ModLuaFileAppend("mods/GlimmersExpanded/files/lib/glimmer_data.lua", "mods/souls/files/scripts/glimmersexpanded.lua")
+end
+
+-- meta leveling
+if ModIsEnabled("meta_leveling") then
+    ModLuaFileAppend("mods/meta_leveling/files/for_modders/rewards_append.lua", "mods/souls/files/scripts/ml_rewards.lua")
+    ModLuaFileAppend("mods/meta_leveling/files/for_modders/progress_appends.lua", "mods/souls/files/scripts/ml_progress.lua")
+    --ModLuaFileAppend("mods/meta_leveling/files/for_modders/stats_append.lua", "mods/souls/files/scripts/ml_stats.lua")
 end
 
 -- player

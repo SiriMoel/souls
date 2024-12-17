@@ -69,7 +69,8 @@ end
 function AddSouls(type, amount)
     local player = GetPlayer()
     local x, y = EntityGetTransform(player)
-    local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. type) or 0
+    local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. type)
+    if comp == nil then return end
     local amt = ComponentGetValue2(comp, "value_int")
     if amt == -1 then return end
     ComponentSetValue2(comp, "value_int", amt + amount)

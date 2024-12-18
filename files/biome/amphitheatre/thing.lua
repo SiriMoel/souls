@@ -13,3 +13,7 @@ if #targets < 1 and GameHasFlagRun("souls.amphitheatre_active") then
     GamePrintImportant("WAVE DEFEATED!", "The next wave will be harder.", "mods/souls/files/souls_decoration.png")
     GameRemoveFlagRun("souls.amphitheatre_active")
 end
+
+if #targets < 1 then
+    EntitySetComponentsWithTagEnabled(this, "amphitheatre_interact", true)
+end

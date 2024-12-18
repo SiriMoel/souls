@@ -2,7 +2,8 @@ dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("mods/souls/files/scripts/souls.lua")
 
 function interacting()
-    if not (GetSoulsCount("all") - GetSoulsCount("boss")) >= 10 then GamePrint("You do not have enough souls for this.") return end
+    GamePrint("hi")
+    if not (GetSoulsCount("all") - GetSoulsCount("boss") >= 10) then GamePrint("You do not have enough souls for this.") return end
     RemoveRandomSouls(10)
     local this = GetUpdatedEntityID()
     local x, y = EntityGetTransform(this)

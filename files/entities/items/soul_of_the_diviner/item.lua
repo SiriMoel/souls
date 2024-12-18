@@ -9,7 +9,7 @@ local comp_soulscount = EntityGetFirstComponentIncludingDisabled(this, "Variable
 
 --GamePrint("hi")
 
-if comp_soulscount == nil or root ~= this then return end
+if comp_soulscount == nil then return end
 
 local soulscount = ComponentGetValue2(comp_soulscount, "value_int")
 
@@ -33,6 +33,10 @@ if GlobalsGetValue("souls.soul_emulator_state") == "3" then -- make it rain in w
             if comp_item ~= nil then
                 ComponentSetValue2(comp_item, "item_name", "$item_moldos_diviner_soul_2")
                 ComponentSetValue2(comp_item, "ui_description", "$itemdesc_moldos_diviner_soul_2")
+            end
+            local comp_ability = EntityGetFirstComponentIncludingDisabled(this, "AbilityComponent")
+            if comp_ability ~= nil then
+                ComponentSetValue2(comp_ability, "ui_name", "$item_moldos_diviner_soul_2")
             end
             ComponentSetValue2(comp_soulscount, "value_int", 2)
             GamePlaySound("data/audio/Desktop/misc.bank", "misc/chest_dark_open", x, y)
@@ -67,6 +71,10 @@ if GlobalsGetValue("souls.soul_emulator_state") == "4" then -- 3 soul projectile
                 ComponentSetValue2(comp_item, "item_name", "$item_moldos_diviner_soul_3")
                 ComponentSetValue2(comp_item, "ui_description", "$itemdesc_moldos_diviner_soul_3")
             end
+            local comp_ability = EntityGetFirstComponentIncludingDisabled(this, "AbilityComponent")
+            if comp_ability ~= nil then
+                ComponentSetValue2(comp_ability, "ui_name", "$item_moldos_diviner_soul_3")
+            end
             ComponentSetValue2(comp_soulscount, "value_int", 3)
             GamePlaySound("data/audio/Desktop/misc.bank", "misc/chest_dark_open", x, y)
             GamePlaySound("data/audio/Desktop/misc.bank", "misc/beam_from_sky_kick", x, y)
@@ -88,12 +96,16 @@ if GlobalsGetValue("souls.soul_emulator_state") == "5" then -- near 20 charmed c
         GlobalsSetValue("souls.soul_emulator_state", "6")
         local comp_uiinfo = EntityGetFirstComponentIncludingDisabled(this, "UIInfoComponent")
         if comp_uiinfo ~= nil then
-            ComponentSetValue2(comp_uiinfo, "name", "$item_moldos_diviner_soul_6")
+            ComponentSetValue2(comp_uiinfo, "name", "$item_moldos_diviner_soul_4")
         end
         local comp_item = EntityGetFirstComponentIncludingDisabled(this, "ItemComponent")
         if comp_item ~= nil then
-            ComponentSetValue2(comp_item, "item_name", "$item_moldos_diviner_soul_6")
-            ComponentSetValue2(comp_item, "ui_description", "$itemdesc_moldos_diviner_soul_6")
+            ComponentSetValue2(comp_item, "item_name", "$item_moldos_diviner_soul_4")
+            ComponentSetValue2(comp_item, "ui_description", "$itemdesc_moldos_diviner_soul_4")
+        end
+        local comp_ability = EntityGetFirstComponentIncludingDisabled(this, "AbilityComponent")
+        if comp_ability ~= nil then
+            ComponentSetValue2(comp_ability, "ui_name", "$item_moldos_diviner_soul_4")
         end
         ComponentSetValue2(comp_soulscount, "value_int", 4)
         GamePlaySound("data/audio/Desktop/misc.bank", "misc/chest_dark_open", x, y)
@@ -108,30 +120,31 @@ if GlobalsGetValue("souls.soul_emulator_state") == "5" then -- near 20 charmed c
 end
 
 if GlobalsGetValue("souls.soul_emulator_state") == "6" then -- fill with true soul blood and start a wave at the amphitheatre
-    if GameHasFlagRun("souls.amphitheatre_active") and #EntityGetInRadiusWithTag(x, y, 200, "amphitheatre_enemy_count") > 0 then
+    if GameHasFlagRun("souls.amphitheatre_active") and #EntityGetInRadiusWithTag(x, y, 200, "souls_amphitheatre_enemy") > 0 then
         GlobalsSetValue("souls.soul_emulator_state", "7")
         local comp_uiinfo = EntityGetFirstComponentIncludingDisabled(this, "UIInfoComponent")
         if comp_uiinfo ~= nil then
-            ComponentSetValue2(comp_uiinfo, "name", "$item_moldos_diviner_soul_7")
+            ComponentSetValue2(comp_uiinfo, "name", "$item_moldos_diviner_soul_5")
         end
         local comp_item = EntityGetFirstComponentIncludingDisabled(this, "ItemComponent")
         if comp_item ~= nil then
-            ComponentSetValue2(comp_item, "item_name", "$item_moldos_diviner_soul_7")
-            ComponentSetValue2(comp_item, "ui_description", "$itemdesc_moldos_diviner_soul_7")
+            ComponentSetValue2(comp_item, "item_name", "$item_moldos_diviner_soul_5")
+            ComponentSetValue2(comp_item, "ui_description", "$itemdesc_moldos_diviner_soul_5")
+        end
+        local comp_ability = EntityGetFirstComponentIncludingDisabled(this, "AbilityComponent")
+        if comp_ability ~= nil then
+            ComponentSetValue2(comp_ability, "ui_name", "$item_moldos_diviner_soul_5")
         end
         ComponentSetValue2(comp_soulscount, "value_int", 5)
         GamePlaySound("data/audio/Desktop/misc.bank", "misc/chest_dark_open", x, y)
         GamePlaySound("data/audio/Desktop/misc.bank", "misc/beam_from_sky_kick", x, y)
         GamePrintImportant("Soul altered!", "The soul is ready.", "mods/souls/files/souls_decoration.png")
         local comps = EntityGetAllComponents(this)
-        local comps2 = {}
         for i,comp in ipairs(comps) do
             if ComponentHasTag(comp, "sotd_debuff") then
-                table.insert(comps2, comp)
+                EntitySetComponentIsEnabled(this, comp, false)
+                EntityRemoveComponent(this, comp)
             end
-        end
-        for i,comp in ipairs(comps2) do
-            EntityRemoveComponent(this, comp)
         end
         EntityRemoveTag(this, "souls_deny_reap")
     end

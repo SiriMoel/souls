@@ -7,7 +7,7 @@ function item_pickup(entity_item, entity_who_picked, item_name)
     for i,type in ipairs(soul_types) do
         local amount = 50
         if type == "boss" then
-            amount = 15
+            amount = 10
         end
         if not (GetSoulsCount(type) >= amount) then
             goahead = false
@@ -18,7 +18,7 @@ function item_pickup(entity_item, entity_who_picked, item_name)
         for i,type in ipairs(soul_types) do
             local amount = 50
             if type == "boss" then
-                amount = 15
+                amount = 10
             end
             for ii=1,amount do
                 RemoveSoul(type)

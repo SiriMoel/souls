@@ -199,7 +199,7 @@
   <Reaction probability="100"
 	fast_reaction="1"
 	input_cell1="[magic_polymorph]" 			input_cell2="[blood]"
-	output_cell1="souls_soul_blood_1" 			output_cell2="smoke" 
+	output_cell1="souls_soul_blood_1" 			output_cell2="souls_soul_blood_1" 
 	blob_radius2="3"
 	>
   </Reaction>
@@ -207,7 +207,7 @@
   <Reaction probability="100"
 	fast_reaction="1"
 	input_cell1="souls_soul_blood_1" 			input_cell2="material_darkness"
-	output_cell1="souls_soul_blood_perfect" 	output_cell2="smoke" 
+	output_cell1="souls_soul_blood_perfect" 	output_cell2="souls_soul_blood_perfect" 
 	blob_radius2="3"
 	>
   </Reaction>

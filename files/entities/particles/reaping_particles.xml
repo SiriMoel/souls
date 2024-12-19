@@ -2,7 +2,7 @@
 	<InheritTransformComponent />
 	
   <ParticleEmitterComponent 
-		emitted_material_name="soul_particles"
+		emitted_material_name="souls_soul_particles"
 		offset.x="0"
 		offset.y="0"
 		x_pos_offset_min="-4"

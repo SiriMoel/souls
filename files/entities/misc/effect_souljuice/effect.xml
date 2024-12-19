@@ -5,7 +5,7 @@
     </InheritTransformComponent>	
 
     <ParticleEmitterComponent 
-		emitted_material_name="living_particles"
+		emitted_material_name="souls_living_particles"
 		gravity.y="0.0"
 		lifetime_min="1.2"
 		lifetime_max="1.9"

@@ -41,14 +41,14 @@ if GlobalsGetValue("souls.soul_emulator_state") == "3" then -- make it rain in w
             ComponentSetValue2(comp_soulscount, "value_int", 2)
             GamePlaySound("data/audio/Desktop/misc.bank", "misc/chest_dark_open", x, y)
             GamePlaySound("data/audio/Desktop/misc.bank", "misc/beam_from_sky_kick", x, y)
-            GamePrintImportant("Soul altered!", "The soul weeps.", "mods/souls/files/souls_decoration.png")
+            GamePrintImportant("SOUL ALTERED!", "The soul weeps.", "mods/souls/files/souls_decoration.png")
             EntityAddComponent2(this, "MagicConvertMaterialComponent", {
                 _tags="sotd_debuff,enabled_in_hand,enabled_in_inventory,enabled_in_world",
 		        kill_when_finished=true,
 		        --from_material=0,
 		        from_material_tag="[liquid_common]",
 		        steps_per_frame=2,
-		        to_material=CellFactory_GetType("soulaway"),
+		        to_material=CellFactory_GetType("souls_soulaway"),
 		        clean_stains=false,
 		        is_circle=true,
 		        radius=64,
@@ -78,7 +78,7 @@ if GlobalsGetValue("souls.soul_emulator_state") == "4" then -- 3 soul projectile
             ComponentSetValue2(comp_soulscount, "value_int", 3)
             GamePlaySound("data/audio/Desktop/misc.bank", "misc/chest_dark_open", x, y)
             GamePlaySound("data/audio/Desktop/misc.bank", "misc/beam_from_sky_kick", x, y)
-            GamePrintImportant("Soul altered!", "The soul is hopeful.", "mods/souls/files/souls_decoration.png")
+            GamePrintImportant("SOUL ALTERED!", "The soul is hopeful.", "mods/souls/files/souls_decoration.png")
             -- EFFECT!!!
         end
     end
@@ -110,7 +110,7 @@ if GlobalsGetValue("souls.soul_emulator_state") == "5" then -- near 20 charmed c
         ComponentSetValue2(comp_soulscount, "value_int", 4)
         GamePlaySound("data/audio/Desktop/misc.bank", "misc/chest_dark_open", x, y)
         GamePlaySound("data/audio/Desktop/misc.bank", "misc/beam_from_sky_kick", x, y)
-        GamePrintImportant("Soul altered!", "The soul is loving.", "mods/souls/files/souls_decoration.png")
+        GamePrintImportant("SOUL ALTERED!", "The soul is loving.", "mods/souls/files/souls_decoration.png")
         EntityAddComponent2(this, "LuaComponent", {
             _tags="sotd_debuff,enabled_in_hand,enabled_in_inventory",
             script_source_file="mods/souls/files/entities/items/soul_of_the_diviner/silly.lua",
@@ -138,7 +138,7 @@ if GlobalsGetValue("souls.soul_emulator_state") == "6" then -- fill with true so
         ComponentSetValue2(comp_soulscount, "value_int", 5)
         GamePlaySound("data/audio/Desktop/misc.bank", "misc/chest_dark_open", x, y)
         GamePlaySound("data/audio/Desktop/misc.bank", "misc/beam_from_sky_kick", x, y)
-        GamePrintImportant("Soul altered!", "The soul is ready.", "mods/souls/files/souls_decoration.png")
+        GamePrintImportant("SOUL ALTERED!", "The soul is ready.", "mods/souls/files/souls_decoration.png")
         local comps = EntityGetAllComponents(this)
         for i,comp in ipairs(comps) do
             if ComponentHasTag(comp, "sotd_debuff") then

@@ -162,7 +162,7 @@
 
     <ParticleEmitterComponent 
 		_tags="enabled_in_world,enabled_in_hand"
-		emitted_material_name="soul_particles"
+		emitted_material_name="souls_soul_particles"
 		offset.x="0"
 		offset.y="0"
 		x_pos_offset_min="0"
@@ -196,7 +196,7 @@
     <!--<ParticleEmitterComponent
 		_enabled="1"
 		_tags="enabled_in_hand,pec_1,soulshield,character,item_identified__LEGACY,shield_ring"
-		emitted_material_name="soul_particles"
+		emitted_material_name="souls_soul_particles"
 		gravity.y="0.0"
 		lifetime_min="0.02"
 		lifetime_max="0.05"
@@ -219,7 +219,7 @@
 	<ParticleEmitterComponent
 		_enabled="1"
 		_tags="enabled_in_hand,pec_2,soulshield,character,item_identified__LEGACY,shield_hit"
-		emitted_material_name="soul_particles"
+		emitted_material_name="souls_soul_particles"
 		gravity.y="0.0"
 		lifetime_min="0.3"
 		lifetime_max="1"

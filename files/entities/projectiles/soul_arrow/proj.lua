@@ -95,7 +95,7 @@ else
 	--boss
 	if soul == "boss" then
 		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)
-			ComponentSetValue2(comp_particles, "emitted_material_name", "living_particles")
+			ComponentSetValue2(comp_particles, "emitted_material_name", "souls_living_particles")
 		end)
 
 		projdamage = projdamage + 0.5
@@ -173,7 +173,7 @@ else
 	--worm
 	if soul == "worm" then
 		edit_component(entity, "ParticleEmitterComponent", function(comp3,vars)	
-			ComponentSetValue2(comp_particles, "emitted_material_name", "blood_worm")
+			ComponentSetValue2(comp_particles, "emitted_material_name", "souls_soul_particles_worm")
 		end)
 	
 		EntityAddComponent(entity, "CellEaterComponent", {

@@ -158,7 +158,7 @@ else
 
 	-- worm
 	if soul == "worm" then
-		ComponentSetValue2(comp_particles, "emitted_material_name", "blood_worm")
+		ComponentSetValue2(comp_particles, "emitted_material_name", "souls_soul_particles_worm")
 	
 		EntityAddComponent(entity, "CellEaterComponent", {
 			eat_probability="90",
@@ -202,7 +202,7 @@ else
 
 	-- boss
 	if soul == "boss" then
-		ComponentSetValue2(comp_particles, "emitted_material_name", "living_particles")
+		ComponentSetValue2(comp_particles, "emitted_material_name", "souls_living_particles")
 
 		projdamage = projdamage + 0.5
 		expdamage = expdamage * 1.2

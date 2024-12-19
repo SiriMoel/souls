@@ -59,7 +59,7 @@
       explosion_radius="3"
       explosion_sprite="data/particles/explosion_016_plasma_blue.xml" 
       explosion_sprite_lifetime="0" 
-      create_cell_material="soul_particles"
+      create_cell_material="souls_soul_particles"
       create_cell_probability="15" 
       hole_destroy_liquid="0"
 	  explosion_sprite_additive="1"
@@ -107,7 +107,7 @@
   </LightComponent>
 
   <ParticleEmitterComponent 
-    emitted_material_name="soul_particles"
+    emitted_material_name="souls_soul_particles"
     offset.x="0"
     offset.y="0"
 	gravity.y="0.0"
@@ -130,7 +130,7 @@
   </ParticleEmitterComponent>
 
   <ParticleEmitterComponent 
-		emitted_material_name="soul_particles"
+		emitted_material_name="souls_soul_particles"
 		gravity.y="0.0"
 		lifetime_min="1"
 		lifetime_max="2"

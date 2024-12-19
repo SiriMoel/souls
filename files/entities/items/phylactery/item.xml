@@ -65,7 +65,7 @@
     barrel_size="300"
     num_cells_sucked_per_frame="5"
 	material_type="0"
-	suck_tag="[soul_blood_perfect]"
+	suck_tag="[souls_soul_blood_perfect]"
   ></MaterialSuckerComponent> <!-- will this work? -->
 
     <MaterialInventoryComponent 

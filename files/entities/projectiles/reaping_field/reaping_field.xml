@@ -4,7 +4,7 @@
 	</GameAreaEffectComponent>-->
 	
 	<ParticleEmitterComponent 
-		emitted_material_name="soul_particles"
+		emitted_material_name="souls_soul_particles"
 		gravity.y="0.0"
 		lifetime_min="0.5"
 		lifetime_max="1.5"
@@ -24,7 +24,7 @@
 	</ParticleEmitterComponent>
 
   	<ParticleEmitterComponent 
-		emitted_material_name="soul_particles"
+		emitted_material_name="souls_soul_particles"
 		gravity.y="0.0"
 		lifetime_min="0.5"
 		lifetime_max="1.5"

@@ -2,7 +2,7 @@
     <CellDataChild
       	_parent="spark"
       	_inherit_reactions="1"
-      	name="soul_particles" 
+      	name="souls_soul_particles" 
     	ui_name=""
     	wang_color="7f3fe2df"
     	>
@@ -15,7 +15,7 @@
 	<CellDataChild
       	_parent="spark"
       	_inherit_reactions="1"
-      	name="living_particles" 
+      	name="souls_living_particles" 
     	ui_name=""
     	wang_color="7f82f803"
     	>
@@ -28,7 +28,7 @@
 	<CellDataChild
       	_parent="spark"
       	_inherit_reactions="1"
-      	name="soul_particles_green" 
+      	name="souls_soul_particles_green" 
     	ui_name=""
     	wang_color="7f94ffc7"
     	>
@@ -41,7 +41,20 @@
 	<CellDataChild
       	_parent="spark"
       	_inherit_reactions="1"
-      	name="soul_particles_black" 
+      	name="souls_soul_particles_worm" 
+    	ui_name=""
+    	wang_color="88c8bc09"
+    	>
+      	<Graphics
+    	color="88c8bc00"
+    	fire_colors_index="1" >
+        </Graphics>
+    </CellDataChild>
+
+	<CellDataChild
+      	_parent="spark"
+      	_inherit_reactions="1"
+      	name="souls_soul_particles_black" 
     	ui_name=""
     	wang_color="7f000000"
     	>
@@ -54,7 +67,7 @@
 	<CellDataChild
       	_parent="spark"
       	_inherit_reactions="1"
-      	name="spark_orange" 
+      	name="souls_spark_orange" 
     	ui_name=""
     	wang_color="7fe26d1f"
     	>
@@ -65,9 +78,9 @@
     </CellDataChild>
 
   <CellData
-	name="soul_blood_1"
-	ui_name="Soul Blood"
-  	tags="[liquid],[soul_blood_1]"
+	name="souls_soul_blood_1"
+	ui_name="$mat_moldos_soul_blood_1"
+  	tags="[liquid],[souls_soul_blood_1]"
 	density="4.17"
 	cell_type="liquid"
 	wang_color="8000c887"
@@ -108,9 +121,9 @@
   </CellData>
 
   <CellData
-	name="soul_blood_perfect"
-	ui_name="Perfect Soul Blood"
-  	tags="[liquid],[soul_blood_perfect]"
+	name="souls_soul_blood_perfect"
+	ui_name="$mat_moldos_soul_blood_perfect"
+  	tags="[liquid],[souls_soul_blood_perfect]"
 	density="4.18"
 	cell_type="liquid"
 	wang_color="8000c888"
@@ -151,8 +164,8 @@
   </CellData>
 
   <CellData
-	name="soulaway"
-	ui_name="Soul-Away!"
+	name="souls_soulaway"
+	ui_name="$mat_moldos_soulaway"
   	tags="[liquid]"
 	density="4.18"
 	cell_type="liquid"
@@ -169,7 +182,7 @@
 	show_in_creative_mode="1" 
 	>
 	<Graphics 
-	texture_file="mods/souls/files/materials_gfx/soulaway.png" 
+	texture_file="mods/souls/files/materials_gfx/souls_soulaway.png" 
 	color="8000FA97"
 	fire_colors_index="2" >
     </Graphics>
@@ -186,15 +199,15 @@
   <Reaction probability="100"
 	fast_reaction="1"
 	input_cell1="[magic_polymorph]" 			input_cell2="[blood]"
-	output_cell1="soul_blood_1" 			output_cell2="steam" 
+	output_cell1="souls_soul_blood_1" 			output_cell2="steam" 
 	blob_radius2="3"
 	>
   </Reaction>
 
   <Reaction probability="100"
 	fast_reaction="1"
-	input_cell1="soul_blood_1" 			input_cell2="material_darkness"
-	output_cell1="soul_blood_perfect" 			output_cell2="steam" 
+	input_cell1="souls_soul_blood_1" 			input_cell2="material_darkness"
+	output_cell1="souls_soul_blood_perfect" 			output_cell2="steam" 
 	blob_radius2="3"
 	>
   </Reaction>

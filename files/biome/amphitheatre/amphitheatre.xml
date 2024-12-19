@@ -9,7 +9,7 @@
     <ParticleEmitterComponent 
 		_tags="enabled_in_world,enabled_in_hand"
 		enabled="1"
-		emitted_material_name="soul_particles"
+		emitted_material_name="souls_soul_particles"
 		offset.x="0"
 		offset.y="-70"
 		x_pos_offset_min="0"

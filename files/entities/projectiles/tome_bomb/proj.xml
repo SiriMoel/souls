@@ -52,7 +52,7 @@
   <!-- fx -->
 
   <ParticleEmitterComponent 
-    emitted_material_name="soul_particles"
+    emitted_material_name="souls_soul_particles"
     offset.x="-1"
     offset.y="-3"
     x_pos_offset_min="-1"
@@ -75,7 +75,7 @@
   </ParticleEmitterComponent>
   
   <ParticleEmitterComponent 
-    emitted_material_name="soul_particles"
+    emitted_material_name="souls_soul_particles"
     offset.x="-1"
     offset.y="-3"
     fade_based_on_lifetime="1"
@@ -100,7 +100,7 @@
 
   <!-- very sparse emitter -->
   <ParticleEmitterComponent 
-    emitted_material_name="soul_particles"
+    emitted_material_name="souls_soul_particles"
     offset.x="-1"
     offset.y="-3"
     x_vel_min="10"
@@ -127,7 +127,7 @@
   </ParticleEmitterComponent>
 
   	<ParticleEmitterComponent 
-		emitted_material_name="soul_particles"
+		emitted_material_name="souls_soul_particles"
 		gravity.y="0.0"
 		lifetime_min="1"
 		lifetime_max="2"

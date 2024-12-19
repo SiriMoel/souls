@@ -66,7 +66,7 @@
       shake_vegetation="1" 
       sparks_count_max="40" 
       sparks_count_min="20" 
-	  spark_material="soul_particles"
+	  spark_material="souls_soul_particles"
       sparks_enabled="1" 
       stains_enabled="1" 
       stains_radius="15"
@@ -94,7 +94,7 @@
   </LightComponent>
 
   <ParticleEmitterComponent 
-		emitted_material_name="soul_particles"
+		emitted_material_name="souls_soul_particles"
 		gravity.y="0.0"
 		lifetime_min="1"
 		lifetime_max="2"
@@ -122,7 +122,7 @@
 	</ParticleEmitterComponent>
   
   <ParticleEmitterComponent 
-    emitted_material_name="soul_particles_green"
+    emitted_material_name="souls_soul_particles_green"
     offset.x="0"
     offset.y="0"
     x_pos_offset_min="-1"
@@ -145,7 +145,7 @@
   </ParticleEmitterComponent>
   
     <ParticleEmitterComponent 
-		emitted_material_name="soul_particles"
+		emitted_material_name="souls_soul_particles"
 		offset.x="0"
 		offset.y="0"
 		count_min="1"
@@ -168,7 +168,7 @@
 	</ParticleEmitterComponent>
 
     <ParticleEmitterComponent 
-    emitted_material_name="soul_particles"
+    emitted_material_name="souls_soul_particles"
     offset.x="0"
     offset.y="0"
     count_min="1"
@@ -191,7 +191,7 @@
   </ParticleEmitterComponent>
   
   <ParticleEmitterComponent 
-    emitted_material_name="soul_particles"
+    emitted_material_name="souls_soul_particles"
     offset.x="0"
     offset.y="0"
     count_min="1"
@@ -218,7 +218,7 @@
   </ParticleEmitterComponent>
 
     <ParticleEmitterComponent 
-    emitted_material_name="soul_particles"
+    emitted_material_name="souls_soul_particles"
     offset.x="0"
     offset.y="0"
     count_min="1"
@@ -242,7 +242,7 @@
 
   <!-- very sparse emitter -->
   <ParticleEmitterComponent 
-    emitted_material_name="soul_particles"
+    emitted_material_name="souls_soul_particles"
     offset.x="0"
     offset.y="0"
     x_pos_offset_min="0"

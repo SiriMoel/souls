@@ -14,9 +14,9 @@
    <DamageModelComponent
 		hp="65"
 		ragdoll_fx_forced="DISINTEGRATED"
-		ragdoll_material="soul_particles_black"
-		blood_material="soul_particles_black"
-		blood_spray_material="soul_particles_black"
+		ragdoll_material="souls_soul_particles_black"
+		blood_material="souls_soul_particles_black"
+		blood_spray_material="souls_soul_particles_black"
    >
    <damage_multipliers
 		melee="1.0"
@@ -137,7 +137,7 @@
 	<ParticleEmitterComponent 
 		_tags="shield"
 		_enabled="0"
-		emitted_material_name="soul_particles"
+		emitted_material_name="souls_soul_particles"
 		gravity.y="0.0"
 		lifetime_min="1"
 		lifetime_max="2"

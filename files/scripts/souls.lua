@@ -465,3 +465,126 @@ function GetRandomSoulForWand2(wand, x, y, frame)
         return "0"
     end
 end
+
+function GenerateSoulShopItem(x, y, biomeid_)
+    dofile("data/scripts/gun/gun_actions.lua")
+    local biomes = {
+		[1] = 0,
+		[2] = 0,
+		[3] = 0,
+		[4] = 1,
+		[5] = 1,
+		[6] = 1,
+		[7] = 2,
+		[8] = 2,
+		[9] = 2,
+		[10] = 2,
+		[11] = 2,
+		[12] = 2,
+		[13] = 3,
+		[14] = 3,
+		[15] = 3,
+		[16] = 3,
+		[17] = 4,
+		[18] = 4,
+		[19] = 4,
+		[20] = 4,
+		[21] = 5,
+		[22] = 5,
+		[23] = 5,
+		[24] = 5,
+		[25] = 6,
+		[26] = 6,
+		[27] = 6,
+		[28] = 6,
+		[29] = 6,
+		[30] = 6,
+		[31] = 6,
+		[32] = 6,
+		[33] = 6,
+	}
+    local biomepixel = math.floor(y / 512)
+	local biomeid = biomes[biomepixel] or 0
+	if (biomepixel > 35) then
+		biomeid = 7
+	end
+	if (biomes[biomepixel] == nil) and (biomeid_ == nil) then
+		print("Unable to find biomeid for chunk at depth " .. tostring(biomepixel))
+	end
+	if (biomeid_ ~= nil) then
+		biomeid = biomeid_
+	end
+	if( is_stealable == nil ) then
+		is_stealable = false
+	end
+	local item = ""
+	local cardcost = 0
+	local level = biomeid
+    local name = ""
+	biomeid = biomeid * biomeid
+	item = GetRandomAction( x, y, level, 0 )
+	cardcost = 0
+	for i,thisitem in ipairs( actions ) do
+		if string.lower(thisitem.id) == string.lower(item) then
+			price = math.ceil(math.max(thisitem.price / 20, 10))
+            name = thisitem.name
+		end
+	end
+    cardcost = price
+	if biomeid >= 10 then
+		price = price * 5.0
+		cardcost = cardcost * 5.0
+	end
+	local card = CreateItemActionEntity(item, x, y)
+    local comp_item = EntityGetFirstComponentIncludingDisabled(card, "ItemComponent")
+    if comp_item == nil then print("Souls - couldn't find ItemComponent") return end
+    ComponentSetValue2(comp_item, "is_pickable", false)
+    local offsetx = 6
+	local text = tostring(cardcost)
+	local textwidth = 0
+	for i=1,#text do
+		local l = string.sub( text, i, i )
+		if ( l ~= "1" ) then
+			textwidth = textwidth + 6
+		else
+			textwidth = textwidth + 3
+		end
+	end
+	offsetx = textwidth * 0.5 - 0.5
+    EntityAddComponent(card, "VariableStorageComponent", {
+        _tags="soulcost,soulshopitem",
+        name="soulcost",
+        value_int=tostring(cardcost),
+    })
+    EntityAddComponent(card, "InteractableComponent", {
+        _tags="soulshopitem,enabled_in_world",
+        radius="10",
+        ui_text="PURCHASE: " .. GameTextGetTranslatedOrNot(name) .. " [" .. tostring(cardcost) .. " souls]",
+        name="",
+    })
+    EntityAddComponent(card, "LuaComponent", {
+        _tags="soulshopitem,enabled_in_world",
+        script_interacting="mods/souls/files/scripts/soulshopitem_interact.lua",
+    })
+    EntityAddComponent(card, "SpriteComponent", { 
+		_tags="shop_cost,enabled_in_world,soulshopitem",
+		image_file="data/fonts/font_pixel_white.xml",
+		is_text_sprite="1",
+		offset_x=tostring(offsetx),
+		offset_y="25", 
+		update_transform="1" ,
+		update_transform_rotation="0",
+		text=tostring(cardcost),
+		z_index="-1",
+	})
+    EntityAddComponent(card, "SpriteComponent", { 
+		_tags="enabled_in_world,soulshopitem",
+		image_file="mods/souls/files/entities/souls/sprites/card_soul.xml",
+		offset_x="0",
+		offset_y="0",
+		update_transform="1" ,
+		update_transform_rotation="0",
+		z_index="-1",
+	})
+	return card
+end

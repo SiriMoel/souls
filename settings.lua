@@ -45,6 +45,13 @@ mod_settings = {
         scope = MOD_SETTING_SCOPE_RUNTIME,
     },
     {
+        id = "enable_soul_shops",
+        ui_name = "Enable Soul Shops",
+        ui_description = "If you want some items to be bought with souls instead of gold.",
+        value_default = true,
+        scope = MOD_SETTING_SCOPE_RUNTIME,
+    },
+    {
         id = "starting_souls",
         ui_name = "Start with souls",
         ui_description = "How many souls you want to start with (this is kinda cheaty).",

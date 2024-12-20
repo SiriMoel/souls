@@ -182,7 +182,7 @@
 	show_in_creative_mode="1" 
 	>
 	<Graphics 
-	texture_file="mods/souls/files/materials_gfx/souls_soulaway.png" 
+	texture_file="mods/souls/files/materials_gfx/soulaway.png" 
 	color="8000FA97"
 	fire_colors_index="2" >
     </Graphics>

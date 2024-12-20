@@ -9,6 +9,7 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/souls/files/actions.
 ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/souls/files/perks.lua" )
 ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/souls/files/status_list.lua" )
 ModLuaFileAppend( "data/scripts/items/drop_money.lua", "mods/souls/files/scripts/drop_money_append.lua" )
+ModLuaFileAppend( "data/scripts/items/generate_shop_item.lua", "mods/souls/files/scripts/generate_shop_item_append.lua" )
 
 -- nxml
 local nxml = dofile_once("mods/souls/lib/nxml.lua")
@@ -196,6 +197,7 @@ function OnPlayerSpawned( player )
     GlobalsSetValue("souls.collect_soul_from_entity", tostring(ModSettingGet("souls.collect_soul_from_entity")))
     GlobalsSetValue("souls.say_soul", tostring(ModSettingGet("souls.say_soul")))
     GlobalsSetValue("souls.say_consumed_soul", tostring(ModSettingGet("souls.say_consumed_soul")))
+    GlobalsSetValue("souls.enable_soul_shops", tostring(ModSettingGet("souls.enable_soul_shops")))
 
     GlobalsSetValue("souls.amphitheatre_enemy_count", "10")
 
@@ -208,6 +210,7 @@ function OnPlayerSpawned( player )
     --for i=1,3 do EntityLoad("data/entities/animals/moldos_puppet_master.xml", 0, -100) end
     --for i=1,300 do AddSouls(GetRandomSoulType(true), 10) end
     --EntityLoad("mods/souls/files/entities/items/_soulcrystals/alchemist.xml", px, py)
+    --GenerateSoulShopItem(px, py)
 
     for i=1,tonumber(ModSettingGet("souls.starting_souls")) do
         local which = soul_types[math.random(1,#soul_types)]
@@ -243,5 +246,6 @@ function OnModSettingsChanged()
     GlobalsSetValue("souls.collect_soul_from_entity", tostring(ModSettingGet("souls.collect_soul_from_entity")))
     GlobalsSetValue("souls.say_soul", tostring(ModSettingGet("souls.say_soul")))
     GlobalsSetValue("souls.say_consumed_soul", tostring(ModSettingGet("souls.say_consumed_soul")))
+    GlobalsSetValue("souls.enable_soul_shops", tostring(ModSettingGet("souls.enable_soul_shops")))
     --RenderSouls()
 end

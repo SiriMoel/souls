@@ -10,34 +10,25 @@ if #targets == 0 then return end
 
 local px, py = EntityGetTransform(targets[1])
 
-local movespeed = 20
+local movespeed = 0.2
 
-local dist_p_t = 5
+local dist_p_t = 10
 
---local dist_p = DistanceBetween(x, y, px, py)
-
---[[local tx, ty = px, py
+local tx, ty = px, py
 
 local theta = (math.pi / 2) - math.atan(y - py, x - px)
 
 tx = ((dist_p_t * math.sin(theta)) / math.sin(math.pi / 2)) + py
 ty = ((dist_p_t * math.sin((math.pi / 2) - theta)) / math.sin(math.pi / 2)) + py
 
-local dist_t = DistanceBetween(x, y, tx, ty)]]
+local dist_t = DistanceBetween(x, y, tx, ty)
 
 if dist_t > 0 then
-    --[[local dist_t_x = math.abs(tx - x)
-    local dist_t_y = math.abs(ty - y)
-
-    local amt_x = movespeed * (dist_t_x / 100)
-    local amt_y = movespeed * (dist_t_y / 100)]]
-
     if x <= px then
         x = x + movespeed
     else
         x = x - movespeed
     end
-
     if y <= py then
         y = y + movespeed
     else

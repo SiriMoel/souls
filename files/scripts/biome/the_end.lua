@@ -12,12 +12,12 @@ table.insert(g_small_enemies, {
     prob   		= 0.02,
     min_count	= 1,
     max_count	= 3,
-    entity 	= "data/entities/animals/the_end/moldos_soul_rogue.xml",
+    entity 	= "data/entities/animals/moldos_soul_rogue.xml",
 })
 
 table.insert(g_small_enemies, {
     prob   		= 0.02,
     min_count	= 1,
     max_count	= 3,
-    entity 	= "data/entities/animals/the_end/moldos_soul_eye.xml",
+    entity 	= "data/entities/animals/moldos_soul_eye.xml",
 })

@@ -9,6 +9,9 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
 
     for i=1,1 do
         AddSouls("gilded", 1)
+        if tobool(GlobalsGetValue("souls.say_soul", "true")) == true then
+            GamePrint("You have acquired a " .. SoulNameCheck("gilded") ..  " soul!")
+        end
     end
 
     if math.random(1,6) == 2 then

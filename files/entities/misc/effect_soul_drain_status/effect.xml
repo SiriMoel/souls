@@ -15,7 +15,7 @@
 	></GameEffectComponent>
 
 	<LuaComponent
-		script_source_file="mods/souls/files/entities/misc/effect_soul_drain_status/effect.lua"
+		script_source_file="mods/souls/files/entities/misc/effect_soul_drain/effect.lua"
 		execute_every_n_frame="30"
 	></LuaComponent>
 

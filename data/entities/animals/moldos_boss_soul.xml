@@ -6,11 +6,6 @@
 		is_predator="1" >
 	</GenomeDataComponent>-->
 		
-	<CameraBoundComponent
-		max_count="30"
-		distance="160000">
-	</CameraBoundComponent>
-		
    <DamageModelComponent
 		hp="65"
 		ragdoll_fx_forced="DISINTEGRATED"

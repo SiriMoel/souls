@@ -53,12 +53,22 @@ local biomes = {
         path = "data/scripts/biomes/mountain_tree.lua",
         script = "mods/souls/files/scripts/biome/mountain_tree.lua",
     },
+    {
+        path = "data/scripts/biomes/the_end.lua",
+        script = "mods/souls/files/scripts/biome/the_end.lua",
+    },
 }
 for i,v in ipairs(biomes) do
     if ModTextFileGetContent(v.path) ~= nil then
         ModLuaFileAppend(v.path, v.script)
     end
 end
+local content = ModTextFileGetContent("data/biome/_biomes_all.xml")
+local xml = nxml.parse(content)
+xml:add_children(nxml.parse_many[[
+    <Biome height_index="0" color="ff3fe2df" biome_filename="mods/souls/files/biome/soulbiome/biome.xml" />
+]])
+ModTextFileSetContent("data/biome/_biomes_all.xml", tostring(xml))
 
 -- drops
 local dropdoers = {
@@ -182,7 +192,7 @@ if ModIsEnabled("meta_leveling") then
 end
 
 -- player
-function OnPlayerSpawned( player )
+function OnPlayerSpawned(player)
 
     dofile_once("mods/souls/files/scripts/souls.lua")
 
@@ -211,6 +221,7 @@ function OnPlayerSpawned( player )
     --for i=1,300 do AddSouls(GetRandomSoulType(true), 10) end
     --EntityLoad("mods/souls/files/entities/items/_soulcrystals/alchemist.xml", px, py)
     --GenerateSoulShopItem(px, py)
+    --EntityLoad("data/entities/animals/moldos_soul_eye.xml", px, py)
 
     for i=1,tonumber(ModSettingGet("souls.starting_souls")) do
         local which = soul_types[math.random(1,#soul_types)]

@@ -56,10 +56,10 @@
       	_inherit_reactions="1"
       	name="souls_soul_particles_black" 
     	ui_name=""
-    	wang_color="7f000000"
+    	wang_color="7f000001"
     	>
       	<Graphics
-    	color="7f000000"
+    	color="7f000001"
     	fire_colors_index="1" >
         </Graphics>
     </CellDataChild>

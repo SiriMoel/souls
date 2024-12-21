@@ -168,4 +168,10 @@
 	    remove_after_executed="1" >
 	</LuaComponent>
 
+	<LuaComponent
+		script_source_file="mods/souls/files/entities/animals/soul_rogue/aura_effect.lua"
+		execute_every_n_frame="101"
+		>
+	</LuaComponent>
+
 </Entity>

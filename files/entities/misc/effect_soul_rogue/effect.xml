@@ -1,0 +1,33 @@
+<Entity tags="souls_effect_soul_drain">
+	
+	<InheritTransformComponent 
+		_enabled="1" >
+    </InheritTransformComponent>
+
+	<GameEffectComponent
+		effect="CUSTOM"
+		custom_effect_id="MOLDOS_SOUL_DRAIN"
+		frames="120"
+	></GameEffectComponent>	
+
+    <LifetimeComponent
+		lifetime="100"
+		>
+	</LifetimeComponent>
+	
+	<UIIconComponent
+		name="$status_moldos_soul_drain"
+		description="$statusdesc_moldos_soul_drain"
+		icon_sprite_file="mods/souls/files/status_indicators/soul_drain.png"
+		is_perk="0"
+		display_above_head="0"
+		display_in_hud="1"
+		>
+	</UIIconComponent>
+
+	<LuaComponent
+		script_source_file="mods/souls/files/entities/misc/effect_soul_drain/effect.lua"
+		execute_every_n_frame="30"
+	></LuaComponent>
+
+</Entity>

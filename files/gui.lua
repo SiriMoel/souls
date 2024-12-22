@@ -66,7 +66,12 @@ function GuiRender()
     GuiLayoutBeginHorizontal(gui, 65, 94)
         for _, soul in ipairs(soul_types) do
             GuiLayoutBeginVertical(gui, 0, 0)
-                if christmas then
+                if HasFlagPersistent("souls_sotd_quest_done") and soul == "boss" then
+                    GuiZSetForNextWidget(gui, 99998)
+                    GuiImage(gui, gui_id, 0, 0, "mods/souls/files/gui/soul_crown.png", 1, 0.75, 0.75)
+                    GuiZSetForNextWidget(gui, 99999)
+                    GuiImage(gui, gui_id, 0, -5, "mods/souls/files/entities/souls/sprites/soul_" .. soul .. ".png", 1, 0.75, 0.75)
+                elseif christmas then
                     GuiZSetForNextWidget(gui, 99998)
                     GuiImage(gui, gui_id, 0, 0, "mods/souls/files/gui/soul_santa_hat.png", 1, 0.75, 0.75)
                     GuiZSetForNextWidget(gui, 99999)

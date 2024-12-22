@@ -26,6 +26,7 @@ function kick(entity_who_kicked)
         GamePlaySound("data/audio/Desktop/misc.bank", "misc/chest_dark_open", x, y)
         GamePlaySound("data/audio/Desktop/misc.bank", "misc/beam_from_sky_kick", x, y)
         GamePrintImportant("SOUL ASCENDED!", "You are divine.", "mods/souls/files/souls_decoration.png")
+        AddFlagPersistent("souls_sotd_quest_done")
         EntityRemoveTag(this, "souls_deny_reap")
         local comps = EntityGetAllComponents(this)
         for i,comp in ipairs(comps) do

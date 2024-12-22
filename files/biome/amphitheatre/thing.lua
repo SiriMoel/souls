@@ -1,5 +1,6 @@
 dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("mods/souls/files/scripts/souls.lua")
+dofile_once("mods/souls/files/scripts/souldoor_rewards.lua")
 
 local this = GetUpdatedEntityID()
 local x, y = EntityGetTransform(this)
@@ -11,6 +12,9 @@ local targets = EntityGetInRadiusWithTag(x, y, 1000, "souls_amphitheatre_enemy")
 if #targets < 1 and GameHasFlagRun("souls.amphitheatre_active") then
     EntitySetComponentsWithTagEnabled(this, "amphitheatre_interact", true)
     GamePrintImportant("WAVE DEFEATED!", "The next wave will be harder.", "mods/souls/files/souls_decoration.png")
+    local rnd = random_create(x+GameGetFrameNum(), y+tonumber(StatsGetValue("world_seed")))
+    local which = pick_random_from_table_weighted(rnd, soul_spells) or { id = "LIGHT_BULLET" }
+    CreateItemActionEntity(which.id, x, y)
     GameRemoveFlagRun("souls.amphitheatre_active")
 end
 

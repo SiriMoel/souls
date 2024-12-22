@@ -1,6 +1,6 @@
 dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("data/scripts/gun/gun_actions.lua")
-dofile_once("mods/souls/files/biome/souldoor/recipes.lua")
+dofile_once("mods/souls/files/scripts/souldoor_rewards.lua")
 
 local altar = GetUpdatedEntityID()
 local x, y = EntityGetTransform(altar)
@@ -12,40 +12,6 @@ math.randomseed(x+GameGetFrameNum(), y+tonumber(StatsGetValue("world_seed")))
 local targets = EntityGetInRadiusWithTag(x, y, radius, "card_action")
 
 local spell_projectiles = {}
-local pool_projectiles = {
-    { probability = 0.9, id = "MOLDOS_REAPING_SHOT", },
-    { probability = 0.9, id = "MOLDOS_WAND_CONSUMES_X_SOULS", },
-    { probability = 0.9, id = "MOLDOS_SOUL_BLAST" },
-    { probability = 0.9, id = "MOLDOS_SOUL_SPEED" },
-    { probability = 0.8, id = "MOLDOS_SOULS_TO_POWER", },
-    { probability = 0.6, id = "MOLDOS_SOUL_STRIKE", },
-    { probability = 0.1, id = "MOLDOS_EAT_WAND_FOR_SOULS", },
-    { probability = 0.8, id = "MOLDOS_SOUL_ARROW", },
-    { probability = 0.5, id = "MOLDOS_SOUL_BALL", },
-    { probability = 0.5, id = "MOLDOS_SOUL_METEOR", },
-    { probability = 0.1, id = "MOLDOS_SOUL_HEALER", },
-    { probability = 0.1, id = "MOLDOS_REAPING_HALO", },
-    { probability = 0.1, id = "MOLDOS_WEAKENING_HALO", },
-    { probability = 0.7, id = "MOLDOS_SOUL_CLOAK", },
-    { probability = 0.7, id = "MOLDOS_SOUL_RAGE", },
-    { probability = 0.9, id = "MOLDOS_SOUL_BOLT", },
-    { probability = 0.7, id = "MOLDOS_SOULDOS", },
-    { probability = 0.7, id = "MOLDOS_RANDOM_REAP", },
-    { probability = 0.7, id = "MOLDOS_REAP_TELE", },
-    { probability = 0.5, id = "MOLDOS_TOME_SLICE", },
-    { probability = 0.5, id = "MOLDOS_TOME_LAUNCHER", },
-    { probability = 0.7, id = "MOLDOS_SOUL_BOOST", },
-    { probability = 0.6, id = "MOLDOS_SCALING_DAMAGE", },
-    { probability = 0.6, id = "MOLDOS_SCALING_SPEED", },
-    { probability = 0.1, id = "MOLDOS_SOUL_TINKER", },
-    { probability = 0.8, id = "MOLDOS_SOUL_CRIT" },
-    { probability = 0.5, id = "MOLDOS_SOUL_FIRE" },
-    { probability = 0.5, id = "MOLDOS_REAP_FROM_FIRE" },
-    { probability = 0.3, id = "MOLDOS_SOUL_BATTERY" },
-    { probability = 0.5, id = "MOLDOS_EXPEL_SOUL" },
-    { probability = 0.6, id = "MOLDOS_SCALING_MANA", },
-    { probability = 0.6, id = "MOLDOS_SCALING_RECHARGE", },
-}
 
 local string = ""
 
@@ -105,7 +71,7 @@ if #spell_projectiles >= 5 then
     end
 
     local rnd = random_create(x+GameGetFrameNum(), y+tonumber(StatsGetValue("world_seed")))
-    local which = pick_random_from_table_weighted(rnd, pool_projectiles) or { id = "LIGHT_BULLET" }
+    local which = pick_random_from_table_weighted(rnd, soul_spells) or { id = "LIGHT_BULLET" }
     CreateItemActionEntity(which.id, x, y)
 
     spell_projectiles = {}

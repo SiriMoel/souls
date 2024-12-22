@@ -24,6 +24,7 @@ function interacting()
         { probability = 0.7, path = "data/entities/animals/wizard_weaken.xml" },
         { probability = 0.6, path = "data/entities/animals/moldos_puppet_master.xml" },
         { probability = 0.2, path = "data/entities/animals/moldos_soul_angry.xml" },
+        { probability = 0.2, path = "data/entities/animals/moldos_soul_rogue.xml" },
         { probability = 0.8, path = "data/entities/animals/scavenger_smg.xml" },
         { probability = 0.8, path = "data/entities/animals/scavenger_leader.xml" },
         { probability = 0.8, path = "data/entities/animals/scavenger_grenade.xml" },
@@ -45,7 +46,7 @@ function interacting()
         EntityAddTag(enemy, "souls_amphitheatre_enemy")
         EntityAddComponent2(enemy, "LuaComponent", {
             script_death = "mods/souls/files/scripts/reap.lua",
-            execute_every_n_frame = "-1",
+            execute_every_n_frame = -1,
         })
     end
     

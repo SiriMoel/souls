@@ -169,6 +169,7 @@ local scenes = {
     { -1568, -400, "mods/souls/files/biome/soulplace/place.xml", false },
     { -1144, -455, "mods/souls/files/biome/soulplace/sign.xml", false },
     { -270, 18100, "mods/souls/files/biome/amphitheatre/amphitheatre.xml", false },
+    { 0, 19500, "mods/souls/files/biome/soulshop/soulshop.xml", true },
 }
 
 add_scene(scenes)

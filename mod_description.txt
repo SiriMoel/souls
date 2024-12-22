@@ -9,7 +9,7 @@ Spells added by this mod have different effects depending on what type of soul y
 [b]2[/b] new perks
 [b]5+[/b] new wands and items
 [b]5[/b] new enemies
-[b]3[/b] new structures
+[b]4[/b] new structures
 [b]3+[/b] new materials
 [b]13[/b] soul types
 Upgrade a magic tome with souls

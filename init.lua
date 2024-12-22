@@ -31,6 +31,16 @@ xml:add_child(nxml.parse(([[
 ]])))
 ModTextFileSetContent("data/entities/base_wand_pickup.xml", tostring(xml))
 
+local xml = nxml.parse(ModTextFileGetContent("data/entities/items/pickup/spell_refresh.xml"))
+xml:add_child(nxml.parse(([[
+    <LuaComponent
+        script_source_file="mods/souls/files/entities/items/soulrefresh/spawn.lua"
+        execute_on_added="1"
+        remove_after_executed="1"
+    ></LuaComponent>
+]])))
+ModTextFileSetContent("data/entities/items/pickup/spell_refresh.xml", tostring(xml))
+
 -- biome things
 local biomes = {
     {

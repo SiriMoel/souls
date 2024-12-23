@@ -126,7 +126,7 @@
 	></VariableStorageComponent>
 
 	<LuaComponent
-		_tags="enabled_in_world,enabled_in_hand"
+		_tags="enabled_in_world,enabled_in_hand,enabled_in_inventory"
 		_enabled="1"
 		script_source_file="mods/souls/files/entities/items/soul_of_the_diviner/item.lua"
 		execute_every_n_frame="10"

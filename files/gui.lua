@@ -79,8 +79,9 @@ function GuiRender()
                 else
                     GuiImage(gui, gui_id, 0, 0, "mods/souls/files/entities/souls/sprites/soul_" .. soul .. ".png", 1, 0.75, 0.75)
                 end
-                local t = tostring(math.min(soulcounts[soul], 99))
-                if t == "-1" then
+                local count, inf = GetSoulsCount(soul) --tostring(math.min(soulcounts[soul], 99))
+                local t = tostring(math.min(count, 99))
+                if inf then
                     t = "∞"
                 end
                 GuiText(gui, 0, 0, t .. " ")

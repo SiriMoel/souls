@@ -7,7 +7,7 @@ local x, y = EntityGetTransform(this)
 local frame = GameGetFrameNum()
 local player = GetPlayer()
 
-local targets = EntityGetInRadiusWithTag(x, y, 1000, "souls_amphitheatre_enemy") or {}
+local targets = EntityGetInRadiusWithTag(x, y, 500, "souls_amphitheatre_enemy") or {}
 
 if #targets < 1 and GameHasFlagRun("souls.amphitheatre_active") then
     EntitySetComponentsWithTagEnabled(this, "amphitheatre_interact", true)

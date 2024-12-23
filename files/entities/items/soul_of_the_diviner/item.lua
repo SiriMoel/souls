@@ -14,7 +14,8 @@ if comp_soulscount == nil then return end
 local soulscount = ComponentGetValue2(comp_soulscount, "value_int")
 
 --EntityKillAllWithTag("souls_sotd_soul")
-while #EntityGetInRadiusWithTag(x, y, 100, "souls_sotd_soul") < soulscount do
+
+while root == this and #EntityGetInRadiusWithTag(x, y, 100, "souls_sotd_soul") < soulscount do
     local child = EntityLoad( "mods/souls/files/entities/items/soul_of_the_diviner/soul.xml", x, y )
     EntityAddChild(this, child)
     EntitySetTransform(child, x, y)
@@ -59,7 +60,7 @@ if GlobalsGetValue("souls.soul_emulator_state") == "3" then -- make it rain in w
 end
 
 if GlobalsGetValue("souls.soul_emulator_state") == "4" then -- 3 soul projectiles in the sky
-    if y < -6500 then
+    if y < -4000 then
         if #EntityGetInRadiusWithTag(x, y, 100, "soul_projectile")  >= 3 then
             GlobalsSetValue("souls.soul_emulator_state", "5")
             local comp_uiinfo = EntityGetFirstComponentIncludingDisabled(this, "UIInfoComponent")

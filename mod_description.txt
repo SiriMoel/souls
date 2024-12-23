@@ -30,7 +30,6 @@ Souls should be compatible with all content mods, except Tales of Kupoli.
 
 Expansions:
 [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3377068299]Tome Magic[/url][/b] Expands on the power and utility of the tome
-[b][url=]Reaper's Cauldron[/url][/b] Adds a cauldron that can create items and upgrade wands using souls
 (more to come)
 
 Discord: https://discord.gg/FKaRA9HMUq

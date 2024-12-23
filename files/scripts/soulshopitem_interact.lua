@@ -10,7 +10,10 @@ function interacting( entity_who_interacted, entity_interacted, interactable_nam
     if comp_cost == nil then print("Souls - couldn't find cost component") return end
     local cost = ComponentGetValue2(comp_cost, "value_int")
     if GetSoulsCount("all") - GetSoulsCount("boss") >= cost then
-        RemoveRandomSouls(cost)
+        for i=1,cost do
+            local soul = GetRandomSoul(false)
+            RemoveSoul(soul)
+        end
         EntityLoad("data/entities/particles/image_emitters/shop_effect.xml", x, y-8)
         ComponentSetValue2(comp_item, "is_pickable", true)
         GamePrint("Purchased!")

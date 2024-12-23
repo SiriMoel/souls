@@ -135,7 +135,6 @@ end
 
 -- Gets a random soul
 function GetRandomSoul(includeboss)
-    local player = GetPlayer()
     local whichtype = ""
     local whichtypes = {}
     for i,v in ipairs(soul_types) do
@@ -247,7 +246,11 @@ end
 -- Removes random souls, does not include boss souls
 function RemoveRandomSouls(amount)
     for i=1,amount do
-        RemoveSoul(GetRandomSoul(false))
+        local soul = GetRandomSoul(false)
+        while soul == "boss" do
+            soul = GetRandomSoul(false)
+        end
+        RemoveSoul(soul)
     end
 end
 

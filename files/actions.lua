@@ -444,11 +444,14 @@ local new_actions = {
 			local possible_types = {
 				"bat",
 				"fly",
+				"friendly",
 				"mage",
 				"orcs",
 				"slimes",
 				"spider",
+				"zombie",
 				"worm",
+				"fungus",
 				"ghost",
 			}
 			if wand ~= 0 then
@@ -460,11 +463,11 @@ local new_actions = {
 					local mcs = tonumber( ComponentGetValue2( ac, "mana_charge_speed" ) ) -- mana charge speed
 					local mm = tonumber( ComponentGetValue2( ac, "mana_max" ) ) -- mana max
 					local cp = tonumber( ComponentObjectGetValue( ac, "gun_config", "deck_capacity" ) ) -- capacity
-					rt = rt / 50
-					frw = frw / 50
-					mcs = mcs / 300
-					mm = mm / 300
-					cp = cp / 2
+					rt = rt / 10
+					frw = frw / 10
+					mcs = mcs / 50
+					mm = mm / 50
+					cp = cp / 1
 					souls_earned = rt + frw + mcs + mm + cp
 					souls_earned = math.ceil(souls_earned)
 				end
@@ -478,8 +481,8 @@ local new_actions = {
 						end
 					end
 				end
-				if souls_earned > 20 then
-					souls_earned = 20 + ((souls_earned - 20) * 0.5)
+				if souls_earned > 30 then
+					souls_earned = 30 + ((souls_earned - 30) * 0.5)
 				end
 				souls_earned = math.floor(souls_earned)
 				for i=1,souls_earned do

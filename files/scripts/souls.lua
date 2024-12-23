@@ -340,6 +340,7 @@ function ReapSoul(entity, amount, random)
         ok = true
     end
     if ok then
+        local gilded = false
         local frame = GameGetFrameNum()
         math.randomseed(x + frame, y + frame)
         if math.random(1,15) == 10 then

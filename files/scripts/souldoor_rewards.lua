@@ -31,4 +31,7 @@ soul_spells = {
     { probability = 0.5, id = "MOLDOS_EXPEL_SOUL" },
     { probability = 0.6, id = "MOLDOS_SCALING_MANA", },
     { probability = 0.6, id = "MOLDOS_SCALING_RECHARGE", },
+    { probability = 0.4, id = "MOLDOS_SOUL_SPELL_WORM", },
+    { probability = 0.4, id = "MOLDOS_SOUL_SPELL_MAGE", },
+    { probability = 0.4, id = "MOLDOS_SOUL_SPELL_SLIMES", },
 }

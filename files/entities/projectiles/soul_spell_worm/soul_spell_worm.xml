@@ -1,0 +1,14 @@
+<Entity >
+
+	<InheritTransformComponent>
+    </InheritTransformComponent>
+	
+    <CellEaterComponent
+		eat_probability="90"
+        radius="16"
+		>
+    </CellEaterComponent>
+
+	<Base file="data/entities/verlet_chains/worm/verlet_worm.xml" />
+  
+</Entity>

@@ -1243,6 +1243,85 @@ local new_actions = {
 			draw_actions( 1, true )
 		end,
 	},
+	{
+		id          = "SOUL_SPELL_WORM",
+		name 		= "$action_moldos_soul_spell_worm",
+		description = "$actiondesc_moldos_soul_spell_worm",
+		sprite 		= "mods/souls/files/spell_icons/wormhole.png",
+		related_extra_entities = { "mods/souls/files/entities/projectiles/soul_spell_worm/soul_spell_worm.xml" },
+		type 		= ACTION_TYPE_MODIFIER,
+		inject_after = "MANA_REDUCE",
+		spawn_level                       = "6",
+		spawn_probability                 = "0",
+		spawn_level_table = { 6, 10, },
+		spawn_probability_table = { 0.5, 0.5 },
+		price = 200,
+		mana = 100,
+		action 		= function()
+			dofile_once("mods/souls/files/scripts/souls.lua")
+			if reflecting then return end
+			if GetSoulsCount("worm") > 0 then
+				c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_spell_worm/soul_spell_worm.xml,"
+				RemoveSoul("worm")
+			else
+				GamePrint("You do not have enough souls for this.")
+			end
+			draw_actions( 1, true )
+		end,
+	},
+	{
+		id          = "SOUL_SPELL_MAGE",
+		name 		= "$action_moldos_soul_spell_mage",
+		description = "$actiondesc_moldos_soul_spell_mage",
+		sprite 		= "mods/souls/files/spell_icons/mage_gun.png",
+		related_extra_entities = { "mods/souls/files/entities/projectiles/soul_spell_mage/soul_spell_mage.xml" },
+		type 		= ACTION_TYPE_MODIFIER,
+		inject_after = "MANA_REDUCE",
+		spawn_level                       = "6",
+		spawn_probability                 = "0",
+		spawn_level_table = { 6, 10, },
+		spawn_probability_table = { 0.5, 0.5 },
+		price = 200,
+		mana = 150,
+		action 		= function()
+			dofile_once("mods/souls/files/scripts/souls.lua")
+			if reflecting then return end
+			if GetSoulsCount("mage") > 0 then
+				c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_spell_mage/soul_spell_mage.xml,"
+				c.game_effect_entities = c.game_effect_entities .. "data/entities/misc/effect_apply_bloody.xml,"
+				RemoveSoul("mage")
+			else
+				GamePrint("You do not have enough souls for this.")
+			end
+			draw_actions( 1, true )
+		end,
+	},
+	{
+		id          = "SOUL_SPELL_SLIMES",
+		name 		= "$action_moldos_soul_spell_slimes",
+		description = "$actiondesc_moldos_soul_spell_slimes",
+		sprite 		= "mods/souls/files/spell_icons/slime_safeguard.png",
+		related_extra_entities = { "" },
+		type 		= ACTION_TYPE_MODIFIER,
+		inject_after = "MANA_REDUCE",
+		spawn_level                       = "6",
+		spawn_probability                 = "0",
+		spawn_level_table = { 6, 10, },
+		spawn_probability_table = { 0.5, 0.5 },
+		price = 200,
+		mana = 50,
+		action 		= function()
+			dofile_once("mods/souls/files/scripts/souls.lua")
+			if reflecting then return end
+			if GetSoulsCount("slimes") > 0 then
+				c.game_effect_entities = c.game_effect_entities .. "data/entities/misc/effect_healhurt.xml,"
+				RemoveSoul("slimes")
+			else
+				GamePrint("You do not have enough souls for this.")
+			end
+			draw_actions( 1, true )
+		end,
+	},
 }
 
 local actions_to_insert = {}
@@ -1269,6 +1348,9 @@ local action_ids_in_order = {
 	"SOUL_CLOAK",
 	"SOUL_RAGE",
 	"SOUL_TINKER",
+	"SOUL_SPELL_MAGE",
+	"SOUL_SPELL_SLIMES",
+	"SOUL_SPELL_WORM",
 	"SCALING_DAMAGE",
 	"SCALING_SPEED",
 	"SCALING_MANA",

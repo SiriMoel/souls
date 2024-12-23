@@ -7,7 +7,9 @@ local x, y = EntityGetTransform(altar)
 
 local radius = 120
 
-math.randomseed(x+GameGetFrameNum(), y+tonumber(StatsGetValue("world_seed")))
+local frame = GameGetFrameNum()
+
+math.randomseed(x+frame, y+tonumber(StatsGetValue("world_seed")))
 
 local targets = EntityGetInRadiusWithTag(x, y, radius, "card_action")
 
@@ -70,8 +72,7 @@ if #spell_projectiles >= 5 then
         EntityKill(v)
     end
 
-    local rnd = random_create(x+GameGetFrameNum(), y+tonumber(StatsGetValue("world_seed")))
-    local which = pick_random_from_table_weighted(rnd, soul_spells) or { id = "LIGHT_BULLET" }
+    local which = PickRandomFromTableWeighted(x + frame + tonumber(StatsGetValue("world_seed")), y + frame + tonumber(StatsGetValue("world_seed")), soul_spells) or { id = "LIGHT_BULLET" }
     CreateItemActionEntity(which.id, x, y)
 
     spell_projectiles = {}

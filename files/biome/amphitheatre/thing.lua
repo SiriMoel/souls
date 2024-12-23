@@ -12,8 +12,7 @@ local targets = EntityGetInRadiusWithTag(x, y, 1000, "souls_amphitheatre_enemy")
 if #targets < 1 and GameHasFlagRun("souls.amphitheatre_active") then
     EntitySetComponentsWithTagEnabled(this, "amphitheatre_interact", true)
     GamePrintImportant("WAVE DEFEATED!", "The next wave will be harder.", "mods/souls/files/souls_decoration.png")
-    local rnd = random_create(x+GameGetFrameNum(), y+tonumber(StatsGetValue("world_seed")))
-    local which = pick_random_from_table_weighted(rnd, soul_spells) or { id = "LIGHT_BULLET" }
+    local which = PickRandomFromTableWeighted(x + frame + tonumber(StatsGetValue("world_seed")), y + frame + tonumber(StatsGetValue("world_seed")), soul_spells) or { id = "LIGHT_BULLET" }
     CreateItemActionEntity(which.id, x, y)
     GameRemoveFlagRun("souls.amphitheatre_active")
 end

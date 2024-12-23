@@ -119,7 +119,7 @@ if GlobalsGetValue("souls.soul_emulator_state") == "5" then -- near 20 charmed c
     end
 end
 
-if GlobalsGetValue("souls.soul_emulator_state") == "6" then -- fill with true soul blood and start a wave at the amphitheatre
+if GlobalsGetValue("souls.soul_emulator_state") == "6" then -- start a wave at the amphitheatre
     if GameHasFlagRun("souls.amphitheatre_active") and #EntityGetInRadiusWithTag(x, y, 200, "souls_amphitheatre_enemy") > 0 then
         GlobalsSetValue("souls.soul_emulator_state", "7")
         local comp_uiinfo = EntityGetFirstComponentIncludingDisabled(this, "UIInfoComponent")

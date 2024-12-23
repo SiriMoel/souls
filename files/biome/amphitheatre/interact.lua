@@ -48,6 +48,15 @@ function interacting()
             script_death = "mods/souls/files/scripts/reap.lua",
             execute_every_n_frame = -1,
         })
+        local comp_genome = EntityGetFirstComponentIncludingDisabled(enemy, "GenomeDataComponent")
+        if comp_genome ~= nil then
+            local herd_id_number = ComponentGetValue2(comp_genome, "herd_id")
+            local herd_id = HerdIdToString(herd_id_number)
+            if herd_id ~= "boss" then
+                herd_id = "mage"
+                ComponentSetValue2(comp_genome, "herd_id", StringToHerdId(herd_id))
+            end
+        end
     end
     
     GameAddFlagRun("souls.amphitheatre_active")

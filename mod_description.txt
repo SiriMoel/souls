@@ -27,6 +27,7 @@ Cross-mod interactions with:
 [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3316355233]Glimmers Expanded[/url][/b] 1 new spell
 [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3373139694]Pharmacokinetics[/url][/b] new npc, new plant
 [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3338209310]Meta Leveling[/url][/b] new reward & new meta progression
+[b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3242942696]Disable Auto Pickup of Collectibles[/url][/b] Soul Refresher auto pickup disabled
 Souls should be compatible with all content mods, except Tales of Kupoli.
 
 Expansions:

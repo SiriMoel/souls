@@ -31,6 +31,20 @@ local a = {
 			EntityRemoveTag(entity_who_picked, "souls_reap_bullet")
 		end
 	},
+	{
+		id = "REAP_BETTER",
+		ui_name = "$perk_name_moldos_reap_better",
+		ui_description = "$perk_desc_moldos_reap_better",
+		ui_icon = "mods/souls/files/perk_icons/reap_better.png",
+		perk_icon = "mods/souls/files/perk_icons/reap_better_inworld.png",
+		stackable = STACKABLE_NO,
+		func = function (entity_perk_item, entity_who_picked, item_name)
+			EntityAddTag(entity_who_picked, "souls_reap_better")
+		end,
+		func_remove = function(entity_who_picked)
+			EntityRemoveTag(entity_who_picked, "souls_reap_better")
+		end
+	},
 }
 
 for i,v in ipairs(a) do

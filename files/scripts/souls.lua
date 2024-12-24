@@ -370,6 +370,12 @@ function ReapSoul(entity, amount, random)
             end
         end
         if not canreap then return end
+        if EntityHasTag(player, "souls_reap_better") then
+            if math.random(1, 4) == 2 then
+                amount = amount * 2
+                GamePrint("Reaped efficiently!")
+            end
+        end
         if tobool(GlobalsGetValue("souls.collect_soul_from_entity", "true")) then
             for i=1,amount do
                 local entity_soul = EntityLoad("mods/souls/files/entities/souls/_soul.xml", x + math.random(-2, 2), y + math.random(-2, 2))

@@ -6,7 +6,7 @@ Spells added by this mod have different effects depending on what type of soul y
 [img]https://i.imgur.com/z1SIIJF.png[/img]
 
 [b]38[/b] spells
-[b]2[/b] perks
+[b]3[/b] perks
 [b]6+[/b] wands and items
 [b]5[/b] enemies
 [b]4[/b] structures

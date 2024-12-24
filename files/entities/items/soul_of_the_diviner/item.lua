@@ -80,7 +80,7 @@ if GlobalsGetValue("souls.soul_emulator_state") == "4" then -- 3 soul projectile
             GamePlaySound("data/audio/Desktop/misc.bank", "misc/chest_dark_open", x, y)
             GamePlaySound("data/audio/Desktop/misc.bank", "misc/beam_from_sky_kick", x, y)
             GamePrintImportant("SOUL ALTERED!", "The soul is hopeful.", "mods/souls/files/souls_decoration.png")
-            -- EFFECT!!!
+            EntityAddTag(this, "souls_item_take_more_damage")
         end
     end
 end
@@ -93,7 +93,7 @@ if GlobalsGetValue("souls.soul_emulator_state") == "5" then -- near 20 charmed c
             amount = amount + 1
         end
     end
-    if amount >= 20 then
+    if amount >= 10 then
         GlobalsSetValue("souls.soul_emulator_state", "6")
         local comp_uiinfo = EntityGetFirstComponentIncludingDisabled(this, "UIInfoComponent")
         if comp_uiinfo ~= nil then
@@ -148,5 +148,6 @@ if GlobalsGetValue("souls.soul_emulator_state") == "6" then -- start a wave at t
             end
         end
         EntityRemoveTag(this, "souls_deny_reap")
+        EntityRemoveTag(this, "souls_item_take_more_damage")
     end
 end

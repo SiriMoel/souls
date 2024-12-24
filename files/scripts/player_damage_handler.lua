@@ -5,6 +5,12 @@ function damage_about_to_be_received(damage, x, y, entity_thats_responsible, cri
     local player = GetUpdatedEntityID()
     local helditem = HeldItem(player)
     if damage > 0 then
+        for i,v in ipairs(GameGetAllInventoryItems(player) or {}) do
+            if EntityHasTag(v, "souls_item_take_more_damage") then
+                damage = damage * 1.5
+                break
+            end
+        end
         local soul_emulator_state = GlobalsGetValue("souls.soul_emulator_state", "0")
         if soul_emulator_state == "1" then
             local comp_damagemodel = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent") or 0

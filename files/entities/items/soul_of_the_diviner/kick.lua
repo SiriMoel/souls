@@ -28,6 +28,7 @@ function kick(entity_who_kicked)
         GamePrintImportant("SOUL ASCENDED!", "You are divine.", "mods/souls/files/souls_decoration.png")
         AddFlagPersistent("souls_sotd_quest_done")
         EntityRemoveTag(this, "souls_deny_reap")
+        EntityRemoveTag(this, "souls_item_take_more_damage")
         local comps = EntityGetAllComponents(this)
         for i,comp in ipairs(comps) do
             if ComponentHasTag(comp, "sotd_debuff") then

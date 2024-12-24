@@ -14,6 +14,8 @@
 		materials_that_damage="acid"
 		blood_sprite_directional=""
 		blood_sprite_large=""
+		materials_that_damage="souls_soulaway" 
+		materials_how_much_damage="1.0"
 	>
 		<damage_multipliers
 			melee="1.0"
@@ -167,5 +169,11 @@
 	    script_death="data/scripts/items/drop_money.lua"
 	    remove_after_executed="1" >
 	</LuaComponent>
+
+	<!-- only hurt by soul magic -->	
+	<LuaComponent
+		script_damage_about_to_be_received="mods/souls/files/entities/animals/soul_eye/damage_handler.lua"
+		script_damage_received="mods/souls/files/entities/animals/soul_eye/damage_handler.lua"
+   ></LuaComponent>
 
 </Entity>

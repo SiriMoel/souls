@@ -20,6 +20,8 @@
 		materials_that_damage="acid"
 		blood_sprite_directional=""
 		blood_sprite_large=""
+		materials_that_damage="souls_soulaway" 
+		materials_how_much_damage="1.0"
 	>
 		<damage_multipliers
 			healing="1.0"

@@ -29,11 +29,13 @@
 			fire_probability_of_ignition="0" 
 			ragdoll_fx_forced="DISINTEGRATED"
 			ragdoll_material="rock_static_glow"
-			blood_material="plasma_fading"
-			blood_spray_material="plasma_fading"
+			blood_material="souls_soul_particles"
+			blood_spray_material="souls_soul_particles"
 			blood_sprite_directional=""
 			blood_sprite_large=""
 			air_needed="0"
+			materials_that_damage="souls_soulaway" 
+			materials_how_much_damage="1.0"
 			>
 			<damage_multipliers
 				projectile="0.8"

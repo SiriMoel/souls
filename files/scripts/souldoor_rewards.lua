@@ -34,4 +34,5 @@ soul_spells = {
     { probability = 0.4, id = "MOLDOS_SOUL_SPELL_WORM", },
     { probability = 0.4, id = "MOLDOS_SOUL_SPELL_MAGE", },
     { probability = 0.4, id = "MOLDOS_SOUL_SPELL_SLIMES", },
+    { probability = 0.3, id = "MOLDOS_DIVIDE_BY_SOULS", },
 }

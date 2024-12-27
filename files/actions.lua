@@ -1325,6 +1325,86 @@ local new_actions = {
 			draw_actions( 1, true )
 		end,
 	},
+	{
+		id          = "DIVIDE_BY_SOULS",
+		name 		= "$action_moldos_divide_by_souls",
+		description = "$actiondesc_moldos_divide_by_souls",
+		sprite 		= "mods/souls/files/spell_icons/divide_by_souls.png",
+		spawn_requires_flag = "card_unlocked_musicbox",
+		related_extra_entities = { "" },
+		type 		= ACTION_TYPE_OTHER,
+		inject_after = "MANA_REDUCE",
+		spawn_level                       = "6",
+		spawn_probability                 = "0",
+		spawn_level_table = { 5, 6, 10, },
+		spawn_probability_table = { 0.1, 0.1, 0.6 },
+		price = 200,
+		mana = 45,
+		action 		= function()
+			dofile_once("mods/souls/files/scripts/souls.lua")
+			if reflecting then return end
+			if (GetSoulsCount("all") - GetSoulsCount("boss")) > 0 then
+				local count = math.ceil(GetSoulsCount("all"))
+				if count > 15 then
+					count = 15
+				end
+				for i=1,count do
+					RemoveSoul(GetRandomSoul(false))
+				end
+				local data = {}
+				local iter = iteration or 1
+				local iter_max = iteration or 1
+				
+				if ( #deck > 0 ) then
+					data = deck[iter] or nil
+				else
+					data = nil
+				end
+
+				if ( iter >= 4 ) then
+					count = 1
+				end
+				local rec = check_recursion( data, recursion_level )
+				if ( data ~= nil ) and ( rec > -1 ) and ( ( data.uses_remaining == nil ) or ( data.uses_remaining ~= 0 ) ) then
+					local firerate = c.fire_rate_wait
+					local reload = current_reload_time
+					for i=1,count do
+						if ( i == 1 ) then
+								dont_draw_actions = true
+						end	
+						local imax = data.action( rec, iter + 1 )
+						dont_draw_actions = false
+						if (imax ~= nil) then
+							iter_max = imax
+						end
+					end
+					if ( data.uses_remaining ~= nil ) and ( data.uses_remaining > 0 ) then
+						data.uses_remaining = data.uses_remaining - 1
+
+						local reduce_uses = ActionUsesRemainingChanged( data.inventoryitem_id, data.uses_remaining )
+						if not reduce_uses then
+							data.uses_remaining = data.uses_remaining + 1 -- cancel the reduction
+						end
+					end
+					if (iter == 1) then
+						c.fire_rate_wait = firerate
+						current_reload_time = reload
+						for i=1,iter_max do
+							if (#deck > 0) then
+								local d = deck[1]
+								table.insert( discarded, d )
+								table.remove( deck, 1 )
+							end
+						end
+					end
+				end
+				c.pattern_degrees = 5
+				return iter_max
+			else
+				GamePrint("You do not have enough souls for this.")
+			end
+		end,
+	},
 }
 
 local actions_to_insert = {}
@@ -1368,6 +1448,7 @@ local action_ids_in_order = {
 	"EAT_WAND_FOR_SOULS",
 	"WEAKENING_HALO",
 	"REAP_TELE",
+	"DIVIDE_BY_SOULS",
 }
 
 for i,id in ipairs(action_ids_in_order) do

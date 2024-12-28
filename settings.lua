@@ -52,6 +52,13 @@ mod_settings = {
         scope = MOD_SETTING_SCOPE_RUNTIME,
     },
     {
+        id = "button_down_gui",
+        ui_name = "Press down to view full soul counts",
+        ui_description = "If you want to be able to view your full soul counts (>99) by pressing down.",
+        value_default = true,
+        scope = MOD_SETTING_SCOPE_RUNTIME,
+    },
+    {
         id = "starting_souls",
         ui_name = "Start with souls",
         ui_description = "How many souls you want to start with (this is kinda cheaty).",

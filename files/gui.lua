@@ -35,7 +35,10 @@ end
 
 function GuiRender()
     local gui = GuiCreate()
+    
     GuiStartFrame(gui)
+    
+    local screen_width, screen_height = GuiGetScreenDimensions(gui)
 
     -- Soul Emulator stuff
     if GameHasFlagRun("souls_soul_emulated") then
@@ -61,7 +64,7 @@ function GuiRender()
     if month == 12 and day <= 25 then
         christmas = true
     end
- 
+
     -- Render soul icons and their counts
     GuiLayoutBeginHorizontal(gui, 65, 94)
         for _, soul in ipairs(soul_types) do
@@ -88,6 +91,32 @@ function GuiRender()
             GuiLayoutEnd(gui)
         end
     GuiLayoutEnd(gui)
+
+    -- Press down to view full soul counts
+    local player = GetPlayer()
+    local comp_controls = EntityGetFirstComponentIncludingDisabled(player, "ControlsComponent")
+    if comp_controls ~= nil and tobool(GlobalsGetValue("souls.button_down_gui", "true")) then
+        if ComponentGetValue2(comp_controls, "mButtonDownDown") then
+            local frame = tonumber(GlobalsGetValue("souls.button_down_down", "0"))
+            frame = frame + 1
+            GlobalsSetValue("souls.button_down_down", tostring(frame))
+            local centre_x, centre_y = screen_width / 2, screen_height / 2
+            local inc = (math.pi * 2) / #soul_types
+            for i,soul in ipairs(soul_types) do
+                xx = centre_x + math.cos(inc * i) * (70 * (math.min(frame, 20) / 20))
+                yy = centre_y + math.sin(inc * i) * (70 * (math.min(frame, 20) / 20))
+                GuiImage(gui, gui_id, xx, yy, "mods/souls/files/entities/souls/sprites/soul_" .. soul .. ".png", 1, 0.75, 0.75)
+                local count, inf = GetSoulsCount(soul) --tostring(math.min(soulcounts[soul], 99))
+                local t = tostring(math.min(count, 9999))
+                if inf then
+                    t = "∞"
+                end
+                GuiText(gui, xx + 8, yy, t .. " ")
+            end
+        else
+            GlobalsSetValue("souls.button_down_down", "0")
+        end
+    end
  
     GuiDestroy(gui)
 end

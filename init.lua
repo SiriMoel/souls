@@ -219,6 +219,7 @@ function OnPlayerSpawned(player)
     GlobalsSetValue("souls.say_soul", tostring(ModSettingGet("souls.say_soul")))
     GlobalsSetValue("souls.say_consumed_soul", tostring(ModSettingGet("souls.say_consumed_soul")))
     GlobalsSetValue("souls.enable_soul_shops", tostring(ModSettingGet("souls.enable_soul_shops")))
+    GlobalsSetValue("souls.button_down_gui", tostring(ModSettingGet("souls.button_down_gui")))
 
     GlobalsSetValue("souls.amphitheatre_enemy_count", "10")
 
@@ -264,10 +265,12 @@ if translations ~= nil then
     ModTextFileSetContent("data/translations/common.csv", translations)
 end
 
-function OnModSettingsChanged()
-    GlobalsSetValue("souls.collect_soul_from_entity", tostring(ModSettingGet("souls.collect_soul_from_entity")))
-    GlobalsSetValue("souls.say_soul", tostring(ModSettingGet("souls.say_soul")))
-    GlobalsSetValue("souls.say_consumed_soul", tostring(ModSettingGet("souls.say_consumed_soul")))
-    GlobalsSetValue("souls.enable_soul_shops", tostring(ModSettingGet("souls.enable_soul_shops")))
-    --RenderSouls()
+function OnPausedChanged(is_paused, is_inventory_pause)
+    if is_paused then
+        GlobalsSetValue("souls.collect_soul_from_entity", tostring(ModSettingGet("souls.collect_soul_from_entity")))
+        GlobalsSetValue("souls.say_soul", tostring(ModSettingGet("souls.say_soul")))
+        GlobalsSetValue("souls.say_consumed_soul", tostring(ModSettingGet("souls.say_consumed_soul")))
+        GlobalsSetValue("souls.enable_soul_shops", tostring(ModSettingGet("souls.enable_soul_shops")))
+        GlobalsSetValue("souls.button_down_gui", tostring(ModSettingGet("souls.button_down_gui")))
+    end
 end

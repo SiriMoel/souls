@@ -23,12 +23,13 @@ if root == player then
             ComponentSetValue2(comp_damagemodel, "hp", hp)
         end
     else
-        if GetSoulsCount("all") > 0 then
+        if (GetSoulsCount("all") - GetSoulsCount("boss")) > 0 then
             hp = hp * 1.03
             if hp >= hp_max then
                 hp = hp_max
             else
-                RemoveRandomSouls(1)
+                local soul = GetRandomSoul(false)
+                RemoveSoul(soul)
             end
             ComponentSetValue2(comp_damagemodel, "hp", hp)
         end

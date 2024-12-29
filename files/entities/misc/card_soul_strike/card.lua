@@ -26,7 +26,7 @@ if ComponentGetValue2(comp_controls, "mButtonDownRightClick") == true and GameGe
             GamePrint("You do not have enough souls for this.")
         end
     else
-        if GetSoulsCount("all") > 0 then
+        if (GetSoulsCount("all") - GetSoulsCount("boss")) > 0 then
             soul_strike_amount = soul_strike_amount + 1
             GamePrint("Soul consumed! Current count: " .. soul_strike_amount)
             ComponentSetValue2(comp_soulstrike, "value_int", soul_strike_amount)

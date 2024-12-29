@@ -18,7 +18,7 @@ if root == player then
             LoadGameEffectEntityTo(player, "mods/souls/files/entities/misc/card_soul_cloak/buff.xml")
         end
     else
-        if GetSoulsCount("all") > 0 then
+        if (GetSoulsCount("all") - GetSoulsCount("boss")) > 0 then
             RemoveRandomSouls(1)
             LoadGameEffectEntityTo(player, "mods/souls/files/entities/misc/card_soul_cloak/buff.xml")
         end

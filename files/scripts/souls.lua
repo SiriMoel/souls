@@ -137,17 +137,13 @@ end
 function GetRandomSoul(includeboss)
     local whichtype = ""
     local whichtypes = {}
-    for i,v in ipairs(soul_types) do
-        if GetSoulsCount(v) > 0 then
-            if includeboss == false then
-                if whichtype == "boss" then
-                    
-                else
-                    table.insert(whichtypes, v)
-                end
-            else
-                table.insert(whichtypes, v)
+    for i,soul in ipairs(soul_types) do
+        if not includeboss then
+            if soul ~= "boss" then
+                table.insert(whichtypes, soul)
             end
+        else
+            table.insert(whichtypes, soul)
         end
     end
     if #whichtypes > 0 then

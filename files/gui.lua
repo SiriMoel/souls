@@ -96,16 +96,33 @@ function GuiRender()
     local player = GetPlayer()
     local comp_controls = EntityGetFirstComponentIncludingDisabled(player, "ControlsComponent")
     if comp_controls ~= nil and tobool(GlobalsGetValue("souls.button_down_gui", "true")) then
+        local frame = tonumber(GlobalsGetValue("souls.button_down_down", "0"))
         if ComponentGetValue2(comp_controls, "mButtonDownDown") then
-            local frame = tonumber(GlobalsGetValue("souls.button_down_down", "0"))
-            frame = frame + 1
+            frame = math.min(frame + 1, 15)
             GlobalsSetValue("souls.button_down_down", tostring(frame))
+        else
+            frame = math.max(frame - 1, 0)
+            GlobalsSetValue("souls.button_down_down", tostring(frame))
+        end
+        if frame > 0 then
             local centre_x, centre_y = screen_width / 2, screen_height / 2
             local inc = (math.pi * 2) / #soul_types
             for i,soul in ipairs(soul_types) do
-                xx = centre_x + math.cos(inc * i) * (70 * (math.min(frame, 20) / 20))
-                yy = centre_y + math.sin(inc * i) * (70 * (math.min(frame, 20) / 20))
-                GuiImage(gui, gui_id, xx, yy, "mods/souls/files/entities/souls/sprites/soul_" .. soul .. ".png", 1, 0.75, 0.75)
+                xx = centre_x + math.cos(inc * i) * (70 * (frame / 15))
+                yy = centre_y + math.sin(inc * i) * (70 * (frame / 15))
+                if HasFlagPersistent("souls_sotd_quest_done") and soul == "boss" then
+                    GuiZSetForNextWidget(gui, 99998)
+                    GuiImage(gui, gui_id, xx, yy - 2.5, "mods/souls/files/gui/soul_crown.png", 1, 0.75, 0.75)
+                    GuiZSetForNextWidget(gui, 99999)
+                    GuiImage(gui, gui_id, xx, yy, "mods/souls/files/entities/souls/sprites/soul_" .. soul .. ".png", 1, 0.75, 0.75)
+                elseif christmas then
+                    GuiZSetForNextWidget(gui, 99998)
+                    GuiImage(gui, gui_id, xx, yy - 2.5, "mods/souls/files/gui/soul_santa_hat.png", 1, 0.75, 0.75)
+                    GuiZSetForNextWidget(gui, 99999)
+                    GuiImage(gui, gui_id, xx, yy, "mods/souls/files/entities/souls/sprites/soul_" .. soul .. ".png", 1, 0.75, 0.75)
+                else
+                    GuiImage(gui, gui_id, xx, yy, "mods/souls/files/entities/souls/sprites/soul_" .. soul .. ".png", 1, 0.75, 0.75)
+                end
                 local count, inf = GetSoulsCount(soul) --tostring(math.min(soulcounts[soul], 99))
                 local t = tostring(math.min(count, 9999))
                 if inf then
@@ -113,10 +130,8 @@ function GuiRender()
                 end
                 GuiText(gui, xx + 8, yy, t .. " ")
             end
-        else
-            GlobalsSetValue("souls.button_down_down", "0")
         end
     end
- 
+
     GuiDestroy(gui)
 end

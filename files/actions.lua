@@ -1405,7 +1405,7 @@ local new_actions = {
 			end
 		end,
 	},
-	{
+	--[[{
 		id          = "VOID_LASH",
 		name 		= "$action_moldos_void_lash",
 		description = "$actiondesc_moldos_void_lash",
@@ -1421,11 +1421,11 @@ local new_actions = {
 		action 		= function()
 			dofile_once("mods/souls/files/scripts/souls.lua")
 			if reflecting then return end
-			local count = GetSoulsConsumed()
-			c.damage_projectile_add = c.damage_projectile_add + (0.015 * count)
+			local count = GetSoulsConsumed() -- will need to uncomment this in souls.lua
+			c.damage_projectile_add = c.damage_projectile_add + (math.min(0.015 * count, 2))
 			draw_actions( 1, true )
 		end,
-	},
+	},]]
 }
 
 local actions_to_insert = {}
@@ -1459,7 +1459,7 @@ local action_ids_in_order = {
 	"SCALING_SPEED",
 	"SCALING_MANA",
 	"SCALING_RECHARGE",
-	"VOID_LASH",
+	--"VOID_LASH",
 	"UPGRADE_TOME",
 	"TOME_SHOT",
 	"TOME_LAUNCHER",

@@ -46,11 +46,11 @@ function SoulsInit()
             value_int=0,
         })
     end
-    EntityAddComponent2(player, "VariableStorageComponent", {
+    --[[EntityAddComponent2(player, "VariableStorageComponent", {
         _tags="souls_used",
         name="souls_used",
         value_int=0,
-    })
+    })]]
 end
 
 -- Use this when printing the name of souls
@@ -119,12 +119,12 @@ function GetSoulsCount(type)
     return count, inf
 end
 
-function GetSoulsConsumed()
+--[[function GetSoulsConsumed()
     local player = GetPlayer()
     local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "souls_used") or 0
     local amt = ComponentGetValue2(comp, "value_int")
     return amt
-end
+end]]
 
 function GetSoulsCountTrue(type) -- probably unecessary
     local player = GetPlayer()

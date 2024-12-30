@@ -8,9 +8,9 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
     math.randomseed(x, y+GameGetFrameNum())
 
     for i=1,1 do
-        AddSouls("gilded", 1)
+        AddSouls("souls_void", 1)
         if tobool(GlobalsGetValue("souls.say_soul", "true")) == true then
-            GamePrint("You have acquired a " .. SoulNameCheck("gilded") ..  " soul!")
+            GamePrint("You have acquired a " .. SoulNameCheck("souls_void") ..  " soul!")
         end
     end
 

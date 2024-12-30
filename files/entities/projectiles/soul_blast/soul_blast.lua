@@ -75,9 +75,9 @@ else
 	-- friendly
 
 
-	-- gilded
-	if soul == "gilded" then
-		ComponentSetValue2(comp_particles, "emitted_material_name", "gold")
+	-- souls_void
+	if soul == "souls_void" then
+		ComponentSetValue2(comp_particles, "emitted_material_name", "souls_soul_particles")
 
 		projdamage = projdamage + 0.5
 		expdamage = expdamage * 1.2

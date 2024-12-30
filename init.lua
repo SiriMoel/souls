@@ -229,7 +229,7 @@ function OnPlayerSpawned(player)
     --GlobalsSetValue("souls.soul_emulator_state", "3")
     --EntityLoad("data/entities/animals/moldos_boss_soul.xml", 0, -100)
     --CreateItemActionEntity("MOLDOS_UPGRADE_TOME", px, py)
-    --for i=1,3 do EntityLoad("data/entities/animals/moldos_puppet_master.xml", 0, -100) end
+    --for i=1,3 do EntityLoad("data/entities/animals/moldos_soul_rogue.xml", 0, -100) end
     --for i=1,300 do AddSouls(GetRandomSoulType(true), 10) end
     --EntityLoad("mods/souls/files/entities/items/_soulcrystals/alchemist.xml", px, py)
     --GenerateSoulShopItem(px, py)
@@ -237,7 +237,7 @@ function OnPlayerSpawned(player)
 
     for i=1,tonumber(ModSettingGet("souls.starting_souls")) do
         local which = soul_types[math.random(1,#soul_types)]
-        if which == "gilded" then
+        if which == "souls_void" then
             which = "orcs"
         end
         if which == "boss" then
@@ -254,7 +254,7 @@ function OnPlayerSpawned(player)
     GameAddFlagRun("souls_init")
 end
 
---translations
+-- translations
 local translations = ModTextFileGetContent("data/translations/common.csv")
 if translations ~= nil then
     while translations:find("\r\n\r\n") do
@@ -264,6 +264,9 @@ if translations ~= nil then
     translations = translations .. new_translations
     ModTextFileSetContent("data/translations/common.csv", translations)
 end
+
+-- genomes
+dofile_once("mods/souls/files/scripts/genomes.lua")
 
 function OnPausedChanged(is_paused, is_inventory_pause)
     if is_paused then

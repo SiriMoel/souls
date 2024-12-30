@@ -137,7 +137,7 @@
     ></PhysicsShapeComponent> <!--image_file="mods/souls/files/entities/animals/soul_angry/body.png"-->
      
     <GenomeDataComponent 
-		herd_id="slimes" >
+		herd_id="souls_void" >
 	</GenomeDataComponent>
 
     <AudioComponent 

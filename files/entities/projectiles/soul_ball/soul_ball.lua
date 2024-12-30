@@ -80,10 +80,10 @@ else
 
     --friendly
 
-    --gilded
-	if soul == "gilded" then
+    --souls_void
+	if soul == "souls_void" then
 		edit_component(entity, "ParticleEmitterComponent", function(comp3,vars)
-			ComponentSetValue2(comp_particles, "emitted_material_name", "gold")
+			ComponentSetValue2(comp_particles, "emitted_material_name", "souls_soul_particles")
 		end)
 
 		projdamage = projdamage + 0.2

@@ -1,4 +1,4 @@
-<Entity tags="souls_soul,soul_gilded">
+<Entity tags="souls_soul,soul_boss">
 
     <SimplePhysicsComponent
         _tags="enabled_in_world" 

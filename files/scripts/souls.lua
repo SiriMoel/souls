@@ -4,7 +4,6 @@ soul_types = {
     "bat",
     "fly",
     "friendly",
-    "gilded",
     "mage",
     "orcs",
     "slimes",
@@ -13,6 +12,7 @@ soul_types = {
     "worm",
     "fungus",
     "ghost",
+    "souls_void",
     "boss",
 }
 
@@ -21,7 +21,6 @@ if ModIsEnabled("Apotheosis") then
         "bat",
         "fly",
         "friendly",
-        "gilded",
         "mage",
         "orcs",
         "slimes",
@@ -30,6 +29,7 @@ if ModIsEnabled("Apotheosis") then
         "worm",
         "fungus",
         "ghost",
+        "souls_void",
         "boss",
         "mage_corrupted",
         "ghost_whisp",
@@ -58,6 +58,9 @@ function SoulNameCheck(string)
     end
     if string == "orcs" then
         string = "hiisi"
+    end
+    if string == "souls_void" then
+        string = "voidborn"
     end
     if string == "0" then
         string = "any"
@@ -138,12 +141,14 @@ function GetRandomSoul(includeboss)
     local whichtype = ""
     local whichtypes = {}
     for i,soul in ipairs(soul_types) do
-        if not includeboss then
-            if soul ~= "boss" then
+        if GetSoulsCount(soul) > 0 then
+            if not includeboss then
+                if soul ~= "boss" then
+                    table.insert(whichtypes, soul)
+                end
+            else
                 table.insert(whichtypes, soul)
             end
-        else
-            table.insert(whichtypes, soul)
         end
     end
     if #whichtypes > 0 then
@@ -224,14 +229,14 @@ function GetRandomSoulType(includeboss)
 end
 
 -- Adds random souls
-function AddRandomSouls(amount, includegilded)
+function AddRandomSouls(amount, includevoid)
     for i=1,amount do
         local type = ""
-        if includegilded then
+        if includevoid then
             type = soul_types[math.random(1,soultypes)]
         else
             type = soul_types[math.random(1,soultypes)]
-            if type == "gilded" then
+            if type == "souls_void" then
                 type = "orcs"
             end
         end
@@ -279,7 +284,7 @@ function ConvertHerdIdToSoul(herd_id)
         herd_id = "friendly"
     end
     if herd_id == "apparition" then
-        herd_id = "friendly"
+        herd_id = "souls_void"
     end
     if herd_id == "mage_swapper" then
         herd_id = "mage"
@@ -339,17 +344,13 @@ function ReapSoul(entity, amount, random)
         ok = true
     end
     if ok then
-        local gilded = false
         local frame = GameGetFrameNum()
         math.randomseed(x + frame, y + frame)
-        if math.random(1,15) == 10 then
-            herd_id = "gilded"
-        end
         if random == true then
             herd_id = GetRandomSoulType(false)
-            if herd_id == "gilded" then
-                if math.random(1,15) == 10 then
-                    herd_id = "gilded"
+            if herd_id == "souls_void" then
+                if math.random(1,10) == 2 then
+                    herd_id = "souls_void"
                 else
                     herd_id = herd_id_old
                 end

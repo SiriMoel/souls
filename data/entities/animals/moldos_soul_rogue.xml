@@ -69,7 +69,7 @@
 		</PathFindingGridMarkerComponent>
 		
 		<GenomeDataComponent 
-			herd_id="slimes" >
+			herd_id="souls_void" >
 		</GenomeDataComponent>
 		
 		<CharacterPlatformingComponent 

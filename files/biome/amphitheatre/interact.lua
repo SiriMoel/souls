@@ -11,15 +11,19 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
         end
     end
     if #spells2 > 0 then return end]]
+    local this = GetUpdatedEntityID()
+    local x, y = EntityGetTransform(this)
+    local frame = GameGetFrameNum()
+    local player = GetPlayer()
+    
+    math.randomseed(x + frame, y + frame)
+
     if not (GetSoulsCount("all") - GetSoulsCount("boss") >= 10) then GamePrint("You do not have enough souls for this.") return end
     for i=1,10 do
         local soul = GetRandomSoul(false)
         RemoveSoul(soul)
     end
-    local this = GetUpdatedEntityID()
-    local x, y = EntityGetTransform(this)
-    local frame = GameGetFrameNum()
-    local player = GetPlayer()
+
 
     local enemy_count = tonumber(GlobalsGetValue("souls.amphitheatre_enemy_count"))
 
@@ -66,7 +70,11 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
             local herd_id_number = ComponentGetValue2(comp_genome, "herd_id")
             local herd_id = HerdIdToString(herd_id_number)
             if herd_id ~= "boss" then
-                herd_id = "mage"
+                if math.random(1, 7) == 2 then
+                    herd_id = "mage"
+                else
+                    herd_id = "souls_void"
+                end
                 ComponentSetValue2(comp_genome, "herd_id", StringToHerdId(herd_id))
             end
         end

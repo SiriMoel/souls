@@ -951,7 +951,7 @@ local new_actions = {
 				if soul == "friendly" then
 					c.damage_projectile_add = c.damage_projectile_add + 0.15
 				end
-				if soul == "gilded" then
+				if soul == "souls_void" then
 					c.damage_critical_chance = c.damage_critical_chance + 20
 					c.damage_critical_multiplier = c.damage_critical_multiplier + 0.5
 				end

@@ -46,6 +46,11 @@ function SoulsInit()
             value_int=0,
         })
     end
+    EntityAddComponent2(player, "VariableStorageComponent", {
+        _tags="souls_used",
+        name="souls_used",
+        value_int=0,
+    })
 end
 
 -- Use this when printing the name of souls
@@ -60,7 +65,7 @@ function SoulNameCheck(string)
         string = "hiisi"
     end
     if string == "souls_void" then
-        string = "voidborn"
+        string = "voidborne"
     end
     if string == "0" then
         string = "any"
@@ -83,9 +88,12 @@ end
 function RemoveSoul(type)
     local player = GetPlayer()
     local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. type) or 0
+    local comp2 = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "souls_used") or 0
     local amt = ComponentGetValue2(comp, "value_int")
+    local amt2 = ComponentGetValue2(comp2, "value_int")
     if amt == -1 then return end
     ComponentSetValue2(comp, "value_int", amt - 1)
+    ComponentSetValue2(comp2, "value_int", amt + 1)
 end
 
 -- Gets the amount of souls of a specific type, or "all" for all souls
@@ -109,6 +117,13 @@ function GetSoulsCount(type)
     end
     if count == -1 then return 99, true end
     return count, inf
+end
+
+function GetSoulsConsumed()
+    local player = GetPlayer()
+    local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "souls_used") or 0
+    local amt = ComponentGetValue2(comp, "value_int")
+    return amt
 end
 
 function GetSoulsCountTrue(type) -- probably unecessary

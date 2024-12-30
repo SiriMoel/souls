@@ -1405,6 +1405,27 @@ local new_actions = {
 			end
 		end,
 	},
+	{
+		id          = "VOID_LASH",
+		name 		= "$action_moldos_void_lash",
+		description = "$actiondesc_moldos_void_lash",
+		sprite 		= "mods/souls/files/spell_icons/void_lash.png",
+		type 		= ACTION_TYPE_MODIFIER,
+		inject_after = "MOLDOS_SOUL_SPEED",
+		spawn_level                       = "10",
+		spawn_probability                 = "0.1",
+		spawn_level_table = { 10, },
+		spawn_probability_table = { 0.1, },
+		price = 100,
+		mana = 30,
+		action 		= function()
+			dofile_once("mods/souls/files/scripts/souls.lua")
+			if reflecting then return end
+			local count = GetSoulsConsumed()
+			c.damage_projectile_add = c.damage_projectile_add + (0.015 * count)
+			draw_actions( 1, true )
+		end,
+	},
 }
 
 local actions_to_insert = {}
@@ -1438,6 +1459,7 @@ local action_ids_in_order = {
 	"SCALING_SPEED",
 	"SCALING_MANA",
 	"SCALING_RECHARGE",
+	"VOID_LASH",
 	"UPGRADE_TOME",
 	"TOME_SHOT",
 	"TOME_LAUNCHER",

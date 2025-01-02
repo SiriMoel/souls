@@ -1,4 +1,4 @@
-<Entity tags="boss,enemy,mortal,hittable,homing_target,teleportable_NOT,glue_NOT" name="$animal_moldos_boss_soul">
+<Entity tags="boss,enemy,mortal,hittable,homing_target,teleportable_NOT,glue_NOT,souls_boss_soul" name="$animal_moldos_boss_soul">
 		
 	<!--<GenomeDataComponent 
 		herd_id="apparition"
@@ -123,6 +123,11 @@
 		script_source_file="mods/souls/files/entities/animals/boss_soul/move.lua"
 		execute_every_n_frame="1"
 	></LuaComponent>
+
+	<!--<LuaComponent
+		script_source_file="mods/souls/files/entities/animals/boss_soul/shader_things.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>-->
 
 	<LuaComponent
 		script_source_file="mods/souls/files/entities/animals/boss_soul/disable_shield.lua"

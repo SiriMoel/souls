@@ -4,6 +4,8 @@ ModMaterialsFileAdd("mods/souls/files/materials.xml")
 dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("mods/souls/files/scripts/souls.lua")
 
+dofile_once("mods/pharmacokinetics/lib/injection.lua")
+
 -- appends
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/souls/files/actions.lua" )
 ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/souls/files/perks.lua" )
@@ -184,6 +186,12 @@ local scenes = {
 
 add_scene(scenes)
 
+-- shaders (ty nathan)
+inject(args.StringFile, modes.PREPEND, "data/shaders/post_final.frag", "// liquid distortion", "mods/souls/files/shaders/pre.frag")
+inject(args.StringFile, modes.PREPEND, "data/shaders/post_final.frag", "gl_FragColor", "mods/souls/files/shaders/post.frag")
+inject(args.StringFile, modes.PREPEND, "data/shaders/post_final.frag", "varying vec2 tex_coord_fogofwar;", "mods/souls/files/shaders/global.frag")
+GameSetPostFxParameter("souls_boss_soul_effect_amount", 0, 0, 0, 0)
+
 -- apotheosis
 if ModIsEnabled("Apotheosis") then
     --print("Souls - Apotheosis detected!")
@@ -246,9 +254,14 @@ function OnPlayerSpawned(player)
         AddSouls(which, 1)
     end
     
-    EntityAddComponent(player, "LuaComponent", {
+    EntityAddComponent2(player, "LuaComponent", {
         script_damage_about_to_be_received="mods/souls/files/scripts/player_damage_handler.lua",
         --script_damage_received="mods/souls/files/scripts/player_damage_handler.lua",
+    })
+
+    EntityAddComponent2(player, "LuaComponent", {
+        script_source_file="mods/souls/files/scripts/player_everyframe.lua",
+        execute_every_n_frame=1,
     })
 
     GameAddFlagRun("souls_init")

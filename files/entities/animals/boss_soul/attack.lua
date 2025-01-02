@@ -59,3 +59,11 @@ if #EntityGetWithTag("souls_boss_soul_field") < 1 then
     local vel_y = 0 - math.sin(0 - math.atan2(py - y, px - x)) * 2.0
     shoot_projectile(this, "mods/souls/files/entities/animals/boss_soul/soul_drain_field.xml", x, y, vel_x, vel_y)
 end
+
+for i=1,5 do
+    proj_x = x + math.random(-20, 20)
+    proj_y = y + math.random(-20, 20)
+    local vel_x = math.cos(0 - math.atan2(py - y, px - x)) * 200.0
+    local vel_y = 0 - math.sin(0 - math.atan2(py - y, px - x)) * 200.0
+    shoot_projectile(this, "mods/souls/files/entities/animals/boss_soul/proj_expel_soul_slow.xml", proj_x, proj_y, vel_x, vel_y)
+end

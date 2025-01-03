@@ -9,6 +9,9 @@ function item_pickup(entity_item, entity_who_picked, item_name)
         if type == "boss" then
             amount = 10
         end
+        if type == "souls_void" then
+            amount = 15
+        end
         if not (GetSoulsCount(type) >= amount) then
             goahead = false
             GamePrint("You do not have enough " .. SoulNameCheck(type) .. " souls for this.")
@@ -19,6 +22,9 @@ function item_pickup(entity_item, entity_who_picked, item_name)
             local amount = 50
             if type == "boss" then
                 amount = 10
+            end
+            if type == "souls_void" then
+                amount = 15
             end
             for ii=1,amount do
                 RemoveSoul(type)

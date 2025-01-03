@@ -88,12 +88,12 @@ end
 function RemoveSoul(type)
     local player = GetPlayer()
     local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. type) or 0
-    local comp2 = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "souls_used") or 0
+    --local comp2 = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "souls_used") or 0
     local amt = ComponentGetValue2(comp, "value_int")
-    local amt2 = ComponentGetValue2(comp2, "value_int")
+    --local amt2 = ComponentGetValue2(comp2, "value_int")
     if amt == -1 then return end
     ComponentSetValue2(comp, "value_int", amt - 1)
-    ComponentSetValue2(comp2, "value_int", amt + 1)
+    --ComponentSetValue2(comp2, "value_int", amt2 + 1)
 end
 
 -- Gets the amount of souls of a specific type, or "all" for all souls

@@ -6,6 +6,7 @@ function kick(entity_who_kicked)
     local root = EntityGetRootEntity(this)
     local x, y = EntityGetTransform(this)
     local player = GetPlayer()
+    local comp_soulscount = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "souls_count") or 0
     if entity_who_kicked ~= player or this ~= root then return end
     if GlobalsGetValue("souls.soul_emulator_state") == "7" then
         GlobalsSetValue("souls.soul_emulator_state", "8")

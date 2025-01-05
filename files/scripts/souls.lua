@@ -67,6 +67,9 @@ function SoulNameCheck(string)
     if string == "souls_void" then
         string = "voidborne"
     end
+    if string == "friendly" then
+        string = "peaceful"
+    end
     if string == "0" then
         string = "any"
     end

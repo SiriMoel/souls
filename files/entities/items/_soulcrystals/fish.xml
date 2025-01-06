@@ -112,7 +112,7 @@
 	</ParticleEmitterComponent>
 	
 	<AbilityComponent
-		ui_name="Red Sun Tablet"
+		ui_name="Leviathan'S Soul Crystal"
 		throw_as_item="1"
 		><gun_config
 			deck_capacity="0"

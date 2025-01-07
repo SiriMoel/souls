@@ -4,7 +4,7 @@ ModMaterialsFileAdd("mods/souls/files/materials.xml")
 dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("mods/souls/files/scripts/souls.lua")
 
-dofile_once("mods/pharmacokinetics/lib/injection.lua")
+dofile_once("mods/souls/lib/injection.lua")
 
 -- appends
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/souls/files/actions.lua" )

@@ -19,8 +19,8 @@ if #targets > 0 then
             if comp_damagemodel ~= nil then
                 local hp = ComponentGetValue2(comp_damagemodel, "hp")
                 local max_hp = ComponentGetValue2(comp_damagemodel, "max_hp")
-                -- heals 0.25% rounding up, stronger at lower max hp, weaker at higher max hp as you get more reaping spells
-                hp = hp + math.ceil((max_hp * 0.0025))
+                -- heals 0.1% rounding up, stronger at lower max hp, weaker at higher max hp as you get more reaping spells
+                hp = hp + math.ceil((max_hp * 0.001))
                 if hp > max_hp then
                     hp = max_hp
                 end

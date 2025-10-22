@@ -47,6 +47,8 @@ function GuiRender()
         GuiLayoutEnd(gui)
     end
 
+    if tobool(GlobalsGetValue("souls.first_gui", "true")) then
+
     -- Souls and Phylactery points display
     GuiLayoutBeginHorizontal(gui, 65, 91)
         if hasinfsouls then
@@ -91,6 +93,8 @@ function GuiRender()
             GuiLayoutEnd(gui)
         end
     GuiLayoutEnd(gui)
+
+    end
 
     -- Press down to view full soul counts
     local player = GetPlayer()

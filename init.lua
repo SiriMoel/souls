@@ -228,6 +228,7 @@ function OnPlayerSpawned(player)
     GlobalsSetValue("souls.say_consumed_soul", tostring(ModSettingGet("souls.say_consumed_soul")))
     GlobalsSetValue("souls.enable_soul_shops", tostring(ModSettingGet("souls.enable_soul_shops")))
     GlobalsSetValue("souls.button_down_gui", tostring(ModSettingGet("souls.button_down_gui")))
+    GlobalsSetValue("souls.first_gui", tostring(ModSettingGet("souls.first_gui")))
 
     GlobalsSetValue("souls.amphitheatre_enemy_count", "10")
 

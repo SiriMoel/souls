@@ -59,6 +59,13 @@ mod_settings = {
         scope = MOD_SETTING_SCOPE_RUNTIME,
     },
     {
+        id = "first_gui",
+        ui_name = "Display soul counts in screen corner",
+        ui_description = "I think you can guess what this does.",
+        value_default = true,
+        scope = MOD_SETTING_SCOPE_RUNTIME,
+    },
+    {
         id = "starting_souls",
         ui_name = "Start with souls",
         ui_description = "How many souls you want to start with (this is kinda cheaty).",

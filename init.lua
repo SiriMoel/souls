@@ -289,5 +289,10 @@ function OnPausedChanged(is_paused, is_inventory_pause)
         GlobalsSetValue("souls.say_consumed_soul", tostring(ModSettingGet("souls.say_consumed_soul")))
         GlobalsSetValue("souls.enable_soul_shops", tostring(ModSettingGet("souls.enable_soul_shops")))
         GlobalsSetValue("souls.button_down_gui", tostring(ModSettingGet("souls.button_down_gui")))
+        GlobalsSetValue("souls.first_gui", tostring(ModSettingGet("souls.first_gui")))
     end
 end
+
+--[[
+divination update- [img]https://i.imgur.com/LguAqls.png[/img]
+]]

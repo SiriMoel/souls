@@ -18,7 +18,8 @@ local rewards = {
 			dofile_once("mods/souls/files/scripts/utils.lua")
 			dofile_once("mods/souls/files/scripts/souls.lua")
             for i,soul in ipairs(soul_types) do
-                SetSoulsCount(soul, GetSoulsCount(soul) * 2)
+				local soul_count = GetSoulsCount(soul)
+                SetSoulsCount(soul, math.min(soul_count * 2, soul_count + 30))
             end
 		end,
 	},

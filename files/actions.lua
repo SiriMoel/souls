@@ -163,6 +163,7 @@ local new_actions = {
 		spawn_probability_table = { 1, 1, 1, 1, 1, 1, 1, },
 		price = 100,
 		mana = 0,
+		ai_never_uses = true,
 		action 		= function()
 			draw_actions( 1, true )
 		end,
@@ -202,6 +203,7 @@ local new_actions = {
 		spawn_probability_table = {},
 		price = 100,
 		mana = 50,
+		ai_never_uses = true,
 		custom_xml_file="mods/souls/files/entities/misc/card_tome_shot/card.xml",
 		action 		= function()
 			dofile_once("mods/souls/files/scripts/souls.lua")
@@ -284,6 +286,7 @@ local new_actions = {
 		spawn_probability_table = {},
 		price = 100,
 		mana = 0,
+		ai_never_uses = true,
 		custom_xml_file="mods/souls/files/entities/misc/card_upgrade_tome/card.xml",
 		action 		= function()
 			dofile_once("mods/souls/files/scripts/souls.lua")
@@ -325,6 +328,7 @@ local new_actions = {
 		spawn_probability_table = { 1, 1, 1, 1, 1, 1 },
 		price = 100,
 		mana = 10,
+		ai_never_uses = true,
 		action 		= function()
 			dofile_once("mods/souls/files/scripts/souls.lua")
 			
@@ -375,6 +379,7 @@ local new_actions = {
 		spawn_probability_table = { 0.7, 0.7, 0.9, 0.9, 0.8, 0.5 },
 		price = 120,
 		mana = 50,
+		ai_never_uses = true,
 		action 		= function()
 			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/souls_to_power/souls_to_power.xml,"
 			c.fire_rate_wait    = c.fire_rate_wait + 20
@@ -395,6 +400,7 @@ local new_actions = {
 		spawn_probability_table = { 0.3, 0.8, 0.8, 0.8, 0.7, 0.2 },
 		price = 100,
 		mana = 50,
+		ai_never_uses = true,
 		action = function()
 			if reflecting then return end
 			dofile("mods/souls/files/scripts/utils.lua")
@@ -431,6 +437,7 @@ local new_actions = {
 		spawn_probability_table = { 0.6, 0.7, 0.5 },
 		price = 300,
 		mana = 100,
+		ai_never_uses = true,
 		action 		= function()
 			dofile_once("mods/souls/files/scripts/souls.lua")
 			local card = GetUpdatedEntityID()
@@ -559,7 +566,7 @@ local new_actions = {
 		end,
 	},
 	{
-		id          = "SOUL_HEALER", -- my favourite spell in the mod, no idea why
+		id          = "SOUL_HEALER",
 		name 		= "$action_moldos_soul_healer",
 		description = "$actiondesc_moldos_soul_healer",
 		sprite 		= "mods/souls/files/spell_icons/soul_healer.png",
@@ -611,6 +618,7 @@ local new_actions = {
 		spawn_probability_table = { 0.1, },
 		price = 500,
 		mana = 200,
+		ai_never_uses = true,
 		action 		= function()
 			c.damage_projectile_add = c.damage_projectile_add - 3.0
 			c.fire_rate_wait = c.fire_rate_wait + 40
@@ -834,6 +842,7 @@ local new_actions = {
 		spawn_probability_table = {},
 		price = 200,
 		mana = 50,
+		ai_never_uses = true,
 		custom_xml_file="mods/souls/files/entities/misc/card_tome_slice/card.xml",
 		action 		= function()
 			dofile_once("mods/souls/files/scripts/souls.lua")
@@ -883,6 +892,7 @@ local new_actions = {
 		spawn_probability_table = {},
 		price = 200,
 		mana = 50,
+		ai_never_uses = true,
 		custom_xml_file="mods/souls/files/entities/misc/card_tome_launcher/card.xml",
 		action 		= function()
 			dofile_once("mods/souls/files/scripts/souls.lua")
@@ -922,6 +932,7 @@ local new_actions = {
 		spawn_probability_table = { 0.7, 0.9, 0.9, 0.9, 0.9, 0.9, },
 		price = 100,
 		mana = 25,
+		ai_never_uses = true,
 		action 		= function()
 			dofile_once("mods/souls/files/scripts/souls.lua")
 			if reflecting then return end
@@ -1011,6 +1022,7 @@ local new_actions = {
 		spawn_probability_table = { 0.5, 0.5, },
 		price = 100,
 		mana = 30,
+		ai_never_uses = true,
 		action 		= function()
 			dofile_once("mods/souls/files/scripts/souls.lua")
 			if reflecting then return end
@@ -1032,6 +1044,7 @@ local new_actions = {
 		spawn_probability_table = { 0.5, 0.5, },
 		price = 100,
 		mana = 30,
+		ai_never_uses = true,
 		action 		= function()
 			dofile_once("mods/souls/files/scripts/souls.lua")
 			if reflecting then return end
@@ -1073,6 +1086,7 @@ local new_actions = {
 		spawn_probability_table = { 0.5, 0.7, 0.7, 0.7, 0.7, 0.7 },
 		price = 100,
 		mana = 15,
+		ai_never_uses = true,
 		action 		= function()
 			dofile_once("mods/souls/files/scripts/souls.lua")
 			if reflecting then return end
@@ -1113,6 +1127,7 @@ local new_actions = {
 		spawn_probability_table = { 0.4, 0.4, 0.4, },
 		price = 100,
 		mana = 5,
+		ai_never_uses = true,
 		custom_xml_file="mods/souls/files/entities/misc/card_soul_fire/card.xml",
 		action 		= function()
 			draw_actions( 1, true )
@@ -1151,6 +1166,7 @@ local new_actions = {
 		spawn_probability_table = { 0.3, 0.7, 0.5 },
 		price = 150,
 		mana = -100,
+		ai_never_uses = true,
 		action 		= function()
 			dofile_once("mods/souls/files/scripts/souls.lua")
 			if reflecting then return end
@@ -1213,6 +1229,7 @@ local new_actions = {
 		spawn_probability_table = { 0.5, 0.5, },
 		price = 100,
 		mana = 0,
+		ai_never_uses = true,
 		action 		= function()
 			dofile_once("mods/souls/files/scripts/souls.lua")
 			if reflecting then return end
@@ -1237,6 +1254,7 @@ local new_actions = {
 		spawn_probability_table = { 0.5, 0.5, },
 		price = 100,
 		mana = 30,
+		ai_never_uses = true,
 		action 		= function()
 			dofile_once("mods/souls/files/scripts/souls.lua")
 			if reflecting then return end
@@ -1260,6 +1278,7 @@ local new_actions = {
 		spawn_probability_table = { 0.5, 0.5 },
 		price = 200,
 		mana = 100,
+		ai_never_uses = true,
 		action 		= function()
 			dofile_once("mods/souls/files/scripts/souls.lua")
 			if reflecting then return end
@@ -1286,6 +1305,7 @@ local new_actions = {
 		spawn_probability_table = { 0.5, 0.5 },
 		price = 200,
 		mana = 150,
+		ai_never_uses = true,
 		action 		= function()
 			dofile_once("mods/souls/files/scripts/souls.lua")
 			if reflecting then return end
@@ -1313,6 +1333,7 @@ local new_actions = {
 		spawn_probability_table = { 0.5, 0.5 },
 		price = 200,
 		mana = 50,
+		ai_never_uses = true,
 		action 		= function()
 			dofile_once("mods/souls/files/scripts/souls.lua")
 			if reflecting then return end
@@ -1340,6 +1361,7 @@ local new_actions = {
 		spawn_probability_table = { 0.1, 0.1, 0.6 },
 		price = 200,
 		mana = 45,
+		ai_never_uses = true,
 		action 		= function()
 			dofile_once("mods/souls/files/scripts/souls.lua")
 			if reflecting then return end

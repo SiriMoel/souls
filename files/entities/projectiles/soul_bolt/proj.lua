@@ -34,7 +34,10 @@ else
 		GamePrint( "A " .. SoulNameCheck(soul) .. " soul has been consumed." )
 	end
 
-	RemoveSoul(soul)
+	local who_shot = ComponentGetValue2(comp_proj, "mWhoShot")
+	if who_shot == player then
+		RemoveSoul(soul)
+	end
 
 	local comp_particles = EntityGetFirstComponent(entity, "ParticleEmitterComponent") or 0
 

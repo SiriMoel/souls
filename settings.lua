@@ -61,7 +61,7 @@ mod_settings = {
     {
         id = "first_gui",
         ui_name = "Display soul counts in screen corner",
-        ui_description = "I think you can guess what this does.",
+        ui_description = "Display soul counts in the bottom right corner.",
         value_default = true,
         scope = MOD_SETTING_SCOPE_RUNTIME,
     },

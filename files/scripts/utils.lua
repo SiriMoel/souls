@@ -282,5 +282,5 @@ function tobool(thing)
     if thing == 0 then
         return false
     end
-    return nil
+    return false
 end

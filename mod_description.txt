@@ -3,6 +3,8 @@
 This mod adds the ability to collect and use the souls of enemies for your spells.
 Spells added by this mod have different effects depending on what type of soul you use to cast them.
 
+You can view how many souls you have by pressing Z, but alternatives are available in the mod's settings.
+
 [img]https://i.imgur.com/rVokFtc.png[/img]
 
 [b]39[/b] spells
@@ -28,7 +30,7 @@ Cross-mod interactions with:
 [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3373139694]Pharmacokinetics[/url][/b] new npc, new plant
 [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3338209310]Meta Leveling[/url][/b] new reward & new meta progression
 [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3242942696]Disable Auto Pickup of Collectibles[/url][/b] Soul Refresher auto pickup disabled
-Souls should be compatible with all content mods, except Tales of Kupoli.
+[b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3795285917]Foolish Flame[/url][/b] Magic fire can be inflicted by some Souls spells
 
 Expansions:
 [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3377068299]Tome Magic[/url][/b] Expands on the power and utility of the tome

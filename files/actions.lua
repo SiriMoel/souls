@@ -1510,7 +1510,7 @@ for i,action in ipairs(actions_to_insert) do
 	local probabilities = ""
 	levels = ""
 	probabilities = ""
-	local multiplier = tonumber(ModSettingGet("souls.spell_spawn_chance_multiplier"))
+	local multiplier = 1--tonumber(GlobalsGetValue("souls.spell_spawn_chance_multiplier", "1"))
 	for i,level in ipairs(action.spawn_level_table) do
 		levels = levels .. tostring(level) .. ","
 	end

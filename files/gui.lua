@@ -98,16 +98,24 @@ function GuiRender()
 
     -- Press down to view full soul counts
     local player = GetPlayer()
+    local button_down_setting = tobool(GlobalsGetValue("souls.button_down_gui", "true"))
+    local button_z_setting = tobool(GlobalsGetValue("souls.button_z_gui", "true"))
     local comp_controls = EntityGetFirstComponentIncludingDisabled(player, "ControlsComponent")
-    if comp_controls ~= nil and tobool(GlobalsGetValue("souls.button_down_gui", "true")) then
+    if comp_controls ~= nil and (button_down_setting or button_z_setting) then
         local frame = tonumber(GlobalsGetValue("souls.button_down_down", "0"))
-        if ComponentGetValue2(comp_controls, "mButtonDownDown") then
+        local opening = false
+        if button_down_setting and ComponentGetValue2(comp_controls, "mButtonDownDown") then
+            opening = true
+        end
+        if button_z_setting and InputIsKeyDown(29) then
+            opening = true
+        end
+        if opening then
             frame = math.min(frame + 1, 15)
-            GlobalsSetValue("souls.button_down_down", tostring(frame))
         else
             frame = math.max(frame - 1, 0)
-            GlobalsSetValue("souls.button_down_down", tostring(frame))
         end
+        GlobalsSetValue("souls.button_down_down", tostring(frame))
         if frame > 0 then
             local centre_x, centre_y = screen_width / 2, screen_height / 2
             local inc = (math.pi * 2) / #soul_types

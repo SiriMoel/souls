@@ -235,6 +235,7 @@ function OnPlayerSpawned(player)
     GlobalsSetValue("souls.amphitheatre_enemy_count", "10")
 
     --EntityLoad("mods/souls/files/entities/items/tome/weapon.xml", px, py)
+    --EntityLoad("mods/souls/files/entities/items/tome2/tome.xml", px, py)
     --EntityLoad("mods/souls/files/entities/items/soul_emulator/item.xml", px, py)
     --EntityLoad("mods/souls/files/entities/items/soul_of_the_diviner/item.xml", px, py)
     --GlobalsSetValue("souls.soul_emulator_state", "3")
@@ -245,16 +246,18 @@ function OnPlayerSpawned(player)
     --EntityLoad("mods/souls/files/entities/items/_soulcrystals/alchemist.xml", px, py)
     --GenerateSoulShopItem(px, py)
     --EntityLoad("data/entities/animals/moldos_soul_eye.xml", px, py)
-
-    for i=1,tonumber(tonumber(ModSettingGet("souls.starting_souls"))) do
-        local which = soul_types[math.random(1,#soul_types)]
-        if which == "souls_void" then
-            which = "orcs"
+    local starting_souls = tonumber(ModSettingGet("souls.starting_souls")) or 0
+    if starting_souls > 0 then
+        for i=1,starting_souls do
+            local which = soul_types[math.random(1,#soul_types)]
+            if which == "souls_void" then
+                which = "orcs"
+            end
+            if which == "boss" then
+                which = "orcs"
+            end
+            AddSouls(which, 1)
         end
-        if which == "boss" then
-            which = "orcs"
-        end
-        AddSouls(which, 1)
     end
     
     EntityAddComponent2(player, "LuaComponent", {
@@ -296,7 +299,3 @@ function OnPausedChanged(is_paused, is_inventory_pause)
         --GlobalsSetValue("souls.spell_spawn_chance_multiplier", tostring(ModSettingGet("souls.spell_spawn_chance_multiplier")))
     end
 end
-
---[[
-divination update- [img]https://i.imgur.com/LguAqls.png[/img]
-]]

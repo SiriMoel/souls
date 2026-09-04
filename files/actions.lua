@@ -273,7 +273,7 @@ local new_actions = {
 			end
 		end,
 	},
-	{
+	--[[{
 		id          = "UPGRADE_TOME", -- tome gaming
 		name 		= "$action_moldos_upgrade_tome",
 		description = "$actiondesc_moldos_upgrade_tome",
@@ -313,6 +313,26 @@ local new_actions = {
 					GamePrint("The spell must be casted on the tome.")
 				end
 			end
+		end,
+	},]]
+	{
+		id          = "UPGRADE_TOME",
+		name 		= "$action_moldos_upgrade_tome",
+		description = "$actiondesc_moldos_upgrade_tome",
+		sprite 		= "mods/souls/files/spell_icons/tome_upgrade.png",
+		type 		= ACTION_TYPE_UTILITY,
+		inject_after = "MOLDOS_TOME_SHOT",
+		spawn_level                       = "",
+		spawn_probability                 = "",
+		spawn_level_table = {},
+		spawn_probability_table = {},
+		price = 100,
+		mana = 0,
+		ai_never_uses = true,
+		custom_xml_file="mods/souls/files/entities/items/tome2/card_upgrade.xml",
+		action 		= function()
+			c.fire_rate_wait = c.fire_rate_wait + 18
+			current_reload_time = current_reload_time + 18
 		end,
 	},
 	{

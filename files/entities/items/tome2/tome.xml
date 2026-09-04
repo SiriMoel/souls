@@ -1,0 +1,201 @@
+<Entity name="$item_souls_tome" tags="teleportable_NOT,wand,soul_tome">
+
+	<AbilityComponent 
+        amount_in_inventory="1"
+        cooldown_frames="0"
+        drop_as_item_on_death="1"
+        fast_projectile="0"
+        mana_charge_speed="50"
+		mana_max="150"
+        max_amount_in_inventory="1"
+        shooting_reduces_amount_in_inventory="0"
+        swim_propel_amount="0"
+        throw_as_item="0"
+        ui_name="$item_souls_tome"
+        use_gun_script="1"
+		add_these_child_actions=""
+		>
+		<gun_config
+            shuffle_deck_when_empty="0"
+            deck_capacity="7"
+			actions_per_round="1"
+            reload_time="55"
+			speed_multiplier="1"
+			spread_degrees="1" >
+        </gun_config>
+        <gunaction_config 
+            fire_rate_wait="45" >
+        </gunaction_config>
+    </AbilityComponent>
+	
+	<HotspotComponent 
+        _tags="shoot_pos" 
+        offset.x="6" 
+        offset.y="2" >
+    </HotspotComponent>
+	
+    <Base file="data/entities/base_item.xml" >
+        <ItemComponent
+        	_tags="enabled_in_world,enabled_in_inventory"
+            item_name="Soul Tome"
+            play_hover_animation="1"
+            ui_sprite="mods/souls/files/entities/items/tome2/sprite_inworld.png"
+            always_use_item_name_in_ui="1"
+            remove_on_death="1"
+            collect_nondefault_actions="1" >
+        </ItemComponent>
+
+    </Base>
+
+    <SpriteComponent
+        _enabled="0"
+		_tags="enabled_in_hand"
+	    offset_x="3"
+		offset_y="6"
+	    image_file="mods/souls/files/entities/items/tome2/sprite.png"
+    ></SpriteComponent>
+
+    <SpriteComponent
+		_tags="enabled_in_world"
+        offset_x="4"
+    	offset_y="4"
+	    image_file="mods/souls/files/entities/items/tome2/sprite_inworld.png"
+    ></SpriteComponent>
+
+   <LuaComponent 
+        execute_on_added="1"
+        remove_after_executed="1"
+        script_source_file="mods/souls/files/entities/items/tome2/tome.lua"
+        >
+    </LuaComponent>
+
+	<LuaComponent 
+		_tags="enabled_in_hand"
+		execute_every_n_frame="1"
+        script_source_file="mods/souls/files/entities/items/tome2/radar.lua"
+        >
+    </LuaComponent>
+
+	<LightComponent
+		r="100"
+		g="255"
+		b="255"
+		radius="48"
+	></LightComponent>
+
+    <ManaReloaderComponent
+        _tags="enabled_in_world,enabled_in_hand,enabled_in_inventory" >
+    </ManaReloaderComponent>
+
+    <VariableStorageComponent
+        _tags="current_upgrade"
+        name="current_upgrade"
+        value_string="1"
+    ></VariableStorageComponent>
+
+	<VariableStorageComponent
+        _tags="current_charge"
+        name="current_charge"
+        value_int="0"
+    ></VariableStorageComponent>
+
+	<VariableStorageComponent
+        _tags="current_attack"
+        name="current_attack"
+        value_string="1"
+    ></VariableStorageComponent>
+
+	<VariableStorageComponent
+        _tags="current_buff"
+        name="current_buff"
+        value_string="1"
+    ></VariableStorageComponent>
+
+    <VariableStorageComponent
+        _tags="path_1"
+        name="path_1"
+        value_int="0"
+    ></VariableStorageComponent>
+
+    <VariableStorageComponent
+        _tags="path_2"
+        name="path_2"
+        value_int="0"
+    ></VariableStorageComponent>
+
+    <VariableStorageComponent
+        _tags="path_3"
+        name="path_3"
+        value_int="0"
+    ></VariableStorageComponent>
+
+	<VariableStorageComponent
+        _tags="path_4"
+        name="path_4"
+        value_int="0"
+    ></VariableStorageComponent>
+
+	<VariableStorageComponent
+        _tags="path_5"
+        name="path_5"
+        value_int="0"
+    ></VariableStorageComponent>
+
+	<VariableStorageComponent
+        _tags="upgrade_cost"
+        name="upgrade_cost"
+        value_int="3"
+    ></VariableStorageComponent>
+
+	<VariableStorageComponent
+        _tags="launcher_souls_loaded"
+        name="launcher_souls_loaded"
+        value_int="0"
+    ></VariableStorageComponent>
+
+    <ParticleEmitterComponent 
+		_tags="enabled_in_world,enabled_in_hand"
+		emitted_material_name="souls_soul_particles"
+		offset.x="0"
+		offset.y="0"
+		x_pos_offset_min="0"
+		x_pos_offset_max="0"
+		y_pos_offset_min="0"
+		y_pos_offset_max="0"
+		x_vel_min="0"
+		x_vel_max="0"
+		y_vel_min="0"
+		y_vel_max="0"
+		count_min="0"
+		count_max="2"
+		emission_interval_min_frames="1"
+		emission_interval_max_frames="6"
+		area_circle_radius.max="6"
+		emit_cosmetic_particles="1"
+		create_real_particles="0"
+		lifetime_min="2"
+		lifetime_max="4"
+		render_on_grid="1"
+		fade_based_on_lifetime="1"
+		airflow_force="0.5"
+		airflow_time="0.01"
+		airflow_scale="0.05"
+		collide_with_grid="0"
+		gravity.y="0.0"
+		render_back="1"
+		>
+	</ParticleEmitterComponent>
+
+	<VariableStorageComponent
+        _tags="which_soul_type"
+        name="which_soul_type"
+        value_string="0"
+    ></VariableStorageComponent>
+
+    <VariableStorageComponent
+        _tags="which_soul_type_number"
+        name="which_soul_type_number"
+        value_int="1"
+    ></VariableStorageComponent>
+
+</Entity>

@@ -106,7 +106,7 @@ function GetSoulsCount(type)
     local player = GetPlayer()
     local count = 0
     local inf = false
-    if type == "all" then
+    if type == "all" or type == "0" then
         for i,v in ipairs(soul_types) do
             local amount = ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. v) or 0, "value_int") or 0
             if amount == -1 then
@@ -227,9 +227,10 @@ end
 -- What soul type does the wand use? Returns "0" if the wand does not consume a specific soul type
 function GetWandSoulType(wand)
     local which_soul = "0"
-    local comp_whichsoul = EntityGetFirstComponentIncludingDisabled(wand, "VariableStorageComponent", "which_soul_type") or 0
-    local whichsoul = ComponentGetValue2(comp_whichsoul, "value_string")
-    which_soul = whichsoul
+    local comp_whichsoul = EntityGetFirstComponentIncludingDisabled(wand, "VariableStorageComponent", "which_soul_type")
+    if comp_whichsoul ~= nil then
+        which_soul = ComponentGetValue2(comp_whichsoul, "value_string")
+    end
     return which_soul
 end
 

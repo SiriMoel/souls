@@ -18,7 +18,7 @@ actiondesc_moldos_soul_blast,"Consume a soul to fire a powerful explosive projec
 action_moldos_tome_shot,"Tome Shot",,,,,,,,,,,,,,,,,,,,,,
 actiondesc_moldos_tome_shot,"Right click to cycle which spell is cast from the tome",,,,,,,,,,,,,,,,,,,,,,
 action_moldos_upgrade_tome,"Upgrade Tome",,,,,,,,,,,,,,,,,,,,,,
-actiondesc_moldos_upgrade_tome,"Right click to cycle which stat is upgraded, cast on the tome to upgrade",,,,,,,,,,,,,,,,,,,,,,
+actiondesc_moldos_upgrade_tome,"Hold [throw] to select an upgrade. Press [shoot] to upgrade. (Must be on the Soul Tome)",,,,,,,,,,,,,,,,,,,,,,
 action_moldos_soul_speed,"Soul Speed",,,,,,,,,,,,,,,,,,,,,,
 actiondesc_moldos_soul_speed,"Increases the speed and damage of a projectile at the cost of a soul",,,,,,,,,,,,,,,,,,,,,,
 action_moldos_souls_to_power,"Souls to Power",,,,,,,,,,,,,,,,,,,,,,

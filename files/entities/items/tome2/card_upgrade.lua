@@ -1,5 +1,5 @@
-dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("mods/souls/files/scripts/souls.lua")
+dofile_once("mods/souls/files/scripts/tome_upgrades.lua")
 
 local this = GetUpdatedEntityID()
 local parent = EntityGetParent(this)
@@ -7,94 +7,83 @@ local root = EntityGetRootEntity(this)
 
 if EntityHasTag(parent, "soul_tome") and EntityHasTag(root, "player_unit") then
     local comp_controls = EntityGetFirstComponentIncludingDisabled(root, "ControlsComponent") or 0
-    local comp_frame_open = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "frame_open")
     local comp_upgrade = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "upgrade")
     local comp_frame_cd = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "frame_cd")
-    --[[
-        stats that can be upgraded:
-            mana_max
-            mana_charge_speed
-            reload_time
-            fire_rate_wait
-            deck_capacity
-
-        1) ???
-            +mana_max
-            +reload_time
-        
-        2) ???
-            +mana_charge_speed
-            -reload_time
-            -fire_rate_wait
-
-        3) ???
-            +deck_capacity
-            -mana_max
-            +fire_rate_wait
-    ]]
-    if comp_controls ~= nil and comp_frame_open ~= nil and comp_upgrade ~= nil and comp_frame_cd ~= nil then
+    
+    if comp_controls ~= nil and comp_upgrade ~= nil and comp_frame_cd ~= nil then
         local frame_now = GameGetFrameNum()
-        local frame_open = ComponentGetValue2(comp_frame_open, "value_int")
 
         local selecting = false
-        local selected = 1
-
+        local selected = ComponentGetValue2(comp_upgrade, "value_int") or 1
+        
+        local player_x, player_y = EntityGetTransform(root)
         local mouse_x, mouse_y = ComponentGetValue2(comp_controls, "mMousePosition")
 
-        -- check whether the options would be hovered
+        local comp_sprite_upgrade_cost = EntityGetFirstComponentIncludingDisabled(this, "SpriteComponent", "tome_upgrade_cost")
 
-        if ComponentGetValue2(comp_controls, "mButtonDownThrow") == true then
+        if comp_sprite_upgrade_cost ~= nil then
+            if ComponentGetValue2(comp_controls, "mButtonDownThrow") == true then
+                EntitySetComponentIsEnabled(this, comp_sprite_upgrade_cost, true)
 
-            -- draw the options
+                local start_x, start_y = player_x - (#tome_upgrades - 1) * 24, player_y + 48
 
-            ComponentSetValue2(comp_frame_open, "value_int", frame_open)
-        elseif frame_open >= frame_now - 1 then
-            -- set selected option
-            if selecting then
-                ComponentSetValue2(comp_upgrade, "value_int", selected)
+                for i,v in ipairs(tome_upgrades) do
+                    local draw_x, draw_y = start_x + (i - 1) * 48, start_y
+                    GameCreateSpriteForXFrames(v.sprite, draw_x, draw_y, true, 0, 0, 1, 0)
+                    if mouse_x > draw_x - 24 and mouse_x < draw_x + 24 and mouse_y > draw_y - 24 and mouse_y < draw_y + 24 then
+                    selected = i
+                        ComponentSetValue2(comp_upgrade, "value_int", i)
+                    end
+                    if i == selected then
+                        GameCreateSpriteForXFrames("mods/souls/files/entities/items/tome2/upgrade_selected.png", draw_x, draw_y, true, 0, 0, 1, 0)
+                        local comp_upgrade_count = EntityGetFirstComponentIncludingDisabled(parent, "VariableStorageComponent", "tome_upgrade_" .. selected)
+                        if comp_upgrade_count ~= nil then
+                            local upgrade_count = ComponentGetValue2(comp_upgrade_count, "value_int") or 0
+                            local cost = tome_upgrades[selected].func_cost(upgrade_count) 
+                            ComponentSetValue2(comp_sprite_upgrade_cost, "text", "Upgrade: " .. cost .. " souls")
+                            EntityRefreshSprite(this, comp_sprite_upgrade_cost)
+                        end
+                    end
+                end
+            else
+                EntitySetComponentIsEnabled(this, comp_sprite_upgrade_cost, false)
             end
         end
 
         if ComponentGetValue2(comp_controls, "mButtonDownFire") == true then
             local frame_cd = ComponentGetValue2(comp_frame_cd, "value_int")
             if frame_cd < frame_now - 24 then
-                GamePrint("Upgraded!")
+                --GamePrint("Upgrading?")
                 ComponentSetValue2(comp_frame_cd, "value_int", frame_now)
+                local comp_upgrade_count = EntityGetFirstComponentIncludingDisabled(parent, "VariableStorageComponent", "tome_upgrade_" .. selected)
+                if comp_upgrade_count ~= nil then
+                    local upgrade_count = ComponentGetValue2(comp_upgrade_count, "value_int") or 0
+                    local cost = tome_upgrades[selected].func_cost(upgrade_count)
+                    local soul_type = GetWandSoulType(parent)
+                    local soul_count = 0
+                    local any = false
+                    if soul_type == "0" then
+                        any = true
+                        soul_count = GetSoulsCount("all") - GetSoulsCount("boss")
+                    else
+                        soul_count = GetSoulsCount(soul_type)
+                    end
+                    if soul_count >= cost then
+                        if any then
+                            RemoveRandomSouls(cost)
+                        else
+                            for i=1,cost do
+					            RemoveSoul(soul_type)
+				            end
+                        end
+                        GamePrint("Upgraded!")
+                        tome_upgrades[selected].func_apply(parent)
+                        ComponentSetValue2(comp_upgrade_count, "value_int", upgrade_count + 1)
+                    else
+                        GamePrint("You do not have enough souls for this.")
+                    end
+                end
             end
         end
     end
 end
-
---[[local card = GetUpdatedEntityID()
-local root = EntityGetRootEntity(card) -- player, right?
-local comp_controls = EntityGetFirstComponentIncludingDisabled(root, "ControlsComponent") or 0
-local comp_cd = EntityGetFirstComponentIncludingDisabled(card, "VariableStorageComponent", "cooldown_frame") or 0
-local cooldown_frames = 6
-local cooldown_frame = ComponentGetValue2(comp_cd, "value_int")
-
-local tome = EntityGetWithTag("soul_tome")[1]
-local comp_cu = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "current_upgrade") or 0
-local cu = tonumber(ComponentGetValue(comp_cu, "value_string"))
-
-local comp_cost = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "upgrade_cost") or 0
-local cost = ComponentGetValue2(comp_cost, "value_int")
-
-if ComponentGetValue2(comp_controls, "mButtonDownRightClick") == true and GameGetFrameNum() >= cooldown_frame then
-    cu = cu + 1
-    if cu > 5 then
-        cu = 1
-    end
-    if cu == 5 then
-        GamePrint("Now upgrading mana charge speed! ".. "Upgrades cost " .. cost .. " souls.")
-    elseif cu == 4 then
-        GamePrint("Now upgrading mana max! ".. "Upgrades cost " .. cost .. " souls.")
-    elseif cu == 3 then
-        GamePrint("Now upgrading cast delay! ".. "Upgrades cost " .. cost .. " souls.")
-    elseif cu == 2 then
-        GamePrint("Now upgrading recharge time! ".. "Upgrades cost " .. cost .. " souls.")
-    elseif cu == 1 then
-        GamePrint("Now upgrading capacity! ".. "Upgrades cost " .. cost .. " souls.")
-    end
-    ComponentSetValue2(comp_cu, "value_string", tostring(cu))
-    ComponentSetValue2( comp_cd, "value_int", GameGetFrameNum() + cooldown_frames )
-end]]

@@ -29,15 +29,25 @@
     ></VariableStorageComponent>
 
 	<VariableStorageComponent
-		_tags="frame_open"
-        name="frame_open"
-        value_int="0"
-    ></VariableStorageComponent>
-
-	<VariableStorageComponent
 		_tags="frame_cd"
         name="frame_cd"
         value_int="0"
     ></VariableStorageComponent>
+
+	<SpriteComponent
+		_enabled="0"
+		_tags="tome_upgrade_cost"
+		image_file="data/fonts/font_pixel_white.xml"
+		is_text_sprite="1"
+		offset_x="20"
+		offset_y="20"
+		update_transform="1"
+		update_transform_rotation="0"
+		has_special_scale="1"
+		special_scale_x="0.6"
+		special_scale_y="0.6"
+		text="Upgrade: 5 souls"
+		z_index="-1"
+	></SpriteComponent>
 
 </Entity>

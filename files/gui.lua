@@ -111,7 +111,7 @@ function GuiRender()
             opening = true
         end
         if opening then
-            frame = math.min(frame + 1, 15)
+            frame = math.min(frame + 1, 10)
         else
             frame = math.max(frame - 1, 0)
         end
@@ -142,6 +142,8 @@ function GuiRender()
                 end
                 GuiText(gui, xx + 8, yy, t .. " ")
             end
+            local centre_text = GetSoulsCount("all")
+            GuiText(gui, centre_x, centre_y, centre_text)
         end
     end
 

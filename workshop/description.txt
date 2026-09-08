@@ -3,8 +3,6 @@
 This mod adds the ability to collect and use the souls of enemies for your spells.
 Spells added by this mod have different effects depending on what type of soul you use to cast them.
 
-You can view how many souls you have by pressing Z, but alternatives are available in the mod's settings.
-
 [img]https://i.imgur.com/rVokFtc.png[/img]
 
 [b]39[/b] spells

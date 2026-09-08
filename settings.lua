@@ -85,10 +85,6 @@ end
 local mod_id = "souls"
 mod_settings_version = 2
 mod_settings = {
-    --[[{
-        image_filename = "mods/souls/ddd.png",
-        ui_fn = mod_setting_image,
-    },]]
     {
         id = "say_soul",
         ui_name = "Say acquired soul",
@@ -141,7 +137,7 @@ mod_settings = {
         id = "first_gui",
         ui_name = "Display soul counts in screen corner",
         ui_description = "Display soul counts in the bottom right corner.",
-        value_default = false,
+        value_default = true,
         scope = MOD_SETTING_SCOPE_RUNTIME,
         ui_fn = mod_setting_bool_souls,
     },

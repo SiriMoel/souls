@@ -1,8 +1,8 @@
 <Mod
 	name="Souls"
 	description=""
-	tags="gameplay,items,spells,creatures,perks,"
-	dont_upload_folders=""
+	tags="gameplay,items,spells,creatures,perks"
+	dont_upload_folders="workshop"
 	dont_upload_files=""
 >
 </Mod>

@@ -7,6 +7,10 @@ function mod_setting_bool_souls(mod_id, gui, in_main_menu, im_id, setting)
 
 	local text = GameTextGet(value and "$souls_setting_on" or "$souls_setting_off")
 
+    if in_main_menu then
+		text = value and "ON!" or "Off"
+	end
+
     if value then
         GuiColorSetForNextWidget(gui, 0.6, 1.0, 1.0, 1.0)
     else

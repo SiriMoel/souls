@@ -54,7 +54,7 @@ function mod_setting_enum_souls(mod_id, gui, in_main_menu, im_id, setting)
 
     local p = value_id / #setting.values
 
-    GuiColorSetForNextWidget(gui, 0.9 - 0.4 * p, 0.3 + 0.4 * p, 0.6 + 0.4 * p, 1.0)
+    GuiColorSetForNextWidget(gui, 0.7 - 0.4 * p, 0.3 + 0.4 * p, 0.6 + 0.4 * p, 1.0)
 
 	GuiText(gui, mod_setting_group_x_offset, 0, text, 1, "", true)
 	
@@ -82,87 +82,182 @@ function mod_setting_enum_souls(mod_id, gui, in_main_menu, im_id, setting)
 	mod_setting_tooltip( mod_id, gui, in_main_menu, setting )
 end
 
+function mod_setting_category_button_souls( mod_id, gui, im_id, im_id2, category )
+	local image_file = "mods/souls/files/ui_gfx/button_fold_close.png"
+	if category._folded then
+		image_file = "mods/souls/files/ui_gfx/button_fold_open.png"
+	end
+
+	GuiLayoutBeginHorizontal( gui, 0, 0 )
+	GuiIdPush( gui, 892304589 )
+
+	--GuiOptionsAddForNextWidget( gui, GUI_OPTION.DrawSemiTransparent )
+    GuiColorSetForNextWidget(gui, 0.7, 0.7, 0.7, 0.8)
+	local clicked1 = GuiButton( gui, im_id, mod_setting_group_x_offset, 0, category.ui_name )
+    GuiColorSetForNextWidget(gui, 1, 1, 1, 1)
+	if is_visible_string( category.ui_description ) then
+		GuiTooltip( gui, category.ui_description, "" )
+	end
+
+	GuiOptionsAddForNextWidget( gui, GUI_OPTION.DrawActiveWidgetCursorOff )
+	GuiOptionsAddForNextWidget( gui, GUI_OPTION.NoPositionTween )
+	local clicked2 = GuiImageButton( gui, im_id2, 0, 0, "", image_file )
+	if is_visible_string( category.ui_description ) then
+		GuiTooltip( gui, category.ui_description, "" )
+	end
+
+	local clicked = clicked1 or clicked2
+	if clicked then
+		category._folded = not category._folded
+	end
+
+	GuiIdPop( gui )
+	GuiLayoutEnd( gui )
+
+	return clicked
+end
+
 function mod_setting_change_callback( mod_id, gui, in_main_menu, setting, old_value, new_value  )
 
 end
 
 local mod_id = "souls"
-mod_settings_version = 2
+mod_settings_version = 3
 mod_settings = {
     {
-        id = "say_soul",
-        ui_name = "Say acquired soul",
-        ui_description = "If you want to be told what souls you acquire.",
-        value_default = true,
-        scope = MOD_SETTING_SCOPE_RUNTIME,
-        ui_fn = mod_setting_bool_souls,
+        category_id = "souls_comms",
+        ui_name = "Collecting & using souls",
+        ui_description = "Settings relating to collecting and using souls.",
+        foldable = true,
+        _folded = true,
+        settings = {
+            {
+                id = "say_soul",
+                ui_name = "Say acquired soul",
+                ui_description = "If you want to be told what souls you acquire.",
+                value_default = true,
+                scope = MOD_SETTING_SCOPE_RUNTIME,
+                ui_fn = mod_setting_bool_souls,
+            },
+            {
+                id = "say_consumed_soul",
+                ui_name = "Say consumed soul",
+                ui_description = "If you want to be told what souls you consume when using adaptive spells.",
+                value_default = true,
+                scope = MOD_SETTING_SCOPE_RUNTIME,
+                ui_fn = mod_setting_bool_souls,
+            },
+            {
+                id = "collect_soul_from_entity",
+                ui_name = "Collect souls",
+                ui_description = "If you want souls to spawn as an entity that must be collected.",
+                value_default = true,
+                scope = MOD_SETTING_SCOPE_RUNTIME,
+                ui_fn = mod_setting_bool_souls,
+            },
+        },
     },
     {
-        id = "say_consumed_soul",
-        ui_name = "Say consumed soul",
-        ui_description = "If you want to be told what souls you consume when using adaptive spells.",
-        value_default = true,
-        scope = MOD_SETTING_SCOPE_RUNTIME,
-        ui_fn = mod_setting_bool_souls,
+        category_id = "souls_counts",
+        ui_name = "Viewing your souls",
+        ui_description = "Settings relating to viewing your souls counts.",
+        foldable = true,
+        _folded = true,
+        settings = {
+            {
+                id = "first_gui",
+                ui_name = "Display soul counts in screen corner",
+                ui_description = "Display soul counts in the bottom right corner.",
+                value_default = true,
+                scope = MOD_SETTING_SCOPE_RUNTIME,
+                ui_fn = mod_setting_bool_souls,
+            },
+            {
+                id = "button_down_gui",
+                ui_name = "Press down to view full soul counts",
+                ui_description = "If you want to be able to view your full soul counts (>99) by holding down.",
+                value_default = false,
+                scope = MOD_SETTING_SCOPE_RUNTIME,
+                ui_fn = mod_setting_bool_souls,
+            },
+            {
+                id = "button_z_gui",
+                ui_name = "Press Z to view full soul counts",
+                ui_description = "If you want to be able to view your full soul counts (>99) by holding Z.",
+                value_default = true,
+                scope = MOD_SETTING_SCOPE_RUNTIME,
+                ui_fn = mod_setting_bool_souls,
+            },
+        },
     },
     {
-        id = "collect_soul_from_entity",
-        ui_name = "Collect souls",
-        ui_description = "If you want souls to spawn as an entity that must be collected.",
-        value_default = true,
-        scope = MOD_SETTING_SCOPE_RUNTIME,
-        ui_fn = mod_setting_bool_souls,
+        category_id = "souls_structures",
+        ui_name = "Structures",
+        ui_description = "Toggle the structures of this mod.\nWarning: Disabling structures may interfere with certain content in the mod.",
+        foldable = true,
+        _folded = true,
+        settings = {
+            {
+                id = "enable_souldoor",
+                ui_name = "Enable Gate?",
+                ui_description = "Should this structure appear?",
+                value_default = true,
+                scope = MOD_SETTING_SCOPE_NEW_GAME,
+                ui_fn = mod_setting_bool_souls,
+            },
+            {
+                id = "enable_soulplace",
+                ui_name = "Enable the structure in the tree?",
+                ui_description = "Should this structure appear?",
+                value_default = true,
+                scope = MOD_SETTING_SCOPE_NEW_GAME,
+                ui_fn = mod_setting_bool_souls,
+            },
+            {
+                id = "enable_amphitheatre",
+                ui_name = "Enable Amphitheatre?",
+                ui_description = "Should this structure appear?",
+                value_default = true,
+                scope = MOD_SETTING_SCOPE_NEW_GAME,
+                ui_fn = mod_setting_bool_souls,
+            },
+            {
+                id = "enable_shop_structure",
+                ui_name = "Enable Shop structure?",
+                ui_description = "Should this structure appear?",
+                value_default = true,
+                scope = MOD_SETTING_SCOPE_NEW_GAME,
+                ui_fn = mod_setting_bool_souls,
+            },
+        },
     },
     {
-        id = "enable_soul_shops",
-        ui_name = "Enable Soul Shops",
-        ui_description = "If you want some items to be bought with souls instead of gold.",
-        value_default = true,
-        scope = MOD_SETTING_SCOPE_RUNTIME,
-        ui_fn = mod_setting_bool_souls,
+        category_id = "misc",
+        ui_name = "Miscellaneous",
+        ui_description = "More settings!",
+        foldable = true,
+        _folded = true,
+        settings = {
+            {
+                id = "enable_soul_shops",
+                ui_name = "Enable Soul Shops",
+                ui_description = "Should some items be bought with souls instead of gold?",
+                value_default = true,
+                scope = MOD_SETTING_SCOPE_RUNTIME,
+                ui_fn = mod_setting_bool_souls,
+            },
+            {
+                id = "starting_souls",
+                ui_name = "Start with souls",
+                ui_description = "How many souls you want to start with (this is kinda cheaty).",
+                value_default = "0",
+                values = {{"0", "0"}, {"10", "10"}, {"20", "20"}, {"30", "30"}, {"40", "40"}, {"50", "50"}, {"60", "60"}, {"70", "70"}, {"80", "80"}, {"90", "90"}, {"100", "100"}},
+                scope = MOD_SETTING_SCOPE_NEW_GAME,
+                ui_fn = mod_setting_enum_souls,
+            },
+        },
     },
-    {
-        id = "button_down_gui",
-        ui_name = "Press down to view full soul counts",
-        ui_description = "If you want to be able to view your full soul counts (>99) by holding down.",
-        value_default = false,
-        scope = MOD_SETTING_SCOPE_RUNTIME,
-        ui_fn = mod_setting_bool_souls,
-    },
-    {
-        id = "button_z_gui",
-        ui_name = "Press Z to view full soul counts",
-        ui_description = "If you want to be able to view your full soul counts (>99) by holding Z.",
-        value_default = true,
-        scope = MOD_SETTING_SCOPE_RUNTIME,
-        ui_fn = mod_setting_bool_souls,
-    },
-    {
-        id = "first_gui",
-        ui_name = "Display soul counts in screen corner",
-        ui_description = "Display soul counts in the bottom right corner.",
-        value_default = true,
-        scope = MOD_SETTING_SCOPE_RUNTIME,
-        ui_fn = mod_setting_bool_souls,
-    },
-    {
-        id = "starting_souls",
-        ui_name = "Start with souls",
-        ui_description = "How many souls you want to start with (this is kinda cheaty).",
-        value_default = "0",
-        values = {{"0", "0"}, {"10", "10"}, {"20", "20"}, {"30", "30"}, {"40", "40"}, {"50", "50"}, {"60", "60"}, {"70", "70"}, {"80", "80"}, {"90", "90"}, {"100", "100"}},
-        scope = MOD_SETTING_SCOPE_NEW_GAME,
-        ui_fn = mod_setting_enum_souls,
-    },
-    --[[{
-        id = "spell_spawn_chance_multiplier",
-        ui_name = "Spell spawn chance multiplier",
-        ui_description = "How frequently do you want this mod's spells to spawn?",
-        value_default = "1",
-        values = {{"0.3", "x0.3"}, {"0.5", "x0.5"}, {"0.7", "x0.7"}, {"1", "x1"}, {"1.5", "x1.5"}, {"2", "x2"}},
-        scope = MOD_SETTING_SCOPE_NEW_GAME,
-        ui_fn = mod_setting_enum_souls,
-    },]]
+    
 }
 
 function ModSettingsUpdate( init_scope )
@@ -174,7 +269,64 @@ function ModSettingsGuiCount()
 	return mod_settings_gui_count( mod_id, mod_settings )
 end
 
+function souls_mod_settings_gui( mod_id, settings, gui, in_main_menu )
+	local im_id = 1
 
-function ModSettingsGui( gui, in_main_menu )
-	mod_settings_gui( mod_id, mod_settings, gui, in_main_menu )
+	for i,setting in ipairs(settings) do
+		if setting.category_id ~= nil then
+			-- setting category
+			GuiIdPush( gui, im_id )
+			if setting.foldable then
+				local im_id2 = im_id
+				im_id = im_id + 1
+				local clicked_category_heading = mod_setting_category_button_souls( mod_id, gui, im_id, im_id2, setting )
+				if not setting._folded then
+					GuiAnimateBegin( gui )
+					GuiAnimateAlphaFadeIn( gui, 3458923234, 0.1, 0.0, clicked_category_heading )
+					mod_setting_group_x_offset = mod_setting_group_x_offset + 6
+					souls_mod_settings_gui( mod_id, setting.settings, gui, in_main_menu )
+					mod_setting_group_x_offset = mod_setting_group_x_offset - 6
+					GuiAnimateEnd( gui )
+					GuiLayoutAddVerticalSpacing( gui, 4 )
+				end
+			else
+				GuiOptionsAddForNextWidget( gui, GUI_OPTION.DrawSemiTransparent )
+				GuiText( gui, mod_setting_group_x_offset, 0, setting.ui_name )
+				if is_visible_string( setting.ui_description ) then
+					GuiTooltip( gui, setting.ui_description, "" )
+				end
+				mod_setting_group_x_offset = mod_setting_group_x_offset + 2
+				souls_mod_settings_gui( mod_id, setting.settings, gui, in_main_menu )
+				mod_setting_group_x_offset = mod_setting_group_x_offset - 2
+				GuiLayoutAddVerticalSpacing( gui, 4 )
+			end
+			GuiIdPop( gui )
+		else
+			-- setting
+			local auto_gui = setting.ui_fn == nil
+			local visible = (setting.hidden == nil or not setting.hidden)
+			if auto_gui and visible then
+				local value_type = type(setting.value_default)
+				if setting.not_setting then
+					mod_setting_title( mod_id, gui, in_main_menu, im_id, setting )
+				elseif value_type == "boolean" then
+					mod_setting_bool( mod_id, gui, in_main_menu, im_id, setting )
+				elseif value_type == "number" then
+					mod_setting_number( mod_id, gui, in_main_menu, im_id, setting )
+				elseif value_type == "string" and setting.values ~= nil then
+					mod_setting_enum( mod_id, gui, in_main_menu, im_id, setting )
+				elseif value_type == "string" then
+					mod_setting_text( mod_id, gui, in_main_menu, im_id, setting )
+				end
+			elseif visible then
+				setting.ui_fn( mod_id, gui, in_main_menu, im_id, setting )
+			end
+		end
+
+		im_id = im_id+1
+	end
+end
+
+function ModSettingsGui(gui, in_main_menu)
+	souls_mod_settings_gui(mod_id, mod_settings, gui, in_main_menu)
 end

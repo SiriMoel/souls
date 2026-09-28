@@ -4,8 +4,8 @@ dofile_once("mods/souls/files/scripts/souls.lua")
 local new_actions = {
 	{
 		id          = "REAPING_SHOT", -- the basis of the whole mod
-		name 		= "$action_moldos_reaping_shot",
-		description = "$actiondesc_moldos_reaping_shot",
+		name 		= "$action_souls_reaping_shot",
+		description = "$actiondesc_souls_reaping_shot",
 		sprite 		= "mods/souls/files/spell_icons/reaping_shot.png",
 		related_extra_entities = { "mods/souls/files/entities/projectiles/reaping_shot/reaping_shot.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
@@ -18,13 +18,13 @@ local new_actions = {
 		mana = 10,
 		action 		= function()
 			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/reaping_shot/reaping_shot.xml,"
-			draw_actions( 1, true )
+			draw_actions(1, true)
 		end,
 	},
 	{
 		id          = "WAND_CONSUMES_X_SOULS", -- new souls thing!!!
-		name 		= "$action_moldos_wand_consumes_x_souls",
-		description = "$actiondesc_moldos_wand_consumes_x_souls",
+		name 		= "$action_souls_wand_consumes_x_souls",
+		description = "$actiondesc_souls_wand_consumes_x_souls",
 		sprite 		= "mods/souls/files/spell_icons/wand_consumes_x_souls.png",
 		custom_xml_file="mods/souls/files/entities/misc/card_wand_consumes_x_souls/card.xml",
 		type 		= ACTION_TYPE_PASSIVE,
@@ -37,13 +37,13 @@ local new_actions = {
 		mana = 0,
 		ai_never_uses = true,
 		action 		= function()
-			draw_actions( 1, true )
+			draw_actions(1, true)
 		end,
 	},
 	{
 		id          = "SOUL_BLAST",
-		name 		= "$action_moldos_soul_blast",
-		description = "$actiondesc_moldos_soul_blast",
+		name 		= "$action_souls_soul_blast",
+		description = "$actiondesc_souls_soul_blast",
 		sprite 		= "mods/souls/files/spell_icons/soul_blast.png",
 		related_projectiles	= {"mods/souls/files/entities/projectiles/soul_blast/soul_blast.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
@@ -55,19 +55,20 @@ local new_actions = {
 		price = 120,
 		mana = 70,
 		max_uses = 20,
+		ai_never_uses = true,
 		action 		= function()
 			add_projectile("mods/souls/files/entities/projectiles/soul_blast/soul_blast.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 20
 		end,
 	},
 	{
-		id          = "TOME_SHOT", -- infinite bombs
-		name 		= "$action_moldos_tome_shot",
-		description = "$actiondesc_moldos_tome_shot",
-		sprite 		= "mods/souls/files/spell_icons/tome_shot.png",
+		id = "TOME_SHOT",
+		name = "$action_souls_tome_shot",
+		description = "$actiondesc_souls_tome_shot",
+		sprite = "mods/souls/files/spell_icons/tome_shot.png",
 		sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_unidentified.png",
 		related_projectiles	= {"mods/souls/files/entities/projectiles/tome_seek/proj.xml"},
-		type 		= ACTION_TYPE_PROJECTILE,
+		type = ACTION_TYPE_PROJECTILE,
 		inject_after = "SUMMON_WANDGHOST",
 		spawn_level                       = "",
 		spawn_probability                 = "",
@@ -76,28 +77,21 @@ local new_actions = {
 		price = 100,
 		mana = 50,
 		ai_never_uses = true,
-		custom_xml_file="mods/souls/files/entities/misc/card_tome_shot/card.xml",
-		action 		= function()
-			dofile_once("mods/souls/files/scripts/souls.lua")
-
+		custom_xml_file = "mods/souls/files/entities/misc/card_tome_shot/card.xml",
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 10
 			if reflecting then return end
-
+			dofile_once("mods/souls/files/scripts/souls.lua")
 			local entity = GetUpdatedEntityID()
-			local x, y = EntityGetTransform(entity)
-
 			local wand = 0
 			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
 			if inv_comp then
 				wand = ComponentGetValue2(inv_comp, "mActiveItem")
 			end
-
 			local tome = EntityGetWithTag("soul_tome")[1] or 1
 			local comp_ca = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "current_attack") or 0
 			local ca = tonumber(ComponentGetValue(comp_ca, "value_string"))
-
-			c.fire_rate_wait = c.fire_rate_wait + 10
-
-			function TomeAddProjectiles()
+			local function TomeAddProjectiles()
 				if ca == 1 then -- tome shot
 					c.spread_degrees = c.spread_degrees + 13.0
 					c.screenshake = c.screenshake + 2
@@ -123,34 +117,21 @@ local new_actions = {
 					add_projectile("mods/souls/files/entities/projectiles/tome_bomb/proj.xml")
 				end
 			end
-
 			if wand == tome then
-				if DoesWandUseSpecificSoul(wand) then
-					if GetSoulsCount(GetWandSoulType(wand)) >= 3 then
-						for i=1,3 do
-							RemoveSoul(GetWandSoulType(wand))
-						end
-						TomeAddProjectiles()
-					else
-						GamePrint("You do not have enough souls for this.")
-					end
+				if SpellUseSouls(caster, 3) then
+					TomeAddProjectiles()
 				else
-					if (GetSoulsCount("all") - GetSoulsCount("boss")) >= 3 then
-						RemoveRandomSouls(3)
-						TomeAddProjectiles()
-					else
-						GamePrint("You do not have enough souls for this.")
-					end
+					GamePrint("You do not have enough souls for this. (3)")
 				end
 			end
 		end,
 	},
 	{
-		id          = "UPGRADE_TOME",
-		name 		= "$action_moldos_upgrade_tome",
-		description = "$actiondesc_moldos_upgrade_tome",
-		sprite 		= "mods/souls/files/spell_icons/tome_upgrade.png",
-		type 		= ACTION_TYPE_UTILITY,
+		id = "UPGRADE_TOME",
+		name = "$action_souls_upgrade_tome",
+		description = "$actiondesc_souls_upgrade_tome",
+		sprite = "mods/souls/files/spell_icons/tome_upgrade.png",
+		type = ACTION_TYPE_UTILITY,
 		inject_after = "MOLDOS_TOME_SHOT",
 		spawn_level                       = "",
 		spawn_probability                 = "",
@@ -160,86 +141,72 @@ local new_actions = {
 		mana = 0,
 		ai_never_uses = true,
 		custom_xml_file="mods/souls/files/entities/items/tome2/card_upgrade.xml",
-		action 		= function()
+		action = function()
 			c.fire_rate_wait = c.fire_rate_wait + 60
 			current_reload_time = current_reload_time + 60
 		end,
 	},
 	{
-		id          = "SOUL_SPEED",
-		name 		= "$action_moldos_soul_speed",
-		description = "$actiondesc_moldos_soul_speed",
-		sprite 		= "mods/souls/files/spell_icons/soul_speed.png",
-		type 		= ACTION_TYPE_MODIFIER,
+		id = "SOUL_SPEED",
+		name = "$action_souls_soul_speed",
+		description = "$actiondesc_souls_soul_speed",
+		sprite = "mods/souls/files/spell_icons/soul_speed.png",
+		type = ACTION_TYPE_MODIFIER,
 		inject_after = "BLOODLUST",
-		spawn_level                       = "1,2,3,4,5,6",
-		spawn_probability                 = "1,1,1,1,1,1",
-		spawn_level_table = { 1, 2, 3, 4, 5, 6 },
-		spawn_probability_table = { 1, 1, 1, 1, 1, 1 },
+		spawn_level  = "1,2,3,4,5,6",
+		spawn_probability = "1,1,1,1,1,1",
+		spawn_level_table = {1, 2, 3, 4, 5, 6},
+		spawn_probability_table = {1, 1, 1, 1, 1, 1},
 		price = 100,
 		mana = 10,
 		ai_never_uses = true,
-		action 		= function()
-			dofile_once("mods/souls/files/scripts/souls.lua")
-			
-			if reflecting then return end
-
-			local entity = GetUpdatedEntityID()
-
-			local wand = 0
-			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
-			if inv_comp then
-				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+		action = function()
+			if reflecting then 
+				c.speed_multiplier = c.speed_multiplier * 2
+				c.damage_projectile_add = c.damage_projectile_add + 0.24
+				return 
 			end
-
-			if DoesWandUseSpecificSoul(wand) then
-				if GetSoulsCount(GetWandSoulType(wand)) >= 1 then
-					RemoveSoul(GetWandSoulType(wand))
-					c.speed_multiplier = c.speed_multiplier * 2
-					c.damage_projectile_add = c.damage_projectile_add + 0.3
-					--c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_speed/soul_speed_fx.xml,"
-				else
-					GamePrint("You do not have enough souls for this.")
+			dofile_once("mods/souls/files/scripts/souls.lua")
+			local caster = GetUpdatedEntityID()
+			if SpellUseSouls(caster, 1) then
+				c.speed_multiplier = c.speed_multiplier * 2
+				c.damage_projectile_add = c.damage_projectile_add + 0.24
+				if c.speed_multiplier >= 20 then
+					c.speed_multiplier = math.min(c.speed_multiplier, 20)
+				elseif c.speed_multiplier < 0 then
+					c.speed_multiplier = 0
 				end
 			else
-				if (GetSoulsCount("all") - GetSoulsCount("boss")) >= 1 then
-					RemoveRandomSouls(1)
-					c.speed_multiplier = c.speed_multiplier * 2
-					c.damage_projectile_add = c.damage_projectile_add + 0.2
-					--c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_speed/soul_speed_fx.xml,"
-				else
-					GamePrint("You do not have enough souls for this.")
-				end
+				GamePrint("You do not have enough souls for this. (1)")
 			end
-
-			draw_actions( 1, true )
+			draw_actions(1, true)
 		end,
 	},
 	{
-		id          = "SOULS_TO_POWER",
-		name 		= "$action_moldos_souls_to_power",
-		description = "$actiondesc_moldos_souls_to_power",
-		sprite 		= "mods/souls/files/spell_icons/souls_to_power.png",
-		related_extra_entities = { "mods/souls/files/entities/projectiles/souls_to_power/souls_to_power.xml" },
-		type 		= ACTION_TYPE_MODIFIER,
+		id = "SOULS_TO_POWER",
+		name = "$action_souls_souls_to_power",
+		description = "$actiondesc_souls_souls_to_power",
+		sprite = "mods/souls/files/spell_icons/souls_to_power.png",
+		related_extra_entities = {"mods/souls/files/entities/projectiles/souls_to_power/souls_to_power.xml"},
+		type = ACTION_TYPE_MODIFIER,
 		inject_after = "SPELLS_TO_POWER",
-		spawn_level                       = "2,3,4,5,6,10",
-		spawn_probability                 = "0.7,0.7,0.9,0.9,0.8,0.5",
-		spawn_level_table = { 2, 3, 4, 5, 6, 10 },
-		spawn_probability_table = { 0.7, 0.7, 0.9, 0.9, 0.8, 0.5 },
+		spawn_level = "2,3,4,5,6,10",
+		spawn_probability = "0.7,0.7,0.9,0.9,0.8,0.5",
+		spawn_level_table = {2, 3, 4, 5, 6, 10},
+		spawn_probability_table = {0.7, 0.7, 0.9, 0.9, 0.8, 0.5},
 		price = 120,
 		mana = 50,
 		ai_never_uses = true,
-		action 		= function()
+		action = function()
 			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/souls_to_power/souls_to_power.xml,"
-			c.fire_rate_wait    = c.fire_rate_wait + 20
-			draw_actions( 1, true )
+			c.fire_rate_wait = c.fire_rate_wait + 20
+			draw_actions(1, true)
 		end,
 	},
 	{
 		id = "SOUL_STRIKE", -- souls to power if it was cool
-		name = "$action_moldos_soul_strike",
-		description = "$actiondesc_moldos_soul_strike",
+		name = "$action_souls_soul_strike",
+		description = "$actiondesc_souls_soul_strike",
         sprite = "mods/souls/files/spell_icons/soul_strike.png",
 		custom_xml_file="mods/souls/files/entities/misc/card_soul_strike/card.xml",
 		type = ACTION_TYPE_MODIFIER,
@@ -253,7 +220,7 @@ local new_actions = {
 		ai_never_uses = true,
 		action = function()
 			if reflecting then return end
-			dofile("mods/souls/files/scripts/utils.lua")
+			dofile_once("mods/souls/files/scripts/utils.lua")
 			local card = GetUpdatedEntityID()
 			local x, y = EntityGetTransform(GetPlayer())
 			local wand = 0
@@ -276,8 +243,8 @@ local new_actions = {
 	},
 	{
 		id          = "EAT_WAND_FOR_SOULS", -- humgy
-		name 		= "$action_moldos_eat_wand_for_souls",
-		description = "$actiondesc_moldos_eat_wand_for_souls",
+		name 		= "$action_souls_eat_wand_for_souls",
+		description = "$actiondesc_souls_eat_wand_for_souls",
 		sprite 		= "mods/souls/files/spell_icons/eat_wand_for_souls.png",
 		type 		= ACTION_TYPE_UTILITY,
 		inject_after = "MOLDOS_SOUL_STRIKE",
@@ -357,8 +324,8 @@ local new_actions = {
 	},
 	{
 		id          = "SOUL_ARROW", -- blacklight arrow from graham's but drawn from memory (i didnt realise it was a spell)
-		name 		= "$action_moldos_soul_arrow",
-		description = "$actiondesc_moldos_soul_arrow",
+		name 		= "$action_souls_soul_arrow",
+		description = "$actiondesc_souls_soul_arrow",
 		sprite 		= "mods/souls/files/spell_icons/soul_arrow.png",
 		related_projectiles	= {"mods/souls/files/entities/projectiles/soul_arrow/proj.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
@@ -377,8 +344,8 @@ local new_actions = {
 	},
 	{
 		id          = "SOUL_BALL", -- tennis
-		name 		= "$action_moldos_soul_ball",
-		description = "$actiondesc_moldos_soul_ball",
+		name 		= "$action_souls_soul_ball",
+		description = "$actiondesc_souls_soul_ball",
 		sprite 		= "mods/souls/files/spell_icons/soul_ball.png",
 		related_projectiles	= {"mods/souls/files/entities/projectiles/soul_ball/soul_ball.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
@@ -397,8 +364,8 @@ local new_actions = {
 	},
 	{
 		id          = "SOUL_METEOR", -- big circle
-		name 		= "$action_moldos_soul_meteor",
-		description = "$actiondesc_moldos_soul_meteor",
+		name 		= "$action_souls_soul_meteor",
+		description = "$actiondesc_souls_soul_meteor",
 		sprite 		= "mods/souls/files/spell_icons/soul_meteor.png",
 		related_projectiles	= {"mods/souls/files/entities/projectiles/soul_meteor/proj.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
@@ -417,8 +384,8 @@ local new_actions = {
 	},
 	{
 		id          = "SOUL_HEALER",
-		name 		= "$action_moldos_soul_healer",
-		description = "$actiondesc_moldos_soul_healer",
+		name 		= "$action_souls_soul_healer",
+		description = "$actiondesc_souls_soul_healer",
 		sprite 		= "mods/souls/files/spell_icons/soul_healer.png",
 		type 		= ACTION_TYPE_PASSIVE,
 		inject_after = "MOLDOS_SOUL_METEOR",
@@ -437,8 +404,8 @@ local new_actions = {
 	},
 	{
 		id          = "REAPING_HALO",
-		name 		= "$action_moldos_reaping_halo",
-		description = "$actiondesc_moldos_reaping_halo",
+		name 		= "$action_souls_reaping_halo",
+		description = "$actiondesc_souls_reaping_halo",
 		sprite 		= "mods/souls/files/spell_icons/reaping_halo.png",
 		related_projectiles	= {"mods/souls/files/entities/projectiles/reaping_halo/projectile.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
@@ -456,8 +423,8 @@ local new_actions = {
 	},
 	{
 		id          = "WEAKENING_HALO", -- nezha gaming
-		name 		= "$action_moldos_weakening_halo",
-		description = "$actiondesc_moldos_weakening_halo",
+		name 		= "$action_souls_weakening_halo",
+		description = "$actiondesc_souls_weakening_halo",
 		sprite 		= "mods/souls/files/spell_icons/weakening_halo.png",
 		related_projectiles	= {"mods/souls/files/entities/projectiles/weakening_halo/projectile.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
@@ -504,8 +471,8 @@ local new_actions = {
 	},
 	{
 		id          = "SOUL_CLOAK",
-		name 		= "$action_moldos_soul_cloak",
-		description = "$actiondesc_moldos_soul_cloak",
+		name 		= "$action_souls_soul_cloak",
+		description = "$actiondesc_souls_soul_cloak",
 		sprite 		= "mods/souls/files/spell_icons/soul_rage.png",
 		type 		= ACTION_TYPE_PASSIVE,
 		inject_after = "MOLDOS_SOUL_HEALER",
@@ -524,8 +491,8 @@ local new_actions = {
 	},
 	{
 		id          = "SOUL_RAGE",
-		name 		= "$action_moldos_soul_rage",
-		description = "$actiondesc_moldos_soul_rage",
+		name 		= "$action_souls_soul_rage",
+		description = "$actiondesc_souls_soul_rage",
 		sprite 		= "mods/souls/files/spell_icons/soul_cloak.png",
 		type 		= ACTION_TYPE_PASSIVE,
 		inject_after = "MOLDOS_SOUL_CLOAK",
@@ -544,8 +511,8 @@ local new_actions = {
 	},
 	{
 		id          = "SOUL_BOLT",
-		name 		= "$action_moldos_soul_bolt",
-		description = "$actiondesc_moldos_soul_bolt",
+		name 		= "$action_souls_soul_bolt",
+		description = "$actiondesc_souls_soul_bolt",
 		sprite 		= "mods/souls/files/spell_icons/soul_bolt.png",
 		related_projectiles	= {"mods/souls/files/entities/projectiles/soul_bolt/proj.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
@@ -563,8 +530,8 @@ local new_actions = {
 	},
 	{
 		id          = "SOULDOS", -- moldos
-		name 		= "$action_moldos_souldos",
-		description = "$actiondesc_moldos_souldos",
+		name 		= "$action_souls_souldos",
+		description = "$actiondesc_souls_souldos",
 		sprite 		= "mods/souls/files/spell_icons/souldos.png",
 		related_extra_entities = { "mods/souls/files/entities/projectiles/souldos/reaping_shot.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
@@ -582,8 +549,8 @@ local new_actions = {
 	},
 	{
 		id          = "RANDOM_REAP",
-		name 		= "$action_moldos_random_reap",
-		description = "$actiondesc_moldos_random_reap",
+		name 		= "$action_souls_random_reap",
+		description = "$actiondesc_souls_random_reap",
 		sprite 		= "mods/souls/files/spell_icons/random_reap.png",
 		related_extra_entities = { "mods/souls/files/entities/projectiles/random_reap/reaping_shot.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
@@ -601,8 +568,8 @@ local new_actions = {
 	},
 	{
 		id          = "REAPING_FIELD",
-		name 		= "$action_moldos_reaping_field",
-		description = "$actiondesc_moldos_reaping_field",
+		name 		= "$action_souls_reaping_field",
+		description = "$actiondesc_souls_reaping_field",
 		sprite 		= "mods/souls/files/spell_icons/reaping_field.png",
 		related_projectiles	= {"mods/souls/files/entities/projectiles/reaping_field/reaping_field.xml"},
 		type 		= ACTION_TYPE_STATIC_PROJECTILE,
@@ -621,8 +588,8 @@ local new_actions = {
 	},
 	{
 		id          = "REAP_TELE",
-		name 		= "$action_moldos_reap_tele",
-		description = "$actiondesc_moldos_reap_tele",
+		name 		= "$action_souls_reap_tele",
+		description = "$actiondesc_souls_reap_tele",
 		sprite 		= "mods/souls/files/spell_icons/reap_tele.png",
 		related_projectiles = {"mods/souls/files/entities/projectiles/reap_tele/proj.xml"},
 		type 		= ACTION_TYPE_PROJECTILE,
@@ -679,8 +646,8 @@ local new_actions = {
 	},
 	{
 		id          = "TOME_SLICE", -- demoknight
-		name 		= "$action_moldos_tome_slice",
-		description = "$actiondesc_moldos_tome_slice",
+		name 		= "$action_souls_tome_slice",
+		description = "$actiondesc_souls_tome_slice",
 		sprite 		= "mods/souls/files/spell_icons/tome_slice.png",
 		sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_unidentified.png",
 		related_projectiles	= {"mods/souls/files/entities/projectiles/tome_slice/proj.xml"},
@@ -729,8 +696,8 @@ local new_actions = {
 	},
 	{
 		id          = "TOME_LAUNCHER", -- im beggin
-		name 		= "$action_moldos_tome_launcher",
-		description = "$actiondesc_moldos_tome_launcher",
+		name 		= "$action_souls_tome_launcher",
+		description = "$actiondesc_souls_tome_launcher",
 		sprite 		= "mods/souls/files/spell_icons/tome_launcher.png",
 		sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_unidentified.png",
 		related_projectiles	= {"mods/souls/files/entities/projectiles/tome_launcher/proj.xml"},
@@ -771,8 +738,8 @@ local new_actions = {
 	},
 	{
 		id          = "SOUL_BOOST",
-		name 		= "$action_moldos_soul_boost",
-		description = "$actiondesc_moldos_soul_boost",
+		name 		= "$action_souls_soul_boost",
+		description = "$actiondesc_souls_soul_boost",
 		sprite 		= "mods/souls/files/spell_icons/soul_boost.png",
 		type 		= ACTION_TYPE_MODIFIER,
 		inject_after = "MOLDOS_SOUL_SPEED",
@@ -861,8 +828,8 @@ local new_actions = {
 	},
 	{
 		id          = "SCALING_DAMAGE",
-		name 		= "$action_moldos_scaling_damage",
-		description = "$actiondesc_moldos_scaling_damage",
+		name 		= "$action_souls_scaling_damage",
+		description = "$actiondesc_souls_scaling_damage",
 		sprite 		= "mods/souls/files/spell_icons/scaling_damage.png",
 		type 		= ACTION_TYPE_MODIFIER,
 		inject_after = "MOLDOS_SOUL_SPEED",
@@ -883,8 +850,8 @@ local new_actions = {
 	},
 	{
 		id          = "SCALING_SPEED",
-		name 		= "$action_moldos_scaling_speed",
-		description = "$actiondesc_moldos_scaling_speed",
+		name 		= "$action_souls_scaling_speed",
+		description = "$actiondesc_souls_scaling_speed",
 		sprite 		= "mods/souls/files/spell_icons/scaling_speed.png",
 		type 		= ACTION_TYPE_MODIFIER,
 		inject_after = "MOLDOS_SCALING_DAMAGE",
@@ -905,8 +872,8 @@ local new_actions = {
 	},
 	{
 		id          = "SOUL_TINKER",
-		name 		= "$action_moldos_soul_tinker",
-		description = "$actiondesc_moldos_soul_tinker",
+		name 		= "$action_souls_soul_tinker",
+		description = "$actiondesc_souls_soul_tinker",
 		sprite 		= "mods/souls/files/spell_icons/soul_tinker.png",
 		type 		= ACTION_TYPE_PASSIVE,
 		inject_after = "MOLDOS_SOUL_HEALER",
@@ -925,8 +892,8 @@ local new_actions = {
 	},
 	{
 		id          = "SOUL_CRIT",
-		name 		= "$action_moldos_soul_crit",
-		description = "$actiondesc_moldos_soul_crit",
+		name 		= "$action_souls_soul_crit",
+		description = "$actiondesc_souls_soul_crit",
 		sprite 		= "mods/souls/files/spell_icons/soul_crit.png",
 		type 		= ACTION_TYPE_MODIFIER,
 		inject_after = "MOLDOS_SOUL_SPEED",
@@ -966,8 +933,8 @@ local new_actions = {
 	},
 	{
 		id          = "SOUL_FIRE",
-		name 		= "$action_moldos_soul_fire",
-		description = "$actiondesc_moldos_soul_fire",
+		name 		= "$action_souls_soul_fire",
+		description = "$actiondesc_souls_soul_fire",
 		sprite 		= "mods/souls/files/spell_icons/soul_fire.png",
 		type 		= ACTION_TYPE_PASSIVE,
 		inject_after = "MOLDOS_SOUL_HEALER",
@@ -985,8 +952,8 @@ local new_actions = {
 	},
 	{
 		id          = "REAP_FROM_FIRE",
-		name 		= "$action_moldos_reap_from_fire",
-		description = "$actiondesc_moldos_reap_from_fire",
+		name 		= "$action_souls_reap_from_fire",
+		description = "$actiondesc_souls_reap_from_fire",
 		sprite 		= "mods/souls/files/spell_icons/reap_from_fire.png",
 		related_extra_entities = { "mods/souls/files/entities/projectiles/reap_from_fire/reaping_shot.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
@@ -1004,8 +971,8 @@ local new_actions = {
 	},
 	{
 		id          = "SOUL_BATTERY",
-		name 		= "$action_moldos_soul_battery",
-		description = "$actiondesc_moldos_soul_battery",
+		name 		= "$action_souls_soul_battery",
+		description = "$actiondesc_souls_soul_battery",
 		custom_xml_file = "mods/souls/files/entities/misc/card_soul_battery/card.xml",
 		sprite 		= "mods/souls/files/spell_icons/soul_battery.png",
 		type 		= ACTION_TYPE_UTILITY,
@@ -1048,8 +1015,8 @@ local new_actions = {
 	},
 	{
 		id          = "EXPEL_SOUL",
-		name 		= "$action_moldos_expel_soul",
-		description = "$actiondesc_moldos_expel_soul",
+		name 		= "$action_souls_expel_soul",
+		description = "$actiondesc_souls_expel_soul",
 		sprite 		= "mods/souls/files/spell_icons/expel_soul.png",
 		--custom_xml_file = "mods/souls/files/entities/misc/card_expel_soul/card.xml",
 		related_projectiles	= {"mods/souls/files/entities/projectiles/expel_soul/proj.xml"},
@@ -1068,8 +1035,8 @@ local new_actions = {
 	},
 	{
 		id          = "SCALING_MANA",
-		name 		= "$action_moldos_scaling_mana",
-		description = "$actiondesc_moldos_scaling_mana",
+		name 		= "$action_souls_scaling_mana",
+		description = "$actiondesc_souls_scaling_mana",
 		sprite 		= "mods/souls/files/spell_icons/scaling_mana.png",
 		type 		= ACTION_TYPE_MODIFIER,
 		inject_after = "MOLDOS_SOUL_SPEED",
@@ -1093,8 +1060,8 @@ local new_actions = {
 	},
 	{
 		id          = "SCALING_RECHARGE",
-		name 		= "$action_moldos_scaling_recharge",
-		description = "$actiondesc_moldos_scaling_recharge",
+		name 		= "$action_souls_scaling_recharge",
+		description = "$actiondesc_souls_scaling_recharge",
 		sprite 		= "mods/souls/files/spell_icons/scaling_recharge.png",
 		type 		= ACTION_TYPE_MODIFIER,
 		inject_after = "MOLDOS_SOUL_SPEED",
@@ -1116,8 +1083,8 @@ local new_actions = {
 	},
 	{
 		id          = "SOUL_SPELL_WORM",
-		name 		= "$action_moldos_soul_spell_worm",
-		description = "$actiondesc_moldos_soul_spell_worm",
+		name 		= "$action_souls_soul_spell_worm",
+		description = "$actiondesc_souls_soul_spell_worm",
 		sprite 		= "mods/souls/files/spell_icons/wormhole.png",
 		related_extra_entities = { "mods/souls/files/entities/projectiles/soul_spell_worm/soul_spell_worm.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
@@ -1143,8 +1110,8 @@ local new_actions = {
 	},
 	{
 		id          = "SOUL_SPELL_MAGE",
-		name 		= "$action_moldos_soul_spell_mage",
-		description = "$actiondesc_moldos_soul_spell_mage",
+		name 		= "$action_souls_soul_spell_mage",
+		description = "$actiondesc_souls_soul_spell_mage",
 		sprite 		= "mods/souls/files/spell_icons/mage_gun.png",
 		related_extra_entities = { "mods/souls/files/entities/projectiles/soul_spell_mage/soul_spell_mage.xml" },
 		type 		= ACTION_TYPE_MODIFIER,
@@ -1171,8 +1138,8 @@ local new_actions = {
 	},
 	{
 		id          = "SOUL_SPELL_SLIMES",
-		name 		= "$action_moldos_soul_spell_slimes",
-		description = "$actiondesc_moldos_soul_spell_slimes",
+		name 		= "$action_souls_soul_spell_slimes",
+		description = "$actiondesc_souls_soul_spell_slimes",
 		sprite 		= "mods/souls/files/spell_icons/slime_safeguard.png",
 		related_extra_entities = { "" },
 		type 		= ACTION_TYPE_MODIFIER,
@@ -1198,8 +1165,8 @@ local new_actions = {
 	},
 	{
 		id          = "DIVIDE_BY_SOULS",
-		name 		= "$action_moldos_divide_by_souls",
-		description = "$actiondesc_moldos_divide_by_souls",
+		name 		= "$action_souls_divide_by_souls",
+		description = "$actiondesc_souls_divide_by_souls",
 		sprite 		= "mods/souls/files/spell_icons/divide_by_souls.png",
 		spawn_requires_flag = "card_unlocked_musicbox",
 		related_extra_entities = { "" },
@@ -1279,8 +1246,8 @@ local new_actions = {
 	},
 	--[[{
 		id          = "VOID_LASH",
-		name 		= "$action_moldos_void_lash",
-		description = "$actiondesc_moldos_void_lash",
+		name 		= "$action_souls_void_lash",
+		description = "$actiondesc_souls_void_lash",
 		sprite 		= "mods/souls/files/spell_icons/void_lash.png",
 		type 		= ACTION_TYPE_MODIFIER,
 		inject_after = "MOLDOS_SOUL_SPEED",
@@ -1355,7 +1322,7 @@ for i,id in ipairs(action_ids_in_order) do
 end
 
 for i,action in ipairs(actions_to_insert) do
-	action.id = "MOLDOS_" .. action.id
+	action.id = "SOULS_" .. action.id
 	local levels = ""
 	local probabilities = ""
 	levels = ""

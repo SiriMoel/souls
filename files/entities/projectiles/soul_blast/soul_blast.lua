@@ -1,26 +1,42 @@
 dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("mods/souls/files/scripts/souls.lua")
 
-local entity = GetUpdatedEntityID()
-local root_id = EntityGetRootEntity( entity )
-local x, y = EntityGetTransform( entity )
+soul_effects = {
+	bat = function(this, comp_proj, comp_part) end,
+	fly = function(this, comp_proj, comp_part) end,
+	friendly = function(this, comp_proj, comp_part) end,
+	mage = function(this, comp_proj, comp_part) end,
+	orcs = function(this, comp_proj, comp_part) end,
+	slimes = function(this, comp_proj, comp_part) end,
+	spider = function(this, comp_proj, comp_part) end,
+	zombie = function(this, comp_proj, comp_part) end,
+	worm = function(this, comp_proj, comp_part) end,
+	fungus = function(this, comp_proj, comp_part) end,
+	ghost = function(this, comp_proj, comp_part) end,
+	souls_void = function(this, comp_proj, comp_part) end,
+	boss = function(this, comp_proj, comp_part) end,
+	mage_corrupted = function(this, comp_proj, comp_part) end,
+	ghost_whisp = function(this, comp_proj, comp_part) end,
+}
 
-local comp_proj = EntityGetFirstComponent( entity, "ProjectileComponent" ) or 0
-local projdamage = ComponentGetValue2( comp_proj, "damage" )
-local expdamage = ComponentObjectGetValue( comp_proj, "config_explosion", "damage" )
-local exprad = ComponentObjectGetValue( comp_proj, "config_explosion", "explosion_radius" )
-local meleedamage = ComponentObjectGetValue( comp_proj, "damage_by_type", "melee" )
-local icedamage = ComponentObjectGetValue( comp_proj, "damage_by_type", "ice" )
-local poisondamage = ComponentObjectGetValue( comp_proj, "damage_by_type", "poison" )
-local firedamage = ComponentObjectGetValue2( comp_proj, "damage_by_type", "fire" )
+local entity = GetUpdatedEntityID()
+local x, y = EntityGetTransform(entity)
+
+local comp_proj = EntityGetFirstComponent(entity, "ProjectileComponent") or 0
+local projdamage = ComponentGetValue2(comp_proj, "damage")
+local expdamage = ComponentObjectGetValue(comp_proj, "config_explosion", "damage")
+local exprad = ComponentObjectGetValue(comp_proj, "config_explosion", "explosion_radius")
+local meleedamage = ComponentObjectGetValue(comp_proj, "damage_by_type", "melee")
+local icedamage = ComponentObjectGetValue(comp_proj, "damage_by_type", "ice")
+local poisondamage = ComponentObjectGetValue(comp_proj, "damage_by_type", "poison")
+local firedamage = ComponentObjectGetValue2(comp_proj, "damage_by_type", "fire")
 
 local player = GetPlayer()
-local wand = HeldItem(player)
 
-local soul = GetRandomSoulForWand(wand)
+local success, soul = SpellUseSouls(player, 1)
 
-if soul == nil or soul == 0 or soul == "0" then
-	GamePrint("You have no souls.")
+if not success or soul == nil then
+	GamePrint("You do not have enough souls for this.")
 
 	ComponentSetValue2( comp_proj, "on_death_explode", false )
 	ComponentSetValue2( comp_proj, "on_lifetime_out_explode", false )
@@ -34,10 +50,10 @@ else
 		GamePrint( "A " .. SoulNameCheck(soul) .. " soul has been consumed." )
 	end
 
-	local who_shot = ComponentGetValue2(comp_proj, "mWhoShot")
+	--[[local who_shot = ComponentGetValue2(comp_proj, "mWhoShot")
 	if who_shot == player then
 		RemoveSoul(soul)
-	end
+	end]]
 
 	local comp_particles = EntityGetFirstComponent(entity, "ParticleEmitterComponent") or 0
 

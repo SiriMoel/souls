@@ -1,50 +1,32 @@
-dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("mods/souls/files/scripts/souls.lua")
 
 local card = GetUpdatedEntityID()
 local root = EntityGetRootEntity(card) -- player, right?
-local comp_controls = EntityGetFirstComponentIncludingDisabled(root, "ControlsComponent") or 0
+
+if not EntityHasTag(root, "player_unit") then return end
+
+local comp_controls = EntityGetFirstComponentIncludingDisabled(root, "ControlsComponent")
 local comp_cd = EntityGetFirstComponentIncludingDisabled(card, "VariableStorageComponent", "cooldown_frame") or 0
 local cooldown_frames = 6
 local cooldown_frame = ComponentGetValue2(comp_cd, "value_int")
 local frame = GameGetFrameNum()
-
 if ComponentGetValue2(comp_controls, "mButtonDownRightClick") == true and frame >= cooldown_frame then
     local player = GetPlayer()
     local wand = HeldItem(player)
-
-    local comp_whichsoul = EntityGetFirstComponentIncludingDisabled(wand, "VariableStorageComponent", "which_soul_type")
-    if comp_whichsoul == nil then
-        comp_whichsoul = EntityAddComponent2(wand, "VariableStorageComponent", {
-            _tags="which_soul_type",
-            name="which_soul_type",
-            value_string="0",
-        })
-    end
-    local comp_whichsoulnumber = EntityGetFirstComponentIncludingDisabled(wand, "VariableStorageComponent", "which_soul_type_number")
-    if comp_whichsoulnumber == nil then
-        comp_whichsoulnumber = EntityAddComponent2(wand, "VariableStorageComponent", {
-            _tags="which_soul_type_number",
-            name="which_soul_type_number",
-            value_int="1",
-        })
-    end
-    local whichsoul = ComponentGetValue2(comp_whichsoul, "value_string")
-    local whichsoul_number = ComponentGetValue2(comp_whichsoulnumber, "value_int")
-
-    if whichsoul == "0" then
-        whichsoul = "bat"
+    local comp = EntityGetFirstComponentIncludingDisabled(wand, "VariableStorageComponent", "souls_wand_soul_type")
+    comp = comp or EntityAddComponent2(comp, "VariableStorageComponent", {
+        _tags="souls_wand_soul_type",
+        name="souls_wand_soul_type",
+        value_int=0
+    })
+    local val = ComponentGetValue2(comp, "value_int")
+    if val >= #soul_types then
+        val = 0
     else
-        whichsoul_number = whichsoul_number + 1
-        whichsoul = soul_types[whichsoul_number]
-        if whichsoul == nil then
-            whichsoul = "0"
-            whichsoul_number = 1 -- should this be 0 or 1?
-        end
+        val = val + 1
     end
-
-    ComponentSetValue2(comp_whichsoul, "value_string", whichsoul)
-    ComponentSetValue2(comp_whichsoulnumber, "value_int", whichsoul_number)
-    ComponentSetValue2( comp_cd, "value_int", frame + cooldown_frames )
-    GamePrint("This wand will now consume " .. SoulNameCheck(whichsoul) .. " souls.")
+    ComponentSetValue2(comp, "value_int", val)
+    ComponentSetValue2(comp_cd, "value_int", frame + cooldown_frames)
+    local soul = (val == 0 and "any") or SoulNameCheck(soul_types[val])
+    GamePrint("This wand will now consume " .. soul .. " souls.")
 end

@@ -7,153 +7,54 @@ dofile_once("mods/souls/files/scripts/souls.lua")
 dofile_once("mods/souls/lib/injection.lua")
 
 -- appends
-ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/souls/files/actions.lua" )
-ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/souls/files/perks.lua" )
-ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/souls/files/status_list.lua" )
-ModLuaFileAppend( "data/scripts/items/drop_money.lua", "mods/souls/files/scripts/drop_money_append.lua" )
-ModLuaFileAppend( "data/scripts/items/generate_shop_item.lua", "mods/souls/files/scripts/generate_shop_item_append.lua" )
+ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/souls/files/actions.lua")
+ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/souls/files/perks.lua")
+ModLuaFileAppend("data/scripts/status_effects/status_list.lua", "mods/souls/files/status_list.lua")
+ModLuaFileAppend("data/scripts/items/drop_money.lua", "mods/souls/files/scripts/drop_money_append.lua")
+ModLuaFileAppend("data/scripts/items/generate_shop_item.lua", "mods/souls/files/scripts/generate_shop_item_append.lua")
 
 -- nxml
 local nxml = dofile_once("mods/souls/lib/nxml.lua")
 
-local xml = nxml.parse(ModTextFileGetContent("data/entities/base_wand_pickup.xml"))
-xml:add_child(nxml.parse(([[
-    <VariableStorageComponent
-        _tags="which_soul_type"
-        name="which_soul_type"
-        value_string="0"
-    ></VariableStorageComponent>
-]])))
-xml:add_child(nxml.parse(([[
-    <VariableStorageComponent
-        _tags="which_soul_type_number"
-        name="which_soul_type_number"
-        value_int="1"
-    ></VariableStorageComponent>
-]])))
-ModTextFileSetContent("data/entities/base_wand_pickup.xml", tostring(xml))
-
-local xml = nxml.parse(ModTextFileGetContent("data/entities/items/pickup/spell_refresh.xml"))
-xml:add_child(nxml.parse(([[
-    <LuaComponent
-        script_source_file="mods/souls/files/entities/items/soulrefresh/spawn.lua"
-        execute_on_added="1"
-        remove_after_executed="1"
-    ></LuaComponent>
-]])))
-ModTextFileSetContent("data/entities/items/pickup/spell_refresh.xml", tostring(xml))
+dofile_once("mods/souls/files/scripts/gizmo.lua")
 
 -- biome things
 local biomes = {
-    {
-        path = "data/scripts/biomes/wizardcave.lua",
-        script = "mods/souls/files/scripts/biome/wizardcave.lua",
-    },
-    {
-        path = "data/scripts/biomes/wandcave.lua",
-        script = "mods/souls/files/scripts/biome/wandcave.lua",
-    },
-    {
-        path = "data/scripts/biomes/crypt.lua",
-        script = "mods/souls/files/scripts/biome/crypt.lua",
-    },
-    {
-        path = "data/scripts/biomes/coalmine.lua",
-        script = "mods/souls/files/scripts/biome/coalmine.lua",
-    },
-    {
-        path = "data/scripts/biomes/mountain_tree.lua",
-        script = "mods/souls/files/scripts/biome/mountain_tree.lua",
-    },
-    {
-        path = "data/scripts/biomes/the_end.lua",
-        script = "mods/souls/files/scripts/biome/the_end.lua",
-    },
+    {path = "data/scripts/biomes/wizardcave.lua", script = "mods/souls/files/scripts/biome/wizardcave.lua"},
+    {path = "data/scripts/biomes/wandcave.lua", script = "mods/souls/files/scripts/biome/wandcave.lua"},
+    {path = "data/scripts/biomes/crypt.lua", script = "mods/souls/files/scripts/biome/crypt.lua"},
+    {path = "data/scripts/biomes/coalmine.lua", script = "mods/souls/files/scripts/biome/coalmine.lua"},
+    {path = "data/scripts/biomes/mountain_tree.lua", script = "mods/souls/files/scripts/biome/mountain_tree.lua"},
+    {path = "data/scripts/biomes/the_end.lua", script = "mods/souls/files/scripts/biome/the_end.lua"},
 }
 for i,v in ipairs(biomes) do
-    if ModTextFileGetContent(v.path) ~= nil then
-        ModLuaFileAppend(v.path, v.script)
-    end
+    if ModTextFileGetContent(v.path) ~= nil then ModLuaFileAppend(v.path, v.script) end
 end
+
+-- translations
+local translations = ModTextFileGetContent("data/translations/common.csv")
+if translations ~= nil then
+	local translations_files = {
+		"mods/souls/files/translations/translations.csv",
+        "mods/souls/files/translations/spells.csv",
+	}
+	for _,v in ipairs(translations_files) do
+		while translations:find("\r\n\r\n") do
+        	translations = translations:gsub("\r\n\r\n","\r\n")
+    	end
+    	local new_translations = ModTextFileGetContent(table.concat({v}))
+    	translations = translations .. new_translations
+	end
+	ModTextFileSetContent("data/translations/common.csv", translations)
+end
+
+-- idk???
 local content = ModTextFileGetContent("data/biome/_biomes_all.xml")
 local xml = nxml.parse(content)
 xml:add_children(nxml.parse_many[[
     <Biome height_index="0" color="ff3fe2df" biome_filename="mods/souls/files/biome/soulbiome/biome.xml" />
 ]])
 ModTextFileSetContent("data/biome/_biomes_all.xml", tostring(xml))
-
--- drops
-local dropdoers = {
-    {
-        path = "data/entities/animals/boss_alchemist/boss_alchemist.xml",
-        script = "mods/souls/files/scripts/death/boss_alchemist.lua",
-    },
-    {
-        path = "data/entities/animals/boss_limbs/boss_limbs.xml",
-        script = "mods/souls/files/scripts/death/boss_limbs.lua",
-    },
-    {
-        path = "data/entities/animals/boss_pit/boss_pit.xml",
-        script = "mods/souls/files/scripts/death/boss_pit.lua",
-    },
-    {
-        path = "data/entities/animals/boss_dragon.xml",
-        script = "mods/souls/files/scripts/death/boss_dragon.lua",
-    },
-    {
-        path = "data/entities/animals/boss_wizard/boss_wizard.xml",
-        script = "mods/souls/files/scripts/death/boss_wizard.lua",
-    },
-    {
-        path = "data/entities/animals/boss_fish/fish_giga.xml",
-        script = "mods/souls/files/scripts/death/boss_fish.lua",
-    },
-    {
-        path = "data/entities/animals/boss_spirit/islandspirit.xml",
-        script = "mods/souls/files/scripts/death/boss_deer.lua",
-    },
-    {
-        path = "data/entities/animals/boss_ghost/boss_ghost.xml",
-        script = "mods/souls/files/scripts/death/boss_ghost.lua",
-    },
-    {
-        path = "data/entities/animals/boss_meat/boss_meat.xml",
-        script = "mods/souls/files/scripts/death/boss_meat.lua",
-    },
-    {
-        path = "data/entities/animals/boss_robot/boss_robot.xml",
-        script = "mods/souls/files/scripts/death/boss_robot.lua",
-    },
-    {
-        path = "data/entities/animals/maggot_tiny/maggot_tiny.xml",
-        script = "mods/souls/files/scripts/death/maggot_tiny.lua",
-    },
-}
-
-for i,v in ipairs(dropdoers) do
-    local xml = nxml.parse(ModTextFileGetContent(v.path))
-    xml:add_child(nxml.parse(([[
-        <LuaComponent
-              script_death="%s"
-              >
-        </LuaComponent>
-    ]]):format(v.script)))
-    ModTextFileSetContent(v.path, tostring(xml))
-end
-
--- clouds
-local clouds = {
-    "data/entities/projectiles/deck/cloud_acid.xml",
-    "data/entities/projectiles/deck/cloud_blood.xml",
-    "data/entities/projectiles/deck/cloud_oil.xml",
-    "data/entities/projectiles/deck/cloud_thunder.xml",
-    "data/entities/projectiles/deck/cloud_water.xml",
-}
-for i,v in ipairs(clouds) do
-    local xml = nxml.parse(ModTextFileGetContent(v))
-    xml.attr.tags = xml.attr.tags .. ",spell_cloud"
-    ModTextFileSetContent(v, tostring(xml))
-end
 
 -- pixel scenes (thanks graham)
 local function add_scene(table)
@@ -175,15 +76,32 @@ local function add_scene(table)
 	content = content:gsub("<mBufferedPixelScenes>", string)
 	ModTextFileSetContent(biome_path, content)
 end
-
-local scenes = {
-    { 13080, 1650, "mods/souls/files/biome/souldoor/souldoor.xml", false },
-    { -1568, -400, "mods/souls/files/biome/soulplace/place.xml", false },
-    { -1144, -455, "mods/souls/files/biome/soulplace/sign.xml", false },
-    { -270, 18100, "mods/souls/files/biome/amphitheatre/amphitheatre.xml", false },
-    { 0, 19500, "mods/souls/files/biome/soulshop/soulshop.xml", true },
+local scenes = {}
+local possible_scenes = {
+    {
+        scene = {13080, 1650, "mods/souls/files/biome/souldoor/souldoor.xml", false},
+        func = function() return ModSettingGet("souls.enable_souldoor") end,
+    },
+    {
+        scene = {-1568, -400, "mods/souls/files/biome/soulplace/place.xml", false},
+        func = function() return ModSettingGet("souls.enable_soulplace") end,
+    },
+    {
+        scene = {-1144, -455, "mods/souls/files/biome/soulplace/sign.xml", false},
+        func = function() return ModSettingGet("souls.enable_soulplace") end,
+    },
+    {
+        scene = {-270, 18100, "mods/souls/files/biome/amphitheatre/amphitheatre.xml", false},
+        func = function() return ModSettingGet("souls.enable_amphitheatre") end,
+    },
+    {
+        scene = {0, 19500, "mods/souls/files/biome/soulshop/soulshop.xml", true},
+        func = function() return ModSettingGet("souls.enable_shop_structure") end,
+    },
 }
-
+for _,v in ipairs(possible_scenes) do
+    if v.func() then table.insert(scenes, v.scene) end
+end
 add_scene(scenes)
 
 -- shaders (ty nathan)
@@ -271,17 +189,6 @@ function OnPlayerSpawned(player)
     })
 
     GameAddFlagRun("souls_init")
-end
-
--- translations
-local translations = ModTextFileGetContent("data/translations/common.csv")
-if translations ~= nil then
-    while translations:find("\r\n\r\n") do
-        translations = translations:gsub("\r\n\r\n","\r\n")
-    end
-    local new_translations = ModTextFileGetContent(table.concat({"mods/souls/files/translations.csv"}))
-    translations = translations .. new_translations
-    ModTextFileSetContent("data/translations/common.csv", translations)
 end
 
 -- genomes

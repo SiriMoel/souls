@@ -29,10 +29,7 @@ Cross-mod interactions with:
 [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3338209310]Meta Leveling[/url][/b] new reward & new meta progression
 [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3242942696]Disable Auto Pickup of Collectibles[/url][/b] Soul Refresher auto pickup disabled
 [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3795285917]Foolish Flame[/url][/b] Magic fire can be inflicted by some Souls spells
-
-Expansions:
-[b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3377068299]Tome Magic[/url][/b] Expands on the power and utility of the tome
-(more to come)
+[b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3807666895]Stab![/url][/b] A Stab! spell grants souls
 
 Discord: https://discord.gg/FKaRA9HMUq
 Github: https://github.com/SiriMoel/souls

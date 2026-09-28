@@ -1,0 +1,19 @@
+NEW
+- Mod settings to toggle each structure
+
+CHANGED/FIXED
+- Mod settings menu categories
+- Main menu mod settings fix
+- Soul crystals fix
+- Soul collectable entity movement tweaks
+- Spell icon changes
+
+INTERNAL
+- Souls changes...
+- Changes to soul crystals
+- Changed spell id prefix to SOULS_
+- Updated nxml
+- Translations file(s) changes
+
+This update is a rewrite of many parts of the mod, so it will probably break existing runs with Souls.
+I'm sorry.

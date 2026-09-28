@@ -1,8 +1,8 @@
-
 <Mod
 	name="Souls"
 	description="Harvest and use souls from enemies!"
 	request_no_api_restrictions="0"	
-	>
-</Mod>
-	
+	version="1.5.0"
+	icon="icon.png"
+	author="Moldos"
+></Mod>

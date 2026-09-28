@@ -3,8 +3,10 @@
     <HomingComponent
         target_tag="player_unit"
         detect_distance="500"
-        homing_velocity_multiplier="0.5"
+        homing_velocity_multiplier="1"
     ></HomingComponent>
+
+	<!-- WHY ARE YOU A PROJECTILE??? -->
 
     <ProjectileComponent
 		speed_min="0"

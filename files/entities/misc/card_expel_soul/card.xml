@@ -8,7 +8,7 @@
 		
 		<ItemActionComponent 
 			_tags="enabled_in_world"
-			action_id="MOLDOS_EXPEL_SOUL" >
+			action_id="SOULS_EXPEL_SOUL" >
 		</ItemActionComponent>
 	</Base>
 

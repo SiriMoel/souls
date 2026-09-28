@@ -30,28 +30,128 @@ if ModIsEnabled("Apotheosis") then
         "fungus",
         "ghost",
         "souls_void",
-        "boss",
         "mage_corrupted",
         "ghost_whisp",
+        "boss",
     }
 end
 
--- Initialises the Souls mechanic, should only be ran once in init.lua
 function SoulsInit()
     local player = GetPlayer()
     for i,v in ipairs(soul_types) do
         EntityAddComponent2(player, "VariableStorageComponent", {
-            _tags="soulcount_" .. v,
-            name="soulcount_" .. v,
+            _tags="souls_count,soulcount_" .. v,
+            name=v,
             value_int=0,
         })
     end
-    --[[EntityAddComponent2(player, "VariableStorageComponent", {
-        _tags="souls_used",
-        name="souls_used",
-        value_int=0,
-    })]]
 end
+
+function SoulCounts(player)
+    player = player or EntityGetWithTag("player_unit")[1]
+    local counts = {
+        total = 0,
+        total_boss = 0,
+    }
+    local comps = EntityGetComponentIncludingDisabled(player, "VariableStorageComponent", "souls_count") or {}
+    if #comps > 0 then
+        for _,comp in ipairs(comps) do
+            local soul = ComponentGetValue2(comp, "name")
+            local amt = ComponentGetValue2(comp, "value_int")
+            counts[soul] = amt
+            if soul ~= "boss" then
+                counts["total"] = counts["total"] + amt
+            end
+            counts["total_boss"] = counts["total_boss"] + amt
+        end
+    end
+    return counts
+end
+
+function SoulCount(soul, player)
+    player = player or EntityGetWithTag("player_unit")[1]
+    if soul == "total" or soul == "total_boss" then
+        local counts = SoulCounts(player)
+        return counts[soul]
+    else
+        local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. soul)
+        if comp ~= nil then
+            return ComponentGetValue2(comp, "value_int")
+        end
+    end
+    return 0
+end
+
+function EditSoulCounts(counts, player)
+    player = player or EntityGetWithTag("player_unit")[1]
+    for soul,amt in pairs(counts) do
+        local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. tostring(soul))
+        if comp ~= nil then
+            local soul_count = ComponentGetValue2(comp, "value_int")
+            soul_count = soul_count + amt
+            ComponentSetValue2(comp, soul_count)
+        end
+    end
+end
+
+function WandSoulType(wand)
+    local comp = EntityGetFirstComponentIncludingDisabled(wand, "VariableStorageComponent", "souls_wand_soul_type")
+    comp = comp or EntityAddComponent2(comp, "VariableStorageComponent", {
+        _tags="souls_wand_soul_type",
+        name="souls_wand_soul_type",
+        value_int=0
+    })
+    local val = ComponentGetValue2(comp, "value_int")
+    local soul = (val ~= 0 and soul_types[val]) or "any"
+    return soul
+end
+
+function SpellUseSouls(caster, n)
+    local success = false
+    local soul_used
+    local comp = EntityGetFirstComponentIncludingDisabled(caster, "Inventory2Component")
+	if comp ~= nil then
+		local wand = ComponentGetValue2(comp, "mActiveItem")
+        local soul = WandSoulType(wand)
+        if soul == "any" then
+            local counts = SoulCounts(caster)
+            if counts["total"] >= n then
+                local used_n = 0
+                local used = {}
+                while used_n < n do
+                    for k,v in pairs(counts) do
+                        if v > 0 then
+                            used[k] = (used[k] or 0) - 1
+                            used_n = used_n + 1
+                            if n == 1 then
+                                soul_used = tostring(k)
+                                break
+                            end
+                        end
+                    end
+                end
+                EditSoulCounts(used, caster)
+                success = true
+            else
+                success = false
+            end
+        else
+            local count = SoulCount(soul, caster)
+            if count >= n then
+                if n == 1 then
+                    soul_used = tostring(soul)
+                end
+                EditSoulCounts({soul = -n}, caster)
+                success = true
+            else
+                success = false
+            end
+        end
+	end
+    return success, soul_used
+end
+
+-- old? souls functions below
 
 -- Use this when printing the name of souls
 function SoulNameCheck(string)

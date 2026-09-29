@@ -140,7 +140,7 @@ function OnPlayerSpawned(player)
 
     if GameHasFlagRun("souls_init") then return end
 
-    SoulsInit()
+    SoulsInit(player)
 
     GlobalsSetValue("souls.collect_soul_from_entity", tostring(ModSettingGet("souls.collect_soul_from_entity")))
     GlobalsSetValue("souls.say_soul", tostring(ModSettingGet("souls.say_soul")))
@@ -150,21 +150,14 @@ function OnPlayerSpawned(player)
     GlobalsSetValue("souls.button_z_gui", tostring(ModSettingGet("souls.button_z_gui")))
     GlobalsSetValue("souls.first_gui", tostring(ModSettingGet("souls.first_gui")))
     --GlobalsSetValue("souls.spell_spawn_chance_multiplier", tostring(ModSettingGet("souls.spell_spawn_chance_multiplier")))
+    GlobalsSetValue("souls.enable_enemies", tostring(ModSettingGet("souls.enable_enemies")))
+    GlobalsSetValue("souls.enemy_puppet_master", tostring(ModSettingGet("souls.enemy_puppet_master")))
+    GlobalsSetValue("souls.enemy_soul_angry", tostring(ModSettingGet("souls.enemy_soul_angry")))
+    GlobalsSetValue("souls.enemy_soul_rogue", tostring(ModSettingGet("souls.enemy_soul_rogue")))
+    GlobalsSetValue("souls.enemy_soul_eye", tostring(ModSettingGet("souls.enemy_soul_eye")))
 
     GlobalsSetValue("souls.amphitheatre_enemy_count", "10")
 
-    --EntityLoad("mods/souls/files/entities/items/tome/weapon.xml", px, py)
-    --EntityLoad("mods/souls/files/entities/items/tome2/tome.xml", px, py)
-    --EntityLoad("mods/souls/files/entities/items/soul_emulator/item.xml", px, py)
-    --EntityLoad("mods/souls/files/entities/items/soul_of_the_diviner/item.xml", px, py)
-    --GlobalsSetValue("souls.soul_emulator_state", "3")
-    --EntityLoad("data/entities/animals/moldos_boss_soul.xml", 0, -100)
-    --CreateItemActionEntity("MOLDOS_UPGRADE_TOME", px, py)
-    --for i=1,3 do EntityLoad("data/entities/animals/moldos_soul_rogue.xml", 0, -100) end
-    --for i=1,300 do AddSouls(GetRandomSoulType(true), 10) end
-    --EntityLoad("mods/souls/files/entities/items/_soulcrystals/alchemist.xml", px, py)
-    --GenerateSoulShopItem(px, py)
-    --EntityLoad("data/entities/animals/moldos_soul_eye.xml", px, py)
     local starting_souls = tonumber(ModSettingGet("souls.starting_souls")) or 0
     if starting_souls > 0 then
         for i=1,starting_souls do
@@ -205,5 +198,11 @@ function OnPausedChanged(is_paused, is_inventory_pause)
         GlobalsSetValue("souls.button_z_gui", tostring(ModSettingGet("souls.button_z_gui")))
         GlobalsSetValue("souls.first_gui", tostring(ModSettingGet("souls.first_gui")))
         --GlobalsSetValue("souls.spell_spawn_chance_multiplier", tostring(ModSettingGet("souls.spell_spawn_chance_multiplier")))
+        
+        GlobalsSetValue("souls.enable_enemies", tostring(ModSettingGet("souls.enable_enemies")))
+        GlobalsSetValue("souls.enemy_puppet_master", tostring(ModSettingGet("souls.enemy_puppet_master")))
+        GlobalsSetValue("souls.enemy_soul_angry", tostring(ModSettingGet("souls.enemy_soul_angry")))
+        GlobalsSetValue("souls.enemy_soul_rogue", tostring(ModSettingGet("souls.enemy_soul_rogue")))
+        GlobalsSetValue("souls.enemy_soul_eye", tostring(ModSettingGet("souls.enemy_soul_eye")))
     end
 end

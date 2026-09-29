@@ -2,7 +2,7 @@
 	
 	<Base file="data/entities/base_custom_card.xml" > 
 		<SpriteComponent 
-			image_file="mods/souls/files/spell_icons/soul_strike.png"
+			image_file="mods/souls/files/ui_gfx/gun_actions/soul_strike.png"
 			>
 		</SpriteComponent>
 		
@@ -21,7 +21,6 @@
 		script_source_file="mods/souls/files/entities/misc/card_soul_strike/card.lua"
 		execute_every_n_frame="1" >
 	</LuaComponent>
-
 
 	<VariableStorageComponent
 		_tags="enabled_in_hand,cooldown_frame"

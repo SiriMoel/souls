@@ -1,4 +1,3 @@
-dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("mods/souls/files/scripts/souls.lua")
 
 local card = GetUpdatedEntityID()
@@ -16,24 +15,12 @@ local player = GetPlayer()
 local wand = HeldItem(player)
 
 if ComponentGetValue2(comp_controls, "mButtonDownRightClick") == true and GameGetFrameNum() >= cooldown_frame then
-    if DoesWandUseSpecificSoul(wand) then
-        if GetSoulsCount(GetWandSoulType(wand)) > 0 then
-            soul_strike_amount = soul_strike_amount + 1
-            GamePrint("Soul consumed! Current count: " .. soul_strike_amount)
-            ComponentSetValue2(comp_soulstrike, "value_int", soul_strike_amount)
-            RemoveSoul(GetWandSoulType(wand))
-        else
-            GamePrint("You do not have enough souls for this.")
-        end
+    if SpellUseSouls(root, 1) then
+        soul_strike_amount = soul_strike_amount + 1
+        ComponentSetValue2(comp_soulstrike, "value_int", soul_strike_amount)
+        GamePrint("Soul consumed! Current count: " .. soul_strike_amount)
     else
-        if (GetSoulsCount("all") - GetSoulsCount("boss")) > 0 then
-            soul_strike_amount = soul_strike_amount + 1
-            GamePrint("Soul consumed! Current count: " .. soul_strike_amount)
-            ComponentSetValue2(comp_soulstrike, "value_int", soul_strike_amount)
-            RemoveRandomSouls(1)
-        else
-            GamePrint("You do not have enough souls for this.")
-        end
+        GamePrint("You do not have enough souls for this. (1)")
     end
-    ComponentSetValue2( comp_cd, "value_int", GameGetFrameNum() + cooldown_frames )
+    ComponentSetValue2(comp_cd, "value_int", GameGetFrameNum() + cooldown_frames)
 end

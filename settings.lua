@@ -82,7 +82,7 @@ function mod_setting_enum_souls(mod_id, gui, in_main_menu, im_id, setting)
 	mod_setting_tooltip( mod_id, gui, in_main_menu, setting )
 end
 
-function mod_setting_category_button_souls( mod_id, gui, im_id, im_id2, category )
+function mod_setting_category_button_souls(mod_id, gui, im_id, im_id2, category)
 	local image_file = "mods/souls/files/ui_gfx/button_fold_close.png"
 	if category._folded then
 		image_file = "mods/souls/files/ui_gfx/button_fold_open.png"
@@ -117,7 +117,7 @@ function mod_setting_category_button_souls( mod_id, gui, im_id, im_id2, category
 	return clicked
 end
 
-function mod_setting_change_callback( mod_id, gui, in_main_menu, setting, old_value, new_value  )
+function mod_setting_change_callback(mod_id, gui, in_main_menu, setting, old_value, new_value)
 
 end
 
@@ -228,6 +228,59 @@ mod_settings = {
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
                 ui_fn = mod_setting_bool_souls,
+            },
+        },
+    },
+    {
+        category_id = "souls_enemies",
+        ui_name = "Enemies",
+        ui_description = "Adjust the spawning of the mod's enemies.",
+        foldable = true,
+        _folded = true,
+        settings = {
+            {
+                id = "enable_enemies",
+                ui_name = "Enable Souls enemies?",
+                ui_description = "Should this mod's enemies appear at all?",
+                value_default = true,
+                scope = MOD_SETTING_SCOPE_NEW_GAME,
+                ui_fn = mod_setting_bool_souls,
+            },
+            {
+                id = "enemy_puppet_master",
+                ui_name = "Nukkejenmestari chance",
+                ui_description = "Adjust how often the Souls Master appears.",
+                value_default = "1",
+                values = {{"0", "0x"}, {"0.3", "0.3x"}, {"0.5", "0.5x"}, {"0.7", "0.7x"}, {"1", "1x"}, {"1.3", "1.3x"}, {"1.5", "1.5x"}},
+                scope = MOD_SETTING_SCOPE_NEW_GAME,
+                ui_fn = mod_setting_enum_souls,
+            },
+            {
+                id = "enemy_soul_angry",
+                ui_name = "Ilkeä naama chance",
+                ui_description = "Adjust how often the Angry Soul appears.",
+                value_default = "1",
+                values = {{"0", "0x"}, {"0.3", "0.3x"}, {"0.5", "0.5x"}, {"0.7", "0.7x"}, {"1", "1x"}, {"1.3", "1.3x"}, {"1.5", "1.5x"}},
+                scope = MOD_SETTING_SCOPE_NEW_GAME,
+                ui_fn = mod_setting_enum_souls,
+            },
+            {
+                id = "enemy_soul_rogue",
+                ui_name = "Roisto sielu chance",
+                ui_description = "Adjust how often the Rogue Soul appears.",
+                value_default = "1",
+                values = {{"0", "0x"}, {"0.3", "0.3x"}, {"0.5", "0.5x"}, {"0.7", "0.7x"}, {"1", "1x"}, {"1.3", "1.3x"}, {"1.5", "1.5x"}},
+                scope = MOD_SETTING_SCOPE_NEW_GAME,
+                ui_fn = mod_setting_enum_souls,
+            },
+            {
+                id = "enemy_soul_eye",
+                ui_name = "Sielun silmä chance",
+                ui_description = "Adjust how often the Soul Eye appears.",
+                value_default = "1",
+                values = {{"0", "0x"}, {"0.3", "0.3x"}, {"0.5", "0.5x"}, {"0.7", "0.7x"}, {"1", "1x"}, {"1.3", "1.3x"}, {"1.5", "1.5x"}},
+                scope = MOD_SETTING_SCOPE_NEW_GAME,
+                ui_fn = mod_setting_enum_souls,
             },
         },
     },

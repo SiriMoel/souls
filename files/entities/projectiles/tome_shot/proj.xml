@@ -71,11 +71,10 @@
         frame_length="1"
     ></GameAreaEffectComponent>
 
-    <LuaComponent
-		script_source_file="mods/souls/files/entities/projectiles/tome_shot/tome_shot.lua"
-		execute_every_n_frame="30"
-		>
-	</LuaComponent>
+    <HitEffectComponent
+        effect_hit="LOAD_UNIQUE_CHILD_ENTITY"
+        value_string="mods/souls/files/entities/misc/reapers/reap_entity_tome.xml"
+    ></HitEffectComponent>
 
 	<VariableStorageComponent
 		name="projectile_file"

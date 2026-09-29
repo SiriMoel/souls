@@ -1,5 +1,8 @@
+"The Update That Fixed Everything But Still Did Not Add The Custom Keybind To View Your Souls"
+
 NEW
 - Mod settings to toggle each structure
+- Mod settings to adjust the spawning of each enemy
 
 CHANGED/FIXED
 - Mod settings menu categories
@@ -8,12 +11,14 @@ CHANGED/FIXED
 - Soul collectable entity movement tweaks
 - Spell icon changes
 
-INTERNAL
-- Souls changes...
-- Changes to soul crystals
-- Changed spell id prefix to SOULS_
-- Updated nxml
-- Translations file(s) changes
+REMOVED
+- Some redundant/boring/disliked-by-me spells probably
 
-This update is a rewrite of many parts of the mod, so it will probably break existing runs with Souls.
-I'm sorry.
+INTERNAL
+- The whole mod basically
+- Changed spell id prefix to SOULS_
+- Updated nxml (rip 2022 nxml)
+- Translations file(s) changes
+- Corrected mistakes of the past
+
+Warning: This update is a rewrite of many parts of the mod, so it will break existing runs with Souls.

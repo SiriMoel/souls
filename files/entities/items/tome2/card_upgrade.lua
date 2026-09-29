@@ -59,28 +59,12 @@ if EntityHasTag(parent, "soul_tome") and EntityHasTag(root, "player_unit") then
                 if comp_upgrade_count ~= nil then
                     local upgrade_count = ComponentGetValue2(comp_upgrade_count, "value_int") or 0
                     local cost = tome_upgrades[selected].func_cost(upgrade_count)
-                    local soul_type = GetWandSoulType(parent)
-                    local soul_count = 0
-                    local any = false
-                    if soul_type == "0" then
-                        any = true
-                        soul_count = GetSoulsCount("all") - GetSoulsCount("boss")
-                    else
-                        soul_count = GetSoulsCount(soul_type)
-                    end
-                    if soul_count >= cost then
-                        if any then
-                            RemoveRandomSouls(cost)
-                        else
-                            for i=1,cost do
-					            RemoveSoul(soul_type)
-				            end
-                        end
+                    if SpellUseSouls(root, cost) then
                         GamePrint("Upgraded!")
                         tome_upgrades[selected].func_apply(parent)
                         ComponentSetValue2(comp_upgrade_count, "value_int", upgrade_count + 1)
                     else
-                        GamePrint("You do not have enough souls for this.")
+                        GamePrint("You do not have enough souls for this. (" .. cost .. ")")
                     end
                 end
             end

@@ -51,64 +51,53 @@ local new_actions = {
 		end,
 	},
 	{
-		id          = "WAND_CONSUMES_X_SOULS", -- new souls thing!!!
-		name 		= "$action_souls_wand_consumes_x_souls",
+		id = "WAND_CONSUMES_X_SOULS",
+		name = "$action_souls_wand_consumes_x_souls",
 		description = "$actiondesc_souls_wand_consumes_x_souls",
-		sprite 		= "mods/souls/files/spell_icons/wand_consumes_x_souls.png",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/wand_consumes_x_souls.png",
 		custom_xml_file="mods/souls/files/entities/misc/card_wand_consumes_x_souls/card.xml",
-		type 		= ACTION_TYPE_PASSIVE,
-		inject_after = "MOLDOS_REAPING_SHOT",
-		spawn_level                       = "0,1,2,3,4,5,6",
-		spawn_probability                 = "1,1,1,1,1,1,1",
-		spawn_level_table = { 0, 1, 2, 3, 4, 5, 6, },
-		spawn_probability_table = { 1, 1, 1, 1, 1, 1, 1, },
+		type = ACTION_TYPE_PASSIVE,
+		spawn_level = "1,2,3,4,5",
+		spawn_probability = "1,1,1,1,1",
 		price = 100,
 		mana = 0,
 		ai_never_uses = true,
-		action 		= function()
+		action = function()
 			draw_actions(1, true)
 		end,
 	},
 	{
-		id          = "SOUL_BLAST",
-		name 		= "$action_souls_soul_blast",
+		id = "SOUL_BLAST",
+		name = "$action_souls_soul_blast",
 		description = "$actiondesc_souls_soul_blast",
-		sprite 		= "mods/souls/files/spell_icons/soul_blast.png",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/soul_blast.png",
 		related_projectiles	= {"mods/souls/files/entities/projectiles/soul_blast/soul_blast.xml"},
-		type 		= ACTION_TYPE_PROJECTILE,
-		inject_after = "PIPE_BOMB_DEATH_TRIGGER",
-		spawn_level                       = "2,3,4,5,6",
-		spawn_probability                 = "0.8,0.9,0.9,0.9,0.9",
-		spawn_level_table = { 2, 3, 4, 5, 6, },
-		spawn_probability_table = { 0.8, 0.9, 0.9, 0.9, 0.9, },
-		price = 120,
-		mana = 70,
-		max_uses = 20,
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "2,3,4,5,6",
+		spawn_probability = "0.8,0.9,0.9,0.9,0.9",
+		price = 160,
+		mana = 60,
 		ai_never_uses = true,
-		action 		= function()
+		action = function()
 			add_projectile("mods/souls/files/entities/projectiles/soul_blast/soul_blast.xml")
-			c.fire_rate_wait = c.fire_rate_wait + 20
+			c.fire_rate_wait = c.fire_rate_wait + 18
 		end,
 	},
 	{
 		id = "TOME_SHOT",
 		name = "$action_souls_tome_shot",
 		description = "$actiondesc_souls_tome_shot",
-		sprite = "mods/souls/files/spell_icons/tome_shot.png",
-		sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_unidentified.png",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/tome_shot.png",
 		related_projectiles	= {"mods/souls/files/entities/projectiles/tome_seek/proj.xml"},
 		type = ACTION_TYPE_PROJECTILE,
-		inject_after = "SUMMON_WANDGHOST",
-		spawn_level                       = "",
-		spawn_probability                 = "",
-		spawn_level_table = {},
-		spawn_probability_table = {},
+		spawn_level = "10",
+		spawn_probability = "0",
 		price = 100,
 		mana = 50,
 		ai_never_uses = true,
 		custom_xml_file = "mods/souls/files/entities/misc/card_tome_shot/card.xml",
 		action = function()
-			c.fire_rate_wait = c.fire_rate_wait + 10
+			c.fire_rate_wait = c.fire_rate_wait + 15
 			if reflecting then return end
 			dofile_once("mods/souls/files/scripts/souls.lua")
 			local entity = GetUpdatedEntityID()
@@ -117,13 +106,12 @@ local new_actions = {
 			if inv_comp then
 				wand = ComponentGetValue2(inv_comp, "mActiveItem")
 			end
-			local tome = EntityGetWithTag("soul_tome")[1] or 1
+			local tome = EntityGetWithTag("soul_tome")[1]
 			local comp_ca = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "current_attack") or 0
 			local ca = tonumber(ComponentGetValue(comp_ca, "value_string"))
 			local function TomeAddProjectiles()
 				if ca == 1 then -- tome shot
 					c.spread_degrees = c.spread_degrees + 13.0
-					c.screenshake = c.screenshake + 2
 					c.damage_critical_chance = c.damage_critical_chance + 2
 					add_projectile("mods/souls/files/entities/projectiles/tome_shot/proj.xml")
 					add_projectile("mods/souls/files/entities/projectiles/tome_shot/proj.xml")
@@ -142,7 +130,7 @@ local new_actions = {
 					add_projectile("mods/souls/files/entities/projectiles/tome_seek/proj.xml")
 				end
 				if ca == 3 then -- tome bomb
-					c.fire_rate_wait = c.fire_rate_wait + 10
+					c.fire_rate_wait = c.fire_rate_wait + 15
 					add_projectile("mods/souls/files/entities/projectiles/tome_bomb/proj.xml")
 				end
 			end
@@ -159,13 +147,10 @@ local new_actions = {
 		id = "UPGRADE_TOME",
 		name = "$action_souls_upgrade_tome",
 		description = "$actiondesc_souls_upgrade_tome",
-		sprite = "mods/souls/files/spell_icons/tome_upgrade.png",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/tome_upgrade.png",
 		type = ACTION_TYPE_UTILITY,
-		inject_after = "MOLDOS_TOME_SHOT",
-		spawn_level                       = "",
-		spawn_probability                 = "",
-		spawn_level_table = {},
-		spawn_probability_table = {},
+		spawn_level = "",
+		spawn_probability = "",
 		price = 100,
 		mana = 0,
 		ai_never_uses = true,
@@ -179,13 +164,10 @@ local new_actions = {
 		id = "SOUL_SPEED",
 		name = "$action_souls_soul_speed",
 		description = "$actiondesc_souls_soul_speed",
-		sprite = "mods/souls/files/spell_icons/soul_speed.png",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/soul_speed.png",
 		type = ACTION_TYPE_MODIFIER,
-		inject_after = "BLOODLUST",
-		spawn_level  = "1,2,3,4,5,6",
-		spawn_probability = "1,1,1,1,1,1",
-		spawn_level_table = {1, 2, 3, 4, 5, 6},
-		spawn_probability_table = {1, 1, 1, 1, 1, 1},
+		spawn_level = "1,2,3,4,5,6",
+		spawn_probability = "0.8,1,1,1,1,0.5",
 		price = 100,
 		mana = 10,
 		ai_never_uses = true,
@@ -212,82 +194,21 @@ local new_actions = {
 		end,
 	},
 	{
-		id = "SOULS_TO_POWER",
-		name = "$action_souls_souls_to_power",
-		description = "$actiondesc_souls_souls_to_power",
-		sprite = "mods/souls/files/spell_icons/souls_to_power.png",
-		related_extra_entities = {"mods/souls/files/entities/projectiles/souls_to_power/souls_to_power.xml"},
-		type = ACTION_TYPE_MODIFIER,
-		inject_after = "SPELLS_TO_POWER",
-		spawn_level = "2,3,4,5,6,10",
-		spawn_probability = "0.7,0.7,0.9,0.9,0.8,0.5",
-		spawn_level_table = {2, 3, 4, 5, 6, 10},
-		spawn_probability_table = {0.7, 0.7, 0.9, 0.9, 0.8, 0.5},
-		price = 120,
-		mana = 50,
-		ai_never_uses = true,
-		action = function()
-			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/souls_to_power/souls_to_power.xml,"
-			c.fire_rate_wait = c.fire_rate_wait + 20
-			draw_actions(1, true)
-		end,
-	},
-	{
-		id = "SOUL_STRIKE", -- souls to power if it was cool
-		name = "$action_souls_soul_strike",
-		description = "$actiondesc_souls_soul_strike",
-        sprite = "mods/souls/files/spell_icons/soul_strike.png",
-		custom_xml_file="mods/souls/files/entities/misc/card_soul_strike/card.xml",
-		type = ACTION_TYPE_MODIFIER,
-		inject_after = "MOLDOS_SOULS_TO_POWER",
-		spawn_level                       = "2,3,4,5,6,10",
-		spawn_probability                 = "0.3,0.8,0.8,0.8,0.7,0.2",
-		spawn_level_table = { 2, 3, 4, 5, 6, 10, },
-		spawn_probability_table = { 0.3, 0.8, 0.8, 0.8, 0.7, 0.2 },
-		price = 100,
-		mana = 50,
+		id = "EAT_WAND_FOR_SOULS",
+		name = "$action_souls_eat_wand_for_souls",
+		description = "$actiondesc_souls_eat_wand_for_souls",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/eat_wand_for_souls.png",
+		type = ACTION_TYPE_UTILITY,
+		spawn_level = "5,6,10",
+		spawn_probability = "0.6,0.7,0.5",
+		price = 300,
+		mana = 0,
 		ai_never_uses = true,
 		action = function()
 			if reflecting then return end
-			dofile_once("mods/souls/files/scripts/utils.lua")
-			local card = GetUpdatedEntityID()
-			local x, y = EntityGetTransform(GetPlayer())
-			local wand = 0
-			local inv_comp = EntityGetFirstComponentIncludingDisabled(card, "Inventory2Component")
-			if inv_comp then
-				wand = ComponentGetValue2(inv_comp, "mActiveItem")
-			end
-			card = CurrentCard(wand)
-			local comp_soulstrike = EntityGetFirstComponentIncludingDisabled(card, "VariableStorageComponent", "soul_strike_amount") or 0
-			local soul_strike_amount = ComponentGetValue2(comp_soulstrike, "value_int") or 0
-			for i=1,soul_strike_amount do
-				c.speed_multiplier = c.speed_multiplier * 1.05
-				c.damage_projectile_add = c.damage_projectile_add + 0.1
-				c.extra_entities = c.extra_entities .. "mods/souls/files/entities/misc/soul_speed_fx.xml,"
-			end
-			ComponentSetValue2(comp_soulstrike, "value_int", 0)
-			c.fire_rate_wait    = c.fire_rate_wait + 20
-			draw_actions(1, true)
-		end,
-	},
-	{
-		id          = "EAT_WAND_FOR_SOULS", -- humgy
-		name 		= "$action_souls_eat_wand_for_souls",
-		description = "$actiondesc_souls_eat_wand_for_souls",
-		sprite 		= "mods/souls/files/spell_icons/eat_wand_for_souls.png",
-		type 		= ACTION_TYPE_UTILITY,
-		inject_after = "MOLDOS_SOUL_STRIKE",
-		spawn_level                       = "5,6,10",
-		spawn_probability                 = "0.6,0.7,0.5",
-		spawn_level_table = { 5, 6, 10, },
-		spawn_probability_table = { 0.6, 0.7, 0.5 },
-		price = 300,
-		mana = 100,
-		ai_never_uses = true,
-		action 		= function()
 			dofile_once("mods/souls/files/scripts/souls.lua")
-			local card = GetUpdatedEntityID()
-			local x, y = EntityGetTransform(GetPlayer())
+			local card = GetUpdatedEntityID() -- why did i call this 'card' ?
+			local x, y = EntityGetTransform(card)
 			local wand = 0
 			local souls_earned = 1
 			local inv_comp = EntityGetFirstComponentIncludingDisabled(card, "Inventory2Component")
@@ -329,28 +250,149 @@ local new_actions = {
 					if EntityHasTag(v, "card_action") then
 						local comp_itemaction = EntityGetFirstComponentIncludingDisabled(v, "ItemActionComponent") or 0
             			local action_id = ComponentGetValue(comp_itemaction, "action_id") or ""
-            			if action_id ~= "MOLDOS_EAT_WAND_FOR_SOULS" then
+            			if action_id ~= "SOULS_EAT_WAND_FOR_SOULS" then
 							souls_earned = souls_earned + 1
 						end
 					end
 				end
 				if souls_earned > 30 then
-					souls_earned = 30 + ((souls_earned - 30) * 0.5)
+					souls_earned = 30 + ((souls_earned - 30) * 0.7)
 				end
-				souls_earned = math.floor(souls_earned)
+				souls_earned = math.ceil(souls_earned)
+				local souls_to_add = {}
 				for i=1,souls_earned do
 					local which = possible_types[math.random(1,#possible_types)]
-					AddSouls(which, 1)
-					if tobool(GlobalsGetValue("souls.say_soul", "true")) == true then
+					souls_to_add[tostring(which)] = (souls_to_add[tostring(which)] or 0) + 1
+					if GlobalsGetValue("souls.say_soul", "true") == "true" then
 						GamePrint("You have acquired a " .. SoulNameCheck(which) .. " soul!")
 					end
 				end
+				EditSoulCounts(souls_to_add, card)
 				GamePrint("The wand was eaten and you have received " .. souls_earned .. " souls!")
-				CreateItemActionEntity( "MOLDOS_EAT_WAND_FOR_SOULS", x, y )
+				CreateItemActionEntity("SOULS_EAT_WAND_FOR_SOULS", x, y)
 				EntityKill(wand)
 			end
 		end,
 	},
+	{
+		id = "SCALING_DAMAGE",
+		name = "$action_souls_scaling_damage",
+		description = "$actiondesc_souls_scaling_damage",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/scaling_damage.png",
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level = "3,4,5,6",
+		spawn_probability = "0.2,0.5,0.6,0.5",
+		price = 140,
+		mana = 15,
+		ai_never_uses = true,
+		action = function()
+			if reflecting then
+				c.damage_projectile_add = c.damage_projectile_add + 0.2
+				return
+			end
+			dofile_once("mods/souls/files/scripts/souls.lua")
+			local count = SoulCount("boss")
+			c.damage_projectile_add = c.damage_projectile_add + 0.2 * count
+			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "SOULS_TO_POWER",
+		name = "$action_souls_souls_to_power",
+		description = "$actiondesc_souls_souls_to_power",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/souls_to_power.png",
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level = "3,4,5,6,10",
+		spawn_probability = "0.6,0.7,0.8,0.8,0.4",
+		price = 120,
+		mana = 50,
+		ai_never_uses = true,
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 24
+			if reflecting then 
+				c.damage_projectile_add = c.damage_projectile_add + 0.24
+				return 
+			end
+			local total = SoulCount("total")
+			local count = math.min(math.ceil(total * 0.04), 100)
+			if SpellUseSouls(GetUpdatedEntityID(), count) then
+				c.damage_projectile_add = c.damage_projectile_add + 0.24 * count
+				shot_effects.recoil_knockback = shot_effects.recoil_knockback + 1.0 * count
+				for i=1,math.min(count, 10) do
+					c.extra_entities = c.extra_entities .. "mods/souls/files/entities/particles/souls_to_power.xml,"
+				end
+			end
+			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "SOUL_STRIKE",
+		name = "$action_souls_soul_strike",
+		description = "$actiondesc_souls_soul_strike",
+        sprite = "mods/souls/files/ui_gfx/gun_actions/soul_strike.png",
+		custom_xml_file="mods/souls/files/entities/misc/card_soul_strike/card.xml",
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level = "2,3,4,5,6,10",
+		spawn_probability = "0.3,0.7,0.8,0.8,0.7,0.2",
+		price = 120,
+		mana = 30,
+		ai_never_uses = true,
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 12
+			if reflecting then 
+				c.speed_multiplier = c.speed_multiplier * 1.05
+				c.damage_projectile_add = c.damage_projectile_add + 0.2
+				return 
+			end
+			dofile_once("mods/souls/files/scripts/utils.lua")
+			local caster = GetUpdatedEntityID()
+			local x, y = EntityGetTransform(GetPlayer())
+			local wand = 0
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(caster, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+			local card = CurrentCard(wand)
+			local comp_soulstrike = EntityGetFirstComponentIncludingDisabled(card, "VariableStorageComponent", "soul_strike_amount") or 0
+			local soul_strike_amount = ComponentGetValue2(comp_soulstrike, "value_int") or 0
+			c.speed_multiplier = c.speed_multiplier * (1 + 0.05 * soul_strike_amount)
+			c.damage_projectile_add = c.damage_projectile_add + 0.2 * soul_strike_amount
+			if c.speed_multiplier >= 20 then
+				c.speed_multiplier = math.min(c.speed_multiplier, 20)
+			elseif c.speed_multiplier < 0 then
+				c.speed_multiplier = 0
+			end
+			ComponentSetValue2(comp_soulstrike, "value_int", 0)
+			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "SOUL_CRIT",
+		name = "$action_souls_soul_crit",
+		description = "$actiondesc_souls_soul_crit",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/soul_crit.png",
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level = "1,2,3,4,5,6",
+		spawn_probability = "1,1,1,1,1,0.7",
+		price = 100,
+		mana = 8,
+		ai_never_uses = true,
+		action = function()
+			if reflecting then 
+				c.damage_critical_chance = c.damage_critical_chance + 60
+				return 
+			end
+			dofile_once("mods/souls/files/scripts/souls.lua")
+			local entity = GetUpdatedEntityID()
+			if SpellUseSouls(entity, 1) then
+				c.damage_critical_chance = c.damage_critical_chance + 60
+			else
+				GamePrint("You do not have enough souls for this. (1)")
+			end
+			draw_actions(1, true)
+		end,
+	},
+	--- I haven't updated what is below
 	{
 		id          = "SOUL_ARROW", -- blacklight arrow from graham's but drawn from memory (i didnt realise it was a spell)
 		name 		= "$action_souls_soul_arrow",
@@ -412,7 +454,7 @@ local new_actions = {
 		end,
 	},
 	{
-		id          = "SOUL_HEALER",
+		id          = "SOUL_HEALER", -- this should not stay as it is
 		name 		= "$action_souls_soul_healer",
 		description = "$actiondesc_souls_soul_healer",
 		sprite 		= "mods/souls/files/spell_icons/soul_healer.png",
@@ -450,8 +492,8 @@ local new_actions = {
 			c.fire_rate_wait = c.fire_rate_wait + 80
 		end,
 	},
-	{
-		id          = "WEAKENING_HALO", -- nezha gaming
+	--[[{
+		id          = "WEAKENING_HALO", -- "replace" with new spell
 		name 		= "$action_souls_weakening_halo",
 		description = "$actiondesc_souls_weakening_halo",
 		sprite 		= "mods/souls/files/spell_icons/weakening_halo.png",
@@ -497,9 +539,9 @@ local new_actions = {
 
 			draw_actions( 1, true )
 		end,
-	},
-	{
-		id          = "SOUL_CLOAK",
+	},]]
+	--[[{
+		id          = "SOUL_CLOAK", -- invisibility doesn't expire correctly half the time and it annoys me
 		name 		= "$action_souls_soul_cloak",
 		description = "$actiondesc_souls_soul_cloak",
 		sprite 		= "mods/souls/files/spell_icons/soul_rage.png",
@@ -517,9 +559,9 @@ local new_actions = {
 			current_reload_time = current_reload_time + 10
 			draw_actions( 1, true )
 		end,
-	},
-	{
-		id          = "SOUL_RAGE",
+	},]]
+	--[[{
+		id          = "SOUL_RAGE", -- passive soul drain as a mechanic doesn't fit souls imo
 		name 		= "$action_souls_soul_rage",
 		description = "$actiondesc_souls_soul_rage",
 		sprite 		= "mods/souls/files/spell_icons/soul_cloak.png",
@@ -537,7 +579,7 @@ local new_actions = {
 			current_reload_time = current_reload_time + 10
 			draw_actions( 1, true )
 		end,
-	},
+	},]]
 	{
 		id          = "SOUL_BOLT",
 		name 		= "$action_souls_soul_bolt",
@@ -818,28 +860,6 @@ local new_actions = {
 		end,
 	},
 	{
-		id          = "SCALING_DAMAGE",
-		name 		= "$action_souls_scaling_damage",
-		description = "$actiondesc_souls_scaling_damage",
-		sprite 		= "mods/souls/files/spell_icons/scaling_damage.png",
-		type 		= ACTION_TYPE_MODIFIER,
-		inject_after = "MOLDOS_SOUL_SPEED",
-		spawn_level                       = "5,6",
-		spawn_probability                 = "0.5,0.5",
-		spawn_level_table = { 5, 6, },
-		spawn_probability_table = { 0.5, 0.5, },
-		price = 100,
-		mana = 30,
-		ai_never_uses = true,
-		action 		= function()
-			dofile_once("mods/souls/files/scripts/souls.lua")
-			if reflecting then return end
-			local count = GetSoulsCount("boss")
-			c.damage_projectile_add = c.damage_projectile_add + (0.03 * count)
-			draw_actions( 1, true )
-		end,
-	},
-	{
 		id          = "SCALING_SPEED",
 		name 		= "$action_souls_scaling_speed",
 		description = "$actiondesc_souls_scaling_speed",
@@ -861,7 +881,7 @@ local new_actions = {
 			draw_actions( 1, true )
 		end,
 	},
-	{
+	--[[{
 		id          = "SOUL_TINKER",
 		name 		= "$action_souls_soul_tinker",
 		description = "$actiondesc_souls_soul_tinker",
@@ -880,48 +900,7 @@ local new_actions = {
 			current_reload_time = current_reload_time + 20
 			draw_actions( 1, true )
 		end,
-	},
-	{
-		id          = "SOUL_CRIT",
-		name 		= "$action_souls_soul_crit",
-		description = "$actiondesc_souls_soul_crit",
-		sprite 		= "mods/souls/files/spell_icons/soul_crit.png",
-		type 		= ACTION_TYPE_MODIFIER,
-		inject_after = "MOLDOS_SOUL_SPEED",
-		spawn_level                       = "1,2,3,4,5,6",
-		spawn_probability                 = "1,1,1,1,1,1",
-		spawn_level_table = { 1, 2, 3, 4, 5, 6 },
-		spawn_probability_table = { 0.5, 0.7, 0.7, 0.7, 0.7, 0.7 },
-		price = 100,
-		mana = 15,
-		ai_never_uses = true,
-		action 		= function()
-			dofile_once("mods/souls/files/scripts/souls.lua")
-			if reflecting then return end
-			local entity = GetUpdatedEntityID()
-			local wand = 0
-			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
-			if inv_comp then
-				wand = ComponentGetValue2(inv_comp, "mActiveItem")
-			end
-			if DoesWandUseSpecificSoul(wand) then
-				if GetSoulsCount(GetWandSoulType(wand)) >= 1 then
-					RemoveSoul(GetWandSoulType(wand))
-					c.damage_critical_chance = c.damage_critical_chance + 100
-				else
-					GamePrint("You do not have enough souls for this.")
-				end
-			else
-				if (GetSoulsCount("all") - GetSoulsCount("boss")) >= 1 then
-					RemoveRandomSouls(1)
-					c.damage_critical_chance = c.damage_critical_chance + 100
-				else
-					GamePrint("You do not have enough souls for this.")
-				end
-			end
-			draw_actions( 1, true )
-		end,
-	},
+	},]]
 	{
 		id          = "SOUL_FIRE",
 		name 		= "$action_souls_soul_fire",
@@ -1154,7 +1133,7 @@ local new_actions = {
 			draw_actions( 1, true )
 		end,
 	},
-	{
+	--[[{
 		id          = "DIVIDE_BY_SOULS",
 		name 		= "$action_souls_divide_by_souls",
 		description = "$actiondesc_souls_divide_by_souls",
@@ -1234,7 +1213,7 @@ local new_actions = {
 				GamePrint("You do not have enough souls for this.")
 			end
 		end,
-	},
+	},]]
 	--[[{
 		id          = "VOID_LASH",
 		name 		= "$action_souls_void_lash",
@@ -1260,7 +1239,7 @@ local new_actions = {
 
 for i,action in ipairs(new_actions) do
 	action.id = "SOULS_" .. action.id
-	if action.spawn_level_table ~= nil and action.spawn_probability_table ~= nil then
+	--[[if action.spawn_level_table ~= nil and action.spawn_probability_table ~= nil then
 		local levels = ""
 		local probabilities = ""
 		levels = ""
@@ -1275,6 +1254,6 @@ for i,action in ipairs(new_actions) do
 			probabilities = probabilities .. tostring(chance) .. ","
 		end
 		action.spawn_probability = probabilities
-	end
+	end]]
 	table.insert(actions, action)
 end

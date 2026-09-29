@@ -11,7 +11,7 @@ function spawn_tome(x, y)
 end
 
 function spawn_tome_upgrader(x, y)
-    CreateItemActionEntity("MOLDOS_UPGRADE_TOME", x, y)
+    CreateItemActionEntity("SOULS_UPGRADE_TOME", x, y)
 end
 
 function spawn_phylactery(x, y)

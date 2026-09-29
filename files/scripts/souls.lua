@@ -1,8 +1,7 @@
 dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("mods/souls/files/scripts/soul_types.lua")
 
-function SoulsInit()
-    local player = GetPlayer()
+function SoulsInit(player)
     for i,v in ipairs(soul_types) do
         EntityAddComponent2(player, "VariableStorageComponent", {
             _tags="souls_count,soulcount_" .. v,
@@ -10,6 +9,11 @@ function SoulsInit()
             value_int=0,
         })
     end
+    EntityAddComponent2(player, "VariableStorageComponent", {
+        _tags="souls_used_total",
+        name="souls_used_total",
+        value_int=0,
+    })
 end
 
 function SoulCounts(player)
@@ -49,6 +53,7 @@ end
 
 function EditSoulCounts(counts, player)
     player = player or EntityGetWithTag("player_unit")[1]
+    local amt_used = ComponentGetValue2(comp_used, "value_int")
     for soul,amt in pairs(counts) do
         local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. tostring(soul))
         if comp ~= nil then
@@ -113,6 +118,14 @@ function SpellUseSouls(caster, n)
             end
         end
 	end
+    if success then
+        local comp_used = EntityGetFirstComponentIncludingDisabled(caster, "VariableStorageComponent", "souls_used_total")
+        if comp_used ~= nil then
+            local amt_used = ComponentGetValue2(comp_used, "value_int")
+            amt_used = amt_used + n
+            ComponentSetValue2(comp_used, "value_int", amt_used)
+        end
+    end
     return success, soul_used
 end
 

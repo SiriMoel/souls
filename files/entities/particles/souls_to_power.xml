@@ -1,14 +1,14 @@
 <Entity>
-	<InheritTransformComponent />
+	<InheritTransformComponent/>
 	
-  <ParticleEmitterComponent 
+   <ParticleEmitterComponent 
 		emitted_material_name="souls_soul_particles"
 		offset.x="0"
 		offset.y="0"
-		x_pos_offset_min="-8"
-		x_pos_offset_max="8"
-		y_pos_offset_min="-8"
-		y_pos_offset_max="8"
+		x_pos_offset_min="-6"
+		x_pos_offset_max="6"
+		y_pos_offset_min="-6"
+		y_pos_offset_max="6"
 		gravity.y="0"
 		x_vel_min="-2"
 		x_vel_max="2"
@@ -18,8 +18,8 @@
 		count_max="3"
 		is_trail="0"
 		fade_based_on_lifetime="1"
-		lifetime_min="0.8"
-		lifetime_max="2.0"
+		lifetime_min="0.4"
+		lifetime_max="0.9"
 		airflow_force="1.5"
 		airflow_time="0.401"
 		airflow_scale="0.05"
@@ -33,6 +33,6 @@
 	
 	<LifetimeComponent
 		lifetime="300"
-		>
-	</LifetimeComponent>
+	></LifetimeComponent>
+
 </Entity>

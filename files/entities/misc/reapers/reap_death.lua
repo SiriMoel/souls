@@ -43,12 +43,12 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
             for soul,amt in pairs(souls) do
                 if first then
                     str = str .. amt .. " " .. GameTextGetTranslatedOrNot(soul_names[soul]) .. " souls"
-                     first = false
+                    first = false
                 else
                     str = str .. ", " .. amt .. " " .. GameTextGetTranslatedOrNot(soul_names[soul]) .. " souls"
                 end
             end
-            str = str .. "."
+            str = str .. "!"
             GamePrint(str)
         end
         EditSoulCounts(souls, player)

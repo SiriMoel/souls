@@ -76,6 +76,37 @@ for _,v in ipairs(drops) do
     end
 end
 
+local bosses = {
+    "data/entities/animals/boss_alchemist/boss_alchemist.xml",
+	"data/entities/animals/boss_limbs/boss_limbs.xml",
+	"data/entities/animals/boss_pit/boss_pit.xml",
+	"data/entities/animals/boss_dragon.xml",
+	"data/entities/animals/boss_wizard/boss_wizard.xml",
+	"data/entities/animals/boss_fish/fish_giga.xml",
+	"data/entities/animals/boss_spirit/islandspirit.xml",
+	"data/entities/animals/boss_ghost/boss_ghost.xml",
+	"data/entities/animals/boss_meat/boss_meat.xml",
+	"data/entities/animals/boss_robot/boss_robot.xml",
+	"data/entities/animals/maggot_tiny/maggot_tiny.xml",
+	"data/entities/animals/parallel/alchemist/parallel_alchemist.xml",
+	"data/entities/animals/parallel/tentacles/parallel_tentacles.xml",
+}
+if ModIsEnabled("Apotheosis") then
+    
+end
+for _,path in ipairs(bosses) do
+    for content in nxml.edit_file(path) do
+        content:set("tags", content:get("tags") .. ",souls_boss")
+        content:create_children(
+            { VariableStorageComponent = {
+        		_tags="souls_reap",
+		        name="boss",
+		        value_int=1
+    	    }}
+        )
+    end
+end
+
 local cloud_spells = {
     "data/entities/projectiles/deck/cloud_acid.xml",
     "data/entities/projectiles/deck/cloud_blood.xml",

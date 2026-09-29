@@ -14,7 +14,7 @@ if ComponentGetValue2(comp_controls, "mButtonDownRightClick") == true and frame 
     local player = GetPlayer()
     local wand = HeldItem(player)
     local comp = EntityGetFirstComponentIncludingDisabled(wand, "VariableStorageComponent", "souls_wand_soul_type")
-    comp = comp or EntityAddComponent2(comp, "VariableStorageComponent", {
+    comp = comp or EntityAddComponent2(wand, "VariableStorageComponent", {
         _tags="souls_wand_soul_type",
         name="souls_wand_soul_type",
         value_int=0

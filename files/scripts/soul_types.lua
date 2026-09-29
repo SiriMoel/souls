@@ -1,0 +1,71 @@
+soul_types = {
+    "bat",
+    "fly",
+    "friendly",
+    "mage",
+    "orcs",
+    "slimes",
+    "spider",
+    "zombie",
+    "worm",
+    "fungus",
+    "ghost",
+    "souls_void",
+    "boss",
+}
+
+if ModIsEnabled("Apotheosis") then
+    soul_types = {
+        "bat",
+        "fly",
+        "friendly",
+        "mage",
+        "orcs",
+        "slimes",
+        "spider",
+        "zombie",
+        "worm",
+        "fungus",
+        "ghost",
+        "mage_corrupted",
+        "ghost_whisp",
+        "souls_void",
+        "boss",
+    }
+end
+
+soul_names = {
+    bat = "$souls_soul_bat",
+    fly = "$souls_soul_fly,
+    friendly = "$souls_soul_friendly",
+    mage = "$souls_soul_mage",
+    orcs = "$souls_soul_orcs",
+    slimes = "$souls_soul_slimes",
+    spider = "$souls_soul_spider",
+    zombie = "$souls_soul_zombie",
+    worm = "$souls_soul_worm",
+    fungus = "$souls_soul_fungus",
+    ghost = "$souls_soul_ghost",
+    souls_void = "$souls_soul_souls_void",
+    boss = "$souls_soul_boss",
+    mage_corrupted = "$souls_soul_mage_corrupted",
+    ghost_whisp = "$souls_soul_ghost_whisp",
+}
+
+soul_sparks = {
+    bat = "spark_purple_bright",
+    fly = "lava",
+    friendly = "souls_soul_particles",
+    mage = "magic_liquid_mana_regeneration",
+    orcs = "spark_green",
+    slimes = "radioactive_liquid",
+    spider = "spark_purple",
+    zombie = "spark_green",
+    worm = "souls_soul_particles_worm",
+    fungus = "fungi",
+    ghost = "plasma_fading",
+    souls_void = "souls_soul_particles",
+    boss = "souls_living_particles",
+    mage_corrupted = "blood",
+    ghost_whisp = "fire",
+}

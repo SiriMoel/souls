@@ -3,21 +3,50 @@ dofile_once("mods/souls/files/scripts/souls.lua")
 
 local new_actions = {
 	{
-		id          = "REAPING_SHOT", -- the basis of the whole mod
-		name 		= "$action_souls_reaping_shot",
+		id = "REAPING_SHOT",
+		name = "$action_souls_reaping_shot",
 		description = "$actiondesc_souls_reaping_shot",
-		sprite 		= "mods/souls/files/spell_icons/reaping_shot.png",
-		related_extra_entities = { "mods/souls/files/entities/projectiles/reaping_shot/reaping_shot.xml" },
-		type 		= ACTION_TYPE_MODIFIER,
-		inject_after = "MANA_REDUCE",
-		spawn_level                       = "0,1,2,3,4,5,6",
-		spawn_probability                 = "1,1,1,1,1,1,1",
-		spawn_level_table = { 0, 1, 2, 3, 4, 5, 6, },
-		spawn_probability_table = { 1, 1, 1, 1, 1, 1, 1, },
+		sprite = "mods/souls/files/ui_gfx/gun_actions/reaping_shot.png",
+		related_extra_entities = {"mods/souls/files/entities/projectiles/reaping_shot/reaping_shot.xml"},
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level  = "0,1,2,3,4,5,6",
+		spawn_probability = "1,1,1,1,1,1,1",
 		price = 100,
 		mana = 10,
-		action 		= function()
+		action = function()
 			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/reaping_shot/reaping_shot.xml,"
+			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "RANDOM_REAP",
+		name = "$action_souls_random_reap",
+		description = "$actiondesc_souls_random_reap",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/random_reap.png",
+		related_extra_entities = {"mods/souls/files/entities/projectiles/random_reap/reaping_shot.xml"},
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level = "3,4,5,6",
+		spawn_probability = "0.4,0.4,0.5,0.5",
+		price = 100,
+		mana = 15,
+		action = function()
+			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/random_reap/reaping_shot.xml,"
+			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "SOULDOS",
+		name = "$action_souls_souldos",
+		description = "$actiondesc_souls_souldos",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/souldos.png",
+		related_extra_entities = {"mods/souls/files/entities/projectiles/souldos/reaping_shot.xml"},
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level = "4,5,6,10",
+		spawn_probability = "0.4,0.5,0.5,0.7",
+		price = 100,
+		mana = 20,
+		action = function()
+			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/souldos/reaping_shot.xml,"
 			draw_actions(1, true)
 		end,
 	},
@@ -526,44 +555,6 @@ local new_actions = {
 		action 		= function()
 			add_projectile("mods/souls/files/entities/projectiles/soul_bolt/proj.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 5
-		end,
-	},
-	{
-		id          = "SOULDOS", -- moldos
-		name 		= "$action_souls_souldos",
-		description = "$actiondesc_souls_souldos",
-		sprite 		= "mods/souls/files/spell_icons/souldos.png",
-		related_extra_entities = { "mods/souls/files/entities/projectiles/souldos/reaping_shot.xml" },
-		type 		= ACTION_TYPE_MODIFIER,
-		inject_after = "MOLDOS_REAPING_SHOT",
-		spawn_level                       = "4,5,6,10",
-		spawn_probability                 = "0.4,0.5,0.5,0.7",
-		spawn_level_table = { 4, 5, 6, 10, },
-		spawn_probability_table = { 0.4, 0.5, 0.5, 0.7, },
-		price = 100,
-		mana = 20,
-		action 		= function()
-			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/souldos/reaping_shot.xml,"
-			draw_actions( 1, true )
-		end,
-	},
-	{
-		id          = "RANDOM_REAP",
-		name 		= "$action_souls_random_reap",
-		description = "$actiondesc_souls_random_reap",
-		sprite 		= "mods/souls/files/spell_icons/random_reap.png",
-		related_extra_entities = { "mods/souls/files/entities/projectiles/random_reap/reaping_shot.xml" },
-		type 		= ACTION_TYPE_MODIFIER,
-		inject_after = "MOLDOS_REAPING_SHOT",
-		spawn_level                       = "4,5,6,10",
-		spawn_probability                 = "0.4,0.5,0.5,0.7",
-		spawn_level_table = { 4, 5, 6, 10, },
-		spawn_probability_table = { 0.4, 0.5, 0.5, 0.7, },
-		price = 100,
-		mana = 20,
-		action 		= function()
-			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/random_reap/reaping_shot.xml,"
-			draw_actions( 1, true )
 		end,
 	},
 	{
@@ -1267,75 +1258,23 @@ local new_actions = {
 	},]]
 }
 
-local actions_to_insert = {}
-
-local action_ids_in_order = {
-	"WAND_CONSUMES_X_SOULS",
-	"REAPING_SHOT",
-	"RANDOM_REAP",
-	"SOULDOS",
-	"REAP_FROM_FIRE",
-	"REAPING_FIELD",
-	"REAPING_HALO",
-	"SOUL_BOLT",
-	"SOUL_ARROW",
-	"SOUL_BLAST",
-	"SOUL_BALL",
-	"SOUL_METEOR",
-	"EXPEL_SOUL",
-	"SOUL_SPEED",
-	"SOULS_TO_POWER",
-	"SOUL_STRIKE",
-	"SOUL_BOOST",
-	"SOUL_CRIT",
-	"SOUL_CLOAK",
-	"SOUL_RAGE",
-	"SOUL_TINKER",
-	"SOUL_SPELL_MAGE",
-	"SOUL_SPELL_SLIMES",
-	"SOUL_SPELL_WORM",
-	"SCALING_DAMAGE",
-	"SCALING_SPEED",
-	"SCALING_MANA",
-	"SCALING_RECHARGE",
-	--"VOID_LASH",
-	"UPGRADE_TOME",
-	"TOME_SHOT",
-	"TOME_LAUNCHER",
-	"TOME_SLICE",
-	"SOUL_BATTERY",
-	"SOUL_HEALER",
-	"SOUL_FIRE",
-	"EAT_WAND_FOR_SOULS",
-	"WEAKENING_HALO",
-	"REAP_TELE",
-	"DIVIDE_BY_SOULS",
-}
-
-for i,id in ipairs(action_ids_in_order) do
-	for ii=1,#new_actions do
-		local action = new_actions[ii]
-		if action.id == id then
-			table.insert(actions_to_insert, action)
-		end
-	end
-end
-
-for i,action in ipairs(actions_to_insert) do
+for i,action in ipairs(new_actions) do
 	action.id = "SOULS_" .. action.id
-	local levels = ""
-	local probabilities = ""
-	levels = ""
-	probabilities = ""
-	local multiplier = 1--tonumber(GlobalsGetValue("souls.spell_spawn_chance_multiplier", "1"))
-	for i,level in ipairs(action.spawn_level_table) do
-		levels = levels .. tostring(level) .. ","
+	if action.spawn_level_table ~= nil and action.spawn_probability_table ~= nil then
+		local levels = ""
+		local probabilities = ""
+		levels = ""
+		probabilities = ""
+		local multiplier = 1--tonumber(GlobalsGetValue("souls.spell_spawn_chance_multiplier", "1"))
+		for i,level in ipairs(action.spawn_level_table) do
+			levels = levels .. tostring(level) .. ","
+		end
+		action.spawn_level = levels
+		for i,chance in ipairs(action.spawn_probability_table) do
+			chance = chance * multiplier
+			probabilities = probabilities .. tostring(chance) .. ","
+		end
+		action.spawn_probability = probabilities
 	end
-	action.spawn_level = levels
-	for i,chance in ipairs(action.spawn_probability_table) do
-		chance = chance * multiplier
-		probabilities = probabilities .. tostring(chance) .. ","
-	end
-	action.spawn_probability = probabilities
 	table.insert(actions, action)
 end

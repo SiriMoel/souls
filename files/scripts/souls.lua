@@ -1,40 +1,5 @@
 dofile_once("mods/souls/files/scripts/utils.lua")
-
-soul_types = {
-    "bat",
-    "fly",
-    "friendly",
-    "mage",
-    "orcs",
-    "slimes",
-    "spider",
-    "zombie",
-    "worm",
-    "fungus",
-    "ghost",
-    "souls_void",
-    "boss",
-}
-
-if ModIsEnabled("Apotheosis") then
-    soul_types = {
-        "bat",
-        "fly",
-        "friendly",
-        "mage",
-        "orcs",
-        "slimes",
-        "spider",
-        "zombie",
-        "worm",
-        "fungus",
-        "ghost",
-        "souls_void",
-        "mage_corrupted",
-        "ghost_whisp",
-        "boss",
-    }
-end
+dofile_once("mods/souls/files/scripts/soul_types.lua")
 
 function SoulsInit()
     local player = GetPlayer()
@@ -96,7 +61,7 @@ end
 
 function WandSoulType(wand)
     local comp = EntityGetFirstComponentIncludingDisabled(wand, "VariableStorageComponent", "souls_wand_soul_type")
-    comp = comp or EntityAddComponent2(comp, "VariableStorageComponent", {
+    comp = comp or EntityAddComponent2(wand, "VariableStorageComponent", {
         _tags="souls_wand_soul_type",
         name="souls_wand_soul_type",
         value_int=0
@@ -151,11 +116,29 @@ function SpellUseSouls(caster, n)
     return success, soul_used
 end
 
+function GetEntitySoulType(entity)
+    local soul = "friendly"
+    local comp = EntityGetFirstComponentIncludingDisabled(entity, "GenomeDataComponent")
+    if comp ~= nil then
+        local herd_id_number = ComponentGetValue2(comp_genome, "herd_id")
+        local herd_id = HerdIdToString(herd_id_number)
+        local soul_ = ConvertHerdIdToSoul(herd_id)
+        if soul_names[soul_] ~= nil then
+            soul = soul_
+        end 
+    end
+    if EntityHasTag(entity, "souls_boss") then
+        soul = "boss"
+    end
+    return soul
+end
+
 -- old? souls functions below
 
 -- Use this when printing the name of souls
 function SoulNameCheck(string)
-    if string == "mage_corrupted" then
+    return GameTextGetTranslatedOrNot(soul_names[string]) or string
+    --[[if string == "mage_corrupted" then
         string = "corrupted mage"
     end
     if string == "ghost_whisp" then
@@ -173,7 +156,7 @@ function SoulNameCheck(string)
     if string == "0" then
         string = "any"
     end
-    return string
+    return string]]
 end
 
 -- Adds souls, provide type and amount

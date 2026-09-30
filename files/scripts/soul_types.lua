@@ -36,7 +36,7 @@ end
 
 soul_names = {
     bat = "$souls_soul_bat",
-    fly = "$souls_soul_fly,
+    fly = "$souls_soul_fly",
     friendly = "$souls_soul_friendly",
     mage = "$souls_soul_mage",
     orcs = "$souls_soul_orcs",

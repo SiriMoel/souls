@@ -5,11 +5,13 @@ function mod_setting_bool_souls(mod_id, gui, in_main_menu, im_id, setting)
 	local value = ModSettingGetNextValue( mod_setting_get_id(mod_id,setting) )
 	if type(value) ~= "boolean" then value = setting.value_default or false end
 
-	local text = GameTextGet(value and "$souls_setting_on" or "$souls_setting_off")
+	local text = "" 
 
     if in_main_menu then
 		text = value and "ON!" or "Off"
-	end
+	else
+        text = GameTextGet(value and "$souls_setting_on" or "$souls_setting_off")
+    end
 
     if value then
         GuiColorSetForNextWidget(gui, 0.6, 1.0, 1.0, 1.0)

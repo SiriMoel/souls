@@ -69,7 +69,8 @@ if not success or soul == nil then
     EntityKill(entity)
 else
 	if GlobalsGetValue("souls.say_consumed_soul", "true") == "true" then
-		GamePrint("A " .. GameTextGetTranslatedOrNot(soul_names[soul]) .. " soul was consumed!")
+		local soul_name = GameTextGetTranslatedOrNot(soul_names[soul])
+		GamePrint("A " .. soul_name .. " soul was consumed!")
 	end
 
 	--[[local who_shot = ComponentGetValue2(comp_proj, "mWhoShot")

@@ -1,4 +1,4 @@
-if GlobalsGetValue("souls.enable_enemies", "true") == "true" then
+--[[if GlobalsGetValue("souls.enable_enemies", "true") == "true" then
 	table.insert(g_small_enemies, {
 	    prob   		= 0.05 * tonumber(GlobalsGetValue("souls.enemy_puppet_master", "1")),
 		min_count	= 1,
@@ -17,4 +17,4 @@ if GlobalsGetValue("souls.enable_enemies", "true") == "true" then
 		max_count	= 1,    
 		entities 	= { "data/entities/animals/moldos_puppet_master.xml", "data/entities/animals/wizard_tele.xml", },
 	})
-end
+end]]

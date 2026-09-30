@@ -1,18 +1,18 @@
 "The Update That Fixed Everything But Still Did Not Add The Custom Keybind To View Your Souls"
 
 NEW
+- Mod settings menu categories
 - Mod settings to toggle each structure
 - Mod settings to adjust the spawning of each enemy
 
 CHANGED/FIXED
-- Mod settings menu categories
 - Main menu mod settings fix
 - Soul crystals fix
 - Soul collectable entity movement tweaks
 - Spell icon changes
 
 REMOVED
-- Some redundant/boring/disliked-by-me spells probably
+- Spells: Soul Cloak, Soul Rage, Soul Tinker
 
 INTERNAL
 - The whole mod basically

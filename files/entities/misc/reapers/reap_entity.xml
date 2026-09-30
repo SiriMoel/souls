@@ -1,4 +1,4 @@
-<Entity>
+<Entity tags="souls_reaper_normal">
 
     <Base file="mods/souls/files/entities/misc/reapers/base_reap_entity.xml"></Base>
 

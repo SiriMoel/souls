@@ -4,6 +4,18 @@ local this = GetUpdatedEntityID()
 local root = EntityGetRootEntity(this)
 local x, y = EntityGetTransform(root)
 
+if root == this then 
+    GamePrint("Souls?")
+    EntityKill(this)
+    return 
+end
+
+local fx = EntityGetAllChildren(root, "souls_reap_fx") or {}
+if #fx == 0 then
+    local fx_e = EntityLoad("mods/souls/files/entities/misc/reapers/fx.xml", x, y)
+    EntityAddChild(root, fx_e)
+end
+
 local comp_death = EntityGetFirstComponent(root, "LuaComponent", "souls_reap_death")
 if comp_death == nil then
     EntityAddComponent2(root, "LuaComponent", {

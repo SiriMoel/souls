@@ -53,13 +53,12 @@ end
 
 function EditSoulCounts(counts, player)
     player = player or EntityGetWithTag("player_unit")[1]
-    local amt_used = ComponentGetValue2(comp_used, "value_int")
     for soul,amt in pairs(counts) do
         local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. tostring(soul))
         if comp ~= nil then
             local soul_count = ComponentGetValue2(comp, "value_int")
             soul_count = soul_count + amt
-            ComponentSetValue2(comp, soul_count)
+            ComponentSetValue2(comp, "value_int", soul_count)
         end
     end
 end
@@ -90,12 +89,14 @@ function SpellUseSouls(caster, n)
                 local used = {}
                 while used_n < n do
                     for k,v in pairs(counts) do
-                        if v > 0 then
-                            used[k] = (used[k] or 0) - 1
-                            used_n = used_n + 1
-                            if n == 1 then
-                                soul_used = tostring(k)
-                                break
+                        if tostring(k) ~= "total" and tostring(k) ~= "total_boss" then
+                            if v > 0 then
+                                used[k] = (used[k] or 0) - 1
+                                used_n = used_n + 1
+                                if n == 1 then
+                                    soul_used = tostring(k)
+                                    break
+                                end
                             end
                         end
                     end
@@ -133,7 +134,7 @@ function GetEntitySoulType(entity)
     local soul = "friendly"
     local comp = EntityGetFirstComponentIncludingDisabled(entity, "GenomeDataComponent")
     if comp ~= nil then
-        local herd_id_number = ComponentGetValue2(comp_genome, "herd_id")
+        local herd_id_number = ComponentGetValue2(comp, "herd_id")
         local herd_id = HerdIdToString(herd_id_number)
         local soul_ = ConvertHerdIdToSoul(herd_id)
         if soul_names[soul_] ~= nil then

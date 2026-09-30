@@ -28,11 +28,11 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
                 local comp_sprite = EntityGetFirstComponentIncludingDisabled(entity_soul, "SpriteComponent")
                 local comp_soul = EntityGetFirstComponentIncludingDisabled(entity_soul, "VariableStorageComponent", "soul")
                 if comp_sprite ~= nil then
-                    ComponentSetValue2(comp_sprite, "image_file", "mods/souls/files/entities/souls/sprites/soul_" .. herd_id .. ".xml")
+                    ComponentSetValue2(comp_sprite, "image_file", "mods/souls/files/entities/souls/sprites/soul_" .. soul .. ".xml")
                     EntityRefreshSprite(entity_soul, comp_sprite)
                 end
                 if comp_soul ~= nil then
-                    ComponentSetValue2(comp_soul, "value_string", herd_id)
+                    ComponentSetValue2(comp_soul, "value_string", soul)
                 end
             end
         end

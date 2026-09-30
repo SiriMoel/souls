@@ -10,7 +10,7 @@ dofile_once("mods/souls/lib/injection.lua")
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/souls/files/actions.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/souls/files/perks.lua")
 ModLuaFileAppend("data/scripts/status_effects/status_list.lua", "mods/souls/files/status_list.lua")
-ModLuaFileAppend("data/scripts/items/drop_money.lua", "mods/souls/files/scripts/drop_money_append.lua")
+--ModLuaFileAppend("data/scripts/items/drop_money.lua", "mods/souls/files/scripts/drop_money_append.lua")
 ModLuaFileAppend("data/scripts/items/generate_shop_item.lua", "mods/souls/files/scripts/generate_shop_item_append.lua")
 
 -- nxml

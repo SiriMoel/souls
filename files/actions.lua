@@ -1,4 +1,3 @@
-dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("mods/souls/files/scripts/souls.lua")
 
 local new_actions = {
@@ -297,6 +296,33 @@ local new_actions = {
 		end,
 	},
 	{
+		id = "SCALING_SPEED",
+		name = "$action_souls_scaling_speed",
+		description = "$actiondesc_souls_scaling_speed",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/scaling_speed.png",
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level = "3,4,5",
+		spawn_probability = "0.2,0.4,0.5",
+		price = 100,
+		mana = 10,
+		ai_never_uses = true,
+		action = function()
+			if reflecting then 
+				c.speed_multiplier = c.speed_multiplier * 1.1
+				return 
+			end
+			dofile_once("mods/souls/files/scripts/souls.lua")
+			local count = SoulCount("boss")
+			c.speed_multiplier = c.speed_multiplier * (1 + (0.1 * count))
+			if c.speed_multiplier >= 20 then
+				c.speed_multiplier = math.min(c.speed_multiplier, 20)
+			elseif c.speed_multiplier < 0 then
+				c.speed_multiplier = 0
+			end
+			draw_actions(1, true)
+		end,
+	},
+	{
 		id = "SOULS_TO_POWER",
 		name = "$action_souls_souls_to_power",
 		description = "$actiondesc_souls_souls_to_power",
@@ -390,6 +416,23 @@ local new_actions = {
 				GamePrint("You do not have enough souls for this. (1)")
 			end
 			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "REAPING_FIELD",
+		name = "$action_souls_reaping_field",
+		description = "$actiondesc_souls_reaping_field",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/reaping_field.png",
+		related_projectiles	= {"mods/souls/files/entities/projectiles/reaping_field/reaping_field.xml"},
+		type = ACTION_TYPE_STATIC_PROJECTILE,
+		spawn_level = "2,3,4,5,6",
+		spawn_probability = "0.3,0.4,0.2,0.5,0.4",
+		price = 140,
+		mana = 40,
+		max_uses = 15,
+		action = function()
+			add_projectile("mods/souls/files/entities/projectiles/reaping_field/reaping_field.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 48
 		end,
 	},
 	--- I haven't updated what is below
@@ -540,46 +583,6 @@ local new_actions = {
 			draw_actions( 1, true )
 		end,
 	},]]
-	--[[{
-		id          = "SOUL_CLOAK", -- invisibility doesn't expire correctly half the time and it annoys me
-		name 		= "$action_souls_soul_cloak",
-		description = "$actiondesc_souls_soul_cloak",
-		sprite 		= "mods/souls/files/spell_icons/soul_rage.png",
-		type 		= ACTION_TYPE_PASSIVE,
-		inject_after = "MOLDOS_SOUL_HEALER",
-		spawn_level                       = "1,2,3,4,5,6,10",
-		spawn_probability                 = "0.3,0.3,0.3,0.3,0.3,0.3,0.2",
-		spawn_level_table = { 1, 2, 3, 4, 5, 6, },
-		spawn_probability_table = { 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, },
-		price = 250,
-		mana = 30,
-		custom_xml_file="mods/souls/files/entities/misc/card_soul_cloak/card.xml",
-		action 		= function()
-			c.fire_rate_wait = c.fire_rate_wait + 10
-			current_reload_time = current_reload_time + 10
-			draw_actions( 1, true )
-		end,
-	},]]
-	--[[{
-		id          = "SOUL_RAGE", -- passive soul drain as a mechanic doesn't fit souls imo
-		name 		= "$action_souls_soul_rage",
-		description = "$actiondesc_souls_soul_rage",
-		sprite 		= "mods/souls/files/spell_icons/soul_cloak.png",
-		type 		= ACTION_TYPE_PASSIVE,
-		inject_after = "MOLDOS_SOUL_CLOAK",
-		spawn_level                       = "1,2,3,4,5,6,10",
-		spawn_probability                 = "0.3,0.3,0.3,0.3,0.3,0.3,0.2",
-		spawn_level_table = { 1, 2, 3, 4, 5, 6, },
-		spawn_probability_table = { 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, },
-		price = 250,
-		mana = 30,
-		custom_xml_file="mods/souls/files/entities/misc/card_soul_rage/card.xml",
-		action 		= function()
-			c.fire_rate_wait = c.fire_rate_wait + 10
-			current_reload_time = current_reload_time + 10
-			draw_actions( 1, true )
-		end,
-	},]]
 	{
 		id          = "SOUL_BOLT",
 		name 		= "$action_souls_soul_bolt",
@@ -597,26 +600,6 @@ local new_actions = {
 		action 		= function()
 			add_projectile("mods/souls/files/entities/projectiles/soul_bolt/proj.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 5
-		end,
-	},
-	{
-		id          = "REAPING_FIELD",
-		name 		= "$action_souls_reaping_field",
-		description = "$actiondesc_souls_reaping_field",
-		sprite 		= "mods/souls/files/spell_icons/reaping_field.png",
-		related_projectiles	= {"mods/souls/files/entities/projectiles/reaping_field/reaping_field.xml"},
-		type 		= ACTION_TYPE_STATIC_PROJECTILE,
-		inject_after = "SHIELD_FIELD",
-		spawn_level                       = "2,3,4,5,6",
-		spawn_probability                 = "0.3,0.4,0.2,0.5,0.4",
-		spawn_level_table = { 2, 3, 4, 5, 6, },
-		spawn_probability_table = { 0.3, 0.4, 0.2, 0.5, 0.4, },
-		price = 140,
-		mana = 40,
-		max_uses = 15,
-		action 		= function()
-			add_projectile("mods/souls/files/entities/projectiles/reaping_field/reaping_field.xml")
-			c.fire_rate_wait = c.fire_rate_wait + 50
 		end,
 	},
 	{
@@ -859,48 +842,6 @@ local new_actions = {
 			draw_actions( 1, true )
 		end,
 	},
-	{
-		id          = "SCALING_SPEED",
-		name 		= "$action_souls_scaling_speed",
-		description = "$actiondesc_souls_scaling_speed",
-		sprite 		= "mods/souls/files/spell_icons/scaling_speed.png",
-		type 		= ACTION_TYPE_MODIFIER,
-		inject_after = "MOLDOS_SCALING_DAMAGE",
-		spawn_level                       = "5,6",
-		spawn_probability                 = "0.5,0.5",
-		spawn_level_table = { 5, 6, },
-		spawn_probability_table = { 0.5, 0.5, },
-		price = 100,
-		mana = 30,
-		ai_never_uses = true,
-		action 		= function()
-			dofile_once("mods/souls/files/scripts/souls.lua")
-			if reflecting then return end
-			local count = GetSoulsCount("boss")
-			c.speed_multiplier = c.speed_multiplier * (1 + (0.3 * count))
-			draw_actions( 1, true )
-		end,
-	},
-	--[[{
-		id          = "SOUL_TINKER",
-		name 		= "$action_souls_soul_tinker",
-		description = "$actiondesc_souls_soul_tinker",
-		sprite 		= "mods/souls/files/spell_icons/soul_tinker.png",
-		type 		= ACTION_TYPE_PASSIVE,
-		inject_after = "MOLDOS_SOUL_HEALER",
-		spawn_level                       = "6,10",
-		spawn_probability                 = "0.3,0.2",
-		spawn_level_table = { 6, 10, },
-		spawn_probability_table = { 0.3, 0.2, },
-		price = 300,
-		mana = 40,
-		custom_xml_file="mods/souls/files/entities/misc/card_soul_tinker/card.xml",
-		action 		= function()
-			c.fire_rate_wait = c.fire_rate_wait + 20
-			current_reload_time = current_reload_time + 20
-			draw_actions( 1, true )
-		end,
-	},]]
 	{
 		id          = "SOUL_FIRE",
 		name 		= "$action_souls_soul_fire",

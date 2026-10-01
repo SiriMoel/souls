@@ -1,6 +1,6 @@
 dofile_once("mods/souls/files/scripts/souls.lua")
 
--- thankyou kmccord1 <3
+-- thankyou kmccord1 (I think you originally wrote the gui to not use a slow library?)
 
 gui_id = 1 -- ???
  

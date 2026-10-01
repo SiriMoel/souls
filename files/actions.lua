@@ -79,7 +79,7 @@ local new_actions = {
 		ai_never_uses = true,
 		action = function()
 			add_projectile("mods/souls/files/entities/projectiles/soul_blast/soul_blast.xml")
-			c.fire_rate_wait = c.fire_rate_wait + 18
+			c.fire_rate_wait = c.fire_rate_wait + 30
 		end,
 	},
 	{

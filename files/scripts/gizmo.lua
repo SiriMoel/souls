@@ -92,7 +92,10 @@ local bosses = {
 	"data/entities/animals/parallel/tentacles/parallel_tentacles.xml",
 }
 if ModIsEnabled("Apotheosis") then
-    
+    table.insert(bosses, "data/entities/animals/boss_toxic_worm/boss_toxic_worm.xml")
+    table.insert(bosses, "data/entities/animals/boss_fire_lukki/boss_fire_lukki.xml")
+    table.insert(bosses, "data/entities/animals/boss_flesh_monster/boss_flesh_monster.xml")
+    table.insert(bosses, "data/entities/animals/boss_musical_ghost/boss_musical_ghost.xml")
 end
 for _,path in ipairs(bosses) do
     for content in nxml.edit_file(path) do

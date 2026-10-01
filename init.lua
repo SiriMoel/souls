@@ -10,7 +10,7 @@ dofile_once("mods/souls/lib/injection.lua")
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/souls/files/actions.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/souls/files/perks.lua")
 ModLuaFileAppend("data/scripts/status_effects/status_list.lua", "mods/souls/files/status_list.lua")
---ModLuaFileAppend("data/scripts/items/drop_money.lua", "mods/souls/files/scripts/drop_money_append.lua")
+ModLuaFileAppend("data/scripts/items/drop_money.lua", "mods/souls/files/scripts/drop_money_append.lua")
 ModLuaFileAppend("data/scripts/items/generate_shop_item.lua", "mods/souls/files/scripts/generate_shop_item_append.lua")
 
 -- nxml
@@ -20,15 +20,65 @@ dofile_once("mods/souls/files/scripts/gizmo.lua")
 
 -- biome things
 local biomes = {
-    {path = "data/scripts/biomes/wizardcave.lua", script = "mods/souls/files/scripts/biome/wizardcave.lua"},
-    {path = "data/scripts/biomes/wandcave.lua", script = "mods/souls/files/scripts/biome/wandcave.lua"},
-    {path = "data/scripts/biomes/crypt.lua", script = "mods/souls/files/scripts/biome/crypt.lua"},
     {path = "data/scripts/biomes/coalmine.lua", script = "mods/souls/files/scripts/biome/coalmine.lua"},
     {path = "data/scripts/biomes/mountain_tree.lua", script = "mods/souls/files/scripts/biome/mountain_tree.lua"},
     {path = "data/scripts/biomes/the_end.lua", script = "mods/souls/files/scripts/biome/the_end.lua"},
 }
 for i,v in ipairs(biomes) do
     if ModTextFileGetContent(v.path) ~= nil then ModLuaFileAppend(v.path, v.script) end
+end
+
+-- enemies
+if ModSettingGet("souls.enable_enemies") == true then
+    local enemies = {
+        {
+            func_add = function()
+                ModLuaFileAppend("data/scripts/biomes/wandcave.lua", "mods/souls/files/scripts/enemies/puppet_master_wandcave.lua")
+                ModLuaFileAppend("data/scripts/biomes/wizardcave.lua", "mods/souls/files/scripts/enemies/puppet_master_wizardcave.lua")
+            end,
+            func_enabled = function() 
+                local prob_mult = tonumber(ModSettingGet("souls.enemy_puppet_master"))
+                if prob_mult > 0 then return true end
+                return false
+            end,
+        },
+        {
+            func_add = function()
+                ModLuaFileAppend("data/scripts/biomes/wizardcave.lua", "mods/souls/files/scripts/enemies/soul_angry_wizardcave.lua")
+                ModLuaFileAppend("data/scripts/biomes/the_end.lua", "mods/souls/files/scripts/enemies/soul_angry_the_end.lua")
+            end,
+            func_enabled = function() 
+                local prob_mult = tonumber(ModSettingGet("souls.enemy_soul_angry"))
+                if prob_mult > 0 then return true end
+                return false
+            end,
+        },
+        {
+            func_add = function()
+                ModLuaFileAppend("data/scripts/biomes/the_end.lua", "mods/souls/files/scripts/enemies/soul_rogue_the_end.lua")
+            end,
+            func_enabled = function() 
+                local prob_mult = tonumber(ModSettingGet("souls.enemy_soul_rogue"))
+                if prob_mult > 0 then return true end
+                return false
+            end,
+        },
+        {
+            func_add = function()
+                ModLuaFileAppend("data/scripts/biomes/the_end.lua", "mods/souls/files/scripts/enemies/soul_eye_the_end.lua")
+            end,
+            func_enabled = function() 
+                local prob_mult = tonumber(ModSettingGet("souls.enemy_soul_eye"))
+                if prob_mult > 0 then return true end
+                return false
+            end,
+        },
+    }
+    for _, v in ipairs(enemies) do
+        if v.func_enabled() == true then
+            v.func_add()
+        end
+    end
 end
 
 -- translations
@@ -181,6 +231,8 @@ function OnPlayerSpawned(player)
         script_source_file="mods/souls/files/scripts/player_everyframe.lua",
         execute_every_n_frame=1,
     })
+
+    AcquireManySouls(player)
 
     GameAddFlagRun("souls_init")
 end

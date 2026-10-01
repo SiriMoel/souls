@@ -40,7 +40,7 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
         if GlobalsGetValue("souls.say_soul", "true") == "true" then
             local str = "You have acquired "
             local first = true
-            for soul,amt in pairs(souls) do
+            for soul, amt in pairs(souls) do
                 if first then
                     str = str .. amt .. " " .. GameTextGetTranslatedOrNot(soul_names[soul]) .. " souls"
                     first = false

@@ -53,7 +53,7 @@ end
 
 function EditSoulCounts(counts, player)
     player = player or EntityGetWithTag("player_unit")[1]
-    for soul,amt in pairs(counts) do
+    for soul, amt in pairs(counts) do
         local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. tostring(soul))
         if comp ~= nil then
             local soul_count = ComponentGetValue2(comp, "value_int")
@@ -112,7 +112,9 @@ function SpellUseSouls(caster, n)
                 if n == 1 then
                     soul_used = tostring(soul)
                 end
-                EditSoulCounts({soul = -n}, caster)
+                local used = {}
+                used[soul] = -n
+                EditSoulCounts(used, caster)
                 success = true
             else
                 success = false
@@ -145,6 +147,14 @@ function GetEntitySoulType(entity)
         soul = "boss"
     end
     return soul
+end
+
+function AcquireManySouls(player)
+    local souls = {}
+    for _, soul in ipairs(soul_types) do
+        souls[soul] = 99
+    end
+    EditSoulCounts(souls, player)
 end
 
 -- old? souls functions below

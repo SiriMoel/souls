@@ -133,7 +133,7 @@ function mod_setting_souls_key_magic(mod_id, gui, in_main_menu, im_id, setting)
     if value then
         GuiColorSetForNextWidget(gui, 1.0, 0.4, 0.7, 1.0)
     else
-        GuiColorSetForNextWidget(gui, 0.4, 0.7, 0.7, 1.0)
+        GuiColorSetForNextWidget(gui, 0.6, 1.0, 1.0, 1.0)
     end
 
 	GuiText(gui, mod_setting_group_x_offset, 0, text, 1, "", true)

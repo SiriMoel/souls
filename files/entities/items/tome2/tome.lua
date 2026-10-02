@@ -6,7 +6,7 @@ local tome = GetUpdatedEntityID()
 
 local x, y = EntityGetTransform(tome)
 
-AddGunAction(tome, "MOLDOS_TOME_SHOT")
+AddGunAction(tome, "SOULS_TOME_SHOT")
 
 for i,v in ipairs(tome_upgrades) do
     EntityAddComponent2(tome, "VariableStorageComponent", {

@@ -11,7 +11,7 @@
 
 	<GameEffectComponent
 		effect="CUSTOM"
-		custom_effect_id="MOLDOS_SOUL_DRAIN"
+		custom_effect_id="SOULS_SOUL_DRAIN"
 	></GameEffectComponent>
 
 	<LuaComponent

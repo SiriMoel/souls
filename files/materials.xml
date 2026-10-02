@@ -79,7 +79,7 @@
 
   <CellData
 	name="souls_soul_blood_1"
-	ui_name="$mat_moldos_soul_blood_1"
+	ui_name="$mat_souls_soul_blood"
   	tags="[liquid],[souls_soul_blood_1]"
 	density="4.17"
 	cell_type="liquid"
@@ -122,7 +122,7 @@
 
   <CellData
 	name="souls_soul_blood_perfect"
-	ui_name="$mat_moldos_soul_blood_perfect"
+	ui_name="$mat_souls_soul_blood_perfect"
   	tags="[liquid],[souls_soul_blood_perfect]"
 	density="4.18"
 	cell_type="liquid"
@@ -135,7 +135,7 @@
 	requires_oxygen="0"
 	liquid_stains="1"
 	liquid_sprite_stain_shaken_drop_chance="5"
-	status_effects="INVISIBILITY"
+	status_effects="BLOODY"
 	audio_materialaudio_type="MAGICAL" 
 	show_in_creative_mode="1" 
 	>
@@ -158,7 +158,7 @@
 	</ParticleEffect>
 	<StatusEffects>
 		<Ingestion>
-			<StatusEffect type="MOLDOS_SOULJUICE" amount="0.1" />
+			<StatusEffect type="SOULS_SOULJUICE" amount="0.1" />
 		</Ingestion>
 	</StatusEffects>
   </CellData>
@@ -188,10 +188,10 @@
     </Graphics>
 	<StatusEffects>
 		<Ingestion>
-			<StatusEffect type="MOLDOS_SOUL_DRAIN" amount="0.1" />
+			<StatusEffect type="SOULS_SOUL_DRAIN" amount="0.1" />
 		</Ingestion>
 		<Stains>
-			<StatusEffect type="MOLDOS_SOUL_DRAIN" />
+			<StatusEffect type="SOULS_SOUL_DRAIN" />
 		</Stains>
 	</StatusEffects>
   </CellData>

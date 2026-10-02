@@ -60,6 +60,8 @@ function damage_about_to_be_received(damage, x, y, entity_thats_responsible, cri
                         local p = ComponentGetValue2(comp_p, "value_int")
                         if p > 0 then
                             ComponentSetValue2(comp_p, "value_int", p - 1)
+                            local x, y = EntityGetTransform(player)
+                            GamePlaySound("data/audio/Desktop/projectiles.bank", "projectiles/enlightened_laser/launch_dark", x, y) -- placeholder probably
                             return 0, 0
                         end
                     end

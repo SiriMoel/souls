@@ -8,18 +8,18 @@
 		></gun_config>
     </AbilityComponent>
 
-	  <ItemComponent
-		    _tags="enabled_in_world"
-    	  is_pickable="1"
-  		  is_equipable_forced="1"
-	  	  ui_sprite="mods/souls/files/entities/items/phylactery/sprite.png"
+	<ItemComponent
+		_tags="enabled_in_world"
+    	is_pickable="1"
+  		is_equipable_forced="1"
+	  	ui_sprite="mods/souls/files/entities/items/phylactery/sprite.png"
         item_name="$item_souls_phylactery"
         ui_description="$itemdesc_souls_phylactery"
-    		play_hover_animation="1"
+    	play_hover_animation="1"
         play_spinning_animation="0"
         always_use_item_name_in_ui="1"
         preferred_inventory="QUICK"
-		></ItemComponent>
+	></ItemComponent>
 
   	<VelocityComponent
 	    _tags="enabled_in_world"
@@ -45,9 +45,12 @@
   	</HitboxComponent>
 
   	<LightComponent 
-	    _tags="enabled_in_world"
-	    radius="64" >
-  	</LightComponent>
+	    _tags="enabled_in_hand,enabled_in_world"
+		r="118"
+		g="255"
+		b="255"
+	    radius="48"
+	></LightComponent>
 
 	<SpriteComponent
 		_tags="enabled_in_hand,sprite_hand"
@@ -63,17 +66,17 @@
 		alpha="1" 
 		offset_x="2"
 		offset_y="4"
-		image_file="mods/souls/files/entities/items/phylactery/sprite_in_hand.png"
+		image_file="mods/souls/files/entities/items/phylactery/sprite_in_world.png"
 		z_index="-1.5" >
 	</SpriteComponent>
 
 	<MaterialSuckerComponent 
-    _tags="enabled_in_world,enabled_in_hand"
-    barrel_size="300"
-    num_cells_sucked_per_frame="5"
-	  material_type="0"
-	  suck_tag="[souls_soul_blood_perfect]"
-  ></MaterialSuckerComponent>
+    	_tags="enabled_in_world,enabled_in_hand"
+    	barrel_size="300"
+    	num_cells_sucked_per_frame="5"
+	  	material_type="0"
+	  	suck_tag="[souls_soul_blood_perfect]"
+  	></MaterialSuckerComponent>
 
     <MaterialInventoryComponent 
     _tags="enabled_in_world,enabled_in_hand,enabled_in_inventory"

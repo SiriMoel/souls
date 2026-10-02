@@ -1,5 +1,9 @@
-<Entity name="$projectile_default" > 
+<Entity>
 
+	<InheritTransformComponent
+		_enabled="1"
+	></InheritTransformComponent>	
+    
     <ParticleEmitterComponent 
 		emitted_material_name="souls_soul_particles"
 		gravity.y="0.0"

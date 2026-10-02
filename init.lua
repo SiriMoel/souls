@@ -9,7 +9,7 @@ dofile_once("mods/souls/lib/injection.lua")
 -- appends
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/souls/files/actions.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/souls/files/perks.lua")
-ModLuaFileAppend("data/scripts/status_effects/status_list.lua", "mods/souls/files/status_list.lua")
+ModLuaFileAppend("data/scripts/status_effects/status_list.lua", "mods/souls/files/scripts/status_list.lua")
 ModLuaFileAppend("data/scripts/items/drop_money.lua", "mods/souls/files/scripts/drop_money_append.lua")
 ModLuaFileAppend("data/scripts/items/generate_shop_item.lua", "mods/souls/files/scripts/generate_shop_item_append.lua")
 
@@ -89,6 +89,8 @@ if translations ~= nil then
         "mods/souls/files/translations/spells.csv",
         "mods/souls/files/translations/souls.csv",
         "mods/souls/files/translations/items.csv",
+        "mods/souls/files/translations/materials.csv",
+        "mods/souls/files/translations/effects.csv",
 	}
 	for _,v in ipairs(translations_files) do
 		while translations:find("\r\n\r\n") do
@@ -180,6 +182,10 @@ if ModIsEnabled("meta_leveling") then
     --ModLuaFileAppend("mods/meta_leveling/files/for_modders/stats_append.lua", "mods/souls/files/scripts/ml_stats.lua")
 end
 
+if ModIsEnabled("cheatgui") then
+	ModLuaFileAppend("data/hax/special_spawnables.lua", "mods/souls/files/scripts/cheatgui_special_spawnables.lua")
+end
+
 -- player
 function OnPlayerSpawned(player)
 
@@ -233,7 +239,7 @@ function OnPlayerSpawned(player)
         execute_every_n_frame=1,
     })
 
-    AcquireManySouls(player)
+    --AcquireManySouls(player) -- DONT FORGET TO COMMENT THIS!!!
 
     GameAddFlagRun("souls_init")
 end

@@ -1,3 +1,5 @@
+dofile_once("mods/souls/files/scripts/souls.lua")
+
 local this = GetUpdatedEntityID()
 local comp_p = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "phylactery")
 local comp_frame = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "frame")
@@ -7,13 +9,14 @@ if comp_p ~= nil and comp_frame ~= nil then
         local frame = GameGetFrameNum()
         if frame > frame_last + 12 then
             ComponentSetValue2(comp_frame, "value_int", frame)
-            local success = SpellUseSouls(EntityGetWithTag("player_unit")[1], 1)
+            local success, soul = SpellUseSouls(EntityGetWithTag("player_unit")[1], 1)
             if success then
                 local x, y = EntityGetTransform(this)
                 local amt = ComponentGetValue2(comp_p, "value_int")
                 amt = amt + 3
                 ComponentSetValue2(comp_p, "value_int", amt)
-                GamePlaySound("data/audio/Desktop/projectiles.bank", "projectiles/enlightened_laser/launch_dark", x, y) -- placeholder probably
+                GamePlaySound("data/audio/Desktop/projectiles.bank", "projectiles/enlightened_laser/launch_dark", x, y)
+                GamePrint("Phylactery powered with a " .. GameTextGetTranslatedOrNot(soul_names[soul]) .. " soul!")
             else
                 GamePrint("You do not have enough souls for this. (1)")
             end

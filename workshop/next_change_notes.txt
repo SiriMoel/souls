@@ -10,6 +10,7 @@ CHANGED/FIXED
 - Soul crystals fix
 - Soul collectable entity movement tweaks
 - Spell icon changes
+- Reworked phylactery creation & powering (no more kicking!!!)
 
 REMOVED
 - Spells: Soul Cloak, Soul Rage, Soul Tinker

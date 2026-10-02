@@ -1,4 +1,6 @@
 <Entity>
+
+    <!-- what even is this -->
 	
 	<InheritTransformComponent>
     </InheritTransformComponent>	

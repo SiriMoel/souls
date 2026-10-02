@@ -4,6 +4,10 @@ local comp_mi = EntityGetFirstComponentIncludingDisabled(this, "MaterialInventor
 if comp_mi ~= nil then
     local this_amt = tonumber(ComponentGetValue2(comp_mi, "count_per_material_type")[CellFactory_GetType("souls_soul_blood_perfect") + 1])
     if this_amt >= 300 then
+        if not EntityHasTag(this, "souls_phylactery_full") then
+            GamePrint("The phylactery is full of perfect soul blood.")
+            EntityAddTag(this, "souls_phylactery_full")
+        end
         local player = EntityGetWithTag("player_unit")[1]
         local comp_player_mi = EntityGetFirstComponentIncludingDisabled(player, "MaterialInventoryComponent")
         if comp_player_mi ~= nil then

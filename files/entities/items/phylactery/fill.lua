@@ -9,7 +9,6 @@ if comp_p ~= nil and comp_frame ~= nil then
             ComponentSetValue2(comp_frame, "value_int", frame)
             local success = SpellUseSouls(EntityGetWithTag("player_unit")[1], 1)
             if success then
-                SpellUseSouls(EntityGetWithTag("player_unit")[1], 1)
                 local x, y = EntityGetTransform(this)
                 local amt = ComponentGetValue2(comp_p, "value_int")
                 amt = amt + 3

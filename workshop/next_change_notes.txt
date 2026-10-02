@@ -1,6 +1,6 @@
-"The Update That Fixed Everything But Still Did Not Add The Custom Keybind To View Your Souls"
-
 NEW
+- Souls gui keybind (in the mod settings)
+- Spell: Soular Power (combined Soul-Scaling Mana & Soul-Scaling Recharge)
 - Mod settings menu categories
 - Mod settings to toggle each structure
 - Mod settings to adjust the spawning of each enemy
@@ -9,11 +9,12 @@ CHANGED/FIXED
 - Main menu mod settings fix
 - Soul crystals fix
 - Soul collectable entity movement tweaks
-- Spell icon changes
-- Reworked phylactery creation & powering (no more kicking!!!)
+- Various sprite changes
+- Reworked phylactery creation & powering (and also new sprites)
 
 REMOVED
-- Spells: Soul Cloak, Soul Rage, Soul Tinker
+- Spells: Soul Cloak, Soul Rage, Soul Tinker, Soul-Scaling Mana, Soul-Scaling Recharge
+- Perk: Reap Bullet
 
 INTERNAL
 - The whole mod basically

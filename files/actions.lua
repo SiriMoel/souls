@@ -280,7 +280,7 @@ local new_actions = {
 		sprite = "mods/souls/files/ui_gfx/gun_actions/scaling_damage.png",
 		type = ACTION_TYPE_MODIFIER,
 		spawn_level = "3,4,5,6",
-		spawn_probability = "0.2,0.5,0.6,0.5",
+		spawn_probability = "0.3,0.5,0.6,0.5",
 		price = 140,
 		mana = 15,
 		ai_never_uses = true,
@@ -302,7 +302,7 @@ local new_actions = {
 		sprite = "mods/souls/files/ui_gfx/gun_actions/scaling_speed.png",
 		type = ACTION_TYPE_MODIFIER,
 		spawn_level = "3,4,5",
-		spawn_probability = "0.2,0.4,0.5",
+		spawn_probability = "0.3,0.4,0.5",
 		price = 100,
 		mana = 10,
 		ai_never_uses = true,
@@ -313,7 +313,7 @@ local new_actions = {
 			end
 			dofile_once("mods/souls/files/scripts/souls.lua")
 			local count = SoulCount("boss")
-			c.speed_multiplier = c.speed_multiplier * (1 + (0.1 * count))
+			c.speed_multiplier = c.speed_multiplier * (1 + (0.15 * count))
 			if c.speed_multiplier >= 20 then
 				c.speed_multiplier = math.min(c.speed_multiplier, 20)
 			elseif c.speed_multiplier < 0 then
@@ -494,6 +494,29 @@ local new_actions = {
 				end
 				LastShootingStart = shooting_start
 			end
+		end,
+	},
+	{
+		id = "SOULAR_POWER",
+		name = "$action_souls_soular_power",
+		description = "$actiondesc_souls_soular_power",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/soular_power.png",
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level = "4,5,6,10",
+		spawn_probability = "0.4,0.5,0.5,0.2",
+		price = 120,
+		mana = 0,
+		ai_never_uses = true,
+		action = function()
+			local count = 1
+			if not reflecting then
+				dofile_once("mods/souls/files/scripts/souls.lua")
+				count = SoulCount("boss")
+			end
+			mana = mana + 20 * count
+			c.fire_rate_wait = c.fire_rate_wait - 12 * count
+			current_reload_time = current_reload_time - 6 * count
+			draw_actions(1, true)
 		end,
 	},
 	--- I haven't updated what is below
@@ -925,54 +948,6 @@ local new_actions = {
 		action 		= function()
 			add_projectile("mods/souls/files/entities/projectiles/expel_soul/proj.xml")
 			c.fire_rate_wait = c.fire_rate_wait + 10
-		end,
-	},
-	{
-		id          = "SCALING_MANA",
-		name 		= "$action_souls_scaling_mana",
-		description = "$actiondesc_souls_scaling_mana",
-		sprite 		= "mods/souls/files/spell_icons/scaling_mana.png",
-		type 		= ACTION_TYPE_MODIFIER,
-		inject_after = "MOLDOS_SOUL_SPEED",
-		spawn_level                       = "5,6",
-		spawn_probability                 = "0.5,0.5",
-		spawn_level_table = { 5, 6, },
-		spawn_probability_table = { 0.5, 0.5, },
-		price = 100,
-		mana = 0,
-		ai_never_uses = true,
-		action 		= function()
-			dofile_once("mods/souls/files/scripts/souls.lua")
-			if reflecting then return end
-			local count = GetSoulsCount("boss")
-			if ( #deck > 0 ) then
-				data = deck[1]
-			end
-			data.mana = -2 * count
-			draw_actions( 1, true )
-		end,
-	},
-	{
-		id          = "SCALING_RECHARGE",
-		name 		= "$action_souls_scaling_recharge",
-		description = "$actiondesc_souls_scaling_recharge",
-		sprite 		= "mods/souls/files/spell_icons/scaling_recharge.png",
-		type 		= ACTION_TYPE_MODIFIER,
-		inject_after = "MOLDOS_SOUL_SPEED",
-		spawn_level                       = "5,6",
-		spawn_probability                 = "0.5,0.5",
-		spawn_level_table = { 5, 6, },
-		spawn_probability_table = { 0.5, 0.5, },
-		price = 100,
-		mana = 30,
-		ai_never_uses = true,
-		action 		= function()
-			dofile_once("mods/souls/files/scripts/souls.lua")
-			if reflecting then return end
-			local count = GetSoulsCount("boss")
-			c.fire_rate_wait = c.fire_rate_wait - (5 * count)
-			current_reload_time = current_reload_time - (5 * count)
-			draw_actions( 1, true )
 		end,
 	},
 	{

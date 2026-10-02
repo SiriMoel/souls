@@ -1,5 +1,6 @@
 dofile("data/scripts/lib/mod_settings.lua")
 dofile_once("data/scripts/lib/utilities.lua")
+dofile_once("mods/souls/files/scripts/keys.lua")
 
 function mod_setting_bool_souls(mod_id, gui, in_main_menu, im_id, setting)
 	local value = ModSettingGetNextValue( mod_setting_get_id(mod_id,setting) )
@@ -119,6 +120,60 @@ function mod_setting_category_button_souls(mod_id, gui, im_id, im_id2, category)
 	return clicked
 end
 
+function mod_setting_souls_key_magic(mod_id, gui, in_main_menu, im_id, setting)
+	local value = ModSettingGetNextValue(mod_setting_get_id(mod_id, setting))
+	if type(value) ~= "boolean" then value = setting.value_default or false end
+
+    local key_now = ModSettingGetNextValue("souls.souls_gui_key")
+
+    local key_string = (skeys[key_now] ~= nil) and ("[" .. skeys[key_now] .. "]") or "???"
+
+    local text = value and "!!! " or key_string
+
+    if value then
+        GuiColorSetForNextWidget(gui, 1.0, 0.4, 0.7, 1.0)
+    else
+        GuiColorSetForNextWidget(gui, 0.4, 0.7, 0.7, 1.0)
+    end
+
+	GuiText(gui, mod_setting_group_x_offset, 0, text, 1, "", true)
+
+    GuiColorSetForNextWidget(gui, 0.6, 0.6, 0.6, 1.0)
+
+    local text_offset = GuiGetTextDimensions(gui, text)
+
+    local clicked, right_clicked = GuiButton(gui, im_id, mod_setting_group_x_offset + text_offset + 4, -11, setting.ui_name)
+
+    GuiColorSetForNextWidget(gui, 1, 1, 1, 1)
+
+    local set_key
+
+    if value then
+        for key = 4, 103 do
+            if skeys[key] ~= nil and InputIsKeyDown(key) then
+                set_key = key
+                break
+            end
+        end
+        if set_key ~= nil then
+            ModSettingSetNextValue("souls.souls_gui_key", set_key, false)
+            ModSettingSetNextValue(mod_setting_get_id(mod_id, setting), false, false)
+        end
+    end
+
+    if clicked then
+		ModSettingSetNextValue(mod_setting_get_id(mod_id, setting), not value, false)
+		mod_setting_handle_change_callback(mod_id, gui, in_main_menu, setting, value, not value)
+	end
+    if right_clicked then
+        ModSettingSetNextValue("souls.souls_gui_key", 29, false)
+        ModSettingSetNextValue(mod_setting_get_id(mod_id, setting), false, false)
+        mod_setting_handle_change_callback(mod_id, gui, in_main_menu, setting, false, setting.value_default)
+    end
+
+	mod_setting_tooltip(mod_id, gui, in_main_menu, setting)
+end
+
 function mod_setting_change_callback(mod_id, gui, in_main_menu, setting, old_value, new_value)
 
 end
@@ -167,26 +222,25 @@ mod_settings = {
         _folded = true,
         settings = {
             {
+		        id = "souls_gui_key",
+		        ui_name = "Souls Gui Key",
+		        value_default = 29,
+		        hidden = true,
+                scope = MOD_SETTING_SCOPE_RUNTIME,
+	        },
+            {
+                id = "set_gui_key",
+                ui_name = "Bind key to view your souls.",
+                ui_description = "Click this and then press the desired key.",
+                value_default = false,
+                scope = MOD_SETTING_SCOPE_RUNTIME,
+                ui_fn = mod_setting_souls_key_magic,
+            },
+            {
                 id = "first_gui",
                 ui_name = "Display soul counts in screen corner",
                 ui_description = "Display soul counts in the bottom right corner.",
-                value_default = true,
-                scope = MOD_SETTING_SCOPE_RUNTIME,
-                ui_fn = mod_setting_bool_souls,
-            },
-            {
-                id = "button_down_gui",
-                ui_name = "Press down to view full soul counts",
-                ui_description = "If you want to be able to view your full soul counts (>99) by holding down.",
                 value_default = false,
-                scope = MOD_SETTING_SCOPE_RUNTIME,
-                ui_fn = mod_setting_bool_souls,
-            },
-            {
-                id = "button_z_gui",
-                ui_name = "Press Z to view full soul counts",
-                ui_description = "If you want to be able to view your full soul counts (>99) by holding Z.",
-                value_default = true,
                 scope = MOD_SETTING_SCOPE_RUNTIME,
                 ui_fn = mod_setting_bool_souls,
             },

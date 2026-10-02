@@ -17,7 +17,7 @@ local a = {
 			EntityRemoveTag(entity_who_picked, "souls_anima_conduit")
 		end
 	},
-	{
+	--[[{
 		id = "REAP_BULLET",
 		ui_name = "$perk_name_moldos_reap_bullet",
 		ui_description = "$perk_desc_moldos_reap_bullet",
@@ -30,7 +30,7 @@ local a = {
 		func_remove = function(entity_who_picked)
 			EntityRemoveTag(entity_who_picked, "souls_reap_bullet")
 		end
-	},
+	},]]
 	{
 		id = "REAP_BETTER",
 		ui_name = "$perk_name_moldos_reap_better",

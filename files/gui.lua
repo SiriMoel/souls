@@ -6,7 +6,6 @@ gui_id = 1 -- ???
  
 local soulscount = 0
 local hasinfsouls = false
-local phylactery_points = 0
 local soulcounts = {}
 local soul_emulator_image = "mods/souls/files/gui/soul_emulator/0.png"
  
@@ -15,7 +14,6 @@ function OnWorldPreUpdate()
     if player ~= nil then
         soulcounts, hasinfsouls = SoulCounts(player), false
         soulscount = soulcounts["total"]
-        phylactery_points = tonumber(GlobalsGetValue("souls_phylactery_points", "0")) or 0
 
         if GameHasFlagRun("souls_soul_emulated") then
             soul_emulator_image = "mods/souls/files/gui/soul_emulator/" .. GlobalsGetValue("souls.soul_emulator_state", "1") .. ".png"
@@ -47,15 +45,12 @@ function GuiRender()
 
     if GlobalsGetValue("souls.first_gui", "true") == "true" then
 
-        -- Souls and Phylactery points display
+        -- Souls display
         GuiLayoutBeginHorizontal(gui, 65, 91)
             if hasinfsouls then
                 GuiText(gui, 0, 0, "Souls: ∞ + " .. soulscount)
             else
                 GuiText(gui, 0, 0, "Souls: " .. soulscount)
-            end
-            if GameHasFlagRun("souls_phylactery_done") then
-                GuiText(gui, 0, 0, "Phylactery: " .. phylactery_points)
             end
         GuiLayoutEnd(gui)
 

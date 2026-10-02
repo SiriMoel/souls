@@ -1,76 +1,97 @@
-<Entity name="$item_moldos_phylactery_done" tags="hittable,teleportable_NOT,item_physics,item_pickup,souls_phylactery" >
+<Entity name="$item_souls_phylactery_done" tags="item,souls_phylactery">
 
-  <PhysicsBodyComponent 
-    _tags="enabled_in_world"
-    uid="1" 
-    allow_sleep="1" 
-    angular_damping="0" 
-    fixed_rotation="0" 
-    is_bullet="1" 
-    linear_damping="0"
-    auto_clean="0"
-    on_death_leave_physics_body="0"
-    hax_fix_going_through_ground="1"
-  ></PhysicsBodyComponent>
-  
-  <PhysicsImageShapeComponent 
-    body_id="1"
-    centered="1"
-    image_file="mods/souls/files/entities/items/phylactery/sprite_done_inhand.png"
-    material="metal_hard" >
-  </PhysicsImageShapeComponent>
-  
-  <CameraBoundComponent
-    max_count="50"
-    distance="500">
-  </CameraBoundComponent>
-	
-	<PhysicsThrowableComponent
-	_tags="enabled_in_world"
-    max_throw_speed="180"
-    throw_force_coeff="1.5"
-  ></PhysicsThrowableComponent>
-  
-  <PhysicsBodyCollisionDamageComponent 
-    _tags="enabled_in_world" 
-    speed_threshold="140.0"
-  ></PhysicsBodyCollisionDamageComponent>
-  
-  <ItemComponent
-    _tags="enabled_in_world"
-    item_name="$item_moldos_phylactery_done"
-    max_child_items="0"
-    is_pickable="1"
-    is_equipable_forced="1"
-    ui_sprite="mods/souls/files/entities/items/phylactery/sprite_done.png"
-    ui_description="$itemdesc_moldos_phylactery_done"
-    preferred_inventory="QUICK"
-  ></ItemComponent>
-  
-  <UIInfoComponent
-    _tags="enabled_in_world"
-    name="$item_moldos_phylactery_done" >
-  </UIInfoComponent>
-  
-  <AbilityComponent
-		ui_name="$item_moldos_phylactery_done"
-		throw_as_item="1"
-		><gun_config
+    <AbilityComponent
+        ui_name="$item_souls_phylactery_done" 
+        throw_as_item="0"
+        ><gun_config
 			deck_capacity="0"
 		></gun_config>
-	</AbilityComponent>
-	
-	<SpriteComponent
-    _tags="enabled_in_hand"
-    _enabled="0"
-    offset_x="4"
-    offset_y="4"
-    image_file="mods/souls/files/entities/items/phylactery/sprite_done_inhand.png"
-  ></SpriteComponent>
+    </AbilityComponent>
 
-      <LuaComponent
-      _tags="enabled_in_world"
-		script_kick="mods/souls/files/entities/items/phylactery/kick.lua"
-	></LuaComponent>
+	  <ItemComponent
+		    _tags="enabled_in_world"
+    	  is_pickable="1"
+  		  is_equipable_forced="1"
+	  	  ui_sprite="mods/souls/files/entities/items/phylactery/sprite_done.png"
+        item_name="$item_souls_phylactery_done"
+        ui_description="$itemdesc_souls_phylactery_done"
+    		play_hover_animation="1"
+        play_spinning_animation="0"
+        always_use_item_name_in_ui="1"
+        preferred_inventory="QUICK"
+        is_consumable="0"
+        uses_remaining="0"
+        drinkable="0"
+		></ItemComponent>
+
+  	<VelocityComponent
+	    _tags="enabled_in_world"
+	  	gravity_y="400"
+	  	air_friction="0.55"
+	  	terminal_velocity="1000" >
+  	</VelocityComponent>
+	
+  	<SimplePhysicsComponent
+	    _tags="enabled_in_world"
+		  _enabled="0"
+	  ></SimplePhysicsComponent>
+  
+  	<HitboxComponent 
+	    _tags="enabled_in_world"
+	    aabb_max_x="4" 
+	    aabb_max_y="4" 
+	    aabb_min_x="-4" 
+	    aabb_min_y="-4" 
+	    is_enemy="0" 
+	    is_item="1" 
+	    is_player="0" >
+  	</HitboxComponent>
+
+  	<LightComponent 
+	    _tags="enabled_in_world"
+	    radius="64" >
+  	</LightComponent>
+
+	<SpriteComponent
+		_tags="enabled_in_hand,sprite_hand"
+		_enabled="0"
+		offset_x="2"
+		offset_y="4"
+		image_file="mods/souls/files/entities/items/phylactery/sprite_in_hand_done.png"
+	></SpriteComponent>
+
+	<SpriteComponent 
+		_tags="enabled_in_world,sprite_world" 
+		_enabled="1"
+		alpha="1" 
+		offset_x="2"
+		offset_y="4"
+		image_file="mods/souls/files/entities/items/phylactery/sprite_in_hand_done.png"
+		z_index="-1.5" >
+	</SpriteComponent>
+
+    <VariableStorageComponent
+        _tags="phylactery"
+        name="phylactery"
+        value_int="0"
+    ></VariableStorageComponent>
+
+	  <VariableStorageComponent
+		    _tags="frame"
+		    name="frame"
+		    value_int="0"
+	  ></VariableStorageComponent>
+
+    <LuaComponent
+        _tags="enabled_in_hand"
+        script_source_file="mods/souls/files/entities/items/phylactery/fill.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+    <LuaComponent
+        _tags="enabled_in_hand,enabled_in_inventory"
+        script_source_file="mods/souls/files/entities/items/phylactery/update.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
 
 </Entity>

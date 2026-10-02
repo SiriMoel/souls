@@ -88,6 +88,7 @@ if translations ~= nil then
 		"mods/souls/files/translations/translations.csv",
         "mods/souls/files/translations/spells.csv",
         "mods/souls/files/translations/souls.csv",
+        "mods/souls/files/translations/items.csv",
 	}
 	for _,v in ipairs(translations_files) do
 		while translations:find("\r\n\r\n") do

@@ -427,7 +427,7 @@ local new_actions = {
 		type = ACTION_TYPE_STATIC_PROJECTILE,
 		spawn_level = "2,3,4,5,6",
 		spawn_probability = "0.3,0.4,0.2,0.5,0.4",
-		price = 140,
+		price = 160,
 		mana = 40,
 		max_uses = 15,
 		action = function()
@@ -435,27 +435,23 @@ local new_actions = {
 			c.fire_rate_wait = c.fire_rate_wait + 48
 		end,
 	},
-	--- I haven't updated what is below
 	{
-		id          = "SOUL_ARROW", -- blacklight arrow from graham's but drawn from memory (i didnt realise it was a spell)
-		name 		= "$action_souls_soul_arrow",
+		id = "SOUL_ARROW", 
+		name = "$action_souls_soul_arrow",
 		description = "$actiondesc_souls_soul_arrow",
-		sprite 		= "mods/souls/files/spell_icons/soul_arrow.png",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/soul_arrow.png",
 		related_projectiles	= {"mods/souls/files/entities/projectiles/soul_arrow/proj.xml"},
-		type 		= ACTION_TYPE_PROJECTILE,
-		inject_after = "MOLDOS_SOUL_BLAST",
-		spawn_level                       = "2,3,4,5,6",
-		spawn_probability                 = "0.5,0.5,0.5,0.7,0.7",
-		spawn_level_table = { 2, 3, 4, 5, 6, },
-		spawn_probability_table = { 0.5, 0.5, 0.5, 0.7, 0.7 },
-		price = 100,
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "2,3,4,5,6",
+		spawn_probability = "0.6,0.7,0.8,0.7,0.6",
+		price = 130,
 		mana = 30,
-		max_uses = 70,
-		action 		= function()
+		action = function()
 			add_projectile("mods/souls/files/entities/projectiles/soul_arrow/proj.xml")
-			c.fire_rate_wait = c.fire_rate_wait + 5
+			c.fire_rate_wait = c.fire_rate_wait + 12
 		end,
 	},
+	--- I haven't updated what is below
 	{
 		id          = "SOUL_BALL", -- tennis
 		name 		= "$action_souls_soul_ball",

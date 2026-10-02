@@ -1,72 +1,79 @@
-<Entity name="$item_moldos_phylactery" tags="hittable,teleportable_NOT,item_physics,item_pickup,souls_phylactery" >
+<Entity name="$item_souls_phylactery" tags="item">
 
-  <PhysicsBodyComponent 
-    _tags="enabled_in_world"
-    uid="1" 
-    allow_sleep="1" 
-    angular_damping="0" 
-    fixed_rotation="0" 
-    is_bullet="1" 
-    linear_damping="0"
-    auto_clean="0"
-    on_death_leave_physics_body="0"
-    hax_fix_going_through_ground="1"
-  ></PhysicsBodyComponent>
-  
-  <PhysicsImageShapeComponent 
-    body_id="1"
-    centered="1"
-    image_file="mods/souls/files/entities/items/phylactery/sprite_inhand.png"
-    material="metal_hard" >
-  </PhysicsImageShapeComponent>
-  
-  <CameraBoundComponent
-    max_count="50"
-    distance="500">
-  </CameraBoundComponent>
-	
-	<PhysicsThrowableComponent
-	_tags="enabled_in_world"
-    max_throw_speed="180"
-    throw_force_coeff="1.5"
-  ></PhysicsThrowableComponent>
-  
-  <PhysicsBodyCollisionDamageComponent 
-    _tags="enabled_in_world" 
-    speed_threshold="140.0"
-  ></PhysicsBodyCollisionDamageComponent>
-  
-  <ItemComponent
-    _tags="enabled_in_world"
-    item_name="$item_moldos_phylactery"
-    max_child_items="0"
-    is_pickable="1"
-    is_equipable_forced="1"
-    ui_sprite="mods/souls/files/entities/items/phylactery/sprite.png"
-    ui_description="$itemdesc_moldos_phylactery"
-    preferred_inventory="QUICK"
-  ></ItemComponent>
-  
-  <UIInfoComponent
-    _tags="enabled_in_world"
-    name="$item_moldos_phylactery" >
-  </UIInfoComponent>
-  
-  <AbilityComponent
-		ui_name="$item_moldos_phylactery"
-		throw_as_item="1"
-		><gun_config
+    <AbilityComponent
+        ui_name="$item_souls_phylactery" 
+        throw_as_item="0"
+        ><gun_config
 			deck_capacity="0"
 		></gun_config>
-	</AbilityComponent>
+    </AbilityComponent>
 
-  <MaterialSuckerComponent 
+	  <ItemComponent
+		    _tags="enabled_in_world"
+    	  is_pickable="1"
+  		  is_equipable_forced="1"
+	  	  ui_sprite="mods/souls/files/entities/items/phylactery/sprite.png"
+        item_name="$item_souls_phylactery"
+        ui_description="$itemdesc_souls_phylactery"
+    		play_hover_animation="1"
+        play_spinning_animation="0"
+        always_use_item_name_in_ui="1"
+        preferred_inventory="QUICK"
+		></ItemComponent>
+
+  	<VelocityComponent
+	    _tags="enabled_in_world"
+	  	gravity_y="400"
+	  	air_friction="0.55"
+	  	terminal_velocity="1000" >
+  	</VelocityComponent>
+	
+  	<SimplePhysicsComponent
+	    _tags="enabled_in_world"
+		_enabled="0"
+	></SimplePhysicsComponent>
+  
+  	<HitboxComponent 
+	    _tags="enabled_in_world"
+	    aabb_max_x="4" 
+	    aabb_max_y="4" 
+	    aabb_min_x="-4" 
+	    aabb_min_y="-4" 
+	    is_enemy="0" 
+	    is_item="1" 
+	    is_player="0" >
+  	</HitboxComponent>
+
+  	<LightComponent 
+	    _tags="enabled_in_world"
+	    radius="64" >
+  	</LightComponent>
+
+	<SpriteComponent
+		_tags="enabled_in_hand,sprite_hand"
+		_enabled="0"
+		offset_x="2"
+		offset_y="4"
+		image_file="mods/souls/files/entities/items/phylactery/sprite_in_hand.png"
+	></SpriteComponent>
+
+	<SpriteComponent 
+		_tags="enabled_in_world,sprite_world" 
+		_enabled="1"
+		alpha="1" 
+		offset_x="2"
+		offset_y="4"
+		image_file="mods/souls/files/entities/items/phylactery/sprite_in_hand.png"
+		z_index="-1.5" >
+	</SpriteComponent>
+
+	<MaterialSuckerComponent 
     _tags="enabled_in_world,enabled_in_hand"
     barrel_size="300"
     num_cells_sucked_per_frame="5"
-	material_type="0"
-	suck_tag="[souls_soul_blood_perfect]"
-  ></MaterialSuckerComponent> <!-- will this work? -->
+	  material_type="0"
+	  suck_tag="[souls_soul_blood_perfect]"
+  ></MaterialSuckerComponent>
 
     <MaterialInventoryComponent 
     _tags="enabled_in_world,enabled_in_hand,enabled_in_inventory"
@@ -76,25 +83,18 @@
     leak_on_damage_percent="1"
     min_damage_to_leak="0.0"
     death_throw_particle_velocity_coeff="0.5"
-    do_reactions="20"
-    do_reactions_explosions="1"
-    do_reactions_entities="1"
+    do_reactions="0"
+    do_reactions_explosions="0"
+    do_reactions_entities="0"
      >
     <count_per_material_type
 	></count_per_material_type>
   </MaterialInventoryComponent>
 	
-	<SpriteComponent
-    _tags="enabled_in_hand"
-    _enabled="0"
-    offset_x="4"
-    offset_y="4"
-    image_file="mods/souls/files/entities/items/phylactery/sprite_inhand.png"
-  ></SpriteComponent>
-
     <LuaComponent
-    _tags="enabled_in_world"
-		script_kick="mods/souls/files/entities/items/phylactery/fill_with_blood.lua"
-	></LuaComponent>
+        _tags="enabled_in_world,enabled_in_hand"
+        script_source_file="mods/souls/files/entities/items/phylactery/check.lua"
+        execute_every_n_frame="6"
+    ></LuaComponent>
 
 </Entity>

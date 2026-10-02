@@ -1,0 +1,18 @@
+<Entity tags="souls_diviner">
+
+    <InheritTransformComponent
+        _enabled="1"
+    ></InheritTransformComponent>
+
+    <VariableStorageComponent
+        _tags="state"
+        name="state"
+        value_int="1"
+    ></VariableStorageComponent>
+
+    <LuaComponent
+        script_source_file="mods/souls/files/entities/misc/diviner/state.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+</Entity>

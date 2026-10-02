@@ -1,4 +1,5 @@
 <Entity tags="souls_sotd_soul">
+
 	<HitboxComponent 
         _tags="enabled_in_world"
         aabb_min_x="-4" 
@@ -21,13 +22,14 @@
 		>
 	</SpriteComponent>
 
+	<!-- I loved copying tiny_ghost_move.lua for some reason -->
 	<LuaComponent 
 		script_source_file="data/scripts/animals/tiny_ghost_move.lua"
 		execute_every_n_frame="1"
 		>
 	</LuaComponent>
 	
-	<AudioComponent
+	<!--<AudioComponent
 		file="data/audio/Desktop/animals.bank"
 		event_root="animals/tiny_ghost" >
 	</AudioComponent>
@@ -37,7 +39,7 @@
 		event_name="animals/tiny_ghost/movement_loop"
 		set_speed_parameter="1"
 		auto_play="1">
-	</AudioLoopComponent>
+	</AudioLoopComponent>-->
 
     <LuaComponent
 		script_source_file="mods/souls/files/entities/items/soul_of_the_diviner/soul.lua"

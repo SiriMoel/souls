@@ -124,7 +124,7 @@ function mod_setting_souls_key_magic(mod_id, gui, in_main_menu, im_id, setting)
 	local value = ModSettingGetNextValue(mod_setting_get_id(mod_id, setting))
 	if type(value) ~= "boolean" then value = setting.value_default or false end
 
-    local key_now = ModSettingGetNextValue("souls.souls_gui_key")
+    local key_now = ModSettingGetNextValue(setting.key_setting)
 
     local key_string = (skeys[key_now] ~= nil) and ("[" .. skeys[key_now] .. "]") or "???"
 
@@ -140,9 +140,9 @@ function mod_setting_souls_key_magic(mod_id, gui, in_main_menu, im_id, setting)
 
     GuiColorSetForNextWidget(gui, 0.6, 0.6, 0.6, 1.0)
 
-    local text_offset = GuiGetTextDimensions(gui, text)
+    local text_offset = math.max(GuiGetTextDimensions(gui, text) + 4, 24)
 
-    local clicked, right_clicked = GuiButton(gui, im_id, mod_setting_group_x_offset + text_offset + 4, -11, setting.ui_name)
+    local clicked, right_clicked = GuiButton(gui, im_id, mod_setting_group_x_offset + text_offset, -11, setting.ui_name)
 
     GuiColorSetForNextWidget(gui, 1, 1, 1, 1)
 
@@ -156,7 +156,7 @@ function mod_setting_souls_key_magic(mod_id, gui, in_main_menu, im_id, setting)
             end
         end
         if set_key ~= nil then
-            ModSettingSetNextValue("souls.souls_gui_key", set_key, false)
+            ModSettingSetNextValue(setting.key_setting, set_key, false)
             ModSettingSetNextValue(mod_setting_get_id(mod_id, setting), false, false)
         end
     end
@@ -166,7 +166,7 @@ function mod_setting_souls_key_magic(mod_id, gui, in_main_menu, im_id, setting)
 		mod_setting_handle_change_callback(mod_id, gui, in_main_menu, setting, value, not value)
 	end
     if right_clicked then
-        ModSettingSetNextValue("souls.souls_gui_key", 29, false)
+        ModSettingSetNextValue(setting.key_setting, setting.key_setting_default, false)
         ModSettingSetNextValue(mod_setting_get_id(mod_id, setting), false, false)
         mod_setting_handle_change_callback(mod_id, gui, in_main_menu, setting, false, setting.value_default)
     end
@@ -230,11 +230,13 @@ mod_settings = {
 	        },
             {
                 id = "set_gui_key",
-                ui_name = "Bind key to view your souls.",
+                ui_name = "Bind key to view your souls",
                 ui_description = "Click this and then press the desired key.",
                 value_default = false,
                 scope = MOD_SETTING_SCOPE_RUNTIME,
                 ui_fn = mod_setting_souls_key_magic,
+                key_setting = "souls.souls_gui_key",
+                key_setting_default = 29,
             },
             {
                 id = "first_gui",

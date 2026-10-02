@@ -91,6 +91,7 @@ if translations ~= nil then
         "mods/souls/files/translations/items.csv",
         "mods/souls/files/translations/materials.csv",
         "mods/souls/files/translations/effects.csv",
+        "mods/souls/files/translations/animals.csv",
 	}
 	for _,v in ipairs(translations_files) do
 		while translations:find("\r\n\r\n") do
@@ -216,16 +217,12 @@ function OnPlayerSpawned(player)
 
     local starting_souls = tonumber(ModSettingGet("souls.starting_souls")) or 0
     if starting_souls > 0 then
+        local souls = {}
         for i=1,starting_souls do
-            local which = soul_types[math.random(1,#soul_types)]
-            if which == "souls_void" then
-                which = "orcs"
-            end
-            if which == "boss" then
-                which = "orcs"
-            end
-            AddSouls(which, 1)
+            local which = soul_types[Random(1, #soul_types - 2)]
+            souls[which] = (souls[which] or 0) + 1
         end
+        EditSoulCounts(souls, player)
     end
     
     EntityAddComponent2(player, "LuaComponent", {

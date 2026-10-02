@@ -1,20 +1,18 @@
-<Entity tags="tablet">
+<Entity tags="soul_tablet">
+
 	<Base file="data/entities/items/books/base_book.xml">
 		<UIInfoComponent
-			name="$item_moldos_soul_tablet"
-			>
-		</UIInfoComponent>
+			name="$item_souls_tablet"
+		></UIInfoComponent>
 		
 		<ItemComponent
-			item_name="$item_moldos_soul_tablet"
-			ui_description="$itemdesc_moldos_soul_tablet_1"
-			>
-		</ItemComponent>
+			item_name="$item_souls_tablet"
+			ui_description="$itemdesc_souls_tablet_1"
+		></ItemComponent>
 		
 		<AbilityComponent
-			ui_name="$item_moldos_soul_tablet"
-			>
-		</AbilityComponent>
+			ui_name="$item_souls_tablet"
+		></AbilityComponent>
 	</Base>
 
 	<LuaComponent
@@ -23,4 +21,5 @@
 		script_source_file="mods/souls/files/entities/items/soul_tablet/item.lua"
 		execute_every_n_frame="45"
 	></LuaComponent>
+
 </Entity>

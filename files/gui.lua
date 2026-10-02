@@ -7,18 +7,12 @@ gui_id = 1 -- ???
 local soulscount = 0
 local hasinfsouls = false
 local soulcounts = {}
-local soul_emulator_image = "mods/souls/files/gui/soul_emulator/0.png"
  
 function OnWorldPreUpdate()
     local player = EntityGetWithTag("player_unit")[1]
     if player ~= nil then
         soulcounts, hasinfsouls = SoulCounts(player), false
         soulscount = soulcounts["total"]
-
-        if GameHasFlagRun("souls_soul_emulated") then
-            soul_emulator_image = "mods/souls/files/gui/soul_emulator/" .. GlobalsGetValue("souls.soul_emulator_state", "1") .. ".png"
-        end
-
     end
 end
  
@@ -35,13 +29,6 @@ function GuiRender()
     GuiStartFrame(gui)
     
     local screen_width, screen_height = GuiGetScreenDimensions(gui)
-
-    -- Soul Emulator stuff
-    if GameHasFlagRun("souls_soul_emulated") then
-        GuiLayoutBeginHorizontal(gui, 65, 82.5)
-            GuiImage(gui, gui_id, 0, 0, soul_emulator_image, 1, 1, 1)
-        GuiLayoutEnd(gui)
-    end
 
     if GlobalsGetValue("souls.first_gui", "true") == "true" then
 

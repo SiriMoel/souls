@@ -1,4 +1,4 @@
-<Entity tags="boss,enemy,mortal,hittable,homing_target,teleportable_NOT,glue_NOT,souls_boss_soul" name="$animal_moldos_boss_soul">
+<Entity tags="boss,enemy,mortal,hittable,homing_target,teleportable_NOT,glue_NOT,souls_boss_soul" name="$animal_souls_boss_soul">
 		
 	<!--<GenomeDataComponent 
 		herd_id="apparition"
@@ -12,8 +12,7 @@
 		ragdoll_material="souls_soul_particles_black"
 		blood_material="souls_soul_particles_black"
 		blood_spray_material="souls_soul_particles_black"
-   >
-   <damage_multipliers
+   ><damage_multipliers
 		melee="1.0"
 		projectile="1.0"
 		explosion="1.0"
@@ -22,7 +21,7 @@
 		slice="1.0"
 		ice="1.0"
 	></damage_multipliers>
-   </DamageModelComponent>
+    </DamageModelComponent>
 
    	<SpriteComponent
 		image_file="mods/souls/files/entities/animals/boss_soul/sprite.xml"
@@ -104,6 +103,18 @@
 	</LuaComponent>
 
 	<VariableStorageComponent
+		_tags="souls_reap"
+		name="boss"
+		value_int="10"
+	></VariableStorageComponent>
+
+	<VariableStorageComponent
+		_tags="souls_reap"
+		name="friendly"
+		value_int="30"
+	></VariableStorageComponent>
+
+	<VariableStorageComponent
 		_tags="state"
 		name="state"
 		value_int="1"
@@ -131,7 +142,7 @@
 
 	<LuaComponent
 		script_source_file="mods/souls/files/entities/animals/boss_soul/disable_shield.lua"
-		execute_every_n_frame="80"
+		execute_every_n_frame="60"
 	></LuaComponent>
 
 	<ParticleEmitterComponent 

@@ -22,11 +22,13 @@ function SoulCounts(player)
         total = 0,
         total_boss = 0,
     }
+    local divine = EntityHasTag(player, "souls_divine")
     local comps = EntityGetComponentIncludingDisabled(player, "VariableStorageComponent", "souls_count") or {}
     if #comps > 0 then
         for _,comp in ipairs(comps) do
             local soul = ComponentGetValue2(comp, "name")
             local amt = ComponentGetValue2(comp, "value_int")
+            if divine and soul ~= "boss" then amt = 99 end
             counts[soul] = amt
             if soul ~= "boss" then
                 counts["total"] = counts["total"] + amt
@@ -45,7 +47,10 @@ function SoulCount(soul, player)
     else
         local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. soul)
         if comp ~= nil then
-            return ComponentGetValue2(comp, "value_int")
+            local divine = EntityHasTag(player, "souls_divine")
+            local amt = ComponentGetValue2(comp, "value_int")
+            if divine and soul ~= "boss" then amt = 99 end
+            return amt
         end
     end
     return 0
@@ -79,6 +84,7 @@ function SpellUseSouls(caster, n)
     local success = false
     local soul_used
     local comp = EntityGetFirstComponentIncludingDisabled(caster, "Inventory2Component")
+    local divine = EntityHasTag(caster, "souls_divine")
 	if comp ~= nil then
 		local wand = ComponentGetValue2(comp, "mActiveItem")
         local soul = WandSoulType(wand)
@@ -89,7 +95,7 @@ function SpellUseSouls(caster, n)
                 local used = {}
                 while used_n < n do
                     for k,v in pairs(counts) do
-                        if tostring(k) ~= "total" and tostring(k) ~= "total_boss" then
+                        if tostring(k) ~= "total" and tostring(k) ~= "total_boss" and tostring(k) ~= "boss" then
                             if v > 0 then
                                 used[k] = (used[k] or 0) - 1
                                 used_n = used_n + 1
@@ -101,7 +107,9 @@ function SpellUseSouls(caster, n)
                         end
                     end
                 end
-                EditSoulCounts(used, caster)
+                if not divine then
+                    EditSoulCounts(used, caster)
+                end
                 success = true
             else
                 success = false
@@ -114,7 +122,9 @@ function SpellUseSouls(caster, n)
                 end
                 local used = {}
                 used[soul] = -n
-                EditSoulCounts(used, caster)
+                if not divine then
+                    EditSoulCounts(used, caster)
+                end
                 success = true
             else
                 success = false
@@ -129,6 +139,7 @@ function SpellUseSouls(caster, n)
             ComponentSetValue2(comp_used, "value_int", amt_used)
         end
     end
+    if divine then success = true end
     return success, soul_used
 end
 
@@ -160,12 +171,12 @@ end
 function DontFearTheReaper(souls, entity)
     local player = EntityGetWithTag("player_unit")[1]
     local canreap = true
-    for i,v in ipairs(GameGetAllInventoryItems(player) or {}) do
+    --[[for i,v in ipairs(GameGetAllInventoryItems(player) or {}) do
         if EntityHasTag(v, "souls_deny_reap") then
             canreap = false
             break
         end
-    end
+    end]]
     if not canreap then return end
     if GlobalsGetValue("souls.collect_soul_from_entity", "true") == "true" then
         local x, y = EntityGetTransform(entity)
@@ -199,6 +210,25 @@ function DontFearTheReaper(souls, entity)
             GamePrint(str)
         end
         EditSoulCounts(souls, player)
+    end
+end
+
+function LoseSouls(player, n)
+    local counts = SoulCounts(player)
+    if counts["total_boss"] >= n then
+        local used_n = 0
+        local used = {}
+        while used_n < n do
+            for k,v in pairs(counts) do
+                if tostring(k) ~= "total" and tostring(k) ~= "total_boss" then
+                    if v > 0 then
+                        used[k] = (used[k] or 0) - 1
+                        used_n = used_n + 1
+                    end
+                end
+            end
+        end
+        EditSoulCounts(used, player)
     end
 end
 

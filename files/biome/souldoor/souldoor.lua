@@ -9,7 +9,7 @@ local radius = 120
 
 local frame = GameGetFrameNum()
 
-math.randomseed(x+frame, y+tonumber(StatsGetValue("world_seed")))
+SetRandomSeed(x+frame, y+tonumber(StatsGetValue("world_seed")))
 
 local targets = EntityGetInRadiusWithTag(x, y, radius, "card_action")
 

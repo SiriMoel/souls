@@ -1,4 +1,3 @@
-dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("mods/souls/files/scripts/souls.lua")
 
 local this = GetUpdatedEntityID()
@@ -10,7 +9,7 @@ if comp_state == nil then return print("Souls - couldnt find state") end
 
 local state = ComponentGetValue2(comp_state, "value_int")
 
-local player = GetPlayer()
+local player = EntityGetWithTag("player_unit")[1]
 local px, py = EntityGetTransform(player)
 
 if state == 1 then -- soul drain fields

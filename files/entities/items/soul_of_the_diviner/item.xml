@@ -1,7 +1,7 @@
 <Entity tags="hittable,souls_sotd_item,souls_deny_reap">
 
 	<UIInfoComponent
-		name="$item_moldos_diviner_soul_1"
+		name="$item_souls_diviner_soul_1"
 	></UIInfoComponent>
 
 	<PhysicsBodyComponent 
@@ -48,8 +48,8 @@
 		is_equipable_forced="1"
 		ui_sprite="mods/souls/files/entities/items/soul_of_the_diviner/sprite.png"
 		preferred_inventory="QUICK"
-		item_name="$item_moldos_diviner_soul_1"
-		ui_description="$itemdesc_moldos_diviner_soul_1"
+		item_name="$item_souls_diviner_soul_1"
+		ui_description="$itemdesc_souls_diviner_soul_1"
 	></ItemComponent>
   
 	<SpriteComponent
@@ -112,7 +112,7 @@
 	</ParticleEmitterComponent>
 	
 	<AbilityComponent
-		ui_name="$item_moldos_diviner_soul_1"
+		ui_name="$item_souls_diviner_soul_1"
 		throw_as_item="1"
 		><gun_config
 			deck_capacity="0"

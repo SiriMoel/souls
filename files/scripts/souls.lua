@@ -143,6 +143,34 @@ function SpellUseSouls(caster, n)
     return success, soul_used
 end
 
+function SpellUseSpecificSouls(caster, spell_souls)
+    local success = true
+    local divine = EntityHasTag(caster, "souls_divine")
+    local total = 0
+    local to_use = {}
+    for soul, amt in pairs(spell_souls) do
+        local count = SoulCount(soul, caster)
+        if count >= amt then
+            total = total + amt
+            to_use[soul] = -amt
+        else
+            success = false
+            break
+        end
+    end
+    if divine then success = true end
+    if success then
+        if not divine then EditSoulCounts(to_use, caster) end
+        local comp_used = EntityGetFirstComponentIncludingDisabled(caster, "VariableStorageComponent", "souls_used_total")
+        if comp_used ~= nil then
+            local amt_used = ComponentGetValue2(comp_used, "value_int")
+            amt_used = amt_used + total
+            ComponentSetValue2(comp_used, "value_int", amt_used)
+        end
+    end
+    return success
+end
+
 function GetEntitySoulType(entity)
     local soul = "friendly"
     local comp = EntityGetFirstComponentIncludingDisabled(entity, "GenomeDataComponent")

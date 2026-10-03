@@ -742,254 +742,146 @@ local new_actions = {
 			draw_actions(1, true)
 		end,
 	},
-	--- I haven't updated what is below
 	{
-		id          = "SOUL_BATTERY",
-		name 		= "$action_souls_soul_battery",
+		id = "SOUL_BATTERY",
+		name = "$action_souls_soul_battery",
 		description = "$actiondesc_souls_soul_battery",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/soul_battery.png",
+		type = ACTION_TYPE_UTILITY,
+		spawn_level = "6,10",
+		spawn_probability = "0.2,0.3",
+		price = 220,
+		mana = 0,
+		ai_never_uses = true,
 		custom_xml_file = "mods/souls/files/entities/misc/card_soul_battery/card.xml",
-		sprite 		= "mods/souls/files/spell_icons/soul_battery.png",
-		type 		= ACTION_TYPE_UTILITY,
-		inject_after = "MOLDOS_SOUL_SPEED",
-		spawn_level                       = "1,2,3,4,5,6",
-		spawn_probability                 = "1,1,1,1,1,1",
-		spawn_level_table = { 5, 6, 10, },
-		spawn_probability_table = { 0.3, 0.7, 0.5 },
-		price = 150,
-		mana = -100,
-		ai_never_uses = true,
-		action 		= function()
-			dofile_once("mods/souls/files/scripts/souls.lua")
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait - 6
+			current_reload_time = current_reload_time + 3
 			if reflecting then return end
-			local entity = GetUpdatedEntityID()
-			local wand = 0
-			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
-			if inv_comp then
-				wand = ComponentGetValue2(inv_comp, "mActiveItem")
-			end
-			if DoesWandUseSpecificSoul(wand) then
-				if GetSoulsCount(GetWandSoulType(wand)) >= 1 then
-					RemoveSoul(GetWandSoulType(wand))
-					c.fire_rate_wait = c.fire_rate_wait - 20
-					current_reload_time = current_reload_time - 20
-				else
-					GamePrint("You do not have enough souls for this.")
+			dofile_once("mods/souls/files/scripts/souls.lua")
+			local caster = GetUpdatedEntityID()
+			if SpellUseSouls(caster, 1) then
+				local amt = 200
+				local comp_inv = EntityGetFirstComponentIncludingDisabled(caster, "Inventory2Component")
+				if comp_inv ~= nil then
+					local wand = ComponentGetValue2(comp_inv, "mActiveItem")
+					local comp = EntityGetFirstComponentIncludingDisabled(wand, "AbilityComponent")
+					if comp ~= nil then
+						local mana_max = ComponentGetValue2(comp, "mana_max")
+						amt = mana_max
+					end
 				end
+				mana = mana + amt
 			else
-				if (GetSoulsCount("all") - GetSoulsCount("boss")) >= 1 then
-					RemoveRandomSouls(1)
-					c.fire_rate_wait = c.fire_rate_wait - 20
-					current_reload_time = current_reload_time - 20
-				else
-					GamePrint("You do not have enough souls for this.")
-				end
+				GamePrint("You do not have enough souls for this. (1)")
 			end
-			draw_actions( 1, true )
+			draw_actions(1, true)
 		end,
 	},
 	{
-		id          = "SOUL_SPELL_WORM",
-		name 		= "$action_souls_soul_spell_worm",
+		id = "SOUL_SPELL_WORM",
+		name = "$action_souls_soul_spell_worm",
 		description = "$actiondesc_souls_soul_spell_worm",
-		sprite 		= "mods/souls/files/spell_icons/wormhole.png",
-		related_extra_entities = { "mods/souls/files/entities/projectiles/soul_spell_worm/soul_spell_worm.xml" },
-		type 		= ACTION_TYPE_MODIFIER,
-		inject_after = "MANA_REDUCE",
-		spawn_level                       = "6",
-		spawn_probability                 = "0",
-		spawn_level_table = { 6, 10, },
-		spawn_probability_table = { 0.5, 0.5 },
-		price = 200,
-		mana = 100,
+		sprite = "mods/souls/files/ui_gfx/gun_actions/wormhole.png",
+		related_extra_entities = {"mods/souls/files/entities/projectiles/soul_spell_worm/soul_spell_worm.xml"},
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level = "4,5,6,10",
+		spawn_probability = "0.2,0.3,0.3,0.1",
+		price = 180,
+		mana = 90,
 		ai_never_uses = true,
-		action 		= function()
-			dofile_once("mods/souls/files/scripts/souls.lua")
+		custom_xml_file = "mods/souls/files/entities/misc/card_soul_spell_worm.xml",
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 48
+			current_reload_time = current_reload_time + 24
 			if reflecting then return end
-			if GetSoulsCount("worm") > 0 then
+			dofile_once("mods/souls/files/scripts/souls.lua")
+			local caster = GetUpdatedEntityID()
+			if SpellUseSpecificSouls(caster, {["worm"] = 1}) then
 				c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_spell_worm/soul_spell_worm.xml,"
-				RemoveSoul("worm")
 			else
-				GamePrint("You do not have enough souls for this.")
+				GamePrint("You do not have enough Worm souls for this. (1)")
 			end
-			draw_actions( 1, true )
+			draw_actions(1, true)
 		end,
 	},
 	{
-		id          = "SOUL_SPELL_MAGE",
-		name 		= "$action_souls_soul_spell_mage",
+		id = "SOUL_SPELL_MAGE",
+		name = "$action_souls_soul_spell_mage",
 		description = "$actiondesc_souls_soul_spell_mage",
-		sprite 		= "mods/souls/files/spell_icons/mage_gun.png",
-		related_extra_entities = { "mods/souls/files/entities/projectiles/soul_spell_mage/soul_spell_mage.xml" },
-		type 		= ACTION_TYPE_MODIFIER,
-		inject_after = "MANA_REDUCE",
-		spawn_level                       = "6",
-		spawn_probability                 = "0",
-		spawn_level_table = { 6, 10, },
-		spawn_probability_table = { 0.5, 0.5 },
-		price = 200,
-		mana = 150,
+		sprite = "mods/souls/files/ui_gfx/gun_actions/mage_gun.png",
+		related_extra_entities = {"mods/souls/files/entities/projectiles/soul_spell_mage/soul_spell_mage.xml"},
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level = "4,5,6,10",
+		spawn_probability = "0.2,0.3,0.3,0.1",
+		price = 150,
+		mana = 40,
 		ai_never_uses = true,
-		action 		= function()
-			dofile_once("mods/souls/files/scripts/souls.lua")
-			if reflecting then return end
-			if GetSoulsCount("mage") > 0 then
-				c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_spell_mage/soul_spell_mage.xml,"
-				c.game_effect_entities = c.game_effect_entities .. "data/entities/misc/effect_apply_bloody.xml,"
-				RemoveSoul("mage")
-			else
-				GamePrint("You do not have enough souls for this.")
+		custom_xml_file = "mods/souls/files/entities/misc/card_soul_spell_mage.xml",
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 30
+			if reflecting then
+				c.damage_projectile_add = c.damage_projectile_add + 1
+				c.damage_fire_add = c.damage_fire_add + 1
+				c.damage_critical_chance = c.damage_critical_chance + 100
+				return 
 			end
-			draw_actions( 1, true )
+			dofile_once("mods/souls/files/scripts/souls.lua")
+			local caster = GetUpdatedEntityID()
+			if SpellUseSpecificSouls(caster, {["mage"] = 2}) then
+				c.damage_projectile_add = c.damage_projectile_add + 1
+				c.damage_fire_add = c.damage_fire_add + 1
+				c.damage_critical_chance = c.damage_critical_chance + 100
+				c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_spell_mage/soul_spell_mage.xml,"
+			else
+				GamePrint("You do not have enough Mage souls for this. (2)")
+			end
+			draw_actions(1, true)
 		end,
 	},
 	{
-		id          = "SOUL_SPELL_SLIMES",
-		name 		= "$action_souls_soul_spell_slimes",
+		id = "SOUL_SPELL_SLIMES",
+		name = "$action_souls_soul_spell_slimes",
 		description = "$actiondesc_souls_soul_spell_slimes",
-		sprite 		= "mods/souls/files/spell_icons/slime_safeguard.png",
-		related_extra_entities = { "" },
-		type 		= ACTION_TYPE_MODIFIER,
-		inject_after = "MANA_REDUCE",
-		spawn_level                       = "6",
-		spawn_probability                 = "0",
-		spawn_level_table = { 6, 10, },
-		spawn_probability_table = { 0.5, 0.5 },
-		price = 200,
-		mana = 50,
+		sprite = "mods/souls/files/ui_gfx/gun_actions/slime_safeguard.png",
+		related_extra_entities = {"mods/souls/files/entities/projectiles/soul_spell_slimes/sousoul_spell_slimesl_spell_mage.xml"},
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level = "4,5,6,10",
+		spawn_probability = "0.2,0.3,0.3,0.1",
+		price = 190,
+		mana = 70,
 		ai_never_uses = true,
-		action 		= function()
-			dofile_once("mods/souls/files/scripts/souls.lua")
-			if reflecting then return end
-			if GetSoulsCount("slimes") > 0 then
-				c.game_effect_entities = c.game_effect_entities .. "data/entities/misc/effect_healhurt.xml,"
-				RemoveSoul("slimes")
-			else
-				GamePrint("You do not have enough souls for this.")
+		custom_xml_file = "mods/souls/files/entities/misc/card_soul_spell_slimes.xml",
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 30
+			if reflecting then
+				c.friendly_fire	= true
+				c.speed_multiplier = c.speed_multiplier * 0.2
+				c.lifetime_add = c.lifetime_add + 60
+				if c.speed_multiplier < 0 then
+					c.speed_multiplier = 0
+				end
+				return 
 			end
-			draw_actions( 1, true )
+			dofile_once("mods/souls/files/scripts/souls.lua")
+			local caster = GetUpdatedEntityID()
+			if SpellUseSpecificSouls(caster, {["slimes"] = 10}) then
+				c.friendly_fire	= true
+				c.speed_multiplier = c.speed_multiplier * 0.2
+				c.lifetime_add = c.lifetime_add + 60
+				if c.speed_multiplier < 0 then
+					c.speed_multiplier = 0
+				end
+				c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_spell_slimes/soul_spell_slimes.xml,"
+			else
+				GamePrint("You do not have enough Slime souls for this. (10)")
+			end
+			draw_actions(1, true)
 		end,
 	},
-	--[[{
-		id          = "DIVIDE_BY_SOULS",
-		name 		= "$action_souls_divide_by_souls",
-		description = "$actiondesc_souls_divide_by_souls",
-		sprite 		= "mods/souls/files/spell_icons/divide_by_souls.png",
-		spawn_requires_flag = "card_unlocked_musicbox",
-		related_extra_entities = { "" },
-		type 		= ACTION_TYPE_OTHER,
-		inject_after = "MANA_REDUCE",
-		spawn_level                       = "6",
-		spawn_probability                 = "0",
-		spawn_level_table = { 5, 6, 10, },
-		spawn_probability_table = { 0.1, 0.1, 0.6 },
-		price = 200,
-		mana = 45,
-		ai_never_uses = true,
-		action 		= function()
-			dofile_once("mods/souls/files/scripts/souls.lua")
-			if reflecting then return end
-			if (GetSoulsCount("all") - GetSoulsCount("boss")) > 0 then
-				local count = math.ceil(GetSoulsCount("all"))
-				if count > 15 then
-					count = 15
-				end
-				for i=1,count do
-					RemoveSoul(GetRandomSoul(false))
-				end
-				local data = {}
-				local iter = iteration or 1
-				local iter_max = iteration or 1
-				
-				if ( #deck > 0 ) then
-					data = deck[iter] or nil
-				else
-					data = nil
-				end
-
-				if ( iter >= 4 ) then
-					count = 1
-				end
-				local rec = check_recursion( data, recursion_level )
-				if ( data ~= nil ) and ( rec > -1 ) and ( ( data.uses_remaining == nil ) or ( data.uses_remaining ~= 0 ) ) then
-					local firerate = c.fire_rate_wait
-					local reload = current_reload_time
-					for i=1,count do
-						if ( i == 1 ) then
-								dont_draw_actions = true
-						end	
-						local imax = data.action( rec, iter + 1 )
-						dont_draw_actions = false
-						if (imax ~= nil) then
-							iter_max = imax
-						end
-					end
-					if ( data.uses_remaining ~= nil ) and ( data.uses_remaining > 0 ) then
-						data.uses_remaining = data.uses_remaining - 1
-
-						local reduce_uses = ActionUsesRemainingChanged( data.inventoryitem_id, data.uses_remaining )
-						if not reduce_uses then
-							data.uses_remaining = data.uses_remaining + 1 -- cancel the reduction
-						end
-					end
-					if (iter == 1) then
-						c.fire_rate_wait = firerate
-						current_reload_time = reload
-						for i=1,iter_max do
-							if (#deck > 0) then
-								local d = deck[1]
-								table.insert( discarded, d )
-								table.remove( deck, 1 )
-							end
-						end
-					end
-				end
-				c.pattern_degrees = 5
-				return iter_max
-			else
-				GamePrint("You do not have enough souls for this.")
-			end
-		end,
-	},]]
-	--[[{
-		id          = "VOID_LASH",
-		name 		= "$action_souls_void_lash",
-		description = "$actiondesc_souls_void_lash",
-		sprite 		= "mods/souls/files/spell_icons/void_lash.png",
-		type 		= ACTION_TYPE_MODIFIER,
-		inject_after = "MOLDOS_SOUL_SPEED",
-		spawn_level                       = "10",
-		spawn_probability                 = "0.1",
-		spawn_level_table = { 10, },
-		spawn_probability_table = { 0.1, },
-		price = 100,
-		mana = 30,
-		action 		= function()
-			dofile_once("mods/souls/files/scripts/souls.lua")
-			if reflecting then return end
-			local count = GetSoulsConsumed() -- will need to uncomment this in souls.lua
-			c.damage_projectile_add = c.damage_projectile_add + (math.min(0.015 * count, 2))
-			draw_actions( 1, true )
-		end,
-	},]]
 }
 
 for i,action in ipairs(new_actions) do
 	action.id = "SOULS_" .. action.id
-	--[[if action.spawn_level_table ~= nil and action.spawn_probability_table ~= nil then
-		local levels = ""
-		local probabilities = ""
-		levels = ""
-		probabilities = ""
-		local multiplier = 1--tonumber(GlobalsGetValue("souls.spell_spawn_chance_multiplier", "1"))
-		for i,level in ipairs(action.spawn_level_table) do
-			levels = levels .. tostring(level) .. ","
-		end
-		action.spawn_level = levels
-		for i,chance in ipairs(action.spawn_probability_table) do
-			chance = chance * multiplier
-			probabilities = probabilities .. tostring(chance) .. ","
-		end
-		action.spawn_probability = probabilities
-	end]]
 	table.insert(actions, action)
 end

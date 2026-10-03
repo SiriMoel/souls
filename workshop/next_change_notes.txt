@@ -1,5 +1,5 @@
 NEW
-- Souls gui keybind (in the mod settings)
+- Souls gui keybind mod setting
 - Spell: Soular Power (combined Soul-Scaling Mana & Soul-Scaling Recharge)
 - Mod settings menu categories
 - Mod settings to toggle each structure

@@ -1,53 +1,29 @@
-dofile_once("mods/souls/files/scripts/utils.lua")
-dofile_once("mods/souls/files/scripts/souls.lua")
-
 local card = GetUpdatedEntityID()
-local root = EntityGetRootEntity(card) -- player, right?
-local comp_controls = EntityGetFirstComponentIncludingDisabled(root, "ControlsComponent") or 0
-local comp_cd = EntityGetFirstComponentIncludingDisabled(card, "VariableStorageComponent", "cooldown_frame") or 0
+local root = EntityGetRootEntity(card)
+local parent = EntityGetParent(card)
+
+if not EntityHasTag(root, "player_unit") then return end
+if not EntityHasTag(parent, "soul_tome") then return end
+
+local comp_controls = EntityGetFirstComponentIncludingDisabled(root, "ControlsComponent")
+local comp_cd = EntityGetFirstComponentIncludingDisabled(card, "VariableStorageComponent", "cooldown_frame")
 local cooldown_frames = 30
 local cooldown_frame = ComponentGetValue2(comp_cd, "value_int")
 
-local tome = EntityGetWithTag("soul_tome")[1]
-local comp_ca = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "current_attack") or 0
-local ca = tonumber(ComponentGetValue(comp_ca, "value_string"))
+local frame_now = GameGetFrameNum()
 
-if ComponentGetValue2(comp_controls, "mButtonDownRightClick") == true and GameGetFrameNum() >= cooldown_frame then
-    local entity_id = GetPlayer()
-            local controls_comp = EntityGetFirstComponentIncludingDisabled(entity_id, "ControlsComponent")
-            if controls_comp ~= nil then
-
-                local character_data_comp = EntityGetFirstComponent(entity_id, "CharacterDataComponent")
-                if character_data_comp ~= nil then
-
-                    local caster = {
-                        velocity = {x = 0, y = 0},
-                        position = {x = 0, y = 0},
-                    }
-                    local mouse = {
-                        position = {x = 0, y = 0},
-                    }
-
-                    caster.position.x,  caster.position.y   = EntityGetTransform(entity_id)
-                    caster.velocity.x,  caster.velocity.y   = ComponentGetValueVector2(character_data_comp, "mVelocity")
-                    mouse.position.x,   mouse.position.y    = ComponentGetValueVector2(controls_comp, "mMousePosition")
-
-                    local offset = {
-                        x = mouse.position.x - caster.position.x,
-                        y = mouse.position.y - caster.position.y,
-                    }
-                    local force = {
-                        x = 700,
-                        y = 300,
-                    }
-
-                    local len = math.sqrt((offset.x ^ 2) + (offset.y ^ 2))
-                    caster.velocity.x = caster.velocity.x + (offset.x / len * force.x)
-                    caster.velocity.y = caster.velocity.y + (offset.y / len * force.y)
-
-                    ComponentSetValue2(character_data_comp, "mVelocity", caster.velocity.x, caster.velocity.y)
-                end
-            end
-    ComponentSetValue2(comp_ca, "value_string", tostring(ca))
-    ComponentSetValue2( comp_cd, "value_int", GameGetFrameNum() + cooldown_frames )
+if ComponentGetValue2(comp_controls, "mButtonDownRightClick") == true and frame_now >= cooldown_frame then
+    ComponentSetValue2(comp_cd, "value_int", frame_now + cooldown_frames)
+    local comp_char_data = EntityGetFirstComponent(root, "CharacterDataComponent")    
+    if comp_char_data ~= nil then
+        local x, y = EntityGetTransform(root)
+        local vel_x, vel_y = ComponentGetValueVector2(comp_char_data, "mVelocity")
+        local mouse_x, mouse_y = ComponentGetValueVector2(comp_controls, "mMousePosition")
+        local off_x, off_y = mouse_x - x, mouse_y - y
+        local force = {x = 700, y = 300}
+        local len = math.sqrt((off_x ^ 2) + (off_y ^ 2))
+        vel_x = vel_x + (off_x / len * force.x)
+        vel_y = vel_y + (off_y / len * force.y)
+        ComponentSetValue2(comp_char_data, "mVelocity", vel_x, vel_y)
+    end
 end

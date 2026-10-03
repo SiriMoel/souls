@@ -173,7 +173,7 @@ local player = EntityGetWithTag("player_unit")[1]
 local success, soul = SpellUseSouls(player, 1)
 
 if not success or soul == nil then
-	GamePrint("You do not have enough souls for this.")
+	GamePrint("You do not have enough souls for this. (1)")
 
 	ComponentSetValue2(comp_proj,"on_death_explode", false)
 	ComponentSetValue2(comp_proj, "on_lifetime_out_explode", false)

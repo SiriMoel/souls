@@ -1,293 +1,203 @@
-dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("mods/souls/files/scripts/souls.lua")
 
+soul_effects = {
+	bat = function(this, comp_proj, comp_part) 
+		ComponentSetValue2(comp_part, "emitted_material_name", soul_sparks.bat)
+		EntityAddComponent2(this, "HomingComponent", {
+			homing_targeting_coeff=110.0,
+			homing_velocity_multiplier=1.2,
+		})
+		local damage_melee = ComponentObjectGetValue2(comp_proj, "damage_by_type", "melee")
+		damage_melee = damage_melee + 0.8
+		ComponentObjectSetValue2(comp_proj, "damage_by_type", "melee", damage_melee)
+	end,
+	fly = function(this, comp_proj, comp_part) 
+		ComponentSetValue2(comp_part, "emitted_material_name", soul_sparks.fly)
+		local damage = ComponentGetValue2(comp_proj, "damage")
+		damage = damage * 1.2
+		ComponentSetValue2(comp_proj, "damage", damage)
+		local comp_vel = EntityGetFirstComponent(this, "VelocityComponent")
+		if comp_vel ~= nil then
+			local air_friction = ComponentGetValue2(comp_vel, "air_friction")
+			air_friction = air_friction - 3
+			ComponentSetValue2(comp_vel, "air_friction", air_friction)
+		end
+	end,
+	friendly = function(this, comp_proj, comp_part) 
+		ComponentSetValue2(comp_part, "emitted_material_name", soul_sparks.friendly)
+	end,
+	mage = function(this, comp_proj, comp_part) 
+		ComponentSetValue2(comp_part, "emitted_material_name", soul_sparks.mage)
+		local damage = ComponentGetValue2(comp_proj, "damage")
+		local expdamage = ComponentObjectGetValue2(comp_proj, "config_explosion", "damage")
+		local exprad = ComponentObjectGetValue2(comp_proj, "config_explosion", "explosion_radius")
+		damage = damage * 0.7
+		expdamage = expdamage * 1.6
+		exprad = exprad * 1.4
+		ComponentObjectSetValue2(comp_proj, "config_explosion", "damage", expdamage)
+		ComponentObjectSetValue2(comp_proj, "config_explosion", "explosion_radius", exprad)
+		ComponentSetValue2(comp_proj, "damage", damage)
+	end,
+	orcs = function(this, comp_proj, comp_part) 
+		ComponentSetValue2(comp_part, "emitted_material_name", soul_sparks.orcs)
+		local expdamage = ComponentObjectGetValue2(comp_proj, "config_explosion", "damage")
+		local exprad = ComponentObjectGetValue2(comp_proj, "config_explosion", "explosion_radius")
+		expdamage = expdamage * 0.8
+		exprad = exprad * 1.7
+		ComponentObjectSetValue2(comp_proj, "config_explosion", "damage", expdamage)
+		ComponentObjectSetValue2(comp_proj, "config_explosion", "explosion_radius", exprad)
+	end,
+	slimes = function(this, comp_proj, comp_part) 
+		ComponentSetValue2(comp_part, "emitted_material_name", soul_sparks.slimes)
+		EntityAddComponent2(this, "SineWaveComponent", {
+			_enabled=true,
+			sinewave_freq=1.0,
+			sinewave_m=0.6,
+			lifetime=-1,
+		})
+		local damage_poison = ComponentObjectGetValue2(comp_proj, "damage_by_type", "poison")
+		damage_poison = damage_poison + 0.4
+		ComponentObjectSetValue2(comp_proj, "damage_by_type", "poison", damage_poison)
+		local bounces_left = ComponentGetValue2(comp_proj, "bounces_left")
+		bounces_left = bounces_left + 5
+		ComponentSetValue2(comp_proj, "bounces_left", bounces_left)
+	end,
+	spider = function(this, comp_proj, comp_part) 
+		ComponentSetValue2(comp_part, "emitted_material_name", soul_sparks.spider)
+		EntityAddComponent2(this, "LuaComponent", {
+			script_source_file="mods/souls/files/entities/projectiles/soul_blast/arc_spider.lua",
+			execute_every_n_frame=2,
+		})
+	end,
+	zombie = function(this, comp_proj, comp_part) 
+		ComponentSetValue2(comp_part, "emitted_material_name", soul_sparks.zombie)
+		local expdamage = ComponentObjectGetValue2(comp_proj, "config_explosion", "damage")
+		local exprad = ComponentObjectGetValue2(comp_proj, "config_explosion", "explosion_radius")
+		expdamage = expdamage * 0.6
+		exprad = exprad * 2
+		ComponentObjectSetValue2(comp_proj, "config_explosion", "damage", expdamage)
+		ComponentObjectSetValue2(comp_proj, "config_explosion", "explosion_radius", exprad)
+	end,
+	worm = function(this, comp_proj, comp_part)
+		ComponentSetValue2(comp_part, "emitted_material_name", soul_sparks.worm)
+		EntityAddComponent2(this, "CellEaterComponent", {
+			eat_probability=90,
+			radius=12,
+		})
+		local damage_melee = ComponentObjectGetValue2(comp_proj, "damage_by_type", "melee")
+		damage_melee = damage_melee + 0.8
+		ComponentObjectSetValue2(comp_proj, "damage_by_type", "melee", damage_melee)
+	end,
+	fungus = function(this, comp_proj, comp_part) 
+		ComponentSetValue2(comp_part, "emitted_material_name", soul_sparks.fungus)
+		local expdamage = ComponentObjectGetValue2(comp_proj, "config_explosion", "damage")
+		local exprad = ComponentObjectGetValue2(comp_proj, "config_explosion", "explosion_radius")
+		expdamage = expdamage * 0.5
+		exprad = exprad * 3
+		ComponentObjectSetValue2(comp_proj, "config_explosion", "damage", expdamage)
+		ComponentObjectSetValue2(comp_proj, "config_explosion", "explosion_radius", exprad)
+	end,
+	ghost = function(this, comp_proj, comp_part) 
+		ComponentSetValue2(comp_part, "emitted_material_name", soul_sparks.ghost)
+		EntityAddComponent2(this, "LuaComponent", {
+			script_source_file="mods/souls/files/entities/projectiles/soul_blast/arc_ghost.lua",
+			execute_every_n_frame=30,
+		})
+		local damage = ComponentGetValue2(comp_proj, "damage")
+		damage = damage * 1.35
+		ComponentSetValue2(comp_proj, "damage", damage)
+	end,
+	souls_void = function(this, comp_proj, comp_part) 
+		ComponentSetValue2(comp_part, "emitted_material_name", soul_sparks.souls_void)
+		local damage = ComponentGetValue2(comp_proj, "damage")
+		damage = damage * 1.4
+		ComponentSetValue2(comp_proj, "damage", damage)
+		local damage_curse = ComponentObjectGetValue2(comp_proj, "damage_by_type", "curse")
+		damage_curse = damage_curse + 0.8
+		ComponentObjectSetValue2(comp_proj, "damage_by_type", "curse", damage_curse)
+	end,
+	boss = function(this, comp_proj, comp_part) 
+		ComponentSetValue2(comp_part, "emitted_material_name", soul_sparks.boss)
+		local damage = ComponentGetValue2(comp_proj, "damage")
+		local damage_holy = ComponentObjectGetValue2(comp_proj, "damage_by_type", "holy")
+		local damage_curse = ComponentObjectGetValue2(comp_proj, "damage_by_type", "curse")
+		damage_holy = damage_holy + damage
+		damage_curse = damage_curse + damage
+		ComponentObjectSetValue2(comp_proj, "damage_by_type", "holy", damage_holy)
+		ComponentObjectSetValue2(comp_proj, "damage_by_type", "curse", damage_curse)
+		--ComponentSetValue2(comp_proj, "damage", 0)
+		local bounces_left = ComponentGetValue2(comp_proj, "bounces_left")
+		bounces_left = bounces_left + 30
+		ComponentSetValue2(comp_proj, "bounces_left", bounces_left)
+	end,
+	mage_corrupted = function(this, comp_proj, comp_part) 
+		ComponentSetValue2(comp_part, "emitted_material_name", soul_sparks.mage_corrupted)
+		local damage = ComponentGetValue2(comp_proj, "damage")
+		local expdamage = ComponentObjectGetValue2(comp_proj, "config_explosion", "damage")
+		local exprad = ComponentObjectGetValue2(comp_proj, "config_explosion", "explosion_radius")
+		damage = damage * 1.3
+		expdamage = expdamage * 1.3
+		exprad = exprad * 0.7
+		ComponentObjectSetValue2(comp_proj, "config_explosion", "damage", expdamage)
+		ComponentObjectSetValue2(comp_proj, "config_explosion", "explosion_radius", exprad)
+		ComponentSetValue2(comp_proj, "damage", damage)
+	end,
+	ghost_whisp = function(this, comp_proj, comp_part) 
+		ComponentSetValue2(comp_part, "emitted_material_name", soul_sparks.ghost_whisp)
+		EntityAddComponent2(this, "LuaComponent", {
+			script_source_file="mods/souls/files/entities/projectiles/soul_blast/arc_ghost.lua",
+			execute_every_n_frame=30,
+		})
+		EntityAddComponent2(this, "LuaComponent", {
+			script_source_file="mods/souls/files/entities/projectiles/soul_blast/arc_spider.lua",
+			execute_every_n_frame=2,
+		})
+		local damage = ComponentGetValue2(comp_proj, "damage")
+		damage = damage * 1.3
+		ComponentSetValue2(comp_proj, "damage", damage)
+		local damage_fire = ComponentObjectGetValue2(comp_proj, "damage_by_type", "fire")
+		damage_fire = damage_fire + 1.2
+		ComponentObjectSetValue2(comp_proj, "damage_by_type", "fire", damage_fire)
+		EntityAddComponent2(this, "MagicConvertMaterialComponent", {
+			from_material_tag="[burnable]",
+			to_material="fire",
+			steps_per_frame=20,
+			loop=true,
+			is_circle=true,
+			radius=20,
+		})
+	end,
+}
+
 local entity = GetUpdatedEntityID()
-local root_id = EntityGetRootEntity( entity )
-local x, y = EntityGetTransform( entity )
+local x, y = EntityGetTransform(entity)
 
-local comp_proj = EntityGetFirstComponent( entity, "ProjectileComponent" ) or 0
-local projdamage = ComponentGetValue2( comp_proj, "damage" )
-local expdamage = ComponentObjectGetValue( comp_proj, "config_explosion", "damage" )
-local exprad = ComponentObjectGetValue( comp_proj, "config_explosion", "explosion_radius" )
-local meleedamage = ComponentObjectGetValue( comp_proj, "damage_by_type", "melee" )
-local icedamage = ComponentObjectGetValue( comp_proj, "damage_by_type", "ice" )
-local poisondamage = ComponentObjectGetValue( comp_proj, "damage_by_type", "poison" )
-local firedamage = ComponentObjectGetValue2( comp_proj, "damage_by_type", "fire" )
+local comp_proj = EntityGetFirstComponent(entity, "ProjectileComponent")
 
-local player = GetPlayer()
-local wand = HeldItem(player)
+local player = EntityGetWithTag("player_unit")[1]
 
-local soul = GetRandomSoulForWand(wand)
+local success, soul = SpellUseSouls(player, 1)
 
-if soul == nil or soul == 0 or soul == "0" then
-	GamePrint("You have no souls.")
+if not success or soul == nil then
+	GamePrint("You do not have enough souls for this. (1)")
 
-	ComponentSetValue2( comp_proj, "on_death_explode", false )
-	ComponentSetValue2( comp_proj, "on_lifetime_out_explode", false )
-	ComponentSetValue2( comp_proj, "collide_with_entities", false )
-	ComponentSetValue2( comp_proj, "collide_with_world", false )
-	ComponentSetValue2( comp_proj, "lifetime", 1 )
+	ComponentSetValue2(comp_proj,"on_death_explode", false)
+	ComponentSetValue2(comp_proj, "on_lifetime_out_explode", false)
+	ComponentSetValue2(comp_proj, "collide_with_entities", false)
+	ComponentSetValue2(comp_proj, "collide_with_world", false)
+	ComponentSetValue2(comp_proj, "lifetime", 1)
 
     EntityKill(entity)
 else
-	if tobool(GlobalsGetValue("souls.say_consumed_soul", "true")) then
-		GamePrint( "A " .. SoulNameCheck(soul) .. " soul has been consumed." )
-	end
-
-	local who_shot = ComponentGetValue2(comp_proj, "mWhoShot")
-	if who_shot == player then
-		RemoveSoul(soul)
+	if GlobalsGetValue("souls.say_consumed_soul", "true") == "true" then
+		local soul_name = GameTextGetTranslatedOrNot(soul_names[soul])
+		GamePrint("A " .. soul_name .. " soul was consumed!")
 	end
 
 	local comp_particles = EntityGetFirstComponent(entity, "ParticleEmitterComponent") or 0
 
-    --bat
-    if soul == "bat" then
-		edit_component(entity, "ParticleEmitterComponent", function(comp3,vars)		
-			ComponentSetValue2(comp_particles, "emitted_material_name", "spark_purple_bright")
-		end)
-	
-		EntityAddComponent2(entity, "HomingComponent", {
-			homing_targeting_coeff=130.0,
-			homing_velocity_multiplier=0.86,
-		})
-	
-		projdamage = projdamage * 1.2
-	
-		ComponentSetValue2(comp_proj, "damage", projdamage)
-	end
-
-    --fly
-    if soul == "fly" then
-		edit_component( entity, "ParticleEmitterComponent", function(comp3,vars)
-			ComponentSetValue2(comp_particles, "emitted_material_name", "lava")
-		end)
-	
-		EntityAddComponent2(entity, "LuaComponent", {
-			script_source_file="data/scripts/projectiles/chaotic_arc.lua",
-			execute_every_n_frame=2,
-		})
-	
-		EntityAddComponent2(entity, "HomingComponent", {
-			homing_targeting_coeff=130.0,
-			homing_velocity_multiplier=0.86,
-		})
-
-		projdamage = projdamage + 0.2
-		projdamage = projdamage * 1.4
-        on_collision_die = true
-	
-		ComponentSetValue2(comp_proj, "damage", projdamage)
-        ComponentSetValue2(comp_proj, "on_collision_die", on_collision_die)
-	end
-
-    --friendly
-
-    --souls_void
-	if soul == "souls_void" then
-		edit_component(entity, "ParticleEmitterComponent", function(comp3,vars)
-			ComponentSetValue2(comp_particles, "emitted_material_name", "souls_soul_particles")
-		end)
-
-		projdamage = projdamage + 0.2
-		expdamage = expdamage * 1.2
-		exprad = exprad * 2
-		icedamage = icedamage + 0.1
-		icedamage = icedamage * 2
-	
-		ComponentObjectSetValue2(comp_proj, "damage_by_type", "ice", icedamage)
-		ComponentObjectSetValue2(comp_proj, "config_explosion", "damage", expdamage)
-		ComponentObjectSetValue2(comp_proj, "config_explosion", "explosion_radius", exprad)
-		ComponentSetValue2(comp_proj, "damage", projdamage)
-	end
-
-	--boss
-	if soul == "boss" then
-		edit_component(entity, "ParticleEmitterComponent", function(comp3,vars)
-			ComponentSetValue2( comp_particles, "emitted_material_name", "souls_living_particles")
-		end)
-
-		projdamage = projdamage + 0.2
-		expdamage = expdamage * 1.2
-		exprad = exprad * 2
-		icedamage = icedamage + 0.1
-		icedamage = icedamage * 3
-	
-		ComponentObjectSetValue2(comp_proj, "damage_by_type", "ice", icedamage)
-		ComponentObjectSetValue2(comp_proj, "config_explosion", "damage", expdamage)
-		ComponentObjectSetValue2(comp_proj, "config_explosion", "explosion_radius", exprad)
-		ComponentSetValue2(comp_proj, "damage", projdamage)
-	end
-
-	--mage
-	if soul == "mage" then
-		edit_component(entity, "ParticleEmitterComponent", function(comp3,vars)		
-			ComponentSetValue2(comp_particles, "emitted_material_name", "magic_liquid_mana_regeneration")
-		end)
-	
-		EntityAddComponent2(entity, "HomingComponent", {
-			target_tag="homing_target",
-			homing_targeting_coeff=15,
-			detect_distance=300,
-			homing_velocity_multiplier=1.0,
-		})
-	
-		projdamage = projdamage * 1.3
-		expdamage = expdamage * 1.3
-		exprad = exprad * 0.6
-		
-		ComponentObjectSetValue2(comp_proj, "config_explosion", "damage", expdamage)
-		ComponentObjectSetValue2(comp_proj, "config_explosion", "explosion_radius", exprad)
-		ComponentSetValue2(comp_proj, "damage", projdamage)
-	end
-
-    --orcs & zombie
-    if soul == "orcs" or soul == "zombie" then
-	
-		edit_component(entity, "ParticleEmitterComponent", function(comp3,vars)
-			ComponentSetValue2(comp_particles, "emitted_material_name", "spark_green")
-		end)
-	
-		expdamage = expdamage * 1.3
-		exprad = exprad * 2
-        on_collision_die = true
-		
-		ComponentObjectSetValue2(comp_proj, "config_explosion", "damage", expdamage)
-		ComponentObjectSetValue2(comp_proj, "config_explosion", "explosion_radius", exprad)
-        ComponentSetValue2(comp_proj, "on_collision_die", on_collision_die)
-	end
-
-    --slimes
-    if soul == "slimes" then
-		edit_component(entity, "ParticleEmitterComponent", function(comp3,vars)		
-			ComponentSetValue2(comp_particles, "emitted_material_name", "radioactive_liquid")
-		end)
-	
-		icedamage = icedamage + 0.1
-		icedamage = icedamage * 2
-        bounces_left = bounces_left + 5
-	
-		ComponentObjectSetValue2( comp_proj, "damage_by_type", "ice", icedamage)
-        ComponentSetValue2( comp_proj, "bounces_left", bounces_left)
-	end
-
-    --spider
-    if soul == "spider" then
-		edit_component(entity, "ParticleEmitterComponent", function(comp3,vars)	
-			ComponentSetValue2(comp_particles, "emitted_material_name", "spark_purple")
-		end)
-	
-        expdamage = expdamage * 0.8
-		exprad = exprad * 1.2
-        projdamage = projdamage + 0.2
-
-		ComponentSetValue2(comp_proj, "damage", projdamage)
-		ComponentObjectSetValue2(comp_proj, "config_explosion", "damage", expdamage)
-		ComponentObjectSetValue2(comp_proj, "config_explosion", "explosion_radius", exprad)
-
-		poisondamage = poisondamage + 0.15
-		poisondamage = poisondamage * 1.3
-
-		ComponentObjectSetValue2(comp_proj, "damage_by_type", "poison", poisondamage)
-	end
-
-    --worm
-    if soul == "worm" then
-		edit_component(entity, "ParticleEmitterComponent", function(comp3,vars)	
-			ComponentSetValue2(comp_particles, "emitted_material_name", "souls_soul_particles_worm")
-		end)
-	
-		EntityAddComponent(entity, "CellEaterComponent", {
-			eat_probability="90",
-			radius="24",
-			ignored_material="",
-			ignored_material_tag="",
-		})
-
-		meleedamage = meleedamage + 0.1
-		meleedamage = meleedamage * 1.3
-        on_collision_die = true
-	
-		ComponentObjectSetValue2(comp_proj, "damage_by_type", "melee", meleedamage)
-        ComponentSetValue2(comp_proj, "on_collision_die", on_collision_die)
-	end
-
-    --fungus
-    if soul == "fungus" then
-		edit_component(entity, "ParticleEmitterComponent", function(comp3,vars)
-			ComponentSetValue2(comp_particles, "emitted_material_name", "fungi")
-		end)
-	
-		expdamage = expdamage * 1.5
-		exprad = exprad * 10
-		
-		ComponentObjectSetValue2(comp_proj, "config_explosion", "damage", expdamage)
-		ComponentObjectSetValue2(comp_proj, "config_explosion", "explosion_radius", exprad)
-	end
-
-	--ghost
-	if soul == "ghost" then
-		edit_component(entity, "ParticleEmitterComponent", function(comp3,vars)
-			ComponentSetValue2(comp_particles, "emitted_material_name", "plasma_fading")
-		end)
-
-		EntityAddComponent2(entity, "LuaComponent", {
-			script_source_file="data/scripts/projectiles/phasing_arc.lua",
-			execute_every_n_frame=20,
-		})
-		
-		EntityAddComponent2(entity, "LuaComponent", {
-			script_source_file="data/scripts/projectiles/homing_area.lua",
-			execute_every_n_frame=1,
-		})
-	
-		icedamage = icedamage + 0.2
-		exprad = exprad * 1.5
-	
-		ComponentObjectSetValue2(comp_proj, "config_explosion", "explosion_radius", exprad)
-		ComponentObjectSetValue2(comp_proj, "damage_by_type", "ice", icedamage)
-	end
-
-	--mage_corrupted
-	if soul == "mage_corrupted" then
-		edit_component(entity, "ParticleEmitterComponent", function(comp3,vars)
-			ComponentSetValue2(comp_particles, "emitted_material_name", "blood")
-		end)
-	
-		EntityAddComponent2(entity, "HomingComponent", {
-			target_tag="homing_target",
-			homing_targeting_coeff=10,
-			detect_distance=300,
-			homing_velocity_multiplier=1.3,
-		})
-	
-		projdamage = projdamage * 1.4
-		expdamage = expdamage * 1.4
-		exprad = exprad * 0.75
-		
-		ComponentObjectSetValue2(comp_proj, "config_explosion", "damage", expdamage)
-		ComponentObjectSetValue2(comp_proj, "config_explosion", "explosion_radius", exprad)
-		ComponentSetValue2(comp_proj, "damage", projdamage)
-	end
-
-	--ghost_whisp
-	if soul == "ghost_whisp" then
-		edit_component(entity, "ParticleEmitterComponent", function(comp3,vars)
-			ComponentSetValue2(comp_particles, "emitted_material_name", "fire")
-		end)
-
-		firedamage = firedamage + 0.1
-		firedamage = firedamage * 1.4
-
-		EntityAddComponent(entity, "MagicConvertMaterialComponent", {
-			from_material_tag="burnable",
-			to_material="fire",
-			steps_per_frame="20",
-			loop="1",
-			is_circle="1",
-			radius="20",
-		})
-	
-		ComponentObjectSetValue2(comp_proj, "damage_by_type", "fire", firedamage)
+	local func = soul_effects[soul]
+	if func ~= nil then
+		func(entity, comp_proj, comp_particles)
 	end
 end

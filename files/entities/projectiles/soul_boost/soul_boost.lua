@@ -29,11 +29,27 @@ soul_effects = {
 	mage = function(this, comp_proj, comp_part) 
 		ComponentSetValue2(comp_part, "emitted_material_name", soul_sparks.mage)
 		local damage = ComponentGetValue2(comp_proj, "damage")
-		damage = damage * 1.3
+        if ComponentGetValue2(comp_proj, "on_death_explode") then
+		    local expdamage = ComponentObjectGetValue2(comp_proj, "config_explosion", "damage")
+		    local exprad = ComponentObjectGetValue2(comp_proj, "config_explosion", "explosion_radius")
+    		expdamage = expdamage * 1.6
+		    exprad = exprad * 1.4
+		    ComponentObjectSetValue2(comp_proj, "config_explosion", "damage", expdamage)
+		    ComponentObjectSetValue2(comp_proj, "config_explosion", "explosion_radius", exprad)
+        end
+        damage = damage * 0.7
 		ComponentSetValue2(comp_proj, "damage", damage)
 	end,
 	orcs = function(this, comp_proj, comp_part) 
 		ComponentSetValue2(comp_part, "emitted_material_name", soul_sparks.orcs)
+        if ComponentGetValue2(comp_proj, "on_death_explode") then
+		    local expdamage = ComponentObjectGetValue2(comp_proj, "config_explosion", "damage")
+		    local exprad = ComponentObjectGetValue2(comp_proj, "config_explosion", "explosion_radius")
+		    expdamage = expdamage * 0.8
+		    exprad = exprad * 1.7
+		    ComponentObjectSetValue2(comp_proj, "config_explosion", "damage", expdamage)
+		    ComponentObjectSetValue2(comp_proj, "config_explosion", "explosion_radius", exprad)
+        end
 	end,
 	slimes = function(this, comp_proj, comp_part) 
 		ComponentSetValue2(comp_part, "emitted_material_name", soul_sparks.slimes)
@@ -56,25 +72,35 @@ soul_effects = {
 	end,
 	zombie = function(this, comp_proj, comp_part) 
 		ComponentSetValue2(comp_part, "emitted_material_name", soul_sparks.zombie)
-		local expdamage = ComponentObjectGetValue2(comp_proj, "config_explosion", "damage")
-		local exprad = ComponentObjectGetValue2(comp_proj, "config_explosion", "explosion_radius")
-		expdamage = expdamage * 0.6
-		exprad = exprad * 2
-		ComponentObjectSetValue2(comp_proj, "config_explosion", "damage", expdamage)
-		ComponentObjectSetValue2(comp_proj, "config_explosion", "explosion_radius", exprad)
+        if ComponentGetValue2(comp_proj, "on_death_explode") then
+		    local expdamage = ComponentObjectGetValue2(comp_proj, "config_explosion", "damage")
+		    local exprad = ComponentObjectGetValue2(comp_proj, "config_explosion", "explosion_radius")
+		    expdamage = expdamage * 0.6
+		    exprad = exprad * 2
+		    ComponentObjectSetValue2(comp_proj, "config_explosion", "damage", expdamage)
+		    ComponentObjectSetValue2(comp_proj, "config_explosion", "explosion_radius", exprad)
+        end
 	end,
 	worm = function(this, comp_proj, comp_part)
 		ComponentSetValue2(comp_part, "emitted_material_name", soul_sparks.worm)
 		EntityAddComponent2(this, "CellEaterComponent", {
-			eat_probability=97,
-			radius=8,
+			eat_probability=90,
+			radius=12,
 		})
 		local damage_melee = ComponentObjectGetValue2(comp_proj, "damage_by_type", "melee")
-		damage_melee = damage_melee + 1.2
+		damage_melee = damage_melee + 0.8
 		ComponentObjectSetValue2(comp_proj, "damage_by_type", "melee", damage_melee)
 	end,
 	fungus = function(this, comp_proj, comp_part) 
 		ComponentSetValue2(comp_part, "emitted_material_name", soul_sparks.fungus)
+        if ComponentGetValue2(comp_proj, "on_death_explode") then
+		    local expdamage = ComponentObjectGetValue2(comp_proj, "config_explosion", "damage")
+		    local exprad = ComponentObjectGetValue2(comp_proj, "config_explosion", "explosion_radius")
+		    expdamage = expdamage * 0.5
+		    exprad = exprad * 3
+		    ComponentObjectSetValue2(comp_proj, "config_explosion", "damage", expdamage)
+		    ComponentObjectSetValue2(comp_proj, "config_explosion", "explosion_radius", exprad)
+        end
 	end,
 	ghost = function(this, comp_proj, comp_part) 
 		ComponentSetValue2(comp_part, "emitted_material_name", soul_sparks.ghost)
@@ -104,11 +130,20 @@ soul_effects = {
 		damage_curse = damage_curse + damage
 		ComponentObjectSetValue2(comp_proj, "damage_by_type", "holy", damage_holy)
 		ComponentObjectSetValue2(comp_proj, "damage_by_type", "curse", damage_curse)
+		--ComponentSetValue2(comp_proj, "damage", 0)
 	end,
 	mage_corrupted = function(this, comp_proj, comp_part) 
 		ComponentSetValue2(comp_part, "emitted_material_name", soul_sparks.mage_corrupted)
 		local damage = ComponentGetValue2(comp_proj, "damage")
-		damage = damage * 1.3
+        if ComponentGetValue2(comp_proj, "on_death_explode") then
+		    local expdamage = ComponentObjectGetValue2(comp_proj, "config_explosion", "damage")
+		    local exprad = ComponentObjectGetValue2(comp_proj, "config_explosion", "explosion_radius")
+    		expdamage = expdamage * 1.3
+		    exprad = exprad * 0.7
+		    ComponentObjectSetValue2(comp_proj, "config_explosion", "damage", expdamage)
+		    ComponentObjectSetValue2(comp_proj, "config_explosion", "explosion_radius", exprad)
+        end
+        damage = damage * 1.3
 		ComponentSetValue2(comp_proj, "damage", damage)
 	end,
 	ghost_whisp = function(this, comp_proj, comp_part) 
@@ -138,10 +173,9 @@ soul_effects = {
 	end,
 }
 
-local entity = GetUpdatedEntityID()
-local x, y = EntityGetTransform(entity)
+local this = GetUpdatedEntityID()
 
-local comp_proj = EntityGetFirstComponent(entity, "ProjectileComponent")
+local comp_proj = EntityGetFirstComponent(this, "ProjectileComponent")
 
 local player = EntityGetWithTag("player_unit")[1]
 
@@ -156,16 +190,46 @@ if not success or soul == nil then
 	ComponentSetValue2(comp_proj, "collide_with_world", false)
 	ComponentSetValue2(comp_proj, "lifetime", 1)
 
-    EntityKill(entity)
+    EntityKill(this)
 else
 	if GlobalsGetValue("souls.say_consumed_soul", "true") == "true" then
 		local soul_name = GameTextGetTranslatedOrNot(soul_names[soul])
 		GamePrint("A " .. soul_name .. " soul was consumed!")
 	end
 
-	local comp_particles = EntityGetFirstComponent(entity, "ParticleEmitterComponent") or 0
+    EntityAddComponent2(this, "SpriteComponent", {
+        image_file="mods/souls/files/entities/souls/sprites/soul_" .. soul .. ".xml",
+    })
 
-	local func = soul_effects[soul]
+    local comp_particles = EntityAddComponent2(this, "ParticleEmitterComponent", {
+        emitted_material_name="souls_soul_particles",
+		gravity.y=0.0,
+		lifetime_min=0.5,
+		lifetime_max=1.0,
+		x_vel_min=0,
+		x_vel_max=0,
+		y_vel_min=0,
+		y_vel_max=0,
+		count_min=8,
+		count_max=16,
+		render_on_grid=true,
+		fade_based_on_lifetime=true,
+		area_circle_radius.min=1,
+		area_circle_radius.max=5,
+		cosmetic_force_create=1,
+		collide_with_grid=false,
+		airflow_force=0.051,
+		airflow_time=1.01,
+		airflow_scale=0.03,
+		emission_interval_min_frames=1,
+		emission_interval_max_frames=1,
+		emit_cosmetic_particles=true,
+		velocity_always_away_from_center=10,
+		render_back=true,
+		is_emitting=true,
+    })
+
+    local func = soul_effects[soul]
 	if func ~= nil then
 		func(entity, comp_proj, comp_particles)
 	end

@@ -2,13 +2,13 @@
 	
 	<Base file="data/entities/base_custom_card.xml" > 
 		<SpriteComponent 
-			image_file="mods/souls/files/spell_icons/tome_shot.png"
+			image_file="mods/souls/files/ui_gfx/gun_actions/tome_launcher.png"
 			>
 		</SpriteComponent>
 		
 		<ItemActionComponent 
 			_tags="enabled_in_world"
-			action_id="SOULS_TOME_SHOT" >
+			action_id="SOULS_TOME_LAUNCHER" >
 		</ItemActionComponent>
 	</Base>
 

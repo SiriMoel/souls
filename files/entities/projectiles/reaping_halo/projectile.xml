@@ -1,4 +1,5 @@
-<Entity name="$projectile_default" tags="projectile_player,soul_projectile" >
+<Entity name="$projectile_default" tags="projectile_player,soul_projectile">
+
 	<VelocityComponent
 		gravity_y="0"
 		air_friction="-0.4"
@@ -16,7 +17,6 @@
 		>
 	</HomingComponent>
 
-	
 	<!--<AreaDamageComponent
 		aabb_min.x="-10" 
 		aabb_min.y="-10" 
@@ -82,16 +82,19 @@
         frame_length="1"
     ></GameAreaEffectComponent>
 
-    <LuaComponent
+    <!--<LuaComponent
 		script_source_file="mods/souls/files/entities/projectiles/reaping_halo/reaping_halo.lua"
 		execute_every_n_frame="1"
-		>
-	</LuaComponent>
+	></LuaComponent>-->
+
+	<HitEffectComponent
+        effect_hit="LOAD_UNIQUE_CHILD_ENTITY"
+        value_string="mods/souls/files/entities/misc/reapers/reap_entity.xml"
+    ></HitEffectComponent>
 
 	<VariableStorageComponent
 		name="projectile_file"
 		value_string="mods/souls/files/entities/projectiles/reaping_halo/projectile.xml"
-		>
-	</VariableStorageComponent>
+	></VariableStorageComponent>
 	
 </Entity>

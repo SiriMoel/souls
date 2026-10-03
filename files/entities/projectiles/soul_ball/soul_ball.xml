@@ -1,4 +1,4 @@
-<Entity name="$projectile_default" tags="projectile_player,soul_projectile" >
+<Entity name="$projectile_default" tags="projectile_player,soul_projectile">
   
 	<Base file="data/entities/base_projectile.xml" >
 		<VelocityComponent
@@ -21,24 +21,25 @@
     explosion_dont_damage_shooter="0" 
     on_collision_die="0"
     lifetime="200"
-    damage="0.2"
+    damage="0.24"
     velocity_sets_scale="1"
     lifetime_randomness="7"
     ragdoll_force_multiplier="0.04"
-    hit_particle_force_multiplier="5.5 "
-    camera_shake_when_shot="5.0"
-	velocity_sets_rotation="1"
-    bounces_left="5"
-	muzzle_flash_file="data/entities/particles/muzzle_flashes/muzzle_flash_magic_launcher.xml"
+    hit_particle_force_multiplier="5.5"
+    camera_shake_when_shot="0.5"
+  	velocity_sets_rotation="1"
+    bounces_left="6"
+    bounce_energy="1.1"
+  	muzzle_flash_file="data/entities/particles/muzzle_flashes/muzzle_flash_magic_launcher.xml"
     shoot_light_flash_radius="120"
-	shoot_light_flash_r="125"
+	  shoot_light_flash_r="125"
     shoot_light_flash_g="255"
     shoot_light_flash_b="40"
-	knockback_force="1.0"
-	physics_impulse_coeff="4000"
-	>
+	  knockback_force="1.0"
+	  physics_impulse_coeff="4000"
+	  >
 	<damage_by_type
-		fire="1.2"
+		    fire="2.4"
         curse="0"
         ice="0"
         melee="0"
@@ -47,7 +48,7 @@
 	</damage_by_type>
     <config_explosion
       never_cache="0" 
-      camera_shake="10" 
+      camera_shake="2" 
       explosion_radius="15"
       explosion_sprite="data/particles/explosion_032_slime.xml" 
       explosion_sprite_lifetime="0" 
@@ -200,12 +201,12 @@
 	b="255">
   </LightComponent>
 
-      	<LuaComponent
-		script_source_file="mods/souls/files/entities/projectiles/soul_ball/soul_ball.lua"
-		execute_every_n_frame="1"
-		remove_after_executed="1"
-		>
-	</LuaComponent>
+    <LuaComponent
+  		  script_source_file="mods/souls/files/entities/projectiles/soul_ball/soul_ball.lua"
+		    execute_every_n_frame="1"
+		    remove_after_executed="1"
+		    >
+	  </LuaComponent>
   
 	<VariableStorageComponent
 		name="projectile_file"

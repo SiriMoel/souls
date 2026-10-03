@@ -14,7 +14,7 @@ CHANGED/FIXED
 - Reworked Soul of the Diviner
 
 REMOVED
-- Spells: Soul Cloak, Soul Rage, Soul Tinker, Soul-Scaling Mana, Soul-Scaling Recharge
+- Spells: Soul Cloak, Soul Rage, Soul Tinker, Soul-Scaling Mana, Soul-Scaling Recharge, Weakening Halo, Expel Soul
 - Perk: Reap Bullet
 
 INTERNAL

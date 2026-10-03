@@ -5,5 +5,5 @@ local weapon = GetUpdatedEntityID()
 
 local x, y = EntityGetTransform(weapon)
 
-AddGunAction( weapon, "MOLDOS_REAPING_SHOT" )
-AddGunAction( weapon, "LIGHT_BULLET" )
+AddGunAction(weapon, "SOULS_REAPING_SHOT")
+AddGunAction(weapon, "LIGHT_BULLET")

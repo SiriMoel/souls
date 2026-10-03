@@ -1,8 +1,8 @@
 <Entity>
 	
-	<Base file="data/entities/base_custom_card.xml" > 
+	<Base file="data/entities/base_custom_card.xml"> 
 		<SpriteComponent 
-			image_file="mods/souls/files/spell_icons/soul_healer.png"
+			image_file="mods/souls/files/ui_gfx/gun_actions/soul_healer.png"
 			>
 		</SpriteComponent>
 		
@@ -19,7 +19,7 @@
 	<LuaComponent 
 		_tags="enabled_in_hand"
 		script_source_file="mods/souls/files/entities/misc/card_soul_healer/card.lua"
-		execute_every_n_frame="10" >
-	</LuaComponent>
+		execute_every_n_frame="30"
+	></LuaComponent>
 
 </Entity>

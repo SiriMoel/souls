@@ -1,41 +1,37 @@
-dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("mods/souls/files/scripts/souls.lua")
 
 local card = GetUpdatedEntityID()
-local root = EntityGetRootEntity(card) -- player, right?
-local comp_controls = EntityGetFirstComponentIncludingDisabled(root, "ControlsComponent") or 0
-local comp_cd = EntityGetFirstComponentIncludingDisabled(card, "VariableStorageComponent", "cooldown_frame") or 0
-local cooldown_frames = 6
+local root = EntityGetRootEntity(card)
+local parent = EntityGetParent(card)
+
+if not EntityHasTag(root, "player_unit") then return end
+if not EntityHasTag(parent, "soul_tome") then return end
+
+local comp = EntityGetFirstComponentIncludingDisabled(parent, "VariableStorageComponent", "launcher_souls_loaded")
+if comp == nil then return end
+
+local comp_controls = EntityGetFirstComponentIncludingDisabled(root, "ControlsComponent")
+local comp_cd = EntityGetFirstComponentIncludingDisabled(card, "VariableStorageComponent", "cooldown_frame")
+local cooldown_frames = 10
 local cooldown_frame = ComponentGetValue2(comp_cd, "value_int")
 
-local tome = EntityGetWithTag("soul_tome")[1]
-local comp_sl = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "launcher_souls_loaded") or 0
-local sl = tonumber(ComponentGetValue(comp_sl, "value_int"))
+local frame_now = GameGetFrameNum()
 
-local wand = 0
-local inv_comp = EntityGetFirstComponentIncludingDisabled(GetPlayer(), "Inventory2Component")
-if inv_comp then
-    wand = ComponentGetValue2(inv_comp, "mActiveItem")
-end
-
-if ComponentGetValue2(comp_controls, "mButtonDownRightClick") == true and GameGetFrameNum() >= cooldown_frame then
-    if DoesWandUseSpecificSoul(wand) then
-        if GetSoulsCount(GetWandSoulType(wand)) >= 1 then
-            RemoveSoul(GetWandSoulType(wand))
-            sl = sl + 1
-            GamePrint("Loaded soul! " .. "Current souls loaded: " .. sl)
-        else
-            GamePrint("You do not have enough souls for this.")
+if ComponentGetValue2(comp_controls, "mButtonDownRightClick") == true and frame_now >= cooldown_frame then
+    ComponentSetValue2(comp_cd, "value_int", frame_now + cooldown_frames)
+    local success, soul = SpellUseSouls(root, 1)
+    if success then
+        local amt = ComponentGetValue2(comp, "value_int")
+        amt = amt + 1
+        ComponentSetValue2(comp, "value_int", amt)
+        if GlobalsGetValue("souls.say_consumed_soul", "true") == "true" then
+		    local soul_name = GameTextGetTranslatedOrNot(soul_names[soul])
+    		GamePrint("A " .. soul_name .. " soul was loaded. (Now: " .. amt .. ")")
         end
+        local x, y = EntityGetTransform(root)
+        GamePlaySound("data/audio/Desktop/animals.bank", "animals/shotgun_cock", x, y)
+        GamePlaySound("data/audio/Desktop/projectiles.bank", "projectiles/enlightened_laser/launch_dark", x, y)
     else
-        if GetSoulsCount("all") >= 1 then
-            RemoveRandomSouls(1)
-            sl = sl + 1
-            GamePrint("Loaded soul! " .. "Current souls loaded: " .. sl)
-        else
-            GamePrint("You do not have enough souls for this.")
-        end
+        GamePrint("You do not have enough souls for this. (1)")
     end
-    ComponentSetValue2(comp_sl, "value_int", sl)
-    ComponentSetValue2( comp_cd, "value_int", GameGetFrameNum() + cooldown_frames )
 end

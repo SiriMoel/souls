@@ -1,33 +1,17 @@
-dofile_once("mods/souls/files/scripts/utils.lua")
+local this = GetUpdatedEntityID()
+local x, y = EntityGetTransform(this)
 
-local entity_id = GetUpdatedEntityID()
-local root_id = EntityGetRootEntity( entity_id )
-local x, y = EntityGetTransform( entity_id )
+local mark_radius = 50
 
-math.randomseed(x,y+GameGetFrameNum())
+local targets = EntityGetInRadiusWithTag(x, y, mark_radius, "homing_target") or {}
 
-local mark_radius = 60
-
-local targets = EntityGetInRadiusWithTag( x, y, mark_radius, "homing_target" )
-
-if ( #targets > 0 ) then
-    for i,target_id in ipairs( targets ) do
-        if math.random(1,1) == 1 then
-            if ( EntityHasTag( target_id, "reap_marked" ) == false ) then
-
-                EntityAddComponent( target_id, "LuaComponent", {
-                    script_death = "mods/souls/files/scripts/reap.lua",
-                    execute_every_n_frame = "-1",
-                } )
-    
-                EntityAddTag( target_id, "reap_marked")
-            end
-    
-            if EntityHasTag(target_id, "reap_marked_fx") == false then
-                local effect_id = EntityLoad("mods/souls/files/entities/particles/marked_particles.xml", x, y)
-                EntityAddChild(target_id, effect_id)
-                EntityAddTag(target_id, "reap_marked_fx")
-            end
+if #targets > 0 then
+    for i = 1, #targets do
+        local target = targets[i]
+        local c = EntityGetAllChildren(target, "souls_reaper_normal") or {}
+        if #c == 0 then
+            local r = EntityLoad("mods/souls/files/entities/misc/reapers/reap_entity_tome.xml", x y)
+            EntityAddChild(target, r)
         end
     end
 end

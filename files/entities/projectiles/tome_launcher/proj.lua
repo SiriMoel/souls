@@ -1,7 +1,7 @@
 local this = GetUpdatedEntityID()
 local x, y = EntityGetTransform(this)
 
-local mark_radius = 56
+local mark_radius = 30
 
 local targets = EntityGetInRadiusWithTag(x, y, mark_radius, "homing_target") or {}
 
@@ -10,7 +10,7 @@ if #targets > 0 then
         local target = targets[i]
         local c = EntityGetAllChildren(target, "souls_reaper_normal") or {}
         if #c == 0 then
-            local r = EntityLoad("mods/souls/files/entities/misc/reapers/reap_entity.xml", x y)
+            local r = EntityLoad("mods/souls/files/entities/misc/reapers/reap_entity_tome.xml", x y)
             EntityAddChild(target, r)
         end
     end

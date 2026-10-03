@@ -1,8 +1,8 @@
-<Entity name="$projectile_default" tags="projectile_player,soul_projectile" >
+<Entity name="$projectile_default" tags="projectile_player,soul_projectile">
 
 	<Base file="data/entities/base_projectile.xml" >
 		<VelocityComponent
-			mass="1.65"
+			mass="0.0"
 			>
 		</VelocityComponent>
 	</Base>
@@ -11,8 +11,8 @@
     _enabled="1" 
     lob_min="0"
     lob_max="0"
-    speed_min="0"
-    speed_max="0"
+    speed_min="300"
+    speed_max="400"
     friction="0.0"
     direction_random_rad="0"
     on_death_explode="0"
@@ -21,13 +21,17 @@
     ground_collision_fx="1"
     on_collision_die="0"
     penetrate_entities="1"
-    lifetime="10"
-    damage="0.4"
-    velocity_sets_scale="0"
+    lifetime="16"
+    damage="0.2"
     lifetime_randomness="0"
     ragdoll_force_multiplier="0.01"
     hit_particle_force_multiplier="0.25"
     >
+    <damage_by_type
+			melee="0.6"
+      slice="1.2"
+			>
+		</damage_by_type>
   </ProjectileComponent>
   
   <AudioComponent
@@ -44,18 +48,19 @@
      >
   </SpriteComponent>
 
-  <LuaComponent
-    script_source_file="mods/souls/files/entities/projectiles/tome_slice/proj.lua"
-    execute_every_n_frame="1"
-  ></LuaComponent>
+    <HitEffectComponent
+        effect_hit="LOAD_UNIQUE_CHILD_ENTITY"
+        value_string="mods/souls/files/entities/misc/reapers/reap_entity_tome.xml"
+    ></HitEffectComponent>
 
-  <!--this does not work-->
-  <LuaComponent
-    script_collision_trigger_hit="mods/souls/files/entities/projectiles/tome_slice/collide.lua"
-  ></LuaComponent>
+    <LuaComponent
+  		script_source_file="mods/souls/files/entities/projectiles/tome_slice/proj.lua"
+		  execute_every_n_frame="2"
+		  >
+	  </LuaComponent>
 
   	<GameAreaEffectComponent
-        radius="15"
+        radius="25"
         collide_with_tag="hittable"
         frame_length="1"
     ></GameAreaEffectComponent>

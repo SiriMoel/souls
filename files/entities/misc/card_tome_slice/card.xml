@@ -2,7 +2,7 @@
 	
 	<Base file="data/entities/base_custom_card.xml" > 
 		<SpriteComponent 
-			image_file="mods/souls/files/spell_icons/tome_slice.png"
+			image_file="mods/souls/files/ui_gfx/gun_actions/tome_slice.png"
 			>
 		</SpriteComponent>
 		

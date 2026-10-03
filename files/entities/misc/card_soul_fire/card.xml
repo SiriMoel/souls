@@ -2,7 +2,7 @@
 	
 	<Base file="data/entities/base_custom_card.xml" > 
 		<SpriteComponent 
-			image_file="mods/souls/files/spell_icons/soul_fire.png"
+			image_file="mods/souls/files/ui_gfx/gun_actions/soul_fire.png"
 			>
 		</SpriteComponent>
 		
@@ -19,7 +19,7 @@
 	<LuaComponent 
 		_tags="enabled_in_hand"
 		script_source_file="mods/souls/files/entities/misc/card_soul_fire/card.lua"
-		execute_every_n_frame="10" >
+		execute_every_n_frame="12" >
 	</LuaComponent>
 
 	<ParticleEmitterComponent 
@@ -32,8 +32,8 @@
 		x_vel_max="0"
 		y_vel_min="0"
 		y_vel_max="0"
-		count_min="45"
-		count_max="85"
+		count_min="2"
+		count_max="20"
 		render_on_grid="1"
 		fade_based_on_lifetime="0"
 		area_circle_radius.min="150"

@@ -1,6 +1,4 @@
-<Entity 
-  name="$projectile_default" tags="projectile_player,soul_projectile"
-   >
+<Entity name="$projectile_default" tags="projectile_player,soul_projectile">
 
 	<Base file="data/entities/base_projectile.xml" >
 		<VelocityComponent
@@ -22,7 +20,7 @@
     on_death_gfx_leave_sprite="0" 
     on_lifetime_out_explode="1"
 	explosion_dont_damage_shooter="1"
-    damage="2"
+    damage="2.2"
     on_collision_die="1"
 	die_on_liquid_collision="1"
     lifetime="250"
@@ -44,7 +42,7 @@
   </damage_by_type>
     <config_explosion
       never_cache="1" 
-      camera_shake="20.5" 
+      camera_shake="8" 
       explosion_radius="70" 
       explosion_sprite="data/particles/explosion_040_poof.xml" 
       explosion_sprite_lifetime="0" 
@@ -69,20 +67,6 @@
       stains_image="data/temp/explosion_stain.png" >
     </config_explosion>
   </ProjectileComponent>
-  
-  <!--<SpriteComponent 
-    _enabled="1" 
-    alpha="1" 
-    image_file="data/projectiles_gfx/meteor.xml" 
-    next_rect_animation="" 
-    offset_x="0" 
-    offset_y="0" 
-    rect_animation=""
-	emissive="1"
-	additive="1"
-    z_index="-0.5"
-     >
-  </SpriteComponent-->
 
   	<GameAreaEffectComponent
         radius="24"
@@ -99,8 +83,8 @@
 		x_vel_max="0"
 		y_vel_min="0"
 		y_vel_max="0"
-		count_min="100"
-		count_max="200"
+		count_min="60"
+		count_max="100"
 		render_on_grid="1"
 		fade_based_on_lifetime="0"
 		area_circle_radius.min="0"
@@ -143,36 +127,12 @@
   
   <ParticleEmitterComponent 
     emitted_material_name="souls_soul_particles"
-    offset.x="0"
-    offset.y="0"
-    x_pos_offset_min="-1"
-    y_pos_offset_min="-1"
-    x_pos_offset_max="1"
-    y_pos_offset_max="1"
-    x_vel_min="-10"
-    x_vel_max="10"
-    y_vel_min="-10"
-    y_vel_max="10"
-    count_min="1"
-    count_max="1"
-    lifetime_min="0.1"
-    lifetime_max="0.3"
-    create_real_particles="1"
-    emit_cosmetic_particles="0"
-    emission_interval_min_frames="1"
-    emission_interval_max_frames="2"
-    is_emitting="1"
-    >
-  </ParticleEmitterComponent>
-  
-  <ParticleEmitterComponent 
-    emitted_material_name="souls_soul_particles"
     custom_style="FIRE"
     count_min="6"
     count_max="6"
     offset.x="0"
     offset.y="0"
-    x_pos_offset_min="--24"
+    x_pos_offset_min="-24"
     x_pos_offset_max="24"
     y_pos_offset_min="-24"
     y_pos_offset_max="24"
@@ -220,37 +180,6 @@
 		create_real_particles="0"
 		is_emitting="1" >
 	</ParticleEmitterComponent>
-	
-	<ParticleEmitterComponent 
-		emitted_material_name="souls_soul_particles"
-		offset.x="0"
-		offset.y="0"
-		x_pos_offset_min="-2"
-		x_pos_offset_max="2"
-		y_pos_offset_min="-2"
-		y_pos_offset_max="2"
-		x_vel_min="-80"
-		x_vel_max="80"
-		y_vel_min="-80"
-		y_vel_max="80"
-		gravity.y="0.0"
-		count_min="80"
-		count_max="120"
-		lifetime_min="0.1"
-		lifetime_max="0.2"
-		area_circle_radius.min="24"
-		area_circle_radius.max="24"
-		render_on_grid="0"
-		fade_based_on_lifetime="1"
-		airflow_force="8.5"
-		airflow_time="1.401"
-		airflow_scale="0.05"
-		emission_interval_min_frames="1"
-		emission_interval_max_frames="1"
-		emit_cosmetic_particles="1"
-		create_real_particles="0"
-		is_emitting="0" >
-	</ParticleEmitterComponent>
 
   <LightComponent 
     _enabled="1" 
@@ -268,17 +197,17 @@
 		auto_play="1">
 	</AudioLoopComponent>
 
-        <LuaComponent
-		script_source_file="mods/souls/files/entities/projectiles/soul_meteor/proj.lua"
-		execute_every_n_frame="1"
-		remove_after_executed="1"
-		>
-	</LuaComponent>
+    <LuaComponent
+  		  script_source_file="mods/souls/files/entities/projectiles/soul_meteor/proj.lua"
+		    execute_every_n_frame="1"
+		    remove_after_executed="1"
+		    >
+	  </LuaComponent>
 
 	<VariableStorageComponent
 		name="projectile_file"
 		value_string="mods/souls/files/entities/projectiles/soul_meteor/proj.xml"
 		>
 	</VariableStorageComponent>
-</Entity>
 
+</Entity>

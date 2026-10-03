@@ -6,5 +6,5 @@ table.insert(g_big_enemies, {
     prob   		= 0.01 * prob_mult,
 	min_count	= 1,
     max_count	= 1,
-    entity 	= "data/entities/animals/the_end/moldos_soul_angry.xml",
+    entity 	= "data/entities/animals/the_end/souls_soul_angry.xml",
 })

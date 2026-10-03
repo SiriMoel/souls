@@ -1,16 +1,14 @@
-dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("mods/souls/files/scripts/souls.lua")
 
 function damage_about_to_be_received(damage, x, y, entity_thats_responsible, critical_hit_chance )
     if damage > 0 then
         local this = GetUpdatedEntityID()
-        local player = GetPlayer()
         local comp_damagemodel = EntityGetFirstComponentIncludingDisabled(this, "DamageModelComponent")
         local max_hp = 50
         if comp_damagemodel ~= nil then
             max_hp = ComponentGetValue2(comp_damagemodel, "max_hp")
         end
-        if entity_thats_responsible ~= player then
+        if not EntityHasTag(entity_thats_responsible, "player_unit") then
             return 0, 0
         end
         if damage > (max_hp * 0.5) then

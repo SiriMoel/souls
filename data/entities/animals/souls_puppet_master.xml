@@ -1,4 +1,4 @@
-<Entity name="$animal_moldos_puppet_master" >
+<Entity name="$animal_souls_puppet_master" >
 	<Base file="data/entities/base_enemy_basic.xml" >
 		<ItemChestComponent level="2" > </ItemChestComponent>
 		

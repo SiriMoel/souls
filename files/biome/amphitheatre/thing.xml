@@ -10,13 +10,13 @@
     <LuaComponent
         _tags="amphitheatre_interact"
         script_interacting="mods/souls/files/biome/amphitheatre/interact.lua"
-         >
+        >
     </LuaComponent>
 
     <LuaComponent
         script_source_file="mods/souls/files/biome/amphitheatre/thing.lua"
         execute_every_n_frame="30"
-         >
+        >
     </LuaComponent>
 
 </Entity>

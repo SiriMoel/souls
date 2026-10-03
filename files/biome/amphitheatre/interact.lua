@@ -1,29 +1,18 @@
-dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("mods/souls/files/scripts/souls.lua")
 
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
-    --[[local px, py = EntityGetTransform(entity_who_interacted)
-    local spells = EntityGetInRadiusWithTag(px, py, 5, "card_action")
-    local spells2 = {}
-    for i,spell in ipairs(spells) do
-        if EntityGetRootEntity(spell) == spell then
-            table.insert(spells2, spell)
-        end
-    end
-    if #spells2 > 0 then return end]]
     local this = GetUpdatedEntityID()
     local x, y = EntityGetTransform(this)
     local frame = GameGetFrameNum()
-    local player = GetPlayer()
+
+    if not EntityHasTag(entity_who_interacted, "player_unit") then return end
     
-    math.randomseed(x + frame, y + frame)
+    SetRandomSeed(x + frame, y + frame)
 
-    if not (GetSoulsCount("all") - GetSoulsCount("boss") >= 10) then GamePrint("You do not have enough souls for this.") return end
-    for i=1,10 do
-        local soul = GetRandomSoul(false)
-        RemoveSoul(soul)
+    if not SpellUseSouls(entity_who_interacted, 10) then
+        GamePrint("You do not have enough souls for this. (10)")
+        return
     end
-
 
     local enemy_count = tonumber(GlobalsGetValue("souls.amphitheatre_enemy_count"))
 
@@ -38,9 +27,9 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
         { probability = 0.8, path = "data/entities/animals/wizard_tele.xml" },
         { probability = 0.8, path = "data/entities/animals/wizard_twitchy.xml" },
         { probability = 0.8, path = "data/entities/animals/wizard_weaken.xml" },
-        { probability = 0.7, path = "data/entities/animals/moldos_puppet_master.xml" },
-        { probability = 0.3, path = "data/entities/animals/moldos_soul_angry.xml" },
-        { probability = 0.3, path = "data/entities/animals/moldos_soul_rogue.xml" },
+        { probability = 0.7, path = "data/entities/animals/souls_puppet_master.xml" },
+        { probability = 0.3, path = "data/entities/animals/souls_soul_angry.xml" },
+        { probability = 0.3, path = "data/entities/animals/souls_soul_rogue.xml" },
         { probability = 0.9, path = "data/entities/animals/scavenger_smg.xml" },
         { probability = 0.9, path = "data/entities/animals/scavenger_leader.xml" },
         { probability = 0.9, path = "data/entities/animals/scavenger_grenade.xml" },
@@ -57,8 +46,8 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
     for i=1,enemy_count do
         num = num + 1
         local enemy = PickRandomFromTableWeighted(x + frame + num, y + frame + num, enemies) or {}
-        x = x + math.random(-50, 50)
-        y = y + math.random(-10, -2)
+        x = x + Random(-50, 50)
+        y = y + Random(-10, -2)
         enemy = EntityLoad(enemy.path, x, y)
         EntityAddTag(enemy, "souls_amphitheatre_enemy")
         EntityAddComponent2(enemy, "LuaComponent", {
@@ -70,7 +59,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
             local herd_id_number = ComponentGetValue2(comp_genome, "herd_id")
             local herd_id = HerdIdToString(herd_id_number)
             if herd_id ~= "boss" then
-                if math.random(1, 7) == 2 then
+                if Random(1, 7) == 2 then
                     herd_id = "mage"
                 else
                     herd_id = "souls_void"

@@ -13,6 +13,7 @@ CHANGED/FIXED
 - Reworked phylactery creation & powering (and also new sprites)
 - Reworked Soul of the Diviner
 - Many spell changes
+- Various fixes and other changes that I lost track of
 
 REMOVED
 - Spells: Soul Cloak, Soul Rage, Soul Tinker, Soul-Scaling Mana, Soul-Scaling Recharge, Weakening Halo, Expel Soul, Divide by Souls

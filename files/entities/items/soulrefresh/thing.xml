@@ -7,7 +7,7 @@
 	</SimplePhysicsComponent>
 	
 	<UIInfoComponent
-		name="$item_moldos_soul_refresh"
+		name="$item_souls_soul_refresh"
 		>
 	</UIInfoComponent>
 
@@ -23,7 +23,7 @@
 	</HitboxComponent>
 
 	<ItemComponent
-		item_name="$item_moldos_soul_refresh"
+		item_name="$item_souls_soul_refresh"
 		play_spinning_animation="0"
    		play_pick_sound="0"
    		stats_count_as_item_pick_up="0"

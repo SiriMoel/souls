@@ -1,6 +1,3 @@
-dofile_once("mods/souls/files/scripts/utils.lua")
-dofile_once("mods/souls/files/scripts/souls.lua")
-
 local this = GetUpdatedEntityID()
 local x, y, r, scale_x, scale_y = EntityGetTransform(this)
 
@@ -21,7 +18,7 @@ local theta = (math.pi / 2) - math.atan(y - py, x - px)
 tx = ((dist_p_t * math.sin(theta)) / math.sin(math.pi / 2)) + py
 ty = ((dist_p_t * math.sin((math.pi / 2) - theta)) / math.sin(math.pi / 2)) + py
 
-local dist_t = DistanceBetween(x, y, tx, ty)
+local dist_t = math.sqrt(((tx - x)^2) + ((ty - y)^2))
 
 if dist_t > 0 then
     if x <= px then

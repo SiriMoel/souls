@@ -1,6 +1,6 @@
 <Biome>
   <Topology 
-    name="$biome_moldos_soulbiome"
+    name="$biome_souls_soulbiome"
     type="BIOME_WANG_TILE"
     background_image="data/weather_gfx/background_the_end.png"
     background_edge_left="data/weather_gfx/edges/background_the_end_left.png"

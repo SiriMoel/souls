@@ -47,7 +47,9 @@ else
     ny = y + (movespeed * math.tan(theta))
 end
 
-if DistanceBetween(x, y, nx, ny) > 10 then
+local dist_n = math.sqrt(((nx - x)^2) + ((ny - y)^2))
+
+if dist_n > 10 then
     nx = x
     ny = y
 end

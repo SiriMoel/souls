@@ -244,14 +244,15 @@ function DontFearTheReaper(souls, entity)
     end
 end
 
-function LoseSouls(player, n)
+function LoseSouls(player, n, not_boss)
+    not_boss = not_boss or false
     local counts = SoulCounts(player)
-    if counts["total_boss"] >= n then
+    if (not_boss and counts["total"] >= n) or (not not_boss and counts["total_boss"] >= n) then
         local used_n = 0
         local used = {}
         while used_n < n do
             for k,v in pairs(counts) do
-                if tostring(k) ~= "total" and tostring(k) ~= "total_boss" then
+                if tostring(k) ~= "total" and tostring(k) ~= "total_boss" and ((not_boss and tostring(k) ~= "boss") or not not_boss) then
                     if v > 0 then
                         used[k] = (used[k] or 0) - 1
                         used_n = used_n + 1
@@ -549,7 +550,7 @@ function ReapSoul(entity, amount, random)
         "$animal_islandspirit",
         "$animal_boss_wizard",
         "$animal_boss_dragon",
-        "$animal_moldos_boss_soul",
+        "$animal_souls_boss_soul",
         "$enemy_apotheosis_boss_musical_ghost",
         "$enemy_apotheosis_boss_toxic_worm",
         "$creep_apotheosis_boss_fire_lukki_name",

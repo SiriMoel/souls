@@ -10,8 +10,8 @@
 	</LifetimeComponent>
 	
 	<UIIconComponent
-		name="$status_moldos_soul_drain"
-		description="$statusdesc_moldos_soul_drain"
+		name="$status_souls_soul_drain"
+		description="$statusdesc_souls_soul_drain"
 		icon_sprite_file="mods/souls/files/status_indicators/soul_drain.png"
 		is_perk="0"
 		display_above_head="0"

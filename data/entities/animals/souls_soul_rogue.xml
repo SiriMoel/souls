@@ -1,4 +1,4 @@
-<Entity tags="enemy,mortal,hittable,homing_target,teleportable_NOT,glue_NOT" name="$animal_moldos_soul_rogue">
+<Entity tags="enemy,mortal,hittable,homing_target,teleportable_NOT,glue_NOT" name="$animal_souls_soul_rogue">
 
 		<Base file="data/entities/base_enemy_flying.xml" >
 		<ItemChestComponent level="5" enemy_drop="1" > </ItemChestComponent>

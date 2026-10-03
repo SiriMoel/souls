@@ -1,4 +1,4 @@
-<Entity tags="enemy,mortal,hittable,homing_target,teleportable_NOT,glue_NOT" name="$animal_moldos_soul_eye">
+<Entity tags="enemy,mortal,hittable,homing_target,teleportable_NOT,glue_NOT" name="$animal_souls_soul_eye">
 
     <SpriteComponent
         image_file="mods/souls/files/entities/animals/soul_eye/sprite.xml" 

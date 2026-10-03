@@ -165,7 +165,7 @@
 
   <CellData
 	name="souls_soulaway"
-	ui_name="$mat_moldos_soulaway"
+	ui_name="$mat_souls_soulaway"
   	tags="[liquid]"
 	density="4.18"
 	cell_type="liquid"

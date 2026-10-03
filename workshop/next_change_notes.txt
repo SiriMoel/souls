@@ -20,7 +20,7 @@ REMOVED
 
 INTERNAL
 - The whole mod basically
-- Changed spell id prefix to SOULS_
+- Changed spell & perk id prefixes to SOULS_
 - Updated nxml (rip 2022 nxml)
 - Translations file(s) changes
 - Corrected mistakes of the past

@@ -92,6 +92,7 @@ if translations ~= nil then
         "mods/souls/files/translations/materials.csv",
         "mods/souls/files/translations/effects.csv",
         "mods/souls/files/translations/animals.csv",
+        "mods/souls/files/translations/perks.csv",
 	}
 	for _,v in ipairs(translations_files) do
 		while translations:find("\r\n\r\n") do
@@ -235,7 +236,7 @@ function OnPlayerSpawned(player)
         execute_every_n_frame=1,
     })
 
-    AcquireManySouls(player) -- DONT FORGET TO COMMENT THIS!!!
+    --AcquireManySouls(player) -- DONT FORGET TO COMMENT THIS!!!
 
     GameAddFlagRun("souls_init")
 end

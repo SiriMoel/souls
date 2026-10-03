@@ -4,7 +4,7 @@
         target_tag="player_unit"
         detect_distance="500"
         homing_velocity_multiplier="0.7"
-		homing_targeting_coeff="900"
+		homing_targeting_coeff="600"
     ></HomingComponent>
 
 	<!-- WHY ARE YOU A PROJECTILE??? -->

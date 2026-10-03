@@ -198,14 +198,6 @@ end
 
 function DontFearTheReaper(souls, entity)
     local player = EntityGetWithTag("player_unit")[1]
-    local canreap = true
-    --[[for i,v in ipairs(GameGetAllInventoryItems(player) or {}) do
-        if EntityHasTag(v, "souls_deny_reap") then
-            canreap = false
-            break
-        end
-    end]]
-    if not canreap then return end
     if GlobalsGetValue("souls.collect_soul_from_entity", "true") == "true" then
         local x, y = EntityGetTransform(entity)
         for soul, amt in pairs(souls) do
@@ -223,9 +215,11 @@ function DontFearTheReaper(souls, entity)
             end
         end
     else
+        local total
         if GlobalsGetValue("souls.say_soul", "true") == "true" then
             local str = "You have acquired "
             local first = true
+            total = 0
             for soul, amt in pairs(souls) do
                 if first then
                     str = str .. amt .. " " .. GameTextGetTranslatedOrNot(soul_names[soul]) .. " souls"
@@ -233,11 +227,20 @@ function DontFearTheReaper(souls, entity)
                 else
                     str = str .. ", " .. amt .. " " .. GameTextGetTranslatedOrNot(soul_names[soul]) .. " souls"
                 end
+                total = total + amt
             end
             str = str .. "!"
             GamePrint(str)
         end
         EditSoulCounts(souls, player)
+        if EntityHasTag(player, "souls_anima_conduit") then
+            if total == nil then
+                for soul, amt in pairs(souls) do
+                    total = total + amt
+                end
+            end
+            AnimaConduit(player, total)
+        end
     end
 end
 
@@ -260,30 +263,25 @@ function LoseSouls(player, n)
     end
 end
 
--- old? souls functions below
+function AnimaConduit(player, n)
+    player = player or EntityGetWithTag("player_unit")[1]
+    local comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
+    if comp ~= nil then
+        local hp = ComponentGetValue2(comp, "hp")
+        local max_hp = ComponentGetValue2(comp, "max_hp")
+        hp = hp + 0.005 * max_hp * n -- 0.5% per soul
+        if hp > max_hp then
+            hp = max_hp
+        end
+        ComponentSetValue2(comp, "hp", hp)
+    end
+end
+
+--- !!! old souls functions below !!!
 
 -- Use this when printing the name of souls
 function SoulNameCheck(string)
     return GameTextGetTranslatedOrNot(soul_names[string]) or string
-    --[[if string == "mage_corrupted" then
-        string = "corrupted mage"
-    end
-    if string == "ghost_whisp" then
-        string = "whisp"
-    end
-    if string == "orcs" then
-        string = "hiisi"
-    end
-    if string == "souls_void" then
-        string = "voidborne"
-    end
-    if string == "friendly" then
-        string = "peaceful"
-    end
-    if string == "0" then
-        string = "any"
-    end
-    return string]]
 end
 
 -- Adds souls, provide type and amount

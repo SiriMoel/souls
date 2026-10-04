@@ -236,7 +236,7 @@ function OnPlayerSpawned(player)
         execute_every_n_frame=1,
     })
 
-    --AcquireManySouls(player) -- DONT FORGET TO COMMENT THIS!!!
+    AcquireManySouls(player) -- DONT FORGET TO COMMENT THIS!!!
 
     GameAddFlagRun("souls_init")
 end

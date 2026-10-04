@@ -1,0 +1,23 @@
+<Entity tags="souls_tome_laser_effect">
+	
+	<InheritTransformComponent 
+		_enabled="1" >
+    </InheritTransformComponent>	
+
+	<GameEffectComponent
+		effect="CUSTOM"
+		custom_effect_id="SOULS_TOME_LASER"
+		frames="242"
+	></GameEffectComponent>
+	
+	<UIIconComponent
+		name="$status_souls_tome_laser"
+		description="$statusdesc_souls_tome_laser"
+		icon_sprite_file="mods/souls/files/status_indicators/tome_laser.png"
+		is_perk="0"
+		display_above_head="0"
+		display_in_hud="1"
+		>
+	</UIIconComponent>
+
+</Entity>

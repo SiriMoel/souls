@@ -57,7 +57,7 @@ local new_actions = {
 		related_extra_entities = {"mods/souls/files/entities/projectiles/reap_from_fire/reaping_shot.xml"},
 		type = ACTION_TYPE_MODIFIER,
 		spawn_level = "3,4,5,6",
-		spawn_probability = "0.4,0.4,0.4",
+		spawn_probability = "0.3,0.4,0.4,0.3",
 		price = 100,
 		mana = 5,
 		action = function()
@@ -324,6 +324,51 @@ local new_actions = {
 					end
 				else
 					GamePrint("Tome Launcher can only be casted by the tome.")
+				end
+			end
+		end,
+	},
+	{
+		id = "TOME_LASER",
+		name = "$action_souls_tome_laser",
+		description = "$actiondesc_souls_tome_laser",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/tome_laser.png",
+		related_projectiles	= {"mods/souls/files/entities/projectiles/tome_laser/projectile.xml"},
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "5,6,10",
+		spawn_probability = "0.3,0.3,0.2",
+		price = 190,
+		mana = 10,
+		ai_never_uses = true,
+		action = function()
+			if reflecting then 
+				add_projectile("mods/souls/files/entities/projectiles/tome_laser/projectile.xml")
+				return 
+			end
+			dofile_once("mods/souls/files/scripts/souls.lua")
+			local caster = GetUpdatedEntityID()
+			local comp_inv = EntityGetFirstComponentIncludingDisabled(caster, "Inventory2Component")
+			if comp_inv ~= nil then
+				local wand = ComponentGetValue2(comp_inv, "mActiveItem")
+				if EntityHasTag(wand, "soul_tome") then
+					local e = EntityGetAllChildren(caster, "souls_tome_laser_effect") or {}
+					if #e > 0 then
+						c.fire_rate_wait = c.fire_rate_wait - 12
+						current_reload_time = current_reload_time - 6
+						add_projectile("mods/souls/files/entities/projectiles/tome_laser/projectile.xml")
+					else
+						local success, soul = SpellUseSouls(caster, 3)
+						if success then
+							LoadGameEffectEntityTo(caster, "mods/souls/files/entities/misc/effect_tome_laser.xml")
+							c.fire_rate_wait = c.fire_rate_wait - 12
+							current_reload_time = current_reload_time - 6
+							add_projectile("mods/souls/files/entities/projectiles/tome_laser/projectile.xml")
+						else
+							GamePrint("You do not have enough souls for this. (3)")
+						end
+					end
+				else
+					GamePrint("Tome Laser can only be casted by the tome.")
 				end
 			end
 		end,

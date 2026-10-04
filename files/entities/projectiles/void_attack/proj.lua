@@ -1,7 +1,7 @@
 local this = GetUpdatedEntityID()
 local x, y = EntityGetTransform(this)
 
-local mark_radius = 56
+local mark_radius = 90
 
 local targets = EntityGetInRadiusWithTag(x, y, mark_radius, "homing_target") or {}
 

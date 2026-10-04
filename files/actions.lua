@@ -844,7 +844,7 @@ local new_actions = {
 		name = "$action_souls_soul_spell_slimes",
 		description = "$actiondesc_souls_soul_spell_slimes",
 		sprite = "mods/souls/files/ui_gfx/gun_actions/slime_safeguard.png",
-		related_extra_entities = {"mods/souls/files/entities/projectiles/soul_spell_slimes/sousoul_spell_slimesl_spell_mage.xml"},
+		related_extra_entities = {"mods/souls/files/entities/projectiles/soul_spell_slimes/soul_spell_slimes.xml"},
 		type = ACTION_TYPE_MODIFIER,
 		spawn_level = "4,5,6,10",
 		spawn_probability = "0.2,0.3,0.3,0.1",
@@ -877,6 +877,25 @@ local new_actions = {
 				GamePrint("You do not have enough Slime souls for this. (10)")
 			end
 			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "VOID_ATTACK",
+		name = "$action_souls_void_attack",
+		description = "$actiondesc_souls_void_attack",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/void_attack.png",
+		related_projectiles = {"mods/souls/files/entities/projectiles/void_attack/proj.xml"},
+		spawn_requires_flag = "souls_phylactery_activated",
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "6,10",
+		spawn_probability = "0.1,0.1",
+		price = 300,
+		mana = 200,
+		ai_never_uses = true,
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 60
+			current_reload_time = current_reload_time + 60
+			add_projectile("mods/souls/files/entities/projectiles/void_attack/proj.xml")
 		end,
 	},
 }

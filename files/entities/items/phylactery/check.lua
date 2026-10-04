@@ -22,6 +22,9 @@ if comp_mi ~= nil then
                 GamePrintImportant("THE PHYLACTERY HUMS WITH ENERGY!", "It is done.", "mods/souls/files/souls_decoration.png")
                 GamePlaySound("data/audio/Desktop/projectiles.bank", "projectiles/enlightened_laser/launch_dark", x, y) -- placeholder probably
                 GameAddFlagRun("souls_phylactery_done")
+                if not HasFlagPersistent("souls_phylactery_activated") then
+                    AddFlagPersistent("souls_phylactery_activated")
+                end
                 EntityKill(this)
             end
         end

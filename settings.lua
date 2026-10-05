@@ -183,8 +183,8 @@ mod_settings_version = 3
 mod_settings = {
     {
         category_id = "souls_comms",
-        ui_name = "Collecting & using souls",
-        ui_description = "Settings relating to collecting and using souls.",
+        ui_name = "Alerts",
+        ui_description = "What do you want to be told?",
         foldable = true,
         _folded = true,
         settings = {
@@ -205,9 +205,9 @@ mod_settings = {
                 ui_fn = mod_setting_bool_souls,
             },
             {
-                id = "collect_soul_from_entity",
-                ui_name = "Collect souls",
-                ui_description = "If you want souls to spawn as an entity that must be collected.",
+                id = "say_not_enough",
+                ui_name = "Say not enough souls",
+                ui_description = "If you want to be told when you don't have enough souls when casting spells.",
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_RUNTIME,
                 ui_fn = mod_setting_bool_souls,
@@ -216,8 +216,8 @@ mod_settings = {
     },
     {
         category_id = "souls_counts",
-        ui_name = "Viewing your souls",
-        ui_description = "Settings relating to viewing your souls counts.",
+        ui_name = "GUI Setings",
+        ui_description = "Souls GUI settings...",
         foldable = true,
         _folded = true,
         settings = {
@@ -349,6 +349,14 @@ mod_settings = {
         foldable = true,
         _folded = true,
         settings = {
+            {
+                id = "collect_soul_from_entity",
+                ui_name = "Collect souls",
+                ui_description = "If you want souls to spawn as an entity that must be collected.",
+                value_default = true,
+                scope = MOD_SETTING_SCOPE_RUNTIME,
+                ui_fn = mod_setting_bool_souls,
+            },
             {
                 id = "enable_soul_shops",
                 ui_name = "Enable Soul Shops",

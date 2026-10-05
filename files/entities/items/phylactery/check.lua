@@ -19,7 +19,7 @@ if comp_mi ~= nil then
                     ComponentSetValue2(comp_phylactery, "value_int", 10)
                 end
                 EntityLoad("mods/souls/files/entities/items/phylactery/done_fx.xml", x, y-2)
-                GamePrintImportant("THE PHYLACTERY HUMS WITH ENERGY!", "It is done.", "mods/souls/files/souls_decoration.png")
+                SoulsPrintImportant("THE PHYLACTERY HUMS WITH ENERGY!", "It is done.")
                 GamePlaySound("data/audio/Desktop/projectiles.bank", "projectiles/enlightened_laser/launch_dark", x, y) -- placeholder probably
                 GameAddFlagRun("souls_phylactery_done")
                 if not HasFlagPersistent("souls_phylactery_activated") then

@@ -16,6 +16,27 @@ function SoulsInit(player)
     })
 end
 
+function SoulsPrint(text, setting)
+    local settings = {
+        ["say_soul"] = GlobalsGetValue("souls.say_soul", "true"),
+        ["say_consumed_soul"] = GlobalsGetValue("souls.say_consumed_soul", "true"),
+        ["say_not_enough"] = GlobalsGetValue("souls.say_not_enough", "true"),
+    }
+    if setting ~= nil and settings[setting] ~= "true" then return end
+    GamePrint(text)
+end
+
+function SoulsPrintImportant(title, description, decoration)
+    local decorations = {
+        ["souls"] = "mods/souls/files/ui_gfx/decoration_souls.png",
+        ["boss"] = "mods/souls/files/ui_gfx/decoration_boss.png",
+        ["amphitheatre"] = "mods/souls/files/ui_gfx/decoration_amphitheatre.png",
+        ["divine"] = "mods/souls/files/ui_gfx/decoration_divine.png",
+    }
+    local dec = decoration ~= nil and decorations[decoration]
+    GamePrintImportant(title, description, dec or decorations["souls"])
+end
+
 function SoulCounts(player)
     player = player or EntityGetWithTag("player_unit")[1]
     local counts = {

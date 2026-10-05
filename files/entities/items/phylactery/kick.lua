@@ -10,7 +10,7 @@ function kick( entity_who_kicked )
             RemoveRandomSouls(10)
             local phylactery_points = tonumber(GlobalsGetValue("souls_phylactery_points", "0"))
             GlobalsSetValue("souls_phylactery_points", tostring(phylactery_points + (3 * 10)))
-            GamePrintImportant("PHYLACTERY POWERED!", "It hums with energy.", "mods/souls/files/souls_decoration.png")
+            SoulsPrintImportant("PHYLACTERY POWERED!", "It hums with energy.")
             GameAddFlagRun("souls_phylactery_done") -- just incase it was spawned in :)
         else
             GamePrint("You do not have enough souls for this.")

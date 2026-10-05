@@ -5,7 +5,7 @@ local root = EntityGetRootEntity(this)
 local x, y = EntityGetTransform(root)
 
 if root == this then 
-    GamePrint("Souls?")
+    --GamePrint("Souls?")
     EntityKill(this)
     return 
 end

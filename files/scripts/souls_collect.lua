@@ -10,9 +10,7 @@ if #targets > 0 then
     local comp_soul = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "soul")
     if comp_soul ~= nil then
         local soul = ComponentGetValue2(comp_soul, "value_string")
-        if GlobalsGetValue("souls.say_soul", "true") == "true" then
-            GamePrint("You have acquired a " .. SoulNameCheck(soul) .. " soul!")
-        end
+        SoulsPrint("You have acquired a " .. SoulNameCheck(soul) .. " soul!", "say_soul")
         EditSoulCounts({[soul] = 1}, player)
         if EntityHasTag(player, "souls_anima_conduit") then
             AnimaConduit(player, 1)

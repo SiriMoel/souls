@@ -10,7 +10,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
     SetRandomSeed(x + frame, y + frame)
 
     if not SpellUseSouls(entity_who_interacted, 10) then
-        GamePrint("You do not have enough souls for this. (10)")
+        SoulsPrint("You do not have enough souls for this. (10)")
         return
     end
 
@@ -70,7 +70,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
     end
     
     GameAddFlagRun("souls.amphitheatre_active")
-    GamePrintImportant("WAVE STARTED!", "The Gods are entertained.", "mods/souls/files/souls_decoration.png")
+    SoulsPrintImportant("WAVE STARTED!", "The Gods are entertained.", "amphitheatre")
     GlobalsSetValue("souls.amphitheatre_enemy_count", tostring(enemy_count + 3))
     EntitySetComponentsWithTagEnabled(this, "amphitheatre_interact", false)
 end

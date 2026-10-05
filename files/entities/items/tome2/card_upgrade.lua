@@ -64,7 +64,7 @@ if EntityHasTag(parent, "soul_tome") and EntityHasTag(root, "player_unit") then
                         tome_upgrades[selected].func_apply(parent)
                         ComponentSetValue2(comp_upgrade_count, "value_int", upgrade_count + 1)
                     else
-                        GamePrint("You do not have enough souls for this. (" .. cost .. ")")
+                        SoulsPrint("You do not have enough souls for this. (" .. cost .. ")")
                     end
                 end
             end

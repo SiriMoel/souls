@@ -62,7 +62,7 @@ function item_pickup(entity_item, entity_who_picked, item_name)
 
         EntityLoad("mods/souls/files/entities/items/soul_tablet/item.xml", x, y - 6)
 
-        GamePrintImportant("SOUL EMULATED!", "Something irreversible has occured.", "mods/souls/files/souls_decoration.png")
+        SoulsPrintImportant("SOUL EMULATED!", "Something irreversible has occured.")
 
         EntityKill(entity_item)
     end

@@ -45,7 +45,7 @@ if diviner_state == 3 then -- make it rain in wizards den
             ComponentSetValue2(comp_soulscount, "value_int", 2)
             GamePlaySound("data/audio/Desktop/misc.bank", "misc/chest_dark_open", x, y)
             GamePlaySound("data/audio/Desktop/misc.bank", "misc/beam_from_sky_kick", x, y)
-            GamePrintImportant("SOUL ALTERED!", "The soul weeps.", "mods/souls/files/souls_decoration.png")
+            SoulsPrintImportant("SOUL ALTERED!", "The soul weeps.")
             EntityAddComponent2(this, "MagicConvertMaterialComponent", {
                 _tags="sotd_debuff,enabled_in_hand,enabled_in_inventory,enabled_in_world",
 		        kill_when_finished=true,
@@ -70,7 +70,7 @@ if diviner_state == 4 then -- 3 soul projectiles in the sky
             ComponentSetValue2(comp_soulscount, "value_int", 3)
             GamePlaySound("data/audio/Desktop/misc.bank", "misc/chest_dark_open", x, y)
             GamePlaySound("data/audio/Desktop/misc.bank", "misc/beam_from_sky_kick", x, y)
-            GamePrintImportant("SOUL ALTERED!", "The soul is hopeful.", "mods/souls/files/souls_decoration.png")
+            SoulsPrintImportant("SOUL ALTERED!", "The soul is hopeful.")
             EntityAddTag(this, "souls_item_take_more_damage")
         end
     end
@@ -90,7 +90,7 @@ if diviner_state == 5 then -- near 10 charmed creatures
         ComponentSetValue2(comp_soulscount, "value_int", 4)
         GamePlaySound("data/audio/Desktop/misc.bank", "misc/chest_dark_open", x, y)
         GamePlaySound("data/audio/Desktop/misc.bank", "misc/beam_from_sky_kick", x, y)
-        GamePrintImportant("SOUL ALTERED!", "The soul is loving.", "mods/souls/files/souls_decoration.png")
+        SoulsPrintImportant("SOUL ALTERED!", "The soul is loving.")
         EntityAddComponent2(this, "LuaComponent", {
             _tags="sotd_debuff,enabled_in_hand,enabled_in_inventory",
             script_source_file="mods/souls/files/entities/items/soul_of_the_diviner/silly.lua",
@@ -106,7 +106,7 @@ if diviner_state == 6 then -- start a wave at the amphitheatre
         ComponentSetValue2(comp_soulscount, "value_int", 5)
         GamePlaySound("data/audio/Desktop/misc.bank", "misc/chest_dark_open", x, y)
         GamePlaySound("data/audio/Desktop/misc.bank", "misc/beam_from_sky_kick", x, y)
-        GamePrintImportant("SOUL ALTERED!", "The soul is ready.", "mods/souls/files/souls_decoration.png")
+        SoulsPrintImportant("SOUL ALTERED!", "The soul is ready.")
         local comps = EntityGetAllComponents(this)
         for i,comp in ipairs(comps) do
             if ComponentHasTag(comp, "sotd_debuff") then

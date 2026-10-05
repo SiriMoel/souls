@@ -182,7 +182,7 @@ local player = EntityGetWithTag("player_unit")[1]
 local success, soul = SpellUseSouls(player, 1)
 
 if not success or soul == nil then
-	GamePrint("You do not have enough souls for this. (1)")
+	SoulsPrint("You do not have enough souls for this. (1)", "say_not_enough")
 
 	ComponentSetValue2(comp_proj,"on_death_explode", false)
 	ComponentSetValue2(comp_proj, "on_lifetime_out_explode", false)
@@ -192,10 +192,7 @@ if not success or soul == nil then
 
     EntityKill(this)
 else
-	if GlobalsGetValue("souls.say_consumed_soul", "true") == "true" then
-		local soul_name = GameTextGetTranslatedOrNot(soul_names[soul])
-		GamePrint("A " .. soul_name .. " soul was consumed!")
-	end
+	SoulsPrint("A " .. GameTextGetTranslatedOrNot(soul_names[soul]) .. " soul was consumed!.", "say_consumed_soul")
 
     EntityAddComponent2(this, "SpriteComponent", {
         image_file="mods/souls/files/entities/souls/sprites/soul_" .. soul .. ".xml",

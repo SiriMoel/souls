@@ -2,6 +2,7 @@ NEW
 - Souls gui keybind mod setting
 - Spell: Tome Laser
 - Spell: Soul Focus
+- Spell: Soulsplit
 - Spell: Lacerate Void
 - Spell: Soular Power (combined Soul-Scaling Mana & Soul-Scaling Recharge)
 - Mod settings menu categories

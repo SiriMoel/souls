@@ -12,6 +12,7 @@ ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/souls/files/perks.lua
 ModLuaFileAppend("data/scripts/status_effects/status_list.lua", "mods/souls/files/scripts/status_list.lua")
 ModLuaFileAppend("data/scripts/items/drop_money.lua", "mods/souls/files/scripts/drop_money_append.lua")
 ModLuaFileAppend("data/scripts/items/generate_shop_item.lua", "mods/souls/files/scripts/generate_shop_item_append.lua")
+ModLuaFileAppend("data/scripts/gun/gun.lua", "mods/souls/files/scripts/gun_append.lua")
 
 -- nxml
 local nxml = dofile_once("mods/souls/lib/nxml.lua")
@@ -195,6 +196,11 @@ function OnPlayerSpawned(player)
 
     dofile_once("mods/souls/files/gui.lua")
 
+    if not HasFlagPersistent("souls_updated_1_5") then
+        AddFlagPersistent("souls_updated_1_5")
+        SoulsPrintImportant("Souls has been (majorly) updated!", "The change notes are on the workshop page.", "divine")
+    end
+
     local px, py = EntityGetTransform(player)
 
     if GameHasFlagRun("souls_init") then return end
@@ -204,6 +210,7 @@ function OnPlayerSpawned(player)
     GlobalsSetValue("souls.collect_soul_from_entity", tostring(ModSettingGet("souls.collect_soul_from_entity")))
     GlobalsSetValue("souls.say_soul", tostring(ModSettingGet("souls.say_soul")))
     GlobalsSetValue("souls.say_consumed_soul", tostring(ModSettingGet("souls.say_consumed_soul")))
+    GlobalsSetValue("souls.say_not_enough", tostring(ModSettingGet("souls.say_not_enough")))
     GlobalsSetValue("souls.enable_soul_shops", tostring(ModSettingGet("souls.enable_soul_shops")))
     GlobalsSetValue("souls.first_gui", tostring(ModSettingGet("souls.first_gui")))
     GlobalsSetValue("souls.souls_gui_key", tostring(ModSettingGet("souls.souls_gui_key")))
@@ -236,7 +243,7 @@ function OnPlayerSpawned(player)
         execute_every_n_frame=1,
     })
 
-    AcquireManySouls(player) -- DONT FORGET TO COMMENT THIS!!!
+    --AcquireManySouls(player) -- DONT FORGET TO COMMENT THIS!!!
 
     GameAddFlagRun("souls_init")
 end
@@ -249,6 +256,7 @@ function OnPausedChanged(is_paused, is_inventory_pause)
         GlobalsSetValue("souls.collect_soul_from_entity", tostring(ModSettingGet("souls.collect_soul_from_entity")))
         GlobalsSetValue("souls.say_soul", tostring(ModSettingGet("souls.say_soul")))
         GlobalsSetValue("souls.say_consumed_soul", tostring(ModSettingGet("souls.say_consumed_soul")))
+        GlobalsSetValue("souls.say_not_enough", tostring(ModSettingGet("souls.say_not_enough")))
         GlobalsSetValue("souls.enable_soul_shops", tostring(ModSettingGet("souls.enable_soul_shops")))
         GlobalsSetValue("souls.first_gui", tostring(ModSettingGet("souls.first_gui")))
         --GlobalsSetValue("souls.spell_spawn_chance_multiplier", tostring(ModSettingGet("souls.spell_spawn_chance_multiplier")))

@@ -32,6 +32,6 @@ if ComponentGetValue2(comp_controls, "mButtonDownRightClick") == true and frame_
         GamePlaySound("data/audio/Desktop/animals.bank", "animals/shotgun_cock", x, y)
         GamePlaySound("data/audio/Desktop/projectiles.bank", "projectiles/enlightened_laser/launch_dark", x, y)
     else
-        GamePrint("You do not have enough souls for this. (1)")
+        SoulsPrint("You do not have enough souls for this. (1)")
     end
 end

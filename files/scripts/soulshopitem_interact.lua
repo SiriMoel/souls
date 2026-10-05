@@ -34,6 +34,6 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
             end
         end
     else
-        GamePrint("You do not have enough souls for this.")
+        GamePrint("You do not have enough souls for this. (" .. cost .. ")")
     end
 end

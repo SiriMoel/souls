@@ -1,6 +1,25 @@
 dofile_once("mods/souls/files/scripts/souls.lua")
 
 local new_actions = {
+	--[[{
+		id = "HAX", -- DONT FORGET TO COMMENT THIS!!!
+		name = "cheating!",
+		description = "cheating!",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/reaping_shot.png",
+		type = ACTION_TYPE_UTILITY,
+		spawn_level  = "",
+		spawn_probability = "",
+		price = 100,
+		mana = 0,
+		ai_never_uses = true,
+		action = function()
+			if reflecting then return end
+			local caster = GetUpdatedEntityID()
+			--EditSoulCounts({["orcs"] = 1}, caster)
+			AcquireManySouls(caster)
+			SoulsPrintImportant("hello", "hello", "divine")
+		end,
+	},]]
 	{
 		id = "REAPING_SHOT",
 		name = "$action_souls_reaping_shot",
@@ -238,7 +257,8 @@ local new_actions = {
 				if SpellUseSouls(caster, 3) then
 					TomeAddProjectiles()
 				else
-					GamePrint("You do not have enough souls for this. (3)")
+					souls_not_enough = true
+	    			souls_not_enough_count = souls_not_enough_count + 3
 				end
 			end
 		end,
@@ -274,7 +294,8 @@ local new_actions = {
 						add_projectile("mods/souls/files/entities/projectiles/tome_slice/proj.xml")
 
 					else
-						GamePrint("You do not have enough souls for this. (1)")
+						souls_not_enough = true
+    					souls_not_enough_count = souls_not_enough_count + 1
 					end
 				else
 					GamePrint("Tome Slice can only be casted by the tome.")
@@ -364,7 +385,8 @@ local new_actions = {
 							current_reload_time = current_reload_time - 6
 							add_projectile("mods/souls/files/entities/projectiles/tome_laser/projectile.xml")
 						else
-							GamePrint("You do not have enough souls for this. (3)")
+							souls_not_enough = true
+    						souls_not_enough_count = souls_not_enough_count + 3
 						end
 					end
 				else
@@ -393,6 +415,7 @@ local new_actions = {
 			dofile_once("mods/souls/files/scripts/souls.lua")
 			local caster = GetUpdatedEntityID()
 			if SpellUseSouls(caster, 1) then
+				c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_speed/soul_speed_fx.xml,"
 				c.speed_multiplier = c.speed_multiplier * 2
 				c.damage_projectile_add = c.damage_projectile_add + 0.24
 				if c.speed_multiplier >= 20 then
@@ -401,7 +424,8 @@ local new_actions = {
 					c.speed_multiplier = 0
 				end
 			else
-				GamePrint("You do not have enough souls for this. (1)")
+				souls_not_enough = true
+    			souls_not_enough_count = souls_not_enough_count + 1
 			end
 			draw_actions(1, true)
 		end,
@@ -546,6 +570,9 @@ local new_actions = {
 				for i=1,math.min(count, 10) do
 					c.extra_entities = c.extra_entities .. "mods/souls/files/entities/particles/souls_to_power.xml,"
 				end
+			else
+				souls_not_enough = true
+    			souls_not_enough_count = souls_not_enough_count + count
 			end
 			draw_actions(1, true)
 		end,
@@ -612,7 +639,8 @@ local new_actions = {
 			if SpellUseSouls(entity, 1) then
 				c.damage_critical_chance = c.damage_critical_chance + 60
 			else
-				GamePrint("You do not have enough souls for this. (1)")
+				souls_not_enough = true
+    			souls_not_enough_count = souls_not_enough_count + 1
 			end
 			draw_actions(1, true)
 		end,
@@ -759,9 +787,7 @@ local new_actions = {
 				for i=1,souls_earned do
 					local which = possible_types[math.random(1,#possible_types)]
 					souls_to_add[tostring(which)] = (souls_to_add[tostring(which)] or 0) + 1
-					if GlobalsGetValue("souls.say_soul", "true") == "true" then
-						GamePrint("You have acquired a " .. SoulNameCheck(which) .. " soul!")
-					end
+					SoulsPrint("You have acquired a " .. SoulNameCheck(which) .. " soul!", "say_soul")
 				end
 				EditSoulCounts(souls_to_add, card)
 				GamePrint("The wand was eaten and you have received " .. souls_earned .. " souls!")
@@ -810,8 +836,8 @@ local new_actions = {
 		description = "$actiondesc_souls_soul_battery",
 		sprite = "mods/souls/files/ui_gfx/gun_actions/soul_battery.png",
 		type = ACTION_TYPE_UTILITY,
-		spawn_level = "6,10",
-		spawn_probability = "0.2,0.3",
+		spawn_level = "5,6,10",
+		spawn_probability = "0.1,0.2,0.4",
 		price = 220,
 		mana = 0,
 		ai_never_uses = true,
@@ -820,7 +846,6 @@ local new_actions = {
 			c.fire_rate_wait = c.fire_rate_wait - 6
 			current_reload_time = current_reload_time + 3
 			if reflecting then return end
-			dofile_once("mods/souls/files/scripts/souls.lua")
 			local caster = GetUpdatedEntityID()
 			if SpellUseSouls(caster, 1) then
 				local amt = 200
@@ -835,9 +860,60 @@ local new_actions = {
 				end
 				mana = mana + amt
 			else
-				GamePrint("You do not have enough souls for this. (1)")
+				souls_not_enough = true
+    			souls_not_enough_count = souls_not_enough_count + 1
 			end
 			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "SOULSPLIT",
+		name = "$action_souls_soulsplit",
+		description = "$actiondesc_souls_soulsplit",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/soulsplit.png",
+		type = ACTION_TYPE_OTHER,
+		spawn_level = "6,10",
+		spawn_probability = "0.1,0.3",
+		price = 200,
+		mana = 130,
+		ai_never_uses = true,
+		action = function(recursion_level, iteration)
+			c.fire_rate_wait = c.fire_rate_wait + 30
+			current_reload_time = current_reload_time + 30
+			if reflecting then return end
+			local caster = GetUpdatedEntityID()
+			if SpellUseSouls(caster, 1) then
+				local discarded_size = #discarded
+				if discarded_size > 0 then
+					for i, v in ipairs(discarded) do
+						local rec = check_recursion(v, recursion_level)
+						if (v.id ~= "SOULS_SOULSPLIT") and (i <= discarded_size) and (rec > -1) then
+							v.action(rec)
+						end
+					end
+				end
+				local hand_size = #hand
+				if hand_size > 0 then
+					for i, v in ipairs(hand) do
+						local rec = check_recursion(v, recursion_level)
+						if (v.id ~= "SOULS_SOULSPLIT") and (i <= hand_size) and (rec > -1) then
+							v.action(rec)
+						end
+					end
+				end
+				local deck_size = #deck
+				if deck_size > 0 then
+					for i, v in ipairs(deck) do
+						local rec = check_recursion(v, recursion_level)
+						if (v.id ~= "SOULS_SOULSPLIT") and (i <= deck_size) and (rec > -1) then
+							v.action(rec)
+						end
+					end
+				end
+			else
+				souls_not_enough = true
+    			souls_not_enough_count = souls_not_enough_count + 1
+			end
 		end,
 	},
 	{
@@ -857,12 +933,11 @@ local new_actions = {
 			c.fire_rate_wait = c.fire_rate_wait + 48
 			current_reload_time = current_reload_time + 24
 			if reflecting then return end
-			dofile_once("mods/souls/files/scripts/souls.lua")
 			local caster = GetUpdatedEntityID()
 			if SpellUseSpecificSouls(caster, {["worm"] = 1}) then
 				c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_spell_worm/soul_spell_worm.xml,"
 			else
-				GamePrint("You do not have enough Worm souls for this. (1)")
+				SoulsPrint("You do not have enough Worm souls for this. (1)", "say_not_enough")
 			end
 			draw_actions(1, true)
 		end,
@@ -888,7 +963,6 @@ local new_actions = {
 				c.damage_critical_chance = c.damage_critical_chance + 100
 				return 
 			end
-			dofile_once("mods/souls/files/scripts/souls.lua")
 			local caster = GetUpdatedEntityID()
 			if SpellUseSpecificSouls(caster, {["mage"] = 2}) then
 				c.damage_projectile_add = c.damage_projectile_add + 1
@@ -896,7 +970,7 @@ local new_actions = {
 				c.damage_critical_chance = c.damage_critical_chance + 100
 				c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_spell_mage/soul_spell_mage.xml,"
 			else
-				GamePrint("You do not have enough Mage souls for this. (2)")
+				SoulsPrint("You do not have enough Mage souls for this. (3)", "say_not_enough")
 			end
 			draw_actions(1, true)
 		end,
@@ -925,7 +999,6 @@ local new_actions = {
 				end
 				return 
 			end
-			dofile_once("mods/souls/files/scripts/souls.lua")
 			local caster = GetUpdatedEntityID()
 			if SpellUseSpecificSouls(caster, {["slimes"] = 10}) then
 				c.friendly_fire	= true
@@ -936,7 +1009,7 @@ local new_actions = {
 				end
 				c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_spell_slimes/soul_spell_slimes.xml,"
 			else
-				GamePrint("You do not have enough Slime souls for this. (10)")
+				SoulsPrint("You do not have enough Slime souls for this. (10)", "say_not_enough")
 			end
 			draw_actions(1, true)
 		end,

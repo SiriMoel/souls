@@ -6,7 +6,7 @@ Spells added by this mod have different effects depending on what type of soul y
 [img]https://i.imgur.com/rVokFtc.png[/img]
 
 [b]36[/b] spells
-[b]2[/b] perks
+[b]3[/b] perks
 [b]6+[/b] wands and items
 [b]5[/b] enemies
 [b]4[/b] structures
@@ -28,7 +28,7 @@ Cross-mod interactions with:
 [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3373139694]Pharmacokinetics[/url][/b] new npc, new plant
 [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3338209310]Meta Leveling[/url][/b] new reward & new meta progression
 [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3242942696]Disable Auto Pickup of Collectibles[/url][/b] Soul Refresher auto pickup disabled
-[b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3795285917]Foolish Flame[/url][/b] Magic fire can be inflicted by some Souls spells
+[b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3795285917]Foolish Flame[/url][/b] Magic fire can be inflicted by some Souls spells, and hell bounties may reward souls
 [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3807666895]Stab![/url][/b] A Stab! spell grants souls
 
 Discord: https://discord.gg/FKaRA9HMUq

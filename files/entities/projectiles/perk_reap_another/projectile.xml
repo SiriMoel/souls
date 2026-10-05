@@ -11,23 +11,23 @@
 
 	<HomingComponent
 		target_tag="homing_target"
-		homing_targeting_coeff="8"
-		detect_distance="500"
-		homing_velocity_multiplier="1"
+		homing_targeting_coeff="350"
+		detect_distance="200"
+		homing_velocity_multiplier="0.7"
 		>
 	</HomingComponent>
 	
 	<ParticleEmitterComponent 
 		emitted_material_name="souls_soul_particles"
 		gravity.y="0.0"
-		lifetime_min="1"
-		lifetime_max="2"
+		lifetime_min="0.1"
+		lifetime_max="1"
 		x_vel_min="0"
 		x_vel_max="0"
 		y_vel_min="0"
 		y_vel_max="0"
-		count_min="25"
-		count_max="45"
+		count_min="14"
+		count_max="16"
 		render_on_grid="1"
 		fade_based_on_lifetime="0"
 		area_circle_radius.min="2"
@@ -48,15 +48,15 @@
 	<ProjectileComponent
 	    lob_min="0.9"
     	lob_max="1.5"
-		speed_min="90"
-		speed_max="150"
+		speed_min="130"
+		speed_max="130"
 		bounce_always="1"
-		bounces_left="9"
+		bounces_left="11"
 		bounce_at_any_angle="1"
-		bounce_energy="0.5"
-		lifetime="400"
+		bounce_energy="0.9"
+		lifetime="300"
 		velocity_sets_rotation="0"
-		penetrate_entities="1"
+		penetrate_entities="0"
 		collide_with_world="0"
 		direction_random_rad="0"
 		penetrate_world="0"
@@ -73,12 +73,12 @@
 
 	<HitEffectComponent
         effect_hit="LOAD_UNIQUE_CHILD_ENTITY"
-        value_string="mods/souls/files/entities/misc/reapers/reap_entity_tome.xml"
+        value_string="mods/souls/files/entities/misc/reapers/reap_entity.xml"
     ></HitEffectComponent>
 
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="mods/souls/files/entities/projectiles/tome_seek/proj.xml"
+		value_string="mods/souls/files/entities/projectiles/perk_reap_another/projectile.xml"
 		>
 	</VariableStorageComponent>
 	

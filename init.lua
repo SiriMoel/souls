@@ -189,6 +189,10 @@ if ModIsEnabled("cheatgui") then
 	ModLuaFileAppend("data/hax/special_spawnables.lua", "mods/souls/files/scripts/cheatgui_special_spawnables.lua")
 end
 
+if ModIsEnabled("foolish_flame") then
+	ModLuaFileAppend("mods/foolish_flame/files/scripts/bounty_rewards.lua", "mods/souls/files/scripts/ff_bounty_rewards.lua")
+end
+
 -- player
 function OnPlayerSpawned(player)
 

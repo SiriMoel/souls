@@ -1,4 +1,4 @@
-<Entity name="$projectile_default" >
+<Entity name="$projectile_default" tags="soul_projectile">
 
   <Base file="data/entities/base_projectile_physics.xml">
 

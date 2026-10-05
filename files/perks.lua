@@ -45,6 +45,27 @@ local souls_perks = {
 			end
 		end
 	},
+	{
+		id = "REAP_ANOTHER",
+		ui_name = "$perk_souls_reap_another",
+		ui_description = "$perkdesc_souls_reap_another",
+		ui_icon = "mods/souls/files/perk_icons/reap_another.png",
+		perk_icon = "mods/souls/files/perk_icons/reap_another_inworld.png",
+		stackable = STACKABLE_NO,
+		func = function(entity_perk_item, entity_who_picked, item_name)
+			local comp = EntityGetFirstComponentIncludingDisabled(entity_who_picked, "LuaComponent", "souls_reap_another") or EntityAddComponent2(entity_who_picked, "LuaComponent", {
+        		_tags="souls_execute_on_reap,souls_reap_another",
+        		script_source_file="mods/souls/files/scripts/perks/reap_another.lua",
+		        execute_every_n_frame=-1,
+    		})
+		end,
+		func_remove = function(entity_who_picked)
+			local comp = EntityGetFirstComponentIncludingDisabled(entity_who_picked, "LuaComponent", "souls_reap_another")
+			if comp ~= nil then
+				EntityRemoveComponent(entity_who_picked, comp)
+			end
+		end
+	},
 }
 
 for i,v in ipairs(souls_perks) do

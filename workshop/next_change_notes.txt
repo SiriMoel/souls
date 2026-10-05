@@ -5,6 +5,7 @@ NEW
 - Spell: Soulsplit
 - Spell: Lacerate Void
 - Spell: Soular Power (combined Soul-Scaling Mana & Soul-Scaling Recharge)
+- Perk: Reap Another
 - Mod settings menu categories
 - Mod settings to toggle each structure
 - Mod settings to adjust the spawning of each enemy

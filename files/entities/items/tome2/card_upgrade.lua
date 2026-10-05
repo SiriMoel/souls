@@ -25,7 +25,7 @@ if EntityHasTag(parent, "soul_tome") and EntityHasTag(root, "player_unit") then
             if ComponentGetValue2(comp_controls, "mButtonDownThrow") == true then
                 EntitySetComponentIsEnabled(this, comp_sprite_upgrade_cost, true)
 
-                local start_x, start_y = math.floor(player_x - (#tome_upgrades - 1) * 24), math.floor(layer_y + 48)
+                local start_x, start_y = math.floor(player_x - (#tome_upgrades - 1) * 24), math.floor(player_y + 48)
 
                 for i,v in ipairs(tome_upgrades) do
                     local draw_x, draw_y = start_x + (i - 1) * 48, start_y

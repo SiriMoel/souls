@@ -16,8 +16,9 @@ local new_actions = {
 			if reflecting then return end
 			local caster = GetUpdatedEntityID()
 			--EditSoulCounts({["orcs"] = 1}, caster)
-			AcquireManySouls(caster)
-			SoulsPrintImportant("hello", "hello", "divine")
+			--AcquireManySouls(caster)
+			--SoulsPrintImportant("hello", "hello", "divine")
+			--EntitySetComponentsWithTagEnabled(caster, "souls_execute_on_reap", true)
 		end,
 	},]]
 	{

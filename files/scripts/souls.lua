@@ -254,13 +254,12 @@ function DontFearTheReaper(souls, entity)
             GamePrint(str)
         end
         EditSoulCounts(souls, player)
-        if EntityHasTag(player, "souls_anima_conduit") then
-            if total == nil then
-                for soul, amt in pairs(souls) do
-                    total = total + amt
-                end
+        local on_reap_comps = EntityGetComponent(player, "LuaComponent", "souls_execute_on_reap") or {}
+        if #on_reap_comps > 0 then
+            for i = 1, #on_reap_comps do
+                local comp_on_reap = on_reap_comps[i]
+                dofile_once(ComponentGetValue2(comp_on_reap, "script_source_file")).on_reap(player, total)
             end
-            AnimaConduit(player, total)
         end
     end
 end
@@ -282,20 +281,6 @@ function LoseSouls(player, n, not_boss)
             end
         end
         EditSoulCounts(used, player)
-    end
-end
-
-function AnimaConduit(player, n)
-    player = player or EntityGetWithTag("player_unit")[1]
-    local comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
-    if comp ~= nil then
-        local hp = ComponentGetValue2(comp, "hp")
-        local max_hp = ComponentGetValue2(comp, "max_hp")
-        hp = hp + 0.005 * max_hp * n -- 0.5% per soul
-        if hp > max_hp then
-            hp = max_hp
-        end
-        ComponentSetValue2(comp, "hp", hp)
     end
 end
 

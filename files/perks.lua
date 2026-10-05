@@ -7,10 +7,17 @@ local souls_perks = {
 		perk_icon = "mods/souls/files/perk_icons/anima_conduit_inworld.png",
 		stackable = STACKABLE_NO,
 		func = function(entity_perk_item, entity_who_picked, item_name)
-			EntityAddTag(entity_who_picked, "souls_anima_conduit")
+			local comp = EntityGetFirstComponentIncludingDisabled(entity_who_picked, "LuaComponent", "souls_anima_conduit") or EntityAddComponent2(entity_who_picked, "LuaComponent", {
+        		_tags="souls_execute_on_reap,souls_anima_conduit",
+        		script_source_file="mods/souls/files/scripts/perks/anima_conduit.lua",
+		        execute_every_n_frame=-1,
+    		})
 		end,
 		func_remove = function(entity_who_picked)
-			EntityRemoveTag(entity_who_picked, "souls_anima_conduit")
+			local comp = EntityGetFirstComponentIncludingDisabled(entity_who_picked, "LuaComponent", "souls_anima_conduit")
+			if comp ~= nil then
+				EntityRemoveComponent(entity_who_picked, comp)
+			end
 		end
 	},
 	{

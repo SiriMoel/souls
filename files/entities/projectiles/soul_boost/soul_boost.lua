@@ -201,22 +201,21 @@ else
         image_file="mods/souls/files/entities/souls/sprites/soul_" .. soul .. ".xml",
     })
 
+	EntityAddTag(this, "soul_projectile")
+
     local comp_particles = EntityAddComponent2(this, "ParticleEmitterComponent", {
         emitted_material_name="souls_soul_particles",
-		gravity.y=0.0,
-		lifetime_min=0.5,
-		lifetime_max=1.0,
+		lifetime_min=0.4,
+		lifetime_max=0.8,
 		x_vel_min=0,
 		x_vel_max=0,
 		y_vel_min=0,
 		y_vel_max=0,
-		count_min=8,
-		count_max=16,
+		count_min=6,
+		count_max=8,
 		render_on_grid=true,
 		fade_based_on_lifetime=true,
-		area_circle_radius.min=1,
-		area_circle_radius.max=5,
-		cosmetic_force_create=1,
+		cosmetic_force_create=true,
 		collide_with_grid=false,
 		airflow_force=0.051,
 		airflow_time=1.01,
@@ -228,6 +227,8 @@ else
 		render_back=true,
 		is_emitting=true,
     })
+	ComponentSetValue2(comp_particles, "area_circle_radius", 1, 5)
+	ComponentSetValue2(comp_particles, "gravity", 0, 0)
 
     local func = soul_effects[soul]
 	if func ~= nil then

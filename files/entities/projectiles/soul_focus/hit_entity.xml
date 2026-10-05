@@ -1,0 +1,12 @@
+<Entity>
+
+    <InheritTransformComponent
+		_enabled="1"
+    ></InheritTransformComponent>
+
+    <LuaComponent
+        script_source_file="mods/souls/files/entities/projectiles/soul_focus/hit.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+</Entity>

@@ -1,0 +1,67 @@
+<Entity tags="souls_effect_focus">
+
+    <InheritTransformComponent>
+    </InheritTransformComponent>
+
+	<GameEffectComponent 
+    	effect="CUSTOM"
+		custom_effect_id="SOULS_FOCUS"
+    	frames="40"
+    ></GameEffectComponent>
+
+	<ParticleEmitterComponent 
+		_enabled="1"
+		emitted_material_name="souls_soul_particles"
+		emit_cosmetic_particles="1"
+		create_real_particles="0"
+		is_emitting="1"
+		area_circle_radius.min="0"
+		area_circle_radius.max="3"
+		count_min="1"
+		count_max="4"
+		lifetime_min="0.3"
+		lifetime_max="0.6"
+		fade_based_on_lifetime="1"
+		x_vel_min="0"
+		x_vel_max="0"
+		y_vel_min="0"
+		y_vel_max="0"
+		gravity.y="0.0"
+		airflow_force="0.5"
+		airflow_time="0.001"
+		airflow_scale="0.0833"	
+		attractor_force="10"
+    ></ParticleEmitterComponent>
+
+	<SpriteParticleEmitterComponent
+		_enabled="1"
+		sprite_file="mods/souls/files/entities/projectiles/soul_focus/indicator.png"
+		sprite_centered="1"
+		delay="0"
+		lifetime="0"
+		color.r="1" color.g="1" color.b="1" color.a="0.5"
+		emission_interval_min_frames="0"
+        emission_interval_max_frames="0"
+        count_min="1" count_max="1"
+		scale.x="0.4" scale.y="0.4"
+		rotation="0"
+	></SpriteParticleEmitterComponent>
+
+	<VariableStorageComponent
+		_tags="souls_focus"
+		name="souls_focus"
+		value_float="0.2"
+	></VariableStorageComponent>
+
+	<LuaComponent
+		script_source_file="mods/souls/files/entities/projectiles/soul_focus/effect_update.lua"
+		execute_on_added="1"
+		execute_every_n_frame="1"
+	></LuaComponent>
+
+	<LuaComponent
+		script_damage_about_to_be_received="mods/souls/files/entities/projectiles/soul_focus/effect_damage_handler.lua"
+		execute_every_n_frame="-1"
+	></LuaComponent>
+
+</Entity>

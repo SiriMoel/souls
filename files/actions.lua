@@ -488,6 +488,23 @@ local new_actions = {
 		end,
 	},
 	{
+		id = "SOUL_FOCUS",
+		name = "$action_souls_soul_focus",
+		description = "$actiondesc_souls_soul_focus",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/soul_focus.png",
+		related_projectiles	= {"mods/souls/files/entities/projectiles/soul_focus/projectile.xml"},
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "3,4,5,6,10",
+		spawn_probability = "0.3,0.4,0.5,0.4,0.1",
+		price = 140,
+		mana = 60,
+		ai_never_uses = true,
+		action = function()
+			add_projectile("mods/souls/files/entities/projectiles/soul_focus/projectile.xml")
+			c.fire_rate_wait = c.fire_rate_wait + 32
+		end,
+	},
+	{
 		id = "REAPING_HALO",
 		name = "$action_souls_reaping_halo",
 		description = "$actiondesc_souls_reaping_halo",

@@ -3,16 +3,15 @@
 	<Base file="mods/souls/files/entities/items/_soulcrystals/_base.xml">
 	
 		<UIInfoComponent
-			name="Pyramid's Soul Crystal"
+			name="$item_souls_crystal_limbs"
 		></UIInfoComponent>
 
 		<ItemComponent
-			item_name="Pyramid's Soul Crystal"
-			ui_description="Fill with Soul Blood and kick to revive the Pyramid Boss."
+			item_name="$item_souls_crystal_limbs"
 		></ItemComponent>
 
 		<AbilityComponent
-			ui_name="Pyramid's Soul Crystal"
+			ui_name="$item_souls_crystal_limbs"
 		></AbilityComponent>
 
 		<VariableStorageComponent

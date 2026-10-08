@@ -17,6 +17,7 @@ CHANGED/FIXED
 - Various sprite changes
 - Reworked phylactery creation & powering (and also new sprites)
 - Reworked Soul of the Diviner
+- Countdown of sorts & vfx for boss reviving
 - Many spell changes
 - Various fixes and other changes that I lost track of
 
@@ -32,3 +33,4 @@ INTERNAL
 - Corrected mistakes of the past
 
 Warning: This update is a rewrite of many parts of the mod, so it will break existing runs with Souls.
+Tome Magic is probably broken too (for now?).

@@ -3,16 +3,15 @@
 	<Base file="mods/souls/files/entities/items/_soulcrystals/_base.xml">
 	
 		<UIInfoComponent
-			name="Leviathan's Soul Crystal"
+			name="$item_souls_crystal_fish"
 		></UIInfoComponent>
 
 		<ItemComponent
-			item_name="Leviathan's Soul Crystal"
-			ui_description="Fill with Soul Blood and kick to revive the Leviathan."
+			item_name="$item_souls_crystal_fish"
 		></ItemComponent>
 
 		<AbilityComponent
-			ui_name="Leviathan's Soul Crystal"
+			ui_name="$item_souls_crystal_fish"
 		></AbilityComponent>
 
 		<VariableStorageComponent

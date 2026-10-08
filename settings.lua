@@ -216,7 +216,7 @@ mod_settings = {
     },
     {
         category_id = "souls_counts",
-        ui_name = "GUI Setings",
+        ui_name = "GUI Settings",
         ui_description = "Souls GUI settings...",
         foldable = true,
         _folded = true,
@@ -365,7 +365,7 @@ mod_settings = {
                 scope = MOD_SETTING_SCOPE_RUNTIME,
                 ui_fn = mod_setting_bool_souls,
             },
-            {
+            --[[{
                 id = "starting_souls",
                 ui_name = "Start with souls",
                 ui_description = "How many souls you want to start with (this is kinda cheaty).",
@@ -373,7 +373,7 @@ mod_settings = {
                 values = {{"0", "0"}, {"10", "10"}, {"20", "20"}, {"30", "30"}, {"40", "40"}, {"50", "50"}, {"60", "60"}, {"70", "70"}, {"80", "80"}, {"90", "90"}, {"100", "100"}},
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
                 ui_fn = mod_setting_enum_souls,
-            },
+            },]]
         },
     },
     

@@ -1,56 +1,55 @@
--- stolen from apotheosis
-
--- Big thank you to Horscht for this genome adding function :)
 function split_string(inputstr, sep)
-    sep = sep or "%s"
-    local t= {}
-    for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
-      table.insert(t, str)
-    end
-    return t
+  sep = sep or "%s"
+  local t= {}
+  for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
+    table.insert(t, str)
+  end
+  return t
 end
-  
-function add_new_genome(content, genome_name, default_relation_ab, default_relation_ba, self_relation, relations)
-    local lines = split_string(content, "\r\n")
-    local output = ""
-    local genome_order = {}
-    local function get_relation(herd, index)
-      if type(relations[herd]) == "number" then
-        return relations[herd]
-      elseif type(relations[herd]) == "table" then
-        if type(index) ~= "number" then
-          error("Wrong format", 3)
-        end
-        return relations[herd][index]
-      end
-    end
-    for i, line in ipairs(lines) do
-      if i == 1 then
-        output = output .. line .. "," .. genome_name .. "\r\n"
-      else
-        local herd = line:match("([%w_-]+),")
-        local relation = get_relation(herd, 2)
-        output = output .. line .. ","..(relation or default_relation_ba).."\r\n"
-        table.insert(genome_order, herd)
-      end
-    end
-  
-    local line = genome_name
-    for i, v in ipairs(genome_order) do
-      local relation = get_relation(v, 1)
-      line = line .. "," .. (relation or default_relation_ab)
-    end
-  
-    return output .. line .. "," .. self_relation
-end
-  
+
 local content = ModTextFileGetContent("data/genome_relations.csv")
 
-content = add_new_genome(content, "souls_void", 40, 60, 100, {
-    player = 0,
-    ["-1"] = 0,
-    slimes = 100,
-    mage = 100,
+--The function works like this: genome_name is the name of your new genome/faction,
+--default_relation_ab is the relation with all the horizontal genomes which relations weren't specified in the table,
+--default_relation_ba is the relation with all the vertical genomes which relations weren't specified in the table,
+--self relation is the genome's relation with itself,
+--relations is a table which directly specifies the value of the genome relation with.
+
+function add_new_genome(content, genome_name, default_relation_ab, default_relation_ba, self_relation, relations)
+  local lines = split_string(content, "\r\n")
+  local output = ""
+  local genome_order = {}
+  for i, line in ipairs(lines) do
+    if i == 1 then
+      output = output .. line .. "," .. genome_name .. "\r\n"
+    else
+      local herd = line:match("([%w_-]+),")
+      output = output .. line .. ","..(relations[herd] or default_relation_ba).."\r\n"
+      table.insert(genome_order, herd)
+    end
+  end
+
+  local line = genome_name
+  for i, v in ipairs(genome_order) do
+    line = line .. "," .. (relations[v] or default_relation_ab)
+  end
+  output = output .. line .. "," .. self_relation
+
+  return output
+end
+
+--[[
+-- Example usage: (This sets all genome relations of this genome to 100, unless indicated so, in this case, I want 100 with everything, except the player and -1)
+content = add_new_genome(content, "genome1", 100, 100, 100, {
+  player = 0,
+  ["-1"] = 0
+})
+--Here I want 0 genome relations with everything, except for 100 with itself
+content = add_new_genome(content, "genome2", 0, 0, 100, {})
+]]
+
+content = add_new_genome(content, "souls_void", 100, 100, 100, {
+  player = 0,
 })
 
 ModTextFileSetContent("data/genome_relations.csv", content)

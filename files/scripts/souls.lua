@@ -97,11 +97,16 @@ function WandSoulType(wand)
         value_int=0
     })
     local val = ComponentGetValue2(comp, "value_int")
+    --GamePrint(val)
     local soul = (val ~= 0 and soul_types[val]) or "any"
     return soul
 end
 
 function SpellUseSouls(caster, n)
+    if not EntityHasTag(caster, "player_unit") then
+        print("Souls: SpellUseSouls() THAT IS NOT THE PLAYER!!!")
+        return false
+    end
     local success = false
     local soul_used
     local comp = EntityGetFirstComponentIncludingDisabled(caster, "Inventory2Component")
@@ -111,6 +116,7 @@ function SpellUseSouls(caster, n)
         local soul = WandSoulType(wand)
         if soul == "any" then
             local counts = SoulCounts(caster)
+            --GamePrint("total: " .. counts["total"])
             if counts["total"] >= n then
                 local used_n = 0
                 local used = {}
@@ -120,6 +126,7 @@ function SpellUseSouls(caster, n)
                             if v > 0 then
                                 used[k] = (used[k] or 0) - 1
                                 used_n = used_n + 1
+                                counts[tostring(k)] = counts[tostring(k)] - 1
                                 if n == 1 then
                                     soul_used = tostring(k)
                                     break
@@ -198,7 +205,7 @@ function GetEntitySoulType(entity)
     if comp ~= nil then
         local herd_id_number = ComponentGetValue2(comp, "herd_id")
         local herd_id = HerdIdToString(herd_id_number)
-        local soul_ = ConvertHerdIdToSoul(herd_id)
+        local soul_ = souls_genomes[herd_id] or herd_id
         if soul_names[soul_] ~= nil then
             soul = soul_
         end 
@@ -215,6 +222,60 @@ function AcquireManySouls(player)
         souls[soul] = 99
     end
     EditSoulCounts(souls, player)
+end
+
+function SoulsDeath(this, entity_thats_responsible)
+    local x, y = EntityGetTransform(this)
+    SetRandomSeed(x, y + this)
+    local soul_count = 0
+    local souls = {}
+    local reapers = EntityGetAllChildren(this, "souls_reaper") or {}
+    if #reapers > 0 then
+        for _, reaper in ipairs(reapers) do
+            local rcomp = EntityGetFirstComponentIncludingDisabled(reaper, "VariableStorageComponent", "souls_reaper")
+            if rcomp ~= nil then
+                local soul = "friendly"
+                local c_soul = ComponentGetValue2(rcomp, "name")
+                local c_amt = ComponentGetValue2(rcomp, "value_int")
+                if c_soul == "soul" then
+                    soul_count = soul_count + c_amt
+                elseif c_soul == "random" then
+                    for i=1,c_amt do
+                        local r_soul = soul_types[Random(1, #soul_types - 2)]
+                        souls[r_soul] = (souls[r_soul] or 0) + 1
+                    end
+                    soul_count = soul_count + c_amt
+                elseif soul_names[c_soul] ~= nil then
+                    soul = c_soul
+                    souls[soul] = (souls[soul] or 0) + c_amt
+                end
+            end
+        end
+    end
+    if Random(1, 4) == 1 then
+        soul_count = soul_count + 1
+    end
+    if EntityHasTag(entity_thats_responsible, "player_unit") then
+        local comp_reap_better = EntityGetFirstComponentIncludingDisabled(entity_thats_responsible, "VariableStorageComponent", "souls_reap_better")
+        if comp_reap_better ~= nil then
+            soul_count = soul_count + ComponentGetValue2(comp_reap_better, "value_int")
+        end
+    end
+    --[[local comps = EntityGetComponentIncludingDisabled(this, "VariableStorageComponent", "souls_reap") or {}
+    if #comps > 0 then
+        for i,comp in ipairs(comps) do
+            local soul = ComponentGetValue2(comp, "name")
+            local amt = ComponentGetValue2(comp, "value_int")
+            souls[soul] = (souls[soul] or 0) + amt
+        end
+    end]]
+    if soul_count > 0 then
+        local soul_type = GetEntitySoulType(this)
+        souls[soul_type] = (souls[soul_type] or 0) + soul_count
+    end
+    if next(souls) ~= nil then
+        DontFearTheReaper(souls, this)
+    end
 end
 
 function DontFearTheReaper(souls, entity)
@@ -276,6 +337,7 @@ function LoseSouls(player, n, not_boss)
                     if v > 0 then
                         used[k] = (used[k] or 0) - 1
                         used_n = used_n + 1
+                        counts[tostring(k)] = counts[tostring(k)] - 1
                     end
                 end
             end
@@ -490,39 +552,7 @@ function RemoveRandomSouls(amount)
 end
 
 function ConvertHerdIdToSoul(herd_id)
-    if herd_id == "player" then
-        herd_id = "friendly"
-    end
-    if herd_id == "ant" then
-        herd_id = "fly"
-    end
-    if herd_id == "ghost_fairy" then
-        herd_id = "ghost_whisp"
-    end
-    if herd_id == "helpless" then
-        herd_id = "friendly"
-    end
-    if herd_id == "fire" then
-        herd_id = "mage"
-    end
-    if herd_id == "ice" then
-        herd_id = "mage"
-    end
-    if herd_id == "rat" then
-        herd_id = "friendly"
-    end
-    if herd_id == "flower" then
-        herd_id = "slimes"
-    end
-    if herd_id == "healer" then
-        herd_id = "friendly"
-    end
-    if herd_id == "apparition" then
-        herd_id = "souls_void"
-    end
-    if herd_id == "mage_swapper" then
-        herd_id = "mage"
-    end
+    herd_id = souls_genomes[herd_id] or herd_id
     return herd_id
 end
 

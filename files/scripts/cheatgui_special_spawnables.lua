@@ -14,6 +14,11 @@ local souls_to_add = {
         name = "Soul of the Diviner",
         xml = "item.xml",
     },
+    {
+        path = "mods/souls/files/entities/items/_soulcrystals/pyramid.xml",
+        name = "Kolmisilmän koipi's Soul Crystal",
+        xml = "pyramid.xml",
+    },
 }
 
 for i,v in ipairs(souls_to_add) do

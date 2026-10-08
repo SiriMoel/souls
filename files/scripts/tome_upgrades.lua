@@ -3,7 +3,7 @@ tome_upgrades = {
         id = "mana_max",
         sprite = "mods/souls/files/entities/items/tome2/upgrade_mana_max.png",
         func_cost = function(count) 
-            return math.min(5 + count * 3, 50)
+            return math.min(7 + count * 3, 50)
         end,
         func_apply = function(tome) 
             local comp = EntityGetFirstComponentIncludingDisabled(tome, "AbilityComponent")
@@ -21,7 +21,7 @@ tome_upgrades = {
         id = "haste",
         sprite = "mods/souls/files/entities/items/tome2/upgrade_haste.png",
         func_cost = function(count) 
-            return math.min(5 + count * 3, 50)
+            return math.min(7 + count * 3, 50)
         end,
         func_apply = function(tome) 
             local comp = EntityGetFirstComponentIncludingDisabled(tome, "AbilityComponent")
@@ -42,7 +42,7 @@ tome_upgrades = {
         id = "capacity",
         sprite = "mods/souls/files/entities/items/tome2/upgrade_capacity.png",
         func_cost = function(count) 
-            return math.min(5 + count * 3, 50)
+            return math.min(7 + count * 3, 50)
         end,
         func_apply = function(tome) 
             local comp = EntityGetFirstComponentIncludingDisabled(tome, "AbilityComponent")

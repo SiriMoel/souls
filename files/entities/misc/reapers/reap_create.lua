@@ -5,7 +5,6 @@ local root = EntityGetRootEntity(this)
 local x, y = EntityGetTransform(root)
 
 if root == this then 
-    --GamePrint("Souls?")
     EntityKill(this)
     return 
 end
@@ -16,16 +15,22 @@ if #fx == 0 then
     EntityAddChild(root, fx_e)
 end
 
-local comp_death = EntityGetFirstComponent(root, "LuaComponent", "souls_reap_death")
+--[[local comp_death = EntityGetFirstComponent(root, "LuaComponent", "souls_reap_death")
 if comp_death == nil then
     EntityAddComponent2(root, "LuaComponent", {
         _tags="souls_reap_death",
         script_death="mods/souls/files/entities/misc/reapers/reap_death.lua",
         execute_every_n_frame=-1
     })
-end
+    --[[EntityAddComponent2(root, "LuaComponent", {
+        _tags="souls_reap_death",
+        script_source_file="mods/souls/files/entities/misc/reapers/reap_removed.lua",
+        execute_on_removed=true,
+        execute_every_n_frame=-1
+    })
+end]]
 
-local comp = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "souls_reaper")
+--[[local comp = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "souls_reaper")
 if comp ~= nil then
     local soul = "friendly"
     local amt = 1
@@ -58,4 +63,4 @@ if comp ~= nil then
             value_int=amt
         })
     end
-end
+end]]

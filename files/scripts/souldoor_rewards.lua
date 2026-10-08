@@ -17,6 +17,7 @@ soul_spells = {
     { probability = 0.6, id = "SOULS_REAP_TELE", },
     { probability = 0.5, id = "SOULS_TOME_SLICE", },
     { probability = 0.5, id = "SOULS_TOME_LAUNCHER", },
+    { probability = 0.4, id = "SOULS_TOME_LASER", },
     { probability = 0.6, id = "SOULS_SOUL_BOOST", },
     { probability = 0.7, id = "SOULS_SCALING_DAMAGE", },
     { probability = 0.7, id = "SOULS_SCALING_SPEED", },

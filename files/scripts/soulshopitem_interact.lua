@@ -19,12 +19,14 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
                     if v > 0 then
                         used[k] = (used[k] or 0) - 1
                         used_n = used_n + 1
+                        counts[tostring(k)] = counts[tostring(k)] - 1
                     end
                 end
             end
         end
         EditSoulCounts(used, entity_who_interacted)
         EntityLoad("data/entities/particles/image_emitters/shop_effect.xml", x, y-8)
+        GamePlaySound("data/audio/Desktop/event_cues.bank", "event_cues/shop_item/create" x, y)
         ComponentSetValue2(comp_item, "is_pickable", true)
         GamePrint("Purchased!")
         local comps = EntityGetAllComponents(this)

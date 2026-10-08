@@ -34,6 +34,21 @@ if ModIsEnabled("Apotheosis") then
     }
 end
 
+souls_genomes = {
+    player = "friendly",
+    ant = "fly",
+    apparition = "souls_void",
+    mage_swapper = "mage",
+    ghost_fairy = "ghost_whisp",
+    helpless = "friendly",
+    fire = "mage",
+    ice = "mage",
+    rat = "friendly",
+    flower = "slimes",
+    healer = "friendly",
+    eel = "worm", -- i guess
+}
+
 soul_names = {
     bat = "$souls_soul_bat",
     fly = "$souls_soul_fly",

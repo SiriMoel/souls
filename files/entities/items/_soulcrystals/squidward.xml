@@ -3,16 +3,15 @@
 	<Base file="mods/souls/files/entities/items/_soulcrystals/_base.xml">
 	
 		<UIInfoComponent
-			name="Connoisseur's Soul Crystal"
+			name="$item_souls_crystal_pit"
 		></UIInfoComponent>
 
 		<ItemComponent
-			item_name="Connoisseur's Soul Crystal"
-			ui_description="Fill with Soul Blood and kick to revive the Connoisseur."
+			item_name="$item_souls_crystal_pit"
 		></ItemComponent>
 
 		<AbilityComponent
-			ui_name="Connoisseur's Soul Crystal"
+			ui_name="$item_souls_crystal_pit"
 		></AbilityComponent>
 
 		<VariableStorageComponent

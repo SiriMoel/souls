@@ -1,5 +1,7 @@
 dofile_once("mods/souls/files/scripts/souls.lua")
 
+-- this isn't used (see drop_money_append.lua)
+
 function death(damage_type_bit_field, damage_message, entity_thats_responsible, drop_items)
     local this = GetUpdatedEntityID()
     local comps = EntityGetComponentIncludingDisabled(this, "VariableStorageComponent", "souls_reap") or {}

@@ -3,16 +3,15 @@
 	<Base file="mods/souls/files/entities/items/_soulcrystals/_base.xml">
 	
 		<UIInfoComponent
-			name="Spirit's Soul Crystal"
+			name="$item_souls_crystal_islandspirit"
 		></UIInfoComponent>
 
 		<ItemComponent
-			item_name="Spirit's Soul Crystal"
-			ui_description="Fill with Soul Blood and kick to revive the Spirit."
+			item_name="$item_souls_crystal_islandspirit"
 		></ItemComponent>
 
 		<AbilityComponent
-			ui_name="Spirit's Soul Crystal"
+			ui_name="$item_souls_crystal_islandspirit"
 		></AbilityComponent>
 
 		<VariableStorageComponent

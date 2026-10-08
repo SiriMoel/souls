@@ -3,16 +3,15 @@
 	<Base file="mods/souls/files/entities/items/_soulcrystals/_base.xml">
 	
 		<UIInfoComponent
-			name="Tiny's Soul Crystal"
+			name="$item_souls_crystal_tiny"
 		></UIInfoComponent>
 
 		<ItemComponent
-			item_name="Tiny's Soul Crystal"
-			ui_description="Fill with Soul Blood and kick to revive Tiny."
+			item_name="$item_souls_crystal_tiny"
 		></ItemComponent>
 
 		<AbilityComponent
-			ui_name="Tiny's Soul Crystal"
+			ui_name="$item_souls_crystal_tiny"
 		></AbilityComponent>
 
 		<VariableStorageComponent

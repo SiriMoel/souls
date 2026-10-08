@@ -3,16 +3,15 @@
 	<Base file="mods/souls/files/entities/items/_soulcrystals/_base.xml">
 	
 		<UIInfoComponent
-			name="Meat's Soul Crystal"
+			name="$item_souls_crystal_meat"
 		></UIInfoComponent>
 
 		<ItemComponent
-			item_name="Meat's Soul Crystal"
-			ui_description="Fill with Soul Blood and kick to revive the Meat Boss."
+			item_name="$item_souls_crystal_meat"
 		></ItemComponent>
 
 		<AbilityComponent
-			ui_name="Meat's Soul Crystal"
+			ui_name="$item_souls_crystal_meat"
 		></AbilityComponent>
 
 		<VariableStorageComponent

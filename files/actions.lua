@@ -219,7 +219,6 @@ local new_actions = {
 		action = function()
 			c.fire_rate_wait = c.fire_rate_wait + 15
 			if reflecting then return end
-			dofile_once("mods/souls/files/scripts/souls.lua")
 			local entity = GetUpdatedEntityID()
 			local wand = 0
 			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
@@ -255,7 +254,7 @@ local new_actions = {
 				end
 			end
 			if wand == tome then
-				if SpellUseSouls(caster, 3) then
+				if SpellUseSouls(entity, 3) then
 					TomeAddProjectiles()
 				else
 					souls_not_enough = true
@@ -284,7 +283,6 @@ local new_actions = {
 				add_projectile("mods/souls/files/entities/projectiles/tome_slice/proj.xml")
 				return 
 			end
-			dofile_once("mods/souls/files/scripts/souls.lua")
 			local caster = GetUpdatedEntityID()
 			local comp_inv = EntityGetFirstComponentIncludingDisabled(caster, "Inventory2Component")
 			if comp_inv ~= nil then
@@ -324,7 +322,6 @@ local new_actions = {
 				add_projectile("mods/souls/files/entities/projectiles/tome_launcher/proj.xml")
 				return 
 			end
-			dofile_once("mods/souls/files/scripts/souls.lua")
 			local caster = GetUpdatedEntityID()
 			local comp_inv = EntityGetFirstComponentIncludingDisabled(caster, "Inventory2Component")
 			if comp_inv ~= nil then
@@ -367,7 +364,6 @@ local new_actions = {
 				add_projectile("mods/souls/files/entities/projectiles/tome_laser/projectile.xml")
 				return 
 			end
-			dofile_once("mods/souls/files/scripts/souls.lua")
 			local caster = GetUpdatedEntityID()
 			local comp_inv = EntityGetFirstComponentIncludingDisabled(caster, "Inventory2Component")
 			if comp_inv ~= nil then
@@ -413,7 +409,6 @@ local new_actions = {
 				c.damage_projectile_add = c.damage_projectile_add + 0.24
 				return 
 			end
-			dofile_once("mods/souls/files/scripts/souls.lua")
 			local caster = GetUpdatedEntityID()
 			if SpellUseSouls(caster, 1) then
 				c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_speed/soul_speed_fx.xml,"
@@ -597,7 +592,6 @@ local new_actions = {
 				c.damage_projectile_add = c.damage_projectile_add + 0.2
 				return 
 			end
-			dofile_once("mods/souls/files/scripts/utils.lua")
 			local caster = GetUpdatedEntityID()
 			local x, y = EntityGetTransform(GetPlayer())
 			local wand = 0
@@ -635,7 +629,6 @@ local new_actions = {
 				c.damage_critical_chance = c.damage_critical_chance + 60
 				return 
 			end
-			dofile_once("mods/souls/files/scripts/souls.lua")
 			local entity = GetUpdatedEntityID()
 			if SpellUseSouls(entity, 1) then
 				c.damage_critical_chance = c.damage_critical_chance + 60
@@ -662,7 +655,6 @@ local new_actions = {
 				c.damage_projectile_add = c.damage_projectile_add + 0.2
 				return
 			end
-			dofile_once("mods/souls/files/scripts/souls.lua")
 			local count = SoulCount("boss")
 			c.damage_projectile_add = c.damage_projectile_add + 0.2 * count
 			draw_actions(1, true)
@@ -684,7 +676,6 @@ local new_actions = {
 				c.speed_multiplier = c.speed_multiplier * 1.1
 				return 
 			end
-			dofile_once("mods/souls/files/scripts/souls.lua")
 			local count = SoulCount("boss")
 			c.speed_multiplier = c.speed_multiplier * (1 + (0.15 * count))
 			if c.speed_multiplier >= 20 then
@@ -709,7 +700,6 @@ local new_actions = {
 		action = function()
 			local count = 1
 			if not reflecting then
-				dofile_once("mods/souls/files/scripts/souls.lua")
 				count = SoulCount("boss")
 			end
 			mana = mana + 20 * count
@@ -731,7 +721,6 @@ local new_actions = {
 		ai_never_uses = true,
 		action = function()
 			if reflecting then return end
-			dofile_once("mods/souls/files/scripts/souls.lua")
 			local card = GetUpdatedEntityID() -- why did i call this 'card' ?
 			local x, y = EntityGetTransform(card)
 			local wand = 0

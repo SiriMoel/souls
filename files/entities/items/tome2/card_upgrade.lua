@@ -29,6 +29,7 @@ if EntityHasTag(parent, "soul_tome") and EntityHasTag(root, "player_unit") then
 
                 for i,v in ipairs(tome_upgrades) do
                     local draw_x, draw_y = start_x + (i - 1) * 48, start_y
+                    GameCreateSpriteForXFrames("mods/souls/files/entities/items/tome2/upgrade_base.png", draw_x, draw_y, true, 0, 0, 1, 0)
                     GameCreateSpriteForXFrames(v.sprite, draw_x, draw_y, true, 0, 0, 1, 0)
                     if mouse_x > draw_x - 24 and mouse_x < draw_x + 24 and mouse_y > draw_y - 24 and mouse_y < draw_y + 24 then
                     selected = i
@@ -59,10 +60,14 @@ if EntityHasTag(parent, "soul_tome") and EntityHasTag(root, "player_unit") then
                 if comp_upgrade_count ~= nil then
                     local upgrade_count = ComponentGetValue2(comp_upgrade_count, "value_int") or 0
                     local cost = tome_upgrades[selected].func_cost(upgrade_count)
-                    if SpellUseSouls(root, cost) then
-                        GamePrint("Upgraded!")
-                        tome_upgrades[selected].func_apply(parent)
-                        ComponentSetValue2(comp_upgrade_count, "value_int", upgrade_count + 1)
+                    if SoulCount("total", root) >= cost then
+                        if SpellUseSouls(root, cost) then
+                            GamePrint("Upgraded!")
+                            tome_upgrades[selected].func_apply(parent)
+                            ComponentSetValue2(comp_upgrade_count, "value_int", upgrade_count + 1)
+                        else
+                            SoulsPrint("You do not have enough souls for this. (" .. cost .. ")")
+                        end
                     else
                         SoulsPrint("You do not have enough souls for this. (" .. cost .. ")")
                     end

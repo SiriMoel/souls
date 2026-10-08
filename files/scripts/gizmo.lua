@@ -57,10 +57,10 @@ local drops = {
         path = "data/entities/animals/boss_meat/boss_meat.xml",
         script = "mods/souls/files/scripts/death/boss_meat.lua",
     },
-    {
+    --[[{
         path = "data/entities/animals/boss_robot/boss_robot.xml",
         script = "mods/souls/files/scripts/death/boss_robot.lua",
-    },
+    },]]
     {
         path = "data/entities/animals/maggot_tiny/maggot_tiny.xml",
         script = "mods/souls/files/scripts/death/maggot_tiny.lua",
@@ -105,6 +105,10 @@ for _,path in ipairs(bosses) do
         		_tags="souls_reap",
 		        name="boss",
 		        value_int=1
+    	    }},
+            { LuaComponent = {
+        		script_death="mods/souls/files/scripts/death/boss.lua",
+		        execute_every_n_frame=-1
     	    }}
         )
     end

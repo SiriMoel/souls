@@ -167,14 +167,8 @@ inject(args.StringFile, modes.PREPEND, "data/shaders/post_final.frag", "gl_FragC
 inject(args.StringFile, modes.PREPEND, "data/shaders/post_final.frag", "varying vec2 tex_coord_fogofwar;", "mods/souls/files/shaders/global.frag")
 GameSetPostFxParameter("souls_boss_soul_effect_amount", 0, 0, 0, 0)
 
--- apotheosis
-if ModIsEnabled("Apotheosis") then
-    --print("Souls - Apotheosis detected!")
-end
-
 -- glimmers expanded
 if ModIsEnabled("GlimmersExpanded") then
-    --print("Souls - GlimmersExpanded detected!")
 	ModLuaFileAppend("mods/GlimmersExpanded/files/lib/glimmer_data.lua", "mods/souls/files/scripts/glimmersexpanded.lua")
 end
 
@@ -226,8 +220,9 @@ function OnPlayerSpawned(player)
     GlobalsSetValue("souls.enemy_soul_eye", tostring(ModSettingGet("souls.enemy_soul_eye")))
 
     GlobalsSetValue("souls.amphitheatre_enemy_count", "10")
+    GlobalsSetValue("souls.bosses_revived", "0")
 
-    local starting_souls = tonumber(ModSettingGet("souls.starting_souls")) or 0
+    --[[local starting_souls = tonumber(ModSettingGet("souls.starting_souls")) or 0
     if starting_souls > 0 then
         local souls = {}
         for i=1,starting_souls do
@@ -235,7 +230,7 @@ function OnPlayerSpawned(player)
             souls[which] = (souls[which] or 0) + 1
         end
         EditSoulCounts(souls, player)
-    end
+    end]]
     
     EntityAddComponent2(player, "LuaComponent", {
         script_damage_about_to_be_received="mods/souls/files/scripts/player_damage_handler.lua",

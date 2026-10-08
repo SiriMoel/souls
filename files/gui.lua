@@ -145,7 +145,7 @@ function GuiRender()
             end
             GuiText(gui, xx + 8, yy, t .. " ")
         end
-        local centre_text = soulcounts["total"]
+        local centre_text = soulcounts["total_boss"]
         local centre_text_w = GuiGetTextDimensions(giu, centre_text)
         GuiText(gui, centre_x - centre_text_w * 0.5, centre_y, centre_text)
     end

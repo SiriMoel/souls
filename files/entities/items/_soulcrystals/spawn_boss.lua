@@ -1,15 +1,17 @@
 dofile_once("mods/souls/files/scripts/souls.lua")
 
 function kick(entity_who_kicked)
-    if not EntityHasTag(entity_who_kicked, "player_unit") then return end
     local this = GetUpdatedEntityID()
+    local root = EntityGetRootEntity(this)
+    if this ~= root then return end
+    if not EntityHasTag(entity_who_kicked, "player_unit") then return end
     local comp_boss = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "soul_crystal_boss")
     if comp_boss ~= nil then
         local comp_matinv = EntityGetFirstComponentIncludingDisabled(this, "MaterialInventoryComponent")
         if comp_matinv ~= nil then
             local mats = ComponentGetValue2(comp_matinv, "count_per_material_type")
             local amt = mats[CellFactory_GetType("souls_soul_blood_1") + 1] -- ?
-            if amt >= 300 then
+            if amt >= 100 then
                 local revived = tonumber(GlobalsGetValue("souls.bosses_revived", "0"))
                 revived = revived + 1
                 local desc = "The Gods watch intently..."

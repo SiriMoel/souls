@@ -1,8 +1,10 @@
 <Entity>
 
-    <lifetimeComponent
-        lifetime="181"
-    ></lifetimeComponent>
+    <VariableStorageComponent
+		_tags="frames_left"
+		name="frames_left"
+		value_int="181"
+	></VariableStorageComponent>
 
     <ParticleEmitterComponent 
 		emitted_material_name="souls_living_particles"
@@ -37,11 +39,11 @@
         execute_every_n_frame="1"
     ></LuaComponent>
 
-    <LuaComponent
+    <!--<LuaComponent
         script_source_file="mods/souls/files/entities/items/_soulcrystals/revive.lua"
         execute_every_n_frame="-1"
         execute_on_added="0"
         execute_on_removed="1"
-    ></LuaComponent>
+    ></LuaComponent>-->
 
 </Entity>

@@ -12,7 +12,7 @@
 		fixed_rotation="0" 
 		is_bullet="1" 
 		linear_damping="0"
-		auto_clean="1"
+		auto_clean="0"
 		hax_fix_going_through_ground="1"
 		on_death_leave_physics_body="0"
 		on_death_really_leave_body="0"
@@ -82,7 +82,7 @@
 	
 	<ParticleEmitterComponent 
 		_tags="enabled_in_world,enabled_in_hand"
-		emitted_material_name="souls_soul_particles"
+		emitted_material_name="souls_living_particles"
 		offset.x="0"
 		offset.y="0"
 		x_pos_offset_min="0"
@@ -156,13 +156,13 @@
 		value_string="data/entities/animals/boss_fish/fish_giga.xml"
 	></VariableStorageComponent>
 
-  <MaterialSuckerComponent 
-    _tags="enabled_in_world,enabled_in_hand"
-    barrel_size="300"
-    num_cells_sucked_per_frame="5"
-	material_type="0"
-	suck_tag="[souls_soul_blood_1]"
-  ></MaterialSuckerComponent> <!-- will this work? -->
+  	<MaterialSuckerComponent 
+	    _tags="enabled_in_world,enabled_in_hand"
+	    barrel_size="100"
+	    num_cells_sucked_per_frame="5"
+		material_type="0"
+		suck_tag="[souls_soul_blood_1]"
+  	></MaterialSuckerComponent> <!-- will this work? yes it will kinda -->
 
     <MaterialInventoryComponent 
     _tags="enabled_in_world,enabled_in_hand,enabled_in_inventory"
@@ -170,9 +170,9 @@
     on_death_spill="0"
     leak_pressure_min="0.07"
     leak_on_damage_percent="0"
-    do_reactions="20"
-    do_reactions_explosions="1"
-    do_reactions_entities="1"
+    do_reactions="0"
+    do_reactions_explosions="0"
+    do_reactions_entities="0"
      >
     <count_per_material_type
 	></count_per_material_type>

@@ -183,7 +183,7 @@
 	>
 	<Graphics 
 	texture_file="mods/souls/files/materials_gfx/soulaway.png" 
-	color="8000FA97"
+	color="808A5A68"
 	fire_colors_index="2" >
     </Graphics>
 	<StatusEffects>
@@ -196,28 +196,39 @@
 	</StatusEffects>
   </CellData>
 
-  <Reaction probability="100"
-	fast_reaction="1"
-	input_cell1="[magic_polymorph]" 			input_cell2="[blood]"
-	output_cell1="souls_soul_blood_1" 			output_cell2="souls_soul_blood_1" 
-	blob_radius2="3"
-	>
-  </Reaction>
+	<Reaction probability="100"
+		fast_reaction="1"
+		input_cell1="[magic_polymorph]" 			input_cell2="[blood]"
+		output_cell1="souls_soul_blood_1" 			output_cell2="souls_soul_blood_1" 
+		blob_radius2="3"
+		>
+  	</Reaction>
 
-  <Reaction probability="100"
-	fast_reaction="1"
-	input_cell1="souls_soul_blood_1" 			input_cell2="material_darkness"
-	output_cell1="souls_soul_blood_perfect" 	output_cell2="souls_soul_blood_perfect" 
-	blob_radius2="3"
-	>
-  </Reaction>
+  	<Reaction probability="100"
+		fast_reaction="1"
+		input_cell1="souls_soul_blood_1" 			input_cell2="material_darkness"
+		output_cell1="souls_soul_blood_perfect" 	output_cell2="souls_soul_blood_perfect" 
+		blob_radius2="3"
+		>
+  	</Reaction>
 
-  <Reaction probability="100"
-	fast_reaction="1"
-	input_cell1="souls_soul_blood_1" 			input_cell2="[slime]"
-	output_cell1="souls_soulaway" 			output_cell2="souls_soulaway" 
-	blob_radius2="3"
-	>
-  </Reaction>
+	<!-- huh? -->
+  	<Reaction probability="5"
+		input_cell1="souls_soul_blood_1" 			input_cell2="[slime]"
+		output_cell1="souls_soulaway" 			output_cell2="souls_soulaway" 
+		blob_radius2="3"
+	></Reaction>
+
+    <Reaction probability="0.6"
+		input_cell1="souls_soul_blood_1" input_cell2="air"
+		output_cell1="souls_soul_blood_1" output_cell2="air"
+		entity="mods/souls/files/entities/misc/soul_blood_fx.xml"
+	></Reaction>
+
+	<Reaction probability="2"
+		input_cell1="souls_soul_blood_perfect" input_cell2="air"
+		output_cell1="souls_soul_blood_perfect" output_cell2="air"
+		entity="mods/souls/files/entities/misc/soul_blood_fx.xml"
+	></Reaction>
 
 </Materials>

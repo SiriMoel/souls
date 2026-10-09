@@ -187,6 +187,24 @@ if ModIsEnabled("foolish_flame") then
 	ModLuaFileAppend("mods/foolish_flame/files/scripts/bounty_rewards.lua", "mods/souls/files/scripts/ff_bounty_rewards.lua")
 end
 
+function souls_update_settings_globals()
+    GlobalsSetValue("souls.collect_soul_from_entity", tostring(ModSettingGet("souls.collect_soul_from_entity")))
+    GlobalsSetValue("souls.say_soul", tostring(ModSettingGet("souls.say_soul")))
+    GlobalsSetValue("souls.say_consumed_soul", tostring(ModSettingGet("souls.say_consumed_soul")))
+    GlobalsSetValue("souls.say_not_enough", tostring(ModSettingGet("souls.say_not_enough")))
+    GlobalsSetValue("souls.enable_soul_shops", tostring(ModSettingGet("souls.enable_soul_shops")))
+    GlobalsSetValue("souls.first_gui", tostring(ModSettingGet("souls.first_gui")))
+    GlobalsSetValue("souls.total_boss", tostring(ModSettingGet("souls.total_boss")))
+    GlobalsSetValue("souls.hats", tostring(ModSettingGet("souls.hats")))
+    GlobalsSetValue("souls.souls_gui_key", tostring(ModSettingGet("souls.souls_gui_key")))
+    --GlobalsSetValue("souls.spell_spawn_chance_multiplier", tostring(ModSettingGet("souls.spell_spawn_chance_multiplier")))
+    GlobalsSetValue("souls.enable_enemies", tostring(ModSettingGet("souls.enable_enemies")))
+    GlobalsSetValue("souls.enemy_puppet_master", tostring(ModSettingGet("souls.enemy_puppet_master")))
+    GlobalsSetValue("souls.enemy_soul_angry", tostring(ModSettingGet("souls.enemy_soul_angry")))
+    GlobalsSetValue("souls.enemy_soul_rogue", tostring(ModSettingGet("souls.enemy_soul_rogue")))
+    GlobalsSetValue("souls.enemy_soul_eye", tostring(ModSettingGet("souls.enemy_soul_eye")))
+end
+
 -- player
 function OnPlayerSpawned(player)
 
@@ -205,21 +223,7 @@ function OnPlayerSpawned(player)
 
     SoulsInit(player)
 
-    GlobalsSetValue("souls.collect_soul_from_entity", tostring(ModSettingGet("souls.collect_soul_from_entity")))
-    GlobalsSetValue("souls.say_soul", tostring(ModSettingGet("souls.say_soul")))
-    GlobalsSetValue("souls.say_consumed_soul", tostring(ModSettingGet("souls.say_consumed_soul")))
-    GlobalsSetValue("souls.say_not_enough", tostring(ModSettingGet("souls.say_not_enough")))
-    GlobalsSetValue("souls.enable_soul_shops", tostring(ModSettingGet("souls.enable_soul_shops")))
-    GlobalsSetValue("souls.first_gui", tostring(ModSettingGet("souls.first_gui")))
-    GlobalsSetValue("souls.total_boss", tostring(ModSettingGet("souls.total_boss")))
-    GlobalsSetValue("souls.hats", tostring(ModSettingGet("souls.hats")))
-    GlobalsSetValue("souls.souls_gui_key", tostring(ModSettingGet("souls.souls_gui_key")))
-    --GlobalsSetValue("souls.spell_spawn_chance_multiplier", tostring(ModSettingGet("souls.spell_spawn_chance_multiplier")))
-    GlobalsSetValue("souls.enable_enemies", tostring(ModSettingGet("souls.enable_enemies")))
-    GlobalsSetValue("souls.enemy_puppet_master", tostring(ModSettingGet("souls.enemy_puppet_master")))
-    GlobalsSetValue("souls.enemy_soul_angry", tostring(ModSettingGet("souls.enemy_soul_angry")))
-    GlobalsSetValue("souls.enemy_soul_rogue", tostring(ModSettingGet("souls.enemy_soul_rogue")))
-    GlobalsSetValue("souls.enemy_soul_eye", tostring(ModSettingGet("souls.enemy_soul_eye")))
+    souls_update_settings_globals()
 
     GlobalsSetValue("souls.amphitheatre_enemy_count", "10")
     GlobalsSetValue("souls.bosses_revived", "0")
@@ -254,22 +258,6 @@ dofile_once("mods/souls/files/scripts/genomes.lua")
 
 function OnPausedChanged(is_paused, is_inventory_pause)
     if is_paused then
-        GlobalsSetValue("souls.collect_soul_from_entity", tostring(ModSettingGet("souls.collect_soul_from_entity")))
-        GlobalsSetValue("souls.say_soul", tostring(ModSettingGet("souls.say_soul")))
-        GlobalsSetValue("souls.say_consumed_soul", tostring(ModSettingGet("souls.say_consumed_soul")))
-        GlobalsSetValue("souls.say_not_enough", tostring(ModSettingGet("souls.say_not_enough")))
-        GlobalsSetValue("souls.enable_soul_shops", tostring(ModSettingGet("souls.enable_soul_shops")))
-        GlobalsSetValue("souls.first_gui", tostring(ModSettingGet("souls.first_gui")))
-        GlobalsSetValue("souls.total_boss", tostring(ModSettingGet("souls.total_boss")))
-        GlobalsSetValue("souls.hats", tostring(ModSettingGet("souls.hats")))
-        --GlobalsSetValue("souls.spell_spawn_chance_multiplier", tostring(ModSettingGet("souls.spell_spawn_chance_multiplier")))
-
-        GlobalsSetValue("souls.souls_gui_key", tostring(ModSettingGet("souls.souls_gui_key")))
-        
-        GlobalsSetValue("souls.enable_enemies", tostring(ModSettingGet("souls.enable_enemies")))
-        GlobalsSetValue("souls.enemy_puppet_master", tostring(ModSettingGet("souls.enemy_puppet_master")))
-        GlobalsSetValue("souls.enemy_soul_angry", tostring(ModSettingGet("souls.enemy_soul_angry")))
-        GlobalsSetValue("souls.enemy_soul_rogue", tostring(ModSettingGet("souls.enemy_soul_rogue")))
-        GlobalsSetValue("souls.enemy_soul_eye", tostring(ModSettingGet("souls.enemy_soul_eye")))
+        souls_update_settings_globals()
     end
 end

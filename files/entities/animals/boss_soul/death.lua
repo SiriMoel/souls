@@ -8,12 +8,5 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
 
     local player = EntityGetWithTag("player_unit")[1]
 
-    local diviner = EntityGetAllChildren(player, "souls_diviner")[1]
-    local comp_state = EntityGetFirstComponentIncludingDisabled(diviner, "VariableStorageComponent", "state")
-    ComponentSetValue2(comp_state, "value_int", 3)
-
-    local comp_soulcheck = EntityGetFirstComponent(player, "LuaComponent", "diviner_state_2")
-    if comp_soulcheck ~= nil then
-        EntityRemoveComponent(player, comp_soulcheck)
-    end
+    GlobalsSetValue("souls_diviner_state", "3")
 end

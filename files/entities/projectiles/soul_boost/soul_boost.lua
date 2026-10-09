@@ -192,7 +192,7 @@ if not success or soul == nil then
 
     EntityKill(this)
 else
-	SoulsPrint("A " .. GameTextGetTranslatedOrNot(soul_names[soul]) .. " soul was consumed!.", "say_consumed_soul")
+	SoulsPrint("A " .. GameTextGetTranslatedOrNot(soul_names[soul]) .. " soul was consumed!", "say_consumed_soul")
 
     EntityAddComponent2(this, "SpriteComponent", {
         image_file="mods/souls/files/entities/souls/sprites/soul_" .. soul .. ".xml",

@@ -239,6 +239,22 @@ mod_settings = {
                 key_setting_default = 29,
             },
             {
+                id = "total_boss",
+                ui_name = "Include boss souls in total soul count",
+                ui_description = "Boss souls aren't normally consumed like other souls.",
+                value_default = false,
+                scope = MOD_SETTING_SCOPE_RUNTIME,
+                ui_fn = mod_setting_bool_souls,
+            },
+            {
+                id = "hats",
+                ui_name = "Enable hats",
+                ui_description = "Some souls have an unlockable hat in the GUI.",
+                value_default = true,
+                scope = MOD_SETTING_SCOPE_RUNTIME,
+                ui_fn = mod_setting_bool_souls,
+            },
+            {
                 id = "first_gui",
                 ui_name = "Display soul counts in screen corner",
                 ui_description = "Display soul counts in the bottom right corner.",

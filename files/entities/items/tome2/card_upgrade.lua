@@ -62,9 +62,23 @@ if EntityHasTag(parent, "soul_tome") and EntityHasTag(root, "player_unit") then
                     local cost = tome_upgrades[selected].func_cost(upgrade_count)
                     if SoulCount("total", root) >= cost then
                         if SpellUseSouls(root, cost) then
-                            GamePrint("Upgraded!")
                             tome_upgrades[selected].func_apply(parent)
                             ComponentSetValue2(comp_upgrade_count, "value_int", upgrade_count + 1)
+                            local maxed = CheckIsTomeMaxed(parent)
+                            if maxed then
+                                if not GameHasFlagRun("souls_tome_maxed") then
+                                    GameAddFlagRun("souls_tome_maxed")
+                                end
+                                if not HasFlagPersistent("souls_tome_maxed") then
+                                    AddFlagPersistent("souls_tome_maxed")
+                                end
+                                SoulsPrintImportant("Tome maxed!", "It cannot be upgraded any further.")
+                                GamePlaySound("data/audio/Desktop/projectiles.bank", "projectiles/enlightened_laser/launch_dark", player_x, player_y)
+                                EntityKill(this)
+                            else
+                                GamePrint("Upgraded!")
+                                GamePlaySound("data/audio/Desktop/projectiles.bank", "projectiles/enlightened_laser/launch_light", player_x, player_y)
+                            end
                         else
                             SoulsPrint("You do not have enough souls for this. (" .. cost .. ")")
                         end

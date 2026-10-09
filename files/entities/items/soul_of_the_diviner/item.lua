@@ -8,13 +8,15 @@ local comp_soulscount = EntityGetFirstComponentIncludingDisabled(this, "Variable
 
 if comp_soulscount == nil then return end
 
-local soulscount = ComponentGetValue2(comp_soulscount, "value_int")
-
-while root == this and #EntityGetInRadiusWithTag(x, y, 100, "souls_sotd_soul") < soulscount do
-    local child = EntityLoad("mods/souls/files/entities/items/soul_of_the_diviner/soul.xml", x, y)
-    EntityAddChild(this, child)
-    EntitySetTransform(child, x, y)
-end
+--[[local soulscount = ComponentGetValue2(comp_soulscount, "value_int")
+if root == this then
+    local sotd_souls = EntityGetWithTag("souls_sotd_soul") or {}
+    while #sotd_souls < soulscount do
+        local child = EntityLoad("mods/souls/files/entities/items/soul_of_the_diviner/soul.xml", x, y)
+        EntityAddChild(this, child)
+        EntitySetTransform(child, x, y)
+    end
+end]]
 
 local function update_this(n)
     local comp_uiinfo = EntityGetFirstComponentIncludingDisabled(this, "UIInfoComponent")
@@ -26,21 +28,23 @@ local function update_this(n)
         ComponentSetValue2(comp_item, "item_name", "$item_souls_diviner_soul_" .. n)
         ComponentSetValue2(comp_item, "ui_description", "$itemdesc_souls_diviner_soul_" .. n)
     end
-    local comp_ability = EntityGetFirstComponentIncludingDisabled(this, "AbilityComponent" .. n)
+    local comp_ability = EntityGetFirstComponentIncludingDisabled(this, "AbilityComponent")
     if comp_ability ~= nil then
         ComponentSetValue2(comp_ability, "ui_name", "$item_souls_diviner_soul_" .. n)
     end
 end
 
-local diviner = EntityGetAllChildren(player, "souls_diviner")[1]
-local comp_state = EntityGetFirstComponentIncludingDisabled(diviner, "VariableStorageComponent", "state")
-local diviner_state = ComponentGetValue2(comp_state, "value_int")
+local players = EntityGetWithTag("player_unit") or {}
+if #players == 0 then return end
+local player = players[1]
+
+local diviner_state = tonumber(GlobalsGetValue("souls_diviner_state", "0"))
 
 if diviner_state == 3 then -- make it rain in wizards den
     local biome = BiomeMapGetName(x, y)
     if biome == "$biome_wizardcave" then
         if #EntityGetInRadiusWithTag(x, y, 100, "spell_cloud") > 0 then
-            ComponentSetValue2(comp_state, "value_int", 4)
+            GlobalsSetValue("souls_diviner_state", "4")
             update_this(2)
             ComponentSetValue2(comp_soulscount, "value_int", 2)
             GamePlaySound("data/audio/Desktop/misc.bank", "misc/chest_dark_open", x, y)
@@ -65,7 +69,7 @@ end
 if diviner_state == 4 then -- 3 soul projectiles in the sky
     if y < -4000 then
         if #EntityGetInRadiusWithTag(x, y, 100, "soul_projectile")  >= 3 then
-            ComponentSetValue2(comp_state, "value_int", 5)
+            GlobalsSetValue("souls_diviner_state", "5")
             update_this(3)
             ComponentSetValue2(comp_soulscount, "value_int", 3)
             GamePlaySound("data/audio/Desktop/misc.bank", "misc/chest_dark_open", x, y)
@@ -85,7 +89,7 @@ if diviner_state == 5 then -- near 10 charmed creatures
         end
     end
     if amount >= 10 then
-        ComponentSetValue2(comp_state, "value_int", 6)
+        GlobalsSetValue("souls_diviner_state", "6")
         update_this(4)
         ComponentSetValue2(comp_soulscount, "value_int", 4)
         GamePlaySound("data/audio/Desktop/misc.bank", "misc/chest_dark_open", x, y)
@@ -101,7 +105,7 @@ end
 
 if diviner_state == 6 then -- start a wave at the amphitheatre
     if GameHasFlagRun("souls.amphitheatre_active") and #EntityGetInRadiusWithTag(x, y, 200, "souls_amphitheatre_enemy") > 0 then
-        ComponentSetValue2(comp_state, "value_int", 7)
+        GlobalsSetValue("souls_diviner_state", "7")
         update_this(5)
         ComponentSetValue2(comp_soulscount, "value_int", 5)
         GamePlaySound("data/audio/Desktop/misc.bank", "misc/chest_dark_open", x, y)

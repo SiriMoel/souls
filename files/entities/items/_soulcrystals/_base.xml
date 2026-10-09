@@ -158,7 +158,7 @@
 
   	<MaterialSuckerComponent 
 	    _tags="enabled_in_world,enabled_in_hand"
-	    barrel_size="100"
+	    barrel_size="150"
 	    num_cells_sucked_per_frame="5"
 		material_type="0"
 		suck_tag="[souls_soul_blood_1]"

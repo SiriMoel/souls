@@ -1,3 +1,4 @@
+dofile_once("mods/souls/files/scripts/souls.lua")
 local this = GetUpdatedEntityID()
 local x, y = EntityGetTransform(this)
 local comp_mi = EntityGetFirstComponentIncludingDisabled(this, "MaterialInventoryComponent")

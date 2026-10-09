@@ -60,6 +60,8 @@ function item_pickup(entity_item, entity_who_picked, item_name)
         local diviner = EntityLoad("mods/souls/files/entities/misc/diviner/entity.xml", x, y)
         EntityAddChild(entity_who_picked, diviner)
 
+        GlobalsSetValue("souls_diviner_state", "1")
+
         EntityLoad("mods/souls/files/entities/items/soul_tablet/item.xml", x, y - 6)
 
         SoulsPrintImportant("SOUL EMULATED!", "Something irreversible has occured.")

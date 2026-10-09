@@ -1,7 +1,7 @@
 dofile_once("mods/souls/files/scripts/souls.lua")
 
 local new_actions = {
-	--[[{
+	{
 		id = "HAX", -- DONT FORGET TO COMMENT THIS!!!
 		name = "cheating!",
 		description = "cheating!",
@@ -16,11 +16,11 @@ local new_actions = {
 			if reflecting then return end
 			local caster = GetUpdatedEntityID()
 			--EditSoulCounts({["orcs"] = 1}, caster)
-			--AcquireManySouls(caster)
+			AcquireManySouls(caster)
 			--SoulsPrintImportant("hello", "hello", "divine")
 			--EntitySetComponentsWithTagEnabled(caster, "souls_execute_on_reap", true)
 		end,
-	},]]
+	},
 	{
 		id = "REAPING_SHOT",
 		name = "$action_souls_reaping_shot",

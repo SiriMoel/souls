@@ -11,7 +11,7 @@ function kick(entity_who_kicked)
         if comp_matinv ~= nil then
             local mats = ComponentGetValue2(comp_matinv, "count_per_material_type")
             local amt = mats[CellFactory_GetType("souls_soul_blood_1") + 1] -- ?
-            if amt >= 100 then
+            if amt >= 150 then
                 local revived = tonumber(GlobalsGetValue("souls.bosses_revived", "0"))
                 revived = revived + 1
                 local desc = "The Gods watch intently..."

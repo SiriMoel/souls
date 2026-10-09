@@ -183,7 +183,7 @@ if not success or soul == nil then
 
     EntityKill(entity)
 else
-	SoulsPrint("A " .. GameTextGetTranslatedOrNot(soul_names[soul]) .. " soul was consumed!.", "say_consumed_soul")
+	SoulsPrint("A " .. GameTextGetTranslatedOrNot(soul_names[soul]) .. " soul was consumed!", "say_consumed_soul")
 
 	local comp_particles = EntityGetFirstComponent(entity, "ParticleEmitterComponent") or 0
 

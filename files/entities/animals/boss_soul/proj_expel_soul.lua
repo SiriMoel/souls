@@ -100,7 +100,7 @@ else
 		icedamage = icedamage + 0.3
 		icedamage = icedamage * 3
 	
-		ComponentObjectSetValue22(comp_proj, "damage_by_type", "ice", icedamage)
+		ComponentObjectSetValue2(comp_proj, "damage_by_type", "ice", icedamage)
 		ComponentSetValue2(comp_proj, "damage", projdamage)
 	end
 
@@ -158,7 +158,6 @@ else
 		EntityAddComponent2(entity, "CellEaterComponent", {
 			eat_probability=90,
 			radius=1,
-			ignored_material="rock_static_cursed",
 			ignored_material_tag="[matter_eater_ignore_list]",
 		})
 
@@ -177,7 +176,6 @@ else
 		EntityAddComponent2(entity, "CellEaterComponent", {
 			eat_probability=90,
 			radius=4,
-			ignored_material="",
 			ignored_material_tag="",
 		})
 

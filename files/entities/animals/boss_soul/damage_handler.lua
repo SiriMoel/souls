@@ -1,4 +1,3 @@
-dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("mods/souls/files/scripts/souls.lua")
 
 function damage_about_to_be_received(damage, x, y, entity_thats_responsible, critical_hit_chance)
@@ -12,15 +11,15 @@ function damage_about_to_be_received(damage, x, y, entity_thats_responsible, cri
         end
         if comp_shieldparticles ~= nil then
             if ComponentGetIsEnabled(comp_shieldparticles) then
-                return 0, 0
+                return damage * 0.4, critical_hit_chance * 0.1
             end
             EntitySetComponentIsEnabled(this, comp_shieldparticles, true)
         end
-        if not EntityHasTag(entity_thats_responsible, "player_unit") then
+        --[[if not EntityHasTag(entity_thats_responsible, "player_unit") then
             return 0, 0
-        end
+        end]]
         if damage > (max_hp * 0.1) then
-            damage = max_hp * 0.14
+            damage = damage * 0.45
         end
     end
     return damage, critical_hit_chance
@@ -30,7 +29,7 @@ function damage_received(damage, message, entity_thats_responsible, is_fatal, pr
     local this = GetUpdatedEntityID()
     local x, y = EntityGetTransform(this)
     if projectile_thats_responsible ~= nil then
-        if not EntityHasTag(projectile_thats_responsible, "soul_projectile") then
+        if EntityHasTag(entity_thats_responsible, "player_unit") and not EntityHasTag(projectile_thats_responsible, "soul_projectile") then
             EntityInflictDamage(this, (damage * -1.5), "DAMAGE_HEALING", message, "DISINTEGRATED", 0, 0, entity_thats_responsible, x, y, 0)
             GamePrint("Only soul magic can harm it...")
         end

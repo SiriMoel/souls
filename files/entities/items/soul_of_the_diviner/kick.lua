@@ -6,11 +6,9 @@ function kick(entity_who_kicked)
     local x, y = EntityGetTransform(this)
     local comp_soulscount = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "souls_count") or 0
     if not EntityHasTag(entity_who_kicked, "player_unit") or this ~= root then return end
-    local diviner = EntityGetAllChildren(player, "souls_diviner")[1]
-    local comp_state = EntityGetFirstComponentIncludingDisabled(diviner, "VariableStorageComponent", "state")
-    local diviner_state = ComponentGetValue2(comp_state, "value_int")
+    local diviner_state = tonumber(GlobalsGetValue("souls_diviner_state", "0"))
     if diviner_state == 7 then
-        ComponentSetValue2(comp_state, "value_int", 8)
+        GlobalsSetValue("souls_diviner_state", "8")
         local comp_uiinfo = EntityGetFirstComponentIncludingDisabled(this, "UIInfoComponent")
         if comp_uiinfo ~= nil then
             ComponentSetValue2(comp_uiinfo, "name", "$item_souls_diviner_soul_done")

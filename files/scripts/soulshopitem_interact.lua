@@ -26,7 +26,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
         end
         EditSoulCounts(used, entity_who_interacted)
         EntityLoad("data/entities/particles/image_emitters/shop_effect.xml", x, y-8)
-        GamePlaySound("data/audio/Desktop/event_cues.bank", "event_cues/shop_item/create" x, y)
+        GamePlaySound("data/audio/Desktop/event_cues.bank", "event_cues/shop_item/create", x, y)
         ComponentSetValue2(comp_item, "is_pickable", true)
         GamePrint("Purchased!")
         local comps = EntityGetAllComponents(this)

@@ -167,7 +167,6 @@ else
 		EntityAddComponent(entity, "CellEaterComponent", {
 			eat_probability="90",
 			radius="1",
-			ignored_material="rock_static_cursed",
 			ignored_material_tag="[matter_eater_ignore_list]",
 		})
 
@@ -186,7 +185,6 @@ else
 		EntityAddComponent(entity, "CellEaterComponent", {
 			eat_probability="90",
 			radius="4",
-			ignored_material="",
 			ignored_material_tag="",
 		})
 

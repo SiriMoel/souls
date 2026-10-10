@@ -1,0 +1,9 @@
+<Entity>
+
+	<Base file="mods/souls/files/entities/items/update_informer/base.xml">
+		<ItemComponent
+			ui_description="$itemdesc_souls_update_informer_1_5"
+		></ItemComponent>
+	</Base>
+
+</Entity>

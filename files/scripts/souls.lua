@@ -201,10 +201,12 @@ end
 
 function GetEntitySoulType(entity)
     local soul = "friendly"
+    local herd
     local comp = EntityGetFirstComponentIncludingDisabled(entity, "GenomeDataComponent")
     if comp ~= nil then
         local herd_id_number = ComponentGetValue2(comp, "herd_id")
         local herd_id = HerdIdToString(herd_id_number)
+        herd = herd_id
         local soul_ = souls_genomes[herd_id] or herd_id
         if soul_names[soul_] ~= nil then
             soul = soul_
@@ -213,7 +215,7 @@ function GetEntitySoulType(entity)
     if EntityHasTag(entity, "souls_boss") then
         soul = "boss"
     end
-    return soul
+    return soul, herd
 end
 
 function AcquireManySouls(player)
@@ -261,17 +263,11 @@ function SoulsDeath(this, entity_thats_responsible)
             soul_count = soul_count + ComponentGetValue2(comp_reap_better, "value_int")
         end
     end
-    --[[local comps = EntityGetComponentIncludingDisabled(this, "VariableStorageComponent", "souls_reap") or {}
-    if #comps > 0 then
-        for i,comp in ipairs(comps) do
-            local soul = ComponentGetValue2(comp, "name")
-            local amt = ComponentGetValue2(comp, "value_int")
-            souls[soul] = (souls[soul] or 0) + amt
-        end
-    end]]
     if soul_count > 0 then
-        local soul_type = GetEntitySoulType(this)
-        souls[soul_type] = (souls[soul_type] or 0) + soul_count
+        local soul_type, herd_id = GetEntitySoulType(this)
+        if herd_id ~= "robot" or soul_type == "boss" then
+            souls[soul_type] = (souls[soul_type] or 0) + soul_count
+        end
     end
     if next(souls) ~= nil then
         DontFearTheReaper(souls, this)
@@ -297,22 +293,25 @@ function DontFearTheReaper(souls, entity)
             end
         end
     else
-        local total
+        local total = 0
         if GlobalsGetValue("souls.say_soul", "true") == "true" then
             local str = "You have acquired "
             local first = true
-            total = 0
             for soul, amt in pairs(souls) do
                 if first then
-                    str = str .. amt .. " " .. GameTextGetTranslatedOrNot(soul_names[soul]) .. " souls"
+                    str = str .. amt .. " " .. GameTextGetTranslatedOrNot(soul_names[soul]) .. " soul" .. ((amt > 1 and "s") or "")
                     first = false
                 else
-                    str = str .. ", " .. amt .. " " .. GameTextGetTranslatedOrNot(soul_names[soul]) .. " souls"
+                    str = str .. ", " .. amt .. " " .. GameTextGetTranslatedOrNot(soul_names[soul]) .. " soul" .. ((amt > 1 and "s") or "")
                 end
                 total = total + amt
             end
             str = str .. "!"
             GamePrint(str)
+        else
+            for soul, amt in pairs(souls) do
+                total = total + amt
+            end
         end
         EditSoulCounts(souls, player)
         local on_reap_comps = EntityGetComponent(player, "LuaComponent", "souls_execute_on_reap") or {}

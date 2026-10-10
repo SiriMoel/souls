@@ -626,12 +626,12 @@ local new_actions = {
 		ai_never_uses = true,
 		action = function()
 			if reflecting then 
-				c.damage_critical_chance = c.damage_critical_chance + 60
+				c.damage_critical_chance = c.damage_critical_chance + 100
 				return 
 			end
 			local entity = GetUpdatedEntityID()
 			if SpellUseSouls(entity, 1) then
-				c.damage_critical_chance = c.damage_critical_chance + 60
+				c.damage_critical_chance = c.damage_critical_chance + 100
 			else
 				souls_not_enough = true
     			souls_not_enough_count = souls_not_enough_count + 1

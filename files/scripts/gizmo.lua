@@ -101,11 +101,6 @@ for _,path in ipairs(bosses) do
     for content in nxml.edit_file(path) do
         content:set("tags", content:get("tags") .. ",souls_boss")
         content:create_children(
-            { VariableStorageComponent = {
-        		_tags="souls_reap",
-		        name="boss",
-		        value_int=1
-    	    }},
             { LuaComponent = {
         		script_death="mods/souls/files/scripts/death/boss.lua",
 		        execute_every_n_frame=-1

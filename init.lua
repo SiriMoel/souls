@@ -212,12 +212,14 @@ function OnPlayerSpawned(player)
 
     dofile_once("mods/souls/files/gui.lua")
 
+    local px, py = EntityGetTransform(player)
+
     if not HasFlagPersistent("souls_updated_1_5") then
         AddFlagPersistent("souls_updated_1_5")
+        --RemoveFlagPersistent("souls_updated_1_5")
         SoulsPrintImportant("Souls has been (majorly) updated!", "The change notes are on the workshop page.", "divine")
+        EntityLoad("mods/souls/files/entities/items/update_informer/1_5.xml", px, py - 5)
     end
-
-    local px, py = EntityGetTransform(player)
 
     if GameHasFlagRun("souls_init") then return end
 
@@ -247,8 +249,6 @@ function OnPlayerSpawned(player)
         script_source_file="mods/souls/files/scripts/player_everyframe.lua",
         execute_every_n_frame=1,
     })
-
-    --AcquireManySouls(player) -- DONT FORGET TO COMMENT THIS!!!
 
     GameAddFlagRun("souls_init")
 end

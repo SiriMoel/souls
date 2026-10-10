@@ -439,6 +439,14 @@ mod_settings = {
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
                 ui_fn = mod_setting_enum_souls,
             },
+            {
+                id = "enable_hauntings",
+                ui_name = "Enable Hauntings",
+                ui_description = "This is NYI!",
+                value_default = true,
+                scope = MOD_SETTING_SCOPE_RUNTIME,
+                ui_fn = mod_setting_bool_souls,
+            },
         },
     },
     {

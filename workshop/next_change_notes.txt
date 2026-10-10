@@ -1,37 +1,8 @@
 NEW
-- Souls gui keybind mod setting
-- Spell: Tome Laser
-- Spell: Soul Focus
-- Spell: Soulsplit
-- Spell: Lacerate Void
-- Spell: Soular Power (combined Soul-Scaling Mana & Soul-Scaling Recharge)
-- Perk: Reap Another
-- Mod settings menu categories
-- Mod settings to toggle each structure
-- Mod settings to adjust the spawning of each enemy
+- Enemy: Haunting
 
 CHANGED/FIXED
-- Main menu mod settings fix
-- Soul crystal & boss reviving fixes
-- Soul collectable entity movement tweaks
-- Various sprite changes
-- Updated phylactery creation & powering
-- Reworked Soul of the Diviner
-- Countdown of sorts & vfx for boss reviving
-- Many spell changes
-- Various fixes and other changes that I lost track of
-
-REMOVED
-- Spells: Soul Cloak, Soul Rage, Soul Tinker, Soul-Scaling Mana, Soul-Scaling Recharge, Weakening Halo, Expel Soul, Divide by Souls
-- Perk: Reap Bullet
+- ???
 
 INTERNAL
-- The whole mod basically
-- Changed spell & perk id prefixes to SOULS_
-- Changed enemy file prefixes to souls_
-- Updated nxml (rip 2022 nxml)
-- Translations file(s) changes
-- Corrected mistakes of the past
-
-Warning: This update is a rewrite of many parts of the mod, so it will break existing runs with Souls.
-Tome Magic is probably broken too (for now?).
+- ???

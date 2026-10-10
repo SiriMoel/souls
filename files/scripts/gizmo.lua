@@ -20,6 +20,16 @@ for content in nxml.edit_file("data/entities/items/pickup/spell_refresh.xml") do
     )
 end
 
+for content in nxml.edit_file("data/entities/items/orbs/orb_base.xml") do
+    content:create_children(
+	    { LuaComponent = {
+    		script_source_file="mods/souls/files/entities/misc/haunting/spawn_haunting.lua",
+            execute_on_added=true,
+            remove_after_executed=true
+	    }}
+    )
+end
+
 local drops = {
     {
         path = "data/entities/animals/boss_alchemist/boss_alchemist.xml",

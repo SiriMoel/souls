@@ -16,9 +16,11 @@ local new_actions = {
 			if reflecting then return end
 			local caster = GetUpdatedEntityID()
 			--EditSoulCounts({["orcs"] = 1}, caster)
-			AcquireManySouls(caster)
+			--AcquireManySouls(caster)
 			--SoulsPrintImportant("hello", "hello", "divine")
 			--EntitySetComponentsWithTagEnabled(caster, "souls_execute_on_reap", true)
+			local x, y = EntityGetTransform(caster)
+			EntityLoad("mods/souls/files/entities/misc/haunting/entity.xml", x, y - 6)
 		end,
 	},]]
 	{

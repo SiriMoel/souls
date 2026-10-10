@@ -1,0 +1,57 @@
+<Entity tags="souls_haunting">
+
+    <InteractableComponent
+        radius="10"
+        ui_text="[INTERACT] to challenge the Haunting."
+        name="Haunting"
+    ></InteractableComponent>
+
+    <LuaComponent
+        script_interacting="mods/souls/files/entities/misc/haunting/interact.lua"
+        execute_every_n_frame="-1"
+    ></LuaComponent>
+
+    <!--<LuaComponent
+        script_source_file="mods/souls/files/entities/misc/haunting/create.lua"
+        execute_on_added="1"
+        remove_after_executed="1"
+    ></LuaComponent>-->
+
+    <LuaComponent
+        script_source_file="mods/souls/files/entities/misc/haunting/update.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+    <SpriteComponent
+        _tags="haunting_soul"
+        image_file="mods/souls/files/entities/misc/haunting/soul.xml"
+        z_index="-1.5"
+    ></SpriteComponent>
+
+    <ParticleEmitterComponent 
+		emitted_material_name="souls_soul_particles"
+		gravity.y="0.0"
+		lifetime_min="0.4"
+		lifetime_max="0.6"
+		x_vel_min="-4"
+		x_vel_max="4"
+		y_vel_min="-4"
+		y_vel_max="4"
+		count_min="8"
+		count_max="12"
+		render_on_grid="1"
+		fade_based_on_lifetime="1"
+		area_circle_radius.min="1"
+		area_circle_radius.max="10"
+		cosmetic_force_create="1"
+		collide_with_grid="0"
+		airflow_force="0.051"
+		airflow_time="1.01"
+		airflow_scale="0.03"
+		emission_interval_min_frames="1"
+		emission_interval_max_frames="3"
+		emit_cosmetic_particles="1"
+		is_emitting="1" 
+    ></ParticleEmitterComponent>
+
+</Entity>

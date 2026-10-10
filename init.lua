@@ -203,6 +203,7 @@ function souls_update_settings_globals()
     GlobalsSetValue("souls.enemy_soul_angry", tostring(ModSettingGet("souls.enemy_soul_angry")))
     GlobalsSetValue("souls.enemy_soul_rogue", tostring(ModSettingGet("souls.enemy_soul_rogue")))
     GlobalsSetValue("souls.enemy_soul_eye", tostring(ModSettingGet("souls.enemy_soul_eye")))
+    GlobalsSetValue("souls.enable_hauntings", tostring(ModSettingGet("souls.enable_hauntings")))
 end
 
 -- player

@@ -1,0 +1,50 @@
+<Entity tags="enemy,mortal,hittable,homing_target,glue_NOT" name="$animal_souls_haunting">
+
+    <DamageModelComponent 
+		hp="0.4" 
+		air_needed="0" 
+        fire_probability_of_ignition="0" 
+		ragdoll_fx_forced="DISINTEGRATED"
+		ragdoll_material="souls_soul_particles"
+		blood_material="souls_soul_particles"
+		blood_spray_material="souls_soul_particles"
+		ragdoll_material="souls_soul_particles"
+        ragdoll_offset_y="-6"
+		blood_sprite_directional=""
+		blood_sprite_large=""
+		materials_that_damage="souls_soulaway" 
+		materials_how_much_damage="0.08" >   
+        <damage_multipliers
+			melee="1.0"
+			projectile="0.5"
+			explosion="0"
+			electricity="0"
+			fire="1" 
+			slice="1"
+			ice="0"
+		></damage_multipliers>
+	</DamageModelComponent>
+
+    <SpriteComponent
+        _tags="haunting_soul"
+        image_file="mods/souls/files/entities/misc/haunting/soul.xml"
+    ></SpriteComponent>
+
+    <HitboxComponent 
+		aabb_min_x="-4" 
+		aabb_max_x="4" 
+		aabb_min_y="-6" 
+		aabb_max_y="6"
+		damage_multiplier="1.0"
+    ></HitboxComponent>
+
+    <GenomeDataComponent 
+		herd_id="souls_void"
+		food_chain_rank="0"
+    ></GenomeDataComponent>
+
+    <LuaComponent
+        script_death="mods/souls/files/entities/animals/haunting/death.lua"
+    ></LuaComponent>
+
+</Entity>

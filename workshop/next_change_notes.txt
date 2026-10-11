@@ -2,12 +2,15 @@ NEW
 - Spell: Soul Sight
 - Enemy: Haunting
 - Material: Soulless Blood
+- Material: Soul Catalyst
 - Material: Absinthe
 - Structure: Fountain
 
 CHANGED/FIXED
 - Increased max tome upgrade soul cost
 - Soul Blood recipe now makes Soulless Blood, which must be converted into Soul Blood using souls
+- Wand Consumes X Souls spell spawns with the Soul Tome
+- Wand Consumes X Souls spell shows what soul is being consumed on the wand
 
 INTERNAL
 - ???

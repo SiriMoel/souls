@@ -5,8 +5,7 @@
 		input_cell1="[magic_polymorph]" 			input_cell2="[blood]"
 		output_cell1="souls_soulless_blood" 			output_cell2="souls_soulless_blood" 
 		blob_radius2="3"
-		>
-  	</Reaction>
+	></Reaction>
 
 	<Reaction probability="8"
 		input_cell1="souls_soulless_blood" input_cell2="air"
@@ -54,6 +53,17 @@
 	<Reaction probability="100" fast_reaction="1" blob_radius2="3"
 		input_cell1="souls_absinthe_done" input_cell2="souls_absinthebrick"  
 		output_cell1="souls_absinthe_done" output_cell2="air"
+	></Reaction>
+
+	<Reaction probability="90" 
+		input_cell1="souls_soul_blood_perfect" input_cell2="gold" input_cell3="blood_worm"
+		output_cell1="souls_catalyst" output_cell2="smoke" output_cell3="smoke"
+	></Reaction>
+
+	<Reaction probability="45"
+		input_cell1="souls_catalyst" input_cell2="souls_soul_blood_1"
+		output_cell1="souls_catalyst" output_cell2="souls_soul_blood_1"
+		entity="mods/souls/files/entities/misc/catalyst/catalyst.xml"
 	></Reaction>
 
 </Materials>

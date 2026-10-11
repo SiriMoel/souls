@@ -310,4 +310,41 @@
 		</StatusEffects>
   	</CellData>
 
+	<CellData
+		name="souls_catalyst"
+		ui_name="$mat_souls_catalyst"
+	  	tags="[liquid]"
+		density="4.15"
+		cell_type="liquid"
+		wang_color="8042FF9A"
+		generates_smoke="0"
+		liquid_gravity="0.8"
+		liquid_sand="0"
+		gfx_glow="90"
+		on_fire="0"
+		requires_oxygen="0"
+		liquid_stains="1"
+		liquid_sprite_stain_shaken_drop_chance="5"
+		status_effects=""
+		audio_materialaudio_type="MAGICAL" 
+		show_in_creative_mode="1" 
+		>
+		<Graphics 
+			texture_file="mods/souls/files/materials_gfx/catalyst.png" 
+			color="8042FF9A"
+			fire_colors_index="2" >
+	    </Graphics>
+		<ParticleEffect
+			vel.y="-8"
+			vel_random.min_x="-3"
+			vel_random.max_x="3"
+			vel_random.min_y="-2.9"
+			vel_random.max_y="3.2"
+			render_on_grid="1"
+			probability="0.4"
+			count.min="0"
+			count.max="1"
+		></ParticleEffect>
+  	</CellData>
+
 </Materials>

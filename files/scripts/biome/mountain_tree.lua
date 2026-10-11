@@ -4,6 +4,7 @@ dofile_once("mods/souls/files/scripts/souls.lua")
 RegisterSpawnFunction( 0xff2cbaa0, "spawn_tome" )
 RegisterSpawnFunction( 0xff259e88, "spawn_tome_upgrader" )
 RegisterSpawnFunction( 0xff449e88, "spawn_phylactery" )
+RegisterSpawnFunction( 0xff3e9b8a, "spawn_souls_wand_consumes_spell")
 
 function spawn_tome(x, y)
     EntityLoad("mods/souls/files/entities/items/tome2/tome.xml", x - 4, y)
@@ -16,4 +17,9 @@ end
 
 function spawn_phylactery(x, y)
     EntityLoad("mods/souls/files/entities/items/phylactery/item.xml", x, y)
+    
+end
+
+function spawn_souls_wand_consumes_spell(x, y)
+    CreateItemActionEntity("SOULS_WAND_CONSUMES_X_SOULS", x, y)
 end

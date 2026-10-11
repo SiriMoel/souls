@@ -36,4 +36,9 @@
         >
     </VariableStorageComponent>
 
+	<SpriteComponent 
+		_tags="enabled_in_hand,selected_soul"
+		image_file="mods/souls/files/entities/souls/sprites/soul_any.xml" 
+	></SpriteComponent>
+
 </Entity>

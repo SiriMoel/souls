@@ -1,11 +1,13 @@
 NEW
 - Spell: Soul Sight
 - Enemy: Haunting
+- Material: Soulless Blood
 - Material: Absinthe
 - Structure: Fountain
 
 CHANGED/FIXED
 - Increased max tome upgrade soul cost
+- Soul Blood recipe now makes Soulless Blood, which must be converted into Soul Blood using souls
 
 INTERNAL
 - ???

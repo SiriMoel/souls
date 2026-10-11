@@ -356,7 +356,7 @@ mod_settings = {
         settings = {
             {
                 id = "enable_souldoor",
-                ui_name = "Enable Gate?",
+                ui_name = "Gate",
                 ui_description = "Should this structure appear?",
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
@@ -364,7 +364,7 @@ mod_settings = {
             },
             {
                 id = "enable_soulplace",
-                ui_name = "Enable the structure in the tree?",
+                ui_name = "Tree room",
                 ui_description = "Should this structure appear?",
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
@@ -372,7 +372,7 @@ mod_settings = {
             },
             {
                 id = "enable_amphitheatre",
-                ui_name = "Enable Amphitheatre?",
+                ui_name = "Amphitheatre",
                 ui_description = "Should this structure appear?",
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
@@ -380,7 +380,7 @@ mod_settings = {
             },
             {
                 id = "enable_shop_structure",
-                ui_name = "Enable Shop structure?",
+                ui_name = "Soul Shop",
                 ui_description = "Should this structure appear?",
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
@@ -388,7 +388,7 @@ mod_settings = {
             },
             {
                 id = "enable_fountain_structure",
-                ui_name = "Enable Fountain?",
+                ui_name = "Fountain",
                 ui_description = "Should this structure appear?",
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
@@ -474,7 +474,7 @@ mod_settings = {
             },
             {
                 id = "enable_soul_shops",
-                ui_name = "Enable Soul Shops",
+                ui_name = "Purchase items with souls",
                 ui_description = "Should some items be bought with souls instead of gold?",
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_RUNTIME,

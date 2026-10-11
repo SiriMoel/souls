@@ -16,14 +16,14 @@ comp = comp or EntityAddComponent2(wand, "VariableStorageComponent", {
 
 local val = ComponentGetValue2(comp, "value_int")
 
-local comp_sprite = EntityGetFirstComponentIncludingDisabled(card, "SpriteComponent", "selected_soul")
+local comp_sprite = EntityGetFirstComponentIncludingDisabled(card, "SpriteParticleEmitterComponent", "selected_soul")
 if comp_sprite ~= nil then
     if val ~= 0 then
-        ComponentSetValue2(comp_sprite, "image_file", "mods/souls/files/entities/souls/sprites/soul_" .. soul_types[val] .. ".xml")
-        EntityRefreshSprite(card, comp_sprite)
+        ComponentSetValue2(comp_sprite, "sprite_file", "mods/souls/files/entities/souls/sprites/soul_" .. soul_types[val] .. ".xml")
+        --EntityRefreshSprite(card, comp_sprite)
     else
-        ComponentSetValue2(comp_sprite, "image_file", "mods/souls/files/entities/souls/sprites/soul_any.xml")
-        EntityRefreshSprite(card, comp_sprite)
+        ComponentSetValue2(comp_sprite, "sprite_file", "mods/souls/files/entities/souls/sprites/soul_any.xml")
+        --EntityRefreshSprite(card, comp_sprite)
     end
 end
 

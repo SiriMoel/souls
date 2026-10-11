@@ -386,6 +386,14 @@ mod_settings = {
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
                 ui_fn = mod_setting_bool_souls,
             },
+            {
+                id = "enable_fountain_structure",
+                ui_name = "Enable Fountain?",
+                ui_description = "Should this structure appear?",
+                value_default = true,
+                scope = MOD_SETTING_SCOPE_NEW_GAME,
+                ui_fn = mod_setting_bool_souls,
+            },
         },
     },
     {

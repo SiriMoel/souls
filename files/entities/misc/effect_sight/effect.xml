@@ -1,0 +1,41 @@
+<Entity tags="souls_sight_effect">
+	
+	<InheritTransformComponent 
+		_enabled="1" >
+    </InheritTransformComponent>	
+
+	<GameEffectComponent
+		effect="CUSTOM"
+		custom_effect_id="SOULS_SIGHT"
+		frames="1201"
+	></GameEffectComponent>
+	
+	<UIIconComponent
+		name="$status_souls_sight"
+		description="$statusdesc_souls_sight"
+		icon_sprite_file="mods/souls/files/status_indicators/sight.png"
+		is_perk="0"
+		display_above_head="0"
+		display_in_hud="1"
+	></UIIconComponent>
+
+    <LuaComponent
+        script_source_file="mods/souls/files/entities/misc/effect_sight/update.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+	<LightComponent 
+	    _enabled="1"
+		update_properties="1"
+	    r="140"
+	    g="200"
+	    b="255"
+		radius="500"
+	></LightComponent>
+
+	<FogOfWarRemoverComponent
+		_enabled="1"
+		radius="500"
+	></FogOfWarRemoverComponent>
+
+</Entity>

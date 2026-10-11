@@ -1,0 +1,18 @@
+<Entity tags="souls_effect_absinthe_bad">
+	
+	<InheritTransformComponent 
+		_enabled="1" >
+    </InheritTransformComponent>	
+	
+	<GameEffectComponent
+		effect="CUSTOM"
+		custom_effect_id="SOULS_ABSINTHE_BAD"
+		frames="400"
+	></GameEffectComponent>
+
+	<LuaComponent
+		script_source_file="mods/souls/files/entities/misc/effect_absinthe/bad.lua"
+		execute_every_n_frame="30"
+	></LuaComponent>
+
+</Entity>

@@ -711,6 +711,46 @@ local new_actions = {
 		end,
 	},
 	{
+		id = "SIGHT",
+		name = "$action_souls_sight",
+		description = "$actiondesc_souls_sight",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/sight.png",
+		type = ACTION_TYPE_UTILITY,
+		spawn_level = "0,1,2,3,4,5,6",
+		spawn_probability = "0.6,0.7,0.8,0.5,0.3,0.2,0.2",
+		price = 180,
+		mana = 50,
+		ai_never_uses = true,
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 30
+			if reflecting then return end
+			local caster = GetUpdatedEntityID()
+			if SpellUseSouls(caster, 1) then
+				local effects = EntityGetAllChildren(caster, "souls_sight_effect") or {}
+				if #effects > 0 then
+					local effect = effects[1]
+					local gec = EntityGetFirstComponent(effect, "GameEffectComponent")
+					if gec ~= nil then
+						local frames = ComponentGetValue2(gec, "frames")
+						frames = frames + 1200
+						ComponentSetValue2(gec, "frames", frames)
+					end
+				else
+					local effect = LoadGameEffectEntityTo(caster, "mods/souls/files/entities/misc/effect_sight/effect.xml")
+					local gec = EntityGetFirstComponent(effect, "GameEffectComponent")
+					if gec ~= nil then
+						local frames = ComponentGetValue2(gec, "frames")
+						frames = 1201
+						ComponentSetValue2(gec, "frames", frames)
+					end
+				end
+			else
+				souls_not_enough = true
+    			souls_not_enough_count = souls_not_enough_count + 1
+			end
+		end,
+	},
+	{
 		id = "EAT_WAND_FOR_SOULS",
 		name = "$action_souls_eat_wand_for_souls",
 		description = "$actiondesc_souls_eat_wand_for_souls",

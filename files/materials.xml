@@ -1,4 +1,7 @@
   <Materials>
+
+	<!-- sparks -->
+
     <CellDataChild
       	_parent="spark"
       	_inherit_reactions="1"
@@ -77,158 +80,192 @@
         </Graphics>
     </CellDataChild>
 
-  <CellData
-	name="souls_soul_blood_1"
-	ui_name="$mat_souls_soul_blood"
-  	tags="[liquid],[souls_soul_blood_1]"
-	density="4.17"
-	cell_type="liquid"
-	wang_color="8000c887"
-	generates_smoke="0"
-	liquid_gravity="0.8"
-	liquid_sand="0"
-	gfx_glow="150"
-	on_fire="0"
-	requires_oxygen="0"
-	liquid_stains="1"
-	liquid_sprite_stain_shaken_drop_chance="5"
-	status_effects="BLOODY"
-	audio_materialaudio_type="MAGICAL" 
-	show_in_creative_mode="1" 
-	>
-	<Graphics 
-	texture_file="mods/souls/files/materials_gfx/souljuice.png" 
-	color="8000e29a"
-	fire_colors_index="2" >
-    </Graphics>
-	<ParticleEffect
-		vel.y="2.86"
-		vel_random.min_x="-6"
-		vel_random.max_x="6"
-		vel_random.min_y="-2.9"
-		vel_random.max_y="3.2"
-		render_on_grid="1"
-		probability="0.6"
-		count.min="0"
-		count.max="1"
-	>
-	</ParticleEffect>
-	<StatusEffects>
-		<Ingestion>
-			<StatusEffect type="BLOODY" amount="0.15" />
-		</Ingestion>
-	</StatusEffects>
-  </CellData>
+	<!-- the actual materials -->
 
-  <CellData
-	name="souls_soul_blood_perfect"
-	ui_name="$mat_souls_soul_blood_perfect"
-  	tags="[liquid],[souls_soul_blood_perfect]"
-	density="4.18"
-	cell_type="liquid"
-	wang_color="8000c888"
-	generates_smoke="0"
-	liquid_gravity="0.8"
-	liquid_sand="0"
-	gfx_glow="150"
-	on_fire="0"
-	requires_oxygen="0"
-	liquid_stains="1"
-	liquid_sprite_stain_shaken_drop_chance="5"
-	status_effects="BLOODY"
-	audio_materialaudio_type="MAGICAL" 
-	show_in_creative_mode="1" 
-	>
-	<Graphics 
-	texture_file="mods/souls/files/materials_gfx/souljuice_true.png" 
-	color="8000FA96"
-	fire_colors_index="2" >
-    </Graphics>
-	<ParticleEffect
-		vel.y="2.86"
-		vel_random.min_x="-6"
-		vel_random.max_x="6"
-		vel_random.min_y="-2.9"
-		vel_random.max_y="3.2"
-		render_on_grid="1"
-		probability="0.6"
-		count.min="0"
-		count.max="1"
-	>
-	</ParticleEffect>
-	<StatusEffects>
-		<Ingestion>
-			<StatusEffect type="SOULS_SOULJUICE" amount="0.1" />
-		</Ingestion>
-	</StatusEffects>
-  </CellData>
-
-  <CellData
-	name="souls_soulaway"
-	ui_name="$mat_souls_soulaway"
-  	tags="[liquid]"
-	density="4.18"
-	cell_type="liquid"
-	wang_color="8000c889"
-	generates_smoke="0"
-	liquid_gravity="0.8"
-	liquid_sand="0"
-	gfx_glow="150"
-	on_fire="0"
-	requires_oxygen="0"
-	liquid_stains="1"
-	liquid_sprite_stain_shaken_drop_chance="5"
-	audio_materialaudio_type="MAGICAL" 
-	show_in_creative_mode="1" 
-	>
-	<Graphics 
-	texture_file="mods/souls/files/materials_gfx/soulaway.png" 
-	color="808A5A68"
-	fire_colors_index="2" >
-    </Graphics>
-	<StatusEffects>
-		<Ingestion>
-			<StatusEffect type="SOULS_SOUL_DRAIN" amount="0.1" />
-		</Ingestion>
-		<Stains>
-			<StatusEffect type="SOULS_SOUL_DRAIN" />
-		</Stains>
-	</StatusEffects>
-  </CellData>
-
-	<Reaction probability="100"
-		fast_reaction="1"
-		input_cell1="[magic_polymorph]" 			input_cell2="[blood]"
-		output_cell1="souls_soul_blood_1" 			output_cell2="souls_soul_blood_1" 
-		blob_radius2="3"
+  	<CellData
+		name="souls_soul_blood_1"
+		ui_name="$mat_souls_soul_blood"
+	  	tags="[liquid],[souls_soul_blood_1]"
+		density="4.17"
+		cell_type="liquid"
+		wang_color="8000c887"
+		generates_smoke="0"
+		liquid_gravity="0.8"
+		liquid_sand="0"
+		gfx_glow="150"
+		on_fire="0"
+		requires_oxygen="0"
+		liquid_stains="1"
+		liquid_sprite_stain_shaken_drop_chance="5"
+		status_effects="BLOODY"
+		audio_materialaudio_type="MAGICAL" 
+		show_in_creative_mode="1" 
 		>
-  	</Reaction>
+		<Graphics 
+			texture_file="mods/souls/files/materials_gfx/souljuice.png" 
+			color="803fb2e2"
+			fire_colors_index="2" >
+	    </Graphics>
+		<ParticleEffect
+			vel.y="2.86"
+			vel_random.min_x="-6"
+			vel_random.max_x="6"
+			vel_random.min_y="-2.9"
+			vel_random.max_y="3.2"
+			render_on_grid="1"
+			probability="0.6"
+			count.min="0"
+			count.max="1"
+		></ParticleEffect>
+		<StatusEffects>
+			<Ingestion>
+				<StatusEffect type="BLOODY" amount="0.15" />
+			</Ingestion>
+		</StatusEffects>
+  	</CellData>
 
-  	<Reaction probability="100"
-		fast_reaction="1"
-		input_cell1="souls_soul_blood_1" 			input_cell2="material_darkness"
-		output_cell1="souls_soul_blood_perfect" 	output_cell2="souls_soul_blood_perfect" 
-		blob_radius2="3"
+  	<CellData
+		name="souls_soul_blood_perfect"
+		ui_name="$mat_souls_soul_blood_perfect"
+	  	tags="[liquid],[souls_soul_blood_perfect]"
+		density="4.18"
+		cell_type="liquid"
+		wang_color="8000c888"
+		generates_smoke="0"
+		liquid_gravity="0.8"
+		liquid_sand="0"
+		gfx_glow="150"
+		on_fire="0"
+		requires_oxygen="0"
+		liquid_stains="1"
+		liquid_sprite_stain_shaken_drop_chance="5"
+		status_effects="BLOODY"
+		audio_materialaudio_type="MAGICAL" 
+		show_in_creative_mode="1" 
 		>
-  	</Reaction>
+		<Graphics 
+			texture_file="mods/souls/files/materials_gfx/souljuice_true.png" 
+			color="8000FA96"
+			fire_colors_index="2" >
+	    </Graphics>
+		<ParticleEffect
+			vel.y="2.86"
+			vel_random.min_x="-6"
+			vel_random.max_x="6"
+			vel_random.min_y="-2.9"
+			vel_random.max_y="3.2"
+			render_on_grid="1"
+			probability="0.6"
+			count.min="0"
+			count.max="1"
+		></ParticleEffect>
+		<StatusEffects>
+			<Ingestion>
+				<StatusEffect type="SOULS_SOULJUICE" amount="0.1" />
+			</Ingestion>
+		</StatusEffects>
+  	</CellData>
 
-	<!-- huh? -->
-  	<Reaction probability="5"
-		input_cell1="souls_soul_blood_1" 			input_cell2="[slime]"
-		output_cell1="souls_soulaway" 			output_cell2="souls_soulaway" 
-		blob_radius2="3"
-	></Reaction>
+  	<CellData
+		name="souls_soulaway"
+		ui_name="$mat_souls_soulaway"
+	  	tags="[liquid]"
+		density="4.18"
+		cell_type="liquid"
+		wang_color="8000c889"
+		generates_smoke="0"
+		liquid_gravity="0.8"
+		liquid_sand="0"
+		gfx_glow="150"
+		on_fire="0"
+		requires_oxygen="0"
+		liquid_stains="1"
+		liquid_sprite_stain_shaken_drop_chance="5"
+		audio_materialaudio_type="MAGICAL" 
+		show_in_creative_mode="1" 
+		>
+		<Graphics 
+			texture_file="mods/souls/files/materials_gfx/soulaway.png" 
+			color="808A5A68"
+			fire_colors_index="2" >
+    	</Graphics>
+		<StatusEffects>
+			<Ingestion>
+				<StatusEffect type="SOULS_SOUL_DRAIN" amount="0.1" />
+			</Ingestion>
+			<Stains>
+				<StatusEffect type="SOULS_SOUL_DRAIN" />
+			</Stains>
+		</StatusEffects>
+  	</CellData>
 
-    <Reaction probability="0.6"
-		input_cell1="souls_soul_blood_1" input_cell2="air"
-		output_cell1="souls_soul_blood_1" output_cell2="air"
-		entity="mods/souls/files/entities/misc/soul_blood_fx.xml"
-	></Reaction>
+	<CellData
+		name="souls_absinthe"
+		ui_name="$mat_souls_absinthe"
+	  	tags="[liquid],[impure]"
+		density="3.6"
+		cell_type="liquid"
+		wang_color="808FF450"
+		generates_smoke="0"
+		liquid_gravity="1.1"
+		liquid_sand="0"
+		requires_oxygen="0"
+		liquid_stains="1"
+		>
+		<Graphics 
+			texture_file="mods/souls/files/materials_gfx/absinthe.png" 
+			color="808FF450"
+		></Graphics>
+		<StatusEffects>
+			<Stains>
+				<StatusEffect type="ALCOHOLIC" />
+			</Stains>
+			<Ingestion>
+				<StatusEffect type="INGESTION_DRUNK" amount="0.2" />
+				<StatusEffect type="SOULS_ABSINTHE_BAD" amount="0.1" />
+			q</Ingestion>
+		</StatusEffects>
+  	</CellData>
 
-	<Reaction probability="2"
-		input_cell1="souls_soul_blood_perfect" input_cell2="air"
-		output_cell1="souls_soul_blood_perfect" output_cell2="air"
-		entity="mods/souls/files/entities/misc/soul_blood_fx.xml"
-	></Reaction>
+	<CellData
+		name="souls_absinthe_done"
+		ui_name="$mat_souls_absinthe"
+	  	tags="[liquid],[impure]"
+		density="4.1"
+		cell_type="liquid"
+		wang_color="80B9D3A9"
+		generates_smoke="0"
+		liquid_gravity="1.1"
+		liquid_sand="0"
+		requires_oxygen="0"
+		liquid_stains="1"
+		>
+		<Graphics 
+			texture_file="mods/souls/files/materials_gfx/absinthe_done.png" 
+			color="80B9D3A9"
+		></Graphics>
+		<StatusEffects>
+			<Stains>
+				<StatusEffect type="ALCOHOLIC" />
+			</Stains>
+			<Ingestion>
+				<StatusEffect type="INGESTION_DRUNK" amount="0.1" />
+				<StatusEffect type="SOULS_ABSINTHE_GOOD" amount="0.5" />
+			q</Ingestion>
+		</StatusEffects>
+  	</CellData>
+
+	<CellDataChild
+  		_parent="templebrick_static"
+  		_inherit_reactions="1"
+  		name="souls_absinthebrick"
+		ui_name="$mat_templebrick_static"	
+		wang_color="ff65A03E"
+		>
+  		<Graphics
+			texture_file="data/materials_gfx/templebrick.png"
+			color="ff646C58" >
+	    </Graphics>
+  	</CellDataChild>
 
 </Materials>

@@ -1,8 +1,11 @@
 NEW
+- Spell: Soul Sight
 - Enemy: Haunting
+- Material: Absinthe
+- Structure: Fountain
 
 CHANGED/FIXED
-- ???
+- Increased max tome upgrade soul cost
 
 INTERNAL
 - ???

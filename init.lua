@@ -1,5 +1,6 @@
 --ModMagicNumbersFileAdd( "mods/souls/files/magic_numbers.xml" )
 ModMaterialsFileAdd("mods/souls/files/materials.xml")
+ModMaterialsFileAdd("mods/souls/files/reactions.xml")
 
 dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("mods/souls/files/scripts/souls.lua")
@@ -106,12 +107,12 @@ if translations ~= nil then
 end
 
 -- idk???
-local content = ModTextFileGetContent("data/biome/_biomes_all.xml")
+--[[local content = ModTextFileGetContent("data/biome/_biomes_all.xml")
 local xml = nxml.parse(content)
 xml:add_children(nxml.parse_many[[
     <Biome height_index="0" color="ff3fe2df" biome_filename="mods/souls/files/biome/soulbiome/biome.xml" />
-]])
-ModTextFileSetContent("data/biome/_biomes_all.xml", tostring(xml))
+)
+ModTextFileSetContent("data/biome/_biomes_all.xml", tostring(xml))]]
 
 -- pixel scenes (thanks graham)
 local function add_scene(table)
@@ -154,6 +155,10 @@ local possible_scenes = {
     {
         scene = {0, 19500, "mods/souls/files/biome/soulshop/soulshop.xml", true},
         func = function() return ModSettingGet("souls.enable_shop_structure") end,
+    },
+    {
+        scene = {4000, 3500, "mods/souls/files/biome/fountain/fountain.xml", true},
+        func = function() return ModSettingGet("souls.enable_fountain_structure") end,
     },
 }
 for _,v in ipairs(possible_scenes) do

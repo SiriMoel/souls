@@ -262,6 +262,10 @@ function SoulsDeath(this, entity_thats_responsible)
         if comp_reap_better ~= nil then
             soul_count = soul_count + ComponentGetValue2(comp_reap_better, "value_int")
         end
+        local effect_absinthe = EntityGetAllChildren(entity_thats_responsible, "souls_effect_absinthe_good") or {}
+        if #effect_absinthe > 0 then
+            soul_count = soul_count + 1
+        end
     end
     if soul_count > 0 then
         local soul_type, herd_id = GetEntitySoulType(this)

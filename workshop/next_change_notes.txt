@@ -3,6 +3,7 @@ NEW
 - Enemy: Haunting
 - Material: Soulless Blood
 - Material: Soul Catalyst
+- Material: Soulocin
 - Material: Absinthe
 - Structure: Fountain
 

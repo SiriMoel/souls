@@ -12,6 +12,13 @@ if life <= 0 then
     GamePlaySound("data/audio/Desktop/projectiles.bank", "projectiles/enlightened_laser/launch_dark", x, y)
     GamePlaySound("data/audio/Desktop/misc.bank", "misc/chest_dark_open", x, y)
     local haunting = EntityLoad("data/entities/animals/souls_haunting.xml", x, y)
+    local comp_level = EntityGetFirstComponentIncludingDisabled(haunting, "VariableStorageComponent", "haunting_level")
+    if comp_level ~= nil then
+        local level = 1 + math.floor(GameGetOrbCountThisRun()/3)
+        ComponentSetValue2(comp_level, "value_int", level)
+    else
+        print("erm... I couldn't find the haunting level component... this is quite upsetting.")
+    end
     GameScreenshake(10)
     EntityKill(this)
 end

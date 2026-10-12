@@ -7,6 +7,7 @@ soul_catalyst_products = {
     mage_corrupted = "magic_liquid_protection_all",
     friendly = "magic_liquid_charm",
     souls_void = "void_liquid",
+    fungus = "souls_soulocin",
 }
 local this = GetUpdatedEntityID(this)
 local x, y = EntityGetTransform(this)

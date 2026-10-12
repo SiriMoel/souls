@@ -1,0 +1,6 @@
+local this = GetUpdatedEntityID()
+local comp_level = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "haunting_level")
+local level = ComponentGetValue2(comp_level, "value_int")
+local comp_dmg = EntityGetFirstComponentIncludingDisabled(this, "DamageModelComponent")
+ComponentSetValue2(comp_dmg, "hp", 4 + 2 * level)
+ComponentSetValue2(comp_dmg, "max_hp", 4 + 2 * level)

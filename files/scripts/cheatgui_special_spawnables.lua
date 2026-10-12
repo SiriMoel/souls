@@ -19,6 +19,11 @@ local souls_to_add = {
         name = "Kolmisilmän koipi's Soul Crystal",
         xml = "pyramid.xml",
     },
+    {
+        path = "mods/souls/files/entities/misc/haunting/entity.xml",
+        name = "Haunting",
+        xml = "entity.xml",
+    },
 }
 
 for i,v in ipairs(souls_to_add) do

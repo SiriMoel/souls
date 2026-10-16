@@ -14,6 +14,7 @@ local radius = 100 * (1 - life/180)
 ComponentSetValue2(comp_part, "area_circle_radius", 1, radius)
 if life <= 0 then
     GamePlaySound("data/audio/Desktop/projectiles.bank", "projectiles/enlightened_laser/launch_dark", x, y)
+    GlobalsSetValue("souls.hauntings_killed", tostring(tonumber(GlobalsGetValue("souls.hauntings_killed", "0")) + 1))
     local comp_level = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "haunting_level")
     local level = ComponentGetValue2(comp_level, "value_int")
     HauntingReward(level, x, y)

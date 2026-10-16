@@ -8,33 +8,33 @@
 		></gun_config>
     </AbilityComponent>
 
-	  <ItemComponent
+	<ItemComponent
 		_tags="enabled_in_world"
     	is_pickable="1"
   		is_equipable_forced="1"
 	  	ui_sprite="mods/souls/files/entities/items/phylactery/sprite_done.png"
         item_name="$item_souls_phylactery_done"
         ui_description="$itemdesc_souls_phylactery_done"
-    		play_hover_animation="1"
+    	play_hover_animation="1"
         play_spinning_animation="0"
         always_use_item_name_in_ui="1"
         preferred_inventory="QUICK"
         is_consumable="0"
         uses_remaining="0"
         drinkable="0"
-		></ItemComponent>
+	></ItemComponent>
 
   	<VelocityComponent
 	    _tags="enabled_in_world"
 	  	gravity_y="400"
 	  	air_friction="0.55"
-	  	terminal_velocity="1000" >
-  	</VelocityComponent>
+	  	terminal_velocity="1000"
+	></VelocityComponent>
 	
   	<SimplePhysicsComponent
 	    _tags="enabled_in_world"
-		  _enabled="0"
-	  ></SimplePhysicsComponent>
+		_enabled="0"
+	></SimplePhysicsComponent>
   
   	<HitboxComponent 
 	    _tags="enabled_in_world"
@@ -44,8 +44,8 @@
 	    aabb_min_y="-4" 
 	    is_enemy="0" 
 	    is_item="1" 
-	    is_player="0" >
-  	</HitboxComponent>
+	    is_player="0" 
+	></HitboxComponent>
 
   	<LightComponent 
 	    _tags="enabled_in_hand,enabled_in_world"
@@ -70,8 +70,8 @@
 		offset_x="2"
 		offset_y="4"
 		image_file="mods/souls/files/entities/items/phylactery/sprite_in_world_done.png"
-		z_index="-1.5" >
-	</SpriteComponent>
+		z_index="-1.5" 
+	></SpriteComponent>
 
 	<ParticleEmitterComponent
         _tags="enabled_in_hand,enabled_in_world"
@@ -106,12 +106,24 @@
         name="phylactery"
         value_int="0"
     ></VariableStorageComponent>
+	
+	<VariableStorageComponent
+	    _tags="phyl_frame"
+	    name="phyl_frame"
+		value_int="0"
+	></VariableStorageComponent>
 
-	  <VariableStorageComponent
-		    _tags="frame"
-		    name="frame"
-		    value_int="0"
-	  ></VariableStorageComponent>
+	<VariableStorageComponent
+	    _tags="frame"
+	    name="frame"
+		value_int="0"
+	></VariableStorageComponent>
+
+    <LuaComponent
+        _tags="souls_player_damage"
+        script_source_file="mods/souls/files/entities/items/phylactery/player_damage.lua"
+        execute_every_n_frame="-1"
+    ></LuaComponent>
 
     <LuaComponent
         _tags="enabled_in_hand"

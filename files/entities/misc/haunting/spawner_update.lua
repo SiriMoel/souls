@@ -14,7 +14,10 @@ if life <= 0 then
     local haunting = EntityLoad("data/entities/animals/souls_haunting.xml", x, y)
     local comp_level = EntityGetFirstComponentIncludingDisabled(haunting, "VariableStorageComponent", "haunting_level")
     if comp_level ~= nil then
-        local level = 1 + math.floor(GameGetOrbCountThisRun()/3)
+        local orbs = GameGetOrbCountThisRun()
+        local bosses_revived = tonumber(GlobalsGetValue("souls.bosses_revived", "0"))
+        local hauntings_killed = tonumber(GlobalsGetValue("souls.hauntings_killed", "0"))
+        local level = 1 + math.floor((orbs + bosses_revived + hauntings_killed)/3)
         ComponentSetValue2(comp_level, "value_int", level)
     else
         print("erm... I couldn't find the haunting level component... this is quite upsetting.")

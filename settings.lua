@@ -265,6 +265,13 @@ local mod_id = "souls"
 mod_settings_version = 3
 mod_settings = {
     {
+        id = "ver",
+        ui_name = "Version",
+        ui_description = "Version",
+        value_default = 5.00,
+        hidden = true,
+    },
+    {
         category_id = "souls_comms",
         ui_name = "Alerts",
         ui_description = "What do you want to be told?",
@@ -450,7 +457,7 @@ mod_settings = {
             {
                 id = "enable_hauntings",
                 ui_name = "Enable Hauntings",
-                ui_description = "This is NYI!",
+                ui_description = "An optional challenge in certain Orb Rooms.",
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_RUNTIME,
                 ui_fn = mod_setting_bool_souls,

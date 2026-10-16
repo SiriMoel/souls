@@ -1,4 +1,6 @@
---ModMagicNumbersFileAdd( "mods/souls/files/magic_numbers.xml" )
+SOULS_VERSION = 5.01
+
+--ModMagicNumbersFileAdd("mods/souls/files/magic_numbers.xml")
 ModMaterialsFileAdd("mods/souls/files/materials.xml")
 ModMaterialsFileAdd("mods/souls/files/reactions.xml")
 
@@ -220,11 +222,17 @@ function OnPlayerSpawned(player)
 
     local px, py = EntityGetTransform(player)
 
-    if not HasFlagPersistent("souls_updated_1_5") then
-        AddFlagPersistent("souls_updated_1_5")
-        --RemoveFlagPersistent("souls_updated_1_5")
+    local version_before = ModSettingGet("souls.ver")
+    if version_before < math.floor(SOULS_VERSION) then
+        ModSettingSet("souls.ver", SOULS_VERSION)
         SoulsPrintImportant("Souls has been (majorly) updated!", "The change notes are on the workshop page.", "divine")
-        EntityLoad("mods/souls/files/entities/items/update_informer/1_5.xml", px, py - 5)
+        local informer_path = "mods/souls/files/entities/items/update_informer/1_" .. math.floor(SOULS_VERSION) .. ".xml"
+        if ModTextFileGetContent(informer_path) ~= nil then
+            EntityLoad(informer_path, px, py - 5)
+        end
+    elseif version_before < SOULS_VERSION then
+        ModSettingSet("souls.ver", SOULS_VERSION)
+        SoulsPrintImportant("Souls has been updated!", "The change notes are on the workshop page.", "souls")
     end
 
     if GameHasFlagRun("souls_init") then return end
@@ -235,6 +243,7 @@ function OnPlayerSpawned(player)
 
     GlobalsSetValue("souls.amphitheatre_enemy_count", "10")
     GlobalsSetValue("souls.bosses_revived", "0")
+    GlobalsSetValue("souls.hauntings_killed", "0")
 
     --[[local starting_souls = tonumber(ModSettingGet("souls.starting_souls")) or 0
     if starting_souls > 0 then

@@ -7,10 +7,10 @@ Spells added by this mod have different effects depending on what type of soul y
 
 [b]37[/b] spells
 [b]3[/b] perks
-[b]6+[/b] wands and items
+[b]7+[/b] wands and items
 [b]6[/b] enemies
 [b]5[/b] structures
-[b]7+[/b] materials
+[b]8+[/b] materials
 [b]13[/b] soul types
 Upgrade a magic tome with souls
 Revive bosses

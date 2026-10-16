@@ -36,14 +36,16 @@ function CheckIsTomeMaxed(tome)
     return false
 end
 
-local max_upgrade_cost = 37
+local starting_cost = 7
+local cost_increase_per = 5
+local max_upgrade_cost = 42
 
 tome_upgrades = {
     {
         id = "mana_max",
         sprite = "mods/souls/files/entities/items/tome2/upgrade_mana_max.png",
         func_cost = function(count) 
-            return math.min(7 + count * 3, max_upgrade_cost)
+            return math.min(starting_cost + count * cost_increase_per, max_upgrade_cost)
         end,
         func_apply = function(tome) 
             local comp = EntityGetFirstComponentIncludingDisabled(tome, "AbilityComponent")
@@ -61,7 +63,7 @@ tome_upgrades = {
         id = "haste",
         sprite = "mods/souls/files/entities/items/tome2/upgrade_haste.png",
         func_cost = function(count) 
-            return math.min(7 + count * 3, max_upgrade_cost)
+            return math.min(starting_cost + count * cost_increase_per, max_upgrade_cost)
         end,
         func_apply = function(tome) 
             local comp = EntityGetFirstComponentIncludingDisabled(tome, "AbilityComponent")
@@ -82,7 +84,7 @@ tome_upgrades = {
         id = "capacity",
         sprite = "mods/souls/files/entities/items/tome2/upgrade_capacity.png",
         func_cost = function(count) 
-            return math.min(7 + count * 3, max_upgrade_cost)
+            return math.min(starting_cost + count * cost_increase_per, max_upgrade_cost)
         end,
         func_apply = function(tome) 
             local comp = EntityGetFirstComponentIncludingDisabled(tome, "AbilityComponent")

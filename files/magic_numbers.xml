@@ -1,7 +1,3 @@
-
 <MagicNumbers 
-  BIOME_MAP="mods/souls/files/map_loader.lua"
->
-</MagicNumbers>
-
-<!-- -->
+    REPORT_DAMAGE_TYPE="1"
+></MagicNumbers>

@@ -15,13 +15,13 @@
 		materials_that_damage="souls_soulaway" 
 		materials_how_much_damage="0.08" >   
         <damage_multipliers
-			melee="1.0"
-			projectile="0.5"
-			explosion="0"
-			electricity="0"
-			fire="1" 
-			slice="1"
-			ice="0"
+			melee="0.5"
+			projectile="1.0"
+			explosion="0.2"
+			electricity="0.8"
+			fire="0.9" 
+			slice="0.5"
+			ice="0.0"
 		></damage_multipliers>
 	</DamageModelComponent>
 
@@ -118,6 +118,10 @@
         script_source_file="mods/souls/files/entities/animals/haunting/behaviour.lua"
 		execute_every_n_frame="1"
     ></LuaComponent>
+
+	<LuaComponent
+		script_damage_about_to_be_received="mods/souls/files/entities/animals/haunting/damage_handler.lua"
+    ></LuaComponent><!--script_damage_received="mods/souls/files/entities/animals/haunting/damage_handler.lua"-->
 
     <LuaComponent
         script_death="mods/souls/files/entities/animals/haunting/death.lua"

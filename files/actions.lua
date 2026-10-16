@@ -265,6 +265,52 @@ local new_actions = {
 			end
 		end,
 	},
+	--[[{
+		id = "TOME_SHOT_2",
+		name = "$action_souls_tome_shot_2",
+		description = "$actiondesc_souls_tome_shot",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/tome_shot_2.png",
+		related_projectiles	= {"mods/souls/files/entities/projectiles/tome_seek/proj.xml"},
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "10",
+		spawn_probability = "0",
+		price = 100,
+		mana = 50,
+		ai_never_uses = true,
+		custom_xml_file = "mods/souls/files/entities/misc/card_tome_shot/card.xml",
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 15
+			if reflecting then return end
+			local entity = GetUpdatedEntityID()
+			local wand = 0
+			local inv_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+			if inv_comp then
+				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			end
+			local tome = EntityGetWithTag("soul_tome")[1]
+			local comp_ca = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "current_attack") or 0
+			local ca = tonumber(ComponentGetValue(comp_ca, "value_string"))
+			local function TomeAddProjectiles()
+				if ca == 1 then -- tome spear
+
+				end
+				if ca == 2 then -- collector field
+
+				end
+				if ca == 3 then -- void buff
+
+				end
+			end
+			if wand == tome then
+				if SpellUseSouls(entity, 3) then
+					TomeAddProjectiles()
+				else
+					souls_not_enough = true
+	    			souls_not_enough_count = souls_not_enough_count + 3
+				end
+			end
+		end,
+	},]]
 	{
 		id = "TOME_SLICE",
 		name = "$action_souls_tome_slice",
@@ -601,7 +647,7 @@ local new_actions = {
 			if inv_comp then
 				wand = ComponentGetValue2(inv_comp, "mActiveItem")
 			end
-			local card = CurrentCard(wand)
+			local card = CurrentCard(wand) -- does this actually work?
 			local comp_soulstrike = EntityGetFirstComponentIncludingDisabled(card, "VariableStorageComponent", "soul_strike_amount") or 0
 			local soul_strike_amount = ComponentGetValue2(comp_soulstrike, "value_int") or 0
 			c.speed_multiplier = c.speed_multiplier * (1 + 0.05 * soul_strike_amount)

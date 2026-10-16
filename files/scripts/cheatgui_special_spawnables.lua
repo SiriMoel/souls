@@ -24,6 +24,11 @@ local souls_to_add = {
         name = "Haunting",
         xml = "entity.xml",
     },
+    {
+        path = "mods/souls/files/entities/items/soulward/soulward.xml",
+        name = "Soulward",
+        xml = "soulward.xml",
+    },
 }
 
 for i,v in ipairs(souls_to_add) do

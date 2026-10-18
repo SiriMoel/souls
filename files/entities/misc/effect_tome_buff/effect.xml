@@ -1,0 +1,51 @@
+<Entity tags="souls_effect_tome_buff,souls_effect_extra_soul">
+	
+	<InheritTransformComponent 
+		_enabled="1" >
+    </InheritTransformComponent>	
+
+	<GameEffectComponent
+		effect="CUSTOM"
+		custom_effect_id="SOULS_TOME_BUFF"
+		frames="1201"
+	></GameEffectComponent>
+
+	<UIIconComponent
+		name="$status_souls_tome_buff"
+		description="$statusdesc_souls_tome_buff"
+		icon_sprite_file="mods/souls/files/status_indicators/tome_buff.png"
+		is_perk="0"
+		display_above_head="0"
+		display_in_hud="1"
+	></UIIconComponent>
+
+    <LuaComponent
+        script_source_file="mods/souls/files/entities/misc/effect_sight/update.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+	<ParticleEmitterComponent 
+		emitted_material_name="souls_soul_particles"
+		gravity.y="0.0"
+		lifetime_min="0.2"
+		lifetime_max="0.7"
+		count_min="0"
+		count_max="3"
+		render_on_grid="1"
+		fade_based_on_lifetime="1"
+		area_circle_radius.max="4"
+		cosmetic_force_create="0"
+		airflow_force="0.2"
+		airflow_time="0.9"
+		airflow_scale="0.15"
+		emission_interval_min_frames="2"
+		emission_interval_max_frames="8"
+		emit_cosmetic_particles="1"
+		x_vel_min="-4"
+		x_vel_max="4"
+		y_vel_min="-10"
+		y_vel_max="2"
+		is_emitting="1"
+	></ParticleEmitterComponent>
+
+</Entity>

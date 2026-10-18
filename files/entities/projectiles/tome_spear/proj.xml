@@ -1,0 +1,116 @@
+<Entity name="$projectile_default" tags="projectile_player,soul_projectile">
+
+	  <Base file="data/entities/base_projectile.xml">
+    		<VelocityComponent
+			      gravity_y="0"
+			      air_friction="1.0"
+			      mass="0.00"
+			  ></VelocityComponent>
+	  </Base>
+
+    <ProjectileComponent
+        lob_min="0.0"
+        lob_max="0.0"
+        speed_min="450"
+        speed_max="450"
+        friction="1"
+        direction_random_rad="0.01"
+        on_death_explode="0"
+        on_death_gfx_leave_sprite="0" 
+        on_lifetime_out_explode="0"
+        on_collision_die="0"
+        lifetime="60"
+        penetrate_entities="1"
+        penetrate_world="1"
+        damage="2.8"
+        velocity_sets_scale="1"
+        lifetime_randomness="0"
+        ragdoll_force_multiplier="0.04"
+        hit_particle_force_multiplier="0.1"
+	      muzzle_flash_file=""
+        shoot_light_flash_r="120"
+        shoot_light_flash_g="255"
+        shoot_light_flash_b="80"
+        shoot_light_flash_radius="72" 
+	      knockback_force="1.4"
+        physics_impulse_coeff="1500"
+    ></ProjectileComponent>
+  
+    <SpriteComponent 
+        _enabled="1" 
+        alpha="1" 
+        image_file="mods/souls/files/entities/projectiles/tome_spear/sprite.xml"
+        next_rect_animation=""
+        rect_animation="" 
+        additive="1"
+    ></SpriteComponent>
+
+    <ParticleEmitterComponent 
+    		emitted_material_name="souls_soul_particles"
+    		offset.x="0"
+    		offset.y="0"
+    		x_pos_offset_min="0"
+    		x_pos_offset_max="0"
+    		y_pos_offset_min="0"
+    		y_pos_offset_max="0"
+    		x_vel_min="0"
+    		x_vel_max="0"
+    		y_vel_min="0"
+    		y_vel_max="0"
+    		gravity.y="0.0"
+    		count_min="1"
+    		count_max="1"
+    		lifetime_min="1.0"
+    		lifetime_max="1.5"
+    		is_trail="1"
+    		trail_gap="1.0"
+    		render_on_grid="1"
+    		fade_based_on_lifetime="1"
+    		airflow_force="0.5"
+    		airflow_time="0.001"
+    		airflow_scale="0.0833"
+    		emission_interval_min_frames="1"
+    		emission_interval_max_frames="1"
+    		emit_cosmetic_particles="1"
+    		create_real_particles="0"
+    		is_emitting="1"
+    ></ParticleEmitterComponent>
+	
+    <AudioComponent
+        file="data/audio/Desktop/projectiles.bank"
+        event_root="player_projectiles/bullet"
+    ></AudioComponent>
+  
+    <LightComponent 
+        radius="40" 
+      	r="100"
+      	g="255"
+      	b="255"
+    ></LightComponent>
+
+    <HitEffectComponent
+        effect_hit="LOAD_UNIQUE_CHILD_ENTITY"
+        value_string="mods/souls/files/entities/misc/reapers/reap_entity_tome.xml"
+    ></HitEffectComponent>
+
+    <HitEffectComponent
+        effect_hit="LOAD_UNIQUE_CHILD_ENTITY"
+        value_string="mods/souls/files/entities/misc/reapers/reap_entity.xml"
+    ></HitEffectComponent>
+
+    <HitEffectComponent
+        effect_hit="LOAD_UNIQUE_CHILD_ENTITY"
+        value_string="mods/souls/files/entities/misc/reapers/reap_entity_souldos.xml"
+    ></HitEffectComponent>
+
+    <HitEffectComponent
+        effect_hit="LOAD_UNIQUE_CHILD_ENTITY"
+        value_string="mods/souls/files/entities/misc/reapers/reap_entity_random.xml"
+    ></HitEffectComponent>
+  
+	  <VariableStorageComponent
+    		name="projectile_file"
+    		value_string="mods/souls/files/entities/projectiles/tome_spear/proj.xml"
+		></VariableStorageComponent>
+
+</Entity>

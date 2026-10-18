@@ -16,8 +16,7 @@ function spawn_tome_upgrader(x, y)
 end
 
 function spawn_phylactery(x, y)
-    EntityLoad("mods/souls/files/entities/items/phylactery/item.xml", x, y)
-    
+    EntityLoad("mods/souls/files/entities/items/phylactery/item.xml", x, y)    
 end
 
 function spawn_souls_wand_consumes_spell(x, y)

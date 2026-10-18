@@ -1,4 +1,4 @@
-<Entity tags="souls_effect_absinthe_good">
+<Entity tags="souls_effect_absinthe_good,souls_effect_extra_soul">
 	
 	<InheritTransformComponent 
 		_enabled="1" >

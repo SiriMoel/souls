@@ -265,7 +265,7 @@ local mod_id = "souls"
 mod_settings_version = 3
 mod_settings = {
     {
-        id = "ver",
+        id = "version",
         ui_name = "Version",
         ui_description = "Version",
         value_default = 5.00,

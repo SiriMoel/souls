@@ -21,6 +21,9 @@ haunting_rewards = {
         chance = 0.9,
         spawn_func = function(level, x, y)
             local opts = {"SOULS_TOME_SLICE", "SOULS_TOME_LAUNCHER", "SOULS_TOME_LASER"}
+            if level >= 6 then
+                table.insert(opts, "SOULS_TOME_SPELLBOOK_2")
+            end
             local action = opts[Random(1, #opts)]
             CreateItemActionEntity(action, x, y - 4)
         end,
@@ -52,7 +55,7 @@ haunting_rewards = {
     },
     {
         id = "void_spell",
-        min_level = 5,
+        min_level = 7,
         chance = 0.1,
         spawn_func = function(level, x, y)
             local entity = GetUpdatedEntityID()

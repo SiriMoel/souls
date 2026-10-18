@@ -206,10 +206,10 @@ local new_actions = {
 		end,
 	},
 	{
-		id = "TOME_SHOT",
-		name = "$action_souls_tome_shot",
-		description = "$actiondesc_souls_tome_shot",
-		sprite = "mods/souls/files/ui_gfx/gun_actions/tome_shot.png",
+		id = "TOME_SPELLBOOK",
+		name = "$action_souls_tome_spellbook",
+		description = "$actiondesc_souls_tome_spellbook",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/tome_spellbook.png",
 		related_projectiles	= {"mods/souls/files/entities/projectiles/tome_seek/proj.xml"},
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "10",
@@ -217,7 +217,7 @@ local new_actions = {
 		price = 100,
 		mana = 50,
 		ai_never_uses = true,
-		custom_xml_file = "mods/souls/files/entities/misc/card_tome_shot/card.xml",
+		custom_xml_file = "mods/souls/files/entities/misc/card_tome_spellbook/card.xml",
 		action = function()
 			c.fire_rate_wait = c.fire_rate_wait + 15
 			if reflecting then return end
@@ -251,7 +251,7 @@ local new_actions = {
 					add_projectile("mods/souls/files/entities/projectiles/tome_seek/proj.xml")
 				end
 				if ca == 3 then -- tome bomb
-					c.fire_rate_wait = c.fire_rate_wait + 15
+					c.fire_rate_wait = c.fire_rate_wait + 20
 					add_projectile("mods/souls/files/entities/projectiles/tome_bomb/proj.xml")
 				end
 			end
@@ -265,21 +265,21 @@ local new_actions = {
 			end
 		end,
 	},
-	--[[{
-		id = "TOME_SHOT_2",
-		name = "$action_souls_tome_shot_2",
-		description = "$actiondesc_souls_tome_shot",
-		sprite = "mods/souls/files/ui_gfx/gun_actions/tome_shot_2.png",
-		related_projectiles	= {"mods/souls/files/entities/projectiles/tome_seek/proj.xml"},
+	{
+		id = "TOME_SPELLBOOK_2",
+		name = "$action_souls_tome_spellbook_2",
+		description = "$actiondesc_souls_tome_spellbook",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/tome_spellbook_2.png",
+		related_projectiles	= {"mods/souls/files/entities/projectiles/tome_spear/proj.xml"},
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "10",
 		spawn_probability = "0",
 		price = 100,
-		mana = 50,
+		mana = 70,
 		ai_never_uses = true,
-		custom_xml_file = "mods/souls/files/entities/misc/card_tome_shot/card.xml",
+		custom_xml_file = "mods/souls/files/entities/misc/card_tome_spellbook/card_2.xml",
 		action = function()
-			c.fire_rate_wait = c.fire_rate_wait + 15
+			c.fire_rate_wait = c.fire_rate_wait + 20
 			if reflecting then return end
 			local entity = GetUpdatedEntityID()
 			local wand = 0
@@ -292,13 +292,27 @@ local new_actions = {
 			local ca = tonumber(ComponentGetValue(comp_ca, "value_string"))
 			local function TomeAddProjectiles()
 				if ca == 1 then -- tome spear
-
+					c.damage_critical_chance = c.damage_critical_chance + 10
+					add_projectile("mods/souls/files/entities/projectiles/tome_spear/proj.xml")
 				end
-				if ca == 2 then -- collector field
-
+				if ca == 2 then -- tome field
+					c.fire_rate_wait = c.fire_rate_wait + 20
+					add_projectile("mods/souls/files/entities/projectiles/tome_field/proj.xml")
 				end
-				if ca == 3 then -- void buff
-
+				if ca == 3 then -- tome buff
+					c.fire_rate_wait = c.fire_rate_wait + 20
+					local effects = EntityGetAllChildren(caster, "souls_effect_tome_buff") or {}
+					if #effects > 0 then
+						local effect = effects[1]
+						local gec = EntityGetFirstComponent(effect, "GameEffectComponent")
+						if gec ~= nil then
+							local frames = ComponentGetValue2(gec, "frames")
+							frames = frames + 1200
+							ComponentSetValue2(gec, "frames", frames)
+						end
+					else
+						local effect = LoadGameEffectEntityTo(caster, "mods/souls/files/entities/misc/effect_tome_buff/effect.xml")
+					end
 				end
 			end
 			if wand == tome then
@@ -310,7 +324,7 @@ local new_actions = {
 				end
 			end
 		end,
-	},]]
+	},
 	{
 		id = "TOME_SLICE",
 		name = "$action_souls_tome_slice",
@@ -319,7 +333,7 @@ local new_actions = {
 		related_projectiles	= {"mods/souls/files/entities/projectiles/tome_slice/proj.xml"},
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "4,5,6,10",
-		spawn_probability = "0.3,0.4,0.4,0.3",
+		spawn_probability = "0.3,0.3,0.4,0.2",
 		price = 170,
 		mana = 40,
 		ai_never_uses = true,
@@ -358,7 +372,7 @@ local new_actions = {
 		related_projectiles	= {"mods/souls/files/entities/projectiles/tome_launcher/proj.xml"},
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "4,5,6,10",
-		spawn_probability = "0.3,0.4,0.4,0.3",
+		spawn_probability = "0.3,0.3,0.4,0.2",
 		price = 170,
 		mana = 40,
 		ai_never_uses = true,

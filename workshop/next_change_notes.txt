@@ -1,4 +1,6 @@
 NEW
+- Soul Blood recipe now makes Soulless Blood, which must be converted into Soul Blood using souls
+- Spell: Tome Spellbook II
 - Spell: Soul Sight
 - Enemy: Haunting
 - Item: Soulward
@@ -8,10 +10,11 @@ NEW
 - Material: Soulocin
 - Material: Absinthe
 - Structure: Fountain
+- Tome Spellbook spell icons
 
 CHANGED/FIXED
-- Soul Blood recipe now makes Soulless Blood, which must be converted into Soul Blood using souls
 - Phylactery charges can only be lost every 20 frames (0.33s) (fire will no longer rapidly drain charges)
+- Fixed phylactery charges being lost to damage types that the player is immune to
 - Increased max tome upgrade soul cost
 - Increased tome upgrade soul cost increase per upgrade purchased
 - Wand Consumes X Souls spell spawns with the Soul Tome
@@ -20,4 +23,5 @@ CHANGED/FIXED
 - Renamed Tome Shot spell to Tome Spellbook
 
 INTERNAL
-- Reworked player damage handling and the phylactery
+- Reworked player damage handling and the phylactery (breaking existing ones :D this is the last time I promise)
+- Version things

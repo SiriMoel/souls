@@ -1,4 +1,45 @@
-SOULS_VERSION = 5.01
+SOULS_VERSION = 5.01 -- also update mod.xml
+SOULS_SET_VERSION = true
+SOULS_FORCE_VERSION = nil
+
+function souls_version_update(pos_x, pos_y)
+    print("Souls v1." .. math.floor(SOULS_VERSION) .. "." .. math.floor((SOULS_VERSION - math.floor(SOULS_VERSION)) * 100 + 0.5))
+    local version_before = SOULS_FORCE_VERSION or ModSettingGet("souls.version")
+    if version_before < math.floor(SOULS_VERSION) then
+        if SOULS_SET_VERSION then
+            ModSettingSet("souls.version", SOULS_FORCE_VERSION or SOULS_VERSION)
+        end
+        SoulsPrintImportant("Souls has been (majorly) updated!", "The change notes are on the workshop page.", "divine")
+        local informer_path = "mods/souls/files/entities/items/update_informer/1_" .. math.floor(SOULS_VERSION) .. ".xml"
+        if ModTextFileGetContent(informer_path) ~= nil then
+            EntityLoad(informer_path, pos_x, pos_y - 5)
+        end
+    elseif version_before < SOULS_VERSION then
+        if SOULS_SET_VERSION then
+            ModSettingSet("souls.version", SOULS_FORCE_VERSION or SOULS_VERSION)
+        end
+        SoulsPrintImportant("Souls has been updated!", "The change notes are on the workshop page.", "souls")
+    end
+end
+
+function souls_update_settings_globals()
+    GlobalsSetValue("souls.collect_soul_from_entity", tostring(ModSettingGet("souls.collect_soul_from_entity")))
+    GlobalsSetValue("souls.say_soul", tostring(ModSettingGet("souls.say_soul")))
+    GlobalsSetValue("souls.say_consumed_soul", tostring(ModSettingGet("souls.say_consumed_soul")))
+    GlobalsSetValue("souls.say_not_enough", tostring(ModSettingGet("souls.say_not_enough")))
+    GlobalsSetValue("souls.enable_soul_shops", tostring(ModSettingGet("souls.enable_soul_shops")))
+    GlobalsSetValue("souls.first_gui", tostring(ModSettingGet("souls.first_gui")))
+    GlobalsSetValue("souls.total_boss", tostring(ModSettingGet("souls.total_boss")))
+    GlobalsSetValue("souls.hats", tostring(ModSettingGet("souls.hats")))
+    GlobalsSetValue("souls.souls_gui_key", tostring(ModSettingGet("souls.souls_gui_key")))
+    --GlobalsSetValue("souls.spell_spawn_chance_multiplier", tostring(ModSettingGet("souls.spell_spawn_chance_multiplier")))
+    GlobalsSetValue("souls.enable_enemies", tostring(ModSettingGet("souls.enable_enemies")))
+    GlobalsSetValue("souls.enemy_puppet_master", tostring(ModSettingGet("souls.enemy_puppet_master")))
+    GlobalsSetValue("souls.enemy_soul_angry", tostring(ModSettingGet("souls.enemy_soul_angry")))
+    GlobalsSetValue("souls.enemy_soul_rogue", tostring(ModSettingGet("souls.enemy_soul_rogue")))
+    GlobalsSetValue("souls.enemy_soul_eye", tostring(ModSettingGet("souls.enemy_soul_eye")))
+    GlobalsSetValue("souls.enable_hauntings", tostring(ModSettingGet("souls.enable_hauntings")))
+end
 
 --ModMagicNumbersFileAdd("mods/souls/files/magic_numbers.xml")
 ModMaterialsFileAdd("mods/souls/files/materials.xml")
@@ -194,25 +235,6 @@ if ModIsEnabled("foolish_flame") then
 	ModLuaFileAppend("mods/foolish_flame/files/scripts/bounty_rewards.lua", "mods/souls/files/scripts/ff_bounty_rewards.lua")
 end
 
-function souls_update_settings_globals()
-    GlobalsSetValue("souls.collect_soul_from_entity", tostring(ModSettingGet("souls.collect_soul_from_entity")))
-    GlobalsSetValue("souls.say_soul", tostring(ModSettingGet("souls.say_soul")))
-    GlobalsSetValue("souls.say_consumed_soul", tostring(ModSettingGet("souls.say_consumed_soul")))
-    GlobalsSetValue("souls.say_not_enough", tostring(ModSettingGet("souls.say_not_enough")))
-    GlobalsSetValue("souls.enable_soul_shops", tostring(ModSettingGet("souls.enable_soul_shops")))
-    GlobalsSetValue("souls.first_gui", tostring(ModSettingGet("souls.first_gui")))
-    GlobalsSetValue("souls.total_boss", tostring(ModSettingGet("souls.total_boss")))
-    GlobalsSetValue("souls.hats", tostring(ModSettingGet("souls.hats")))
-    GlobalsSetValue("souls.souls_gui_key", tostring(ModSettingGet("souls.souls_gui_key")))
-    --GlobalsSetValue("souls.spell_spawn_chance_multiplier", tostring(ModSettingGet("souls.spell_spawn_chance_multiplier")))
-    GlobalsSetValue("souls.enable_enemies", tostring(ModSettingGet("souls.enable_enemies")))
-    GlobalsSetValue("souls.enemy_puppet_master", tostring(ModSettingGet("souls.enemy_puppet_master")))
-    GlobalsSetValue("souls.enemy_soul_angry", tostring(ModSettingGet("souls.enemy_soul_angry")))
-    GlobalsSetValue("souls.enemy_soul_rogue", tostring(ModSettingGet("souls.enemy_soul_rogue")))
-    GlobalsSetValue("souls.enemy_soul_eye", tostring(ModSettingGet("souls.enemy_soul_eye")))
-    GlobalsSetValue("souls.enable_hauntings", tostring(ModSettingGet("souls.enable_hauntings")))
-end
-
 -- player
 function OnPlayerSpawned(player)
 
@@ -222,18 +244,7 @@ function OnPlayerSpawned(player)
 
     local px, py = EntityGetTransform(player)
 
-    local version_before = ModSettingGet("souls.ver")
-    if version_before < math.floor(SOULS_VERSION) then
-        ModSettingSet("souls.ver", SOULS_VERSION)
-        SoulsPrintImportant("Souls has been (majorly) updated!", "The change notes are on the workshop page.", "divine")
-        local informer_path = "mods/souls/files/entities/items/update_informer/1_" .. math.floor(SOULS_VERSION) .. ".xml"
-        if ModTextFileGetContent(informer_path) ~= nil then
-            EntityLoad(informer_path, px, py - 5)
-        end
-    elseif version_before < SOULS_VERSION then
-        ModSettingSet("souls.ver", SOULS_VERSION)
-        SoulsPrintImportant("Souls has been updated!", "The change notes are on the workshop page.", "souls")
-    end
+    souls_version_update(px, py)
 
     if GameHasFlagRun("souls_init") then return end
 
@@ -257,7 +268,7 @@ function OnPlayerSpawned(player)
     
     EntityAddComponent2(player, "LuaComponent", {
         script_damage_about_to_be_received="mods/souls/files/scripts/player_damage_handler.lua",
-        --script_damage_received="mods/souls/files/scripts/player_damage_handler.lua",
+        script_damage_received="mods/souls/files/scripts/player_damage_handler.lua",
     })
 
     EntityAddComponent2(player, "LuaComponent", {

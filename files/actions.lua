@@ -117,6 +117,7 @@ local new_actions = {
 		ai_never_uses = true,
 		action = function()
 			add_projectile("mods/souls/files/entities/projectiles/soul_blast/soul_blast.xml")
+			souls_used_count = souls_used_count + 1
 			c.fire_rate_wait = c.fire_rate_wait + 30
 		end,
 	},
@@ -134,6 +135,7 @@ local new_actions = {
 		ai_never_uses = true,
 		action = function()
 			add_projectile("mods/souls/files/entities/projectiles/soul_arrow/proj.xml")
+			souls_used_count = souls_used_count + 1
 			c.fire_rate_wait = c.fire_rate_wait + 12
 		end,
 	},
@@ -151,6 +153,8 @@ local new_actions = {
 		ai_never_uses = true,
 		action = function()
 			add_projectile("mods/souls/files/entities/projectiles/soul_bolt/proj.xml")
+			souls_used_count = souls_used_count + 1
+			souls_used_count = souls_used_count + 1
 			c.fire_rate_wait = c.fire_rate_wait + 12
 		end,
 	},
@@ -168,6 +172,7 @@ local new_actions = {
 		ai_never_uses = true,
 		action = function()
 			add_projectile("mods/souls/files/entities/projectiles/soul_ball/soul_ball.xml")
+			souls_used_count = souls_used_count + 1
 			c.fire_rate_wait = c.fire_rate_wait + 42
 		end,
 	},
@@ -185,6 +190,7 @@ local new_actions = {
 		ai_never_uses = true,
 		action = function()
 			add_projectile("mods/souls/files/entities/projectiles/soul_meteor/proj.xml")
+			souls_used_count = souls_used_count + 1
 			c.fire_rate_wait = c.fire_rate_wait + 60
 		end,
 	},
@@ -258,6 +264,7 @@ local new_actions = {
 			if wand == tome then
 				if SpellUseSouls(entity, 3) then
 					TomeAddProjectiles()
+					souls_used_count = souls_used_count + 3
 				else
 					souls_not_enough = true
 	    			souls_not_enough_count = souls_not_enough_count + 3
@@ -272,9 +279,9 @@ local new_actions = {
 		sprite = "mods/souls/files/ui_gfx/gun_actions/tome_spellbook_2.png",
 		related_projectiles	= {"mods/souls/files/entities/projectiles/tome_spear/proj.xml"},
 		type = ACTION_TYPE_PROJECTILE,
-		spawn_level = "10",
-		spawn_probability = "0",
-		price = 100,
+		spawn_level = "6",
+		spawn_probability = "0.1",
+		price = 200,
 		mana = 70,
 		ai_never_uses = true,
 		custom_xml_file = "mods/souls/files/entities/misc/card_tome_spellbook/card_2.xml",
@@ -318,6 +325,7 @@ local new_actions = {
 			if wand == tome then
 				if SpellUseSouls(entity, 3) then
 					TomeAddProjectiles()
+					souls_used_count = souls_used_count + 3
 				else
 					souls_not_enough = true
 	    			souls_not_enough_count = souls_not_enough_count + 3
@@ -353,7 +361,7 @@ local new_actions = {
 					local success, soul = SpellUseSouls(caster, 1)
 					if success then
 						add_projectile("mods/souls/files/entities/projectiles/tome_slice/proj.xml")
-
+						souls_used_count = souls_used_count + 1
 					else
 						souls_not_enough = true
     					souls_not_enough_count = souls_not_enough_count + 1
@@ -396,6 +404,7 @@ local new_actions = {
 							for i = 1, count do
 								add_projectile("mods/souls/files/entities/projectiles/tome_launcher/proj.xml")
 							end
+							souls_used_count = souls_used_count + count
 							current_reload_time = current_reload_time + 3 * count
 							ComponentSetValue2(comp, "value_int", 0)
 						else
@@ -443,6 +452,7 @@ local new_actions = {
 							c.fire_rate_wait = c.fire_rate_wait - 12
 							current_reload_time = current_reload_time - 6
 							add_projectile("mods/souls/files/entities/projectiles/tome_laser/projectile.xml")
+							souls_used_count = souls_used_count + 3
 						else
 							souls_not_enough = true
     						souls_not_enough_count = souls_not_enough_count + 3
@@ -473,6 +483,7 @@ local new_actions = {
 			end
 			local caster = GetUpdatedEntityID()
 			if SpellUseSouls(caster, 1) then
+				souls_used_count = souls_used_count + 1
 				c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_speed/soul_speed_fx.xml,"
 				c.speed_multiplier = c.speed_multiplier * 2
 				c.damage_projectile_add = c.damage_projectile_add + 0.24
@@ -502,6 +513,7 @@ local new_actions = {
 		action = function()
 			c.fire_rate_wait = c.fire_rate_wait + 12
 			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_boost/entity.xml,"
+			souls_used_count = souls_used_count + 1
 			draw_actions(1, true)
 		end,
 	},
@@ -623,6 +635,7 @@ local new_actions = {
 			local total = SoulCount("total")
 			local count = math.min(math.ceil(total * 0.04), 100)
 			if SpellUseSouls(GetUpdatedEntityID(), count) then
+				souls_used_count = souls_used_count + count
 				c.damage_projectile_add = c.damage_projectile_add + 0.24 * count
 				shot_effects.recoil_knockback = shot_effects.recoil_knockback + 1.0 * count
 				for i=1,math.min(count, 10) do
@@ -664,6 +677,7 @@ local new_actions = {
 			local card = CurrentCard(wand) -- does this actually work?
 			local comp_soulstrike = EntityGetFirstComponentIncludingDisabled(card, "VariableStorageComponent", "soul_strike_amount") or 0
 			local soul_strike_amount = ComponentGetValue2(comp_soulstrike, "value_int") or 0
+			souls_used_count = souls_used_count + soul_strike_amount
 			c.speed_multiplier = c.speed_multiplier * (1 + 0.05 * soul_strike_amount)
 			c.damage_projectile_add = c.damage_projectile_add + 0.2 * soul_strike_amount
 			if c.speed_multiplier >= 20 then
@@ -693,6 +707,7 @@ local new_actions = {
 			end
 			local entity = GetUpdatedEntityID()
 			if SpellUseSouls(entity, 1) then
+				souls_used_count = souls_used_count + 1
 				c.damage_critical_chance = c.damage_critical_chance + 100
 			else
 				souls_not_enough = true
@@ -771,6 +786,38 @@ local new_actions = {
 		end,
 	},
 	{
+		id = "RESONATE",
+		name = "$action_souls_resonate",
+		description = "$actiondesc_souls_resonate",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/resonate.png",
+		related_extra_entities = {"mods/souls/files/entities/projectiles/resonate/entity.xml"},
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level = "3,4,5,6,10",
+		spawn_probability = "0.4,0.5.0.5,0.6,0.3",
+		price = 140,
+		mana = 30,
+		ai_never_uses = true,
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 30
+			if reflecting then return end
+			local caster = GetUpdatedEntityID()
+			if SpellUseSouls(caster, 1) then
+				souls_used_count = souls_used_count + 1
+				local chance = souls_used_count * 9
+				if souls_not_enough then chance = 0 end
+				if Random(1, 100) <= chance then -- do i need to SetRandomSeed() ?
+					local amt = SoulCount("total_boss")
+					c.damage_projectile_add = c.damage_projectile_add + 0.04 * amt
+					c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/resonate/entity.xml,"
+				end
+			else
+				souls_not_enough = true
+    			souls_not_enough_count = souls_not_enough_count + 1
+			end
+			draw_actions(1, true)
+		end,
+	},
+	{
 		id = "SIGHT",
 		name = "$action_souls_sight",
 		description = "$actiondesc_souls_sight",
@@ -786,6 +833,7 @@ local new_actions = {
 			if reflecting then return end
 			local caster = GetUpdatedEntityID()
 			if SpellUseSouls(caster, 1) then
+				souls_used_count = souls_used_count + 1
 				local effects = EntityGetAllChildren(caster, "souls_sight_effect") or {}
 				if #effects > 0 then
 					local effect = effects[1]
@@ -940,6 +988,7 @@ local new_actions = {
 			if reflecting then return end
 			local caster = GetUpdatedEntityID()
 			if SpellUseSouls(caster, 1) then
+				souls_used_count = souls_used_count + 1
 				local amt = 200
 				local comp_inv = EntityGetFirstComponentIncludingDisabled(caster, "Inventory2Component")
 				if comp_inv ~= nil then
@@ -975,6 +1024,7 @@ local new_actions = {
 			if reflecting then return end
 			local caster = GetUpdatedEntityID()
 			if SpellUseSouls(caster, 1) then
+				souls_used_count = souls_used_count + 1
 				local discarded_size = #discarded
 				if discarded_size > 0 then
 					for i, v in ipairs(discarded) do
@@ -1027,6 +1077,7 @@ local new_actions = {
 			if reflecting then return end
 			local caster = GetUpdatedEntityID()
 			if SpellUseSpecificSouls(caster, {["worm"] = 1}) then
+				souls_used_count = souls_used_count + 1
 				c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_spell_worm/soul_spell_worm.xml,"
 			else
 				SoulsPrint("You do not have enough Worm souls for this. (1)", "say_not_enough")
@@ -1057,6 +1108,7 @@ local new_actions = {
 			end
 			local caster = GetUpdatedEntityID()
 			if SpellUseSpecificSouls(caster, {["mage"] = 2}) then
+				souls_used_count = souls_used_count + 2
 				c.damage_projectile_add = c.damage_projectile_add + 1
 				c.damage_fire_add = c.damage_fire_add + 1
 				c.damage_critical_chance = c.damage_critical_chance + 100
@@ -1093,6 +1145,7 @@ local new_actions = {
 			end
 			local caster = GetUpdatedEntityID()
 			if SpellUseSpecificSouls(caster, {["slimes"] = 10}) then
+				souls_used_count = souls_used_count + 10
 				c.friendly_fire	= true
 				c.speed_multiplier = c.speed_multiplier * 0.2
 				c.lifetime_add = c.lifetime_add + 60

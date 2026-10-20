@@ -357,7 +357,7 @@ mod_settings = {
     {
         category_id = "souls_structures",
         ui_name = "Structures",
-        ui_description = "Toggle the structures of this mod.\nWarning: Disabling structures may interfere with certain content in the mod.",
+        ui_description = "Toggle the structures of this mod.\nWarning: Disabling structures will interfere with some content in the mod.",
         foldable = true,
         _folded = true,
         settings = {
@@ -457,7 +457,7 @@ mod_settings = {
             {
                 id = "enable_hauntings",
                 ui_name = "Enable Hauntings",
-                ui_description = "An optional challenge in certain Orb Rooms.",
+                ui_description = "An optional encounter in some Orb Rooms.",
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_RUNTIME,
                 ui_fn = mod_setting_bool_souls,

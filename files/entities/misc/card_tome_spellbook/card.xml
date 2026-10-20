@@ -25,6 +25,12 @@
 		execute_every_n_frame="1"
 	></LuaComponent>
 
+	<LuaComponent 
+		_tags="enabled_in_hand,enabled_in_inventory"
+		script_source_file="mods/souls/files/entities/misc/card_tome_spellbook/check.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
+
     <VariableStorageComponent
 		_tags="enabled_in_hand,selected_path"
         name="selected_path"

@@ -66,6 +66,27 @@ local souls_perks = {
 			end
 		end
 	},
+	{
+		id = "TAXOUL",
+		ui_name = "$perk_souls_taxoul",
+		ui_description = "$perkdesc_souls_taxoul",
+		ui_icon = "mods/souls/files/perk_icons/taxoul.png",
+		perk_icon = "mods/souls/files/perk_icons/taxoul_inworld.png",
+		stackable = STACKABLE_NO,
+		func = function(entity_perk_item, entity_who_picked, item_name)
+			local comp = EntityGetFirstComponentIncludingDisabled(entity_who_picked, "LuaComponent", "souls_taxoul") or EntityAddComponent2(entity_who_picked, "LuaComponent", {
+        		_tags="souls_execute_on_reap,souls_taxoul",
+        		script_source_file="mods/souls/files/scripts/perks/taxoul.lua",
+		        execute_every_n_frame=-1,
+    		})
+		end,
+		func_remove = function(entity_who_picked)
+			local comp = EntityGetFirstComponentIncludingDisabled(entity_who_picked, "LuaComponent", "souls_taxoul")
+			if comp ~= nil then
+				EntityRemoveComponent(entity_who_picked, comp)
+			end
+		end
+	},
 }
 
 for i,v in ipairs(souls_perks) do

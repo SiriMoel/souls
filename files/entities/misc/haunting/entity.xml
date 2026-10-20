@@ -2,7 +2,7 @@
 
     <InteractableComponent
         radius="10"
-        ui_text="[INTERACT] to challenge the Haunting."
+        ui_text="[INTERACT] to disturb the Haunting."
         name="Haunting"
     ></InteractableComponent>
 

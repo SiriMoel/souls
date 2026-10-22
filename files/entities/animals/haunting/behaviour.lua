@@ -44,12 +44,12 @@ if #targets > 0 then
             local tx, ty = px, py - 2
             if not RaytraceSurfacesAndLiquiform(x, y, tx, ty) then
                 ComponentSetValue2(comp_frame, "value_int", frame_now + 40 + Random(level * -2, 50))
-        		local count = level
+        		local count = 1 + math.floor((level - 1) * 1.5)
 		        local dist_x = x - tx
 			    local dist_y = y - ty
         		for i=1,count do
         			SetRandomSeed(x + tx + i, y - ty)
-        			local arc = math.atan(dist_y / dist_x) + Random(-16, 16) * 0.0003 * math.pi * 2
+        			local arc = math.atan(dist_y / dist_x) + Random(-16, 16) * 0.00035 * math.pi * 2
         			local vel_x = dist_y / math.tan(arc) * -70
 			        local vel_y = math.tan(arc) * dist_x * -70
 			        local proj = shoot_projectile(this, "mods/souls/files/entities/animals/haunting/flare_projectile.xml", x, y, vel_x, vel_y)

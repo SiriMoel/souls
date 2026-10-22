@@ -34,7 +34,7 @@ haunting_rewards = {
         chance = 1.5,
         spawn_func = function(level, x, y)
             local entity = GetUpdatedEntityID()
-            DontFearTheReaper({["boss"]=math.ceil(level/2)}, entity)
+            DontFearTheReaper({["boss"]=math.ceil(level/5)}, entity)
         end,
     },
     {
@@ -80,8 +80,11 @@ haunting_rewards = {
         min_level = 1,
         chance = 1.4,
         spawn_func = function(level, x, y)
-            for i = 1, level do
-                EntityLoad("data/entities/items/pickup/heart.xml", x, y - 4)
+            EntityLoad("data/entities/items/pickup/heart.xml", x, y - 4)
+            if level > 2 then
+                for i = 1, math.floor(level / 2) do
+                    EntityLoad("data/entities/items/pickup/heart.xml", x, y - 4)
+                end
             end
         end,
     },
@@ -107,7 +110,7 @@ haunting_rewards = {
         chance = 1.3,
         spawn_func = function(level, x, y) 
             local souls = {}
-            local amt = 5 + level * 5
+            local amt = 5 + level * 2
             for i = 1, amt do
                 SetRandomSeed(x + level, y + i)
                 local last_type = #soul_types - 2

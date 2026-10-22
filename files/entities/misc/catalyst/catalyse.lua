@@ -1,20 +1,20 @@
 dofile_once("mods/souls/files/scripts/souls.lua")
 soul_catalyst_products = {
-    --bat = "",
+    bat = "slime",
     fly = "lava",
     friendly = "magic_liquid_charm",
     mage = "magic_liquid_protection_all",
     orcs = "alcohol",
     slimes = "silver",
-    --spider = "",
-    --zombie = "",
+    spider = "magic_liquid",
+    zombie = "gunpowder_unstable",
     worm = "souls_catalyst",
     fungus = "souls_soulocin",
     ghost = "souls_haunt",
     souls_void = "void_liquid",
     boss = "magic_liquid_hp_regeneration",
     mage_corrupted = "magic_liquid_protection_all",
-    --ghost_whisp = "", -- maybe an apotheosis quest material?
+    ghost_whisp = "apotheosis_blood_worm_centipede",
 }
 local this = GetUpdatedEntityID(this)
 local x, y = EntityGetTransform(this)

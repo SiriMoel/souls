@@ -23,8 +23,8 @@ function damage_received(damage, message, entity_thats_responsible, is_fatal, pr
     local x, y = EntityGetTransform(this)
     if projectile_thats_responsible ~= nil then
         if not EntityHasTag(projectile_thats_responsible, "soul_projectile") then
-            EntityInflictDamage(this, (damage * -1.5), "DAMAGE_HEALING", message, "DISINTEGRATED", 0, 0, this, x, y, 0)
-            GamePrint("Only soul magic can truly hurt it...")
+            EntityInflictDamage(this, (damage * -0.9), "DAMAGE_HEALING", message, "DISINTEGRATED", 0, 0, this, x, y, 0)
+            --GamePrint("Only soul magic can truly hurt it...")
         end
     end
 end

@@ -5,4 +5,4 @@ dofile_once("data/scripts/gun/gun_actions.lua")
 local altar = GetUpdatedEntityID()
 local x, y = EntityGetTransform(altar)
 
-LoadPixelScene("mods/souls/files/biome/soulplace/scene.png", "mods/souls/files/biome/soulplace/visual.png", x-256, y-256, "mods/souls/files/biome/soulplace/background.png", true)
+LoadPixelScene("mods/souls/files/biome/soulplace/scene.png", "mods/souls/files/biome/soulplace/visual.png", x-256, y-256, "mods/souls/files/biome/soulplace/background.png", true, nil, nil, 52)

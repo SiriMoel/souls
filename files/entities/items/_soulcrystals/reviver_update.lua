@@ -12,6 +12,12 @@ if life <= 0 then
     if comp == nil then print("Souls?") return end
     local path = ComponentGetValue2(comp, "value_string")
     local boss = EntityLoad(path, x, y)
+    if path == "data/entities/animals/boss_dragon.xml" then
+        EntityAddComponent2(boss, "LuaComponent", { 
+		    script_death = "data/scripts/animals/boss_dragon_death.lua",
+		    execute_every_n_frame = -1,
+	    })
+    end
     GamePlaySound("data/audio/Desktop/projectiles.bank", "projectiles/enlightened_laser/launch_dark", x, y)
     GamePlaySound("data/audio/Desktop/misc.bank", "misc/chest_dark_open", x, y)
     GameScreenshake(30)

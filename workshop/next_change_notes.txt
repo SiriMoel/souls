@@ -25,6 +25,8 @@ CHANGED/FIXED
 - Reduced spawn probabilities of Wand Consumes X Souls spell
 - Wand Consumes X Souls spell shows what soul is being consumed on the wand
 - Renamed Tome Shot spell to Tome Spellbook
+- Reduced non-soul magic damage resistance on applicable enemies
+- Fixed revived Dragon not dropping its usual rewards
 
 INTERNAL
 - Reworked player damage handling and the phylactery (breaking existing ones :D this is the last time I promise)

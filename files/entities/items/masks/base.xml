@@ -1,0 +1,96 @@
+<Entity name="$item_souls_mask" tags="item,souls_mask">
+
+    <AbilityComponent
+        ui_name="$item_souls_mask"
+        throw_as_item="0"
+        ><gun_config
+			deck_capacity="0"
+		></gun_config>
+    </AbilityComponent>
+
+	<ItemComponent
+		_tags="enabled_in_world"
+    	is_pickable="1"
+  		is_equipable_forced="1"
+	  	ui_sprite="mods/souls/files/entities/items/masks/sprite.png"
+        item_name="$item_souls_mask"
+        ui_description="$itemdesc_souls_mask"
+    	play_hover_animation="1"
+        play_spinning_animation="0"
+        always_use_item_name_in_ui="1"
+        preferred_inventory="QUICK"
+        is_consumable="0"
+        drinkable="0"
+	></ItemComponent> <!-- what preferred_inventory? -->
+
+  	<VelocityComponent
+	    _tags="enabled_in_world"
+	  	gravity_y="400"
+	  	air_friction="0.55"
+	  	terminal_velocity="1000"
+	></VelocityComponent>
+	
+  	<SimplePhysicsComponent
+	    _tags="enabled_in_world"
+		_enabled="0"
+	></SimplePhysicsComponent>
+  
+  	<HitboxComponent 
+	    _tags="enabled_in_world"
+	    aabb_max_x="4" 
+	    aabb_max_y="4" 
+	    aabb_min_x="-4" 
+	    aabb_min_y="-4" 
+	    is_enemy="0" 
+	    is_item="1" 
+	    is_player="0" 
+	></HitboxComponent>
+
+	<SpriteComponent
+		_tags="enabled_in_hand,sprite_hand"
+		_enabled="0"
+		offset_x="2"
+		offset_y="4"
+		image_file="mods/souls/files/entities/items/masks/sprite_in_hand.png"
+	></SpriteComponent>
+
+	<SpriteComponent 
+		_tags="enabled_in_world,sprite_world" 
+		_enabled="1"
+		alpha="1" 
+		offset_x="2"
+		offset_y="4"
+		image_file="mods/souls/files/entities/items/masks/sprite_in_world.png"
+		z_index="-1.5" 
+	></SpriteComponent>
+
+	<InheritTransformComponent
+		_enabled="0"
+		_tags="on"
+	></InheritTransformComponent>
+
+	<VariableStorageComponent
+	    _tags="frame"
+	    name="frame"
+		value_int="0"
+	></VariableStorageComponent>
+
+	<VariableStorageComponent
+	    _tags="state"
+	    name="state"
+		value_bool="0"
+	></VariableStorageComponent>
+
+	<LuaComponent
+        _tags="enabled_in_hand"
+        script_source_file="mods/souls/files/entities/items/masks/in_hand.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+    <LuaComponent
+        _enabled="1"
+        script_source_file="mods/souls/files/entities/items/masks/state.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+</Entity>

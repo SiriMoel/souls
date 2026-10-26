@@ -200,7 +200,7 @@ local possible_scenes = {
         func = function() return ModSettingGet("souls.enable_shop_structure") end,
     },
     {
-        scene = {4000, 3500, "mods/souls/files/biome/fountain/fountain.xml", true},
+        scene = {-2470, 3170, --[[4000, 3500,]] "mods/souls/files/biome/fountain/fountain.xml", true},
         func = function() return ModSettingGet("souls.enable_fountain_structure") end,
     },
 }

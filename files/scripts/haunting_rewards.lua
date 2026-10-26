@@ -31,7 +31,7 @@ haunting_rewards = {
     {
         id = "boss_soul",
         min_level = 1,
-        chance = 1.5,
+        chance = 1.3,
         spawn_func = function(level, x, y)
             local entity = GetUpdatedEntityID()
             DontFearTheReaper({["boss"]=math.ceil(level/5)}, entity)
@@ -48,7 +48,7 @@ haunting_rewards = {
     {
         id = "reaper_perk_2",
         min_level = 3,
-        chance = 0.5,
+        chance = 0.4,
         spawn_func = function(level, x, y)
             perk_spawn(x, y - 2, "SOULS_REAP_BETTER")
         end,
@@ -107,7 +107,7 @@ haunting_rewards = {
     {
         id = "souls",
         min_level = 1,
-        chance = 1.3,
+        chance = 1.1,
         spawn_func = function(level, x, y) 
             local souls = {}
             local amt = 5 + level * 2

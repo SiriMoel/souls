@@ -147,13 +147,12 @@ local new_actions = {
 		related_projectiles	= {"mods/souls/files/entities/projectiles/soul_bolt/proj.xml"},
 		type = ACTION_TYPE_PROJECTILE,
 		spawn_level = "3,4,5,6",
-		spawn_probability = "0.7,0.8,0.8,0.7",
+		spawn_probability = "0.6,0.7,0.6,0.6",
 		price = 100,
 		mana = 35,
 		ai_never_uses = true,
 		action = function()
 			add_projectile("mods/souls/files/entities/projectiles/soul_bolt/proj.xml")
-			souls_used_count = souls_used_count + 1
 			souls_used_count = souls_used_count + 1
 			c.fire_rate_wait = c.fire_rate_wait + 12
 		end,
@@ -793,7 +792,7 @@ local new_actions = {
 		related_extra_entities = {"mods/souls/files/entities/projectiles/resonate/entity.xml"},
 		type = ACTION_TYPE_MODIFIER,
 		spawn_level = "3,4,5,6,10",
-		spawn_probability = "0.4,0.5.0.5,0.6,0.3",
+		spawn_probability = "0.3,0.3.0.4,0.5,0.2",
 		price = 140,
 		mana = 30,
 		ai_never_uses = true,
@@ -806,7 +805,7 @@ local new_actions = {
 				local chance = souls_used_count * 9
 				if souls_not_enough then chance = 0 end
 				if Random(1, 100) <= chance then -- do i need to SetRandomSeed() ?
-					local amt = SoulCount("total_boss")
+					local amt = SoulCount("total_boss", caster)
 					c.damage_projectile_add = c.damage_projectile_add + 0.04 * amt
 					c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/resonate/entity.xml,"
 				end

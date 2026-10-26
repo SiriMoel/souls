@@ -13,7 +13,7 @@ function player_damage(item, player, damage, critical_hit_chance, is_held)
                         local frame_now = GameGetFrameNum()
                         if frame_now >= p_frame then
                             ComponentSetValue2(comp_p, "value_int", p - 1)
-                            ComponentSetValue2(comp_p_frame, "value_int", frame_now + 20)
+                            ComponentSetValue2(comp_p_frame, "value_int", frame_now + 12)
                             local x, y = EntityGetTransform(player)
                             GamePlaySound("data/audio/Desktop/projectiles.bank", "projectiles/enlightened_laser/launch_dark", x, y)
                         end
@@ -37,7 +37,7 @@ function player_damaged(item, player, damage, message, entity_thats_responsible,
                     local frame_now = GameGetFrameNum()
                     if frame_now >= p_frame then
                         ComponentSetValue2(comp_p, "value_int", p - 1)
-                        ComponentSetValue2(comp_p_frame, "value_int", frame_now + 20)
+                        ComponentSetValue2(comp_p_frame, "value_int", frame_now + 12)
                         local x, y = EntityGetTransform(player)
                         GamePlaySound("data/audio/Desktop/projectiles.bank", "projectiles/enlightened_laser/launch_dark", x, y)
                     end

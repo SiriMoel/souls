@@ -1,0 +1,13 @@
+<Entity name="$animal_souls_boss_banshee" tags="enemy,mortal,hittable,homing_target,glue_NOT,souls_boss">
+
+    <VariableStorageComponent
+        _tags="ring_count"
+        name="ring_count"
+        value_int="0"
+    ></VariableStorageComponent>
+
+    <LuaComponent
+        script_death="mods/souls/files/entities/animals/boss_banshee/death.lua"
+    ></LuaComponent>
+
+</Entity>

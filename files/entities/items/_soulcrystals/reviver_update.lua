@@ -12,6 +12,7 @@ if life <= 0 then
     if comp == nil then print("Souls?") return end
     local path = ComponentGetValue2(comp, "value_string")
     local boss = EntityLoad(path, x, y)
+    EntityAddTag(boss, "souls_revived_boss")
     if path == "data/entities/animals/boss_dragon.xml" then
         EntityAddComponent2(boss, "LuaComponent", { 
 		    script_death = "data/scripts/animals/boss_dragon_death.lua",

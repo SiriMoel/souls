@@ -1,0 +1,14 @@
+<Entity>
+
+    <VariableStorageComponent
+        _tags="count"
+        name="count"
+        value_int="3"
+    ></VariableStorageComponent>
+
+    <LuaComponent
+        script_source_file="mods/souls/files/entities/animals/boss_banshee/minion_spawner.lua"
+        execute_every_n_frame="12"
+    ></LuaComponent>
+
+</Entity>

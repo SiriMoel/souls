@@ -1,0 +1,131 @@
+<Entity tags="enemy,mortal,hittable,homing_target,glue_NOT,polymorphable_NOT,teleportable_NOT,necrobot_NOT,souls_banshee_minion">
+
+    <!-- damage -->
+
+    <DamageModelComponent 
+		hp="0.04" 
+		air_needed="0" 
+        fire_probability_of_ignition="0" 
+		ragdoll_fx_forced="DISINTEGRATED"
+		ragdoll_material="souls_soul_particles"
+		blood_material="souls_soul_particles"
+		blood_spray_material="souls_soul_particles"
+		ragdoll_material="souls_soul_particles"
+        ragdoll_offset_y="-6"
+		blood_sprite_directional=""
+		blood_sprite_large=""
+		materials_that_damage="souls_soulaway" 
+		materials_how_much_damage="0.001" >
+        <damage_multipliers
+			melee="1.0"
+			projectile="1.0"
+			explosion="1.0"
+			electricity="1.0"
+			fire="1.0"
+			slice="1.0"
+			ice="0.0"
+		></damage_multipliers>
+	</DamageModelComponent>
+
+    <HitboxComponent 
+		aabb_min_x="-5" 
+		aabb_max_x="5" 
+		aabb_min_y="-5" 
+		aabb_max_y="5"
+		damage_multiplier="1.0"
+    ></HitboxComponent>
+
+    <!-- behaviour -->
+
+    <AreaDamageComponent
+        _enabled="1"
+		aabb_min.x="-5" 
+		aabb_max.x="5"
+        aabb_min.y="-5" 
+		aabb_max.y="5"
+		damage_per_frame="0.06"
+		update_every_n_frame="4"
+		entities_with_tag="player_unit"
+		damage_type="DAMAGE_CURSE"
+	></AreaDamageComponent>
+
+    <VariableStorageComponent
+        _tags="speed"
+        name="speed"
+        value_float="1.6"
+    ></VariableStorageComponent>
+
+    <LuaComponent
+        script_source_file="mods/souls/files/entities/animals/boss_banshee/minion_behaviour.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+    <LuaComponent
+        script_death="mods/souls/files/entities/animals/boss_banshee/minion_death.lua"
+    ></LuaComponent>
+
+    <!-- vfx -->
+
+    <SpriteComponent
+        image_file="mods/souls/files/entities/animals/boss_banshee/sprite_ring_soul.xml"
+    ></SpriteComponent>
+    
+  	<ParticleEmitterComponent 
+	  	emitted_material_name="souls_soul_particles"
+		offset.x="0"
+    	offset.y="0"
+    	x_pos_offset_min="-3"
+		x_pos_offset_max="3"
+    	y_pos_offset_min="-3"
+		y_pos_offset_max="3"
+		x_vel_min="0"
+    	x_vel_max="0"
+	    y_vel_min="0"
+    	y_vel_max="0"
+	    gravity.y="0.0"
+		count_min="1"
+		count_max="3"
+    	lifetime_min="0.8"
+	    lifetime_max="0.9"
+    	is_trail="1"
+	    trail_gap="1.0"
+		render_on_grid="1"
+		fade_based_on_lifetime="1"
+    	airflow_force="0.5"
+	    airflow_time="0.001"
+    	airflow_scale="0.0833"
+	    emission_interval_min_frames="1"
+		emission_interval_max_frames="1"
+		emit_cosmetic_particles="1"
+    	create_real_particles="0"
+	    is_emitting="1"
+    ></ParticleEmitterComponent>
+
+    <ParticleEmitterComponent 
+		_enabled="1"
+		emitted_material_name="souls_soul_particles"
+		gravity.y="0.0"
+		lifetime_min="0.5"
+		lifetime_max="0.9"
+		x_vel_min="-3"
+		x_vel_max="3"
+		y_vel_min="-18"
+		y_vel_max="-7"
+		count_min="2"
+		count_max="6"
+		render_on_grid="1"
+		fade_based_on_lifetime="1"
+		area_circle_radius.min="0"
+		area_circle_radius.max="5"
+		cosmetic_force_create="1"
+		collide_with_grid="0"
+		airflow_force="0.051"
+		airflow_time="1.01"
+		airflow_scale="0.03"
+		emission_interval_min_frames="1"
+		emission_interval_max_frames="1"
+		emit_cosmetic_particles="1"
+		is_emitting="1"
+	></ParticleEmitterComponent>
+
+</Entity>

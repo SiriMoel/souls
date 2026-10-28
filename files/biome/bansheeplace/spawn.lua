@@ -1,0 +1,5 @@
+local this = GetUpdatedEntityID()
+local x, y = EntityGetTransform(this)
+LoadPixelScene("mods/souls/files/biome/bansheeplace/scene.png", "", x-64, y-64, "mods/souls/files/biome/bansheeplace/background.png", true)
+EntityLoad("mods/souls/files/entities/animals/boss_banshee/spawner.xml", x, y)
+EntityKill(this)

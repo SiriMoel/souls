@@ -4,7 +4,7 @@ local souls_to_add = {
         name = "Inactive Phylactery",
         xml = "item.xml",
     },
-    {
+    --[[{
         path = "data/entities/animals/souls_boss_soul.xml",
         name = "$animal_souls_boss_soul",
         xml = "souls_boss_soul.xml",
@@ -13,7 +13,7 @@ local souls_to_add = {
         path = "mods/souls/files/entities/items/soul_of_the_diviner/item.xml",
         name = "Soul of the Diviner",
         xml = "item.xml",
-    },
+    },]]
     {
         path = "mods/souls/files/entities/items/_soulcrystals/pyramid.xml",
         name = "Kolmisilmän koipi's Soul Crystal",
@@ -28,6 +28,16 @@ local souls_to_add = {
         path = "mods/souls/files/entities/items/soulward/soulward.xml",
         name = "Soulward",
         xml = "soulward.xml",
+    },
+    {
+        path = "mods/souls/files/entities/animals/boss_banshee/spawner.xml",
+        name = "Banshee",
+        xml = "spawner.xml",
+    },
+    {
+        path = "mods/souls/files/entities/items/lantern/lantern.xml",
+        name = "Soul Lantern",
+        xml = "lantern.xml",
     },
 }
 

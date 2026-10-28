@@ -1,0 +1,15 @@
+<Sprite 
+    default_animation="soul" 
+    filename="mods/souls/files/entities/animals/boss_banshee/sprite_eyes_looking.png" >
+
+    <RectAnimation 
+        name="soul"
+        frame_count="1" 
+        frames_per_row="1" 
+        frame_wait="0.08"
+        frame_width="36" 
+        frame_height="42"
+        loop="1"
+    ></RectAnimation>
+
+</Sprite>

@@ -401,6 +401,14 @@ mod_settings = {
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
                 ui_fn = mod_setting_bool_souls,
             },
+            {
+                id = "enable_banshee",
+                ui_name = "Banshee Tomb",
+                ui_description = "Should this structure appear?",
+                value_default = true,
+                scope = MOD_SETTING_SCOPE_NEW_GAME,
+                ui_fn = mod_setting_bool_souls,
+            },
         },
     },
     {

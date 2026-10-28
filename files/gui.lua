@@ -22,6 +22,13 @@ soul_hats = {
         hat = "mods/souls/files/ui_gfx/soul_book.png",
         offset = 4,
     },
+    ghost = {
+        func = function()
+            return HasFlagPersistent("souls_banshee_slain")
+        end,
+        hat = "mods/souls/files/ui_gfx/soul_mask.png",
+        offset = -3,
+    }
 }
 
 -- thankyou kmccord1 (I think you originally wrote the gui to not use a slow library?)

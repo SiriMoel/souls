@@ -8,8 +8,8 @@
 
 	<InteractableComponent
 		_enabled="1"
-        radius="5"
-        ui_text="[INTERACT] to challenge the Banshee."
+        radius="20"
+        ui_text="INTERACT: Challenge ???"
         name="$animal_souls_boss_banshee"
     ></InteractableComponent>
 
@@ -25,19 +25,46 @@
         execute_every_n_frame="1"
     ></LuaComponent>
 
+	<SpriteComponent
+        image_file="mods/souls/files/entities/animals/boss_banshee/sprite.xml"
+    ></SpriteComponent>
+
+    <SpriteComponent
+        _tags="eyes_looking"
+        image_file="mods/souls/files/entities/animals/boss_banshee/sprite_eyes_looking.xml"
+        offset_x="18"
+        offset_y="21"
+		emissive="1"
+    ></SpriteComponent>
+
+    <LuaComponent
+		_enabled="1"
+        script_source_file="mods/souls/files/entities/animals/boss_banshee/eyes_look.lua"
+        execute_every_n_frame="6"
+    ></LuaComponent>
+
+	<LightComponent 
+		_enabled="1" 
+		radius="128"
+		r="110"
+		g="210"
+		b="255"
+   		fade_out_time="1.5"
+    ></LightComponent>
+
 	<ParticleEmitterComponent 
 		_enabled="1"
 		_tags="souls_boss_banshee_spawner"
 		emitted_material_name="souls_soul_particles"
 		gravity.y="0.0"
-		lifetime_min="0.4"
-		lifetime_max="0.5"
+		lifetime_min="0.7"
+		lifetime_max="1.1"
 		x_vel_min="-3"
 		x_vel_max="3"
 		y_vel_min="-18"
 		y_vel_max="-7"
-		count_min="16"
-		count_max="18"
+		count_min="13"
+		count_max="15"
 		render_on_grid="1"
 		fade_based_on_lifetime="1"
 		area_circle_radius.min="60"

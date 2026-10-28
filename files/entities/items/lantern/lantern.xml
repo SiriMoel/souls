@@ -1,0 +1,120 @@
+<Entity name="$item_souls_lantern" tags="item">
+
+    <AbilityComponent
+        ui_name="$item_souls_lantern" 
+        throw_as_item="0"
+        ><gun_config
+			deck_capacity="0"
+		></gun_config>
+    </AbilityComponent>
+
+	<ItemComponent
+		_tags="enabled_in_world"
+    	is_pickable="1"
+  		is_equipable_forced="1"
+	  	ui_sprite="mods/souls/files/entities/items/lantern/sprite.png"
+        item_name="$item_souls_lantern"
+        ui_description="$itemdesc_souls_lantern"
+    	play_hover_animation="1"
+        play_spinning_animation="0"
+        always_use_item_name_in_ui="1"
+        preferred_inventory="QUICK"
+        is_consumable="0"
+        uses_remaining="0"
+        drinkable="0"
+	></ItemComponent>
+
+  	<VelocityComponent
+	    _tags="enabled_in_world"
+	  	gravity_y="400"
+	  	air_friction="0.55"
+	  	terminal_velocity="1000"
+	></VelocityComponent>
+	
+  	<SimplePhysicsComponent
+	    _tags="enabled_in_world"
+		_enabled="0"
+	></SimplePhysicsComponent>
+  
+  	<HitboxComponent 
+	    _tags="enabled_in_world"
+	    aabb_max_x="4" 
+	    aabb_max_y="4" 
+	    aabb_min_x="-4" 
+	    aabb_min_y="-4" 
+	    is_enemy="0" 
+	    is_item="1" 
+	    is_player="0" 
+	></HitboxComponent>
+
+	<SpriteComponent
+		_tags="enabled_in_hand,sprite_hand"
+		_enabled="0"
+		offset_x="2"
+		offset_y="4"
+		image_file="mods/souls/files/entities/items/lantern/sprite_in_hand.png"
+	></SpriteComponent>
+
+	<SpriteComponent 
+		_tags="enabled_in_world,sprite_world" 
+		_enabled="1"
+		alpha="1" 
+		offset_x="2"
+		offset_y="4"
+		image_file="mods/souls/files/entities/items/lantern/sprite_in_world.png"
+		z_index="-1.5" 
+	></SpriteComponent>
+
+    <VariableStorageComponent
+        _tags="lantern_soul"
+        name="lantern_soul"
+		value_string=""
+    ></VariableStorageComponent>
+	
+    <VariableStorageComponent
+        _tags="lantern_frame"
+        name="lantern_frame"
+		value_int="0"
+    ></VariableStorageComponent>
+	
+    <VariableStorageComponent
+        _tags="button_was_down"
+        name="button_was_down"
+		value_int="0"
+    ></VariableStorageComponent>
+
+    <LuaComponent
+        _tags="enabled_in_hand"
+        script_source_file="mods/souls/files/entities/items/lantern/in_hand.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+    <LuaComponent
+        _tags="enabled_in_inventory,enabled_in_world"
+        script_source_file="mods/souls/files/entities/items/lantern/in_inv_world.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+  	<LightComponent
+		_enabled="0"
+	    _tags="lantern_on"
+		update_properties="1"
+		r="118"
+		g="255"
+		b="255"
+	    radius="32"
+	></LightComponent>
+	
+	<SpriteComponent 
+		_enabled="0"
+		_tags="lantern_on"
+		alpha="0.55"
+		image_file="data/particles/fog_of_war_hole_128.xml"
+		smooth_filtering="1"
+		fog_of_war_hole="1"
+		has_special_scale="1"
+		special_scale_x="5"
+		special_scale_y="5"
+	></SpriteComponent>
+
+</Entity>

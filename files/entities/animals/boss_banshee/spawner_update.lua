@@ -10,6 +10,7 @@ local radius = 60 * (life/60)
 ComponentSetValue2(comp_part, "area_circle_radius", radius, radius)
 if life <= 0 then
     --GamePlaySound("data/audio/Desktop/projectiles.bank", "projectiles/enlightened_laser/launch_dark", x, y)
+    local boss = EntityLoad("data/entities/animals/souls_boss_banshee.xml", x, y)
     GameScreenshake(10)
     EntityKill(this)
 end

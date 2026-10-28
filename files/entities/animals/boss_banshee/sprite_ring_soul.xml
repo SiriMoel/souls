@@ -1,0 +1,17 @@
+<Sprite 
+    default_animation="soul" 
+    filename="mods/souls/files/entities/animals/boss_banshee/sprite_ring_soul.png" 
+    offset_x="6" 
+    offset_y="6" >
+
+    <RectAnimation 
+        name="soul"
+        frame_count="1" 
+        frames_per_row="1" 
+        frame_wait="0.08"
+        frame_width="12" 
+        frame_height="12"
+        loop="1"
+    ></RectAnimation>
+
+</Sprite>

@@ -1,0 +1,25 @@
+<Entity tags="hittable,soul_crystal">
+
+	<Base file="mods/souls/files/entities/items/_soulcrystals/_base.xml">
+	
+		<UIInfoComponent
+			name="$item_souls_crystal_banshee"
+		></UIInfoComponent>
+
+		<ItemComponent
+			item_name="$item_souls_crystal_banshee"
+		></ItemComponent>
+
+		<AbilityComponent
+			ui_name="$item_souls_crystal_banshee"
+		></AbilityComponent>
+
+		<VariableStorageComponent
+			_tags="soul_crystal_boss"
+			name="soul_crystal_boss"
+			value_string="data/entities/animals/souls_boss_banshee.xml"
+		></VariableStorageComponent>
+	
+	</Base>
+
+</Entity>

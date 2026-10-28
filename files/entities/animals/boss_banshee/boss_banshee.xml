@@ -1,13 +1,228 @@
-<Entity name="$animal_souls_boss_banshee" tags="enemy,mortal,hittable,homing_target,glue_NOT,souls_boss">
+<Entity name="$animal_souls_boss_banshee" tags="enemy,mortal,hittable,homing_target,glue_NOT,polymorphable_NOT,teleportable_NOT,necrobot_NOT,souls_boss,souls_boss_banshee">
+
+    <!-- damage -->
+
+    <DamageModelComponent 
+		hp="20" 
+		air_needed="0" 
+        fire_probability_of_ignition="0" 
+		ragdoll_fx_forced="DISINTEGRATED"
+		ragdoll_material="souls_soul_particles"
+		blood_material="souls_soul_particles"
+		blood_spray_material="souls_soul_particles"
+		ragdoll_material="souls_soul_particles"
+        ragdoll_offset_y="-6"
+		blood_sprite_directional=""
+		blood_sprite_large=""
+		materials_that_damage="souls_soulaway" 
+		materials_how_much_damage="0.001" >
+        <damage_multipliers
+			melee="1.0"
+			projectile="1.0"
+			explosion="1.0"
+			electricity="1.0"
+			fire="1.0"
+			slice="1.0"
+			ice="0.0"
+		></damage_multipliers>
+	</DamageModelComponent>
+
+    <HitboxComponent 
+		aabb_min_x="-12" 
+		aabb_max_x="12" 
+		aabb_min_y="-17" 
+		aabb_max_y="12"
+		damage_multiplier="0.0"
+    ></HitboxComponent>
+
+    <!-- behaviour -->
 
     <VariableStorageComponent
-        _tags="ring_count"
-        name="ring_count"
+        _tags="state"
+        name="state"
+        value_int="1"
+    ></VariableStorageComponent>
+
+    <VariableStorageComponent
+        _tags="frame_state"
+        name="frame_state"
+        value_int="0"
+    ></VariableStorageComponent>
+
+    <VariableStorageComponent
+        _tags="frame_souls"
+        name="frame_souls"
+        value_int="0"
+    ></VariableStorageComponent>
+
+    <VariableStorageComponent
+        _tags="frame_attack"
+        name="frame_attack"
+        value_int="0"
+    ></VariableStorageComponent>
+
+    <VariableStorageComponent
+        _tags="attacks_done"
+        name="attacks_done"
+        value_int="0"
+    ></VariableStorageComponent>
+
+    <VariableStorageComponent
+        _tags="frame_lunge_begin"
+        name="frame_lunge_begin"
+        value_int="-1"
+    ></VariableStorageComponent>
+
+	<VariableStorageComponent
+        _tags="lunge_pos_x" name="lunge_pos_x" value_float="0"
+    ></VariableStorageComponent>
+	<VariableStorageComponent
+        _tags="lunge_pos_y" name="lunge_pos_y" value_float="0"
+    ></VariableStorageComponent>
+
+    <LuaComponent
+        script_source_file="mods/souls/files/entities/animals/boss_banshee/boss_banshee.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+    <AreaDamageComponent
+        _enabled="0"
+        _tags="banshee_lunge"
+		aabb_min.x="-12" 
+		aabb_max.x="12"
+        aabb_min.y="-17" 
+		aabb_max.y="12"
+		damage_per_frame="0.12"
+		update_every_n_frame="4"
+		entities_with_tag="human"
+		damage_type="DAMAGE_MELEE"
+	></AreaDamageComponent>
+
+    <VariableStorageComponent
+        _tags="ring_frame_last_added"
+        name="ring_frame_last_added"
         value_int="0"
     ></VariableStorageComponent>
 
     <LuaComponent
+        _tags="banshee_ring"
+        script_source_file="mods/souls/files/entities/animals/boss_banshee/ring_update.lua"
+        execute_every_n_frame="2"
+    ></LuaComponent>
+
+    <LuaComponent
         script_death="mods/souls/files/entities/animals/boss_banshee/death.lua"
     ></LuaComponent>
+
+    <!-- vfx -->
+
+    <SpriteComponent
+        image_file="mods/souls/files/entities/animals/boss_banshee/sprite.xml"
+    ></SpriteComponent>
+
+    <SpriteComponent
+        _tags="eyes_looking"
+        image_file="mods/souls/files/entities/animals/boss_banshee/sprite_eyes_looking.xml"
+        offset_x="18"
+        offset_y="21"
+		emissive="1"
+    ></SpriteComponent>
+
+    <LuaComponent
+        script_source_file="mods/souls/files/entities/animals/boss_banshee/eyes_look.lua"
+        execute_every_n_frame="6"
+    ></LuaComponent>
+
+    <SpriteComponent
+        _tags="banshee_ring"
+        image_file="mods/souls/files/entities/animals/boss_banshee/sprite_ring.xml"
+		emissive="1"
+    ></SpriteComponent>
+
+    <LightComponent 
+		_enabled="1" 
+		radius="128"
+		r="110"
+		g="210"
+		b="255"
+   		fade_out_time="1.5"
+    ></LightComponent>
+    
+	<ParticleEmitterComponent 
+		_enabled="0"
+		_tags="banshee_lunge"
+		emitted_material_name="souls_soul_particles"
+		gravity.y="0.0"
+		lifetime_min="0.9"
+		lifetime_max="1.4"
+		x_vel_min="-3"
+		x_vel_max="3"
+		y_vel_min="-18"
+		y_vel_max="-7"
+		count_min="10"
+		count_max="12"
+		render_on_grid="1"
+		fade_based_on_lifetime="1"
+		area_circle_radius.min="1"
+		area_circle_radius.max="17"
+		cosmetic_force_create="1"
+		collide_with_grid="0"
+		airflow_force="0.051"
+		airflow_time="1.01"
+		airflow_scale="0.03"
+		emission_interval_min_frames="1"
+		emission_interval_max_frames="1"
+		emit_cosmetic_particles="1"
+		is_emitting="1"
+	></ParticleEmitterComponent>
+
+    <!-- health bar -->
+
+    <SpriteComponent 
+		_tags="health_bar_back,ui"
+		_enabled="1" 
+		alpha="1" 
+		has_special_scale="1" 
+		image_file="mods/souls/files/entities/animals/boss_banshee/health_slider_back_0.png" 
+		is_text_sprite="0" 
+		next_rect_animation="" 
+		offset_x="12" 
+		offset_y="34" 
+		rect_animation="" 
+		special_scale_x="1" 
+		special_scale_y="1" 
+		ui_is_parent="0" 
+		update_transform="1" 
+		visible="1" 
+		emissive="1"
+		never_ragdollify_on_death="1"
+		z_index="-9000" 
+	></SpriteComponent>
+
+	<SpriteComponent 
+		_tags="health_bar,ui" 
+		_enabled="1" 
+		alpha="1" 
+		has_special_scale="1" 
+		image_file="mods/souls/files/entities/animals/boss_banshee/health_slider_front_ring.png" 
+		is_text_sprite="0" 
+		next_rect_animation="" 
+		offset_x="12" 
+		offset_y="30" 
+		rect_animation="" 
+		special_scale_x="1" 
+		special_scale_y="1" 
+		ui_is_parent="0" 
+		update_transform="1" 
+		visible="1" 
+		emissive="1"
+		never_ragdollify_on_death="1"
+		z_index="-9001" 
+	></SpriteComponent>
+		
+	<BossHealthBarComponent
+		gui="0"
+		in_world="1"
+	></BossHealthBarComponent>
 
 </Entity>

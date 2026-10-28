@@ -1,33 +1,12 @@
-v1.5.1
+v1.5.2
 
 NEW
-- Soul Blood recipe now makes Soulless Blood, which must be converted into Soul Blood using souls
-- Spell: Tome Spellbook II (Tome Spear, Tome Field, Tome Buff)
-- Spell: Soul Sight
-- Spell: Souls Resonate
-- Perk: Taxoul
-- Enemy: Haunting
-- Item: Soulward
-- Material: Soulless Blood
-- Material: Soul Catalyst
-- Material: Haunt
-- Material: Soulocin
-- Material: Absinthe
-- Structure: Fountain
-- Tome Spellbook spell icons
+- Enemy: Huutava sielu (boss)
+- Structure: Banshee Tomb
+- Item: Soul Lantern
 
 CHANGED/FIXED
-- Phylactery charges can only be lost every 12 frames (0.2s)
-- Phylactery now works with damage immunities
-- Increased max tome upgrade soul cost
-- Increased tome upgrade soul cost increase per upgrade purchased
-- Wand Consumes X Souls spell spawns with the Soul Tome
-- Reduced spawn probabilities of Wand Consumes X Souls spell
-- Wand Consumes X Souls spell shows what soul is being consumed on the wand
-- Renamed Tome Shot spell to Tome Spellbook
-- Reduced non-soul magic damage resistance on applicable enemies
-- Fixed revived Dragon not dropping its usual rewards
+- ???
 
 INTERNAL
-- Reworked player damage handling and the phylactery (this update breaks existing phylacteries. I promise this is the last time)
-- Version things
+- Revived bosses are given the souls_revived_boss tag

@@ -1,4 +1,4 @@
-SOULS_VERSION = 5.01 -- also update mod.xml
+SOULS_VERSION = 5.02 -- also update mod.xml
 SOULS_SET_VERSION = true
 SOULS_FORCE_VERSION = nil
 
@@ -200,8 +200,12 @@ local possible_scenes = {
         func = function() return ModSettingGet("souls.enable_shop_structure") end,
     },
     {
-        scene = {-2470, 3170, --[[4000, 3500,]] "mods/souls/files/biome/fountain/fountain.xml", true},
+        scene = {-2470, 3170, "mods/souls/files/biome/fountain/fountain.xml", true},
         func = function() return ModSettingGet("souls.enable_fountain_structure") end,
+    },
+    {
+        scene = {-2800, 3800, "mods/souls/files/biome/bansheeplace/bansheeplace.xml", false},
+        func = function() return ModSettingGet("souls.enable_banshee") end,
     },
 }
 for _,v in ipairs(possible_scenes) do

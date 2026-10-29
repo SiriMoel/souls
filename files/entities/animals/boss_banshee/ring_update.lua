@@ -21,20 +21,29 @@ if #targets > 0 then
         local dist_x = t_x - x
         local dist_y = t_y - y
 
-        local a = math.atan2(dist_y, dist_x)
+        local dist_xy = math.sqrt(dist_x*dist_x + dist_y*dist_y)
 
-        local s_x = x + math.cos(a) * ring_dist
-        local s_y = y + math.sin(a) * ring_dist
+        if dist_xy >= 39 then
+            local a = math.atan2(dist_y, dist_x)
 
-        local soul = EntityLoad("mods/souls/files/entities/animals/boss_banshee/ring_soul.xml", s_x, s_y)
-        EntityAddChild(this, soul)
+            local s_x = x + math.cos(a) * ring_dist
+            local s_y = y + math.sin(a) * ring_dist
 
-        added_to_ring = true
+            local soul = EntityLoad("mods/souls/files/entities/animals/boss_banshee/ring_soul.xml", s_x, s_y)
+            EntityAddChild(this, soul)
+
+            local comp_rot = EntityGetFirstComponentIncludingDisabled(soul, "VariableStorageComponent", "rot")
+            ComponentSetValue2(comp_rot, "value_float", a)
+
+            added_to_ring = true
+        end
     end
 
-    for i = 1, #targets do
-        local target = targets[i]
-        EntityKill(target)
+    if added_to_ring then
+        for i = 1, #targets do
+            local target = targets[i]
+            EntityKill(target)
+        end
     end
 end
 
@@ -43,14 +52,19 @@ local ring_souls = EntityGetAllChildren(this, "souls_banshee_ring_soul") or {}
 if #ring_souls > 0 then
     for i = 1, #ring_souls do
         local soul = ring_souls[i]
-        local s_x, s_y = EntityGetTransform(soul)
+        --local s_x, s_y = EntityGetTransform(soul)
 
-        local dist_x = s_x - x
-        local dist_y = s_y - y
+        --local dist_x = s_x - x
+        --local dist_y = s_y - y
 
-        local a = math.atan2(dist_y, dist_x)
+        --local a = math.atan2(dist_y, dist_x)
+
+        local comp_rot = EntityGetFirstComponentIncludingDisabled(soul, "VariableStorageComponent", "rot")
+        local a = ComponentGetValue2(comp_rot, "value_float")
 
         a = a + 0.03
+
+        ComponentSetValue2(comp_rot, "value_float", a)
 
         local new_x = x + math.cos(a) * ring_dist
         local new_y = y + math.sin(a) * ring_dist

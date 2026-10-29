@@ -204,7 +204,7 @@ local possible_scenes = {
         func = function() return ModSettingGet("souls.enable_fountain_structure") end,
     },
     {
-        scene = {-2800, 3800, "mods/souls/files/biome/bansheeplace/bansheeplace.xml", false},
+        scene = {-2980, 3800, "mods/souls/files/biome/bansheeplace/bansheeplace.xml", false},
         func = function() return ModSettingGet("souls.enable_banshee") end,
     },
 }

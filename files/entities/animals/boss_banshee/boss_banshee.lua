@@ -2,6 +2,20 @@ local this = GetUpdatedEntityID()
 
 local x, y = EntityGetTransform(this)
 
+local minions_close = EntityGetInRadiusWithTag(x, y, 22, "souls_banshee_minion") or {}
+if #minions_close > 0 then
+    for i = 1, #minions_close do
+        EntityKill(minions_close[i])
+    end
+end
+
+local minions2_close = EntityGetInRadiusWithTag(x, y, 22, "souls_banshee_soul") or {}
+if #minions2_close > 0 then
+    for i = 1, #minions2_close do
+        EntityKill(minions2_close[i])
+    end
+end
+
 local targets = EntityGetInRadiusWithTag(x, y, 400, "player_unit") or {}
 if #targets > 0 then
     local player = targets[1]
@@ -58,6 +72,10 @@ if #targets > 0 then
 
             frame_souls = frame_now + 300
             ComponentSetValue2(comp_frame_souls, "value_int", frame_souls)
+
+            GamePlayAnimation(this, "eyes", 12, "soul", 9)
+
+            -- sfx? here or in minion_spawner.lua
         else
             update_state = true
             attacks_done = attacks_done - 2
@@ -74,6 +92,9 @@ if #targets > 0 then
 
             ComponentSetValue2(comp_frame_attack, "value_int", frame_now + 90)
             attacks_done = attacks_done + 1
+
+            -- play attack animation (mouth?)
+            -- sfx
         end
 
     elseif state == 3 then
@@ -102,6 +123,12 @@ if #targets > 0 then
 
             ComponentSetValue2(comp_lunge_x, "value_float", lunge_x)
             ComponentSetValue2(comp_lunge_y, "value_float", lunge_y)
+
+            GamePlayAnimation(this, "bite", 11, "soul", 10)
+
+            -- what sound???
+            GamePlaySound("data/audio/Desktop/animals.bank", "animals/generic/bite", x, y)
+            GamePlaySound("data/audio/Desktop/animals.bank", "animals/generic/attack_dash", x, y)
         end
 
         if frame_lunge_begin ~= -1 then
@@ -113,12 +140,12 @@ if #targets > 0 then
 
             movespeed = movespeed + 2.9 * math.sin(math.pi * lunge)
 
-            local dist_to_player = math.sqrt((p_x - x)*(p_x - x) + (p_y - y)*(p_y - y))
-
-            if lunge > 1 or dist_to_player <= 10 then
+            if lunge > 1 then
                 ComponentSetValue2(comp_frame_lunge_begin, "value_int", -1)
 
-                if dist_to_player <= 25 then
+                local dist_to_player = math.sqrt((p_x - x)*(p_x - x) + (p_y - y)*(p_y - y))
+
+                if dist_to_player <= 18 then
                     attacks_done = attacks_done + 1
                 end
 
@@ -142,7 +169,7 @@ if #targets > 0 then
         local new_state = nil
         if current_state == 1 then
             if frame_now < frame_souls - 60 then
-                if dist_xy > 20 and dist_xy < 120 then
+                if dist_xy > 24 and dist_xy < 120 then
                     new_state = 2
                 else
                     new_state = 3
@@ -155,7 +182,7 @@ if #targets > 0 then
                 if RaytraceSurfacesAndLiquiform(x, y, p_x, p_y - 2) then
                     new_state = 3
                 else
-                    if dist_xy > 80 then
+                    if dist_xy > 125 then
                         new_state = 3
                     else
                         if current_state == 2 then

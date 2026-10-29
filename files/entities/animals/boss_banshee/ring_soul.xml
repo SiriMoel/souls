@@ -1,5 +1,11 @@
 <Entity tags="souls_banshee_ring_soul">
 
+	<VariableStorageComponent
+        _tags="rot"
+		name="rot" 
+		value_float="0"
+    ></VariableStorageComponent>
+
     <SpriteComponent
         image_file="mods/souls/files/entities/animals/boss_banshee/sprite_ring_soul.xml"
     ></SpriteComponent>

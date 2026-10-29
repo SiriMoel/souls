@@ -3,7 +3,7 @@
     <HomingComponent
         target_tag="souls_boss_banshee"
         detect_distance="500"
-        homing_velocity_multiplier="0.7"
+        homing_velocity_multiplier="0.5"
 		homing_targeting_coeff="140"
     ></HomingComponent>
 

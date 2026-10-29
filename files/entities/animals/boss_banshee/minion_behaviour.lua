@@ -17,12 +17,12 @@ if #targets > 0 then
 
     local dist_xy = math.sqrt(dist_x*dist_x + dist_y*dist_y)
 
-    if dist_xy <= 7 then
-        speed = math.max(speed - 0.02, 0.3)
+    if dist_xy <= 8 then
+        speed = math.max(speed - 0.03, 0.3)
     elseif dist_xy >= 50 then
-        speed = math.min(speed + 0.04, 1.6)
+        speed = math.min(speed + 0.04, 1.4)
     elseif dist_xy >= 15 then
-        speed = math.min(speed + 0.03, 1.6)
+        speed = math.min(speed + 0.03, 1.4)
     end
     ComponentSetValue2(comp_speed, "value_float", speed)
 

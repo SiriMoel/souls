@@ -64,7 +64,7 @@ local new_actions = {
 		type = ACTION_TYPE_MODIFIER,
 		spawn_level = "4,5,6,10",
 		spawn_probability = "0.4,0.5,0.5,0.7",
-		price = 100,
+		price = 130,
 		mana = 20,
 		action = function()
 			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/souldos/reaping_shot.xml,"
@@ -79,11 +79,30 @@ local new_actions = {
 		related_extra_entities = {"mods/souls/files/entities/projectiles/reap_from_fire/reaping_shot.xml"},
 		type = ACTION_TYPE_MODIFIER,
 		spawn_level = "3,4,5,6",
-		spawn_probability = "0.3,0.4,0.4,0.3",
+		spawn_probability = "0.2,0.3,0.3,0.1",
 		price = 100,
 		mana = 5,
 		action = function()
 			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/reap_from_fire/reaping_shot.xml,"
+			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "NECRONOMICAL_REAP",
+		name = "$action_souls_necronomical_reap",
+		description = "$actiondesc_souls_necronomical_reap",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/necronomical_reap.png",
+		related_extra_entities = {"mods/souls/files/entities/projectiles/necronomical_reap/entity.xml"},
+		spawn_requires_flag = "souls_banshee_slain",
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level  = "3,4,5",
+		spawn_probability = "0.1,0.2,0.1",
+		price = 60,
+		mana = 3,
+		action = function()
+			c.damage_projectile_add = c.damage_projectile_add - 0.04
+			current_reload_time = current_reload_time - 3
+			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/necronomical_reap/entity.xml,"
 			draw_actions(1, true)
 		end,
 	},
@@ -792,7 +811,7 @@ local new_actions = {
 		related_extra_entities = {"mods/souls/files/entities/projectiles/resonate/entity.xml"},
 		type = ACTION_TYPE_MODIFIER,
 		spawn_level = "3,4,5,6,10",
-		spawn_probability = "0.3,0.3.0.4,0.5,0.2",
+		spawn_probability = "0.3,0.3,0.4,0.5,0.2",
 		price = 140,
 		mana = 30,
 		ai_never_uses = true,

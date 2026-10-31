@@ -34,6 +34,11 @@ local souls_to_add = {
         name = "Banshee",
         xml = "spawner.xml",
     },
+    --[[{
+        path = "mods/souls/files/entities/animals/boss_banshee/minion_soul.xml",
+        name = "Banshee Soul",
+        xml = "minion_soul.xml",
+    },]]
     {
         path = "mods/souls/files/entities/items/lantern/lantern.xml",
         name = "Soul Lantern",

@@ -1,3 +1,16 @@
+local function shoot_projectile(who_shot, entity_file, x, y, vel_x, vel_y, send_message)
+	local projectile = EntityLoad(entity_file, x, y)
+	local herd_id = StringToHerdId("souls_void")
+	if send_message == nil then send_message = true end
+	GameShootProjectile(who_shot, x, y, x+vel_x, y+vel_y, projectile, send_message)
+    local comp_proj = EntityGetFirstComponent(projectile, "ProjectileComponent")
+    ComponentSetValue2(comp_proj, "mWhoShot", who_shot)
+    ComponentSetValue2(comp_proj, "mShooterHerdId", herd_id)
+    local comp_vel = EntityGetFirstComponent(projectile, "VelocityComponent")
+    ComponentSetValueVector2(comp_vel, "mVelocity", vel_x, vel_y)
+	return projectile
+end
+
 local this = GetUpdatedEntityID()
 
 local x, y = EntityGetTransform(this)
@@ -53,11 +66,11 @@ if #targets > 0 then
 
     if state == 1 then
 
+        EntitySetComponentsWithTagEnabled(this, "banshee_lunge", false)
+
         movespeed = 0.4
 
-        if frame_now >= frame_souls then
-
-            -- souls attack
+        if frame_now >= frame_souls then -- summon minions
 
             local minions = EntityGetInRadiusWithTag(x, y, 300, "souls_banshee_minion") or {}
             local minions2 = EntityGetInRadiusWithTag(x, y, 300, "souls_banshee_soul") or {}
@@ -81,23 +94,35 @@ if #targets > 0 then
             attacks_done = attacks_done - 2
         end
 
-    elseif state == 2 then
+    elseif state == 2 then -- projectile attack
+
+        EntitySetComponentsWithTagEnabled(this, "banshee_lunge", false)
 
         movespeed = 0.52
 
         if frame_now >= frame_attack then
 
-            -- scream attack
-            GamePrint("scream attack")
+            local p_dist_x = x - p_x
+			local p_dist_y = y - p_x
 
-            ComponentSetValue2(comp_frame_attack, "value_int", frame_now + 90)
+            local p_a = math.atan(p_dist_y / p_dist_x)
+        	local vel_x = p_dist_y / math.tan(p_a) * -65
+			local vel_y = math.tan(p_a) * p_dist_x * -65
+
+            local projs = 2
+            local proj_path = "mods/souls/files/entities/animals/boss_banshee/proj_" .. Random(1, projs) .. ".xml"
+
+			local proj = shoot_projectile(this, proj_path, x, y, vel_x, vel_y)
+
+            ComponentSetValue2(comp_frame_attack, "value_int", frame_now + 45)
             attacks_done = attacks_done + 1
 
-            -- play attack animation (mouth?)
+            GamePlayAnimation(this, "shimmer", 11, "soul", 10)
+
             -- sfx
         end
 
-    elseif state == 3 then
+    elseif state == 3 then -- lunge attack
 
         local lunge_duration = 50
 
@@ -106,9 +131,10 @@ if #targets > 0 then
         local lunge_x = ComponentGetValue2(comp_lunge_x, "value_float")
         local lunge_y = ComponentGetValue2(comp_lunge_y, "value_float")
 
-        if frame_now >= frame_attack then
+        --local comp_area_damage = EntityGetFirstComponentIncludingDisabled(this, "AreaDamageComponent")
+        --ComponentSetValue2(comp_area_damage, "entity_responsible", this) -- this doesnt work :(
 
-            -- lunge attack
+        if frame_now >= frame_attack then
 
             EntitySetComponentsWithTagEnabled(this, "banshee_lunge", true)
 
@@ -118,15 +144,17 @@ if #targets > 0 then
             ComponentSetValue2(comp_frame_attack, "value_int", frame_now + 60)
             attacks_done = attacks_done + 1
 
-            lunge_x = p_x
-            lunge_y = p_y + 20 * (math.ceil(math.sin(attacks_done)) * 2 - 1)
+            local a = math.atan2(p_y - y, p_x - x)
+            local further = 50
+            lunge_x = p_x + further * math.cos(a)
+            lunge_y = p_y + further * math.sin(a) --[[+ 15 * (math.ceil(math.sin(attacks_done)) * 2 - 1)]] 
 
             ComponentSetValue2(comp_lunge_x, "value_float", lunge_x)
             ComponentSetValue2(comp_lunge_y, "value_float", lunge_y)
 
             GamePlayAnimation(this, "bite", 11, "soul", 10)
 
-            -- what sound???
+            -- what sound??? not (just?) one of these
             GamePlaySound("data/audio/Desktop/animals.bank", "animals/generic/bite", x, y)
             GamePlaySound("data/audio/Desktop/animals.bank", "animals/generic/attack_dash", x, y)
         end
@@ -138,18 +166,17 @@ if #targets > 0 then
             p_x = lunge_x
             p_y = lunge_y
 
-            movespeed = movespeed + 2.9 * math.sin(math.pi * lunge)
+            movespeed = movespeed + 3.6 * math.sin(math.pi * lunge)
 
-            if lunge > 1 then
+            if lunge >= 1 then
                 ComponentSetValue2(comp_frame_lunge_begin, "value_int", -1)
 
                 local dist_to_player = math.sqrt((p_x - x)*(p_x - x) + (p_y - y)*(p_y - y))
 
-                if dist_to_player <= 18 then
+                if dist_to_player <= 20 then
                     attacks_done = attacks_done + 1
                 end
 
-                EntitySetComponentsWithTagEnabled(this, "banshee_lunge", false)
             end
 
         end
@@ -169,7 +196,7 @@ if #targets > 0 then
         local new_state = nil
         if current_state == 1 then
             if frame_now < frame_souls - 60 then
-                if dist_xy > 24 and dist_xy < 120 then
+                if dist_xy < 140 then
                     new_state = 2
                 else
                     new_state = 3
@@ -182,7 +209,7 @@ if #targets > 0 then
                 if RaytraceSurfacesAndLiquiform(x, y, p_x, p_y - 2) then
                     new_state = 3
                 else
-                    if dist_xy > 125 then
+                    if dist_xy > 150 then
                         new_state = 3
                     else
                         if current_state == 2 then
@@ -195,7 +222,7 @@ if #targets > 0 then
             end
         end
         ComponentSetValue2(comp_state, "value_int", new_state or current_state)
-        ComponentSetValue2(comp_frame_state, "value_int", frame_now + 200)
+        ComponentSetValue2(comp_frame_state, "value_int", frame_now + 180)
     end
 
     if frame_now >= frame_state and update_state then

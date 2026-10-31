@@ -88,11 +88,12 @@
     <AreaDamageComponent
         _enabled="0"
         _tags="banshee_lunge"
-		aabb_min.x="-14" 
-		aabb_max.x="14"
-        aabb_min.y="-17" 
-		aabb_max.y="15"
-		damage_per_frame="0.16"
+		aabb_min.x="-16" 
+		aabb_max.x="16"
+        aabb_min.y="-18" 
+		aabb_max.y="18"
+		death_cause="$animal_souls_boss_banshee"
+		damage_per_frame="0.2"
 		update_every_n_frame="4"
 		entities_with_tag="human"
 		damage_type="DAMAGE_CURSE"
@@ -113,6 +114,11 @@
     <LuaComponent
         script_death="mods/souls/files/entities/animals/boss_banshee/death.lua"
     ></LuaComponent>
+
+	<GenomeDataComponent 
+		herd_id="souls_void"
+		food_chain_rank="0"
+    ></GenomeDataComponent>
 
     <!-- vfx -->
 
@@ -156,7 +162,7 @@
 	<ParticleEmitterComponent 
 		_enabled="0"
 		_tags="banshee_lunge"
-		emitted_material_name="souls_soul_particles"
+		emitted_material_name="souls_soul_particles_banshee"
 		gravity.y="0.0"
 		lifetime_min="0.9"
 		lifetime_max="1.4"
@@ -164,8 +170,8 @@
 		x_vel_max="3"
 		y_vel_min="-18"
 		y_vel_max="-7"
-		count_min="10"
-		count_max="12"
+		count_min="16"
+		count_max="22"
 		render_on_grid="1"
 		fade_based_on_lifetime="1"
 		area_circle_radius.min="1"

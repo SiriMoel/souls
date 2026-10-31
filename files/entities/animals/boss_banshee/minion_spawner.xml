@@ -3,7 +3,7 @@
     <VariableStorageComponent
         _tags="count"
         name="count"
-        value_int="3"
+        value_int="4"
     ></VariableStorageComponent>
 
     <LuaComponent

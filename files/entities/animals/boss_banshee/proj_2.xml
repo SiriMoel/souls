@@ -1,0 +1,13 @@
+<Entity>
+
+    <Base file="mods/souls/files/entities/animals/boss_banshee/base_proj.xml">
+        <SpriteComponent
+            image_file="mods/souls/files/entities/animals/boss_banshee/sprite_proj_2.xml"
+        ></SpriteComponent>
+
+        <VariableStorageComponent
+            value_string="mods/souls/files/entities/animals/boss_banshee/proj_2.xml"
+        ></VariableStorageComponent>
+	</Base>
+
+</Entity>

@@ -27,7 +27,7 @@ soul_hats = {
             return HasFlagPersistent("souls_banshee_slain")
         end,
         hat = "mods/souls/files/ui_gfx/soul_mask.png",
-        offset = -3,
+        offset = -2,
     }
 }
 

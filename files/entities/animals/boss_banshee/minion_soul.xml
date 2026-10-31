@@ -3,13 +3,13 @@
     <HomingComponent
         target_tag="souls_boss_banshee"
         detect_distance="500"
-        homing_velocity_multiplier="0.5"
+        homing_velocity_multiplier="0.1"
 		homing_targeting_coeff="140"
     ></HomingComponent>
 
     <ProjectileComponent
-		speed_min="0"
-		speed_max="0"
+		speed_min="100"
+		speed_max="150"
 		bounce_always="1"
 		bounces_left="2"
 		bounce_at_any_angle="1"
@@ -57,7 +57,7 @@
 
     <VelocityComponent
 		gravity_y="0"
-		air_friction="0.0"
+		air_friction="0.3"
 		displace_liquid="0"
 		liquid_drag="1"
 	></VelocityComponent>

@@ -40,4 +40,16 @@
         loop="0"
     ></RectAnimation>
 
+    <RectAnimation 
+        name="shimmer"
+        pos_x="0"
+        pos_y="126"
+        frame_count="5" 
+        frames_per_row="5" 
+        frame_wait="0.08"
+        frame_width="36" 
+        frame_height="42"
+        loop="0"
+    ></RectAnimation>
+
 </Sprite>

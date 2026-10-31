@@ -1,4 +1,4 @@
-SOULS_VERSION = 5.02 -- also update mod.xml
+SOULS_VERSION = 5.03 -- also update mod.xml
 SOULS_SET_VERSION = true
 SOULS_FORCE_VERSION = nil
 
@@ -204,7 +204,7 @@ local possible_scenes = {
         func = function() return ModSettingGet("souls.enable_fountain_structure") end,
     },
     {
-        scene = {-2980, 3800, "mods/souls/files/biome/bansheeplace/bansheeplace.xml", false},
+        scene = {-2980, 3800, "mods/souls/files/biome/bansheeplace/bansheeplace.xml", true},
         func = function() return ModSettingGet("souls.enable_banshee") end,
     },
 }

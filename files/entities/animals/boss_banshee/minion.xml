@@ -71,7 +71,7 @@
     ></SpriteComponent>
     
   	<ParticleEmitterComponent 
-	  	emitted_material_name="souls_soul_particles"
+	  	emitted_material_name="souls_soul_particles_banshee"
 		offset.x="0"
     	offset.y="0"
     	x_pos_offset_min="-3"
@@ -103,7 +103,7 @@
 
     <ParticleEmitterComponent 
 		_enabled="1"
-		emitted_material_name="souls_soul_particles"
+		emitted_material_name="souls_soul_particles_banshee"
 		gravity.y="0.0"
 		lifetime_min="0.5"
 		lifetime_max="0.9"

@@ -1,0 +1,25 @@
+<Entity>
+	
+	<InheritTransformComponent
+        enabled="1"
+    ></InheritTransformComponent>	
+    
+    <GameEffectComponent
+        effect="MOVEMENT_SLOWER_2X"
+        frames="120"
+    ></GameEffectComponent>
+	
+	<LifetimeComponent
+		lifetime="120"
+	></LifetimeComponent>
+	
+	<UIIconComponent
+		name="$status_souls_banshee"
+		description="$statusdesc_souls_banshee"
+		icon_sprite_file="mods/souls/files/status_indicators/banshee.png"
+		is_perk="0"
+		display_above_head="0"
+		display_in_hud="1"
+	></UIIconComponent>
+
+</Entity>

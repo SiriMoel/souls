@@ -1,12 +1,13 @@
-v1.5.2
+v1.5.3
 
 NEW
 - Enemy: Huutava sielu (boss)
+- Spell: Necronomical Reap
 - Structure: Banshee Tomb
 - Item: Soul Lantern
 
 CHANGED/FIXED
-- ???
+- Reduced spawn probabilities of Reap from Fire spell
 
 INTERNAL
 - Revived bosses are given the souls_revived_boss tag

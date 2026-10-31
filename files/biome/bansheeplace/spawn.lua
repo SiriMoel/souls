@@ -9,7 +9,9 @@ if #targets > 0 then
     EntityLoad("data/entities/props/physics/chain_torch_ghostly.xml", x - 28, y - 74)
     EntityLoad("data/entities/props/physics/chain_torch_ghostly.xml", x + 28, y - 74)
 
-    EntityLoad("mods/souls/files/entities/animals/boss_banshee/spawner.xml", x, y - 6)
+    if x > -15000 and x < 15000 then
+        EntityLoad("mods/souls/files/entities/animals/boss_banshee/spawner.xml", x, y - 6)
+    end
 
     EntityKill(this)
 end

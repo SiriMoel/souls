@@ -52,12 +52,6 @@ local ring_souls = EntityGetAllChildren(this, "souls_banshee_ring_soul") or {}
 if #ring_souls > 0 then
     for i = 1, #ring_souls do
         local soul = ring_souls[i]
-        --local s_x, s_y = EntityGetTransform(soul)
-
-        --local dist_x = s_x - x
-        --local dist_y = s_y - y
-
-        --local a = math.atan2(dist_y, dist_x)
 
         local comp_rot = EntityGetFirstComponentIncludingDisabled(soul, "VariableStorageComponent", "rot")
         local a = ComponentGetValue2(comp_rot, "value_float")

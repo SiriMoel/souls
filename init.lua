@@ -207,6 +207,10 @@ local possible_scenes = {
         scene = {-2980, 3800, "mods/souls/files/biome/bansheeplace/bansheeplace.xml", true},
         func = function() return ModSettingGet("souls.enable_banshee") end,
     },
+    {
+        scene = {-2400, 3800, "mods/souls/files/biome/lanternplace/lanternplace.xml", true},
+        func = function() return ModSettingGet("souls.enable_banshee") end,
+    },
 }
 for _,v in ipairs(possible_scenes) do
     if v.func() then table.insert(scenes, v.scene) end

@@ -20,7 +20,6 @@
         always_use_item_name_in_ui="1"
         preferred_inventory="QUICK"
         is_consumable="0"
-        uses_remaining="0"
         drinkable="0"
 	></ItemComponent>
 
@@ -50,16 +49,18 @@
 	<SpriteComponent
 		_tags="enabled_in_hand,sprite_hand"
 		_enabled="0"
-		offset_x="2"
-		offset_y="4"
+		offset_x="5"
+		offset_y="3"
 		image_file="mods/souls/files/entities/items/lantern/sprite_in_hand.png"
+		update_transform_rotation="0"
+		has_special_scale="1"
 	></SpriteComponent>
 
 	<SpriteComponent 
 		_tags="enabled_in_world,sprite_world" 
 		_enabled="1"
 		alpha="1" 
-		offset_x="2"
+		offset_x="6"
 		offset_y="4"
 		image_file="mods/souls/files/entities/items/lantern/sprite_in_world.png"
 		z_index="-1.5" 
@@ -89,6 +90,13 @@
         execute_every_n_frame="1"
     ></LuaComponent>
 
+	<LuaComponent
+        _enabled="0"
+	    _tags="lantern_on"
+        script_source_file="mods/souls/files/entities/items/lantern/on.lua"
+        execute_every_n_frame="6"
+    ></LuaComponent>
+
     <LuaComponent
         _tags="enabled_in_inventory,enabled_in_world"
         script_source_file="mods/souls/files/entities/items/lantern/in_inv_world.lua"
@@ -102,7 +110,7 @@
 		r="118"
 		g="255"
 		b="255"
-	    radius="32"
+	    radius="128"
 	></LightComponent>
 	
 	<SpriteComponent 
@@ -113,8 +121,8 @@
 		smooth_filtering="1"
 		fog_of_war_hole="1"
 		has_special_scale="1"
-		special_scale_x="5"
-		special_scale_y="5"
+		special_scale_x="2.2"
+		special_scale_y="2.2"
 	></SpriteComponent>
 
 </Entity>

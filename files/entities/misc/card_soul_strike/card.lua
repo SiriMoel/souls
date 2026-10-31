@@ -19,6 +19,7 @@ if ComponentGetValue2(comp_controls, "mButtonDownRightClick") == true and GameGe
         soul_strike_amount = soul_strike_amount + 1
         ComponentSetValue2(comp_soulstrike, "value_int", soul_strike_amount)
         GamePrint("Soul consumed! Current count: " .. soul_strike_amount)
+        GamePlaySound("data/audio/Desktop/projectiles.bank", "projectiles/enlightened_laser/launch_dark", x, y)
     else
         GamePrint("You do not have enough souls for this. (1)")
     end

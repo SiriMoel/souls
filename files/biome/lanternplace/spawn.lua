@@ -1,0 +1,5 @@
+local this = GetUpdatedEntityID()
+local x, y = EntityGetTransform(this)
+LoadPixelScene("mods/souls/files/biome/lanternplace/scene.png", "mods/souls/files/biome/lanternplace/visual.png", x-20, y-24, "", true)
+EntityLoad("mods/souls/files/entities/items/lantern/lantern.xml", x, y - 8)
+EntityKill(this)

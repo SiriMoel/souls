@@ -84,3 +84,21 @@ soul_sparks = {
     mage_corrupted = "blood",
     ghost_whisp = "fire",
 }
+
+soul_colours = {
+    bat = {r=1.0, g=0.6, b=1.0},
+    fly = {r=1.0, g=0.6, b=0.5},
+    friendly = {r=1.0, g=0.8, b=1.0},
+    mage = {r=0.75, g=0.75, b=1.0},
+    orcs = {r=1.0, g=0.9, b=0.75},
+    slimes = {r=0.65, g=1.0, b=0.65},
+    spider = {r=0.8, g=0.4, b=0.8},
+    zombie = {r=1.0, g=0.9, b=0.75},
+    worm = {r=1.0, g=1.0, b=0.4},
+    fungus = {r=1.0, g=0.5, b=0.7},
+    ghost = {r=0.4, g=0.4, b=1.0},
+    souls_void = {r=0.5, g=1.0, b=1.0},
+    boss = {r=0.85, g=1.0, b=0.85},
+    mage_corrupted = {r=0.6, g=0.05, b=0.05},
+    ghost_whisp = {r=1.0, g=0.9, b=0.85},
+}

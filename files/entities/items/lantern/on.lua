@@ -1,0 +1,11 @@
+dofile_once("mods/souls/files/scripts/souls.lua")
+local this = GetUpdatedEntityID()
+local x, y = EntityGetTransform(this)
+y = y + 6
+local frame = GameGetFrameNum()
+SetRandomSeed(x + frame, y - frame)
+local comp_soul = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "lantern_soul")
+local soul = ComponentGetValue2(comp_soul, "value_string")
+x = x + Random(-2, 2)
+y = y + Random(-3, 3)
+GameCreateCosmeticParticle(soul_sparks[soul], x, y, Random(0, 3), Random(-6, 6), Random(0, 30), nil, 1, 2, true, false, true, true, 0, 0)

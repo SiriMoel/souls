@@ -3,7 +3,7 @@
     <!-- damage -->
 
     <DamageModelComponent 
-		hp="14" 
+		hp="20" 
 		air_needed="0" 
         fire_probability_of_ignition="0" 
 		ragdoll_fx_forced="DISINTEGRATED"
@@ -93,7 +93,7 @@
         aabb_min.y="-18" 
 		aabb_max.y="18"
 		death_cause="$animal_souls_boss_banshee"
-		damage_per_frame="0.2"
+		damage_per_frame="0.4"
 		update_every_n_frame="4"
 		entities_with_tag="human"
 		damage_type="DAMAGE_CURSE"

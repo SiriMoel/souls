@@ -1,4 +1,4 @@
-v1.5.3
+v1.5.3 (or it might be v1.6 im not sure yet)
 
 NEW
 - Enemy: Huutava sielu (boss)
@@ -7,6 +7,7 @@ NEW
 - Item: Soul Lantern
 
 CHANGED/FIXED
+- Increased the amount of soul blood required to revive bosses by 30%
 - Reduced spawn probabilities of Reap from Fire spell
 
 INTERNAL

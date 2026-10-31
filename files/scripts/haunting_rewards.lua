@@ -18,7 +18,7 @@ haunting_rewards = {
     {
         id = "tome_spell",
         min_level = 3,
-        chance = 0.9,
+        chance = 0.7,
         spawn_func = function(level, x, y)
             local opts = {"SOULS_TOME_SLICE", "SOULS_TOME_LAUNCHER", "SOULS_TOME_LASER"}
             if level >= 6 then
@@ -31,7 +31,7 @@ haunting_rewards = {
     {
         id = "boss_soul",
         min_level = 1,
-        chance = 1.3,
+        chance = 1.2,
         spawn_func = function(level, x, y)
             local entity = GetUpdatedEntityID()
             DontFearTheReaper({["boss"]=math.ceil(level/5)}, entity)
@@ -122,6 +122,14 @@ haunting_rewards = {
             end
             local this = GetUpdatedEntityID()
             DontFearTheReaper(souls, this)
+        end,
+    },
+    {
+        id = "lantern",
+        min_level = 1,
+        chance = 0.2,
+        spawn_func = function(level, x, y)
+            EntityLoad("mods/souls/files/entities/items/lantern/lantern.xml", x, y - 4)
         end,
     },
 }

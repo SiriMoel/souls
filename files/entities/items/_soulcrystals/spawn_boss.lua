@@ -10,8 +10,10 @@ function kick(entity_who_kicked)
         local comp_matinv = EntityGetFirstComponentIncludingDisabled(this, "MaterialInventoryComponent")
         if comp_matinv ~= nil then
             local mats = ComponentGetValue2(comp_matinv, "count_per_material_type")
-            local amt = mats[CellFactory_GetType("souls_soul_blood_1") + 1] -- ?
-            if amt >= 150 then
+            local amt = mats[CellFactory_GetType("souls_soul_blood_1") + 1]
+            local comp_mat_suck = EntityGetFirstComponentIncludingDisabled(this, "MaterialSuckerComponent")
+            local required = ComponentGetValue2(comp_mat_suck, "barrel_size") or 150
+            if amt >= required - 5 then
                 local revived = tonumber(GlobalsGetValue("souls.bosses_revived", "0"))
                 revived = revived + 1
                 local desc = "The Gods watch intently..."

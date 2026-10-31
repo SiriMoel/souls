@@ -18,7 +18,7 @@ local selected_soul
 
 local soul_counts = SoulCounts(root)
 local count = #soul_types
-local dist = 25
+local dist = 30
 
 for i = 1, count do
     local soul = soul_types[i]
@@ -49,14 +49,27 @@ if button_was_down == 1 and selected_soul ~= nil then
     if frame_now > frame + 18 then
         ComponentSetValue2(comp_frame, "value_int", frame_now)
         if SpellUseSpecificSouls(root, {[selected_soul]=1}) then
+            GamePlaySound("data/audio/Desktop/projectiles.bank", "projectiles/enlightened_laser/launch_dark", x, y)
             local comp_soul = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "lantern_soul")
             ComponentSetValue2(comp_soul, "value_string", selected_soul)
             EntitySetComponentsWithTagEnabled(this, "lantern_on", true)
             -- set sprites to the selected soul
-            -- change the lightcomponent colour to the selected soul
-            SoulsPrint("A " .. soul_names[selected_soul] .. " was consumed to fuel the lantern.")
+            local soul_path = "mods/souls/files/entities/items/lantern/" .. selected_soul
+            local comp_item = EntityGetFirstComponentIncludingDisabled(this, "ItemComponent")
+            ComponentSetValue2(comp_item, "ui_sprite", soul_path .. "/sprite.png")
+            local comp_sprite_hand = EntityGetFirstComponentIncludingDisabled(this, "SpriteComponent", "sprite_hand")
+            ComponentSetValue2(comp_sprite_hand, "image_file", soul_path .. "/sprite_in_hand.png")
+            EntityRefreshSprite(this, comp_sprite_hand)
+            local comp_sprite_world = EntityGetFirstComponentIncludingDisabled(this, "SpriteComponent", "sprite_world")
+            ComponentSetValue2(comp_sprite_world, "image_file", soul_path .. "/sprite_in_world.png")
+            EntityRefreshSprite(this, comp_sprite_world)
+            local comp_light = EntityGetFirstComponentIncludingDisabled(this, "LightComponent")
+            ComponentSetValue2(comp_light, "r", soul_colours[selected_soul].r * 255)
+            ComponentSetValue2(comp_light, "g", soul_colours[selected_soul].g * 255)
+            ComponentSetValue2(comp_light, "b", soul_colours[selected_soul].b * 255)
+            SoulsPrint("A " .. GameTextGetTranslatedOrNot(soul_names[selected_soul]) .. " soul was consumed to fuel the lantern.")
         else
-            SoulsPrint("You do not have enough " .. soul_names[selected_soul] .. " souls for this. (1)")
+            SoulsPrint("You do not have enough " .. GameTextGetTranslatedOrNot(soul_names[selected_soul]) .. " souls for this. (1)")
         end
     end
 else

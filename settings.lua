@@ -337,6 +337,14 @@ mod_settings = {
                 ui_fn = mod_setting_bool_souls,
             },
             {
+                id = "animated_souls",
+                ui_name = "Animated souls",
+                ui_description = "NYI",
+                value_default = true,
+                scope = MOD_SETTING_SCOPE_RUNTIME,
+                ui_fn = mod_setting_bool_souls,
+            },
+            {
                 id = "hats",
                 ui_name = "Enable hats",
                 ui_description = "Some souls have an unlockable hat in the GUI.",
@@ -344,14 +352,14 @@ mod_settings = {
                 scope = MOD_SETTING_SCOPE_RUNTIME,
                 ui_fn = mod_setting_bool_souls,
             },
-            {
+            --[[{
                 id = "first_gui",
                 ui_name = "Display soul counts in screen corner",
                 ui_description = "Display soul counts in the bottom right corner.",
                 value_default = false,
                 scope = MOD_SETTING_SCOPE_RUNTIME,
                 ui_fn = mod_setting_bool_souls,
-            },
+            },]]
         },
     },
     {

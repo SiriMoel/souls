@@ -1,0 +1,423 @@
+<Sprite 
+    default_animation="soul" 
+    filename="mods/souls/files/soul_sprites/souls.png" 
+    offset_x="0" 
+    offset_y="0" >
+
+    <!-- soul -->
+
+    <RectAnimation 
+        name="soul"
+        pos_x="1"
+        pos_y="1"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <RectAnimation 
+        name="soul_a"
+        pos_x="12"
+        pos_y="1"
+        frame_count="4" 
+        frames_per_row="4"
+        frame_wait="0.8"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <!-- bat -->
+
+    <RectAnimation 
+        name="bat"
+        pos_x="1"
+        pos_y="12"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <RectAnimation 
+        name="bat_a"
+        pos_x="1"
+        pos_y="12"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <!-- fly -->
+
+    <RectAnimation 
+        name="fly"
+        pos_x="1"
+        pos_y="23"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <RectAnimation 
+        name="fly_a"
+        pos_x="1"
+        pos_y="23"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <!-- friendly -->
+
+    <RectAnimation 
+        name="friendly"
+        pos_x="1"
+        pos_y="34"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <RectAnimation 
+        name="friendly_a"
+        pos_x="1"
+        pos_y="34"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <!-- mage -->
+
+    <RectAnimation 
+        name="mage"
+        pos_x="1"
+        pos_y="45"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <RectAnimation 
+        name="mage_a"
+        pos_x="12"
+        pos_y="45"
+        frame_count="5" 
+        frames_per_row="5"
+        frame_wait="0.1"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <!-- orcs -->
+
+    <RectAnimation 
+        name="orcs"
+        pos_x="1"
+        pos_y="56"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <RectAnimation 
+        name="orcs_a"
+        pos_x="1"
+        pos_y="56"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <!-- slimes -->
+
+    <RectAnimation 
+        name="slimes"
+        pos_x="1"
+        pos_y="67"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <RectAnimation 
+        name="slimes_a"
+        pos_x="1"
+        pos_y="67"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <!-- spider -->
+
+    <RectAnimation 
+        name="spider"
+        pos_x="1"
+        pos_y="78"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <RectAnimation 
+        name="spider_a"
+        pos_x="1"
+        pos_y="78"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <!-- zombie -->
+
+    <RectAnimation 
+        name="zombie"
+        pos_x="1"
+        pos_y="89"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <RectAnimation 
+        name="zombie_a"
+        pos_x="1"
+        pos_y="89"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <!-- worm -->
+
+    <RectAnimation 
+        name="worm"
+        pos_x="1"
+        pos_y="100"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <RectAnimation 
+        name="worm_a"
+        pos_x="1"
+        pos_y="100"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <!-- fungus -->
+
+    <RectAnimation 
+        name="fungus"
+        pos_x="1"
+        pos_y="111"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <RectAnimation 
+        name="fungus_a"
+        pos_x="1"
+        pos_y="111"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <!-- ghost -->
+
+    <RectAnimation 
+        name="ghost"
+        pos_x="1"
+        pos_y="122"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <RectAnimation 
+        name="ghost_a"
+        pos_x="1"
+        pos_y="122"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <!-- souls_void -->
+
+    <RectAnimation 
+        name="souls_void"
+        pos_x="1"
+        pos_y="133"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <RectAnimation 
+        name="souls_void_a"
+        pos_x="12"
+        pos_y="133"
+        frame_count="16" 
+        frames_per_row="16"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <!-- boss -->
+
+    <RectAnimation 
+        name="boss"
+        pos_x="1"
+        pos_y="144"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <RectAnimation 
+        name="boss_a"
+        pos_x="12"
+        pos_y="144"
+        frame_count="4" 
+        frames_per_row="4"
+        frame_wait="0.5"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <!-- mage_corrupted -->
+
+    <RectAnimation 
+        name="mage_corrupted"
+        pos_x="1"
+        pos_y="155"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <RectAnimation 
+        name="mage_corrupted_a"
+        pos_x="1"
+        pos_y="155"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <!-- ghost_whisp -->
+
+    <RectAnimation 
+        name="ghost_whisp"
+        pos_x="1"
+        pos_y="166"
+        frame_count="1" 
+        frames_per_row="1"
+        frame_wait="0.08"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+    <RectAnimation 
+        name="ghost_whisp_a"
+        pos_x="12"
+        pos_y="166"
+        frame_count="2" 
+        frames_per_row="2"
+        frame_wait="0.1"
+        frame_width="10" 
+        frame_height="10"
+        loop="1"
+    ></RectAnimation>
+
+</Sprite>

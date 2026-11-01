@@ -254,8 +254,10 @@ function SoulsDeath(this, entity_thats_responsible)
             end
         end
     end
-    if Random(1, 4) == 1 then
-        soul_count = soul_count + 1
+    if soul_count == 0 then
+        if Random(1, 4) == 1 then
+            soul_count = soul_count + 1
+        end
     end
     if EntityHasTag(entity_thats_responsible, "player_unit") then
         local comp_reap_better = EntityGetFirstComponentIncludingDisabled(entity_thats_responsible, "VariableStorageComponent", "souls_reap_better")
@@ -284,15 +286,21 @@ function DontFearTheReaper(souls, entity)
         local x, y = EntityGetTransform(entity)
         for soul, amt in pairs(souls) do
             for i = 1, amt do
-                local entity_soul = EntityLoad("mods/souls/files/entities/souls/_soul.xml", x, y)
-                local comp_sprite = EntityGetFirstComponentIncludingDisabled(entity_soul, "SpriteComponent")
-                local comp_soul = EntityGetFirstComponentIncludingDisabled(entity_soul, "VariableStorageComponent", "soul")
-                if comp_sprite ~= nil then
-                    ComponentSetValue2(comp_sprite, "image_file", "mods/souls/files/entities/souls/sprites/soul_" .. soul .. ".xml")
-                    EntityRefreshSprite(entity_soul, comp_sprite)
+                local path = "mods/souls/files/entities/souls/" .. soul .. ".xml"
+                local using_base = false
+                if ModTextFileGetContent(path) == nil then
+                    path = "mods/souls/files/entities/souls/base_soul_entity.xml"
+                    using_base = true
                 end
-                if comp_soul ~= nil then
+                local entity_soul = EntityLoad(path, x, y - 2)
+                if using_base then
+                    local comp_sprite = EntityGetFirstComponentIncludingDisabled(entity_soul, "SpriteComponent")
+                    ComponentSetValue2(comp_sprite, "rect_animation", soul .. "_a")
+                    EntityRefreshSprite(entity_soul, comp_sprite)
+                    local comp_soul = EntityGetFirstComponentIncludingDisabled(entity_soul, "VariableStorageComponent", "soul")
                     ComponentSetValue2(comp_soul, "value_string", soul)
+                    local comp_part = EntityGetFirstComponentIncludingDisabled(entity_soul, "ParticleEmitterComponent")
+                    ComponentSetValue2(comp_part, "emitted_material_name", soul_sparks[soul])
                 end
             end
         end

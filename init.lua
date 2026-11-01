@@ -3,6 +3,7 @@ SOULS_SET_VERSION = true
 SOULS_FORCE_VERSION = nil
 
 function souls_version_update(pos_x, pos_y)
+    --EntityLoad("mods/souls/files/entities/items/update_informer/1_5.xml", pos_x, pos_y - 5)
     print("Souls v1." .. math.floor(SOULS_VERSION) .. "." .. math.floor((SOULS_VERSION - math.floor(SOULS_VERSION)) * 100 + 0.5))
     local version_before = SOULS_FORCE_VERSION or ModSettingGet("souls.version")
     if version_before < math.floor(SOULS_VERSION) then
@@ -39,6 +40,7 @@ function souls_update_settings_globals()
     GlobalsSetValue("souls.enemy_soul_rogue", tostring(ModSettingGet("souls.enemy_soul_rogue")))
     GlobalsSetValue("souls.enemy_soul_eye", tostring(ModSettingGet("souls.enemy_soul_eye")))
     GlobalsSetValue("souls.enable_hauntings", tostring(ModSettingGet("souls.enable_hauntings")))
+    GlobalsSetValue("souls.animated_souls", tostring(ModSettingGet("souls.animated_souls")))
 end
 
 --ModMagicNumbersFileAdd("mods/souls/files/magic_numbers.xml")
@@ -243,12 +245,20 @@ if ModIsEnabled("foolish_flame") then
 	ModLuaFileAppend("mods/foolish_flame/files/scripts/bounty_rewards.lua", "mods/souls/files/scripts/ff_bounty_rewards.lua")
 end
 
+dofile_once("mods/souls/files/scripts/souls_gui.lua")
+
+function OnWorldPreUpdate()
+    if GameHasFlagRun("souls_init") then
+        SoulsGuiUpdate()
+    end
+end
+
 -- player
 function OnPlayerSpawned(player)
 
     dofile_once("mods/souls/files/scripts/souls.lua")
 
-    dofile_once("mods/souls/files/gui.lua")
+    --dofile_once("mods/souls/files/gui.lua")
 
     local px, py = EntityGetTransform(player)
 

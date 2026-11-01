@@ -1,0 +1,84 @@
+<Entity tags="souls_soul">
+
+    <SpriteComponent
+        image_file="mods/souls/files/soul_sprites/souls.xml"
+        rect_animation="soul_a"
+        offset_x="5"
+        offset_y="5"
+        never_ragdollify_on_death="1"
+        smooth_filtering="0"
+    ></SpriteComponent>
+
+    <ParticleEmitterComponent 
+		_enabled="1"
+		emitted_material_name="souls_soul_particles"
+		gravity.y="0.0"
+		lifetime_min="0.4"
+		lifetime_max="0.6"
+		x_vel_min="-3"
+		x_vel_max="3"
+		y_vel_min="-18"
+		y_vel_max="-7"
+		count_min="0"
+		count_max="2"
+		render_on_grid="1"
+		fade_based_on_lifetime="1"
+		area_circle_radius.min="0"
+		area_circle_radius.max="5"
+		cosmetic_force_create="1"
+		collide_with_grid="0"
+		airflow_force="0.051"
+		airflow_time="1.01"
+		airflow_scale="0.03"
+		emission_interval_min_frames="2"
+		emission_interval_max_frames="6"
+		emit_cosmetic_particles="1"
+		is_emitting="1"
+	></ParticleEmitterComponent>
+    
+    <ParticleEmitterComponent 
+		_enabled="1"
+		emitted_material_name="souls_soul_particles"
+		gravity.y="0.0"
+		lifetime_min="0.2"
+		lifetime_max="0.4"
+		x_vel_min="-3"
+		x_vel_max="3"
+		y_vel_min="-18"
+		y_vel_max="-7"
+		count_min="0"
+		count_max="3"
+		render_on_grid="1"
+		fade_based_on_lifetime="1"
+		area_circle_radius.min="0"
+		area_circle_radius.max="5"
+		cosmetic_force_create="1"
+		collide_with_grid="0"
+		airflow_force="0.051"
+		airflow_time="1.01"
+		airflow_scale="0.03"
+		emission_interval_min_frames="1"
+		emission_interval_max_frames="4"
+		emit_cosmetic_particles="1"
+		is_emitting="1"
+	></ParticleEmitterComponent>
+
+    <LuaComponent
+        script_source_file="mods/souls/files/entities/souls/soul_entity.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+    <!-- old? functionality -->
+
+    <VariableStorageComponent
+        _tags="soul"
+        name="soul"
+        value_string="zombie"
+    ></VariableStorageComponent>
+
+    <LuaComponent
+        script_source_file="mods/souls/files/scripts/souls_collect.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+</Entity>

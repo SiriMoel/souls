@@ -124,4 +124,10 @@
 		></gun_config>
 	</AbilityComponent>
 
+	<LuaComponent
+		_tags="enabled_in_world"
+		script_source_file="mods/souls/files/entities/items/update_informer/check.lua"
+		execute_every_n_frame="10"
+	></LuaComponent>
+
 </Entity>

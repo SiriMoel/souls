@@ -8,7 +8,10 @@ NEW
 
 CHANGED/FIXED
 - Increased the amount of soul blood required to revive bosses by 30%
+- 25% chance for a soul drop will no longer apply if a reaping spell is being used
 - Reduced spawn probabilities of Reap from Fire spell
+- Soul sprite changes
 
 INTERNAL
 - Revived bosses are given the souls_revived_boss tag
+- Gui changes

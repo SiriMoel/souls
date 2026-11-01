@@ -1,0 +1,17 @@
+<Entity>
+
+    <Base file="mods/souls/files/entities/souls/base_soul_entity.xml">
+        <SpriteComponent
+            rect_animation="bat_a"
+        ></SpriteComponent>
+
+        <ParticleEmitterComponent
+            emitted_material_name="spark_purple_bright"
+        ></ParticleEmitterComponent>
+        
+        <VariableStorageComponent
+            value_string="bat"
+        ></VariableStorageComponent>
+    </Base>
+
+</Entity>

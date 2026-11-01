@@ -1,3 +1,5 @@
+-- see souls_gui.lua
+
 dofile_once("mods/souls/files/scripts/souls.lua")
 
 soul_hats = {
@@ -32,8 +34,6 @@ soul_hats = {
 }
 
 -- thankyou kmccord1 (I think you originally wrote the gui to not use a slow library?)
-
-gui_id = 1 -- ???
  
 --local soulscount = 0
 local hasinfsouls = false
@@ -59,6 +59,8 @@ end
 
 function GuiRender()
     local gui = GuiCreate()
+
+    local gui_id = 1
     
     GuiStartFrame(gui)
     
@@ -136,9 +138,15 @@ function GuiRender()
     GlobalsSetValue("souls.button_down_down", tostring(frame))
     local max_dist = 80
     if frame > 0 then        
+        local animated = GlobalsGetValue("souls.animated_souls", "true")
         local centre_x, centre_y = screen_width / 2, screen_height / 2
         local inc = (math.pi * 2) / #soul_types
+
+        --GuiIdPush(gui, gui_id)
+
         for i,soul in ipairs(soul_types) do
+            gui_id = gui_id + 1
+
             local xx = centre_x + math.cos(inc * i) * (max_dist * (frame / frame_max))
             local yy = centre_y + math.sin(inc * i) * (max_dist * (frame / frame_max))
             if GlobalsGetValue("souls.hats", "true") == "true" then
@@ -165,7 +173,12 @@ function GuiRender()
                     GuiZSetForNextWidget(gui, 99999)               
                 end 
             end
-            GuiImage(gui, gui_id, xx, yy, "mods/souls/files/entities/souls/sprites/soul_" .. soul .. ".png", 1, 1, 1)
+            --GuiImage(gui, gui_id, xx, yy, "mods/souls/files/entities/souls/sprites/soul_" .. soul .. ".png", 1, 1, 1)
+            local anim = soul
+            if animated == "true" then anim = soul .. "_a" end
+
+            GuiImage(gui, gui_id, xx, yy, "mods/souls/files/soul_sprites/souls.xml", 1.0, 1, 1, 0, GUI_RECT_ANIMATION_PLAYBACK.Loop, anim)
+
             local count = soulcounts[soul]
             local t = tostring(math.min(count, 9999))
             if divine then
@@ -176,6 +189,8 @@ function GuiRender()
         local centre_text = (GlobalsGetValue("souls.total_boss", "false") == "true" and soulcounts["total_boss"]) or soulcounts["total"]
         --local centre_text_w = GuiGetTextDimensions(gui, centre_text)
         GuiText(gui, centre_x --[[- centre_text_w * 0.5]], centre_y, centre_text)
+
+        --GuiIdPop(gui)
     end
 
     GuiDestroy(gui)

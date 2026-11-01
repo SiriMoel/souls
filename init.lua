@@ -1,25 +1,29 @@
-SOULS_VERSION = 5.03 -- also update mod.xml
+SOULS_VERSION = 6.00 -- also update mod.xml
 SOULS_SET_VERSION = true
 SOULS_FORCE_VERSION = nil
 
 function souls_version_update(pos_x, pos_y)
-    --EntityLoad("mods/souls/files/entities/items/update_informer/1_5.xml", pos_x, pos_y - 5)
+    --EntityLoad("mods/souls/files/entities/items/update_informer/1_6.xml", pos_x, pos_y - 5)
     print("Souls v1." .. math.floor(SOULS_VERSION) .. "." .. math.floor((SOULS_VERSION - math.floor(SOULS_VERSION)) * 100 + 0.5))
     local version_before = SOULS_FORCE_VERSION or ModSettingGet("souls.version")
     if version_before < math.floor(SOULS_VERSION) then
         if SOULS_SET_VERSION then
             ModSettingSet("souls.version", SOULS_FORCE_VERSION or SOULS_VERSION)
         end
-        SoulsPrintImportant("Souls has been (majorly) updated!", "The change notes are on the workshop page.", "divine")
-        local informer_path = "mods/souls/files/entities/items/update_informer/1_" .. math.floor(SOULS_VERSION) .. ".xml"
-        if ModTextFileGetContent(informer_path) ~= nil then
-            EntityLoad(informer_path, pos_x, pos_y - 5)
+        if SOULS_VERSION == 6.00 or ModSettingGet("souls.update_informing") then
+            SoulsPrintImportant("Souls has been (majorly) updated!", "The change notes are on the workshop page.", "divine")
+            local informer_path = "mods/souls/files/entities/items/update_informer/1_" .. math.floor(SOULS_VERSION) .. ".xml"
+            if ModTextFileGetContent(informer_path) ~= nil then
+                EntityLoad(informer_path, pos_x, pos_y - 5)
+            end
         end
     elseif version_before < SOULS_VERSION then
         if SOULS_SET_VERSION then
             ModSettingSet("souls.version", SOULS_FORCE_VERSION or SOULS_VERSION)
         end
-        SoulsPrintImportant("Souls has been updated!", "The change notes are on the workshop page.", "souls")
+        if ModSettingGet("souls.update_informing") then
+            SoulsPrintImportant("Souls has been updated!", "The change notes are on the workshop page.", "souls")
+        end
     end
 end
 

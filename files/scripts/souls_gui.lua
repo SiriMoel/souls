@@ -45,6 +45,8 @@ function SoulsGuiUpdate()
 
     local max_dist = 80
     if frame > 0 then        
+        local open = frame / frame_max
+
         local animated = GlobalsGetValue("souls.animated_souls", "true")
 
         local centre_x, centre_y = screen_width / 2, screen_height / 2
@@ -52,8 +54,8 @@ function SoulsGuiUpdate()
 
         for i,soul in ipairs(soul_types) do
 
-            local x = centre_x + math.cos(inc * i) * (max_dist * (frame / frame_max))
-            local y = centre_y + math.sin(inc * i) * (max_dist * (frame / frame_max))
+            local x = centre_x + math.cos(inc * i) * (max_dist * open)
+            local y = centre_y + math.sin(inc * i) * (max_dist * open)
             
             if GlobalsGetValue("souls.hats", "true") == "true" then
                 local hatted = false
@@ -75,25 +77,31 @@ function SoulsGuiUpdate()
                 end
                 if hatted then
                     GuiZSetForNextWidget(souls_gui, -1)
-                    GuiImage(souls_gui, get_gui_id(), x, y + hat_offset, hat, 1, 1, 1) 
+                    GuiImage(souls_gui, get_gui_id(), x, y + hat_offset, hat, open, 1, 1) 
                 end 
             end
 
             local anim = soul
             if animated == "true" then anim = soul .. "_a" end
 
-            GuiImage(souls_gui, get_gui_id(), x, y, "mods/souls/files/soul_sprites/souls.xml", 1.0, 1, 1, 0, GUI_RECT_ANIMATION_PLAYBACK.Loop, anim)
+            GuiImage(souls_gui, get_gui_id(), x, y, "mods/souls/files/soul_sprites/souls.xml", open, 1, 1, 0, GUI_RECT_ANIMATION_PLAYBACK.Loop, anim)
 
             local count = soulcounts[soul]
             local t = tostring(math.min(count, 9999))
             if divine then
                 t = "∞ +" .. t
             end
+            
+            GuiColorSetForNextWidget(souls_gui, 1, 1, 1, open)
             GuiText(souls_gui, x + 11, y, t .. " ")
         end
+
         local centre_text = (GlobalsGetValue("souls.total_boss", "false") == "true" and soulcounts["total_boss"]) or soulcounts["total"]
 
-        GuiText(souls_gui, centre_x --[[- centre_text_w * 0.5]], centre_y, centre_text)
+        GuiImage(souls_gui, get_gui_id(), centre_x - 5, centre_y, "mods/souls/files/soul_sprites/souls.xml", open, 1, 1, 0, GUI_RECT_ANIMATION_PLAYBACK.Loop, (animated == "true") and "soul_a" or "soul")
+
+        GuiColorSetForNextWidget(souls_gui, 1, 1, 1, open)
+        GuiText(souls_gui, centre_x + 6, centre_y, centre_text)
     end
 
     GuiIdPop(souls_gui)

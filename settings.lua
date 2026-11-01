@@ -339,7 +339,7 @@ mod_settings = {
             {
                 id = "animated_souls",
                 ui_name = "Animated souls",
-                ui_description = "NYI",
+                ui_description = "Should souls be animated in the GUI?",
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_RUNTIME,
                 ui_fn = mod_setting_bool_souls,
@@ -409,14 +409,6 @@ mod_settings = {
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
                 ui_fn = mod_setting_bool_souls,
             },
-            {
-                id = "enable_banshee",
-                ui_name = "Banshee Tomb",
-                ui_description = "Should this structure appear?",
-                value_default = true,
-                scope = MOD_SETTING_SCOPE_NEW_GAME,
-                ui_fn = mod_setting_bool_souls,
-            },
         },
     },
     {
@@ -472,10 +464,18 @@ mod_settings = {
             },
             {
                 id = "enable_hauntings",
-                ui_name = "Enable Hauntings",
+                ui_name = "Hauntings",
                 ui_description = "An optional encounter in some Orb Rooms.",
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_RUNTIME,
+                ui_fn = mod_setting_bool_souls,
+            },
+            {
+                id = "enable_banshee",
+                ui_name = "Huutava sielu",
+                ui_description = "A boss...",
+                value_default = true,
+                scope = MOD_SETTING_SCOPE_NEW_GAME,
                 ui_fn = mod_setting_bool_souls,
             },
         },
@@ -487,6 +487,14 @@ mod_settings = {
         foldable = true,
         _folded = true,
         settings = {
+            {
+                id = "update_informing",
+                ui_name = "Update informing",
+                ui_description = "Do you want to be told when Souls is updated?\nThe Souls Update item only appears for major updates.",
+                value_default = false,
+                scope = MOD_SETTING_SCOPE_RUNTIME,
+                ui_fn = mod_setting_bool_souls,
+            },
             {
                 id = "collect_soul_from_entity",
                 ui_name = "Collect souls",

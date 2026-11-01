@@ -6,13 +6,13 @@ soul_hats = {
         hat = "mods/souls/files/ui_gfx/soul_crown.png",
         offset = -3,
     },
-    --[[mage = {
+    orcs = {
         func = function()
             return HasFlagPersistent("souls_phylactery_activated")
         end,
         hat = "mods/souls/files/ui_gfx/soul_wizard_hat.png",
         offset = -6,
-    },]]
+    },
     friendly = {
         func = function()
             return HasFlagPersistent("souls_tome_maxed")
@@ -20,11 +20,11 @@ soul_hats = {
         hat = "mods/souls/files/ui_gfx/soul_book.png",
         offset = 4,
     },
-    --[[ghost = {
+    ghost = {
         func = function()
             return HasFlagPersistent("souls_banshee_slain")
         end,
         hat = "mods/souls/files/ui_gfx/soul_mask.png",
         offset = -2,
-    }]]
+    },
 }

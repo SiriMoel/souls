@@ -1,0 +1,21 @@
+<Entity>
+
+    <Base file="mods/souls/files/entities/souls/base_soul_entity.xml">
+        <SpriteComponent
+            rect_animation="boss_a"
+        ></SpriteComponent>
+
+        <ParticleEmitterComponent
+            emitted_material_name="souls_living_particles"
+            lifetime_min="0.5"
+		    lifetime_max="1.0"
+            count_min="1"
+            count_max="3"
+        ></ParticleEmitterComponent>
+        
+        <VariableStorageComponent
+            value_string="boss"
+        ></VariableStorageComponent>
+    </Base>
+
+</Entity>

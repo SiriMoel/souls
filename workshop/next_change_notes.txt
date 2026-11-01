@@ -1,9 +1,8 @@
-v1.5.3 (or it might be v1.6 im not sure yet)
+v1.6
 
 NEW
 - Enemy: Huutava sielu (boss)
 - Spell: Necronomical Reap
-- Structure: Banshee Tomb
 - Item: Soul Lantern
 
 CHANGED/FIXED

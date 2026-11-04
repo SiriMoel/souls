@@ -520,9 +520,16 @@ mod_settings = {
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
                 ui_fn = mod_setting_enum_souls,
             },]]
+            {
+                id = "green",
+                ui_name = "Green mode",
+                ui_description = "Green mode",
+                value_default = false,
+                scope = MOD_SETTING_SCOPE_RUNTIME_RESTART,
+                ui_fn = mod_setting_bool_souls,
+            },
         },
     },
-    
 }
 
 function ModSettingsUpdate( init_scope )

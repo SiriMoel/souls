@@ -106,7 +106,7 @@ if #targets > 0 then
 			local p_dist_y = y - p_x
 
             
-            local vel = 40
+            local vel = 8
         	
             local projs = 3
             local count = 3

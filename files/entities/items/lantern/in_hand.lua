@@ -26,12 +26,12 @@ for i = 1, count do
         local a = (i / count) * 2 * math.pi
         local draw_x = x + math.cos(a) * dist
         local draw_y = y + math.sin(a) * dist
-        local path = "mods/souls/files/entities/souls/sprites/"
+        local path = "mods/souls/files/soul_sprites/"
         if mouse_x > draw_x - 5 and mouse_x < draw_x + 5 and mouse_y > draw_y - 5 and mouse_y < draw_y + 5 then
-            path = path .. "soul_" .. soul .. ".png"
+            path = path .. soul .. ".png"
             selected_soul = soul
         else
-            path = path .. "silhouettes/soul_" .. soul .. ".png"
+            path = path .. "silhouettes/" .. soul .. ".png"
         end
         if button_down then
             GameCreateSpriteForXFrames(path, draw_x, draw_y, true, 0, 0, 1, false)

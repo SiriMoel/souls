@@ -69,6 +69,8 @@ local nxml = dofile_once("mods/souls/lib/nxml.lua")
 
 dofile_once("mods/souls/files/scripts/gizmo.lua")
 
+dofile_once("mods/souls/files/scripts/create_sprites.lua")
+
 -- biome things
 local biomes = {
     {path = "data/scripts/biomes/coalmine.lua", script = "mods/souls/files/scripts/biome/coalmine.lua"},

@@ -65,6 +65,6 @@ ComponentSetValue2(comp_speed, "value_float", speed)
 
 local new_x = x + speed * math.cos(a)
 local new_y = y + speed * math.sin(a)
-local new_r = r - speed_inc * a -- yeah idk
+--local new_r = r - 0.2 * a -- yeah idk
 
-EntityApplyTransform(this, new_x, new_y, new_r)
+EntityApplyTransform(this, new_x, new_y)

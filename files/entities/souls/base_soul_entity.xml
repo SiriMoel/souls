@@ -1,10 +1,13 @@
-<Entity tags="souls_soul">
+<Entity name="$souls_soul" tags="souls_soul">
+
+	<!-- vfx -->
 
     <SpriteComponent
         image_file="mods/souls/files/soul_sprites/souls.xml"
         rect_animation="soul_a"
         offset_x="5"
         offset_y="5"
+		alpha="0.6"
         never_ragdollify_on_death="1"
         smooth_filtering="0"
     ></SpriteComponent>
@@ -63,12 +66,26 @@
 		is_emitting="1"
 	></ParticleEmitterComponent>
 
+	<!-- new functionality -->
+
+	<VariableStorageComponent
+		_tags="speed"
+		name="speed"
+		value_float="0"
+	></VariableStorageComponent>
+
+	<LuaComponent
+        script_source_file="mods/souls/files/entities/souls/soul_entity_init.lua"
+        execute_on_added="1"
+		remove_after_execute="1"
+    ></LuaComponent>
+
     <LuaComponent
         script_source_file="mods/souls/files/entities/souls/soul_entity.lua"
         execute_every_n_frame="1"
     ></LuaComponent>
 
-    <!-- old? functionality -->
+    <!-- "old" functionality -->
 
     <VariableStorageComponent
         _tags="soul"

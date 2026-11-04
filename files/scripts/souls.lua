@@ -1,5 +1,6 @@
 dofile_once("mods/souls/files/scripts/utils.lua")
 dofile_once("mods/souls/files/scripts/soul_types.lua")
+dofile_once("mods/souls/files/scripts/reapers.lua")
 
 function SoulsInit(player)
     for i,v in ipairs(soul_types) do
@@ -239,18 +240,30 @@ function SoulsDeath(this, entity_thats_responsible)
                 local soul = "friendly"
                 local c_soul = ComponentGetValue2(rcomp, "name")
                 local c_amt = ComponentGetValue2(rcomp, "value_int")
-                if c_soul == "soul" then
+
+                if souls_reapers[c_soul] ~= nil then
+                    soul_count, souls = souls_reapers[c_soul](this, reapers, c_soul, c_amt, soul_count, souls)
+                elseif soul_names[c_soul] ~= nil then
+                    soul = c_soul
+                    souls[soul] = (souls[soul] or 0) + c_amt
+                end
+
+                --[[if c_soul == "soul" then
                     soul_count = soul_count + c_amt
                 elseif c_soul == "random" then
                     for i=1,c_amt do
                         local r_soul = soul_types[Random(1, #soul_types - 2)]
                         souls[r_soul] = (souls[r_soul] or 0) + 1
                     end
-                    soul_count = soul_count + c_amt
+                    --soul_count = soul_count + c_amt
+                elseif c_soul == "necronomical" then
+                    if #reapers > 1 then
+                        souls["zombie"] = (souls["zombie"] or 0) + c_amt
+                    end
                 elseif soul_names[c_soul] ~= nil then
                     soul = c_soul
                     souls[soul] = (souls[soul] or 0) + c_amt
-                end
+                end]]
             end
         end
     end

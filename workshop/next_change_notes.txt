@@ -3,14 +3,16 @@ v1.6
 NEW
 - Enemy: Huutava sielu (boss)
 - Spell: Necronomical Reap
+- Spell: Sea of Soulless Blood
 - Item: Soul Lantern
 
 CHANGED/FIXED
 - Increased the amount of soul blood required to revive bosses by 30%
 - 25% chance for a soul drop will no longer apply if a reaping spell is being used
 - Reduced spawn probabilities of Reap from Fire spell
+- Changed soul pickup entity
 - Soul sprite changes
 
 INTERNAL
 - Revived bosses are given the souls_revived_boss tag
-- Gui changes
+- GUI changes

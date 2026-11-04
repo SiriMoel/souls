@@ -105,15 +105,22 @@ if #targets > 0 then
             local p_dist_x = x - p_x
 			local p_dist_y = y - p_x
 
-            local p_a = math.atan(p_dist_y / p_dist_x)
-            local vel = 50
-        	local vel_x = p_dist_y / math.tan(p_a) * -vel
-			local vel_y = math.tan(p_a) * p_dist_x * -vel
+            
+            local vel = 40
+        	
+            local projs = 3
+            local count = 3
 
-            local projs = 2
-            local proj_path = "mods/souls/files/entities/animals/boss_banshee/proj_" .. Random(1, projs) .. ".xml"
+            for i = 1, count do
+                local proj_path = "mods/souls/files/entities/animals/boss_banshee/proj_" .. Random(1, projs) .. ".xml"
 
-            local proj = shoot_projectile(this, proj_path, x, y, vel_x, vel_y)
+                local p_a = math.atan(p_dist_y / p_dist_x) * (1 + 0.2 * (i * 2 - count))
+
+                local vel_x = p_dist_y / math.tan(p_a) * -vel
+			    local vel_y = math.tan(p_a) * p_dist_x * -vel
+
+                local proj = shoot_projectile(this, proj_path, x, y, vel_x, vel_y)
+            end
 
             ComponentSetValue2(comp_frame_attack, "value_int", frame_now + 45)
             attacks_done = attacks_done + 1

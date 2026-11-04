@@ -1178,6 +1178,26 @@ local new_actions = {
 		end,
 	},
 	{
+		id = "SEA",
+		name = "$action_souls_sea",
+		description = "$actiondesc_souls_sea",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/sea.png",
+		related_projectiles = {"mods/souls/files/entities/projectiles/sea/sea.xml"},
+		type = ACTION_TYPE_MATERIAL,
+		spawn_level = "5",
+		spawn_probability = "0.0",
+		price = 300,
+		mana = 300,
+		max_uses = 1,
+		never_unlimited = true,
+		ai_never_uses = true,
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 60
+			current_reload_time = current_reload_time + 60
+			add_projectile("mods/souls/files/entities/projectiles/sea/sea.xml")
+		end,
+	},
+	{
 		id = "VOID_ATTACK",
 		name = "$action_souls_void_attack",
 		description = "$actiondesc_souls_void_attack",

@@ -4,7 +4,7 @@
 
     <VariableStorageComponent
         _tags="souls_reaper"
-        name="zombie"
+        name="necronomical"
         value_int="1"
     ></VariableStorageComponent>
 

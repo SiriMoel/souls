@@ -1,8 +1,6 @@
 <Sprite 
     default_animation="eyes" 
-    filename="mods/souls/files/entities/souls/sentinel/sprite_eyes.png" 
-    offset_x="21" 
-    offset_y="23" >
+    filename="mods/souls/files/entities/souls/sentinel/sprite_eyes.png" >
 
     <RectAnimation 
         name="eyes"

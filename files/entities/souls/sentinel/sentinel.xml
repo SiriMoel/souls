@@ -1,4 +1,4 @@
-<Entity name="$souls_sentinel" tags="souls_sentinel,mortal,hittable,glue_NOT,polymorphable_NOT">
+<Entity name="$souls_sentinel" tags="souls_sentinel,mortal,prey,flying,hittable,glue_NOT,polymorphable_NOT">
 
 	<!-- damage -->
 
@@ -50,6 +50,12 @@
         value_string="idle"
     ></VariableStorageComponent>
 
+	<VariableStorageComponent
+        _tags="attack_frame"
+        name="attack_frame"
+        value_int="0"
+    ></VariableStorageComponent>
+
 	<LuaComponent
         script_source_file="mods/souls/files/entities/souls/sentinel/modes.lua"
         execute_every_n_frame="1"
@@ -71,7 +77,8 @@
 
     <GenomeDataComponent 
 		herd_id="player"
-		food_chain_rank="0"
+		food_chain_rank="20"
+		is_predator="1"
     ></GenomeDataComponent>
 
     <LuaComponent
@@ -91,38 +98,19 @@
         alpha="0.7"
     ></SpriteComponent>
 
+	<SpriteComponent
+		_tags="character"
+        image_file="mods/souls/files/entities/souls/sentinel/sprite_emissive.xml"
+        alpha="0.9"
+		emissive="1"
+    ></SpriteComponent>
+
     <SpriteComponent
 		_tags="eyes"
         image_file="mods/souls/files/entities/souls/sentinel/sprite_eyes.xml"
+		offset_x="21" 
+    	offset_y="23" 
         emissive="1"
     ></SpriteComponent>
-
-    <!--<ParticleEmitterComponent 
-		emitted_material_name="souls_soul_particles"
-		gravity.y="-4.0"
-		lifetime_min="0.4"
-		lifetime_max="0.6"
-		count_min="1"
-		count_max="1"
-		render_on_grid="0"
-		fade_based_on_lifetime="1"
-		area_circle_radius.min="0"
-		area_circle_radius.max="0"
-		cosmetic_force_create="0"
-		airflow_force="0.51"
-		airflow_time="1.01"
-		airflow_scale="0.05"
-		x_pos_offset_min="0"
-		x_pos_offset_max="0"
-		y_pos_offset_min="0"
-		y_pos_offset_max="0"
-		emission_interval_min_frames="1"
-		emission_interval_max_frames="1"
-		emit_cosmetic_particles="1"
-		image_animation_file="mods/souls/files/entities/souls/sentinel/emitter.png"
-		image_animation_speed="5"
-		image_animation_loop="1"
-		is_emitting="1"
-    ></ParticleEmitterComponent>-->
 
 </Entity>

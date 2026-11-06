@@ -11,7 +11,8 @@ ComponentSetValue2(comp_sprite, "alpha", alpha)
 local comp_mode = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "mode")
 local mode = ComponentGetValue2(comp_mode, "value_string")
 
-local speed = 0.3
+local speed = 0.5
+local default_speed = speed * 0.14 * math.sin(frame / 40)
 
 local a = -math.pi / 2
 
@@ -29,14 +30,17 @@ if mode == "follow" then
 
         local dist_xy = math.sqrt(dist_y*dist_y + dist_x*dist_x)
 
-        speed = speed + 0.2 * (1 - dist_xy / 200)
-
-        a = math.atan2(dist_y, dist_x)
+        if dist_xy > 3 then
+            speed = speed + 0.5 * (1 - dist_xy / 200)
+            a = math.atan2(dist_y, dist_x)
+        else
+            speed = default_speed
+        end
     else
-        speed = speed * 0.14 * math.sin(frame / 40)
+        speed = default_speed
     end
 else
-    speed = speed * 0.14 * math.sin(frame / 40)
+    speed = default_speed
 end
 
 local new_x = x + speed * math.cos(a)

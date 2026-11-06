@@ -2,18 +2,22 @@ local modes = {
     {
         mode = "melee",
         icon = "mods/souls/files/entities/souls/sentinel/mode_icons/melee.png",
+        animation = "melee_ready",
     },
     {
         mode = "projectile",
         icon = "mods/souls/files/entities/souls/sentinel/mode_icons/projectile.png",
+        animation = "projectile_ready",
     },
     {
         mode = "connect",
         icon = "mods/souls/files/entities/souls/sentinel/mode_icons/connect.png",
+        animation = "connect_ready",
     },
     {
         mode = "follow",
         icon = "mods/souls/files/entities/souls/sentinel/mode_icons/follow.png",
+        animation = "follow",
     },
 }
 
@@ -52,6 +56,12 @@ if button_down then
 
         if mouse_x > draw_x - 8 and mouse_x < draw_x + 8 and mouse_y > draw_y - 8 and mouse_y < draw_y + 8 then
             selected = v.mode
+
+            --[[if current_mode ~= selected then
+                GamePlayAnimation(this, v.animation, 10)
+            end]]
+            GamePlayAnimation(this, v.animation, 10)
+
             ComponentSetValue2(comp_mode, "value_string", v.mode)
         end
     end

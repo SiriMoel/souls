@@ -1233,15 +1233,20 @@ local new_actions = {
 			if reflecting then return end
 			local caster = GetUpdatedEntityID()
 			local soul_cost = 0
-			if SpellUseSouls(caster, soul_cost) then
-				souls_used_count = souls_used_count + soul_cost
-				local x, y = EntityGetTransform(caster)
-				local sentinel = EntityLoad("mods/souls/files/entities/souls/sentinel/sentinel.xml", x, y - 24)
+			local x, y = EntityGetTransform(caster)
+			local sentinels_near = EntityGetInRadiusWithTag(x, y - 5, 25, "souls_sentinel") or {}
+			if #sentinels_near == 0 then
+				if SpellUseSouls(caster, soul_cost) then
+					souls_used_count = souls_used_count + soul_cost
+					local x, y = EntityGetTransform(caster)
+					local sentinel = EntityLoad("mods/souls/files/entities/souls/sentinel/sentinel.xml", x, y - 24)
+				else
+					souls_not_enough = true
+	    			souls_not_enough_count = souls_not_enough_count + soul_cost
+				end
 			else
-				souls_not_enough = true
-    			souls_not_enough_count = souls_not_enough_count + soul_cost
+				GamePrint("You are too close to another sentinel to do this.")
 			end
-			
 		end,
 	},
 }

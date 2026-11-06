@@ -4,6 +4,7 @@ NEW
 - Enemy: Huutava sielu (boss)
 - Spell: Necronomical Reap
 - Spell: Sea of Soulless Blood
+- Spell: Summon Soul Sentinel
 - Item: Soul Lantern
 
 CHANGED/FIXED

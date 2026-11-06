@@ -1,0 +1,137 @@
+<Sprite 
+    default_animation="idle" 
+    filename="mods/souls/files/entities/souls/sentinel/sprite_emissive.png" 
+    offset_x="21" 
+    offset_y="23" >
+
+    <!-- idle -->
+
+    <RectAnimation 
+        name="idle"
+        pos_x="0"
+        pos_y="0"
+        frame_count="1" 
+        frames_per_row="1" 
+        frame_wait="0.08"
+        frame_width="42" 
+        frame_height="46"
+        loop="1"
+    ></RectAnimation>
+
+    <!-- melee -->
+
+    <RectAnimation 
+        name="melee"
+        pos_x="210"
+        pos_y="46"
+        frame_count="1" 
+        frames_per_row="1" 
+        frame_wait="0.08"
+        frame_width="42" 
+        frame_height="46"
+        loop="0"
+    ></RectAnimation>
+
+    <RectAnimation 
+        name="melee_ready"
+        pos_x="0"
+        pos_y="46"
+        frame_count="6" 
+        frames_per_row="6" 
+        frame_wait="0.08"
+        frame_width="42" 
+        frame_height="46"
+        loop="0"
+    ></RectAnimation>
+
+    <RectAnimation 
+        name="melee_attack"
+        pos_x="0"
+        pos_y="92"
+        frame_count="6" 
+        frames_per_row="6"
+        frame_wait="0.06"
+        frame_width="42" 
+        frame_height="46"
+        loop="0"
+    ></RectAnimation>
+
+    <!-- projectile -->
+
+    <RectAnimation 
+        name="projectile"
+        pos_x="168"
+        pos_y="138"
+        frame_count="1" 
+        frames_per_row="1" 
+        frame_wait="0.08"
+        frame_width="42" 
+        frame_height="46"
+        loop="0"
+    ></RectAnimation>
+
+    <RectAnimation 
+        name="projectile_ready"
+        pos_x="0"
+        pos_y="138"
+        frame_count="5" 
+        frames_per_row="5" 
+        frame_wait="0.08"
+        frame_width="42" 
+        frame_height="46"
+        loop="0"
+    ></RectAnimation>
+
+    <RectAnimation 
+        name="projectile_attack"
+        pos_x="0"
+        pos_y="184"
+        frame_count="4" 
+        frames_per_row="4" 
+        frame_wait="0.08"
+        frame_width="42" 
+        frame_height="46"
+        loop="0"
+    ></RectAnimation>
+
+    <!-- connect -->
+
+    <RectAnimation 
+        name="connect"
+        pos_x="168"
+        pos_y="230"
+        frame_count="1" 
+        frames_per_row="1" 
+        frame_wait="0.06"
+        frame_width="42" 
+        frame_height="46"
+        loop="0"
+    ></RectAnimation>
+
+    <RectAnimation 
+        name="connect_ready"
+        pos_x="0"
+        pos_y="230"
+        frame_count="5" 
+        frames_per_row="5" 
+        frame_wait="0.06"
+        frame_width="42" 
+        frame_height="46"
+        loop="0"
+    ></RectAnimation>
+
+    <!-- follow -->
+
+    <RectAnimation 
+        name="follow"
+        pos_x="0"
+        pos_y="276"
+        frame_count="1" 
+        frames_per_row="1" 
+        frame_wait="0.08"
+        frame_width="42" 
+        frame_height="46"
+        loop="1"
+    ></RectAnimation>
+
+</Sprite>

@@ -1,0 +1,128 @@
+<Entity name="$souls_sentinel" tags="souls_sentinel,mortal,hittable,glue_NOT,polymorphable_NOT">
+
+	<!-- damage -->
+
+    <DamageModelComponent 
+		hp="0.04"
+		air_needed="0" 
+        fire_probability_of_ignition="0" 
+		ragdoll_fx_forced="DISINTEGRATED"
+		ragdoll_material="souls_soul_particles"
+		blood_material="souls_soul_particles"
+		blood_spray_material="souls_soul_particles"
+		ragdoll_material="souls_soul_particles"
+        ragdoll_offset_y="-6"
+		blood_sprite_directional=""
+		blood_sprite_large=""
+		materials_that_damage="souls_soulaway" 
+		materials_how_much_damage="0.0"
+    ></DamageModelComponent>
+
+    <HitboxComponent 
+		aabb_min_x="-9" 
+		aabb_max_x="9" 
+		aabb_min_y="-19" 
+		aabb_max_y="19"
+		damage_multiplier="1.0"
+    ></HitboxComponent>
+
+    <!-- hands -->
+
+    <!--<Entity tags="hand_left">
+        <Base file="mods/souls/files/entities/souls/sentinel/hand.xml"></Base>
+    </Entity>
+
+    <Entity tags="hand_right">
+        <Base file="mods/souls/files/entities/souls/sentinel/hand.xml"></Base>
+    </Entity>-->
+
+    <!-- functionality -->
+
+    <VariableStorageComponent
+        _tags="level"
+        name="level"
+        value_int="1"
+    ></VariableStorageComponent>
+
+    <VariableStorageComponent
+        _tags="mode"
+        name="mode"
+        value_string="idle"
+    ></VariableStorageComponent>
+
+	<LuaComponent
+        script_source_file="mods/souls/files/entities/souls/sentinel/modes.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+    <LuaComponent
+        script_source_file="mods/souls/files/entities/souls/sentinel/move.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+	<LuaComponent
+        script_source_file="mods/souls/files/entities/souls/sentinel/sentinel.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+    <LuaComponent
+        script_damage_about_to_be_received="mods/souls/files/entities/souls/sentinel/damage.lua"
+    ></LuaComponent>
+
+    <GenomeDataComponent 
+		herd_id="player"
+		food_chain_rank="0"
+    ></GenomeDataComponent>
+
+    <LuaComponent
+		script_kick="mods/souls/files/entities/souls/sentinel/kick.lua"
+		execute_every_n_frame="-1"
+	></LuaComponent>
+
+    <!-- vfx -->
+
+	<SpriteAnimatorComponent
+		_tags="enabled_in_world"
+	></SpriteAnimatorComponent>
+
+    <SpriteComponent
+		_tags="character"
+        image_file="mods/souls/files/entities/souls/sentinel/sprite.xml"
+        alpha="0.7"
+    ></SpriteComponent>
+
+    <SpriteComponent
+		_tags="eyes"
+        image_file="mods/souls/files/entities/souls/sentinel/sprite_eyes.xml"
+        emissive="1"
+    ></SpriteComponent>
+
+    <!--<ParticleEmitterComponent 
+		emitted_material_name="souls_soul_particles"
+		gravity.y="-4.0"
+		lifetime_min="0.4"
+		lifetime_max="0.6"
+		count_min="1"
+		count_max="1"
+		render_on_grid="0"
+		fade_based_on_lifetime="1"
+		area_circle_radius.min="0"
+		area_circle_radius.max="0"
+		cosmetic_force_create="0"
+		airflow_force="0.51"
+		airflow_time="1.01"
+		airflow_scale="0.05"
+		x_pos_offset_min="0"
+		x_pos_offset_max="0"
+		y_pos_offset_min="0"
+		y_pos_offset_max="0"
+		emission_interval_min_frames="1"
+		emission_interval_max_frames="1"
+		emit_cosmetic_particles="1"
+		image_animation_file="mods/souls/files/entities/souls/sentinel/emitter.png"
+		image_animation_speed="5"
+		image_animation_loop="1"
+		is_emitting="1"
+    ></ParticleEmitterComponent>-->
+
+</Entity>

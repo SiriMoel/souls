@@ -18,7 +18,7 @@ local selected_soul
 
 local soul_counts = SoulCounts(root)
 local count = #soul_types
-local dist = 30
+local dist = 35
 
 for i = 1, count do
     local soul = soul_types[i]
@@ -34,7 +34,7 @@ for i = 1, count do
             path = path .. "silhouettes/" .. soul .. ".png"
         end
         if button_down then
-            GameCreateSpriteForXFrames(path, draw_x, draw_y, true, 0, 0, 1, false)
+            GameCreateSpriteForXFrames(path, draw_x, draw_y, true, 0, 0, 1, true)
         end
     end
 end

@@ -76,7 +76,7 @@ for _, soul in ipairs(soul_sprites) do
         end
     end
     
-    if not soul.not_soul_type then
+    if true --[[not soul.not_soul_type]] then
         local soul_image_silhouette = ModImageMakeEditable("mods/souls/files/soul_sprites/silhouettes/" .. soul.soul .. ".png", 10, 10)
         for x = 0, 9 do
             for y = 0, 9 do

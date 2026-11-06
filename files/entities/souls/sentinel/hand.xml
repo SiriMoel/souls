@@ -1,0 +1,12 @@
+<Entity>
+
+    <SpriteComponent
+        image_file="mods/souls/files/entities/souls/sentinel/hand_sprite.xml"
+        alpha="0.9"
+    ></SpriteComponent>
+
+    <LuaComponent
+        script_source_file="mods/souls/files/entities/souls/sentinel/hand.lua"
+    ></LuaComponent>
+
+</Entity>

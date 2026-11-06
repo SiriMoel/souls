@@ -1216,6 +1216,34 @@ local new_actions = {
 			add_projectile("mods/souls/files/entities/projectiles/void_attack/proj.xml")
 		end,
 	},
+	{
+		id = "SENTINEL",
+		name = "$action_souls_sentinel",
+		description = "$actiondesc_souls_sentinel",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/sentinel.png",
+		type = ACTION_TYPE_UTILITY,
+		spawn_level = "10",
+		spawn_probability = "0.1", -- actual acquisition pending
+		price = 300,
+		mana = 100,
+		ai_never_uses = true,
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 60
+			current_reload_time = current_reload_time + 60
+			if reflecting then return end
+			local caster = GetUpdatedEntityID()
+			local soul_cost = 0
+			if SpellUseSouls(caster, soul_cost) then
+				souls_used_count = souls_used_count + soul_cost
+				local x, y = EntityGetTransform(caster)
+				local sentinel = EntityLoad("mods/souls/files/entities/souls/sentinel/sentinel.xml", x, y - 24)
+			else
+				souls_not_enough = true
+    			souls_not_enough_count = souls_not_enough_count + soul_cost
+			end
+			
+		end,
+	},
 }
 
 for i,action in ipairs(new_actions) do

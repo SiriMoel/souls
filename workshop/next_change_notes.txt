@@ -12,6 +12,7 @@ CHANGED/FIXED
 - Reduced spawn probabilities of Reap from Fire spell
 - Changed soul pickup entity
 - Soul sprite changes
+- Changed Wand Consumes X Souls spell soul selecting
 
 INTERNAL
 - Revived bosses are given the souls_revived_boss tag

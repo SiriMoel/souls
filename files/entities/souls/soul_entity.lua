@@ -59,6 +59,8 @@ end
 
 if RaytraceSurfaces(x, y, x + stop_dist * math.cos(a), y + stop_dist * math.sin(a)) then
     speed = math.max(speed - 10 * speed_inc, min_speed)
+elseif RaytraceSurfaces(x, y, x + 3 * math.cos(a), y + 3 * math.sin(a)) then
+    speed = min_speed
 end
 
 ComponentSetValue2(comp_speed, "value_float", speed)

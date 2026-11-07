@@ -1232,9 +1232,9 @@ local new_actions = {
 			current_reload_time = current_reload_time + 60
 			if reflecting then return end
 			local caster = GetUpdatedEntityID()
-			local soul_cost = 0
+			local soul_cost = 100
 			local x, y = EntityGetTransform(caster)
-			local sentinels_near = EntityGetInRadiusWithTag(x, y - 5, 25, "souls_sentinel") or {}
+			local sentinels_near = EntityGetInRadiusWithTag(x, y - 5, 30, "souls_sentinel") or {}
 			if #sentinels_near == 0 then
 				if SpellUseSouls(caster, soul_cost) then
 					souls_used_count = souls_used_count + soul_cost

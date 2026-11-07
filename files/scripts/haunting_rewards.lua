@@ -24,6 +24,9 @@ haunting_rewards = {
             if level >= 6 then
                 table.insert(opts, "SOULS_TOME_SPELLBOOK_2")
             end
+            if level >= 7 then
+                table.insert(opts, "SOULS_SENTINEL")
+            end
             local action = opts[Random(1, #opts)]
             CreateItemActionEntity(action, x, y - 4)
         end,

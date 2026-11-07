@@ -14,6 +14,7 @@ CHANGED/FIXED
 - Changed soul pickup entity
 - Soul sprite changes
 - Changed Wand Consumes X Souls spell soul selecting
+- Mimicium no longer works on Soul Blood
 
 INTERNAL
 - Revived bosses are given the souls_revived_boss tag

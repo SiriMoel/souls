@@ -43,6 +43,17 @@ else
     speed = default_speed
 end
 
+local sentinels = EntityGetInRadiusWithTag(x, y, 30, "souls_sentinel") or {}
+if #sentinels > 1 then
+    for i,v in ipairs(sentinels) do
+        local s_comp_mode = EntityGetFirstComponentIncludingDisabled(v, "VariableStorageComponent", "mode")
+        local s_mode = ComponentGetValue2(s_comp_mode, "value_string")
+        if s_mode == "follow" and v ~= this then
+            speed = default_speed
+        end
+    end
+end
+
 local new_x = x + speed * math.cos(a)
 local new_y = y + speed * math.sin(a) 
 

@@ -44,6 +44,12 @@
         value_int="1"
     ></VariableStorageComponent>
 
+	<VariableStorageComponent
+        _tags="soul"
+        name="soul"
+        value_float="100"
+    ></VariableStorageComponent>
+
     <VariableStorageComponent
         _tags="mode"
         name="mode"
@@ -53,6 +59,12 @@
 	<VariableStorageComponent
         _tags="attack_frame"
         name="attack_frame"
+        value_int="0"
+    ></VariableStorageComponent>
+
+	<VariableStorageComponent
+        _tags="damaged_frame"
+        name="damaged_frame"
         value_int="0"
     ></VariableStorageComponent>
 
@@ -73,6 +85,11 @@
 
     <LuaComponent
         script_damage_about_to_be_received="mods/souls/files/entities/souls/sentinel/damage.lua"
+    ></LuaComponent>
+
+	<LuaComponent
+        script_source_file="mods/souls/files/entities/souls/sentinel/bar.lua"
+        execute_every_n_frame="1"
     ></LuaComponent>
 
     <GenomeDataComponent 
@@ -112,5 +129,47 @@
     	offset_y="23" 
         emissive="1"
     ></SpriteComponent>
+
+	<SpriteComponent 
+		_tags="bar_back,ui"
+		_enabled="1" 
+		alpha="1" 
+		has_special_scale="1" 
+		image_file="mods/souls/files/entities/souls/sentinel/bar_back.png" 
+		is_text_sprite="0" 
+		next_rect_animation="" 
+		offset_x="12" 
+		offset_y="29" 
+		rect_animation="" 
+		special_scale_x="1" 
+		special_scale_y="1" 
+		ui_is_parent="0" 
+		update_transform="1" 
+		visible="1" 
+		emissive="1"
+		never_ragdollify_on_death="1"
+		z_index="-9000" 
+	></SpriteComponent>
+
+	<SpriteComponent 
+		_tags="bar_front,ui" 
+		_enabled="1" 
+		alpha="1" 
+		has_special_scale="1" 
+		image_file="mods/souls/files/entities/souls/sentinel/bar_front.png" 
+		is_text_sprite="0" 
+		next_rect_animation="" 
+		offset_x="12" 
+		offset_y="28" 
+		rect_animation="" 
+		special_scale_x="1" 
+		special_scale_y="1" 
+		ui_is_parent="0" 
+		update_transform="1" 
+		visible="1" 
+		emissive="1"
+		never_ragdollify_on_death="1"
+		z_index="-9001" 
+	></SpriteComponent>
 
 </Entity>

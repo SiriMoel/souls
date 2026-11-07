@@ -32,7 +32,7 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
         --CreateItemActionEntity(pool_1[rnd_1], x - 10, y - 5)
         --CreateItemActionEntity(pool_2[rnd_2], x + 10, y - 5)
     else
-        local pool = {"SOULS_REAPING_SHOT", "SOULS_RANDOM_REAP", "SOULS_SOULDOS", "SOULS_REAP_FROM_FIRE", "SOULS_NECRONOMICAL_REAP", "SOULS_SOUL_BLAST", "SOULS_SOUL_ARROW", "SOULS_SOUL_BALL"}
+        local pool = {"SOULS_SENTINEL", "SOULS_REAPING_SHOT", "SOULS_RANDOM_REAP", "SOULS_SOULDOS", "SOULS_REAP_FROM_FIRE", "SOULS_NECRONOMICAL_REAP", "SOULS_SOUL_BLAST", "SOULS_SOUL_ARROW", "SOULS_SOUL_BALL"}
         local rnd = Random(1, #pool)
         table.insert(spells_to_spawn, pool[rnd])
         --CreateItemActionEntity(pool[rnd], x, y - 5)

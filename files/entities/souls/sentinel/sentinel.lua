@@ -7,6 +7,9 @@ local mode = ComponentGetValue2(comp_mode, "value_string")
 
 local frame_now = GameGetFrameNum()
 
+local comp_soul = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "soul")
+local soul = ComponentGetValue2(comp_soul, "value_float")
+
 local comp_eyes = EntityGetFirstComponent(this, "SpriteComponent", "eyes")
 
 local function eyes(look_x, look_y)
@@ -41,14 +44,32 @@ local function attack_target(range)
     return attack_entity
 end
 
+local function shoot_projectile(who_shot, entity_file, x, y, vel_x, vel_y, send_message)
+	local projectile = EntityLoad(entity_file, x, y)
+	local herd_id = StringToHerdId("player")
+	if send_message == nil then send_message = true end
+	GameShootProjectile(who_shot, x, y, x+vel_x, y+vel_y, projectile, send_message)
+    local comp_proj = EntityGetFirstComponent(projectile, "ProjectileComponent")
+    ComponentSetValue2(comp_proj, "mWhoShot", who_shot)
+    ComponentSetValue2(comp_proj, "mShooterHerdId", herd_id)
+    local comp_vel = EntityGetFirstComponent(projectile, "VelocityComponent")
+    ComponentSetValueVector2(comp_vel, "mVelocity", vel_x, vel_y)
+	return projectile
+end
+
 if mode == "melee" then
     if frame_now > attack_frame then
-        local target = attack_target(35)
+        local target = attack_target(45)
         if target ~= nil then
             GamePlayAnimation(this, "melee_attack", 11, "melee_ready", 10)
-            ComponentSetValue2(comp_attack_frame, "value_int", frame_now + 90)
-            EntityInflictDamage(target, 3, "DAMAGE_SLICE", "", "DISINTEGRATED", 0, 0, this, x, y, 10)
+            ComponentSetValue2(comp_attack_frame, "value_int", frame_now + 100)
             local t_x, t_y = EntityGetTransform(target)
+            local reapers = EntityGetAllChildren(target, "souls_reaper_normal") or {}
+            if #reapers == 0 then
+                EntityAddChild(target, EntityLoad("mods/souls/files/entities/misc/reapers/reap_entity.xml", t_x, t_y))
+            end
+            EntityInflictDamage(target, 8, "DAMAGE_SLICE", "", "DISINTEGRATED", 0, 0, this, x, y, 10)
+            soul = soul - 0.2
             eyes(t_x, t_y - 4)
         end
     end
@@ -61,15 +82,20 @@ if mode == "projectile" then
             GamePlayAnimation(this, "projectile_attack", 11, "projectile", 10)
             ComponentSetValue2(comp_attack_frame, "value_int", frame_now + 40)
             local t_x, t_y = EntityGetTransform(target)
-            eyes(t_x, t_y - 4)
+            t_y = t_y - 2
+            local vel = 300
+            local a = math.atan2(t_y - y, t_x - x)
+            local vel_x = vel * math.cos(a)
+            local vel_y = vel * math.sin(a)
+            shoot_projectile(this, "mods/souls/files/entities/souls/sentinel/projectile.xml", x, y, vel_x, vel_y)
+            soul = soul - 0.05
+            eyes(t_x, t_y - 2)
         end
     end
 end
 
 if mode == "connect" then
     y = y + 2
-
-    --GamePlayAnimation(this, "connect", 10)
 
     local max_beams = 2
     local beams = 0
@@ -88,9 +114,7 @@ if mode == "connect" then
                 local dist_xy = math.sqrt(dist_y*dist_y + dist_x*dist_x)
 
                 if dist_xy > 25 then
-                    if beams == 0 then
-                        eyes(t_x, t_y - 10)
-                    end
+                    if beams == 0 then eyes(t_x, t_y - 10) end
                     beams = beams + 1
                     local a = math.atan2(dist_y, dist_x)
                     for i = 1, beam_steps do
@@ -126,7 +150,6 @@ if mode == "connect" then
 end
 
 if mode == "follow" then
-    --GamePlayAnimation(this, "follow", 10)
     local targets = EntityGetInRadiusWithTag(x, y, 300, "player_unit") or {}
     if #targets > 0 then
         local target = targets[1]
@@ -134,3 +157,8 @@ if mode == "follow" then
         eyes(t_x, t_y - 5)
     end
 end
+
+if soul <= 0 then
+    EntityKill(this)
+end
+ComponentSetValue2(comp_soul, "value_float", soul)

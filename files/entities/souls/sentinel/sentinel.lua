@@ -64,9 +64,9 @@ if mode == "melee" then
             GamePlayAnimation(this, "melee_attack", 11, "melee_ready", 10)
             ComponentSetValue2(comp_attack_frame, "value_int", frame_now + 100)
             local t_x, t_y = EntityGetTransform(target)
-            local reapers = EntityGetAllChildren(target, "souls_reaper_normal") or {}
+            local reapers = EntityGetAllChildren(target, "souls_reaper_sentinel") or {}
             if #reapers == 0 then
-                EntityAddChild(target, EntityLoad("mods/souls/files/entities/misc/reapers/reap_entity.xml", t_x, t_y))
+                EntityAddChild(target, EntityLoad("mods/souls/files/entities/misc/reapers/reap_entity_sentinel.xml", t_x, t_y))
             end
             EntityInflictDamage(target, 8, "DAMAGE_SLICE", "", "DISINTEGRATED", 0, 0, this, x, y, 10)
             soul = soul - 0.2

@@ -6,6 +6,7 @@ NEW
 - Spell: Sea of Soulless Blood
 - Spell: Summon Soul Sentinel
 - Item: Soul Lantern
+- Very Scary Soul (curse)
 
 CHANGED/FIXED
 - Increased the amount of soul blood required to revive bosses by 30%
@@ -13,8 +14,11 @@ CHANGED/FIXED
 - Reduced spawn probabilities of Reap from Fire spell
 - Changed soul pickup entity
 - Soul sprite changes
+- GUI changes
 - Changed Wand Consumes X Souls spell soul selecting
 - Mimicium no longer works on Soul Blood
+- Soul-Away! converts slime into more Soul-Away!
+- Anima Conduit perk now increases incoming damage by 25%
 
 INTERNAL
 - Revived bosses are given the souls_revived_boss tag

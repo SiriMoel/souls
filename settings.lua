@@ -409,6 +409,14 @@ mod_settings = {
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
                 ui_fn = mod_setting_bool_souls,
             },
+            {
+                id = "enable_curseroom",
+                ui_name = "Soul Curse room",
+                ui_description = "Should this structure appear?",
+                value_default = true,
+                scope = MOD_SETTING_SCOPE_NEW_GAME,
+                ui_fn = mod_setting_bool_souls,
+            },
         },
     },
     {
@@ -520,14 +528,14 @@ mod_settings = {
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
                 ui_fn = mod_setting_enum_souls,
             },]]
-            {
+            --[[{
                 id = "green",
                 ui_name = "Green mode",
                 ui_description = "Green mode",
                 value_default = false,
                 scope = MOD_SETTING_SCOPE_RUNTIME_RESTART,
                 ui_fn = mod_setting_bool_souls,
-            },
+            },]]
         },
     },
 }

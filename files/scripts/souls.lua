@@ -289,6 +289,11 @@ function SoulsDeath(this, entity_thats_responsible)
         end
     end
     if next(souls) ~= nil then
+        if GameHasFlagRun("souls_cursed") then
+            for soul, amt in pairs(souls) do
+                souls[soul] = amt * 2
+            end
+        end
         DontFearTheReaper(souls, this)
     end
 end

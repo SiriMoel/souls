@@ -12,7 +12,7 @@ function kick(entity_who_kicked)
     local comp_soul = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "soul")
     local soul = ComponentGetValue2(comp_soul, "value_float")
 
-    local amt = math.floor(soul)
+    local amt = math.floor(soul * 0.85)
     EditSoulCounts({["friendly"]=amt}, entity_who_kicked)
     SoulsPrint(amt .. " " .. SoulNameCheck("friendly") .. " souls were reclaimed from the sentinel.", "say_soul")
 

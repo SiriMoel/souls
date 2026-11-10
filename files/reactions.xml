@@ -20,11 +20,15 @@
 		blob_radius2="3"
 	></Reaction>
 
-	<!-- huh? -->
-  	<Reaction probability="5"
-		input_cell1="souls_soul_blood_1" 			input_cell2="[slime]"
-		output_cell1="souls_soulaway" 			output_cell2="souls_soulaway" 
-		blob_radius2="3"
+  	<Reaction probability="7"
+		input_cell1="souls_soul_blood_1" input_cell2="[slime]"
+		output_cell1="souls_soulaway" output_cell2="souls_soulaway" 
+		blob_radius2="2"
+	></Reaction>
+
+	<Reaction probability="1"
+		input_cell1="souls_soulaway" input_cell2="[slime]"
+		output_cell1="souls_soulaway" output_cell2="souls_soulaway" 
 	></Reaction>
 
     <Reaction probability="0.6"
@@ -71,8 +75,7 @@
 		entity="mods/souls/files/entities/misc/mat_haunt/haunt.xml"
 	></Reaction>
 
-	<Reaction probability="200"
-		fast_reaction="1"
+	<Reaction probability="200" fast_reaction="1"
 		input_cell1="mimic_liquid" input_cell2="souls_soul_blood_1"
 		output_cell1="souls_soulless_blood" output_cell2="souls_soulless_blood"
 	></Reaction>

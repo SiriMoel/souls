@@ -1,0 +1,42 @@
+<Entity tags="souls_curse">
+
+    <InheritTransformComponent
+        _enabled="1"
+    ></InheritTransformComponent>
+
+    <UIIconComponent
+		name="$item_souls_curse"
+		description="$itemdesc_souls_curse"
+		icon_sprite_file="mods/souls/files/status_indicators/curse.png"
+		is_perk="0"
+		display_above_head="0"
+		display_in_hud="1"
+	></UIIconComponent>
+
+    <MaterialSuckerComponent 
+    	barrel_size="50"
+    	num_cells_sucked_per_frame="8"
+	  	material_type="0"
+	  	suck_tag="[souls_soulaway]"
+  	></MaterialSuckerComponent>
+
+    <MaterialInventoryComponent 
+        drop_as_item="0" 
+        on_death_spill="1"
+        leak_pressure_min="0.07"
+        leak_on_damage_percent="1"
+        min_damage_to_leak="0.0"
+        death_throw_particle_velocity_coeff="0.5"
+        do_reactions="0"
+        do_reactions_explosions="0"
+        do_reactions_entities="0"
+        ><count_per_material_type
+	    ></count_per_material_type>
+    </MaterialInventoryComponent>
+
+    <LuaComponent
+        script_source_file="mods/souls/files/entities/items/curse/curse_remove.lua"
+        execute_every_n_frame="12"
+    ></LuaComponent>
+
+</Entity>

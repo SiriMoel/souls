@@ -1,8 +1,8 @@
-<entity>
+<Entity>
 
     <LuaComponent
         script_source_file="mods/souls/files/biome/bansheeplace/spawn.lua"
         execute_every_n_frame="1"
     ></LuaComponent>
 
-</entity>
+</Entity>

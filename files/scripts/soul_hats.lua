@@ -27,4 +27,11 @@ soul_hats = {
         hat = "mods/souls/files/ui_gfx/soul_mask.png",
         offset = -2,
     },
+    zombie = {
+        func = function()
+            return HasFlagPersistent("souls_curse_picked")
+        end,
+        hat = "mods/souls/files/ui_gfx/soul_curse.png",
+        offset = 0,
+    },
 }

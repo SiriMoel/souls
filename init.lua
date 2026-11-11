@@ -241,11 +241,11 @@ if ModIsEnabled("GlimmersExpanded") then
 end
 
 -- meta leveling
-if ModIsEnabled("meta_leveling") then
+--[[if ModIsEnabled("meta_leveling") then
     ModLuaFileAppend("mods/meta_leveling/files/for_modders/rewards_append.lua", "mods/souls/files/scripts/ml_rewards.lua")
     ModLuaFileAppend("mods/meta_leveling/files/for_modders/progress_appends.lua", "mods/souls/files/scripts/ml_progress.lua")
     --ModLuaFileAppend("mods/meta_leveling/files/for_modders/stats_append.lua", "mods/souls/files/scripts/ml_stats.lua")
-end
+end]]
 
 if ModIsEnabled("cheatgui") then
 	ModLuaFileAppend("data/hax/special_spawnables.lua", "mods/souls/files/scripts/cheatgui_special_spawnables.lua")
@@ -253,6 +253,10 @@ end
 
 if ModIsEnabled("foolish_flame") then
 	ModLuaFileAppend("mods/foolish_flame/files/scripts/bounty_rewards.lua", "mods/souls/files/scripts/ff_bounty_rewards.lua")
+end
+
+if ModIsEnabled("anvil_of_destiny") then
+    ModLuaFileAppend("mods/anvil_of_destiny/files/scripts/modded_content.lua", "mods/souls/files/scripts/anvil_of_destiny.lua")
 end
 
 dofile_once("mods/souls/files/scripts/souls_gui.lua")

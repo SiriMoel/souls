@@ -885,73 +885,79 @@ local new_actions = {
 		spawn_level = "5,6,10",
 		spawn_probability = "0.6,0.7,0.5",
 		price = 300,
-		mana = 0,
+		mana = -4,
 		ai_never_uses = true,
+		custom_xml_file = "mods/souls/files/entities/misc/ravenous_spell/card.xml",
 		action = function()
 			if reflecting then return end
-			local card = GetUpdatedEntityID() -- why did i call this 'card' ?
-			local x, y = EntityGetTransform(card)
-			local wand = 0
-			local souls_earned = 1
-			local inv_comp = EntityGetFirstComponentIncludingDisabled(card, "Inventory2Component")
-			if inv_comp then
-				wand = ComponentGetValue2(inv_comp, "mActiveItem")
+			local ravenous_id = nil
+			local caster = GetUpdatedEntityID()
+			local x, y = EntityGetTransform(caster)
+			local comp_inv = EntityGetFirstComponentIncludingDisabled(caster, "Inventory2Component")
+			if comp_inv == nil then return end
+			local wand = ComponentGetValue2(comp_inv, "mActiveItem")
+			local souls = 0
+			local comp = EntityGetFirstComponentIncludingDisabled(wand, "AbilityComponent")
+			if comp ~= nil then
+				local deck_capacity = ComponentObjectGetValue2(comp, "gun_config", "deck_capacity")
+        		local mana_max = ComponentGetValue2(comp, "mana_max")
+        		local mana_charge_speed = ComponentGetValue2(comp, "mana_charge_speed")
+        		local fire_rate_wait = ComponentObjectGetValue2(comp, "gunaction_config", "fire_rate_wait")
+        		local reload_time = ComponentObjectGetValue2(comp, "gun_config", "reload_time")
+				souls = souls + (deck_capacity - 2) + (mana_max/80) + (mana_charge_speed/60) + (10 * (1 - fire_rate_wait/60)) + (10 * (1 - reload_time/120))
 			end
-			local possible_types = {
-				"bat",
-				"fly",
-				"friendly",
-				"mage",
-				"orcs",
-				"slimes",
-				"spider",
-				"zombie",
-				"worm",
-				"fungus",
-				"ghost",
-			}
-			if wand ~= 0 then
-				local acs = EntityGetComponentIncludingDisabled( wand, "AbilityComponent" )
-				if acs == nil then return end
-				for i,ac in ipairs(acs) do
-					local rt = tonumber( ComponentObjectGetValue( ac, "gun_config", "reload_time" ) ) -- reload time
-					local frw = tonumber( ComponentObjectGetValue( ac, "gunaction_config", "fire_rate_wait" ) ) -- fire rate wait
-					local mcs = tonumber( ComponentGetValue2( ac, "mana_charge_speed" ) ) -- mana charge speed
-					local mm = tonumber( ComponentGetValue2( ac, "mana_max" ) ) -- mana max
-					local cp = tonumber( ComponentObjectGetValue( ac, "gun_config", "deck_capacity" ) ) -- capacity
-					rt = rt / 10
-					frw = frw / 10
-					mcs = mcs / 50
-					mm = mm / 50
-					cp = cp / 1
-					souls_earned = rt + frw + mcs + mm + cp
-					souls_earned = math.ceil(souls_earned)
-				end
-				local children = EntityGetAllChildren(wand) or {}
-				for i,v in ipairs(children) do
-					if EntityHasTag(v, "card_action") then
-						local comp_itemaction = EntityGetFirstComponentIncludingDisabled(v, "ItemActionComponent") or 0
-            			local action_id = ComponentGetValue(comp_itemaction, "action_id") or ""
-            			if action_id ~= "SOULS_EAT_WAND_FOR_SOULS" then
-							souls_earned = souls_earned + 1
+			local cards = EntityGetAllChildren(wand, "card_action") or {}
+			local cards2 = {}
+			if #cards > 0 then
+				for _, card in ipairs(cards) do
+					local comp_ = EntityGetFirstComponentIncludingDisabled(card, "ItemActionComponent")
+					if comp_ ~= nil then
+						local action_id = ComponentGetValue2(comp_, "action_id")
+						if action_id ~= "SOULS_EAT_WAND_FOR_SOULS" then
+							cards2[action_id] = (cards2[action_id] or 0) + 1
+						elseif ravenous_id == nil then
+							ravenous_id = card
 						end
 					end
 				end
-				if souls_earned > 30 then
-					souls_earned = 30 + ((souls_earned - 30) * 0.7)
+				for _, action in ipairs(actions) do -- is this slow and bad and evil and wrong?
+					if cards2[action.id] ~= nil then
+						souls = souls + cards2[action.id] * (action.price/200)
+					end
 				end
-				souls_earned = math.ceil(souls_earned)
-				local souls_to_add = {}
-				for i=1,souls_earned do
-					local which = possible_types[math.random(1,#possible_types)]
-					souls_to_add[tostring(which)] = (souls_to_add[tostring(which)] or 0) + 1
-					SoulsPrint("You have acquired a " .. SoulNameCheck(which) .. " soul!", "say_soul")
-				end
-				EditSoulCounts(souls_to_add, card)
-				GamePrint("The wand was eaten and you have received " .. souls_earned .. " souls!")
-				CreateItemActionEntity("SOULS_EAT_WAND_FOR_SOULS", x, y)
-				EntityKill(wand)
 			end
+			if EntityHasTag(wand, "wand_good") then souls = souls * 1.3 end
+			--if souls > 30 then souls = 30 + (souls - 30) * 0.7 end
+			if GameHasFlagRun("souls_cursed") then souls = souls * 2 end
+			souls = math.ceil(math.max(souls, 1))
+			local souls_to_add = {}
+			for i = 1, souls do
+				local which = soul_types[Random(1, #soul_types - 2)]
+				souls_to_add[which] = (souls_to_add[which] or 0) + 1
+			end
+			EditSoulCounts(souls_to_add, caster)
+			SoulsPrintImportant("Wand digested!", souls .. " souls received.")
+			local comp_rav = EntityGetFirstComponentIncludingDisabled(ravenous_id, "VariableStorageComponent", "souls_ravenous")
+			if comp_rav ~= nil then
+				local rav = ComponentGetValue2(comp_rav, "value_int")
+				rav = rav + souls
+				ComponentSetValue2(comp_rav, "value_int", rav)
+				if rav >= 500 then
+					if not HasFlagPersistent("souls_ravenous") then
+						AddFlagPersistent("souls_ravenous")
+					end
+					local comp_item = EntityGetFirstComponentIncludingDisabled(ravenous_id, "ItemComponent")
+					ComponentSetValue2(comp_item, "item_name", "$action_souls_eat_wand_for_souls_2")
+					ComponentSetValue2(comp_item, "ui_sprite", "mods/souls/files/ui_gfx/gun_actions/eat_wand_for_souls_2.png")
+					local comp_sprite = EntityGetFirstComponentIncludingDisabled(ravenous_id, "SpriteComponent")
+					ComponentSetValue2(comp_sprite, "image_file", "mods/souls/files/ui_gfx/gun_actions/eat_wand_for_souls_2.png")
+				end
+			end
+			EntityRemoveFromParent(ravenous_id)
+			EntityApplyTransform(ravenous_id, x, y - 8, 0, 1, 1)
+			EntitySetComponentsWithTagEnabled(ravenous_id, "enabled_in_world", true)
+			EntityLoad("mods/souls/files/entities/misc/ravenous_spell/effect.xml", x, y - 5)
+			EntityKill(wand)
 		end,
 	},
 	{
@@ -1222,8 +1228,8 @@ local new_actions = {
 		description = "$actiondesc_souls_sentinel",
 		sprite = "mods/souls/files/ui_gfx/gun_actions/sentinel.png",
 		type = ACTION_TYPE_UTILITY,
-		spawn_level = "10",
-		spawn_probability = "0.1", -- actual acquisition pending
+		spawn_level = "6",
+		spawn_probability = "0.1",
 		price = 300,
 		mana = 100,
 		ai_never_uses = true,

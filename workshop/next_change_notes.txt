@@ -7,6 +7,7 @@ NEW
 - Spell: Summon Soul Sentinel
 - Item: Soul Lantern
 - Very Scary Soul (curse)
+- Anvil of Destiny: Soul Blood can be used to make a wand always cast a reaping spell
 
 CHANGED/FIXED
 - Increased the amount of soul blood required to revive bosses by 30%
@@ -16,9 +17,13 @@ CHANGED/FIXED
 - Soul sprite changes
 - GUI changes
 - Changed Wand Consumes X Souls spell soul selecting
-- Mimicium no longer works on Soul Blood
+- Mimicium no longer works on Soul Blood (creates Soulless Blood instead)
 - Soul-Away! converts slime into more Soul-Away!
 - Anima Conduit perk now increases incoming damage by 25%
+- Ravenous Spell changes
+
+REMOVED
+- Meta Leveling cross-mod interaction
 
 INTERNAL
 - Revived bosses are given the souls_revived_boss tag

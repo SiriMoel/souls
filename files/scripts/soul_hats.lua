@@ -34,4 +34,11 @@ soul_hats = {
         hat = "mods/souls/files/ui_gfx/soul_curse.png",
         offset = 0,
     },
+    worm = {
+        func = function()
+            return HasFlagPersistent("souls_ravenous")
+        end,
+        hat = "mods/souls/files/ui_gfx/soul_eye.png",
+        offset = 0,
+    },
 }

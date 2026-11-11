@@ -1,0 +1,29 @@
+<Entity>
+	
+	<Base file="data/entities/base_custom_card.xml"> 
+		<ItemComponent
+			item_name="$action_souls_eat_wand_for_souls"
+			always_use_item_name_in_ui="1"
+		></ItemComponent>
+
+		<SpriteComponent 
+			image_file="mods/souls/files/ui_gfx/gun_actions/eat_wand_for_souls.png"
+		></SpriteComponent>
+		
+		<ItemActionComponent 
+			_tags="enabled_in_world"
+			action_id="SOULS_EAT_WAND_FOR_SOULS"
+        ></ItemActionComponent>
+	</Base>
+
+	<InheritTransformComponent
+		_tags="enabled_in_world,enabled_in_hand"
+    ></InheritTransformComponent>
+
+    <VariableStorageComponent
+        _tags="souls_ravenous"
+        name="souls_ravenous"
+        value_int="0"
+    ></VariableStorageComponent>
+
+</Entity>

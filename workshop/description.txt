@@ -27,10 +27,10 @@ Cross-mod interactions with:
 [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3032128572]Apotheosis[/url][/b] 2 new soul types
 [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3316355233]Glimmers Expanded[/url][/b] 1 new spell
 [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3373139694]Pharmacokinetics[/url][/b] new npc, new plant
-[b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3338209310]Meta Leveling[/url][/b] new reward & new meta progression
 [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3242942696]Disable Auto Pickup of Collectibles[/url][/b] Soul Refresher auto pickup disabled
 [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3795285917]Foolish Flame[/url][/b] Magic fire can be inflicted by some Souls spells, and hell bounties may reward souls
 [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3807666895]Stab![/url][/b] A Stab! spell grants souls
+[b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=1974488139]Anvil of Destiny[/url][/b] Soul Blood can be used to make a wand always cast a reaping spell
 
 Discord: https://discord.gg/FKaRA9HMUq
 Github: https://github.com/SiriMoel/souls

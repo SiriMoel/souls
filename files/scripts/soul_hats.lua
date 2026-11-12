@@ -27,18 +27,18 @@ soul_hats = {
         hat = "mods/souls/files/ui_gfx/soul_mask.png",
         offset = -2,
     },
-    zombie = {
+    --[[zombie = {
         func = function()
             return HasFlagPersistent("souls_curse_picked")
         end,
         hat = "mods/souls/files/ui_gfx/soul_curse.png",
         offset = 0,
-    },
-    worm = {
+    },]]
+    --[[worm = {
         func = function()
             return HasFlagPersistent("souls_ravenous")
         end,
         hat = "mods/souls/files/ui_gfx/soul_eye.png",
         offset = 0,
-    },
+    },]]
 }

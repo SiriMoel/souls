@@ -409,14 +409,14 @@ mod_settings = {
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
                 ui_fn = mod_setting_bool_souls,
             },
-            {
+            --[[{
                 id = "enable_curseroom",
                 ui_name = "Soul Curse room",
                 ui_description = "Should this structure appear?",
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
                 ui_fn = mod_setting_bool_souls,
-            },
+            },]]
         },
     },
     {
@@ -498,8 +498,8 @@ mod_settings = {
             {
                 id = "update_informing",
                 ui_name = "Update informing",
-                ui_description = "Do you want to be told when Souls is updated?\nThe Souls Update item only appears for major updates.",
-                value_default = false,
+                ui_description = "Do you want to be told when Souls is updated?",
+                value_default = true,
                 scope = MOD_SETTING_SCOPE_RUNTIME,
                 ui_fn = mod_setting_bool_souls,
             },

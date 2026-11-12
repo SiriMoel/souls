@@ -681,7 +681,7 @@ local new_actions = {
 		action = function()
 			c.fire_rate_wait = c.fire_rate_wait + 12
 			if reflecting then 
-				c.speed_multiplier = c.speed_multiplier * 1.05
+				c.speed_multiplier = c.speed_multiplier * 1.3
 				c.damage_projectile_add = c.damage_projectile_add + 0.2
 				return 
 			end
@@ -695,13 +695,18 @@ local new_actions = {
 			local card = CurrentCard(wand) -- does this actually work?
 			local comp_soulstrike = EntityGetFirstComponentIncludingDisabled(card, "VariableStorageComponent", "soul_strike_amount") or 0
 			local soul_strike_amount = ComponentGetValue2(comp_soulstrike, "value_int") or 0
-			souls_used_count = souls_used_count + soul_strike_amount
-			c.speed_multiplier = c.speed_multiplier * (1 + 0.05 * soul_strike_amount)
-			c.damage_projectile_add = c.damage_projectile_add + 0.2 * soul_strike_amount
-			if c.speed_multiplier >= 20 then
-				c.speed_multiplier = math.min(c.speed_multiplier, 20)
-			elseif c.speed_multiplier < 0 then
-				c.speed_multiplier = 0
+			if soul_strike_amount > 0 then
+				souls_used_count = souls_used_count + soul_strike_amount
+				c.speed_multiplier = c.speed_multiplier * (1 + 0.3 * soul_strike_amount)
+				c.damage_projectile_add = c.damage_projectile_add + 0.2 * soul_strike_amount
+				for i = 1, math.min(soul_strike_amount, 5) do
+					c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/soul_speed/soul_speed_fx.xml,"
+				end
+				if c.speed_multiplier >= 20 then
+					c.speed_multiplier = math.min(c.speed_multiplier, 20)
+				elseif c.speed_multiplier < 0 then
+					c.speed_multiplier = 0
+				end
 			end
 			ComponentSetValue2(comp_soulstrike, "value_int", 0)
 			draw_actions(1, true)
@@ -904,7 +909,7 @@ local new_actions = {
         		local mana_charge_speed = ComponentGetValue2(comp, "mana_charge_speed")
         		local fire_rate_wait = ComponentObjectGetValue2(comp, "gunaction_config", "fire_rate_wait")
         		local reload_time = ComponentObjectGetValue2(comp, "gun_config", "reload_time")
-				souls = souls + (deck_capacity - 2) + (mana_max/80) + (mana_charge_speed/60) + (10 * (1 - fire_rate_wait/60)) + (10 * (1 - reload_time/120))
+				souls = souls + (deck_capacity - 2) + (mana_max/90) + (mana_charge_speed/70) + (8 * (1 - fire_rate_wait/60)) + (8 * (1 - reload_time/120))
 			end
 			local cards = EntityGetAllChildren(wand, "card_action") or {}
 			local cards2 = {}
@@ -926,7 +931,7 @@ local new_actions = {
 					end
 				end
 			end
-			if EntityHasTag(wand, "wand_good") then souls = souls * 1.3 end
+			if EntityHasTag(wand, "wand_good") then souls = souls * 1.5 end
 			--if souls > 30 then souls = 30 + (souls - 30) * 0.7 end
 			if GameHasFlagRun("souls_cursed") then souls = souls * 2 end
 			souls = math.ceil(math.max(souls, 1))
@@ -958,6 +963,44 @@ local new_actions = {
 			EntitySetComponentsWithTagEnabled(ravenous_id, "enabled_in_world", true)
 			EntityLoad("mods/souls/files/entities/misc/ravenous_spell/effect.xml", x, y - 5)
 			EntityKill(wand)
+		end,
+	},
+	{
+		id = "COPY",
+		name = "$action_souls_copy",
+		description = "$actiondesc_souls_copy",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/copy.png",
+		type = ACTION_TYPE_OTHER,
+		recursive = true,
+		spawn_level = "1,2,5,6",
+		spawn_probability = "0.3,0.2,0.6,0.5",
+		price = 170,
+		mana = 35,
+		ai_never_uses = true,
+		action = function(recursion_level, iteration)
+			c.fire_rate_wait = c.fire_rate_wait + 30
+			if reflecting then return end
+			local caster = GetUpdatedEntityID()
+			local spell = {}
+			if #deck > 0 then
+				spell = deck[1]
+			else
+				spell = nil
+			end
+			local rec = check_recursion(spell, recursion_level)
+			if spell ~= nil and rec > -1 then
+				local cost = 1
+				if spell.max_uses ~= nil then
+					cost = math.ceil(5 * (1 - (spell.uses_remaining / spell.max_uses)))
+				end
+				if SpellUseSouls(caster, cost) then
+					souls_used_count = souls_used_count + cost
+					spell.action(rec)
+				else
+					souls_not_enough = true
+    				souls_not_enough_count = souls_not_enough_count + cost
+				end
+			end
 		end,
 	},
 	{

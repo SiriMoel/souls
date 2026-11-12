@@ -24,7 +24,7 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
 
     if not EntityHasTag(this, "souls_revived_boss") then
         local pool_1 = {"SOULS_REAPING_SHOT", "SOULS_RANDOM_REAP", "SOULS_SOULDOS", "SOULS_REAP_FROM_FIRE", "SOULS_NECRONOMICAL_REAP"}
-        local pool_2 = {"SOULS_SOUL_BLAST", "SOULS_SOUL_ARROW", "SOULS_SOUL_BALL"}
+        local pool_2 = {"SOULS_COPY", "SOULS_SOUL_BLAST", "SOULS_SOUL_ARROW", "SOULS_SOUL_BALL"}
         local rnd_1 = Random(1, #pool_1)
         local rnd_2 = Random(1, #pool_2)
         table.insert(spells_to_spawn, pool_1[rnd_1])

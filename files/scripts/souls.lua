@@ -105,7 +105,7 @@ end
 
 function SpellUseSouls(caster, n)
     if not EntityHasTag(caster, "player_unit") then
-        print("Souls: SpellUseSouls() THAT IS NOT THE PLAYER!!!")
+        --print("Souls: SpellUseSouls() THAT IS NOT THE PLAYER!!!")
         return false
     end
     local success = false

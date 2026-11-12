@@ -3,14 +3,13 @@ SOULS_SET_VERSION = true
 SOULS_FORCE_VERSION = nil
 
 function souls_version_update(pos_x, pos_y)
-    --EntityLoad("mods/souls/files/entities/items/update_informer/1_6.xml", pos_x, pos_y - 5)
     print("Souls v1." .. math.floor(SOULS_VERSION) .. "." .. math.floor((SOULS_VERSION - math.floor(SOULS_VERSION)) * 100 + 0.5))
     local version_before = SOULS_FORCE_VERSION or ModSettingGet("souls.version")
     if version_before < math.floor(SOULS_VERSION) then
         if SOULS_SET_VERSION then
             ModSettingSet("souls.version", SOULS_FORCE_VERSION or SOULS_VERSION)
         end
-        if SOULS_VERSION == 6.00 or ModSettingGet("souls.update_informing") then
+        if ModSettingGet("souls.update_informing") then
             SoulsPrintImportant("Souls has been (majorly) updated!", "The change notes are on the workshop page.", "divine")
             local informer_path = "mods/souls/files/entities/items/update_informer/1_" .. math.floor(SOULS_VERSION) .. ".xml"
             if ModTextFileGetContent(informer_path) ~= nil then
@@ -219,10 +218,10 @@ local possible_scenes = {
         scene = {-2400, 3800, "mods/souls/files/biome/lanternplace/lanternplace.xml", true},
         func = function() return ModSettingGet("souls.enable_banshee") end,
     },
-    {
+    --[[{
         scene = {5800, 1600, "mods/souls/files/biome/curseroom/curseroom.xml", false},
         func = function() return ModSettingGet("souls.enable_curseroom") end,
-    },
+    },]]
 }
 for _,v in ipairs(possible_scenes) do
     if v.func() then table.insert(scenes, v.scene) end
@@ -258,6 +257,11 @@ end
 if ModIsEnabled("anvil_of_destiny") then
     ModLuaFileAppend("mods/anvil_of_destiny/files/scripts/modded_content.lua", "mods/souls/files/scripts/anvil_of_destiny.lua")
 end
+
+--[[if ModIsEnabled("parallel_parity") then -- UserK? I barely know her!
+    ModLuaFileAppend("mods/parallel_parity/settings.lua", "mods/souls/files/scripts/parallel_parity_settings.lua")
+    ModLuaFileAppend("mods/parallel_parity/data.lua", "mods/souls/files/scripts/parallel_parity_data.lua")
+end]]
 
 dofile_once("mods/souls/files/scripts/souls_gui.lua")
 

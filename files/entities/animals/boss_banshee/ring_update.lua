@@ -91,6 +91,11 @@ if added_to_ring then
         if comp_hitbox ~= nil then
             ComponentSetValue2(comp_hitbox, "damage_multiplier", 1.0)
         end
+ 
+        GamePlaySound("data/audio/Desktop/projectiles.bank", "player_projectiles/death_cross_big/destroy", x, y)
+        GamePlaySound("data/audio/Desktop/animals.bank", "animals/wraith_glowing/damage/explosion", x, y)
+
+        GameScreenshake(15)
 
         for i = 1, #ring_souls do
             local target = ring_souls[i]

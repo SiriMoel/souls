@@ -21,7 +21,7 @@
 
 	<LuaComponent
 		script_source_file="mods/souls/files/entities/misc/effect_soul_drain/effect.lua"
-		execute_every_n_frame="60"
+		execute_every_n_frame="40"
 	></LuaComponent>
 
 </Entity>

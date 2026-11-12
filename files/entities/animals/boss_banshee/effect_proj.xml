@@ -6,11 +6,11 @@
     
     <GameEffectComponent
         effect="MOVEMENT_SLOWER_2X"
-        frames="300"
+        frames="240"
     ></GameEffectComponent>
 	
 	<LifetimeComponent
-		lifetime="300"
+		lifetime="240"
 	></LifetimeComponent>
 	
 	<UIIconComponent

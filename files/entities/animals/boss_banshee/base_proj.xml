@@ -8,30 +8,30 @@
 		></VelocityComponent> 
 	</Base>
 	
-	<HomingComponent
+	<!--<HomingComponent
 		target_tag="player_unit"
-		homing_targeting_coeff="7"
+		homing_targeting_coeff="6"
 		detect_distance="350"
-		homing_velocity_multiplier="0.9"
-	></HomingComponent>
+		homing_velocity_multiplier="0.98"
+	></HomingComponent>-->
 
     <ProjectileComponent 
         _enabled="1" 
 	    lob_min="0.8"
   	    lob_max="1.0"
   	    speed_min="300"
-  	    speed_max="400"
+  	    speed_max="350"
         die_on_low_velocity="0"
         on_death_explode="1"
         on_death_gfx_leave_sprite="0" 
         on_lifetime_out_explode="1"
 	    explosion_dont_damage_shooter="1"
-        damage="0.04"
-        on_collision_die="0"
-        bounces_left="10"
+        damage="0.2"
+        on_collision_die="1"
+        bounces_left="20"
 		bounce_at_any_angle="1"
-		bounce_energy="1.3"
-        lifetime="240"
+		bounce_energy="0.9"
+        lifetime="200"
         ><config_explosion
             never_cache="1" 
             camera_shake="0.5" 

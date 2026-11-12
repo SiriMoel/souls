@@ -5,8 +5,8 @@ NEW
 - Spell: Necronomical Reap
 - Spell: Sea of Soulless Blood
 - Spell: Summon Soul Sentinel
+- Spell: Soul Copy
 - Item: Soul Lantern
-- Very Scary Soul (curse)
 - Anvil of Destiny: Soul Blood can be used to make a wand always cast a reaping spell
 
 CHANGED/FIXED
@@ -21,6 +21,8 @@ CHANGED/FIXED
 - Soul-Away! converts slime into more Soul-Away!
 - Anima Conduit perk now increases incoming damage by 25%
 - Ravenous Spell changes
+- Increased speed boost from Soul Strike spell
+- Changed Soul Master projectile attack to be similar to other master projectiles
 
 REMOVED
 - Meta Leveling cross-mod interaction

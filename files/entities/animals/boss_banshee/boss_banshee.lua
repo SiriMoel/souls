@@ -88,7 +88,7 @@ if #targets > 0 then
 
             GamePlayAnimation(this, "eyes", 12, "soul", 9)
 
-            -- sfx? here or in minion_spawner.lua
+            GamePlaySound("data/audio/Desktop/animals.bank", "animals/illusion/create", x, y)
         else
             update_state = true
             attacks_done = attacks_done - 2
@@ -102,22 +102,18 @@ if #targets > 0 then
 
         if frame_now >= frame_attack then
 
-            local p_dist_x = x - p_x
-			local p_dist_y = y - p_x
-
-            
-            local vel = 8
+            local vel = 170
         	
             local projs = 3
-            local count = 3
+            local count = 2
 
             for i = 1, count do
                 local proj_path = "mods/souls/files/entities/animals/boss_banshee/proj_" .. Random(1, projs) .. ".xml"
 
-                local p_a = math.atan(p_dist_y / p_dist_x) * (1 + 0.2 * (i * 2 - count))
+                local p_a = math.atan2(p_y - y, p_x - x) * (1 + 0.15 * (i * 2 - count))
 
-                local vel_x = p_dist_y / math.tan(p_a) * -vel
-			    local vel_y = math.tan(p_a) * p_dist_x * -vel
+                local vel_x = vel * math.cos(p_a)
+                local vel_y = vel * math.sin(p_a)
 
                 local proj = shoot_projectile(this, proj_path, x, y, vel_x, vel_y)
             end
@@ -127,7 +123,8 @@ if #targets > 0 then
 
             GamePlayAnimation(this, "shimmer", 11, "soul", 10)
 
-            -- sfx
+            GamePlaySound("data/audio/Desktop/animals.bank", "animals/gazer/attack_shoot", x, y)
+            GamePlaySound("data/audio/Desktop/animals.bank", "animals/boss_centipede/shoot_clean_materials", x, y)
         end
 
     elseif state == 3 then -- lunge attack
@@ -162,9 +159,9 @@ if #targets > 0 then
 
             GamePlayAnimation(this, "bite", 11, "soul", 10)
 
-            -- what sound??? not (just?) one of these
-            GamePlaySound("data/audio/Desktop/animals.bank", "animals/generic/bite", x, y)
-            GamePlaySound("data/audio/Desktop/animals.bank", "animals/generic/attack_dash", x, y)
+            GamePlaySound("data/audio/Desktop/animals.bank", "animals/failed_alchemist/jump", x, y)
+            GamePlaySound("data/audio/Desktop/animals.bank", "animals/boss_centipede/close_mouth", x, y)
+            GamePlaySound("data/audio/Desktop/animals.bank", "animals/skullfly/attack_dash", x, y)
         end
 
         if frame_lunge_begin ~= -1 then

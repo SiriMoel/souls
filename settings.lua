@@ -352,14 +352,14 @@ mod_settings = {
                 scope = MOD_SETTING_SCOPE_RUNTIME,
                 ui_fn = mod_setting_bool_souls,
             },
-            --[[{
+            {
                 id = "first_gui",
-                ui_name = "Display soul counts in screen corner",
-                ui_description = "Display soul counts in the bottom right corner.",
+                ui_name = "Legacy GUI",
+                ui_description = "Display soul counts in the bottom right corner of the screen.",
                 value_default = false,
                 scope = MOD_SETTING_SCOPE_RUNTIME,
                 ui_fn = mod_setting_bool_souls,
-            },]]
+            },
         },
     },
     {

@@ -23,10 +23,10 @@
     	wang_color="7f82f803"
     	>
       	<Graphics
-    	color="7f82f803"
+    	color="7fc43645"
     	fire_colors_index="1" >
         </Graphics>
-    </CellDataChild>
+    </CellDataChild> <!-- 7f82f803 -->
 
 	<CellDataChild
       	_parent="spark"

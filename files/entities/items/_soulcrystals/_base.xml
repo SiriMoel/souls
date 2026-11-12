@@ -67,18 +67,18 @@
 	    aabb_min_y="-4" 
 	    is_enemy="0" 
 	    is_item="1" 
-	    is_player="0" >
-  	</HitboxComponent>
+	    is_player="0"
+	></HitboxComponent>
 
 	<LightComponent 
 		_tags="enabled_in_world,enabled_in_hand"
 		_enabled="1" 
-		r="150"
-		g="255"
+		r="255"
+		g="150"
 		b="150"
 		radius="64"
-		fade_out_time="0.75" >
-	</LightComponent>
+		fade_out_time="0.75"
+	></LightComponent>
 	
 	<ParticleEmitterComponent 
 		_tags="enabled_in_world,enabled_in_hand"

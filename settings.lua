@@ -177,17 +177,18 @@ function mod_setting_category_button_souls(mod_id, gui, im_id, im_id2, category)
 	GuiLayoutBeginHorizontal( gui, 0, 0 )
 	GuiIdPush( gui, 892304589 )
 
+    GuiOptionsAddForNextWidget( gui, GUI_OPTION.DrawActiveWidgetCursorOff )
+	GuiOptionsAddForNextWidget( gui, GUI_OPTION.NoPositionTween )
+	local clicked2 = GuiImageButton( gui, im_id2, 0, 0, "", image_file )
+
 	--GuiOptionsAddForNextWidget( gui, GUI_OPTION.DrawSemiTransparent )
     GuiColorSetForNextWidget(gui, 0.7, 0.7, 0.7, 0.8)
-	local clicked1 = GuiButton( gui, im_id, mod_setting_group_x_offset, 0, category.ui_name )
+	local clicked1 = GuiButton( gui, im_id, mod_setting_group_x_offset + 3, 0, category.ui_name )
     GuiColorSetForNextWidget(gui, 1, 1, 1, 1)
 	if is_visible_string( category.ui_description ) then
 		GuiTooltip( gui, category.ui_description, "" )
 	end
 
-	GuiOptionsAddForNextWidget( gui, GUI_OPTION.DrawActiveWidgetCursorOff )
-	GuiOptionsAddForNextWidget( gui, GUI_OPTION.NoPositionTween )
-	local clicked2 = GuiImageButton( gui, im_id2, 0, 0, "", image_file )
 	if is_visible_string( category.ui_description ) then
 		GuiTooltip( gui, category.ui_description, "" )
 	end

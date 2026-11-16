@@ -1,6 +1,7 @@
 dofile_once("mods/souls/files/scripts/souls.lua")
 
 function death(damage_type_bit_field, damage_message, entity_thats_responsible, drop_items)
+    local soul_types = GetSoulTypes()
     local entity = GetUpdatedEntityID()
     local x, y = EntityGetTransform(entity)
     SetRandomSeed(x, y)

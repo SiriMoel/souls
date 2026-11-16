@@ -5,6 +5,7 @@ local souls_rewards = {
         id = "souls",
         chance = 1.5,
         spawn_func = function(x, y) 
+            local soul_types = GetSoulTypes()
             SetRandomSeed(x, y)
             local souls = {}
             for i = 1, 10 do

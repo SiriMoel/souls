@@ -3,7 +3,8 @@ dofile_once("mods/souls/files/scripts/soul_types.lua")
 dofile_once("mods/souls/files/scripts/reapers.lua")
 
 function SoulsInit(player)
-    for i,v in ipairs(soul_types) do
+    local soul_types = GetSoulTypes()
+    for i, v in ipairs(soul_types) do
         EntityAddComponent2(player, "VariableStorageComponent", {
             _tags="souls_count,soulcount_" .. v,
             name=v,
@@ -45,10 +46,10 @@ function SoulCounts(player)
         total_boss = 0,
     }
     local divine = EntityHasTag(player, "souls_divine")
-    local comps = EntityGetComponentIncludingDisabled(player, "VariableStorageComponent", "souls_count") or {}
-    if #comps > 0 then
-        for _,comp in ipairs(comps) do
-            local soul = ComponentGetValue2(comp, "name")
+    local soul_types = GetSoulTypes()
+    for i, soul in ipairs(soul_types) do
+        local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. soul)
+        if comp ~= nil then
             local amt = ComponentGetValue2(comp, "value_int")
             if divine and soul ~= "boss" then amt = 99 end
             counts[soul] = amt
@@ -80,6 +81,19 @@ end
 
 function EditSoulCounts(counts, player)
     player = player or EntityGetWithTag("player_unit")[1]
+    local comps = EntityGetComponentIncludingDisabled(player, "VariableStorageComponent", "souls_shifted") or {}
+    if #comps > 0 then
+        for i = 1, #comps do
+            local comp = comps[i]
+            local shifted = ComponentGetValue2(comp, "name")
+            local to = ComponentGetValue2(comp, "value_string")
+            if counts[tostring(shifted)] ~= nil then
+                local amt = counts[tostring(shifted)]
+                counts[to] = (counts[to] or 0) + amt
+                counts[tostring(shifted)] = nil
+            end
+        end
+    end
     for soul, amt in pairs(counts) do
         local comp = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "soulcount_" .. tostring(soul))
         if comp ~= nil then
@@ -91,6 +105,7 @@ function EditSoulCounts(counts, player)
 end
 
 function WandSoulType(wand)
+    local soul_types, all_soul_types = GetSoulTypes()
     local comp = EntityGetFirstComponentIncludingDisabled(wand, "VariableStorageComponent", "souls_wand_soul_type")
     comp = comp or EntityAddComponent2(wand, "VariableStorageComponent", {
         _tags="souls_wand_soul_type",
@@ -98,8 +113,7 @@ function WandSoulType(wand)
         value_int=0
     })
     local val = ComponentGetValue2(comp, "value_int")
-    --GamePrint(val)
-    local soul = (val ~= 0 and soul_types[val]) or "any"
+    local soul = (val ~= 0 and all_soul_types[val]) or "any"
     return soul
 end
 
@@ -216,6 +230,21 @@ function GetEntitySoulType(entity)
     if EntityHasTag(entity, "souls_boss") then
         soul = "boss"
     end
+    local player = EntityGetWithTag("player_unit") or {}
+    if #player > 0 then
+        player = player[1]
+        local comps = EntityGetComponentIncludingDisabled(player, "VariableStorageComponent", "souls_shifted") or {}
+        if #comps > 0 then
+            for i = 1, #comps do
+                local comp = comps[i]
+                local shifted = ComponentGetValue2(comp, "name")
+                local to = ComponentGetValue2(comp, "value_string")
+                if shifted == soul then
+                    soul = to
+                end
+            end
+        end
+    end
     return soul, herd
 end
 
@@ -247,23 +276,6 @@ function SoulsDeath(this, entity_thats_responsible)
                     soul = c_soul
                     souls[soul] = (souls[soul] or 0) + c_amt
                 end
-
-                --[[if c_soul == "soul" then
-                    soul_count = soul_count + c_amt
-                elseif c_soul == "random" then
-                    for i=1,c_amt do
-                        local r_soul = soul_types[Random(1, #soul_types - 2)]
-                        souls[r_soul] = (souls[r_soul] or 0) + 1
-                    end
-                    --soul_count = soul_count + c_amt
-                elseif c_soul == "necronomical" then
-                    if #reapers > 1 then
-                        souls["zombie"] = (souls["zombie"] or 0) + c_amt
-                    end
-                elseif soul_names[c_soul] ~= nil then
-                    soul = c_soul
-                    souls[soul] = (souls[soul] or 0) + c_amt
-                end]]
             end
         end
     end
@@ -272,14 +284,18 @@ function SoulsDeath(this, entity_thats_responsible)
             soul_count = soul_count + 1
         end
     end
-    if EntityHasTag(entity_thats_responsible, "player_unit") then
-        local comp_reap_better = EntityGetFirstComponentIncludingDisabled(entity_thats_responsible, "VariableStorageComponent", "souls_reap_better")
-        if comp_reap_better ~= nil then
-            soul_count = soul_count + ComponentGetValue2(comp_reap_better, "value_int")
-        end
-        local effect_absinthe = EntityGetAllChildren(entity_thats_responsible, "souls_effect_extra_soul") or {}
-        if #effect_absinthe > 0 then
-            soul_count = soul_count + 1
+    if EntityHasTag(entity_thats_responsible, "souls_reap_for_player") then
+        local player = EntityGetWithTag("player_unit") or {}
+        if #player > 0 then
+            player = player[1]
+            local comp_reap_better = EntityGetFirstComponentIncludingDisabled(player, "VariableStorageComponent", "souls_reap_better")
+            if comp_reap_better ~= nil then
+                soul_count = soul_count + ComponentGetValue2(comp_reap_better, "value_int")
+            end
+            local effect_absinthe = EntityGetAllChildren(player, "souls_effect_extra_soul") or {}
+            if #effect_absinthe > 0 then
+                soul_count = soul_count + 1
+            end
         end
     end
     if soul_count > 0 then
@@ -300,17 +316,39 @@ end
 
 function DontFearTheReaper(souls, entity)
     local player = EntityGetWithTag("player_unit")[1]
+
+    local comps = EntityGetComponentIncludingDisabled(player, "VariableStorageComponent", "souls_shifted") or {}
+    local shifted_souls = {}
+    if #comps > 0 then
+        for i = 1, #comps do
+            local comp = comps[i]
+            local shifted = ComponentGetValue2(comp, "name")
+            local to = ComponentGetValue2(comp, "value_string")
+            table.insert(shifted_souls, {shifted, to})
+        end
+    end
+    for _, v in ipairs(shifted_souls) do
+        if souls[v[1]] ~= nil then
+            souls[v[2]] = (souls[v[2]] or 0) + souls[v[1]]
+            souls[v[1]] = nil
+        end
+    end
+
     if GlobalsGetValue("souls.collect_soul_from_entity", "true") == "true" then
         local x, y = EntityGetTransform(entity)
+        
         for soul, amt in pairs(souls) do
+            local dist = 2 * (amt - 1)
             for i = 1, amt do
+                local soul_x = x + Random(-dist, dist)
+                local soul_y = y + Random(-dist, 0)
                 local path = "mods/souls/files/entities/souls/" .. soul .. ".xml"
                 local using_base = false
                 if ModTextFileGetContent(path) == nil then
                     path = "mods/souls/files/entities/souls/base_soul_entity.xml"
                     using_base = true
                 end
-                local entity_soul = EntityLoad(path, x, y - 2)
+                local entity_soul = EntityLoad(path, soul_x, soul_y)
                 if using_base then
                     local comp_sprite = EntityGetFirstComponentIncludingDisabled(entity_soul, "SpriteComponent")
                     ComponentSetValue2(comp_sprite, "rect_animation", soul .. "_a")
@@ -375,12 +413,24 @@ function LoseSouls(player, n, not_boss)
     end
 end
 
---- !!! old souls functions below !!!
-
--- Use this when printing the name of souls
 function SoulNameCheck(string)
-    return GameTextGetTranslatedOrNot(soul_names[string]) or string
+    local str = string
+    local player = EntityGetWithTag("player_unit")[1]
+    local comps = EntityGetComponentIncludingDisabled(player, "VariableStorageComponent", "souls_shifted") or {}
+    if #comps > 0 then
+        for i = 1, #comps do
+            local comp = comps[i]
+            local shifted = ComponentGetValue2(comp, "name")
+            local to = ComponentGetValue2(comp, "value_string")
+            if shifted == string then
+                str = to
+            end
+        end
+    end
+    return GameTextGetTranslatedOrNot(soul_names[str]) or string
 end
+
+--- !!! old souls functions below !!!
 
 -- Adds souls, provide type and amount
 function AddSouls(type, amount)

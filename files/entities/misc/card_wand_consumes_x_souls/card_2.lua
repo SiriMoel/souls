@@ -26,6 +26,8 @@ local frame_now = GameGetFrameNum()
 local selected_soul
 local soul_n
 
+local soul_types = GetSoulTypes()
+
 local soul_counts = SoulCounts(root)
 local count = #soul_types + 1
 local dist = 40

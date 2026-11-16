@@ -112,6 +112,7 @@ haunting_rewards = {
         min_level = 1,
         chance = 1.1,
         spawn_func = function(level, x, y) 
+            local soul_types = GetSoulTypes()
             local souls = {}
             local amt = 5 + level * 2
             for i = 1, amt do

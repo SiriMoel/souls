@@ -291,16 +291,7 @@ function OnPlayerSpawned(player)
     GlobalsSetValue("souls.amphitheatre_enemy_count", "10")
     GlobalsSetValue("souls.bosses_revived", "0")
     GlobalsSetValue("souls.hauntings_killed", "0")
-
-    --[[local starting_souls = tonumber(ModSettingGet("souls.starting_souls")) or 0
-    if starting_souls > 0 then
-        local souls = {}
-        for i=1,starting_souls do
-            local which = soul_types[Random(1, #soul_types - 2)]
-            souls[which] = (souls[which] or 0) + 1
-        end
-        EditSoulCounts(souls, player)
-    end]]
+    GlobalsSetValue("souls.shifted_frame", "0")
     
     EntityAddComponent2(player, "LuaComponent", {
         script_damage_about_to_be_received="mods/souls/files/scripts/player_damage_handler.lua",

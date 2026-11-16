@@ -5,6 +5,8 @@ local root = EntityGetRootEntity(card) -- player, right?
 
 if not EntityHasTag(root, "player_unit") then return end
 
+local soul_types = GetSoulTypes()
+
 local wand = EntityGetParent(card)
 
 local comp = EntityGetFirstComponentIncludingDisabled(wand, "VariableStorageComponent", "souls_wand_soul_type")

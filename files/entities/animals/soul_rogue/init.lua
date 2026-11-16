@@ -6,6 +6,8 @@ local frame = GameGetFrameNum()
 
 SetRandomSeed(x + frame, y + frame)
 
+local soul_types = GetSoulTypes()
+
 local soul = ""
 soul = soul_types[Random(1, #soul_types - 1)]
 

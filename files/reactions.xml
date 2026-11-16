@@ -80,4 +80,63 @@
 		output_cell1="souls_soulless_blood" output_cell2="souls_soulless_blood"
 	></Reaction>
 
+	<!-- fungus of soul -->
+	
+	<Reaction probability="70" 
+		input_cell1="fungi" input_cell2="souls_soul_blood_1"  
+		output_cell1="souls_fungi" output_cell2="souls_fungi"
+	></Reaction>
+
+	<Reaction probability="6"
+		input_cell1="souls_fungi" input_cell2="air"
+		output_cell1="souls_fungi" output_cell2="souls_fungi" 
+		direction="top"
+	></Reaction>
+  	<Reaction probability="26"
+		input_cell1="souls_fungi" input_cell2="air"
+		output_cell1="souls_fungi" output_cell2="souls_fungi" 
+		direction="bottom"
+	></Reaction>
+
+	<Reaction probability="3"
+		input_cell1="souls_fungi" input_cell2="souls_soul_blood_1"
+		output_cell1="souls_fungi" output_cell2="souls_fungi" 
+		direction="top"
+	></Reaction>
+  	<Reaction probability="13"
+		input_cell1="souls_fungi" input_cell2="souls_soul_blood_1"
+		output_cell1="souls_fungi" output_cell2="souls_fungi" 
+		direction="bottom"
+	></Reaction>
+
+	
+	<!-- sweet fungus of soul -->
+	
+	<Reaction probability="70" 
+		input_cell1="fungi" input_cell2="souls_soul_blood_perfect"  
+		output_cell1="souls_fungi_cure" output_cell2="souls_fungi_cure"
+	></Reaction>
+
+	<Reaction probability="9"
+		input_cell1="souls_fungi_cure" input_cell2="air"
+		output_cell1="souls_fungi_cure" output_cell2="souls_fungi_cure" 
+		direction="top"
+	></Reaction>
+  	<Reaction probability="39"
+		input_cell1="souls_fungi_cure" input_cell2="air"
+		output_cell1="souls_fungi_cure" output_cell2="souls_fungi_cure" 
+		direction="bottom"
+	></Reaction>
+
+	<Reaction probability="6"
+		input_cell1="souls_fungi_cure" input_cell2="souls_soul_blood_perfect"
+		output_cell1="souls_fungi_cure" output_cell2="souls_fungi_cure" 
+		direction="top"
+	></Reaction>
+  	<Reaction probability="26"
+		input_cell1="souls_fungi_cure" input_cell2="souls_soul_blood_perfect"
+		output_cell1="souls_fungi_cure" output_cell2="souls_fungi_cure" 
+		direction="bottom"
+	></Reaction>
+
 </Materials>

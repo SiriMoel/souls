@@ -39,11 +39,4 @@
         execute_every_n_frame="1"
     ></LuaComponent>
 
-    <!--<LuaComponent
-        script_source_file="mods/souls/files/entities/items/_soulcrystals/revive.lua"
-        execute_every_n_frame="-1"
-        execute_on_added="0"
-        execute_on_removed="1"
-    ></LuaComponent>-->
-
 </Entity>

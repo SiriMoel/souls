@@ -29,6 +29,20 @@ to_insert = {
 		ui_icon="mods/souls/files/status_indicators/absinthe_good.png",
 		effect_entity="mods/souls/files/entities/misc/effect_absinthe/good.xml",
 	},
+	{
+		id="TRIP_SOUL",
+		ui_name="$status_souls_trip",
+		ui_description="$statusdesc_souls_trip",
+		ui_icon="mods/souls/files/status_indicators/trip.png",
+		effect_entity="mods/souls/files/entities/misc/effect_trip/effect.xml",
+	},
+	{
+		id="TRIP_CURE",
+		ui_name="$status_souls_trip_cure",
+		ui_description="$statusdesc_souls_trip_cure",
+		ui_icon="mods/souls/files/status_indicators/trip_cure.png",
+		effect_entity="mods/souls/files/entities/misc/effect_trip/cure_effect.xml",
+	},
 }
 
 for i,v in ipairs(to_insert) do

@@ -1,21 +1,5 @@
-soul_types = {
-    "bat",
-    "fly",
-    "friendly",
-    "mage",
-    "orcs",
-    "slimes",
-    "spider",
-    "zombie",
-    "worm",
-    "fungus",
-    "ghost",
-    "souls_void",
-    "boss",
-}
-
-if ModIsEnabled("Apotheosis") then
-    soul_types = {
+function GetSoulTypes()
+    local all_soul_types = {
         "bat",
         "fly",
         "friendly",
@@ -27,12 +11,52 @@ if ModIsEnabled("Apotheosis") then
         "worm",
         "fungus",
         "ghost",
-        "mage_corrupted",
-        "ghost_whisp",
-        "souls_void",
-        "boss",
     }
+    if ModIsEnabled("Apotheosis") then
+        table.insert(all_soul_types, "mage_corrupted")
+        table.insert(all_soul_types, "ghost_whisp")
+    end
+    table.insert(all_soul_types, "souls_void")
+    table.insert(all_soul_types, "boss")
+    local shifts = {}
+    local player = EntityGetWithTag("player_unit") or {}
+    if #player > 0 then
+        player = player[1]
+        local comps = EntityGetComponentIncludingDisabled(player, "VariableStorageComponent", "souls_shifted") or {}
+        if #comps > 0 then
+            for i = 1, #comps do
+                local comp = comps[i]
+                local shifted = ComponentGetValue2(comp, "name")
+                local to = ComponentGetValue2(comp, "value_string")
+                for ii, soul in ipairs(all_soul_types) do
+                    if soul == shifted then
+                        all_soul_types[ii] = to
+                        --table.insert(shifts, {from, to})
+                        break
+                    end
+                end
+            end
+        end
+    end
+    --[[for i, v in ipairs(shifts) do
+        for ii, soul in ipairs(all_soul_types) do
+            if soul == v[1] then
+                soul_types[ii] = v[2]
+            end
+        end
+    end]]
+    local types_check = {}
+    local soul_types = {}
+    for i, v in ipairs(all_soul_types) do
+        if types_check[v] == nil then
+            types_check[v] = 1
+            table.insert(soul_types, v)
+        end
+    end
+    return soul_types, all_soul_types
 end
+
+soul_types = GetSoulTypes()
 
 souls_genomes = {
     player = "friendly",
@@ -46,7 +70,7 @@ souls_genomes = {
     rat = "friendly",
     flower = "slimes",
     healer = "friendly",
-    eel = "worm", -- i guess
+    eel = "worm",
 }
 
 soul_names = {
@@ -98,7 +122,7 @@ soul_colours = {
     fungus = {r=1.0, g=0.5, b=0.7},
     ghost = {r=0.4, g=0.4, b=1.0},
     souls_void = {r=0.5, g=1.0, b=1.0},
-    boss = {r=0.85, g=1.0, b=0.85},
+    boss = {r=1.0, g=0.85, b=0.85},
     mage_corrupted = {r=0.6, g=0.05, b=0.05},
-    ghost_whisp = {r=1.0, g=0.9, b=0.85},
+    ghost_whisp = {r=0.9, g=0.9, b=0.65},
 }

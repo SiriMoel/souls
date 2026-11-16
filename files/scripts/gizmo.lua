@@ -1,5 +1,9 @@
 local nxml = dofile_once("mods/souls/lib/nxml.lua")
 
+for content in nxml.edit_file("data/entities/player.xml") do
+    content:set("tags", content:get("tags") .. ",souls_reap_for_player")
+end
+
 for content in nxml.edit_file("data/entities/base_wand_pickup.xml") do
     content:create_children(
         { VariableStorageComponent = {

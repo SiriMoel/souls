@@ -8,6 +8,18 @@ function SoulsGuiUpdate()
     if #player == 0 then return end
     player = player[1]
 
+    local soul_types = GetSoulTypes()
+
+    --[[local souls_soul_types = GetSoulTypes()
+    local types_check = {}
+    local soul_types = {}
+    for i, v in ipairs(souls_soul_types) do
+        if types_check[v] == nil then
+            types_check[v] = 1
+            table.insert(soul_types, v)
+        end
+    end]]
+
     local soulcounts = SoulCounts(player)
     local divine = EntityHasTag(player, "souls_divine")
 

@@ -49,6 +49,11 @@ local souls_to_add = {
         name = "Derelict Soul",
         xml = "curse_item.xml",
     },
+    {
+        path = "data/entities/animals/fly.xml",
+        name = "Fly",
+        xml = "fly.xml",
+    },
 }
 
 for i,v in ipairs(souls_to_add) do

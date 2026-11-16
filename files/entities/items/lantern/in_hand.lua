@@ -14,6 +14,8 @@ local mouse_x, mouse_y = ComponentGetValue2(comp_controls, "mMousePosition")
 
 local frame_now = GameGetFrameNum()
 
+local soul_types = GetSoulTypes()
+
 local selected_soul
 
 local soul_counts = SoulCounts(root)

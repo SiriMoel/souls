@@ -1,7 +1,7 @@
 <Mod
 	name="Souls"
 	description=""
-	tags="gameplay,items,spells,creatures,perks,bosses"
+	tags="gameplay,items,spells,creatures,perks,bosses,alchemy"
 	dont_upload_folders="workshop"
 	dont_upload_files=""
 >

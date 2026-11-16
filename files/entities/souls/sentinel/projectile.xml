@@ -101,6 +101,17 @@
 		emit_cosmetic_particles="1"
 		is_emitting="1"
     ></ParticleEmitterComponent>
+
+	<AudioComponent
+		file="data/audio/Desktop/projectiles.bank"
+		event_root="projectiles/magic"
+	></AudioComponent>
+	
+	<!--<AudioLoopComponent
+		file="data/audio/Desktop/projectiles.bank"
+		event_name="projectiles/magic_orb/loop"
+		auto_play="1"
+	></AudioLoopComponent>-->
 	
 	<VariableStorageComponent
 		name="projectile_file"

@@ -3,6 +3,7 @@ dofile_once("mods/souls/files/scripts/souls.lua")
 
 function item_pickup(entity_item, entity_who_picked, name)
 	if not EntityHasTag(entity_who_picked, "player_unit") then return end
+	local soul_types = GetSoulTypes()
 	local x, y = EntityGetTransform(entity_item)
 	SetRandomSeed(x, y + entity_item)
 	EntityLoad("data/entities/particles/image_emitters/spell_refresh_effect.xml", x, y-12)

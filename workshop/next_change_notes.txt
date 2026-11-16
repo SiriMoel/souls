@@ -6,7 +6,10 @@ NEW
 - Spell: Sea of Soulless Blood
 - Spell: Summon Soul Sentinel
 - Spell: Soul Copy
+- Spell: Summon Fly
 - Item: Soul Lantern
+- Material: Fungus of Soul
+- Material: Sweet Fungus of Soul
 - Anvil of Destiny: Soul Blood can be used to make a wand always cast a reaping spell
 
 CHANGED/FIXED
@@ -23,6 +26,7 @@ CHANGED/FIXED
 - Ravenous Spell changes
 - Increased speed boost from Soul Strike spell
 - Changed Soul Master projectile attack to be similar to other master projectiles
+- Revived bosses spawn with 30% more health
 
 REMOVED
 - Meta Leveling cross-mod interaction

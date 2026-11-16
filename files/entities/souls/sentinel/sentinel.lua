@@ -69,6 +69,7 @@ if mode == "melee" then
                 EntityAddChild(target, EntityLoad("mods/souls/files/entities/misc/reapers/reap_entity_sentinel.xml", t_x, t_y))
             end
             EntityInflictDamage(target, 8, "DAMAGE_SLICE", "", "DISINTEGRATED", 0, 0, this, x, y, 10)
+            GamePlaySound("data/audio/Desktop/animals.bank", "animals/assassin/attack_melee", x, y)
             soul = soul - 0.2
             eyes(t_x, t_y - 4)
         end
@@ -88,6 +89,7 @@ if mode == "projectile" then
             local vel_x = vel * math.cos(a)
             local vel_y = vel * math.sin(a)
             shoot_projectile(this, "mods/souls/files/entities/souls/sentinel/projectile.xml", x, y, vel_x, vel_y)
+            GamePlaySound("data/audio/Desktop/animals.bank", "animals/gazer/attack_shoot", x, y)
             soul = soul - 0.05
             eyes(t_x, t_y - 2)
         end
@@ -128,20 +130,9 @@ if mode == "connect" then
                         local particles_y = beam_y + rand * math.sin(a)
                         local vel_x = 2 * beam_range * math.cos(a)
                         local vel_y = 3 * beam_range * math.sin(a)
+
                         GameCreateCosmeticParticle("souls_soul_particles", particles_x - 0.5 * beam_range * math.cos(a), particles_y - 0.5 * beam_range * math.sin(a), 1, Random(-vel_x, vel_x), Random(-vel_y, vel_y), nil, 0.2, 0.4, true, false, true, true, 0, 0)
                         GameCreateCosmeticParticle("souls_soul_particles", particles_x + 0.5 * beam_range * math.cos(a), particles_y + 0.5 * beam_range * math.sin(a), 1, Random(-vel_x, vel_x), Random(-vel_y, vel_y), nil, 0.2, 0.4, true, false, true, true, 0, 0)
-                        local damage_targets = EntityGetInRadiusWithTag(beam_x, beam_y, beam_range, "enemy") or {}
-                        if #damage_targets > 0 then
-                            for ii = 1, #damage_targets do
-                                EntityInflictDamage(damage_targets[ii], 0.01, "DAMAGE_SLICE", "", "DISINTEGRATED", 0, 0, this, beam_x, beam_y, 0)
-                            end
-                        end
-                        --[[local damage_targets_player = EntityGetInRadiusWithTag(beam_x, beam_y, beam_range, "player_unit") or {}
-                        if #damage_targets_player > 0 then
-                            for ii = 1, #damage_targets_player do
-                                EntityInflictDamage(damage_targets_player[ii], 0.005, "DAMAGE_CURSE", "", "DISINTEGRATED", 0, 0, this, beam_x, beam_y, 0)
-                            end
-                        end]]
                     end
                 end
             end

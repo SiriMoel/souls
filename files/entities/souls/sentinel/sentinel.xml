@@ -1,4 +1,4 @@
-<Entity name="$souls_sentinel" tags="souls_sentinel,mortal,prey,flying,hittable,glue_NOT,polymorphable_NOT">
+<Entity name="$souls_sentinel" tags="souls_sentinel,souls_reap_for_player,mortal,prey,flying,hittable,glue_NOT,polymorphable_NOT">
 
 	<!-- damage -->
 
@@ -81,6 +81,11 @@
 	<LuaComponent
         script_source_file="mods/souls/files/entities/souls/sentinel/sentinel.lua"
         execute_every_n_frame="1"
+    ></LuaComponent>
+
+	<LuaComponent
+        script_source_file="mods/souls/files/entities/souls/sentinel/connect.lua"
+        execute_every_n_frame="4"
     ></LuaComponent>
 
     <LuaComponent

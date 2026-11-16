@@ -14,6 +14,8 @@ local icedamage = ComponentObjectGetValue( comp_proj, "damage_by_type", "ice" )
 local poisondamage = ComponentObjectGetValue( comp_proj, "damage_by_type", "poison" )
 local firedamage = ComponentObjectGetValue( comp_proj, "damage_by_type", "fire" )
 
+local soul_types = GetSoulTypes()
+
 local soul = soul_types[Random(1, #soul_types)]
 
 if soul == nil or soul == 0 or soul == "0" then

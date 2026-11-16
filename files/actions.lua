@@ -1,7 +1,7 @@
 dofile_once("mods/souls/files/scripts/souls.lua")
 
 local new_actions = {
-	--[[{
+	{
 		id = "HAX", -- DONT FORGET TO COMMENT THIS!!!
 		name = "cheating!",
 		description = "cheating!",
@@ -22,7 +22,7 @@ local new_actions = {
 			--local x, y = EntityGetTransform(caster)
 			--EntityLoad("mods/souls/files/entities/misc/haunting/entity.xml", x, y - 6)
 		end,
-	},]]
+	},
 	{
 		id = "REAPING_SHOT",
 		name = "$action_souls_reaping_shot",
@@ -936,6 +936,7 @@ local new_actions = {
 			if GameHasFlagRun("souls_cursed") then souls = souls * 2 end
 			souls = math.ceil(math.max(souls, 1))
 			local souls_to_add = {}
+			local soul_types = GetSoulTypes()
 			for i = 1, souls do
 				local which = soul_types[Random(1, #soul_types - 2)]
 				souls_to_add[which] = (souls_to_add[which] or 0) + 1
@@ -1244,6 +1245,35 @@ local new_actions = {
 			c.fire_rate_wait = c.fire_rate_wait + 60
 			current_reload_time = current_reload_time + 60
 			add_projectile("mods/souls/files/entities/projectiles/sea/sea.xml")
+		end,
+	},
+	{
+		id = "SUMMON_FLY",
+		name = "$action_souls_fly",
+		description = "$actiondesc_souls_fly",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/fly.png",
+		type = ACTION_TYPE_UTILITY,
+		spawn_level = "6,10",
+		spawn_probability = "0.2,0.1",
+		price = 200,
+		mana = 90,
+		ai_never_uses = false, -- false!!!
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 60
+			if reflecting then return end
+			local caster = GetUpdatedEntityID()
+			if EntityHasTag(caster, "player_unit") then
+				if SpellUseSpecificSouls(caster, {["fly"] = 3}) then
+					souls_used_count = souls_used_count + 3
+					local x, y = EntityGetTransform(caster)
+					local fly = EntityLoad("data/entities/animals/fly.xml", x, y - 3)
+				else
+					SoulsPrint("You do not have enough Mage souls for this. (3)", "say_not_enough")
+				end
+			else
+				local x, y = EntityGetTransform(caster)
+				local fly = EntityLoad("data/entities/animals/fly.xml", x, y - 3)
+			end
 		end,
 	},
 	{

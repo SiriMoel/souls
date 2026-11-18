@@ -1,5 +1,3 @@
---addGlimmer("Soul Blood", "Gives your projectile a soulful sparkly trail", {"souls_soul_blood_1", "souls_soul_blood_perfect"}, "mods/souls/files/ui_gfx/gun_actions/glimmer_soul_blood.png", 8, "1,2,3,4,5,6", 4.5)
-
 local glimmer_appends = {
     {
         name = "Soul Blood",
@@ -13,6 +11,6 @@ local glimmer_appends = {
     },
 }
 
-for _,entry in ipairs(glimmer_appends) do
+for _, entry in ipairs(glimmer_appends) do
     table.insert(glimmer_data, entry)
 end

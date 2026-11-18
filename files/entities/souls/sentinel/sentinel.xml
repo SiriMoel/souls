@@ -15,7 +15,7 @@
 		blood_sprite_directional=""
 		blood_sprite_large=""
 		materials_that_damage="souls_soulaway" 
-		materials_how_much_damage="0.01"
+		materials_how_much_damage="0.0"
     ></DamageModelComponent>
 
     <HitboxComponent 

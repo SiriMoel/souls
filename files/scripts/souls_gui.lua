@@ -181,9 +181,10 @@ function SoulsGuiUpdate()
 
             local function text_outline(text, tx, ty, z)
                 local dist = 1
-                local pos = {
-                    {tx - dist, ty - dist}, {tx + dist, ty - dist},
-                    {tx - dist, ty + dist}, {tx + dist, ty + dist},
+                local pos = { -- box :)
+                    {tx - dist, ty - dist}, {tx, ty - dist}, {tx + dist, ty - dist},
+                    {tx - dist, ty},                                {tx + dist, ty},
+                    {tx - dist, ty + dist}, {tx, ty + dist}, {tx + dist, ty + dist},
                 }
                 for i = 1, #pos do
                     GuiColorSetForNextWidget(souls_gui, 0.1, 0.1, 0.1, 1.0)

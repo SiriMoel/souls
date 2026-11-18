@@ -20,7 +20,7 @@
 		script_item_picked_up="mods/souls/files/entities/items/soul_emulator/pickup.lua"
 	></LuaComponent>
 
-	<ParticleEmitterComponent 
+	<!--<ParticleEmitterComponent 
 		emitted_material_name="souls_soul_particles"
 		gravity.y="0.0"
 		lifetime_min="0.6"
@@ -46,6 +46,6 @@
 		image_animation_speed="2"
 		image_animation_loop="1"
 		is_emitting="1"
-    ></ParticleEmitterComponent>
+    ></ParticleEmitterComponent>-->
 
 </Entity>

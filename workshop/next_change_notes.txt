@@ -10,6 +10,8 @@ NEW
 - Material: Fungus of Soul
 - Material: Sweet Fungus of Soul
 - Anvil of Destiny: Soul Blood can be used to make a wand always cast a reaping spell
+- Another Perfect Soul Blood recipe (very inefficient)
+- Keybind to select wand soul type
 
 CHANGED/FIXED
 - Increased the amount of soul blood required to revive bosses by 30%
@@ -29,6 +31,7 @@ CHANGED/FIXED
 - Revived bosses spawn with 30% more health
 - gfx update for items bought with soul
 - Removed mana bonus from Soular Power spell and reduced its bonuses to cast delay & recharge time
+- Reduced spawn chances of Wand Consumes X Souls spell
 - Other changes I forgot
 
 REMOVED

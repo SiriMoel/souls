@@ -17,9 +17,14 @@
 
   	<Reaction probability="100"
 		fast_reaction="1"
-		input_cell1="souls_soul_blood_1" 			input_cell2="material_darkness"
-		output_cell1="souls_soul_blood_perfect" 	output_cell2="souls_soul_blood_perfect" 
+		input_cell1="souls_soul_blood_1" input_cell2="material_darkness"
+		output_cell1="souls_soul_blood_perfect" output_cell2="souls_soul_blood_perfect" 
 		blob_radius2="3"
+	></Reaction>
+
+	<Reaction probability="2"
+		input_cell1="souls_soul_blood_1" input_cell2="poison"
+		output_cell1="souls_soul_blood_perfect" output_cell2="souls_soulless_blood" 
 	></Reaction>
 
 	<Reaction probability="0.6"
@@ -104,23 +109,23 @@
 		output_cell1="souls_fungi" output_cell2="souls_fungi"
 	></Reaction>
 
-	<Reaction probability="6"
+	<Reaction probability="9"
 		input_cell1="souls_fungi" input_cell2="air"
 		output_cell1="souls_fungi" output_cell2="souls_fungi" 
 		direction="top"
 	></Reaction>
-  	<Reaction probability="26"
+  	<Reaction probability="33"
 		input_cell1="souls_fungi" input_cell2="air"
 		output_cell1="souls_fungi" output_cell2="souls_fungi" 
 		direction="bottom"
 	></Reaction>
 
-	<Reaction probability="3"
+	<Reaction probability="16"
 		input_cell1="souls_fungi" input_cell2="souls_soul_blood_1"
 		output_cell1="souls_fungi" output_cell2="souls_fungi" 
 		direction="top"
 	></Reaction>
-  	<Reaction probability="13"
+  	<Reaction probability="40"
 		input_cell1="souls_fungi" input_cell2="souls_soul_blood_1"
 		output_cell1="souls_fungi" output_cell2="souls_fungi" 
 		direction="bottom"
@@ -138,18 +143,18 @@
 		output_cell1="souls_fungi_cure" output_cell2="souls_fungi_cure" 
 		direction="top"
 	></Reaction>
-  	<Reaction probability="39"
+  	<Reaction probability="33"
 		input_cell1="souls_fungi_cure" input_cell2="air"
 		output_cell1="souls_fungi_cure" output_cell2="souls_fungi_cure" 
 		direction="bottom"
 	></Reaction>
 
-	<Reaction probability="6"
+	<Reaction probability="16"
 		input_cell1="souls_fungi_cure" input_cell2="souls_soul_blood_perfect"
 		output_cell1="souls_fungi_cure" output_cell2="souls_fungi_cure" 
 		direction="top"
 	></Reaction>
-  	<Reaction probability="26"
+  	<Reaction probability="40"
 		input_cell1="souls_fungi_cure" input_cell2="souls_soul_blood_perfect"
 		output_cell1="souls_fungi_cure" output_cell2="souls_fungi_cure" 
 		direction="bottom"

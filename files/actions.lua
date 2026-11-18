@@ -1,7 +1,7 @@
 dofile_once("mods/souls/files/scripts/souls.lua")
 
 local new_actions = {
-	{
+	--[[{
 		id = "HAX", -- DONT FORGET TO COMMENT THIS!!!
 		name = "cheating!",
 		description = "cheating!",
@@ -22,7 +22,7 @@ local new_actions = {
 			--local x, y = EntityGetTransform(caster)
 			--EntityLoad("mods/souls/files/entities/misc/haunting/entity.xml", x, y - 6)
 		end,
-	},
+	},]]
 	{
 		id = "REAPING_SHOT",
 		name = "$action_souls_reaping_shot",
@@ -225,8 +225,8 @@ local new_actions = {
 		ai_never_uses = true,
 		custom_xml_file="mods/souls/files/entities/items/tome2/card_upgrade.xml",
 		action = function()
-			c.fire_rate_wait = c.fire_rate_wait + 60
-			current_reload_time = current_reload_time + 60
+			c.fire_rate_wait = c.fire_rate_wait + 30
+			--current_reload_time = current_reload_time + 60
 		end,
 	},
 	{
@@ -1247,7 +1247,7 @@ local new_actions = {
 			add_projectile("mods/souls/files/entities/projectiles/sea/sea.xml")
 		end,
 	},
-	{
+	--[[{
 		id = "SUMMON_FLY",
 		name = "$action_souls_fly",
 		description = "$actiondesc_souls_fly",
@@ -1275,7 +1275,7 @@ local new_actions = {
 				local fly = EntityLoad("data/entities/animals/fly.xml", x, y - 3)
 			end
 		end,
-	},
+	},]]
 	{
 		id = "VOID_ATTACK",
 		name = "$action_souls_void_attack",

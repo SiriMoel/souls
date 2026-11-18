@@ -98,8 +98,14 @@
     ></LuaComponent>
 
     <LuaComponent
-        _tags="enabled_in_inventory,enabled_in_world"
-        script_source_file="mods/souls/files/entities/items/lantern/in_inv_world.lua"
+        _tags="enabled_in_inventory"
+        script_source_file="mods/souls/files/entities/items/lantern/in_inv.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+    <LuaComponent
+        _tags="enabled_in_world"
+        script_source_file="mods/souls/files/entities/items/lantern/in_world.lua"
         execute_every_n_frame="1"
     ></LuaComponent>
 

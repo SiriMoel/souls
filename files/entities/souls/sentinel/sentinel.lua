@@ -103,7 +103,7 @@ if mode == "connect" then
     local beams = 0
     local beam_steps = 5
 
-    local targets = EntityGetInRadiusWithTag(x, y, 180, "souls_sentinel") or {}
+    local targets = EntityGetInRadiusWithTag(x, y, 220, "souls_sentinel") or {}
     if #targets > 0 then
         for _, target in ipairs(targets) do
             local target_comp_mode = EntityGetFirstComponentIncludingDisabled(target, "VariableStorageComponent", "mode")

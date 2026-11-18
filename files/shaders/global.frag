@@ -1,4 +1,5 @@
 uniform vec4 souls_boss_soul_effect_amount;
+uniform vec4 souls_trip;
 
 vec3 souls_get_colour(vec3 coord) {
     vec3 base = vec3(0.6, 0.3, 0.3);

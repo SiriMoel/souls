@@ -12,7 +12,7 @@ function item_pickup(entity_item, entity_who_picked, item_name)
             amount = 10
         end
         if soul == "souls_void" then
-            amount = 15
+            amount = 20
         end
         if not (SoulCount(soul, entity_who_picked) >= amount) then
             table.insert(no, {SoulNameCheck(soul), amount})
@@ -44,7 +44,7 @@ function item_pickup(entity_item, entity_who_picked, item_name)
                 amt = -10
             end
             if soul == "souls_void" then
-                amt = -15
+                amt = -20
             end
             to_use[soul] = amt
         end
@@ -65,7 +65,7 @@ function item_pickup(entity_item, entity_who_picked, item_name)
 
         EntityLoad("mods/souls/files/entities/items/soul_tablet/item.xml", x, y - 6)
 
-        SoulsPrintImportant("SOUL EMULATED!", "Something irreversible has occured.")
+        SoulsPrintImportant("SOUL EMULATED!", "Something irreversible has occured.", "souls")
 
         EntityKill(entity_item)
     end

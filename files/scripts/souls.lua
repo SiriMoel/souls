@@ -113,7 +113,23 @@ function WandSoulType(wand)
         value_int=0
     })
     local val = ComponentGetValue2(comp, "value_int")
-    local soul = (val ~= 0 and all_soul_types[val]) or "any"
+    local soul = (val ~= 0 and all_soul_types[val]) or "any" -- not ideal but faster than...
+    --[[if soul ~= "any" and soul ~= soul_types[val] then -- a shift has occured
+        local parent = EntityGetParent(wand)
+        if parent ~= nil and EntityHasTag(parent, "player_unit") then
+            local shift_comps = EntityGetComponentIncludingDisabled(parent, "VariableStorageComponent", "souls_shifted") or {}
+            if #shift_comps > 0 then
+                for i = 1, #shift_comps do
+                    local shift_comp = shift_comps[i]
+                    local shifted = ComponentGetValue2(shift_comp, "name")
+                    if shifted == soul then
+                        local to = ComponentGetValue2(shift_comp, "value_string")
+                        soul = to
+                    end
+                end
+            end
+        end
+    end]]
     return soul
 end
 
@@ -816,7 +832,7 @@ function GetRandomSoulForWand2(wand, x, y, frame)
     end
 end
 
-function GenerateSoulShopItem(x, y, biomeid_)
+function GenerateSoulShopItem(x, y, biomeid_) -- i think this is adapted from a nolla func
     dofile("data/scripts/gun/gun_actions.lua")
     local biomes = {
 		[1] = 0,
@@ -927,7 +943,7 @@ function GenerateSoulShopItem(x, y, biomeid_)
 		text=tostring(cardcost),
 		z_index="-1",
 	})
-    EntityAddComponent(card, "SpriteComponent", { 
+    --[[EntityAddComponent(card, "SpriteComponent", { 
 		_tags="enabled_in_world,soulshopitem",
 		image_file="mods/souls/files/entities/souls/sprites/card_soul.xml",
 		offset_x="0",
@@ -935,6 +951,15 @@ function GenerateSoulShopItem(x, y, biomeid_)
 		update_transform="1" ,
 		update_transform_rotation="0",
 		z_index="-1",
+	})]]
+    EntityAddComponent2(card, "SpriteComponent", { 
+		_tags = "enabled_in_world,soulshopitem",
+		image_file = "mods/souls/files/soul_sprites/shop_item.xml",
+		offset_x = 0,
+		offset_y = 0,
+		update_transform = true,
+		update_transform_rotation = false,
+		z_index = -1.7,
 	})
 	return card
 end

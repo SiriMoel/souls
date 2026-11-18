@@ -1,4 +1,6 @@
-  <Materials>
+<Materials>
+
+	<!-- soul bloods -->
 
 	<Reaction probability="100"
 		fast_reaction="1"
@@ -20,18 +22,7 @@
 		blob_radius2="3"
 	></Reaction>
 
-  	<Reaction probability="7"
-		input_cell1="souls_soul_blood_1" input_cell2="[slime]"
-		output_cell1="souls_soulaway" output_cell2="souls_soulaway" 
-		blob_radius2="2"
-	></Reaction>
-
-	<Reaction probability="1"
-		input_cell1="souls_soulaway" input_cell2="[slime]"
-		output_cell1="souls_soulaway" output_cell2="souls_soulaway" 
-	></Reaction>
-
-    <Reaction probability="0.6"
+	<Reaction probability="0.6"
 		input_cell1="souls_soul_blood_1" input_cell2="air"
 		output_cell1="souls_soul_blood_1" output_cell2="air"
 		entity="mods/souls/files/entities/misc/soul_blood_fx.xml"
@@ -42,6 +33,35 @@
 		output_cell1="souls_soul_blood_perfect" output_cell2="air"
 		entity="mods/souls/files/entities/misc/soul_blood_fx.xml"
 	></Reaction>
+
+	<Reaction probability="200" fast_reaction="1"
+		input_cell1="mimic_liquid" input_cell2="souls_soul_blood_1"
+		output_cell1="souls_soulless_blood" output_cell2="souls_soulless_blood"
+	></Reaction>
+
+	<!-- soulaway -->
+
+  	<Reaction probability="8"
+		input_cell1="souls_soul_blood_1" input_cell2="[slime]"
+		output_cell1="souls_soulaway" output_cell2="souls_soulaway" 
+	></Reaction>
+
+	<Reaction probability="1"
+		input_cell1="souls_soulaway" input_cell2="[slime]"
+		output_cell1="souls_soulaway" output_cell2="souls_soulaway" 
+	></Reaction>
+
+	<Reaction probability="45"
+		input_cell1="souls_soulaway" input_cell2="souls_soul_blood_1"
+		output_cell1="souls_soulless_blood" output_cell2="souls_soulless_blood" 
+	></Reaction>
+
+	<Reaction probability="30" blob_radius2="5"
+		input_cell1="souls_soulaway" input_cell2="souls_soul_blood_perfect"
+		output_cell1="souls_soul_blood_1" output_cell2="souls_soulless_blood"
+	></Reaction>
+
+	<!-- absinthe -->
 
 	<Reaction probability="50" 
 		input_cell1="souls_soul_blood_1" input_cell2="alcohol"  
@@ -58,6 +78,8 @@
 		output_cell1="souls_absinthe_done" output_cell2="air"
 	></Reaction>
 
+	<!-- catalyst & catalyst materials -->
+
 	<Reaction probability="90" 
 		input_cell1="souls_soul_blood_perfect" input_cell2="gold" input_cell3="blood_worm"
 		output_cell1="souls_catalyst" output_cell2="souls_soul_particles" output_cell3="souls_soul_particles"
@@ -73,11 +95,6 @@
 		input_cell1="souls_haunt" input_cell2="air"
 		output_cell1="souls_haunt" output_cell2="souls_soul_particles"
 		entity="mods/souls/files/entities/misc/mat_haunt/haunt.xml"
-	></Reaction>
-
-	<Reaction probability="200" fast_reaction="1"
-		input_cell1="mimic_liquid" input_cell2="souls_soul_blood_1"
-		output_cell1="souls_soulless_blood" output_cell2="souls_soulless_blood"
 	></Reaction>
 
 	<!-- fungus of soul -->
@@ -108,7 +125,6 @@
 		output_cell1="souls_fungi" output_cell2="souls_fungi" 
 		direction="bottom"
 	></Reaction>
-
 	
 	<!-- sweet fungus of soul -->
 	

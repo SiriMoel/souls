@@ -44,6 +44,12 @@ tome_upgrades = {
     {
         id = "mana_max",
         sprite = "mods/souls/files/entities/items/tome2/upgrade_mana_max.png",
+        name = "Mana",
+        icon = "mods/souls/files/ui_gfx/tome_upgrades/icon_mana.png",
+        text = {
+            {"+0.2s recharge time", "bad"},
+            {"+150 max mana", "good"},
+        },
         func_cost = function(count) 
             return math.min(starting_cost + count * cost_increase_per, max_upgrade_cost)
         end,
@@ -62,6 +68,13 @@ tome_upgrades = {
     {
         id = "haste",
         sprite = "mods/souls/files/entities/items/tome2/upgrade_haste.png",
+        name = "Haste",
+        icon = "mods/souls/files/ui_gfx/tome_upgrades/icon_haste.png",
+        text = {
+            {"-0.3s recharge time", "good"},
+            {"-0.4s cast delay", "good"},
+            {"+70 mana charge speed", "good"},
+        },
         func_cost = function(count) 
             return math.min(starting_cost + count * cost_increase_per, max_upgrade_cost)
         end,
@@ -83,6 +96,13 @@ tome_upgrades = {
     {
         id = "capacity",
         sprite = "mods/souls/files/entities/items/tome2/upgrade_capacity.png",
+        name = "Capacity",
+        icon = "mods/souls/files/ui_gfx/tome_upgrades/icon_capacity.png",
+        text = {
+            {"-100 max mana", "bad"},
+            {"+0.3s cast delay", "bad"},
+            {"+2 capacity", "good"},
+        },
         func_cost = function(count) 
             return math.min(starting_cost + count * cost_increase_per, max_upgrade_cost)
         end,

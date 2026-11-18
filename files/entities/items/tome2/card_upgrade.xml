@@ -1,4 +1,4 @@
-<Entity>
+<Entity tags="souls_tome_upgrade_card">
 	
 	<Base file="data/entities/base_custom_card.xml" > 
 		<SpriteComponent 
@@ -19,8 +19,20 @@
 	<LuaComponent 
 		_tags="enabled_in_hand"
 		script_source_file="mods/souls/files/entities/items/tome2/card_upgrade.lua"
-		execute_every_n_frame="1" >
-	</LuaComponent>
+		execute_every_n_frame="1"
+	></LuaComponent>
+	
+	<LuaComponent 
+		_tags="souls_tome_upgrade_fix,enabled_in_world"
+		script_source_file="mods/souls/files/entities/items/tome2/card_upgrade_in_world.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
+
+	<LuaComponent 
+		_tags="souls_tome_upgrade_fix,enabled_in_inventory"
+		script_source_file="mods/souls/files/entities/items/tome2/card_upgrade_in_inv.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
 
     <VariableStorageComponent
 		_tags="upgrade"

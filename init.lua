@@ -10,7 +10,7 @@ function souls_version_update(pos_x, pos_y)
             ModSettingSet("souls.version", SOULS_FORCE_VERSION or SOULS_VERSION)
         end
         if ModSettingGet("souls.update_informing") then
-            SoulsPrintImportant("Souls has been (majorly) updated!", "The change notes are on the workshop page.", "divine")
+            SoulsPrintImportant("Souls has been (majorly) updated!", "The change notes are on the workshop page.", "souls")
             local informer_path = "mods/souls/files/entities/items/update_informer/1_" .. math.floor(SOULS_VERSION) .. ".xml"
             if ModTextFileGetContent(informer_path) ~= nil then
                 EntityLoad(informer_path, pos_x, pos_y - 5)
@@ -233,6 +233,7 @@ inject(args.StringFile, modes.PREPEND, "data/shaders/post_final.frag", "// liqui
 inject(args.StringFile, modes.PREPEND, "data/shaders/post_final.frag", "gl_FragColor", "mods/souls/files/shaders/post.frag")
 inject(args.StringFile, modes.PREPEND, "data/shaders/post_final.frag", "varying vec2 tex_coord_fogofwar;", "mods/souls/files/shaders/global.frag")
 GameSetPostFxParameter("souls_boss_soul_effect_amount", 0, 0, 0, 0)
+GameSetPostFxParameter("souls_trip", 0, 0, 0, 0)
 
 -- glimmers expanded
 if ModIsEnabled("GlimmersExpanded") then
@@ -273,10 +274,7 @@ end
 
 -- player
 function OnPlayerSpawned(player)
-
     dofile_once("mods/souls/files/scripts/souls.lua")
-
-    --dofile_once("mods/souls/files/gui.lua")
 
     local px, py = EntityGetTransform(player)
 
@@ -294,13 +292,13 @@ function OnPlayerSpawned(player)
     GlobalsSetValue("souls.shifted_frame", "0")
     
     EntityAddComponent2(player, "LuaComponent", {
-        script_damage_about_to_be_received="mods/souls/files/scripts/player_damage_handler.lua",
-        script_damage_received="mods/souls/files/scripts/player_damage_handler.lua",
+        script_damage_about_to_be_received = "mods/souls/files/scripts/player_damage_handler.lua",
+        script_damage_received = "mods/souls/files/scripts/player_damage_handler.lua",
     })
 
     EntityAddComponent2(player, "LuaComponent", {
-        script_source_file="mods/souls/files/scripts/player_everyframe.lua",
-        execute_every_n_frame=1,
+        script_source_file = "mods/souls/files/scripts/player_everyframe.lua",
+        execute_every_n_frame = 1,
     })
 
     GameAddFlagRun("souls_init")

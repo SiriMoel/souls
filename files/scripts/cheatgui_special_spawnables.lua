@@ -44,16 +44,16 @@ local souls_to_add = {
         name = "Soul Lantern",
         xml = "lantern.xml",
     },
-    {
+    --[[{
         path = "mods/souls/files/entities/items/curse/curse_item.xml",
         name = "Derelict Soul",
         xml = "curse_item.xml",
-    },
-    {
+    },]]
+    --[[{
         path = "data/entities/animals/fly.xml",
         name = "Fly",
         xml = "fly.xml",
-    },
+    },]]
 }
 
 for i,v in ipairs(souls_to_add) do

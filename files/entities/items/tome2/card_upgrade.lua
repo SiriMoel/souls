@@ -21,72 +21,35 @@ if EntityHasTag(parent, "soul_tome") and EntityHasTag(root, "player_unit") then
 
         local comp_sprite_upgrade_cost = EntityGetFirstComponentIncludingDisabled(this, "SpriteComponent", "tome_upgrade_cost")
 
-        if comp_sprite_upgrade_cost ~= nil then
-            if ComponentGetValue2(comp_controls, "mButtonDownThrow") == true then
-                EntitySetComponentIsEnabled(this, comp_sprite_upgrade_cost, true)
+        local tome_gui_open = GlobalsGetValue("souls.tome_gui_open", "0")
 
-                local start_x, start_y = math.floor(player_x - (#tome_upgrades - 1) * 24), math.floor(player_y + 48)
+        local frame = tonumber(GlobalsGetValue("souls.tome_gui_frame", "0"))
+        local frame_now = GameGetFrameNum()
 
-                for i,v in ipairs(tome_upgrades) do
-                    local draw_x, draw_y = start_x + (i - 1) * 48, start_y
-                    GameCreateSpriteForXFrames("mods/souls/files/entities/items/tome2/upgrade_base.png", draw_x, draw_y, true, 0, 0, 1, 0)
-                    GameCreateSpriteForXFrames(v.sprite, draw_x, draw_y, true, 0, 0, 1, 0)
-                    if mouse_x > draw_x - 24 and mouse_x < draw_x + 24 and mouse_y > draw_y - 24 and mouse_y < draw_y + 24 then
-                    selected = i
-                        ComponentSetValue2(comp_upgrade, "value_int", i)
-                    end
-                    if i == selected then
-                        GameCreateSpriteForXFrames("mods/souls/files/entities/items/tome2/upgrade_selected.png", draw_x, draw_y, true, 0, 0, 1, 0)
-                        local comp_upgrade_count = EntityGetFirstComponentIncludingDisabled(parent, "VariableStorageComponent", "tome_upgrade_" .. selected)
-                        if comp_upgrade_count ~= nil then
-                            local upgrade_count = ComponentGetValue2(comp_upgrade_count, "value_int") or 0
-                            local cost = tome_upgrades[selected].func_cost(upgrade_count) 
-                            ComponentSetValue2(comp_sprite_upgrade_cost, "text", "Upgrade: " .. cost .. " souls")
-                            EntityRefreshSprite(this, comp_sprite_upgrade_cost)
-                        end
-                    end
-                end
+        if frame_now > frame + 10 and ComponentGetValue2(comp_controls, "mButtonDownThrow") == true then
+            if tome_gui_open == "0" then
+                GlobalsSetValue("souls.tome_gui_open", "1")
             else
-                EntitySetComponentIsEnabled(this, comp_sprite_upgrade_cost, false)
+                GlobalsSetValue("souls.tome_gui_open", "0")
             end
-        end
-
-        if ComponentGetValue2(comp_controls, "mButtonDownFire") == true then
-            local frame_cd = ComponentGetValue2(comp_frame_cd, "value_int")
-            if frame_cd < frame_now - 24 then
-                --GamePrint("Upgrading?")
-                ComponentSetValue2(comp_frame_cd, "value_int", frame_now)
-                local comp_upgrade_count = EntityGetFirstComponentIncludingDisabled(parent, "VariableStorageComponent", "tome_upgrade_" .. selected)
-                if comp_upgrade_count ~= nil then
-                    local upgrade_count = ComponentGetValue2(comp_upgrade_count, "value_int") or 0
-                    local cost = tome_upgrades[selected].func_cost(upgrade_count)
-                    if SoulCount("total", root) >= cost then
-                        if SpellUseSouls(root, cost) then
-                            tome_upgrades[selected].func_apply(parent)
-                            ComponentSetValue2(comp_upgrade_count, "value_int", upgrade_count + 1)
-                            local maxed = CheckIsTomeMaxed(parent)
-                            if maxed then
-                                if not GameHasFlagRun("souls_tome_maxed") then
-                                    GameAddFlagRun("souls_tome_maxed")
-                                end
-                                if not HasFlagPersistent("souls_tome_maxed") then
-                                    AddFlagPersistent("souls_tome_maxed")
-                                end
-                                SoulsPrintImportant("Tome maxed!", "It cannot be upgraded any further.")
-                                GamePlaySound("data/audio/Desktop/projectiles.bank", "projectiles/enlightened_laser/launch_dark", player_x, player_y)
-                                EntityKill(this)
-                            else
-                                GamePrint("Upgraded!")
-                                GamePlaySound("data/audio/Desktop/projectiles.bank", "projectiles/enlightened_laser/launch_light", player_x, player_y)
-                            end
-                        else
-                            SoulsPrint("You do not have enough souls for this. (" .. cost .. ")")
-                        end
-                    else
-                        SoulsPrint("You do not have enough souls for this. (" .. cost .. ")")
-                    end
-                end
-            end
+            GlobalsSetValue("souls.tome_gui_frame", tostring(frame_now))
         end
     end
+else
+    GlobalsSetValue("souls.tome_gui_open", "0")
+    GlobalsSetValue("souls.tome_gui_frame", tostring(GameGetFrameNum()))
+end
+
+local comp = EntityGetFirstComponentIncludingDisabled(this, "LuaComponent", "souls_tome_upgrade_fix")
+if comp == nil then -- backward compatibility!!!
+    EntityAddComponent2(this, "LuaComponent", {
+        _tags = "souls_tome_upgrade_fix,enabled_in_world",
+		script_source_file = "mods/souls/files/entities/items/tome2/card_upgrade_in_world.lua",
+		execute_every_n_frame = 1
+    })
+    EntityAddComponent2(this, "LuaComponent", {
+        _tags = "souls_tome_upgrade_fix,enabled_in_inventory",
+		script_source_file = "mods/souls/files/entities/items/tome2/card_upgrade_in_inv.lua",
+		execute_every_n_frame = 1
+    })
 end

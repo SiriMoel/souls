@@ -1,5 +1,11 @@
 <Entity name="$souls_soul" tags="souls_soul">
 
+	<VariableStorageComponent
+        _tags="soul"
+        name="soul"
+        value_string="zombie"
+    ></VariableStorageComponent>
+
 	<!-- vfx -->
 
     <SpriteComponent
@@ -84,14 +90,6 @@
         script_source_file="mods/souls/files/entities/souls/soul_entity.lua"
         execute_every_n_frame="1"
     ></LuaComponent>
-
-    <!-- "old" functionality -->
-
-    <VariableStorageComponent
-        _tags="soul"
-        name="soul"
-        value_string="zombie"
-    ></VariableStorageComponent>
 
     <LuaComponent
         script_source_file="mods/souls/files/scripts/souls_collect.lua"

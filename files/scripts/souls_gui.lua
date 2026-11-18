@@ -1,5 +1,6 @@
 dofile_once("mods/souls/files/scripts/souls.lua")
 dofile_once("mods/souls/files/scripts/soul_hats.lua")
+dofile_once("mods/souls/files/scripts/tome_upgrades.lua")
 
 souls_gui = nil
 
@@ -9,16 +10,6 @@ function SoulsGuiUpdate()
     player = player[1]
 
     local soul_types = GetSoulTypes()
-
-    --[[local souls_soul_types = GetSoulTypes()
-    local types_check = {}
-    local soul_types = {}
-    for i, v in ipairs(souls_soul_types) do
-        if types_check[v] == nil then
-            types_check[v] = 1
-            table.insert(soul_types, v)
-        end
-    end]]
 
     local soulcounts = SoulCounts(player)
     local divine = EntityHasTag(player, "souls_divine")
@@ -120,7 +111,7 @@ function SoulsGuiUpdate()
         local centre_x, centre_y = screen_width / 2, screen_height / 2
         local inc = (math.pi * 2) / #soul_types
 
-        for i,soul in ipairs(soul_types) do
+        for i, soul in ipairs(soul_types) do
 
             local x = centre_x + math.cos(inc * i) * (max_dist * open)
             local y = centre_y + math.sin(inc * i) * (max_dist * open)
@@ -128,7 +119,7 @@ function SoulsGuiUpdate()
             if GlobalsGetValue("souls.hats", "true") == "true" then
                 local hatted, hat, hat_offset = soul_hat(soul)
                 if hatted then
-                    GuiZSetForNextWidget(souls_gui, -1)
+                    GuiZSetForNextWidget(souls_gui, -5)
                     GuiImage(souls_gui, get_gui_id(), x, y + hat_offset, hat, open, 1, 1) 
                 end 
             end
@@ -136,6 +127,7 @@ function SoulsGuiUpdate()
             local anim = soul
             if animated == "true" then anim = soul .. "_a" end
 
+            GuiZSetForNextWidget(souls_gui, -4)
             GuiImage(souls_gui, get_gui_id(), x, y, "mods/souls/files/soul_sprites/souls.xml", open, 1, 1, 0, GUI_RECT_ANIMATION_PLAYBACK.Loop, anim)
 
             local count = soulcounts[soul]
@@ -143,18 +135,113 @@ function SoulsGuiUpdate()
             if divine then
                 t = "∞ +" .. t
             end
-            
+
+            GuiZSetForNextWidget(souls_gui, -4)
             GuiColorSetForNextWidget(souls_gui, 1, 1, 1, open)
             GuiText(souls_gui, x + 11, y, t .. " ")
         end
 
         local centre_text = (GlobalsGetValue("souls.total_boss", "false") == "true" and soulcounts["total_boss"]) or soulcounts["total"]
 
+        GuiZSetForNextWidget(souls_gui, -4)
         GuiImage(souls_gui, get_gui_id(), centre_x - 5, centre_y, "mods/souls/files/soul_sprites/souls.xml", open, 1, 1, 0, GUI_RECT_ANIMATION_PLAYBACK.Loop, (animated == "true") and "soul_a" or "soul")
 
+        GuiZSetForNextWidget(souls_gui, -4)
         GuiColorSetForNextWidget(souls_gui, 1, 1, 1, open)
         GuiText(souls_gui, centre_x + 6, centre_y, centre_text)
     end
+
+    -- tome upgrade gui
+
+    GuiOptionsClear(souls_gui)
+    GuiOptionsAdd(souls_gui, GUI_OPTION.NoPositionTween)
+    local tome_gui_open = GlobalsGetValue("souls.tome_gui_open", "0")
+    if tome_gui_open == "1" then
+        local tome = EntityGetWithTag("soul_tome")[1]
+        if tome == nil then return end
+
+        local upgrade_width = 30 * 4
+        local start_x = screen_width / 2 - upgrade_width * #tome_upgrades * 0.5
+        local start_y = screen_height - 90
+
+        for i, upgrade in ipairs(tome_upgrades) do
+            local comp_upgrade_count = EntityGetFirstComponentIncludingDisabled(tome, "VariableStorageComponent", "tome_upgrade_" .. i)
+            local upgrade_count = ComponentGetValue2(comp_upgrade_count, "value_int") or 0
+            local upgrade_cost = upgrade.func_cost(upgrade_count) 
+            
+            local x = start_x + upgrade_width * (i - 1)
+            local y = start_y
+
+            GuiZSetForNextWidget(souls_gui, 5)
+            GuiImage(souls_gui, get_gui_id(), x, y, "mods/souls/files/ui_gfx/tome_upgrades/upgrade_bg_2.png", 1, 2, 2, 0)           
+
+            GuiZSetForNextWidget(souls_gui, 4)
+            local upgrade_button = GuiImageButton(souls_gui, get_gui_id(), x + upgrade_width * 0.5 - 20, y, "", upgrade.icon)
+
+            for text_i, line in ipairs(upgrade.text) do
+                local text_width, text_height = GuiGetTextDimensions(souls_gui, line[1])
+                local text_x = x + upgrade_width * 0.5 - text_width * 0.5
+                local text_y = y - 4 - text_height * text_i
+
+                if line[2] == "good" then
+                    GuiColorSetForNextWidget(souls_gui, 0.5, 1.0, 0.6, 1.0)
+                elseif line[2] == "bad" then
+                    GuiColorSetForNextWidget(souls_gui, 1.0, 0.6, 0.6, 1.0)
+                end
+                GuiZSetForNextWidget(souls_gui, 4)
+                GuiText(souls_gui, text_x, text_y, line[1])
+            end
+
+            local cost_text = tostring(upgrade_cost) .. " souls"
+            local text_width, text_height = GuiGetTextDimensions(souls_gui, cost_text)
+            GuiZSetForNextWidget(souls_gui, 3)
+            if soulcounts["total"] >= upgrade_cost then
+                GuiColorSetForNextWidget(souls_gui, 0.25, 0.89, 0.87, 1.0)
+            else
+                GuiColorSetForNextWidget(souls_gui, 0.7, 0.4, 0.55, 1.0)
+            end
+            GuiText(souls_gui, x + upgrade_width * 0.5 - text_width * 0.5, y + 48, cost_text)
+
+            if upgrade_button then
+                local player_x, player_y = EntityGetTransform(player)
+                GamePlaySound("data/audio/Desktop/projectiles.bank", "projectiles/enlightened_laser/launch_dark", player_x, player_y)
+                if SoulCount("total", player) >= upgrade_cost then
+                    if SpellUseSouls(player, upgrade_cost) then
+                        upgrade.func_apply(tome)
+                        ComponentSetValue2(comp_upgrade_count, "value_int", upgrade_count + 1)
+                        local maxed = CheckIsTomeMaxed(tome)
+                        if maxed then
+                            if not GameHasFlagRun("souls_tome_maxed") then
+                                GameAddFlagRun("souls_tome_maxed")
+                            end
+                            if not HasFlagPersistent("souls_tome_maxed") then
+                                AddFlagPersistent("souls_tome_maxed")
+                            end
+                            GlobalsSetValue("souls.tome_gui_open", "0")
+                            GlobalsSetValue("souls.tome_gui_frame", tostring(GameGetFrameNum()))
+                            local upgraders = EntityGetWithTag("souls_tome_upgrade_card") or {}
+                            if #upgraders > 0 then
+                                for _, v in ipairs(upgraders) do
+                                    EntityKill(v)
+                                end
+                            end
+                            SoulsPrintImportant("Tome maxed!", "It cannot be upgraded any further.", "divine")
+                            GamePlaySound("data/audio/Desktop/projectiles.bank", "projectiles/enlightened_laser/launch_light", player_x, player_y)
+                        else
+                            SoulsPrint("Tome upgraded!")
+                            --SoulsPrintImportant("Tome upgraded!", "A " .. upgrade.name .. " upgrade has been applied to the tome.", "souls")
+                        end
+                        EntityLoad("mods/souls/files/entities/misc/soul_blood_fx.xml", player_x, player_y - 5)
+                    else
+                        SoulsPrint("You do not have enough souls for this. (" .. upgrade_cost .. ")")
+                    end
+                else
+                    SoulsPrint("You do not have enough souls for this. (" .. upgrade_cost .. ")")
+                end
+            end
+        end
+    end
+    GuiOptionsClear(souls_gui)
 
     GuiIdPop(souls_gui)
 end

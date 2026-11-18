@@ -168,29 +168,46 @@ function mod_setting_enum_souls(mod_id, gui, in_main_menu, im_id, setting)
 	mod_setting_tooltip( mod_id, gui, in_main_menu, setting )
 end
 
-function mod_setting_category_button_souls(mod_id, gui, im_id, im_id2, category)
+function mod_setting_category_button_souls(mod_id, gui, im_id, im_id2, category, in_main_menu, souls_category_num)
 	local image_file = "mods/souls/files/ui_gfx/button_fold_close.png"
 	if category._folded then
 		image_file = "mods/souls/files/ui_gfx/button_fold_open.png"
+        if not in_main_menu then
+            dofile_once("mods/souls/files/scripts/souls.lua")
+            local soul_types = {
+                "bat",
+                "fly",
+                "friendly",
+                "mage",
+                "orcs",
+                "slimes",
+                "spider",
+                "zombie",
+                "worm",
+                "fungus",
+                "ghost",
+            }
+            image_file = "mods/souls/files/soul_sprites/" .. soul_types[souls_category_num] .. ".png"
+        end
 	end
 
-	GuiLayoutBeginHorizontal( gui, 0, 0 )
-	GuiIdPush( gui, 892304589 )
+	GuiLayoutBeginHorizontal(gui, 0, 0)
+	GuiIdPush(gui, 892304589)
 
-    GuiOptionsAddForNextWidget( gui, GUI_OPTION.DrawActiveWidgetCursorOff )
-	GuiOptionsAddForNextWidget( gui, GUI_OPTION.NoPositionTween )
-	local clicked2 = GuiImageButton( gui, im_id2, 0, 0, "", image_file )
+    GuiOptionsAddForNextWidget(gui, GUI_OPTION.DrawActiveWidgetCursorOff)
+	GuiOptionsAddForNextWidget(gui, GUI_OPTION.NoPositionTween)
+	local clicked2 = GuiImageButton(gui, im_id2, 0, 0, "", image_file)
 
 	--GuiOptionsAddForNextWidget( gui, GUI_OPTION.DrawSemiTransparent )
     GuiColorSetForNextWidget(gui, 0.7, 0.7, 0.7, 0.8)
-	local clicked1 = GuiButton( gui, im_id, mod_setting_group_x_offset + 3, 0, category.ui_name )
+	local clicked1 = GuiButton(gui, im_id, mod_setting_group_x_offset + 3, 0, category.ui_name)
     GuiColorSetForNextWidget(gui, 1, 1, 1, 1)
-	if is_visible_string( category.ui_description ) then
-		GuiTooltip( gui, category.ui_description, "" )
+	if is_visible_string(category.ui_description) then
+		GuiTooltip(gui, category.ui_description, "")
 	end
 
-	if is_visible_string( category.ui_description ) then
-		GuiTooltip( gui, category.ui_description, "" )
+	if is_visible_string(category.ui_description) then
+		GuiTooltip(gui, category.ui_description, "")
 	end
 
 	local clicked = clicked1 or clicked2
@@ -198,8 +215,8 @@ function mod_setting_category_button_souls(mod_id, gui, im_id, im_id2, category)
 		category._folded = not category._folded
 	end
 
-	GuiIdPop( gui )
-	GuiLayoutEnd( gui )
+	GuiIdPop(gui)
+	GuiLayoutEnd(gui)
 
 	return clicked
 end
@@ -506,8 +523,8 @@ mod_settings = {
             },
             {
                 id = "collect_soul_from_entity",
-                ui_name = "Collect souls",
-                ui_description = "If you want souls to spawn as an entity that must be collected.",
+                ui_name = "Soul pickup",
+                ui_description = "Should souls have to be picked up to be collected?",
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_RUNTIME,
                 ui_fn = mod_setting_bool_souls,
@@ -552,6 +569,7 @@ end
 
 function souls_mod_settings_gui( mod_id, settings, gui, in_main_menu )
 	local im_id = 1
+    local souls_category_num = 0
 
 	for i,setting in ipairs(settings) do
 		if setting.category_id ~= nil then
@@ -560,7 +578,8 @@ function souls_mod_settings_gui( mod_id, settings, gui, in_main_menu )
 			if setting.foldable then
 				local im_id2 = im_id
 				im_id = im_id + 1
-				local clicked_category_heading = mod_setting_category_button_souls( mod_id, gui, im_id, im_id2, setting )
+                souls_category_num = souls_category_num + 1
+				local clicked_category_heading = mod_setting_category_button_souls(mod_id, gui, im_id, im_id2, setting, in_main_menu, souls_category_num)
 				if not setting._folded then
 					GuiAnimateBegin( gui )
 					GuiAnimateAlphaFadeIn( gui, 3458923234, 0.1, 0.0, clicked_category_heading )

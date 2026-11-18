@@ -6,7 +6,6 @@ NEW
 - Spell: Sea of Soulless Blood
 - Spell: Summon Soul Sentinel
 - Spell: Soul Copy
-- Spell: Summon Fly
 - Item: Soul Lantern
 - Material: Fungus of Soul
 - Material: Sweet Fungus of Soul
@@ -19,6 +18,7 @@ CHANGED/FIXED
 - Changed soul pickup entity
 - Soul sprite changes
 - GUI changes
+- Tome upgrade menu
 - Changed Wand Consumes X Souls spell soul selecting
 - Mimicium no longer works on Soul Blood (creates Soulless Blood instead)
 - Soul-Away! converts slime into more Soul-Away!
@@ -27,6 +27,8 @@ CHANGED/FIXED
 - Increased speed boost from Soul Strike spell
 - Changed Soul Master projectile attack to be similar to other master projectiles
 - Revived bosses spawn with 30% more health
+- gfx update for items bought with soul
+- Other changes I forgot
 
 REMOVED
 - Meta Leveling cross-mod interaction

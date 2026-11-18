@@ -3,7 +3,7 @@ dofile_once("mods/souls/files/scripts/souls.lua")
 local this = GetUpdatedEntityID()
 local x, y = EntityGetTransform(this)
 
-local targets = EntityGetInRadiusWithTag(x, y, 6, "player_unit")
+local targets = EntityGetInRadiusWithTag(x, y, 7, "player_unit")
 
 if #targets > 0 then
     local player = targets[1]

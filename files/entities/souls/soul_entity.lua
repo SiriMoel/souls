@@ -9,7 +9,6 @@ local alpha = 0.6 + 0.3 * math.sin(frame / 20)
 ComponentSetValue2(comp_sprite, "alpha", alpha)
 
 local comp_frame_created = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "frame_created")
-if comp_frame_created == nil then EntityKill(this) return end -- comment this when im not trying to maintain a run
 local frame_created = ComponentGetValue2(comp_frame_created, "value_int")
 local frame_now = GameGetFrameNum()
 
@@ -58,8 +57,8 @@ else
 end
 
 if RaytraceSurfaces(x, y, x + stop_dist * math.cos(a), y + stop_dist * math.sin(a)) then
-    speed = math.max(speed - 10 * speed_inc, min_speed)
-elseif RaytraceSurfaces(x, y, x + 3 * math.cos(a), y + 3 * math.sin(a)) then
+    speed = math.max(speed - 13 * speed_inc, min_speed)
+elseif RaytraceSurfaces(x, y, x + 5 * math.cos(a), y + 5 * math.sin(a)) then
     speed = min_speed
 end
 

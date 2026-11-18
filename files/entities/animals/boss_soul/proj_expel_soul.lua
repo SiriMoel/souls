@@ -30,7 +30,7 @@ if soul == nil or soul == 0 or soul == "0" then
 else
 	local comp_sprite = EntityGetFirstComponentIncludingDisabled(entity, "SpriteComponent")
 	if comp_sprite ~= nil then
-		ComponentSetValue2(comp_sprite, "image_file", "mods/souls/files/entities/souls/sprites/soul_" .. soul .. ".xml")
+		ComponentSetValue2(comp_sprite, "rect_animation", soul .. "_a")
 		EntityRefreshSprite(entity, comp_sprite)
 	end
 

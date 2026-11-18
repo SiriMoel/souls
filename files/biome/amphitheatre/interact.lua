@@ -70,7 +70,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
     end
     
     GameAddFlagRun("souls.amphitheatre_active")
-    SoulsPrintImportant("WAVE STARTED!", "The Gods are entertained.", "amphitheatre")
+    SoulsPrintImportant("WAVE STARTED!", "The Gods are entertained.", "void")
     GlobalsSetValue("souls.amphitheatre_enemy_count", tostring(enemy_count + 3))
     EntitySetComponentsWithTagEnabled(this, "amphitheatre_interact", false)
 end

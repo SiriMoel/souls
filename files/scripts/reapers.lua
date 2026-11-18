@@ -4,6 +4,8 @@ souls_reapers = {
         return soul_count, souls
     end,
     random = function(entity, reapers, comp_name, comp_amt, soul_count, souls)
+        dofile_once("mods/souls/files/scripts/souls.lua")
+        local soul_types = GetSoulTypes()
         for i = 1, comp_amt do
             local r_soul = soul_types[Random(1, #soul_types - 2)]
             souls[r_soul] = (souls[r_soul] or 0) + 1

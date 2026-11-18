@@ -28,6 +28,7 @@ CHANGED/FIXED
 - Changed Soul Master projectile attack to be similar to other master projectiles
 - Revived bosses spawn with 30% more health
 - gfx update for items bought with soul
+- Removed mana bonus from Soular Power spell and reduced its bonuses to cast delay & recharge time
 - Other changes I forgot
 
 REMOVED
@@ -36,3 +37,4 @@ REMOVED
 INTERNAL
 - Revived bosses are given the souls_revived_boss tag
 - GUI changes
+- GetSoulTypes() is used instead of the soul_types table

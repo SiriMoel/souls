@@ -4,12 +4,12 @@ local glimmer_appends = {
     {
         name = "Soul Blood",
         desc = "Gives your projectile a soul",
-        materials = {"souls_soul_blood_1", "souls_soul_blood_perfect"},
+        materials = {"souls_soul_blood_1", "souls_soul_particles"},
         image = "mods/souls/files/ui_gfx/gun_actions/glimmer_soul_blood.png",
         spawn_tiers = "1,2,3,4,5,6",
         sort_after = 4.5,
         mod_prefix = "SOULS",
-        author = "Moldos", -- wait, really?
+        author = "Moldos",
     },
 }
 

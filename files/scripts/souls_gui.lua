@@ -155,6 +155,7 @@ function SoulsGuiUpdate()
 
     GuiOptionsClear(souls_gui)
     GuiOptionsAdd(souls_gui, GUI_OPTION.NoPositionTween)
+    --GuiOptionsAdd(souls_gui, GUI_OPTION.DrawFadeIn)
     local tome_gui_open = GlobalsGetValue("souls.tome_gui_open", "0")
     if tome_gui_open == "1" then
         local tome = EntityGetWithTag("soul_tome")[1]
@@ -178,11 +179,25 @@ function SoulsGuiUpdate()
             GuiZSetForNextWidget(souls_gui, 4)
             local upgrade_button = GuiImageButton(souls_gui, get_gui_id(), x + upgrade_width * 0.5 - 20, y, "", upgrade.icon)
 
+            local function text_outline(text, tx, ty, z)
+                local dist = 1
+                local pos = {
+                    {tx - dist, ty - dist}, {tx + dist, ty - dist},
+                    {tx - dist, ty + dist}, {tx + dist, ty + dist},
+                }
+                for i = 1, #pos do
+                    GuiColorSetForNextWidget(souls_gui, 0.1, 0.1, 0.1, 1.0)
+                    GuiZSetForNextWidget(souls_gui, z + 0.1)
+                    GuiText(souls_gui, pos[i][1], pos[i][2], text)
+                end
+            end
+
             for text_i, line in ipairs(upgrade.text) do
                 local text_width, text_height = GuiGetTextDimensions(souls_gui, line[1])
                 local text_x = x + upgrade_width * 0.5 - text_width * 0.5
                 local text_y = y - 4 - text_height * text_i
 
+                text_outline(line[1], text_x, text_y, 4)
                 if line[2] == "good" then
                     GuiColorSetForNextWidget(souls_gui, 0.5, 1.0, 0.6, 1.0)
                 elseif line[2] == "bad" then
@@ -194,13 +209,16 @@ function SoulsGuiUpdate()
 
             local cost_text = tostring(upgrade_cost) .. " souls"
             local text_width, text_height = GuiGetTextDimensions(souls_gui, cost_text)
+            local cost_text_x = x + upgrade_width * 0.5 - text_width * 0.5
+            local cost_text_y = y + 48
+            text_outline(cost_text, cost_text_x, cost_text_y, 3)
             GuiZSetForNextWidget(souls_gui, 3)
             if soulcounts["total"] >= upgrade_cost then
                 GuiColorSetForNextWidget(souls_gui, 0.25, 0.89, 0.87, 1.0)
             else
                 GuiColorSetForNextWidget(souls_gui, 0.7, 0.4, 0.55, 1.0)
             end
-            GuiText(souls_gui, x + upgrade_width * 0.5 - text_width * 0.5, y + 48, cost_text)
+            GuiText(souls_gui, cost_text_x, cost_text_y, cost_text)
 
             if upgrade_button then
                 local player_x, player_y = EntityGetTransform(player)

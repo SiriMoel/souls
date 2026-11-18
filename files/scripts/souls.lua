@@ -32,7 +32,7 @@ function SoulsPrintImportant(title, description, decoration)
     local decorations = {
         ["souls"] = "mods/souls/files/ui_gfx/decoration_souls.png",
         ["boss"] = "mods/souls/files/ui_gfx/decoration_boss.png",
-        ["amphitheatre"] = "mods/souls/files/ui_gfx/decoration_amphitheatre.png",
+        ["void"] = "mods/souls/files/ui_gfx/decoration_void.png",
         ["divine"] = "mods/souls/files/ui_gfx/decoration_divine.png",
     }
     local dec = decoration ~= nil and decorations[decoration]
@@ -113,24 +113,7 @@ function WandSoulType(wand)
         value_int=0
     })
     local val = ComponentGetValue2(comp, "value_int")
-    local soul = (val ~= 0 and all_soul_types[val]) or "any" -- not ideal but faster than...
-    --[[if soul ~= "any" and soul ~= soul_types[val] then -- a shift has occured
-        local parent = EntityGetParent(wand)
-        if parent ~= nil and EntityHasTag(parent, "player_unit") then
-            local shift_comps = EntityGetComponentIncludingDisabled(parent, "VariableStorageComponent", "souls_shifted") or {}
-            if #shift_comps > 0 then
-                for i = 1, #shift_comps do
-                    local shift_comp = shift_comps[i]
-                    local shifted = ComponentGetValue2(shift_comp, "name")
-                    if shifted == soul then
-                        local to = ComponentGetValue2(shift_comp, "value_string")
-                        soul = to
-                    end
-                end
-            end
-        end
-    end]]
-    return soul
+    return (val ~= 0 and (soul_types[val] or all_soul_types[val])) or "any"
 end
 
 function SpellUseSouls(caster, n)

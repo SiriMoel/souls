@@ -76,10 +76,10 @@
   <SpriteComponent 
     _enabled="1" 
     alpha="1" 
-    image_file="mods/souls/files/entities/projectiles/soul_bolt/spark.xml"
-    next_rect_animation="default"
-    rect_animation="default"
-	additive="1"
+    image_file="mods/souls/files/soul_sprites/souls.xml"
+    rect_animation="soul_a"
+	  offset_x="5" 
+    offset_y="5"
      >
   </SpriteComponent>
   

@@ -225,8 +225,9 @@ local new_actions = {
 		ai_never_uses = true,
 		custom_xml_file="mods/souls/files/entities/items/tome2/card_upgrade.xml",
 		action = function()
-			c.fire_rate_wait = c.fire_rate_wait + 30
+			c.fire_rate_wait = c.fire_rate_wait + 9
 			--current_reload_time = current_reload_time + 60
+			--draw_actions(1, true)
 		end,
 	},
 	{
@@ -795,16 +796,15 @@ local new_actions = {
 		spawn_level = "4,5,6,10",
 		spawn_probability = "0.4,0.5,0.5,0.2",
 		price = 120,
-		mana = 0,
+		mana = 25,
 		ai_never_uses = true,
 		action = function()
 			local count = 1
 			if not reflecting then
 				count = SoulCount("boss")
 			end
-			mana = mana + 20 * count
-			c.fire_rate_wait = c.fire_rate_wait - 12 * count
-			current_reload_time = current_reload_time - 6 * count
+			c.fire_rate_wait = c.fire_rate_wait - 3 * count
+			current_reload_time = current_reload_time - 1 * count
 			draw_actions(1, true)
 		end,
 	},
@@ -976,7 +976,7 @@ local new_actions = {
 		spawn_level = "1,2,5,6",
 		spawn_probability = "0.3,0.2,0.6,0.5",
 		price = 170,
-		mana = 35,
+		mana = 40,
 		ai_never_uses = true,
 		action = function(recursion_level, iteration)
 			c.fire_rate_wait = c.fire_rate_wait + 30
@@ -990,9 +990,9 @@ local new_actions = {
 			end
 			local rec = check_recursion(spell, recursion_level)
 			if spell ~= nil and rec > -1 then
-				local cost = 1
+				local cost = 0
 				if spell.max_uses ~= nil then
-					cost = math.ceil(5 * (1 - (spell.uses_remaining / spell.max_uses)))
+					cost = math.floor(3 * (1 - (spell.uses_remaining / spell.max_uses)))
 				end
 				if SpellUseSouls(caster, cost) then
 					souls_used_count = souls_used_count + cost
@@ -1277,25 +1277,6 @@ local new_actions = {
 		end,
 	},]]
 	{
-		id = "VOID_ATTACK",
-		name = "$action_souls_void_attack",
-		description = "$actiondesc_souls_void_attack",
-		sprite = "mods/souls/files/ui_gfx/gun_actions/void_attack.png",
-		related_projectiles = {"mods/souls/files/entities/projectiles/void_attack/proj.xml"},
-		spawn_requires_flag = "souls_phylactery_activated",
-		type = ACTION_TYPE_PROJECTILE,
-		spawn_level = "6,10",
-		spawn_probability = "0.1,0.1",
-		price = 300,
-		mana = 200,
-		ai_never_uses = true,
-		action = function()
-			c.fire_rate_wait = c.fire_rate_wait + 60
-			current_reload_time = current_reload_time + 60
-			add_projectile("mods/souls/files/entities/projectiles/void_attack/proj.xml")
-		end,
-	},
-	{
 		id = "SENTINEL",
 		name = "$action_souls_sentinel",
 		description = "$actiondesc_souls_sentinel",
@@ -1326,6 +1307,25 @@ local new_actions = {
 			else
 				GamePrint("You are too close to another sentinel to do this.")
 			end
+		end,
+	},
+	{
+		id = "VOID_ATTACK",
+		name = "$action_souls_void_attack",
+		description = "$actiondesc_souls_void_attack",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/void_attack.png",
+		related_projectiles = {"mods/souls/files/entities/projectiles/void_attack/proj.xml"},
+		spawn_requires_flag = "souls_phylactery_activated",
+		type = ACTION_TYPE_PROJECTILE,
+		spawn_level = "6,10",
+		spawn_probability = "0.1,0.1",
+		price = 300,
+		mana = 200,
+		ai_never_uses = true,
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 60
+			current_reload_time = current_reload_time + 60
+			add_projectile("mods/souls/files/entities/projectiles/void_attack/proj.xml")
 		end,
 	},
 }

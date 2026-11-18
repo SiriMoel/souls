@@ -21,8 +21,8 @@ local speed = ComponentGetValue2(comp_speed, "value_float")
 
 local min_speed = 0
 local normal_speed = 1.0
-local max_speed = 2.0
-local speed_inc = 0.02
+local max_speed = 3.0
+local speed_inc = 0.03
 
 local stop_dist = 10
 

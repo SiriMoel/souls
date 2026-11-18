@@ -11,8 +11,11 @@ if #c == 0 then
 
         SoulsPrint("A " .. GameTextGetTranslatedOrNot(soul_names[soul]) .. " soul was consumed!", "say_consumed_soul")
         local effect = LoadGameEffectEntityTo(root, "mods/souls/files/entities/projectiles/soul_focus/effect.xml")
-        EntityAddComponent2(effect, "SpriteComponent", {
-            image_file="mods/souls/files/entities/souls/sprites/soul_" .. soul .. ".xml",
+        EntityAddComponent2(this, "SpriteComponent", {
+            image_file = "mods/souls/files/soul_sprites/souls.xml",
+            rect_animation = soul .. "_a",
+            offset_x = 5,
+            offset_y = 5,
         })
     end
 end

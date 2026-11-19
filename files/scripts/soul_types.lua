@@ -31,7 +31,7 @@ function GetSoulTypes()
                 for ii, soul in ipairs(all_soul_types) do
                     if soul == shifted then
                         all_soul_types[ii] = to
-                        --table.insert(shifts, {from, to})
+                        shifts[shifted] = to
                         break
                     end
                 end
@@ -53,7 +53,7 @@ function GetSoulTypes()
             table.insert(soul_types, v)
         end
     end
-    return soul_types, all_soul_types
+    return soul_types, all_soul_types, shifts
 end
 
 soul_types = GetSoulTypes()

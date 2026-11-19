@@ -1,0 +1,39 @@
+<Entity tags="souls_gate_shop">
+
+    <SpriteComponent
+        image_file="mods/souls/files/biome/gate/shop.png"
+        offset_x="20"
+        offset_y="59"
+    ></SpriteComponent>
+
+    <LuaComponent
+        script_source_file="mods/souls/files/biome/gate/shop_init.lua"
+        execute_on_added="1"
+        remove_after_executed="1"
+    ></LuaComponent>
+
+    <LuaComponent
+        script_source_file="mods/souls/files/biome/gate/shop_update.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+    <LuaComponent
+        _tags="soul_shop"
+        script_source_file="mods/souls/files/biome/gate/shop_display.lua"
+        execute_every_n_frame="1"
+    ></LuaComponent>
+
+    <InteractableComponent
+        _tags="soul_shop"
+        radius="14"
+        ui_text="INTERACT: Purchase!"
+        name="Soul Gate"
+    ></InteractableComponent>
+
+    <LuaComponent
+        _tags="soul_shop"
+		script_interacting="mods/souls/files/biome/gate/shop_interact.lua"
+        execute_every_n_frame="-1"
+    ></LuaComponent>
+
+</Entity>

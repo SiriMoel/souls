@@ -1,0 +1,20 @@
+<Entity>
+
+    <SpriteComponent
+        image_file="mods/souls/files/biome/gate/reroller.png"
+        offset_x="20"
+        offset_y="59"
+    ></SpriteComponent>
+
+    <InteractableComponent
+        radius="14"
+        ui_text="INTERACT: Reroll!"
+        name="Soul Gate"
+    ></InteractableComponent>
+
+    <LuaComponent
+		script_interacting="mods/souls/files/biome/gate/reroller_interact.lua"
+        execute_every_n_frame="-1"
+    ></LuaComponent>
+
+</Entity>

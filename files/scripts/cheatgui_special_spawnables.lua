@@ -54,6 +54,11 @@ local souls_to_add = {
         name = "Fly",
         xml = "fly.xml",
     },
+    --[[{
+        path = "mods/souls/files/biome/gate/gate.xml",
+        name = "Soul Gate",
+        xml = "gate.xml",
+    },]]
 }
 
 for i,v in ipairs(souls_to_add) do

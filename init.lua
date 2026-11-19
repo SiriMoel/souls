@@ -1,4 +1,4 @@
-SOULS_VERSION = 6.00 -- also update mod.xml
+SOULS_VERSION = 6.01 -- also update mod.xml
 SOULS_SET_VERSION = true
 SOULS_FORCE_VERSION = nil
 
@@ -11,10 +11,10 @@ function souls_version_update(pos_x, pos_y)
         end
         if ModSettingGet("souls.update_informing") then
             SoulsPrintImportant("Souls has been (majorly) updated!", "The change notes are on the workshop page.", "souls")
-            local informer_path = "mods/souls/files/entities/items/update_informer/1_" .. math.floor(SOULS_VERSION) .. ".xml"
+            --[[local informer_path = "mods/souls/files/entities/items/update_informer/1_" .. math.floor(SOULS_VERSION) .. ".xml"
             if ModTextFileGetContent(informer_path) ~= nil then
                 EntityLoad(informer_path, pos_x, pos_y - 5)
-            end
+            end]]
         end
     elseif version_before < SOULS_VERSION then
         if SOULS_SET_VERSION then

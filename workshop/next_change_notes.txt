@@ -1,43 +1,10 @@
-v1.6
+v1.6.1
 
 NEW
-- Enemy: Huutava sielu (boss)
-- Spell: Necronomical Reap
-- Spell: Sea of Soulless Blood
-- Spell: Summon Soul Sentinel
-- Spell: Soul Copy
-- Item: Soul Lantern
-- Material: Fungus of Soul
-- Material: Sweet Fungus of Soul
-- Anvil of Destiny: Soul Blood can be used to make a wand always cast a reaping spell
-- Another Perfect Soul Blood recipe (very inefficient)
-- Keybind to select wand soul type
+- ???
 
 CHANGED/FIXED
-- Increased the amount of soul blood required to revive bosses by 30%
-- 25% chance for a soul drop will no longer apply if a reaping spell is being used
-- Reduced spawn probabilities of Reap from Fire spell
-- Changed soul pickup entity
-- Soul sprite changes
-- GUI changes
-- Tome upgrade menu
-- Changed Wand Consumes X Souls spell soul selecting
-- Mimicium no longer works on Soul Blood (creates Soulless Blood instead)
-- Soul-Away! converts slime into more Soul-Away!
-- Anima Conduit perk now increases incoming damage by 25%
-- Ravenous Spell changes
-- Increased speed boost from Soul Strike spell
-- Changed Soul Master projectile attack to be similar to other master projectiles
-- Revived bosses spawn with 30% more health
-- gfx update for items bought with soul
-- Removed mana bonus from Soular Power spell and reduced its bonuses to cast delay & recharge time
-- Reduced spawn chances of Wand Consumes X Souls spell
-- Other changes I forgot
-
-REMOVED
-- Meta Leveling cross-mod interaction
+- ???
 
 INTERNAL
-- Revived bosses are given the souls_revived_boss tag
-- GUI changes
-- GetSoulTypes() is used instead of the soul_types table
+- ???

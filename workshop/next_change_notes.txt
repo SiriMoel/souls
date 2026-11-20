@@ -1,7 +1,7 @@
 v1.6.1
 
 NEW
-- ???
+- Soul Gate structure rework
 
 CHANGED/FIXED
 - ???

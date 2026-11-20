@@ -423,7 +423,7 @@ mod_settings = {
             },
             {
                 id = "enable_souldoor",
-                ui_name = "Gate",
+                ui_name = "Void Gate",
                 ui_description = "Should this structure appear?",
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_NEW_GAME,

@@ -188,7 +188,7 @@ end
 local scenes = {}
 local possible_scenes = {
     {
-        scene = {13080, 1650, "mods/souls/files/biome/gate/gate.xml", false},
+        scene = {13080, 1650, "mods/souls/files/biome/gate/gate.xml", true},
         func = function() return ModSettingGet("souls.enable_souldoor") end,
     },
     {

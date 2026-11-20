@@ -12,7 +12,7 @@ gate_shop_items = {
         name = "Spell",
         price = {
             {"soul", {5, 10}},
-            {{"slimes", "orcs", "zombie", "orcs", "spider"}, {2, 5}},
+            {{"slimes", "orcs", "zombie", "spider"}, {2, 5}},
             {GateSouls.USUAL, {2, 5}},
         },
         chance = function()
@@ -28,8 +28,8 @@ gate_shop_items = {
         name = "Spell",
         price = {
             {"soul", {5, 20}},
-            {{"bat", "worm", "ghost", "fungi"}, {5, 10}},
-            {{"slimes", "orcs", "zombie", "orcs", "spider"}, {2, 10}},
+            {{"bat", "worm", "ghost", "fungus"}, {5, 10}},
+            {{"slimes", "orcs", "zombie", "spider"}, {2, 10}},
             {GateSouls.USUAL, {1, 5}},
         },
         chance = function()
@@ -93,6 +93,24 @@ gate_shop_items = {
         end,
     },
     {
+        id = "tome_spell",
+        name = "Tome spell",
+        price = {
+            {GateSouls.USUAL, 20},
+            {GateSouls.USUAL, 20},
+            {GateSouls.ALL, 10},
+            {"boss", 1},
+        },
+        chance = function()
+            return 0.3
+        end,
+        spawn = function(x, y)
+            local opts = {"SOULS_TOME_SLICE", "SOULS_TOME_LAUNCHER", "SOULS_TOME_LASER", "SOULS_TOME_SPELLBOOK_2"}
+            local item = CreateItemActionEntity(opts[Random(1, #opts)], x, y)
+            return item
+        end,
+    },
+    {
         id = "heart_fullhp",
         name = "heart_fullhp",
         price = {
@@ -138,9 +156,11 @@ function GateShop(shop)
             EntityRemoveComponent(shop, comp)
         end
     end
+
     local x, y = EntityGetTransform(shop)
     local frame = GameGetFrameNum()
     SetRandomSeed(x + frame, y)
+
     local chance_total = 0.0
     local possible_rewards = {}
     for i, v in ipairs(gate_shop_items) do
@@ -160,32 +180,10 @@ function GateShop(shop)
             break
         end
     end
+
     if item ~= nil then
         local soul_types, all_soul_types, shifts = GetSoulTypes()
-        for _, v in ipairs(item.price) do
-            local soul = v[1]
-            if type(v[1]) == "table" then
-                soul = v[1][Random(1, #v[1])]
-            elseif v[1] == GateSouls.USUAL then  
-                soul = soul_types[Random(1, #soul_types - 2)]
-            elseif v[1] == GateSouls.ALL then
-                soul = soul_types[Random(1, #soul_types - 1)]
-            elseif v[1] == GateSouls.ALL_BOSS then
-                soul = soul_types[Random(1, #soul_types)]
-            end
-            soul = shifts[soul] or soul
-            local price = v[2]
-            if type(v[2]) == "table" then
-                price = Random(v[2][1], v[2][2])
-            end
-            if price > 0 then
-                EntityAddComponent2(shop, "VariableStorageComponent", {
-                    _tags = "shop_price",
-                    name = soul,
-                    value_int = price
-                })
-            end
-        end
+
         local item_entity = item.spawn(x, y)
         EntityAddTag(item_entity, "souls_gate_shop_item")
         local comp_item = EntityGetFirstComponentIncludingDisabled(item_entity, "ItemComponent")
@@ -193,5 +191,39 @@ function GateShop(shop)
             ComponentSetValue2(comp_item, "is_pickable", false)
         end
         EntityAddChild(shop, item_entity)
+
+        local soul_prices = {}
+        for i, v in ipairs(item.price) do
+            SetRandomSeed(x + frame + i, y)
+            local soul = v[1]
+            if type(v[1]) == "table" then soul = v[1][Random(1, #v[1])] -- amazing formatting!!!
+            elseif v[1] == GateSouls.USUAL then soul = soul_types[Random(1, #soul_types - 2)]
+            elseif v[1] == GateSouls.ALL then soul = soul_types[Random(1, #soul_types - 1)]
+            elseif v[1] == GateSouls.ALL_BOSS then soul = soul_types[Random(1, #soul_types)] end
+            soul = shifts[soul] or soul
+            local price = v[2]
+            if type(v[2]) == "table" then
+                price = Random(v[2][1], v[2][2])
+            end
+            if price > 0 then
+                soul_prices[tostring(soul)] = (soul_prices[tostring(soul)] or 0) + price
+            end
+        end
+        if soul_prices["soul"] ~= nil then
+            EntityAddComponent2(shop, "VariableStorageComponent", {
+                _tags = "shop_price",
+                name = "soul",
+                value_int = soul_prices["soul"]
+            })
+        end
+        for k, v in pairs(soul_prices) do
+            if tostring(k) ~= "soul" then
+                EntityAddComponent2(shop, "VariableStorageComponent", {
+                    _tags = "shop_price",
+                    name = tostring(k),
+                    value_int = v
+                })
+            end
+        end
     end
 end

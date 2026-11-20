@@ -12,7 +12,7 @@ if #items > 0 then
     local item_x = x
     local item_y = y - 30 + 4 * math.sin(frame / 50)
 
-    EntitySetTransform(item, item_x, item_y)
+    EntityApplyTransform(item, item_x, item_y)
 else
     EntitySetComponentsWithTagEnabled(shop, "soul_shop", false)
 end

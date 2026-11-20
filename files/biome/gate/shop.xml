@@ -27,7 +27,7 @@
         _tags="soul_shop"
         radius="14"
         ui_text="INTERACT: Purchase!"
-        name="Soul Gate"
+        name="Void Gate"
     ></InteractableComponent>
 
     <LuaComponent

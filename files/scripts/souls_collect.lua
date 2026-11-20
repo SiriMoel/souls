@@ -3,6 +3,8 @@ dofile_once("mods/souls/files/scripts/souls.lua")
 local this = GetUpdatedEntityID()
 local x, y = EntityGetTransform(this)
 
+if EntityHasTag(this, "souls_gate_shop_item") then return end
+
 local targets = EntityGetInRadiusWithTag(x, y, 7, "player_unit")
 
 if #targets > 0 then

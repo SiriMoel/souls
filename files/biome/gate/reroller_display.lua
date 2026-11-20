@@ -44,9 +44,8 @@ function RerollerGuiUpdate()
 
     local price_comp = EntityGetFirstComponentIncludingDisabled(reroller, "VariableStorageComponent", "reroll_price")
     if price_comp ~= nil then
-        local soul = ComponentGetValue2(price_comp, "name")
         local price = ComponentGetValue2(price_comp, "value_int")
-        GuiImage(reroller_gui, get_gui_id(), pos_x - 7, pos_y - 17, "mods/souls/files/soul_sprites/souls.xml", 1, 1.5, 1.5, 0, GUI_RECT_ANIMATION_PLAYBACK.Loop, soul)
+        GuiImage(reroller_gui, get_gui_id(), pos_x - 7, pos_y - 17, "mods/souls/files/soul_sprites/souls.xml", 1, 1.5, 1.5, 0, GUI_RECT_ANIMATION_PLAYBACK.Loop, "soul_a")
         local price_text = "x" .. tostring(price)
         local text_x = pos_x + 9
         local text_y = pos_y + 2 - 17

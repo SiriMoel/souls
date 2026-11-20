@@ -414,16 +414,16 @@ mod_settings = {
         _folded = true,
         settings = {
             {
-                id = "enable_souldoor",
-                ui_name = "Gate",
+                id = "enable_soulplace",
+                ui_name = "Tree room",
                 ui_description = "Should this structure appear?",
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
                 ui_fn = mod_setting_bool_souls,
             },
             {
-                id = "enable_soulplace",
-                ui_name = "Tree room",
+                id = "enable_souldoor",
+                ui_name = "Gate",
                 ui_description = "Should this structure appear?",
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_NEW_GAME,

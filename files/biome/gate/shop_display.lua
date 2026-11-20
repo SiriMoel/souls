@@ -56,13 +56,11 @@ function ShopGuiUpdate()
             GuiImage(shop_gui, get_gui_id(), shop_x - 7, shop_y - 17 * i, "mods/souls/files/soul_sprites/souls.xml", 1, 1.5, 1.5, 0, GUI_RECT_ANIMATION_PLAYBACK.Loop, soul)
             local price_text = "x" .. tostring(price)
             local text_x = shop_x + 9
-            local text_y = shop_y + 1 - 17 * i
-            text_outline(price_text, text_x, text_y)
+            local text_y = shop_y + 2 - 17 * i
+            text_outline(price_text, text_x, text_y, 0)
             GuiText(shop_gui, text_x, text_y, price_text)
         end
     end
        
     GuiIdPop(shop_gui)
-
-    --GuiDestroy(shop_gui)
 end

@@ -53,9 +53,10 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
                 if comp_item ~= nil then
                     ComponentSetValue2(comp_item, "is_pickable", true)
                 end
+                EntityRemoveTag(item, "souls_gate_shop_item")
                 EntityRemoveFromParent(item)
                 local frame = GameGetFrameNum()
-                EntitySetTransform(item, x,  y - 30 + 4 * math.sin(frame / 50))
+                EntityApplyTransform(item, x,  y - 30)
             end
         else
             SoulsPrint("You do not have enough souls for this.")

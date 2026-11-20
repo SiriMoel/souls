@@ -12,6 +12,11 @@ local comp_frame_created = EntityGetFirstComponentIncludingDisabled(this, "Varia
 local frame_created = ComponentGetValue2(comp_frame_created, "value_int")
 local frame_now = GameGetFrameNum()
 
+if EntityHasTag(this, "souls_gate_shop_item") then
+    ComponentSetValue2(comp_frame_created, "value_int", frame_now)
+    return
+end
+
 if frame_now > frame_created + 7200 then
     EntityKill(this)
 end

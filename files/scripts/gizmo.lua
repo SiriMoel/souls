@@ -80,6 +80,24 @@ local drops = {
         script = "mods/souls/files/scripts/death/maggot_tiny.lua",
     },
 }
+if ModIsEnabled("Apotheosis") then
+    table.insert(drops, {
+        path = "data/entities/animals/boss_toxic_worm/boss_toxic_worm.xml",
+        script = "mods/souls/files/scripts/death/apotheosis/boss_toxic_worm.lua",
+    })
+    table.insert(drops, {
+        path = "data/entities/animals/boss_fire_lukki/boss_fire_lukki.xml",
+        script = "mods/souls/files/scripts/death/apotheosis/boss_fire_lukki.lua",
+    })
+    table.insert(drops, {
+        path = "data/entities/animals/boss_flesh_monster/boss_flesh_monster.xml",
+        script = "mods/souls/files/scripts/death/apotheosis/boss_flesh_monster.lua",
+    })
+    table.insert(drops, {
+        path = "data/entities/animals/boss_musical_ghost/boss_musical_ghost.xml",
+        script = "mods/souls/files/scripts/death/apotheosis/boss_musical_ghost.lua",
+    })
+end
 for _,v in ipairs(drops) do
     for content in nxml.edit_file(v.path) do
         content:create_children(

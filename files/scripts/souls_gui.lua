@@ -41,12 +41,12 @@ function SoulsGuiUpdate()
                 hat_offset = soul_hats[soul].offset
             end
         end
-        if not hatted then
+        --[[if not hatted then
             if christmas then
             hat = "mods/souls/files/ui_gfx/soul_santa_hat.png"
             hatted = true
             end
-        end
+        end]]
         return hatted, hat, hat_offset
     end
 

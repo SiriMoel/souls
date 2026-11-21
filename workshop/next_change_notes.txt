@@ -1,10 +1,5 @@
 1.6.1
 
-NEW
-- Void Gate structure rework
-
-CHANGED/FIXED
-- Soul crystal improvements & sprite changes
-
-INTERNAL
-- ???
+- Soul crystal sprites
+- Soul crystals for the Apotheosis bosses
+- Increased the damage and effect duration of Huutava sielu's projectiles

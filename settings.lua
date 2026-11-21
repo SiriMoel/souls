@@ -286,7 +286,7 @@ mod_settings = {
         id = "version",
         ui_name = "Version",
         ui_description = "Version",
-        value_default = 5.00,
+        value_default = 6.00,
         hidden = true,
     },
     {

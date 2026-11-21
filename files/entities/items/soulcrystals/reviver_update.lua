@@ -24,6 +24,14 @@ if life <= 0 then
 	    })
     end
 
+    local comp_revived_count = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "revived_count")
+    local revived_count = ComponentGetValue2(comp_revived_count, "value_int")
+    EntityAddComponent2(boss, "VariableStorageComponent", {
+        _tags = "revived_count",
+        name = "revived_count",
+        value_int = revived_count
+    })
+
     local dmc = EntityGetFirstComponent(boss, "DamageModelComponent")
     if dmc ~= nil then
         local max_hp = ComponentGetValue2(dmc, "max_hp")

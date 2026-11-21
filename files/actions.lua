@@ -1,7 +1,7 @@
 dofile_once("mods/souls/files/scripts/souls.lua")
 
 local new_actions = {
-	--[[{
+	{
 		id = "HAX", -- DONT FORGET TO COMMENT THIS!!!
 		name = "cheating!",
 		description = "cheating!",
@@ -36,13 +36,12 @@ local new_actions = {
 				table.insert(crystals, "mods/souls/files/entities/items/soulcrystals/apotheosis/toxic_worm.xml")
 				table.insert(crystals, "mods/souls/files/entities/items/soulcrystals/apotheosis/hot_spider.xml")
 				table.insert(crystals, "mods/souls/files/entities/items/soulcrystals/apotheosis/austria.xml")
-				table.insert(crystals, "mods/souls/files/entities/items/soulcrystals/apotheosis/square.xml")
 			end
 			for i = 1, #crystals do
 				EntityLoad(crystals[i], x + 5 * i, y - 5)
 			end
 		end,
-	},]]
+	},
 	{
 		id = "REAPING_SHOT",
 		name = "$action_souls_reaping_shot",

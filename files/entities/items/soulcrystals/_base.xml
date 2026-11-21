@@ -153,6 +153,12 @@
 		value_string="data/entities/animals/boss_fish/fish_giga.xml"
 	></VariableStorageComponent>
 
+	<VariableStorageComponent
+		_tags="revived_count"
+		name="revived_count"
+		value_int="0"
+	></VariableStorageComponent>
+
 	<LuaComponent
 		_tags="enabled_in_world,enabled_in_hand,enabled_in_inventory"
 		script_source_file="mods/souls/files/entities/items/soulcrystals/crystal_update.lua"
@@ -167,7 +173,7 @@
 
   	<MaterialSuckerComponent 
 	    _tags="enabled_in_world,enabled_in_hand"
-	    barrel_size="195"
+	    barrel_size="200"
 	    num_cells_sucked_per_frame="5"
 		material_type="0"
 		suck_tag="[souls_soul_blood_1]"

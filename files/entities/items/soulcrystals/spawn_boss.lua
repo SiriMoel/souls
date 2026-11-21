@@ -12,8 +12,8 @@ function kick(entity_who_kicked)
             local mats = ComponentGetValue2(comp_matinv, "count_per_material_type")
             local amt = mats[CellFactory_GetType("souls_soul_blood_1") + 1]
             local comp_mat_suck = EntityGetFirstComponentIncludingDisabled(this, "MaterialSuckerComponent")
-            local required = ComponentGetValue2(comp_mat_suck, "barrel_size") or 150
-            if amt >= required - 5 then
+            local required = ComponentGetValue2(comp_mat_suck, "barrel_size")
+            if amt >= required then
                 local revived = tonumber(GlobalsGetValue("souls.bosses_revived", "0"))
                 revived = revived + 1
                 local desc = "The Gods watch intently..."
@@ -33,6 +33,13 @@ function kick(entity_who_kicked)
                     _tags="souls_boss_to_revive",
                     name="boss",
                     value_string=ComponentGetValue2(comp_boss, "value_string"),
+                })
+                local comp_revived_count = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "revived_count")
+                local revived_count = ComponentGetValue2(comp_revived_count, "value_int")
+                EntityAddComponent2(reviver, "VariableStorageComponent", {
+                    _tags = "revived_count",
+                    name = "revived_count", -- why do i do this? is this even necessary? ive just always done this forever
+                    value_int = revived_count
                 })
                 EntityKill(this)
             end

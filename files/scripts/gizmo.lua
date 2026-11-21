@@ -34,80 +34,6 @@ for content in nxml.edit_file("data/entities/items/orbs/orb_base.xml") do
     )
 end
 
-local drops = {
-    {
-        path = "data/entities/animals/boss_alchemist/boss_alchemist.xml",
-        script = "mods/souls/files/scripts/death/boss_alchemist.lua",
-    },
-    {
-        path = "data/entities/animals/boss_limbs/boss_limbs.xml",
-        script = "mods/souls/files/scripts/death/boss_limbs.lua",
-    },
-    {
-        path = "data/entities/animals/boss_pit/boss_pit.xml",
-        script = "mods/souls/files/scripts/death/boss_pit.lua",
-    },
-    {
-        path = "data/entities/animals/boss_dragon.xml",
-        script = "mods/souls/files/scripts/death/boss_dragon.lua",
-    },
-    {
-        path = "data/entities/animals/boss_wizard/boss_wizard.xml",
-        script = "mods/souls/files/scripts/death/boss_wizard.lua",
-    },
-    {
-        path = "data/entities/animals/boss_fish/fish_giga.xml",
-        script = "mods/souls/files/scripts/death/boss_fish.lua",
-    },
-    {
-        path = "data/entities/animals/boss_spirit/islandspirit.xml",
-        script = "mods/souls/files/scripts/death/boss_deer.lua",
-    },
-    {
-        path = "data/entities/animals/boss_ghost/boss_ghost.xml",
-        script = "mods/souls/files/scripts/death/boss_ghost.lua",
-    },
-    {
-        path = "data/entities/animals/boss_meat/boss_meat.xml",
-        script = "mods/souls/files/scripts/death/boss_meat.lua",
-    },
-    --[[{
-        path = "data/entities/animals/boss_robot/boss_robot.xml",
-        script = "mods/souls/files/scripts/death/boss_robot.lua",
-    },]]
-    {
-        path = "data/entities/animals/maggot_tiny/maggot_tiny.xml",
-        script = "mods/souls/files/scripts/death/maggot_tiny.lua",
-    },
-}
-if ModIsEnabled("Apotheosis") then
-    table.insert(drops, {
-        path = "data/entities/animals/boss_toxic_worm/boss_toxic_worm.xml",
-        script = "mods/souls/files/scripts/death/apotheosis/boss_toxic_worm.lua",
-    })
-    table.insert(drops, {
-        path = "data/entities/animals/boss_fire_lukki/boss_fire_lukki.xml",
-        script = "mods/souls/files/scripts/death/apotheosis/boss_fire_lukki.lua",
-    })
-    table.insert(drops, {
-        path = "data/entities/animals/boss_flesh_monster/boss_flesh_monster.xml",
-        script = "mods/souls/files/scripts/death/apotheosis/boss_flesh_monster.lua",
-    })
-    table.insert(drops, {
-        path = "data/entities/animals/boss_musical_ghost/boss_musical_ghost.xml",
-        script = "mods/souls/files/scripts/death/apotheosis/boss_musical_ghost.lua",
-    })
-end
-for _,v in ipairs(drops) do
-    for content in nxml.edit_file(v.path) do
-        content:create_children(
-            { LuaComponent = {
-                script_death=v.script
-	        }}
-        )
-    end
-end
-
 local bosses = {
     "data/entities/animals/boss_alchemist/boss_alchemist.xml",
 	"data/entities/animals/boss_limbs/boss_limbs.xml",
@@ -129,12 +55,12 @@ if ModIsEnabled("Apotheosis") then
     table.insert(bosses, "data/entities/animals/boss_flesh_monster/boss_flesh_monster.xml")
     table.insert(bosses, "data/entities/animals/boss_musical_ghost/boss_musical_ghost.xml")
 end
-for _,path in ipairs(bosses) do
+for _, path in ipairs(bosses) do
     for content in nxml.edit_file(path) do
         content:set("tags", content:get("tags") .. ",souls_boss")
         content:create_children(
             { LuaComponent = {
-        		script_death="mods/souls/files/scripts/death/boss.lua",
+        		script_death="mods/souls/files/scripts/boss_death.lua",
 		        execute_every_n_frame=-1
     	    }}
         )

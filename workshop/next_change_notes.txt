@@ -1,5 +1,6 @@
 1.6.1
 
 - Soul crystal sprites
-- Soul crystals for the Apotheosis bosses
+- Soul crystals for 3 Apotheosis bosses
 - Increased the damage and effect duration of Huutava sielu's projectiles
+- Soul crystals require more soul blood to revive with each use (per boss)

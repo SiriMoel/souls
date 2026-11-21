@@ -15,9 +15,9 @@ local souls_to_add = {
         xml = "item.xml",
     },]]
     {
-        path = "mods/souls/files/entities/items/_soulcrystals/pyramid.xml",
+        path = "mods/souls/files/entities/items/soulcrystals/limbs.xml",
         name = "Kolmisilmän koipi's Soul Crystal",
-        xml = "pyramid.xml",
+        xml = "limbs.xml",
     },
     {
         path = "mods/souls/files/entities/misc/haunting/entity.xml",

@@ -1,10 +1,10 @@
-v1.6.1
+1.6.1
 
 NEW
-- Soul Gate structure rework
+- Void Gate structure rework
 
 CHANGED/FIXED
-- ???
+- Soul crystal improvements & sprite changes
 
 INTERNAL
 - ???

@@ -1,7 +1,7 @@
 dofile_once("mods/souls/files/scripts/souls.lua")
 
 local new_actions = {
-	--[[{
+	{
 		id = "HAX", -- DONT FORGET TO COMMENT THIS!!!
 		name = "cheating!",
 		description = "cheating!",
@@ -18,11 +18,25 @@ local new_actions = {
 			--EditSoulCounts({["orcs"] = 1}, caster)
 			AcquireManySouls(caster)
 			--SoulsPrintImportant("hello", "hello", "divine")
-			--EntitySetComponentsWithTagEnabled(caster, "souls_execute_on_reap", true)
-			--local x, y = EntityGetTransform(caster)
-			--EntityLoad("mods/souls/files/entities/misc/haunting/entity.xml", x, y - 6)
+			local x, y = EntityGetTransform(caster)
+			local crystals = {
+				"mods/souls/files/entities/items/soulcrystals/alchemist.xml",
+				"mods/souls/files/entities/items/soulcrystals/banshee.xml",
+				"mods/souls/files/entities/items/soulcrystals/deer.xml",
+				"mods/souls/files/entities/items/soulcrystals/dragon.xml",
+				"mods/souls/files/entities/items/soulcrystals/fish.xml",
+				"mods/souls/files/entities/items/soulcrystals/ghost.xml",
+				"mods/souls/files/entities/items/soulcrystals/limbs.xml",
+				"mods/souls/files/entities/items/soulcrystals/meat.xml",
+				"mods/souls/files/entities/items/soulcrystals/pit.xml",
+				"mods/souls/files/entities/items/soulcrystals/tiny.xml",
+				"mods/souls/files/entities/items/soulcrystals/wizard.xml",
+			}
+			for i = 1, #crystals do
+				EntityLoad(crystals[i], x + 5 * i, y - 5)
+			end
 		end,
-	},]]
+	},
 	{
 		id = "REAPING_SHOT",
 		name = "$action_souls_reaping_shot",

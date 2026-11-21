@@ -38,7 +38,7 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
         --CreateItemActionEntity(pool[rnd], x, y - 5)
     end
 
-    EntityLoad("mods/souls/files/entities/items/_soulcrystals/banshee.xml", x, y - 6)
+    EntityLoad("mods/souls/files/entities/items/soulcrystals/banshee.xml", x, y - 6)
 
     if BiomeMapGetName(x, y) == "$biome_rainforest" and not GameHasFlagRun("souls_banshee_rainforest") then
         GameAddFlagRun("souls_banshee_rainforest")

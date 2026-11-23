@@ -10,7 +10,7 @@
 	
 	<SpriteComponent
 		image_file="mods/souls/files/entities/items/soul_emulator/sprite.png"
-		offset_x="8"
+		offset_x="9"
 		offset_y="8"
 		update_transform="1"
 		update_transform_rotation="0"
@@ -20,11 +20,11 @@
 		script_item_picked_up="mods/souls/files/entities/items/soul_emulator/pickup.lua"
 	></LuaComponent>
 
-	<!--<ParticleEmitterComponent 
+	<ParticleEmitterComponent 
 		emitted_material_name="souls_soul_particles"
 		gravity.y="0.0"
-		lifetime_min="0.6"
-		lifetime_max="0.8"
+		lifetime_min="0.8"
+		lifetime_max="0.9"
 		count_min="8"
 		count_max="8"
 		render_on_grid="1"
@@ -32,7 +32,7 @@
 		area_circle_radius.min="0"
 		area_circle_radius.max="0"
 		cosmetic_force_create="0"
-		airflow_force="0.51"
+		airflow_force="0.01"
 		airflow_time="1.01"
 		airflow_scale="0.05"
 		x_pos_offset_min="0"
@@ -42,10 +42,10 @@
 		emission_interval_min_frames="1"
 		emission_interval_max_frames="1"
 		emit_cosmetic_particles="1"
-		image_animation_file="mods/souls/files/entities/items/soul_emulator/emitter.png"
+		image_animation_file="mods/souls/files/entities/items/curse/emitter.png"
 		image_animation_speed="2"
 		image_animation_loop="1"
 		is_emitting="1"
-    ></ParticleEmitterComponent>-->
+    ></ParticleEmitterComponent>
 
 </Entity>

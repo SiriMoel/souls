@@ -14,11 +14,11 @@ function SoulsGuiUpdate()
     local soulcounts = SoulCounts(player)
     local divine = EntityHasTag(player, "souls_divine")
 
-    local year, month, day = GameGetDateAndTimeLocal()
+    --[[local year, month, day = GameGetDateAndTimeLocal()
     local christmas = false
     if (month == 12) and (day >= 24) and (day <= 26) then
         christmas = true
-    end
+    end]]
     
     souls_gui = souls_gui or GuiCreate()
 

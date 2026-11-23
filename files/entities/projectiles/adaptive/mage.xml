@@ -1,0 +1,9 @@
+<Entity>
+
+    <Base file="mods/souls/files/entities/projectiles/adaptive/base.xml">
+        <VariableStorageComponent
+            value_string="mage"
+        ></VariableStorageComponent>
+    </Base>
+
+</Entity>

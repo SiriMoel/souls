@@ -154,9 +154,21 @@ local new_actions = {
 		mana = 60,
 		ai_never_uses = true,
 		action = function()
-			add_projectile("mods/souls/files/entities/projectiles/soul_blast/soul_blast.xml")
-			souls_used_count = souls_used_count + 1
 			c.fire_rate_wait = c.fire_rate_wait + 30
+			if reflecting then 
+				add_projectile("mods/souls/files/entities/projectiles/soul_blast/soul_blast.xml")
+				return 
+			end
+			local caster = GetUpdatedEntityID()
+			local success, soul = SpellUseSouls(caster, 1)
+			if success then
+				add_projectile("mods/souls/files/entities/projectiles/soul_blast/soul_blast.xml")
+				c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/adaptive/" .. soul .. ".xml,"
+				souls_used_count = souls_used_count + 1
+			else
+				souls_not_enough = true
+	    		souls_not_enough_count = souls_not_enough_count + 1
+			end
 		end,
 	},
 	{
@@ -172,9 +184,21 @@ local new_actions = {
 		mana = 30,
 		ai_never_uses = true,
 		action = function()
-			add_projectile("mods/souls/files/entities/projectiles/soul_arrow/proj.xml")
-			souls_used_count = souls_used_count + 1
 			c.fire_rate_wait = c.fire_rate_wait + 12
+			if reflecting then 
+				add_projectile("mods/souls/files/entities/projectiles/soul_arrow/proj.xml")
+				return 
+			end
+			local caster = GetUpdatedEntityID()
+			local success, soul = SpellUseSouls(caster, 1)
+			if success then
+				add_projectile("mods/souls/files/entities/projectiles/soul_arrow/proj.xml")
+				c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/adaptive/" .. soul .. ".xml,"
+				souls_used_count = souls_used_count + 1
+			else
+				souls_not_enough = true
+	    		souls_not_enough_count = souls_not_enough_count + 1
+			end
 		end,
 	},
 	{
@@ -187,12 +211,24 @@ local new_actions = {
 		spawn_level = "3,4,5,6",
 		spawn_probability = "0.6,0.7,0.6,0.6",
 		price = 100,
-		mana = 35,
+		mana = 45,
 		ai_never_uses = true,
 		action = function()
-			add_projectile("mods/souls/files/entities/projectiles/soul_bolt/proj.xml")
-			souls_used_count = souls_used_count + 1
-			c.fire_rate_wait = c.fire_rate_wait + 12
+			c.fire_rate_wait = c.fire_rate_wait + 24
+			if reflecting then 
+				add_projectile("mods/souls/files/entities/projectiles/soul_bolt/proj.xml")
+				return 
+			end
+			local caster = GetUpdatedEntityID()
+			local success, soul = SpellUseSouls(caster, 1)
+			if success then
+				add_projectile("mods/souls/files/entities/projectiles/soul_bolt/proj.xml")
+				c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/adaptive/" .. soul .. ".xml,"
+				souls_used_count = souls_used_count + 1
+			else
+				souls_not_enough = true
+	    		souls_not_enough_count = souls_not_enough_count + 1
+			end
 		end,
 	},
 	{
@@ -208,9 +244,21 @@ local new_actions = {
 		mana = 70,
 		ai_never_uses = true,
 		action = function()
-			add_projectile("mods/souls/files/entities/projectiles/soul_ball/soul_ball.xml")
-			souls_used_count = souls_used_count + 1
 			c.fire_rate_wait = c.fire_rate_wait + 42
+			if reflecting then 
+				add_projectile("mods/souls/files/entities/projectiles/soul_ball/soul_ball.xml")
+				return 
+			end
+			local caster = GetUpdatedEntityID()
+			local success, soul = SpellUseSouls(caster, 1)
+			if success then
+				add_projectile("mods/souls/files/entities/projectiles/soul_ball/soul_ball.xml")
+				c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/adaptive/" .. soul .. ".xml,"
+				souls_used_count = souls_used_count + 1
+			else
+				souls_not_enough = true
+	    		souls_not_enough_count = souls_not_enough_count + 1
+			end
 		end,
 	},
 	{
@@ -226,9 +274,21 @@ local new_actions = {
 		mana = 100,
 		ai_never_uses = true,
 		action = function()
-			add_projectile("mods/souls/files/entities/projectiles/soul_meteor/proj.xml")
-			souls_used_count = souls_used_count + 1
 			c.fire_rate_wait = c.fire_rate_wait + 60
+			if reflecting then 
+				add_projectile("mods/souls/files/entities/projectiles/soul_meteor/proj.xml")
+				return
+			end
+			local caster = GetUpdatedEntityID()
+			local success, soul = SpellUseSouls(caster, 1)
+			if success then
+				add_projectile("mods/souls/files/entities/projectiles/soul_meteor/proj.xml")
+				c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/adaptive/" .. soul .. ".xml,"
+				souls_used_count = souls_used_count + 1
+			else
+				souls_not_enough = true
+	    		souls_not_enough_count = souls_not_enough_count + 1
+			end
 		end,
 	},
 	{
@@ -537,7 +597,7 @@ local new_actions = {
 			draw_actions(1, true)
 		end,
 	},
-	{
+	--[[{
 		id = "SOUL_BOOST",
 		name = "$action_souls_soul_boost",
 		description = "$actiondesc_souls_soul_boost",
@@ -554,7 +614,7 @@ local new_actions = {
 			souls_used_count = souls_used_count + 1
 			draw_actions(1, true)
 		end,
-	},
+	},]]
 	{
 		id = "REAPING_FIELD",
 		name = "$action_souls_reaping_field",

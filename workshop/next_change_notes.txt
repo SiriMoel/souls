@@ -2,5 +2,11 @@
 
 - Soul crystal sprites
 - Soul crystals for 3 Apotheosis bosses
+- Reworked adaptive projectile spells (mostly internally, but also some stat changes)
 - Increased the damage and effect duration of Huutava sielu's projectiles
 - Soul crystals require more soul blood to revive with each use (per boss)
+- Increased the amount of soul blood produced from soulless blood per soul
+- Increased the duration of the Reaping Field spell (5s -> 15s)
+- Slight buff to revived boss projectiles
+- Soul Emulator vfx change
+- Removed the Soul Boost spell

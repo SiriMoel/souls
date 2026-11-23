@@ -22,7 +22,7 @@ actiondesc_souls_eat_wand_for_souls,"Digests the wand into a number of souls dep
 action_souls_soul_arrow,"Soul Arrow",,,,,,,,,,,,,,,,,,,,,,
 actiondesc_souls_soul_arrow,"Consume a soul to launch an arrow that flies through terrain",,,,,,,,,,,,,,,,,,,,,,
 action_souls_soul_ball,"Soul Ball",,,,,,,,,,,,,,,,,,,,,,
-actiondesc_souls_soul_ball,"Expels a soul in the form of a bouncing projectile",,,,,,,,,,,,,,,,,,,,,,
+actiondesc_souls_soul_ball,"Expel a soul in the form of a bouncing projectile",,,,,,,,,,,,,,,,,,,,,,
 action_souls_soul_meteor,"Soul Meteor",,,,,,,,,,,,,,,,,,,,,,
 actiondesc_souls_soul_meteor,"Consume a soul to fire a powerful, slow moving projectile",,,,,,,,,,,,,,,,,,,,,,
 action_souls_soul_healer,"Soul Healer",,,,,,,,,,,,,,,,,,,,,,

@@ -54,7 +54,7 @@
 		</SpriteParticleEmitterComponent>
 
 		<ProjectileComponent
-			lifetime="300" >
+			lifetime="900" >
 			<config_explosion
 				explosion_sprite="mods/souls/files/entities/particles/blast_out_soul.xml" >
 			</config_explosion>

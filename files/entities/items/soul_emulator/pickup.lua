@@ -31,9 +31,10 @@ function item_pickup(entity_item, entity_who_picked, item_name)
                 end
             end
             str = str .. soul[1] .. " (" .. soul[2] .. ")"
+            SoulsPrint("You do not have enough " .. soul[1] .. " souls for this. (" .. soul[2] .. ")")
         end
         str = str .. " souls for this."
-        GamePrint(str)
+        --GamePrint(str)
         EntityLoad("mods/souls/files/entities/items/soul_emulator/item.xml", x, y)
         EntityKill(entity_item)
     else

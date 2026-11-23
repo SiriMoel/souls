@@ -49,7 +49,7 @@ end
 
 local sprites_image, sprites_width, sprites_height = ModImageMakeEditable(sprites_path, 172, 177)
 
-if ModSettingGet("souls.green") then
+--[[if ModSettingGet("souls.green") then
     for x = 0, sprites_width do
         for y = 0, sprites_height do
             local pixel = ModImageGetPixel(sprites_image, x, y)
@@ -65,7 +65,7 @@ if ModSettingGet("souls.green") then
             ModImageSetPixel(banshee_image, x, y, green_pixel)
         end
     end
-end
+end]]
 
 for _, soul in ipairs(soul_sprites) do
     local soul_image = ModImageMakeEditable("mods/souls/files/soul_sprites/" .. soul.soul .. ".png", 10, 10)
@@ -76,16 +76,14 @@ for _, soul in ipairs(soul_sprites) do
         end
     end
     
-    if true --[[not soul.not_soul_type]] then
-        local soul_image_silhouette = ModImageMakeEditable("mods/souls/files/soul_sprites/silhouettes/" .. soul.soul .. ".png", 10, 10)
-        for x = 0, 9 do
-            for y = 0, 9 do
-                local pixel = ModImageGetPixel(sprites_image, soul.pos.x + x, soul.pos.y + y)
-                local r, g, b, a = abgr_split(pixel)
-                local val = (r + g + b) / 3
-                local bw_pixel = abgr_merge(val, val, val, a)
-                ModImageSetPixel(soul_image_silhouette, x, y, bw_pixel)
-            end
+    local soul_image_silhouette = ModImageMakeEditable("mods/souls/files/soul_sprites/silhouettes/" .. soul.soul .. ".png", 10, 10)
+    for x = 0, 9 do
+        for y = 0, 9 do
+            local pixel = ModImageGetPixel(sprites_image, soul.pos.x + x, soul.pos.y + y)
+            local r, g, b, a = abgr_split(pixel)
+            local val = (r + g + b) / 3
+            local bw_pixel = abgr_merge(val, val, val, a)
+            ModImageSetPixel(soul_image_silhouette, x, y, bw_pixel)
         end
     end
 end

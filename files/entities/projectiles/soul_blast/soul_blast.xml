@@ -1,5 +1,7 @@
 <Entity name="$projectile_default" tags="projectile_player,soul_projectile">
 
+    <!-- why is this file like this -->
+
 	<Base file="data/entities/base_projectile.xml" >
     <VelocityComponent
         gravity_y="50" 
@@ -190,12 +192,11 @@
     event_root="player_projectiles/bullet_rocket">
   </AudioComponent>
 
-    	<LuaComponent
-		script_source_file="mods/souls/files/entities/projectiles/soul_blast/soul_blast.lua"
-		execute_every_n_frame="1"
-		remove_after_executed="1"
-		>
-	</LuaComponent>
+    <!--<LuaComponent
+  		  script_source_file="mods/souls/files/entities/projectiles/soul_blast/soul_blast.lua"
+		    execute_every_n_frame="1"
+		    remove_after_executed="1"
+		></LuaComponent>-->
   
 	<VariableStorageComponent
 		name="projectile_file"

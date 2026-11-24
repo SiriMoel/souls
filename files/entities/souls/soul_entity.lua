@@ -24,7 +24,7 @@ end
 local comp_speed = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "speed")
 local speed = ComponentGetValue2(comp_speed, "value_float")
 
-local min_speed = 0
+local min_speed = 0.4
 local normal_speed = 1.0
 local max_speed = 3.0
 local speed_inc = 0.03
@@ -36,8 +36,13 @@ local a = -math.pi / 2
 if frame_now <= frame_created + 30 then
     local up = (frame_now - frame_created) / 30
     speed = normal_speed * math.sin(math.pi * up)
+    if RaytraceSurfaces(x, y, x + stop_dist * math.cos(a), y + stop_dist * math.sin(a)) then
+        speed = math.max(speed - 10 * speed_inc, min_speed)
+    elseif RaytraceSurfaces(x, y, x + 5 * math.cos(a), y + 5 * math.sin(a)) then
+        speed = min_speed
+    end
 else
-    local targets = EntityGetInRadiusWithTag(x, y, 200, "player_unit") or {}
+    local targets = EntityGetInRadiusWithTag(x, y, 230, "player_unit") or {}
     if #targets > 0 then
         local player = targets[1]
 
@@ -47,7 +52,7 @@ else
         if RaytraceSurfaces(x, y, p_x, p_y) then
             speed = math.max(speed - speed_inc, min_speed)
         else
-            speed = math.min(speed + 2 * speed_inc, max_speed)
+            speed = math.min(speed + 3 * speed_inc, max_speed)
         end
 
         local dist_x = p_x - x
@@ -57,15 +62,15 @@ else
 
         a = math.atan2(dist_y, dist_x)
     else
-        speed = math.max(speed - 5 * speed_inc, min_speed)
+        speed = math.max(speed - 5 * speed_inc, 0)
     end
 end
 
-if RaytraceSurfaces(x, y, x + stop_dist * math.cos(a), y + stop_dist * math.sin(a)) then
-    speed = math.max(speed - 13 * speed_inc, min_speed)
+--[[if RaytraceSurfaces(x, y, x + stop_dist * math.cos(a), y + stop_dist * math.sin(a)) then
+    speed = math.max(speed - 10 * speed_inc, min_speed)
 elseif RaytraceSurfaces(x, y, x + 5 * math.cos(a), y + 5 * math.sin(a)) then
     speed = min_speed
-end
+end]]
 
 ComponentSetValue2(comp_speed, "value_float", speed)
 

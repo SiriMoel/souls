@@ -3,7 +3,7 @@ SOULS_SET_VERSION = true
 SOULS_FORCE_VERSION = nil
 
 function souls_version_update(pos_x, pos_y)
-    print("Souls v1." .. math.floor(SOULS_VERSION) .. "." .. math.floor((SOULS_VERSION - math.floor(SOULS_VERSION)) * 100 + 0.5))
+    --print("Souls v1." .. math.floor(SOULS_VERSION) .. "." .. math.floor((SOULS_VERSION - math.floor(SOULS_VERSION)) * 100 + 0.5))
     local version_before = SOULS_FORCE_VERSION or ModSettingGet("souls.version")
     if version_before < math.floor(SOULS_VERSION) then
         if SOULS_SET_VERSION then

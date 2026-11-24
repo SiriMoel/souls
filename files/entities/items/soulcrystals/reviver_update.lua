@@ -47,9 +47,9 @@ if life <= 0 then
         ComponentSetValue2(dmc, "hp", hp)
     end
 
-    EntityAddComponent2(boss, "LuaComponent", {
+    --[[EntityAddComponent2(boss, "LuaComponent", {
         script_shot = "mods/souls/files/entities/items/soulcrystals/revived/script_shot.lua"
-    })
+    })]]
 
     GamePlaySound("data/audio/Desktop/projectiles.bank", "projectiles/enlightened_laser/launch_dark", x, y)
     GamePlaySound("data/audio/Desktop/misc.bank", "misc/chest_dark_open", x, y)

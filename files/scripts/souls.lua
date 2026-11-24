@@ -216,18 +216,23 @@ end
 function GetEntitySoulType(entity)
     local soul = "friendly"
     local herd
-    local comp = EntityGetFirstComponentIncludingDisabled(entity, "GenomeDataComponent")
-    if comp ~= nil then
-        local herd_id_number = ComponentGetValue2(comp, "herd_id")
-        local herd_id = HerdIdToString(herd_id_number)
-        herd = herd_id
-        local soul_ = souls_genomes[herd_id] or herd_id
-        if soul_names[soul_] ~= nil then
-            soul = soul_
-        end 
-    end
-    if EntityHasTag(entity, "souls_boss") then
-        soul = "boss"
+    local comp_force = EntityGetFirstComponentIncludingDisabled(entity, "VariableStorageComponent", "souls_force_soul_type")
+    if comp_force ~= nil then
+        soul = ComponentGetValue2(comp_force, "value_string")
+    else
+        local comp = EntityGetFirstComponentIncludingDisabled(entity, "GenomeDataComponent")
+        if comp ~= nil then
+            local herd_id_number = ComponentGetValue2(comp, "herd_id")
+            local herd_id = HerdIdToString(herd_id_number)
+            herd = herd_id
+            local soul_ = souls_genomes[herd_id] or herd_id
+            if soul_names[soul_] ~= nil then
+                soul = soul_
+            end 
+        end
+        if EntityHasTag(entity, "souls_boss") then
+            soul = "boss"
+        end
     end
     local player = EntityGetWithTag("player_unit") or {}
     if #player > 0 then

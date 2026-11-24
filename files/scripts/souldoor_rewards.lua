@@ -13,7 +13,7 @@ soul_spells = {
     { probability = 0.2, id = "SOULS_REAPING_HALO", },
     { probability = 0.8, id = "SOULS_SOUL_BOLT", },
     { probability = 0.7, id = "SOULS_SOULDOS", },
-    { probability = 0.7, id = "SOULS_RANDOM_REAP", },
+    { probability = 0.6, id = "SOULS_RANDOM_REAP", },
     { probability = 0.6, id = "SOULS_REAP_TELE", },
     { probability = 0.5, id = "SOULS_TOME_SLICE", },
     { probability = 0.5, id = "SOULS_TOME_LAUNCHER", },
@@ -30,4 +30,7 @@ soul_spells = {
     { probability = 0.3, id = "SOULS_SOUL_SPELL_MAGE", },
     { probability = 0.3, id = "SOULS_SOUL_SPELL_SLIMES", },
     { probability = 0.3, id = "SOULS_COPY", },
+    --{ probability = 0.7, id = "SOULS_NECRONOMICAL_REAP", },
+    --{ probability = 0.7, id = "SOULS_ECHOREAP", },
+    --{ probability = 0.7, id = "SOULS_REAP_SLIMY", },
 }

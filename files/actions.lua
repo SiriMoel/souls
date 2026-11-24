@@ -1,7 +1,7 @@
 dofile_once("mods/souls/files/scripts/souls.lua")
 
 local new_actions = {
-	{
+	--[[{
 		id = "HAX", -- DONT FORGET TO COMMENT THIS!!!
 		name = "cheating!",
 		description = "cheating!",
@@ -41,7 +41,7 @@ local new_actions = {
 				EntityLoad(crystals[i], x + 5 * i, y - 5)
 			end
 		end,
-	},
+	},]]
 	{
 		id = "REAPING_SHOT",
 		name = "$action_souls_reaping_shot",
@@ -68,7 +68,7 @@ local new_actions = {
 		spawn_level = "3,4,5,6",
 		spawn_probability = "0.4,0.4,0.5,0.5",
 		price = 100,
-		mana = 15,
+		mana = 35,
 		action = function()
 			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/random_reap/reaping_shot.xml,"
 			draw_actions(1, true)
@@ -82,8 +82,8 @@ local new_actions = {
 		related_extra_entities = {"mods/souls/files/entities/projectiles/souldos/reaping_shot.xml"},
 		type = ACTION_TYPE_MODIFIER,
 		spawn_level = "4,5,6,10",
-		spawn_probability = "0.4,0.5,0.5,0.7",
-		price = 130,
+		spawn_probability = "0.4,0.5,0.5,0.6",
+		price = 200,
 		mana = 20,
 		action = function()
 			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/souldos/reaping_shot.xml,"
@@ -99,7 +99,7 @@ local new_actions = {
 		type = ACTION_TYPE_MODIFIER,
 		spawn_level = "3,4,5,6",
 		spawn_probability = "0.2,0.3,0.3,0.1",
-		price = 100,
+		price = 80,
 		mana = 5,
 		action = function()
 			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/reap_from_fire/reaping_shot.xml,"
@@ -116,12 +116,48 @@ local new_actions = {
 		type = ACTION_TYPE_MODIFIER,
 		spawn_level  = "3,4,5",
 		spawn_probability = "0.1,0.2,0.1",
-		price = 60,
+		price = 100,
 		mana = 3,
 		action = function()
 			c.damage_projectile_add = c.damage_projectile_add - 0.04
 			current_reload_time = current_reload_time - 3
 			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/necronomical_reap/entity.xml,"
+			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "ECHOREAP",
+		name = "$action_souls_echoreap",
+		description = "$actiondesc_souls_echoreap",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/echoreap.png",
+		related_extra_entities = {"mods/souls/files/entities/projectiles/echoreap/entity.xml"},
+		spawn_requires_flag = "souls_banshee_slain",
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level  = "3,4,5",
+		spawn_probability = "0.1,0.2,0.1",
+		price = 100,
+		mana = 6,
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait - 3
+			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/echoreap/entity.xml,"
+			draw_actions(1, true)
+		end,
+	},
+	{
+		id = "REAP_SLIMY",
+		name = "$action_souls_reap_slimy",
+		description = "$actiondesc_souls_reap_slimy",
+		sprite = "mods/souls/files/ui_gfx/gun_actions/reap_slimy.png",
+		related_extra_entities = {"mods/souls/files/entities/projectiles/reap_slimy/entity.xml"},
+		spawn_requires_flag = "souls_banshee_slain",
+		type = ACTION_TYPE_MODIFIER,
+		spawn_level  = "3,4,5",
+		spawn_probability = "0.1,0.2,0.1",
+		price = 100,
+		mana = 50,
+		action = function()
+			c.fire_rate_wait = c.fire_rate_wait + 9
+			c.extra_entities = c.extra_entities .. "mods/souls/files/entities/projectiles/reap_slimy/entity.xml,"
 			draw_actions(1, true)
 		end,
 	},
@@ -211,7 +247,7 @@ local new_actions = {
 		spawn_level = "3,4,5,6",
 		spawn_probability = "0.6,0.7,0.6,0.6",
 		price = 100,
-		mana = 45,
+		mana = 40,
 		ai_never_uses = true,
 		action = function()
 			c.fire_rate_wait = c.fire_rate_wait + 24

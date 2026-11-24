@@ -43,6 +43,10 @@
 		input_cell1="mimic_liquid" input_cell2="souls_soul_blood_1"
 		output_cell1="souls_soulless_blood" output_cell2="souls_soulless_blood"
 	></Reaction>
+	<Reaction probability="200" fast_reaction="1"
+		input_cell1="mimic_liquid" input_cell2="souls_soul_blood_perfect"
+		output_cell1="souls_soulless_blood" output_cell2="souls_soulless_blood"
+	></Reaction>
 
 	<!-- soulaway -->
 

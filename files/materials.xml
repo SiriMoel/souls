@@ -98,7 +98,7 @@
   	<CellData
 		name="souls_soul_blood_1"
 		ui_name="$mat_souls_soul_blood"
-	  	tags="[liquid],[souls_soul_blood_1]"
+	  	tags="[liquid],[souls_soul_blood_1],[NO_FUNGAL_SHIFT]"
 		density="4.17"
 		cell_type="liquid"
 		wang_color="8000c887"
@@ -140,7 +140,7 @@
   	<CellData
 		name="souls_soul_blood_perfect"
 		ui_name="$mat_souls_soul_blood_perfect"
-	  	tags="[liquid],[souls_soul_blood_perfect]"
+	  	tags="[liquid],[souls_soul_blood_perfect],[NO_FUNGAL_SHIFT]"
 		density="4.18"
 		cell_type="liquid"
 		wang_color="8000c888"

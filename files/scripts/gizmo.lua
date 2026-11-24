@@ -74,8 +74,46 @@ local cloud_spells = {
     "data/entities/projectiles/deck/cloud_thunder.xml",
     "data/entities/projectiles/deck/cloud_water.xml",
 }
-for _,path in ipairs(cloud_spells) do
+for _, path in ipairs(cloud_spells) do
     for content in nxml.edit_file(path) do
         content:set("tags", content:get("tags") .. ",spell_cloud")
+    end
+end
+
+local fix_souls = {
+    {
+        path = "data/entities/animals/lukki/lukki.xml",
+        soul = "spider",
+    },
+    {
+        path = "data/entities/animals/lukki/lukki_tiny.xml",
+        soul = "spider",
+    },
+    {
+        path = "data/entities/animals/scavenger_heal.xml",
+        soul = "orcs",
+    },
+    {
+        path = "data/entities/animals/maggot.xml",
+        soul = "worm",
+    },
+    --[[{
+        path = "data/entities/animals/friend.xml",
+        soul = "souls_void",
+    },]]
+    {
+        path = "data/entities/animals/boss_limbs/slimeshooter_boss_limbs.xml",
+        soul = "slimes",
+    },
+}
+for _, v in ipairs(fix_souls) do
+    for content in nxml.edit_file(v.path) do
+        content:create_children(
+            { VariableStorageComponent = {
+    		    _tags = "souls_force_soul_type",
+		        name = "souls_force_soul_type",
+		        value_string = v.soul
+    	    }}
+        ) 
     end
 end

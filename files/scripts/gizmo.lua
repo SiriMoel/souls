@@ -117,3 +117,20 @@ for _, v in ipairs(fix_souls) do
         ) 
     end
 end
+
+local fix_death = {
+    "data/entities/animals/worm.xml",
+    "data/entities/animals/worm_big.xml",
+    "data/entities/animals/worm_tiny.xml",
+    "data/entities/animals/worm_skull.xml",
+    "data/entities/animals/worm_end.xml",
+}
+for _, path in ipairs(fix_death) do
+    for content in nxml.edit_file(path) do
+        content:create_children(
+            { LuaComponent = {
+    		    script_death = "mods/souls/files/scripts/death.lua"
+    	    }}
+        ) 
+    end
+end

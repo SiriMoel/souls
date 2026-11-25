@@ -11,7 +11,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
     if comp_price ~= nil then
         local price = ComponentGetValue2(comp_price, "value_int")
         if SpellUseSouls(entity_who_interacted, price) then
-            price = price + 3
+            price = math.min(price + 3, 50)
             ComponentSetValue2(comp_price, "value_int", price)
         else
             ok = false

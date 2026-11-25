@@ -38,13 +38,6 @@ function GetSoulTypes()
             end
         end
     end
-    --[[for i, v in ipairs(shifts) do
-        for ii, soul in ipairs(all_soul_types) do
-            if soul == v[1] then
-                soul_types[ii] = v[2]
-            end
-        end
-    end]]
     local types_check = {}
     local soul_types = {}
     for i, v in ipairs(all_soul_types) do

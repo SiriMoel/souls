@@ -116,7 +116,7 @@ function WandSoulType(wand)
     return (val ~= 0 and (soul_types[val] or all_soul_types[val])) or "any"
 end
 
-function SpellUseSouls(caster, n)
+function SpellUseSouls(caster, n) -- "spell" is used very loosely (im lazy so half the mod uses this function)
     if not EntityHasTag(caster, "player_unit") then
         --print("Souls: SpellUseSouls() THAT IS NOT THE PLAYER!!!")
         return false
@@ -194,7 +194,7 @@ function SpellUseSpecificSouls(caster, spell_souls)
         local count = SoulCount(soul, caster)
         if count >= amt then
             total = total + amt
-            to_use[soul] = -amt
+            to_use[tostring(soul)] = -amt
         else
             success = false
             break
@@ -435,6 +435,7 @@ function SoulNameCheck(string)
 end
 
 --- !!! old souls functions below !!!
+-- i wonder if the mod would explode if i just deleted everything below
 
 -- Adds souls, provide type and amount
 function AddSouls(type, amount)

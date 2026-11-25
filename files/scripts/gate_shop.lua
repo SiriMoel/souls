@@ -111,6 +111,25 @@ gate_shop_items = {
         end,
     },
     {
+        id = "reaping_spell",
+        name = "Reaping spell",
+        price = {
+            {"soul", 10},
+            {GateSouls.USUAL, {1, 8}},
+            {GateSouls.USUAL, {1, 8}},
+            {GateSouls.USUAL, {1, 8}},
+            {GateSouls.USUAL, {1, 8}},
+        },
+        chance = function()
+            return 1.0
+        end,
+        spawn = function(x, y)
+            local opts = {"SOULS_REAPING_SHOT", "SOULS_RANDOM_REAP", "SOULS_SOULDOS", "SOULS_REAP_FROM_FIRE", "SOULS_NECRONOMICAL_REAP", "SOULS_ECHOREAP", "SOULS_REAP_SLIMY"}
+            local item = CreateItemActionEntity(opts[Random(1, #opts)], x, y)
+            return item
+        end,
+    },
+    {
         id = "heart_fullhp",
         name = "heart_fullhp",
         price = {

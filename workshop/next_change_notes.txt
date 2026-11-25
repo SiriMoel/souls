@@ -18,6 +18,7 @@ CHANGED/FIXED
 - Materials can no longer be fungal shifted into Soul Blood or Perfect Soul Blood
 - Updated reaping spell icons
 - Soul pickup movement changes
+- Fixed worms often not dropping souls
 
 REMOVED
 - Soul Boost spell

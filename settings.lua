@@ -543,7 +543,7 @@ mod_settings = {
                 id = "update_informing",
                 ui_name = "Update informing",
                 ui_description = "Do you want to be told when Souls is updated?",
-                value_default = true,
+                value_default = false,
                 scope = MOD_SETTING_SCOPE_RUNTIME,
                 ui_fn = mod_setting_bool_souls,
             },

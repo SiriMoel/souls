@@ -24,7 +24,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
             if soul == "soul" then
                 price_any = price_any + amt
             else
-                soul = shifts[soul] or soul
+                --soul = shifts[soul] or soul
                 if soulcounts[tostring(soul)] >= amt then
                     to_pay[tostring(soul)] = (to_pay[tostring(soul)] or 0) + amt
                 else

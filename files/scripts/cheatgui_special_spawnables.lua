@@ -56,7 +56,7 @@ local souls_to_add = {
     },
     --[[{
         path = "mods/souls/files/biome/gate/gate.xml",
-        name = "Soul Gate",
+        name = "Void Gate (rework)",
         xml = "gate.xml",
     },]]
 }

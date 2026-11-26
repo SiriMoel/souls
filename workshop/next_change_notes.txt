@@ -1,27 +1,10 @@
-1.6.1
+1.6.2
 
 NEW
-- Spell: Echo Reap
-- Spell: Reap Slime To Random
-- Soul crystal sprites
-- Soul crystals for 3 Apotheosis bosses
+- Void Gate structure rework
 
 CHANGED/FIXED
-- Updated Tome Bomb (on the tome spellbook) to make it behave more like a missile
-- Soul crystals require more soul blood to revive with each use (per boss)
-- Increased the amount of soul blood produced from soulless blood per soul
-- Reworked adaptive projectile spells (mostly internally, but also some stat changes)
-- Increased the damage and effect duration of Huutava sielu's projectiles
-- Increased the duration of the Reaping Field spell (5s -> 15s)
-- Soul Emulator vfx change
-- Fixed some enemies not dropping the correct soul type
-- Materials can no longer be fungal shifted into Soul Blood or Perfect Soul Blood
-- Updated reaping spell icons
-- Soul pickup movement changes
-- Fixed worms often not dropping souls
-
-REMOVED
-- Soul Boost spell
+- Increased max tome upgrade soul cost (42 -> 50)
 
 INTERNAL
-- Reworked & reorganised adaptive projectiles to use action function and combined soul effects file
+- ???

@@ -1,4 +1,4 @@
-SOULS_VERSION = 6.01 -- update mod.xml, also settings.lua for the version after major updates
+SOULS_VERSION = 6.02 -- update mod.xml, also settings.lua for the version after major updates
 SOULS_SET_VERSION = true
 SOULS_FORCE_VERSION = nil
 
@@ -187,14 +187,14 @@ local function add_scene(table)
 end
 local scenes = {}
 local possible_scenes = {
-    {
+    --[[{ -- this is the old one
         scene = {13080, 1650, "mods/souls/files/biome/souldoor/souldoor.xml", true},
         func = function() return ModSettingGet("souls.enable_souldoor") end,
-    },
-    --[[{ -- this is the new one
+    },]]
+    { -- this is the new one
         scene = {13080, 1650, "mods/souls/files/biome/gate/gate.xml", true},
         func = function() return ModSettingGet("souls.enable_souldoor") end,
-    },]]
+    },
     {
         scene = {-1568, -400, "mods/souls/files/biome/soulplace/place.xml", false},
         func = function() return ModSettingGet("souls.enable_soulplace") end,

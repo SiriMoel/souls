@@ -44,7 +44,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
         local buy_1 = SpellUseSpecificSouls(entity_who_interacted, to_pay)
         local buy_2 = SpellUseSouls(entity_who_interacted, price_any)
         if buy_1 and buy_2 then
-            SoulsPrintImportant("SOULS EXCHANGED!", "The Gate thanks you for your purchase.", "void")
+            SoulsPrintImportant("SOULS EXCHANGED!", "The void thanks you for your purchase.", "void")
             GamePlaySound("data/audio/Desktop/event_cues.bank", "event_cues/shop_item/create", x, y)
             local items = EntityGetAllChildren(shop, "souls_gate_shop_item") or {}
             if #items > 0 then

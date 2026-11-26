@@ -1,4 +1,5 @@
 dofile_once("mods/souls/files/scripts/souls.lua")
+dofile_once("data/scripts/gun/gun_actions.lua")
 
 GateSouls = {
     USUAL = 1, -- all minus void & boss
@@ -9,7 +10,8 @@ GateSouls = {
 gate_shop_items = {
     {
         id = "spell_t3",
-        name = "Spell",
+        name = nil,
+        spell = true,
         price = {
             {"soul", {5, 10}},
             {{"slimes", "orcs", "zombie", "spider"}, {2, 5}},
@@ -25,7 +27,7 @@ gate_shop_items = {
     },
     {
         id = "spell_t4",
-        name = "Spell",
+        spell = true,
         price = {
             {"soul", {5, 20}},
             {{"bat", "worm", "ghost", "fungus"}, {5, 10}},
@@ -42,7 +44,7 @@ gate_shop_items = {
     },
     {
         id = "spell_t5",
-        name = "Spell",
+        spell = true,
         price = {
             {"soul", {10, 30}},
             {{"bat", "worm", "ghost"}, {0, 5}},
@@ -59,7 +61,7 @@ gate_shop_items = {
     },
     {
         id = "spell_t6",
-        name = "Spell",
+        spell = true,
         price = {
             {"soul", {15, 30}},
             {{"bat", "worm", "ghost", "mage"}, {5, 15}},
@@ -77,7 +79,7 @@ gate_shop_items = {
     },
     {
         id = "sentinel_spell",
-        name = "Summon Soul Sentinel",
+        spell = true,
         price = {
             {"soul", 20},
             {GateSouls.USUAL, 5},
@@ -94,7 +96,7 @@ gate_shop_items = {
     },
     {
         id = "tome_spell",
-        name = "Tome spell",
+        spell = true,
         price = {
             {GateSouls.USUAL, 20},
             {GateSouls.USUAL, 20},
@@ -112,7 +114,7 @@ gate_shop_items = {
     },
     {
         id = "reaping_spell",
-        name = "Reaping spell",
+        spell = true,
         price = {
             {"soul", 10},
             {GateSouls.USUAL, {1, 8}},
@@ -131,14 +133,13 @@ gate_shop_items = {
     },
     {
         id = "heart_fullhp",
-        name = "heart_fullhp",
         price = {
             {"soul", {30, 50}},
             {{"souls_void", "worm", "bat"}, {0, 10}},
             {"boss", 1},
         },
         chance = function()
-            return 0.3
+            return 0.7
         end,
         spawn = function(x, y)
             local item = EntityLoad("data/entities/items/pickup/heart_fullhp.xml", x, y)
@@ -153,7 +154,7 @@ gate_shop_items = {
             {{"mage", "worm", "bat"}, {2, 15}},
         },
         chance = function()
-            return 0.7
+            return 0.8
         end,
         spawn = function(x, y)
             local item = EntityLoad("mods/souls/files/entities/souls/boss.xml", x, y)
@@ -205,11 +206,35 @@ function GateShop(shop)
 
         local item_entity = item.spawn(x, y)
         EntityAddTag(item_entity, "souls_gate_shop_item")
+
+        local item_name = item.name or ""
         local comp_item = EntityGetFirstComponentIncludingDisabled(item_entity, "ItemComponent")
         if comp_item ~= nil then
             ComponentSetValue2(comp_item, "is_pickable", false)
+            if not item.spell then
+                item_name = GameTextGetTranslatedOrNot(ComponentGetValue2(comp_item, "item_name"))
+            end
         end
         EntityAddChild(shop, item_entity)
+
+        if item.spell then
+            local comp_action = EntityGetFirstComponentIncludingDisabled(item_entity, "ItemActionComponent")
+            if comp_action ~= nil then
+                local action_id = ComponentGetValue2(comp_action, "action_id")
+                for _, action in ipairs(actions) do
+                    if action.id == action_id then
+                        item_name = GameTextGetTranslatedOrNot(action.name)
+                        break
+                    end
+                end
+            end
+        end
+
+        local comp_interact = EntityGetFirstComponentIncludingDisabled(shop, "InteractableComponent")
+        if comp_interact ~= nil then
+            local interact_text = "INTERACT: Purchase " .. item_name
+            ComponentSetValue2(comp_interact, "ui_text", interact_text)
+        end
 
         local soul_prices = {}
         for i, v in ipairs(item.price) do

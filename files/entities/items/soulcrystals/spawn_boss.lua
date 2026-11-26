@@ -16,13 +16,13 @@ function kick(entity_who_kicked)
             if amt >= required then
                 local revived = tonumber(GlobalsGetValue("souls.bosses_revived", "0"))
                 revived = revived + 1
-                local desc = "The Gods watch intently..."
+                local desc = "The void watches intently..."
                 if revived > 20 then
-                    desc = "The Gods are no longer interested."
+                    desc = "The void is no longer interested."
                 elseif revived > 10 then
-                    desc = "The Gods are losing interest..."
+                    desc = "The void is losing interest..."
                 elseif revived > 5 then
-                    desc = "The Gods watch..."
+                    desc = "The void watches..."
                 end
                 SoulsPrintImportant("THE CRYSTAL SHATTERS!", desc, "boss")
                 GlobalsSetValue("souls.bosses_revived", tostring(revived))

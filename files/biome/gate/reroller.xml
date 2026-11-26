@@ -6,6 +6,16 @@
         offset_y="59"
     ></SpriteComponent>
 
+    <LightComponent
+        _enabled="1"
+        offset_x="0"
+        offset_y="-30"
+        r="100"
+        g="230"
+        b="255"
+        radius="90"
+    ></LightComponent>
+
     <VariableStorageComponent
         _tags="reroll_price"
         name="soul"

@@ -1,7 +1,7 @@
 dofile_once("mods/souls/files/scripts/souls.lua")
 
 local new_actions = {
-	--[[{
+	{
 		id = "HAX", -- DONT FORGET TO COMMENT THIS!!!
 		name = "cheating!",
 		description = "cheating!",
@@ -18,7 +18,7 @@ local new_actions = {
 			--EditSoulCounts({["orcs"] = 1}, caster)
 			AcquireManySouls(caster)
 			--SoulsPrintImportant("hello", "hello", "divine")
-			local x, y = EntityGetTransform(caster)
+			--[[local x, y = EntityGetTransform(caster)
 			local crystals = {
 				"mods/souls/files/entities/items/soulcrystals/alchemist.xml",
 				"mods/souls/files/entities/items/soulcrystals/banshee.xml",
@@ -39,9 +39,9 @@ local new_actions = {
 			end
 			for i = 1, #crystals do
 				EntityLoad(crystals[i], x + 5 * i, y - 5)
-			end
+			end]]
 		end,
-	},]]
+	},
 	{
 		id = "REAPING_SHOT",
 		name = "$action_souls_reaping_shot",

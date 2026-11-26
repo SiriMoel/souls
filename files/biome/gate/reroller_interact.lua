@@ -11,7 +11,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
     if comp_price ~= nil then
         local price = ComponentGetValue2(comp_price, "value_int")
         if SpellUseSouls(entity_who_interacted, price) then
-            price = math.min(price + 3, 50)
+            price = math.min(price + 3, 30)
             ComponentSetValue2(comp_price, "value_int", price)
         else
             ok = false
@@ -28,6 +28,8 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
             GamePlaySound("data/audio/Desktop/event_cues.bank", "event_cues/shop_item/create", x, y)
             GameScreenshake(5)
             for _, shop in ipairs(shops) do
+                local shop_x, shop_y = EntityGetTransform(shop)
+                EntityLoad("mods/souls/files/biome/gate/reroll_fx.xml", shop_x, shop_y - 36)
                 GateShop(shop)
             end
         end

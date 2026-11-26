@@ -3,13 +3,6 @@ dofile_once("mods/souls/files/scripts/souls.lua")
 shop_gui = nil
 
 local shop = GetUpdatedEntityID()
-local x, y = EntityGetTransform(shop)
-local targets = EntityGetInRadiusWithTag(x, y, 14, "player_unit") or {}
-if #targets > 0 then
-    ShopGuiUpdate()
-else
-    GuiDestroy(shop_gui)
-end
 
 local function text_outline(text, tx, ty, z)
     local dist = 1
@@ -63,4 +56,12 @@ function ShopGuiUpdate()
     end
        
     GuiIdPop(shop_gui)
+end
+
+local x, y = EntityGetTransform(shop)
+local targets = EntityGetInRadiusWithTag(x, y, 14, "player_unit") or {}
+if #targets > 0 then
+    ShopGuiUpdate()
+else
+    GuiDestroy(shop_gui)
 end

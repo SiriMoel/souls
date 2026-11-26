@@ -3,13 +3,6 @@ dofile_once("mods/souls/files/scripts/souls.lua")
 reroller_gui = nil
 
 local reroller = GetUpdatedEntityID()
-local x, y = EntityGetTransform(reroller)
-local targets = EntityGetInRadiusWithTag(x, y, 14, "player_unit") or {}
-if #targets > 0 then
-    RerollerGuiUpdate()
-else
-    GuiDestroy(reroller_gui)
-end
 
 local function text_outline(text, tx, ty, z)
     local dist = 1
@@ -54,4 +47,12 @@ function RerollerGuiUpdate()
     end
        
     GuiIdPop(reroller_gui)
+end
+
+local x, y = EntityGetTransform(reroller)
+local targets = EntityGetInRadiusWithTag(x, y, 14, "player_unit") or {}
+if #targets > 0 then
+    RerollerGuiUpdate()
+else
+    GuiDestroy(reroller_gui)
 end

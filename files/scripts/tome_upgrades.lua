@@ -38,7 +38,7 @@ end
 
 local starting_cost = 7
 local cost_increase_per = 5
-local max_upgrade_cost = 42
+local max_upgrade_cost = 50
 
 tome_upgrades = {
     {

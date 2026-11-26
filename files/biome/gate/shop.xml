@@ -6,6 +6,48 @@
         offset_y="59"
     ></SpriteComponent>
 
+    <LightComponent
+        _enabled="1"
+        offset_x="0"
+        offset_y="-30"
+        r="100"
+        g="230"
+        b="255"
+        radius="60"
+    ></LightComponent>
+
+    <ParticleEmitterComponent 
+        _tags="soul_shop"
+		enabled="1"
+		emitted_material_name="souls_soul_particles"
+		offset.x="0"
+		offset.y="-30"
+		x_pos_offset_min="-8"
+		x_pos_offset_max="8"
+		y_pos_offset_min="-8"
+		y_pos_offset_max="4"
+		x_vel_min="0"
+		x_vel_max="0"
+		y_vel_min="-30"
+		y_vel_max="0"
+		count_min="1"
+		count_max="2"
+		emission_interval_min_frames="2"
+		emission_interval_max_frames="2"
+		emit_cosmetic_particles="1"
+		create_real_particles="0"
+		lifetime_min="0.9"
+		lifetime_max="1.8"
+		render_on_grid="1"
+		fade_based_on_lifetime="1"
+		airflow_force="0.0"
+		airflow_time="1.1"
+		airflow_scale="0.1"
+		collide_with_grid="0"
+		gravity.y="0.0"
+		render_back="1"
+	></ParticleEmitterComponent>
+
     <LuaComponent
         script_source_file="mods/souls/files/biome/gate/shop_init.lua"
         execute_on_added="1"
@@ -26,7 +68,7 @@
     <InteractableComponent
         _tags="soul_shop"
         radius="14"
-        ui_text="INTERACT: Purchase!"
+        ui_text="INTERACT: Purchase"
         name="Void Gate"
     ></InteractableComponent>
 

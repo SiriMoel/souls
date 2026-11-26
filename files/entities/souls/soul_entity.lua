@@ -5,7 +5,7 @@ local x, y, r = EntityGetTransform(this)
 local frame = GameGetFrameNum()
 
 local comp_sprite = EntityGetFirstComponentIncludingDisabled(this, "SpriteComponent")
-local alpha = 0.6 + 0.3 * math.sin(frame / 20)
+local alpha = 0.7 + 0.2 * math.sin(frame / 20)
 ComponentSetValue2(comp_sprite, "alpha", alpha)
 
 local comp_frame_created = EntityGetFirstComponentIncludingDisabled(this, "VariableStorageComponent", "frame_created")

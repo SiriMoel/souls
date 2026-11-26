@@ -6,10 +6,10 @@ LoadPixelScene("mods/souls/files/biome/gate/scene.png", "mods/souls/files/biome/
 
 local to_spawn = {
     {"mods/souls/files/biome/gate/reroller.xml", 0, -3},
-    {"mods/souls/files/biome/gate/shop.xml", -60, 2},
-    {"mods/souls/files/biome/gate/shop.xml", -110, 2},
-    {"mods/souls/files/biome/gate/shop.xml", 60, 2},
-    {"mods/souls/files/biome/gate/shop.xml", 110, 2},
+    {"mods/souls/files/biome/gate/shop.xml", -54, 2},
+    {"mods/souls/files/biome/gate/shop.xml", -98, 2},
+    {"mods/souls/files/biome/gate/shop.xml", 54, 2},
+    {"mods/souls/files/biome/gate/shop.xml", 98, 2},
 }
 
 for _, v in ipairs(to_spawn) do

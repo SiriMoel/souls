@@ -46,6 +46,11 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
         if buy_1 and buy_2 then
             SoulsPrintImportant("SOULS EXCHANGED!", "The void thanks you for your purchase.", "void")
             GamePlaySound("data/audio/Desktop/event_cues.bank", "event_cues/shop_item/create", x, y)
+
+            local gate = EntityGetClosestWithTag(x, y, "souls_void_gate")
+            local gate_x, gate_y = EntityGetTransform(gate)
+            EntityLoad("mods/souls/files/biome/gate/face_fx.xml", gate_x, gate_y)
+
             local items = EntityGetAllChildren(shop, "souls_gate_shop_item") or {}
             if #items > 0 then
                 local item = items[1]

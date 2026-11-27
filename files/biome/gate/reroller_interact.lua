@@ -26,6 +26,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
             SoulsPrint("Rerolled!")
             GamePlaySound("data/audio/Desktop/projectiles.bank", "projectiles/enlightened_laser/launch_dark", x, y)
             GamePlaySound("data/audio/Desktop/event_cues.bank", "event_cues/shop_item/create", x, y)
+            EntityLoad("mods/souls/files/biome/gate/reroller_fx.xml", x, y - 30)
             GameScreenshake(5)
             for _, shop in ipairs(shops) do
                 local shop_x, shop_y = EntityGetTransform(shop)

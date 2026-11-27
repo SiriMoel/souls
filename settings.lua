@@ -416,7 +416,7 @@ mod_settings = {
             {
                 id = "enable_soulplace",
                 ui_name = "Tree room",
-                ui_description = "Should this structure appear?",
+                ui_description = "This structure contains the Soul Tome.",
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
                 ui_fn = mod_setting_bool_souls,
@@ -424,7 +424,7 @@ mod_settings = {
             {
                 id = "enable_souldoor",
                 ui_name = "Void Gate",
-                ui_description = "Should this structure appear?",
+                ui_description = "This structure is used to trade souls for various spells & items.",
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
                 ui_fn = mod_setting_bool_souls,
@@ -432,7 +432,7 @@ mod_settings = {
             {
                 id = "enable_amphitheatre",
                 ui_name = "Amphitheatre",
-                ui_description = "Should this structure appear?",
+                ui_description = "This structure is used to challenge enemies for souls.",
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
                 ui_fn = mod_setting_bool_souls,
@@ -440,7 +440,7 @@ mod_settings = {
             {
                 id = "enable_shop_structure",
                 ui_name = "Soul Shop",
-                ui_description = "Should this structure appear?",
+                ui_description = "This structure contains a selection of spells that are bought with souls.",
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
                 ui_fn = mod_setting_bool_souls,
@@ -448,7 +448,7 @@ mod_settings = {
             {
                 id = "enable_fountain_structure",
                 ui_name = "Fountain",
-                ui_description = "Should this structure appear?",
+                ui_description = "This structure provides recipes for a specific material.",
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
                 ui_fn = mod_setting_bool_souls,
@@ -472,13 +472,13 @@ mod_settings = {
         settings = {
             {
                 id = "enable_enemies",
-                ui_name = "Enable Souls enemies?",
-                ui_description = "Should this mod's enemies appear at all?",
+                ui_name = "Enemies",
+                ui_description = "Should this mod's enemies spawn?",
                 value_default = true,
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
                 ui_fn = mod_setting_bool_souls,
             },
-            {
+            --[[{ -- i dont think these chances worked/were useful nor do i know how to test if they did/were
                 id = "enemy_puppet_master",
                 ui_name = "Nukkejenmestari chance",
                 ui_description = "Adjust how often the Souls Master appears.",
@@ -513,7 +513,7 @@ mod_settings = {
                 values = {{"0", "0x"}, {"0.3", "0.3x"}, {"0.5", "0.5x"}, {"0.7", "0.7x"}, {"1", "1x"}, {"1.3", "1.3x"}, {"1.5", "1.5x"}},
                 scope = MOD_SETTING_SCOPE_NEW_GAME,
                 ui_fn = mod_setting_enum_souls,
-            },
+            },]]
             {
                 id = "enable_hauntings",
                 ui_name = "Hauntings",

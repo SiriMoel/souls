@@ -5,6 +5,7 @@ NEW
 
 CHANGED/FIXED
 - Increased max tome upgrade soul cost (42 -> 50)
+- Nukkejenmestari will drop void souls
 
 INTERNAL
 - ???

@@ -1,4 +1,4 @@
-<Entity>
+<Entity tags="souls_void_gate">
 
     <LuaComponent
         script_source_file="mods/souls/files/biome/gate/spawn.lua"
@@ -11,8 +11,8 @@
         execute_every_n_frame="600"
     ></LuaComponent>
 
-	<ParticleEmitterComponent 
-		emitted_material_name="souls_soul_particles_faint"
+	<!--<ParticleEmitterComponent 
+		emitted_material_name="souls_soul_particles"
 		gravity.y="0.0"
 		lifetime_min="3.5"
 		lifetime_max="4.1"
@@ -38,7 +38,7 @@
 		image_animation_loop="1"
 		is_emitting="1"
 		render_back="1"
-    ></ParticleEmitterComponent>
+    ></ParticleEmitterComponent>-->
 
     <!--<ParticleEmitterComponent 
 		enabled="1"

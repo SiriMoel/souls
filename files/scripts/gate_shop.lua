@@ -13,9 +13,9 @@ gate_shop_items = {
         name = nil,
         spell = true,
         price = {
-            {"soul", {5, 10}},
-            {{"slimes", "orcs", "zombie", "spider"}, {2, 5}},
-            {GateSouls.USUAL, {2, 5}},
+            {GateSouls.USUAL, {7, 15}},
+            {{"slimes", "orcs", "zombie", "spider"}, {3, 10}},
+            {{"bat", "worm", "ghost", "fungus"}, {2, 5}},
         },
         chance = function()
             return 6.0
@@ -29,10 +29,10 @@ gate_shop_items = {
         id = "spell_t4",
         spell = true,
         price = {
-            {"soul", {5, 20}},
+            {GateSouls.USUAL, {5, 15}},
+            {GateSouls.USUAL, {5, 15}},
             {{"bat", "worm", "ghost", "fungus"}, {5, 10}},
-            {{"slimes", "orcs", "zombie", "spider"}, {2, 10}},
-            {GateSouls.USUAL, {1, 5}},
+            {GateSouls.ALL, {1, 5}},
         },
         chance = function()
             return 7.0
@@ -46,10 +46,10 @@ gate_shop_items = {
         id = "spell_t5",
         spell = true,
         price = {
-            {"soul", {10, 30}},
-            {{"bat", "worm", "ghost"}, {0, 5}},
-            {{"slimes", "orcs", "zombie"}, {2, 10}},
-            {GateSouls.USUAL, {2, 10}},
+            {GateSouls.USUAL, {15, 40}},
+            {GateSouls.USUAL, {10, 30}},
+            {{"bat", "worm", "ghost"}, {0, 15}},
+            {GateSouls.ALL, {1, 10}},
         },
         chance = function()
             return 6.0
@@ -63,11 +63,11 @@ gate_shop_items = {
         id = "spell_t6",
         spell = true,
         price = {
-            {"soul", {15, 30}},
-            {{"bat", "worm", "ghost", "mage"}, {5, 15}},
-            {{"slimes", "orcs", "zombie"}, {5, 30}},
-            {GateSouls.USUAL, {0, 8}},
-            {{"souls_void", "boss", "mage", "bat"}, {0, 2}},
+            {GateSouls.USUAL, {15, 35}},
+            {GateSouls.USUAL, {10, 40}},
+            {GateSouls.USUAL, {5, 25}},
+            {{"bat", "slimes", "fungus", "orcs", "ghost", "mage"}, {10, 20}},
+            {{"souls_void", "boss", "bat", "worm"}, {0, 4}},
         },
         chance = function()
             return 2.0
@@ -81,8 +81,9 @@ gate_shop_items = {
         id = "sentinel_spell",
         spell = true,
         price = {
-            {"soul", 20},
-            {GateSouls.USUAL, 5},
+            {GateSouls.USUAL, 10},
+            {GateSouls.USUAL, 10},
+            {GateSouls.USUAL, 10},
             {GateSouls.USUAL, 5},
             {"souls_void", 3},
         },
@@ -100,7 +101,8 @@ gate_shop_items = {
         price = {
             {GateSouls.USUAL, 20},
             {GateSouls.USUAL, 20},
-            {GateSouls.ALL, 10},
+            {GateSouls.USUAL, 20},
+            {GateSouls.ALL, {1, 15}},
             {"boss", 1},
         },
         chance = function()
@@ -116,11 +118,11 @@ gate_shop_items = {
         id = "reaping_spell",
         spell = true,
         price = {
-            {"soul", 10},
-            {GateSouls.USUAL, {1, 8}},
-            {GateSouls.USUAL, {1, 8}},
-            {GateSouls.USUAL, {1, 8}},
-            {GateSouls.USUAL, {1, 8}},
+            {GateSouls.USUAL, {1, 10}},
+            {GateSouls.USUAL, {1, 10}},
+            {GateSouls.USUAL, {1, 10}},
+            {GateSouls.USUAL, {1, 10}},
+            {GateSouls.ALL, {1, 10}},
         },
         chance = function()
             return 1.0
@@ -134,8 +136,8 @@ gate_shop_items = {
     {
         id = "heart_fullhp",
         price = {
-            {"soul", {30, 50}},
-            {{"souls_void", "worm", "bat"}, {0, 10}},
+            {"soul", {50, 100}},
+            {{"mage", "worm", "bat", "ghost"}, {0, 15}},
             {"boss", 1},
         },
         chance = function()
@@ -150,11 +152,11 @@ gate_shop_items = {
         id = "boss_soul",
         name = "Boss Soul",
         price = {
-            {"soul", {10, 30}},
-            {{"mage", "worm", "bat"}, {2, 15}},
+            {"soul", {35, 70}},
+            {"souls_void", {0, 2}}
         },
         chance = function()
-            return 0.8
+            return 0.9
         end,
         spawn = function(x, y)
             local item = EntityLoad("mods/souls/files/entities/souls/boss.xml", x, y)

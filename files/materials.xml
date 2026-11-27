@@ -18,19 +18,6 @@
 	<CellDataChild
       	_parent="spark"
       	_inherit_reactions="1"
-      	name="souls_soul_particles_faint" 
-    	ui_name=""
-    	wang_color="7f3fe3df"
-    	>
-      	<Graphics
-    	color="303fe2df"
-    	fire_colors_index="1" >
-        </Graphics>
-    </CellDataChild> 
-
-	<CellDataChild
-      	_parent="spark"
-      	_inherit_reactions="1"
       	name="souls_living_particles" 
     	ui_name=""
     	wang_color="7f82f803"

@@ -39,10 +39,10 @@ function souls_update_settings_globals()
     GlobalsSetValue("souls.souls_wand_key", tostring(ModSettingGet("souls.souls_wand_key")))
     --GlobalsSetValue("souls.spell_spawn_chance_multiplier", tostring(ModSettingGet("souls.spell_spawn_chance_multiplier")))
     GlobalsSetValue("souls.enable_enemies", tostring(ModSettingGet("souls.enable_enemies")))
-    GlobalsSetValue("souls.enemy_puppet_master", tostring(ModSettingGet("souls.enemy_puppet_master")))
-    GlobalsSetValue("souls.enemy_soul_angry", tostring(ModSettingGet("souls.enemy_soul_angry")))
-    GlobalsSetValue("souls.enemy_soul_rogue", tostring(ModSettingGet("souls.enemy_soul_rogue")))
-    GlobalsSetValue("souls.enemy_soul_eye", tostring(ModSettingGet("souls.enemy_soul_eye")))
+    --GlobalsSetValue("souls.enemy_puppet_master", tostring(ModSettingGet("souls.enemy_puppet_master")))
+    --GlobalsSetValue("souls.enemy_soul_angry", tostring(ModSettingGet("souls.enemy_soul_angry")))
+    --GlobalsSetValue("souls.enemy_soul_rogue", tostring(ModSettingGet("souls.enemy_soul_rogue")))
+    --GlobalsSetValue("souls.enemy_soul_eye", tostring(ModSettingGet("souls.enemy_soul_eye")))
     GlobalsSetValue("souls.enable_hauntings", tostring(ModSettingGet("souls.enable_hauntings")))
     GlobalsSetValue("souls.animated_souls", tostring(ModSettingGet("souls.animated_souls")))
 end
@@ -128,9 +128,10 @@ if ModSettingGet("souls.enable_enemies") == true then
         },
     }
     for _, v in ipairs(enemies) do
-        if v.func_enabled() == true then
+        --[[if v.func_enabled() == true then
             v.func_add()
-        end
+        end]]
+        v.func_add()
     end
 end
 

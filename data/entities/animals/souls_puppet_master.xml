@@ -83,6 +83,12 @@
 			>
 	    </CharacterDataComponent>
 	</Base>
+
+	<VariableStorageComponent
+		_tags="souls_force_soul_type"
+		name="souls_force_soul_type"
+		value_string="souls_void"
+	></VariableStorageComponent>
 	
 	<ItemPickUpperComponent
     	is_in_npc="1">
